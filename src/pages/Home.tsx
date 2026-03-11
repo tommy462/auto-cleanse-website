@@ -520,7 +520,7 @@ const Home = () => {
                 </p>
 
                 {/* DPFs Cleaned Counter */}
-                <div className="mt-12 p-8 rounded-[2rem] bg-[#1A1D22] border border-white/5 relative overflow-hidden group shadow-2xl shadow-black/50 hidden lg:block max-w-sm">
+                <div className="mt-12 p-8 rounded-[2rem] bg-[#1A1D22] border border-white/5 relative overflow-hidden group shadow-2xl shadow-black/50 block max-w-sm">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
                   {/* Decorative glow */}
