@@ -58,13 +58,17 @@ const ScrollVideoSection: React.FC<ScrollVideoSectionProps> = ({
                 const frameNumber = i.toString().padStart(8, '0');
                 img.src = `${baseUrl}${filenamePrefix}${frameNumber}.jpg`;
 
-                img.onload = () => {
+                const handleLoad = () => {
                     if (!isMounted) return;
                     loadedCount++;
-                    if (loadedCount === TOTAL_FRAMES) {
+                    // Start the animation as soon as 10 frames are ready so mobile doesn't stall
+                    if (loadedCount >= Math.min(TOTAL_FRAMES, 10)) {
                         setFramesLoaded(true);
                     }
                 };
+
+                img.onload = handleLoad;
+                img.onerror = handleLoad;
 
                 frames.push(img);
             }
