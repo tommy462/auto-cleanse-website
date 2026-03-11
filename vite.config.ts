@@ -7,7 +7,20 @@ export default defineConfig({
   plugins: [
     react(),
     sitemap({
-      hostname: 'https://auto-cleanse.co.uk'
+      hostname: 'https://auto-cleanse.co.uk',
+      dynamicRoutes: [
+        '/',
+        '/services',
+        '/postal-dpf',
+        '/why-clean',
+        '/maintenance',
+        '/about',
+        '/contact',
+        '/pricing',
+        '/fuel-savings-calculator',
+        '/dpf-cleaning-devon',
+        '/dpf-cleaning-totnes'
+      ]
     })
   ],
   optimizeDeps: {
