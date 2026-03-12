@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrollVideoSection from '../components/ScrollVideoSection';
 import SEO from '../components/SEO';
+import VehicleSchema from '../components/VehicleSchema';
 import MagneticButton from '../components/MagneticButton';
 import CountUp from '../components/CountUp';
 import LogoLoop from '../components/LogoLoop';
@@ -262,6 +263,7 @@ const Home = () => {
         description="Professional off-vehicle DPF, SCR, DOC, GPF, and OPF cleaning services. Same-day return within Devon & nationwide postal service available."
         path="/"
       />
+      <VehicleSchema />
       {/* JSON-LD Schema Stacking */}
       <script
         type="application/ld+json"
