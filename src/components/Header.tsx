@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Facebook, Instagram, Youtube, Menu, X } from 'lucide-react';
-import MagneticButton from './MagneticButton';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -95,14 +94,12 @@ const Header = () => {
               </div>
 
               {/* Book Now Button */}
-              <MagneticButton>
-                <Link
-                  to="/postal-dpf"
-                  className="btn-shine px-6 py-2 rounded-lg font-medium text-sm text-white hover:text-white"
-                >
-                  Book Now
-                </Link>
-              </MagneticButton>
+              <Link
+                to="/postal-dpf"
+                className="btn-shine px-6 py-2 rounded-lg font-medium text-sm text-white hover:text-white"
+              >
+                Book Now
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -133,15 +130,13 @@ const Header = () => {
               ))}
 
               <div className="pt-4 border-t border-white/10 space-y-3">
-                <MagneticButton className="w-full">
-                  <Link
-                    to="/postal-dpf"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full btn-shine px-6 py-2 rounded-lg font-medium text-sm text-white hover:text-white block text-center shadow-lg hover:shadow-[#FF7A00]/20"
-                  >
-                    Book Now
-                  </Link>
-                </MagneticButton>
+                <Link
+                  to="/postal-dpf"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-full btn-shine px-6 py-2 rounded-lg font-medium text-sm text-white hover:text-white block text-center shadow-lg hover:shadow-[#FF7A00]/20"
+                >
+                  Book Now
+                </Link>
 
                 {/* Mobile Social Icons */}
                 <div className="flex items-center space-x-4 pt-2 justify-center">
