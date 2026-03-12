@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Youtube } from 'lucide-react';
 import MagneticButton from './MagneticButton';
@@ -91,7 +90,7 @@ const Footer = () => {
 
         {/* Mega Typography */}
         <div className="w-full flex justify-center items-center border-t border-white/10 pt-16 pb-12 overflow-hidden px-4">
-          <div aria-hidden="true" className="text-[12vw] font-black text-white-[0.03] text-transparent outline-text opacity-40 tracking-tighter leading-none select-none pointer-events-none" style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.1)', color: 'transparent' }}>
+          <div aria-hidden="true" className="text-[8.5vw] font-black text-white-[0.03] text-transparent outline-text opacity-40 tracking-tighter leading-none select-none pointer-events-none" style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.1)', color: 'transparent' }}>
             AUTOCLEANSE
           </div>
         </div>

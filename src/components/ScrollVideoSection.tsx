@@ -48,6 +48,7 @@ const ScrollVideoSection: React.FC<ScrollVideoSectionProps> = ({
     // Preload frames
     useEffect(() => {
         let isMounted = true;
+        let observer: IntersectionObserver;
 
         const loadFrames = async () => {
             const frames: HTMLImageElement[] = [];
@@ -56,6 +57,12 @@ const ScrollVideoSection: React.FC<ScrollVideoSectionProps> = ({
             for (let i = startFrame; i <= endFrame; i++) {
                 const img = new Image();
                 const frameNumber = i.toString().padStart(8, '0');
+                // Use fetch priority high for first frame, low for rest
+                if (i === startFrame) {
+                    img.fetchPriority = "high";
+                } else {
+                    img.fetchPriority = "low";
+                }
                 img.src = `${baseUrl}${filenamePrefix}${frameNumber}.jpg`;
 
                 const handleLoad = () => {
@@ -78,9 +85,26 @@ const ScrollVideoSection: React.FC<ScrollVideoSectionProps> = ({
             }
         };
 
-        loadFrames();
+        // Preload ONLY the first frame immediately so canvas isn't entirely blank
+        const firstImg = new Image();
+        firstImg.fetchPriority = "high";
+        firstImg.src = `${baseUrl}${filenamePrefix}${startFrame.toString().padStart(8, '0')}.jpg`;
 
-        return () => { isMounted = false; };
+        if (sectionRef.current) {
+            observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    loadFrames();
+                    observer.disconnect();
+                }
+            }, { rootMargin: '1000px' });
+
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            isMounted = false;
+            if (observer) observer.disconnect();
+        };
     }, [baseUrl, filenamePrefix, startFrame, endFrame, TOTAL_FRAMES]);
 
     // Frame painting logic

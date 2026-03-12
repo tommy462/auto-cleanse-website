@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Truck, Clock, Shield, Settings, Wrench, Zap, ChevronDown, ChevronLeft, ChevronRight, CheckCircle2, Droplets, Leaf, Settings2, BarChart3, ArrowRight, MousePointer2, Play, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Phone, Truck, Clock, Shield, Settings, Wrench, Zap, ChevronLeft, ChevronRight, CheckCircle2, Droplets, Leaf, Settings2, BarChart3, ArrowRight, MousePointer2, Play, Facebook, Instagram, Youtube } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -765,7 +765,7 @@ const Home = () => {
               return (
                 <div
                   key={index}
-                  className={`glass - panel - heavy rounded - 3xl card - hover reveal - item flex flex - col justify - center items - center text - center group overflow - hidden relative ${getBentoClasses(index)} `}
+                  className={`glass-panel-heavy rounded-3xl card-hover reveal-item flex flex-col justify-center items-center text-center group overflow-hidden relative ${getBentoClasses(index)}`}
                 >
                   {/* Subtle Background Effects */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
@@ -794,19 +794,19 @@ const Home = () => {
                       <service.icon size={28} className="text-white" />
                     </div>
 
-                    <h3 className={`font - bold text - white mb - 2 tracking - tight ${isLarge ? 'text-3xl md:text-4xl' : 'text-xl md:text-2xl'} `}>
+                    <h3 className={`font-bold text-white mb-2 tracking-tight ${isLarge ? 'text-3xl md:text-4xl' : 'text-xl md:text-2xl'}`}>
                       {service.title}
                     </h3>
 
                     {/* Description: Hides on hover for small cards to make vertical room for the 3 bullet points */}
-                    <p className={`text - white / 60 font - medium leading - relaxed transition - all duration - 300 origin - top ${isLarge ? 'text-lg max-w-sm' : 'text-sm group-hover:opacity-0 group-hover:max-h-0 group-hover:mb-0 group-hover:scale-95 max-h-20 mb-2'} `}>
+                    <p className={`text-white/60 font-medium leading-relaxed transition-all duration-300 origin-top ${isLarge ? 'text-lg max-w-sm' : 'text-sm group-hover:opacity-0 group-hover:max-h-0 group-hover:mb-0 group-hover:scale-95 max-h-20 mb-2'}`}>
                       {service.description}
                     </p>
 
                     {/* Feature List Content Revealed On Hover */}
-                    <ul className={`font - medium transition - all duration - 500 flex flex - col items - center justify - center w - full ${isLarge ? 'mt-6 opacity-100 text-white/80 text-sm space-y-3' : 'max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mt-2 text-white/70 text-[13px] space-y-2'} `}>
+                    <ul className={`font-medium transition-all duration-500 flex flex-col items-center justify-center w-full ${isLarge ? 'mt-6 opacity-100 text-white/80 text-sm space-y-3' : 'max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mt-2 text-white/70 text-[13px] space-y-2'}`}>
                       {service.features.map((feature, idx) => (
-                        <li key={idx} className={`flex items - center justify - center gap - 2.5 transform translate - y - 3 opacity - 0 transition - all duration - 300 ${isLarge ? 'translate-y-0 opacity-100' : 'group-hover:translate-y-0 group-hover:opacity-100'} `} style={{ transitionDelay: isLarge ? '0ms' : `${idx * 75} ms` }}>
+                        <li key={idx} className={`flex items-center justify-center gap-2.5 transform translate-y-3 opacity-0 transition-all duration-300 ${isLarge ? 'translate-y-0 opacity-100' : 'group-hover:translate-y-0 group-hover:opacity-100'}`} style={{ transitionDelay: isLarge ? '0ms' : `${idx * 75}ms` }}>
                           <div className="w-1.5 h-1.5 rounded-full bg-[#FF7A00] flex-shrink-0 shadow-[0_0_8px_rgba(255,122,0,0.8)]"></div>
                           <span className="leading-snug">{feature}</span>
                         </li>
@@ -821,31 +821,7 @@ const Home = () => {
       </section>
 
 
-      {/* We Don't Monkey Around */}
-      <section className="py-20 section-gradient-7">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            <span className="text-white">We don't </span>
-            <span className="text-[#FF7A00]">Monkey</span>
-            <span className="text-white"> around</span>
-          </h2>
 
-          <div className="flex justify-center mb-12">
-            <ChevronDown size={32} className="text-[#FF7A00]" />
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="relative gradient-card rounded-3xl overflow-hidden aspect-video">
-              <iframe
-                src="https://drive.google.com/file/d/1R1ZApKEnYmqV6Fkua9HfAxEEHUduej1f/preview"
-                className="w-full h-full"
-                allow="autoplay"
-                title="AutoCleanse DPF Cleaning Process"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Final CTA */}
       <section className="py-16 section-gradient-1">
