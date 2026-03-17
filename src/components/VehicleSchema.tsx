@@ -18,7 +18,7 @@ const MAKES_AND_MODELS = [
     // Citroën
     'Citroen Relay', 'Citroen Dispatch', 'Citroen Berlingo', 'Citroen C3', 'Citroen C4', 'Citroen C5',
     // Renault
-    'Renault Master', 'Renault Trafic', 'Renault Kangoo', 'Renault Megane', 'Renault Clio', 'Renault Captur',
+    'Renault Master', 'Renault Trafic', 'Renault Ka ngoo', 'Renault Megane', 'Renault Clio', 'Renault Captur',
     // Nissan
     'Nissan Navara', 'Nissan NV200', 'Nissan NV300', 'Nissan NV400', 'Nissan Qashqai', 'Nissan X-Trail',
     // Land Rover / Range Rover

@@ -45,67 +45,66 @@ const ScrollVideoSection: React.FC<ScrollVideoSectionProps> = ({
 
     const TOTAL_FRAMES = endFrame - startFrame + 1;
 
-    // Preload frames
+    // Synchronously create all frame objects and enable GSAP to ensure smooth first-scroll pinning
+    useEffect(() => {
+        const frames: HTMLImageElement[] = [];
+        for (let i = startFrame; i <= endFrame; i++) {
+            frames.push(new Image());
+        }
+        framesRef.current = frames;
+        setFramesLoaded(true);
+    }, [startFrame, endFrame]);
+
+    // Lazy load the frame images
     useEffect(() => {
         let isMounted = true;
         let observer: IntersectionObserver;
 
-        const loadFrames = async () => {
-            const frames: HTMLImageElement[] = [];
-            let loadedCount = 0;
+        if (!framesRef.current || framesRef.current.length === 0) return;
 
+        const loadFrames = () => {
             for (let i = startFrame; i <= endFrame; i++) {
-                const img = new Image();
+                const img = framesRef.current[i - startFrame];
+                if (img.src) continue; // Already started loading
+                
                 const frameNumber = i.toString().padStart(8, '0');
-                // Use fetch priority high for first frame, low for rest
-                if (i === startFrame) {
-                    img.fetchPriority = "high";
-                } else {
-                    img.fetchPriority = "low";
-                }
+                img.fetchPriority = "low";
                 img.src = `${baseUrl}${filenamePrefix}${frameNumber}.jpg`;
-
-                const handleLoad = () => {
-                    if (!isMounted) return;
-                    loadedCount++;
-                    // Start the animation as soon as 10 frames are ready so mobile doesn't stall
-                    if (loadedCount >= Math.min(TOTAL_FRAMES, 10)) {
-                        setFramesLoaded(true);
+                
+                // If user scrolls to a frame before it's loaded, redraw when it finally arrives
+                img.onload = () => {
+                    if (isMounted && currentFrameRef.current === (i - startFrame)) {
+                        drawFrame(currentFrameRef.current);
                     }
                 };
-
-                img.onload = handleLoad;
-                img.onerror = handleLoad;
-
-                frames.push(img);
-            }
-
-            if (isMounted) {
-                framesRef.current = frames;
             }
         };
 
-        // Preload ONLY the first frame immediately so canvas isn't entirely blank
-        const firstImg = new Image();
+        // Eager load the first frame immediately for the initial canvas paint
+        const firstImg = framesRef.current[0];
         firstImg.fetchPriority = "high";
         firstImg.src = `${baseUrl}${filenamePrefix}${startFrame.toString().padStart(8, '0')}.jpg`;
+        firstImg.onload = () => {
+            if (isMounted && currentFrameRef.current === 0) {
+                drawFrame(0);
+            }
+            // Start buffering the rest when in view
+            if (sectionRef.current) {
+                observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        loadFrames();
+                        observer.disconnect();
+                    }
+                }, { rootMargin: '1500px' });
+                observer.observe(sectionRef.current);
+            }
+        };
 
-        if (sectionRef.current) {
-            observer = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    loadFrames();
-                    observer.disconnect();
-                }
-            }, { rootMargin: '1000px' });
-
-            observer.observe(sectionRef.current);
-        }
-
-        return () => {
+        return () => { 
             isMounted = false;
             if (observer) observer.disconnect();
         };
-    }, [baseUrl, filenamePrefix, startFrame, endFrame, TOTAL_FRAMES]);
+    }, [baseUrl, filenamePrefix, startFrame, endFrame]);
 
     // Frame painting logic
     const drawFrame = useCallback((frameIndex: number) => {
@@ -114,11 +113,15 @@ const ScrollVideoSection: React.FC<ScrollVideoSectionProps> = ({
 
         if (!canvas || !frames.length || frameIndex < 0 || frameIndex >= frames.length) return;
 
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
+        // Track playhead position regardless of load state
+        currentFrameRef.current = frameIndex;
 
         const img = frames[frameIndex];
-        if (!img.complete) return;
+        // If image not ready yet, skip wiping canvas so it gracefully pauses on the last drawn frame
+        if (!img.complete || img.naturalWidth === 0) return;
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
 
         const maxWidth = 600;
         const maxHeight = 600;
