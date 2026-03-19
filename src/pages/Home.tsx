@@ -460,7 +460,10 @@ const Home = () => {
           </h1>
 
           <div className="text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed space-y-4 hero-subtitle">
-            <p className="font-semibold tracking-wide">Professional filter cleaning with same-day return within 30 miles of Totnes, Devon.</p>
+            <div>
+              <p className="font-semibold tracking-wide">Professional filter cleaning with same-day return*</p>
+              <span className="block text-sm text-white/50 font-medium mt-2">*Location Dependant</span>
+            </div>
             <p className="text-[#FF7A00]/80 font-mono text-lg uppercase tracking-widest">We specialise in one thing: DPF cleaning.</p>
           </div>
         </div>
