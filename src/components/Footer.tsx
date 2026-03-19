@@ -32,7 +32,7 @@ const Footer = () => {
               Ready to restore<br /><span className="text-white/40 italic font-medium">expertly?</span>
             </h2>
             <p className="text-lg text-white/60 max-w-md font-medium leading-relaxed">
-              Professional DPF refurbishment services. Same-day return within 30 miles of Totnes. Trade-friendly pricing arrays.
+              Professional DPF refurbishment services. Same-day return within 30 miles of Totnes. Trade-friendly pricing.
             </p>
             <div className="pt-4 flex flex-wrap gap-4">
               <MagneticButton>
