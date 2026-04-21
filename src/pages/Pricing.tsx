@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { Check, ChevronDown } from 'lucide-react';
+import { Check, ChevronDown, Zap } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -50,18 +51,42 @@ const Pricing = () => {
       price: '£210',
       subtitle: 'From Totnes, Devon',
       popular: true,
+      service: 'DPF Clean',
     },
     {
       title: 'Outside 10 Miles',
       price: '£230',
-      subtitle: 'Nationwide coverage',
+      subtitle: 'Nationwide postal',
       popular: false,
+      service: 'DPF Clean',
     },
     {
-      title: 'HGV/Plant',
+      title: 'HGV / Plant',
       price: '£299',
       subtitle: 'Heavy vehicles',
       popular: false,
+      service: 'DPF Clean',
+    },
+  ];
+
+  const remapTiers = [
+    {
+      title: 'Stage 1 Remap',
+      price: 'POA',
+      subtitle: 'Cars, vans & light commercials',
+      note: 'No hardware changes required',
+    },
+    {
+      title: 'Stage 2 Remap',
+      price: 'POA',
+      subtitle: 'With hardware upgrades',
+      note: 'Matched to your specific setup',
+    },
+    {
+      title: 'Fleet / Custom',
+      price: 'POA',
+      subtitle: 'HGV, plant & bespoke',
+      note: 'Economy or performance bias',
     },
   ];
 
@@ -71,8 +96,16 @@ const Pricing = () => {
       answer: 'Yes, we offer trade accounts with preferential terms for regular customers. Contact us to discuss your requirements and set up an account.',
     },
     {
-      question: 'What areas do you cover locally?',
-      answer: 'We cover a 10-mile radius from Totnes, Devon. This includes most of South Devon and parts of Cornwall. Same-day return is guaranteed within this area when collected before 10am.',
+      question: 'What areas do you cover locally for DPF cleaning?',
+      answer: 'We cover a 10-mile radius from Totnes, Devon for our lowest rate. This includes much of South Devon. We also collect from Exeter, Plymouth, Torquay, Paignton, Newton Abbot and across Devon — same-day return guaranteed when collected before 10am.',
+    },
+    {
+      question: 'How much does ECU remapping cost?',
+      answer: 'Remapping prices are quoted on enquiry as they depend on the vehicle make, model, engine, and the type of map required (Stage 1, Stage 2, or custom). Contact us for a personalised quote — there is no obligation.',
+    },
+    {
+      question: 'Is ECU remapping included in the DPF prices shown?',
+      answer: 'No, the prices shown above are for DPF cleaning only. ECU remapping is a separate service — please contact us or visit our remapping page for details and to book a consultation.',
     },
     {
       question: 'How do you test filters?',
@@ -80,7 +113,7 @@ const Pricing = () => {
     },
     {
       question: 'Do you clean catalytic converters?',
-      answer: 'Yes, we provide professional catalytic converter cleaning with high-pressure water to maintain performance and restoring optimal flow.',
+      answer: 'Yes, we provide professional catalytic converter cleaning using high-pressure aqueous processes to restore flow and performance.',
     },
     {
       question: 'What are your turnaround times?',
@@ -94,7 +127,20 @@ const Pricing = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning Prices | Clear, Transparent Costs" description="Honest, upfront DPF cleaning prices. No hidden fees. Starting from £180." path="/pricing" />
+      <SEO title="DPF Cleaning & Remap Prices | Devon" description="Transparent DPF cleaning from £210 and ECU remapping prices in Devon. No hidden fees. Trade & fleet rates available. Based in Totnes." path="/pricing" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "DPF Cleaning & ECU Remapping",
+        "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://auto-cleanse.co.uk" },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
+        "offers": [
+          { "@type": "Offer", "name": "DPF Cleaning — Within 10 Miles of Totnes", "priceCurrency": "GBP", "price": "210.00", "description": "Professional DPF cleaning with collection and same-day return within 10 miles of Totnes, Devon." },
+          { "@type": "Offer", "name": "DPF Cleaning — Outside 10 Miles / Nationwide", "priceCurrency": "GBP", "price": "230.00", "description": "DPF cleaning for customers outside 10 miles of Totnes or nationwide postal service." },
+          { "@type": "Offer", "name": "DPF Cleaning — HGV & Plant", "priceCurrency": "GBP", "price": "299.00", "description": "Professional DPF cleaning for HGVs, plant machinery and commercial vehicles." },
+          { "@type": "Offer", "name": "ECU Remapping", "priceCurrency": "GBP", "price": "0", "description": "Stage 1 and Stage 2 ECU remapping in Devon. Contact for a personalised quote." }
+        ]
+      })}} />
 
       {/* Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
@@ -108,7 +154,8 @@ const Pricing = () => {
               <span className="inline-block word-reveal text-[#FF7A00] ml-3">pricing.</span>
             </span>
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto rounded-full mb-6"></div>
+          <p className="text-white/40 text-lg font-medium reveal-item">DPF cleaning fixed rates below. ECU remapping quoted on enquiry.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-16 mb-32 reveal-container">
@@ -188,6 +235,43 @@ const Pricing = () => {
                 <p className="text-white/40 text-xs font-mono">75% Complete</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* ECU Remapping Pricing */}
+        <div className="mb-32 reveal-container">
+          <div className="text-center mb-16 reveal-item">
+            <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-4">Second Service</div>
+            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+              ECU <span className="text-[#FF7A00]">Remapping</span>
+            </h2>
+            <p className="text-white/50 text-lg font-medium max-w-xl mx-auto">
+              Remapping prices are quoted on enquiry — every vehicle is different. Contact us for a fast, no-obligation quote.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+            {remapTiers.map((tier, index) => (
+              <div key={index} className="relative p-8 rounded-3xl bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 hover:-translate-y-2 transition-all duration-500 reveal-item group text-center">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+                <div className="relative z-10 w-14 h-14 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/20 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-500">
+                  <Zap size={24} className="text-[#FF7A00]" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2 relative z-10">{tier.title}</h3>
+                <div className="text-4xl font-black text-[#FF7A00] mb-2 tracking-tighter relative z-10">{tier.price}</div>
+                <p className="text-white/40 text-sm font-medium uppercase tracking-widest mb-3 relative z-10">{tier.subtitle}</p>
+                <p className="text-white/50 text-sm font-medium relative z-10">{tier.note}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center reveal-item">
+            <Link to="/remapping-booking" className="btn-shine px-8 py-4 rounded-xl font-bold text-base text-white hover:text-white inline-block mr-4">
+              Get a Remap Quote
+            </Link>
+            <Link to="/remapping" className="px-8 py-4 rounded-xl font-bold text-base text-white border border-white/20 hover:bg-white/10 transition-colors inline-block">
+              Learn About Remapping
+            </Link>
           </div>
         </div>
 

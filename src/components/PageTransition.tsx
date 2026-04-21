@@ -14,6 +14,13 @@ import Contact from '../pages/Contact';
 import PostalDPF from '../pages/PostalDPF';
 import DPFCleaningTotnes from '../pages/DPFCleaningTotnes';
 import DPFCleaningDevon from '../pages/DPFCleaningDevon';
+import Remapping from '../pages/Remapping';
+import RemappingBooking from '../pages/RemappingBooking';
+import DPFCleaningExeter from '../pages/DPFCleaningExeter';
+import DPFCleaningPlymouth from '../pages/DPFCleaningPlymouth';
+import DPFCleaningTorquay from '../pages/DPFCleaningTorquay';
+import DPFCleaningPaignton from '../pages/DPFCleaningPaignton';
+import RemappingDevon from '../pages/RemappingDevon';
 
 export default function PageTransition() {
     const location = useLocation();
@@ -50,6 +57,13 @@ export default function PageTransition() {
                     <Route path="/postal-dpf" element={<PostalDPF />} />
                     <Route path="/dpf-cleaning-totnes" element={<DPFCleaningTotnes />} />
                     <Route path="/dpf-cleaning-devon" element={<DPFCleaningDevon />} />
+                    <Route path="/remapping" element={<Remapping />} />
+                    <Route path="/remapping-booking" element={<RemappingBooking />} />
+                    <Route path="/dpf-cleaning-exeter" element={<DPFCleaningExeter />} />
+                    <Route path="/dpf-cleaning-plymouth" element={<DPFCleaningPlymouth />} />
+                    <Route path="/dpf-cleaning-torquay" element={<DPFCleaningTorquay />} />
+                    <Route path="/dpf-cleaning-paignton" element={<DPFCleaningPaignton />} />
+                    <Route path="/remapping-devon" element={<RemappingDevon />} />
                 </Routes>
             </motion.div>
         </AnimatePresence>

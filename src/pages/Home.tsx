@@ -100,7 +100,6 @@ const Home = () => {
 
     gsap.to('.hero-content', {
       y: '40%',
-      opacity: 0,
       ease: 'none',
       scrollTrigger: {
         trigger: '.hero-section',
@@ -259,8 +258,8 @@ const Home = () => {
   return (
     <main ref={container} className="block">
       <SEO
-        title="DPF Cleaning Specialists | Devon & Nationwide"
-        description="Professional off-vehicle DPF, SCR, DOC, GPF, and OPF cleaning services. Same-day return within Devon & nationwide postal service available."
+        title="DPF Cleaning & ECU Remapping | Devon & Nationwide"
+        description="Professional DPF cleaning and ECU remapping services. Same-day filter return within Devon, nationwide postal service, and Stage 1 & 2 remap tuning available."
         path="/"
       />
       <VehicleSchema />
@@ -271,60 +270,73 @@ const Home = () => {
           __html: JSON.stringify([
             {
               "@context": "https://schema.org",
-              "@type": "AutomotiveService",
+              "@type": ["AutomotiveService", "LocalBusiness"],
               "name": "AutoCleanse",
-              "alternateName": "Auto Cleanse",
-              "description": "Professional DPF cleaning and filter refurbishment services. Specialising in off-vehicle DPF cleaning for cars, vans, HGVs and commercial fleets.",
+              "alternateName": ["Auto Cleanse", "AutoCleanse DPF", "AutoCleanse Remapping"],
+              "description": "Professional DPF cleaning and ECU remapping services based in Totnes, Devon. Specialists in off-vehicle DPF cleaning, Stage 1 & 2 ECU remapping, SCR, DOC and GPF cleaning for cars, vans, HGVs and commercial fleets across Devon and the UK.",
               "url": "https://auto-cleanse.co.uk",
               "telephone": "0800 043 0609",
               "email": "info@autocleanse.co.uk",
+              "image": "https://auto-cleanse.co.uk/og-image.jpg",
               "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate",
                 "addressLocality": "Totnes",
                 "addressRegion": "Devon",
-                "addressCountry": "United Kingdom"
+                "postalCode": "TQ9 6JY",
+                "addressCountry": "GB"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "50.4316",
+                "longitude": "-3.6844"
               },
               "areaServed": [
-                {
-                  "@type": "State",
-                  "name": "Devon"
-                },
-                {
-                  "@type": "AdministrativeArea",
-                  "name": "South West England"
-                },
-                {
-                  "@type": "Country",
-                  "name": "United Kingdom"
-                }
+                { "@type": "City", "name": "Totnes" },
+                { "@type": "City", "name": "Exeter" },
+                { "@type": "City", "name": "Plymouth" },
+                { "@type": "City", "name": "Torquay" },
+                { "@type": "City", "name": "Paignton" },
+                { "@type": "City", "name": "Newton Abbot" },
+                { "@type": "City", "name": "Dartmouth" },
+                { "@type": "City", "name": "Kingsbridge" },
+                { "@type": "City", "name": "Salcombe" },
+                { "@type": "City", "name": "Ashburton" },
+                { "@type": "City", "name": "Buckfastleigh" },
+                { "@type": "City", "name": "Ivybridge" },
+                { "@type": "City", "name": "Tavistock" },
+                { "@type": "City", "name": "Okehampton" },
+                { "@type": "City", "name": "Barnstaple" },
+                { "@type": "City", "name": "Tiverton" },
+                { "@type": "City", "name": "Teignmouth" },
+                { "@type": "City", "name": "Dawlish" },
+                { "@type": "City", "name": "Bovey Tracey" },
+                { "@type": "AdministrativeArea", "name": "Devon" },
+                { "@type": "AdministrativeArea", "name": "Cornwall" },
+                { "@type": "AdministrativeArea", "name": "South West England" },
+                { "@type": "Country", "name": "United Kingdom" }
               ],
-              "serviceType": "DPF Cleaning",
+              "serviceType": ["DPF Cleaning", "ECU Remapping", "SCR Cleaning", "DOC Cleaning", "GPF Cleaning", "EGR Cleaning"],
               "hasOfferingCatalog": {
                 "@type": "OfferingCatalog",
-                "name": "DPF and Filter Cleaning Services",
+                "name": "DPF Cleaning & ECU Remapping Services",
                 "itemListElement": [
                   {
                     "@type": "Offer",
                     "itemOffered": {
                       "@type": "Service",
                       "name": "DPF Cleaning",
-                      "description": "Professional off-vehicle DPF cleaning with same-day return"
+                      "description": "Professional off-vehicle DPF cleaning restoring filters to 98% of original flow capacity. Same-day return locally in Devon.",
+                      "url": "https://auto-cleanse.co.uk/services"
                     }
                   },
                   {
                     "@type": "Offer",
                     "itemOffered": {
                       "@type": "Service",
-                      "name": "SCR Cleaning",
-                      "description": "Selective Catalytic Reduction system cleaning"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "DOC Cleaning",
-                      "description": "Diesel Oxidation Catalyst cleaning and testing"
+                      "name": "ECU Remapping",
+                      "description": "Stage 1 and Stage 2 ECU remapping for cars, vans and HGVs in Devon. Improved power, torque and fuel economy. Safely calibrated.",
+                      "url": "https://auto-cleanse.co.uk/remapping"
                     }
                   },
                   {
@@ -332,23 +344,50 @@ const Home = () => {
                     "itemOffered": {
                       "@type": "Service",
                       "name": "Postal DPF Cleaning",
-                      "description": "Nationwide postal DPF cleaning service with tracked return"
+                      "description": "Nationwide postal DPF cleaning with tracked next-day return. Send your DPF from anywhere in the UK.",
+                      "url": "https://auto-cleanse.co.uk/postal-dpf"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "SCR Cleaning",
+                      "description": "Selective Catalytic Reduction system cleaning and AdBlue line clearance."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "DOC Cleaning",
+                      "description": "Diesel Oxidation Catalyst cleaning with pre and post flow testing."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "GPF Cleaning",
+                      "description": "Gasoline Particulate Filter cleaning for petrol vehicles."
                     }
                   }
                 ]
               },
-              "openingHours": [
-                "Mo 08:00-17:00",
-                "Tu 08:00-17:00",
-                "We 08:00-17:00",
-                "Th 08:00-17:00",
-                "Fr 08:00-17:00"
+              "openingHoursSpecification": [
+                { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "08:00", "closes": "17:00" },
+                { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday", "opens": "08:00", "closes": "17:00" },
+                { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "08:00", "closes": "17:00" },
+                { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "08:00", "closes": "17:00" },
+                { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "08:00", "closes": "17:00" }
               ],
               "paymentAccepted": "Cash, Card, Bank Transfer",
               "currenciesAccepted": "GBP",
               "priceRange": "££",
               "sameAs": [
                 "https://www.facebook.com/profile.php?id=61573744325360",
+                "https://www.instagram.com/auto_cleansedpf/",
+                "https://www.youtube.com/@Auto-Cleanse",
                 "https://www.linkedin.com/in/alex-rabone-102786158/"
               ],
               "contactPoint": {
@@ -356,37 +395,44 @@ const Home = () => {
                 "telephone": "0800 043 0609",
                 "contactType": "customer service",
                 "availableLanguage": "English",
-                "areaServed": "GB"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "50.4316",
-                "longitude": "-3.6844"
+                "areaServed": "GB",
+                "contactOption": "TollFree"
               },
               "aggregateRating": {
                 "@type": "AggregateRating",
                 "ratingValue": "5",
-                "reviewCount": "4",
+                "reviewCount": "9",
                 "bestRating": "5",
-                "worstRating": "5"
+                "worstRating": "1"
+              },
+              "keywords": "DPF cleaning Devon, DPF cleaning near me, ECU remapping Devon, car remapping Devon, DPF cleaning Exeter, DPF cleaning Plymouth, DPF cleaning Torquay, engine tuning Devon, blocked DPF Devon, DPF cleaning cost UK"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "name": "Off-Vehicle DPF Cleaning Devon",
+              "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://auto-cleanse.co.uk" },
+              "areaServed": [
+                { "@type": "AdministrativeArea", "name": "Devon" },
+                { "@type": "Country", "name": "United Kingdom" }
+              ],
+              "description": "Professional off-vehicle Diesel Particulate Filter (DPF) cleaning using aqueous and pneumatic systems. Same-day return locally in Devon, next-day return nationwide.",
+              "offers": {
+                "@type": "AggregateOffer",
+                "priceCurrency": "GBP",
+                "lowPrice": "210.00",
+                "highPrice": "299.00",
+                "url": "https://auto-cleanse.co.uk/pricing"
               }
             },
             {
               "@context": "https://schema.org",
               "@type": "Service",
-              "name": "Off-Vehicle DPF Cleaning",
-              "provider": {
-                "@type": "AutomotiveService",
-                "name": "AutoCleanse"
-              },
-              "areaServed": "United Kingdom",
-              "description": "Professional off-vehicle Diesel Particulate Filter (DPF) cleaning using aqueous and pneumatic systems. Next-day return nationwide or same-day local service.",
-              "offers": {
-                "@type": "Offer",
-                "priceCurrency": "GBP",
-                "price": "210.00",
-                "url": "https://auto-cleanse.co.uk/pricing"
-              }
+              "name": "ECU Remapping Devon",
+              "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://auto-cleanse.co.uk" },
+              "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
+              "description": "Stage 1 and Stage 2 ECU remapping for cars, vans, HGVs and commercial vehicles in Devon. Improved power, torque and fuel economy. Custom fleet maps available.",
+              "url": "https://auto-cleanse.co.uk/remapping"
             },
             {
               "@context": "https://schema.org",
@@ -405,7 +451,39 @@ const Home = () => {
                   "name": "How long does DPF cleaning take?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Locally in Devon, we offer same-day service. For our nationwide postal service, it is a 24-48 hour turnaround from collection to return delivery."
+                    "text": "Locally in Devon, we offer same-day service for collections before 10am. For our nationwide postal service, turnaround is 24-48 hours from collection to return delivery."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How much does DPF cleaning cost?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "DPF cleaning starts from £210 within 10 miles of Totnes, Devon. Outside 10 miles is £230, and HGV/plant vehicles are £299. All prices include collection, deep clean, flow testing and return."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Is ECU remapping legal in the UK?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, ECU remapping is legal in the UK. You should notify your insurance provider as it counts as a modification. We write all maps within safe mechanical limits."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Do you offer ECU remapping in Devon?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. AutoCleanse offers Stage 1 and Stage 2 ECU remapping for cars, vans, HGVs and commercial vehicles across Devon. Custom and fleet maps are also available."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What areas of Devon do you cover for DPF cleaning?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We cover all of Devon including Totnes, Exeter, Plymouth, Torquay, Paignton, Newton Abbot, Dartmouth, Kingsbridge, Tavistock and beyond. Nationwide postal DPF cleaning is also available."
                   }
                 }
               ]
@@ -438,34 +516,67 @@ const Home = () => {
         }}
       />
 
-      {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden hero-section">
+      {/* Hero Section - Split */}
+      <section className="relative min-h-[90vh] flex items-stretch overflow-hidden hero-section">
         {/* Background Image - Parallax */}
         <div
           className="absolute inset-x-0 -top-[20%] h-[140%] bg-cover bg-center bg-no-repeat hero-bg"
-          style={{
-            backgroundImage: `url('/very-dark-grey-and-black-honeycomb-effect-backgrou.png')`
-          }}
+          style={{ backgroundImage: `url('/very-dark-grey-and-black-honeycomb-effect-backgrou.png')` }}
         ></div>
 
-        {/* Subtle tint overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#0A0A0A]"></div>
+        {/* Tint overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-[#0A0A0A]"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center hero-content">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center hero-title drop-shadow-2xl">
-            {splitText('DPF cleaning is our', 'text-white')}
-            <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
-              <span className="inline-block word-reveal text-[#FF7A00] ml-2">thing.</span>
-            </span>
-          </h1>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-stretch gap-4 lg:gap-6 py-20 lg:py-28 hero-content">
 
-          <div className="text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed space-y-4 hero-subtitle">
-            <div>
-              <p className="font-semibold tracking-wide">Professional filter cleaning with same-day return*</p>
-              <span className="block text-sm text-white/50 font-medium mt-2">*Location Dependant</span>
+          {/* Left Panel — DPF Cleaning */}
+          <div className="flex-1 flex flex-col justify-center p-8 sm:p-10 lg:p-14 rounded-3xl bg-black/50 border border-white/10 backdrop-blur-sm">
+            <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-5 hero-subtitle">Emission Control</div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-6 leading-[1.05] hero-title drop-shadow-2xl">
+              {splitText('DPF Cleaning.', 'text-white')}
+              <br />
+              <span className="inline-block overflow-hidden pb-2 -mb-2">
+                <span className="inline-block word-reveal text-[#FF7A00]">Done right.</span>
+              </span>
+            </h1>
+            <p className="text-white/70 text-lg md:text-xl font-medium mb-8 max-w-md leading-relaxed hero-subtitle">
+              Professional off-vehicle filter cleaning with same-day return within Devon. Nationwide postal service available.
+            </p>
+            <div className="flex flex-wrap gap-4 hero-subtitle">
+              <Link to="/postal-dpf" className="btn-shine px-7 py-3.5 rounded-xl font-bold text-base text-white hover:text-white inline-block">
+                Book DPF Clean
+              </Link>
+              <Link to="/services" className="px-7 py-3.5 rounded-xl font-bold text-base text-white border border-white/20 hover:bg-white/10 transition-colors inline-block">
+                Our Process
+              </Link>
             </div>
-            <p className="text-[#FF7A00]/80 font-mono text-lg uppercase tracking-widest">We specialise in one thing: DPF cleaning.</p>
           </div>
+
+          {/* Right Panel — ECU Remapping */}
+          <div className="flex-1 flex flex-col justify-center p-8 sm:p-10 lg:p-14 rounded-3xl bg-[#FF7A00]/8 border border-[#FF7A00]/25 backdrop-blur-sm relative overflow-hidden">
+            {/* Subtle orange glow behind the right panel */}
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#FF7A00]/15 blur-[80px] rounded-full pointer-events-none"></div>
+            <div className="relative z-10">
+              <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-5 hero-subtitle">Performance Tuning</div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-6 leading-[1.05] drop-shadow-2xl">
+                <span className="text-white block">ECU</span>
+                <span className="text-white block">Remapping.</span>
+                <span className="text-white/30 italic font-medium block text-3xl md:text-4xl lg:text-5xl mt-2">Unlocked.</span>
+              </h2>
+              <p className="text-white/70 text-lg md:text-xl font-medium mb-8 max-w-md leading-relaxed hero-subtitle">
+                Stage 1 &amp; 2 maps tailored to your vehicle. More power, better economy, sharper throttle response — safely calibrated.
+              </p>
+              <div className="flex flex-wrap gap-4 hero-subtitle">
+                <Link to="/remapping" className="btn-shine px-7 py-3.5 rounded-xl font-bold text-base text-white hover:text-white inline-block">
+                  Explore Remapping
+                </Link>
+                <Link to="/remapping-booking" className="px-7 py-3.5 rounded-xl font-bold text-base text-white border border-[#FF7A00]/30 hover:border-[#FF7A00] hover:bg-[#FF7A00]/10 transition-all inline-block">
+                  Book a Remap
+                </Link>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -474,7 +585,7 @@ const Home = () => {
         titlePrimary="The Anatomy of a"
         titleAccent="Clean"
         subtitle="See our state-of-the-art DPF cleaning process in action as you scroll."
-        baseUrl="https://hdegxhrhakxvgnadulgq.supabase.co/storage/v1/object/public/website-media/frames/"
+        baseUrl="/frames/"
         filenamePrefix="Timeline 1_"
         startFrame={399}
         endFrame={713}
@@ -623,29 +734,33 @@ const Home = () => {
           <div className="max-w-4xl mx-auto">
             <div className="gradient-card rounded-2xl p-8 card-hover">
               <h2 className="text-3xl font-bold text-center mb-8">
-                <span className="text-white">Specialists in Professional </span>
-                <span className="text-[#FF7A00]">DPF Cleaning</span>
+                <span className="text-white">Specialists in </span>
+                <span className="text-[#FF7A00]">DPF Cleaning & ECU Remapping</span>
               </h2>
 
               <div className="text-white/80 leading-relaxed space-y-4 mb-8">
                 <p>
-                  AutoCleanse specialises primarily in professional off-vehicle DPF cleaning services.
-                  Operating from Totnes, Devon, we provide same-day local service within a 30-mile radius,
-                  ensuring minimal downtime for trade garages, fleet operators, and individual vehicle owners.
-                  Our expertise extends across all vehicle types including cars, vans, HGVs, and plant machinery.
+                  AutoCleanse provides two core services: professional off-vehicle DPF cleaning and ECU remapping.
+                  Operating from Totnes, Devon, we deliver same-day local filter cleaning within a 30-mile radius
+                  alongside tailored Stage 1 &amp; 2 remap tuning for cars, vans, HGVs, and plant machinery.
                 </p>
 
                 <p>
-                  For customers beyond our local service area, we offer comprehensive nationwide postal DPF
-                  cleaning with tracked next-day return. Whether you're managing a single vehicle or an
-                  entire fleet, our professional cleaning process restores filters to optimal performance
-                  while maintaining MOT compliance and emissions standards.
+                  For customers beyond our local area, we offer nationwide postal DPF cleaning with tracked
+                  next-day return. Whether you need a blocked filter restored to OEM performance or an ECU
+                  map that unlocks more power and better economy, AutoCleanse has you covered.
                 </p>
               </div>
 
               <div className="border-t border-[#1A1D22] pt-6">
-                <h3 className="text-lg font-bold text-white mb-4">Learn More</h3>
+                <h3 className="text-lg font-bold text-white mb-4">Explore Our Services</h3>
                 <div className="space-y-2">
+                  <Link
+                    to="/remapping"
+                    className="block text-[#FF7A00] hover:text-[#FFB37A] transition-colors text-sm font-medium"
+                  >
+                    ECU remapping — Stage 1, Stage 2 &amp; custom maps →
+                  </Link>
                   <Link
                     to="/why-clean"
                     className="block text-[#FF7A00] hover:text-[#FFB37A] transition-colors text-sm font-medium"
@@ -662,7 +777,7 @@ const Home = () => {
                     to="/services"
                     className="block text-[#FF7A00] hover:text-[#FFB37A] transition-colors text-sm font-medium"
                   >
-                    View all DPF and emissions services →
+                    View all filter and emissions services →
                   </Link>
                 </div>
               </div>
@@ -678,7 +793,7 @@ const Home = () => {
         titlePrimary="Advanced Filter"
         titleAccent="Recovery"
         subtitle="Uncompromising deep cleaning that restores performance."
-        baseUrl="https://hdegxhrhakxvgnadulgq.supabase.co/storage/v1/object/public/website-media/2ndframes/"
+        baseUrl="/2ndframes/"
         filenamePrefix="scroll2_"
         startFrame={0}
         endFrame={149}
@@ -828,12 +943,68 @@ const Home = () => {
 
 
 
+      {/* ECU Remapping Promo Banner */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative rounded-[2.5rem] overflow-hidden bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/20 transition-colors duration-500 reveal-container">
+            {/* Background glow */}
+            <div className="absolute -inset-x-20 -top-20 h-[250px] bg-[#FF7A00]/10 blur-[100px] rounded-full pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#FF7A00]/5 via-transparent to-transparent pointer-events-none"></div>
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-0">
+              {/* Left: Content */}
+              <div className="p-10 lg:p-14 flex flex-col justify-center reveal-item">
+                <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-4">Now Available</div>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4 leading-tight">
+                  ECU Remapping<br />
+                  <span className="text-white/40 italic font-medium">for every vehicle.</span>
+                </h2>
+                <p className="text-white/60 text-lg font-medium leading-relaxed mb-8 max-w-lg">
+                  Stage 1 maps for everyday drivers. Stage 2 for those who want more. Custom maps for fleet and commercial operators.
+                  Every remap is tailored, dyno-verified, and safe.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    to="/remapping"
+                    className="btn-shine px-8 py-4 rounded-xl font-bold text-base text-white hover:text-white inline-block"
+                  >
+                    Learn About Remapping
+                  </Link>
+                  <Link
+                    to="/remapping-booking"
+                    className="px-8 py-4 rounded-xl font-bold text-base text-white border border-white/20 hover:bg-white/10 transition-colors inline-block"
+                  >
+                    Book a Remap
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right: Stats / Features */}
+              <div className="border-t lg:border-t-0 lg:border-l border-white/5 p-10 lg:p-14 grid grid-cols-2 gap-6 reveal-item">
+                {[
+                  { stat: 'Stage 1', label: 'Safe, road-legal power gain', mono: true },
+                  { stat: 'Stage 2', label: 'Hardware-matched performance', mono: true },
+                  { stat: 'MPG+', label: 'Improved fuel economy on most maps', mono: false },
+                  { stat: 'Custom', label: 'Fleet & commercial bespoke maps', mono: true },
+                ].map(({ stat, label, mono }) => (
+                  <div key={stat} className="flex flex-col justify-center">
+                    <div className={`text-3xl font-black text-[#FF7A00] mb-2 ${mono ? 'font-mono' : ''}`}>{stat}</div>
+                    <div className="text-white/50 text-sm font-medium leading-snug">{label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-16 section-gradient-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-8">
+          <h2 className="text-3xl font-bold text-white mb-4">
             Trade garages welcome. Fleet operators supported.
           </h2>
+          <p className="text-white/50 text-lg font-medium mb-8">DPF cleaning &amp; ECU remapping — one trusted team.</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <MagneticButton>
@@ -841,7 +1012,16 @@ const Home = () => {
                 to="/postal-dpf"
                 className="btn-shine px-8 py-4 rounded-xl font-semibold text-lg text-white hover:text-white inline-block"
               >
-                Book now
+                Book DPF Clean
+              </Link>
+            </MagneticButton>
+
+            <MagneticButton>
+              <Link
+                to="/remapping-booking"
+                className="px-8 py-4 rounded-xl font-semibold text-lg text-white border border-white/20 hover:bg-white/10 transition-colors inline-block"
+              >
+                Book a Remap
               </Link>
             </MagneticButton>
 

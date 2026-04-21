@@ -108,7 +108,7 @@ const Maintenance = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Maintenance Guide | Annual Cleaning" description="Expert advice on keeping your Diesel Particulate Filter healthy and avoiding costly replacements." path="/maintenance" />
+      <SEO title="DPF Maintenance Guide | Keep Your Filter Healthy" description="Expert DPF maintenance advice for Devon drivers. Annual cleaning prevents limp mode, DPF warning lights, and costly replacements. Tips from AutoCleanse." path="/maintenance" />
 
       {/* Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>

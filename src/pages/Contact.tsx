@@ -105,7 +105,23 @@ const Contact = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="Contact Us | AutoCleanse" description="Get in touch for professional DPF cleaning services. Call 0800 043 0609 or book a collection." path="/contact" />
+      <SEO title="Contact AutoCleanse | DPF Cleaning & Remapping" description="Contact AutoCleanse for DPF cleaning or ECU remapping in Devon. Call free on 0800 043 0609 or send an enquiry. Same-day response." path="/contact" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact AutoCleanse",
+        "description": "Contact AutoCleanse for DPF cleaning and ECU remapping services in Devon.",
+        "url": "https://auto-cleanse.co.uk/contact",
+        "mainEntity": {
+          "@type": ["LocalBusiness", "AutomotiveService"],
+          "name": "AutoCleanse",
+          "telephone": "0800 043 0609",
+          "email": "info@autocleanse.co.uk",
+          "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+          "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" }],
+          "contactPoint": { "@type": "ContactPoint", "telephone": "0800 043 0609", "contactType": "customer service", "contactOption": "TollFree", "areaServed": "GB", "availableLanguage": "English" }
+        }
+      })}} />
 
       {/* Background ambient light */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>

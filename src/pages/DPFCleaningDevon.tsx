@@ -47,7 +47,29 @@ const DPFCleaningDevon = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning Devon | Same-Day Service" description="Expert DPF cleaning across Devon. Local pickup, deep clean, and return within the same day." path="/dpf-cleaning-devon" />
+      <SEO title="DPF Cleaning Devon | Same-Day Collection" description="Expert DPF cleaning across Devon — Exeter, Plymouth, Torquay, Newton Abbot & beyond. Local collection, deep clean and same-day return. Based in Totnes." path="/dpf-cleaning-devon" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": ["AutomotiveService", "LocalBusiness"],
+        "name": "AutoCleanse",
+        "description": "Professional DPF cleaning across Devon — Exeter, Plymouth, Torquay, Paignton, Newton Abbot and all Devon towns. Same-day return available.",
+        "url": "https://auto-cleanse.co.uk/dpf-cleaning-devon",
+        "telephone": "0800 043 0609",
+        "email": "info@autocleanse.co.uk",
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
+        "areaServed": [
+          { "@type": "City", "name": "Exeter" }, { "@type": "City", "name": "Plymouth" },
+          { "@type": "City", "name": "Torquay" }, { "@type": "City", "name": "Paignton" },
+          { "@type": "City", "name": "Newton Abbot" }, { "@type": "City", "name": "Totnes" },
+          { "@type": "City", "name": "Dartmouth" }, { "@type": "City", "name": "Kingsbridge" },
+          { "@type": "City", "name": "Tavistock" }, { "@type": "City", "name": "Ivybridge" },
+          { "@type": "AdministrativeArea", "name": "Devon" }
+        ],
+        "priceRange": "££",
+        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" }],
+        "sameAs": ["https://www.facebook.com/profile.php?id=61573744325360"]
+      })}} />
 
       {/* Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>

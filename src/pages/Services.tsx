@@ -124,7 +124,7 @@ const Services = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="Our Services | DPF, SCR & DOC Cleaning" description="Comprehensive commercial and passenger vehicle DPF cleaning services. Mobile, HQ drop-off, and nationwide postal options." path="/services" />
+      <SEO title="Our Services | DPF Cleaning & ECU Remapping" description="Professional DPF, SCR, DOC and filter cleaning services plus ECU remapping. Mobile, HQ drop-off, and nationwide postal options." path="/services" />
 
       {/* Background ambient light */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[500px] bg-[#FF7A00]/10 blur-[120px] rounded-[100%] pointer-events-none opacity-50"></div>
@@ -182,6 +182,77 @@ const Services = () => {
               )}
             </div>
           ))}
+        </div>
+
+        {/* ECU Remapping Section */}
+        <div className="mt-32 reveal-container">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-12 reveal-item">
+            <div>
+              <div className="text-xs font-mono text-[#FF7A00] mb-2 uppercase tracking-widest">Also Available</div>
+              <h3 className="text-3xl font-black text-white tracking-tight">
+                ECU <span className="text-[#FF7A00]">Remapping</span>
+              </h3>
+            </div>
+            <div className="hidden md:block w-full max-w-md h-px bg-gradient-to-r from-[#FF7A00]/50 to-transparent"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-item">
+            {[
+              {
+                title: 'Stage 1 Remap',
+                description: 'Road-legal power and torque gains with no hardware changes required. Improved throttle response and fuel economy on most vehicles.',
+                highlights: ['No hardware changes needed', 'Improved MPG on most maps', 'Sharper throttle response'],
+              },
+              {
+                title: 'Stage 2 Remap',
+                description: 'Higher performance calibration matched to upgraded hardware. Ideal for vehicles with aftermarket intercoolers, exhausts, or intake upgrades.',
+                highlights: ['Hardware-matched calibration', 'Significant power gains', 'Custom torque curves'],
+              },
+              {
+                title: 'Custom & Fleet Maps',
+                description: 'Bespoke ECU calibration for commercial operators, agricultural machinery, and specialist vehicles. Tailored to your exact usage profile.',
+                highlights: ['Fleet & commercial focus', 'Agricultural & plant vehicles', 'Economy or performance bias'],
+              },
+            ].map((remap, index) => (
+              <div
+                key={index}
+                className="group relative flex flex-col p-8 sm:p-10 rounded-3xl bg-[#1A1D22] border border-white/5 hover:-translate-y-2 transition-all duration-500 overflow-hidden shadow-2xl shadow-black hover:shadow-[0_20px_40px_rgba(255,122,0,0.1)] hover:border-[#FF7A00]/30"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute right-4 -top-6 text-[120px] font-black text-white/[0.02] group-hover:text-[#FF7A00]/[0.05] group-hover:scale-110 transition-all duration-700 pointer-events-none select-none">
+                  0{index + 1}
+                </div>
+                <div className="relative z-10 w-16 h-16 rounded-2xl bg-[#1A1D22] border border-white/10 flex items-center justify-center mb-8 group-hover:rotate-12 group-hover:border-[#FF7A00] group-hover:shadow-[0_0_20px_rgba(255,122,0,0.3)] transition-all duration-500">
+                  <Zap size={32} className="text-white group-hover:text-[#FF7A00] transition-colors duration-500" strokeWidth={1.5} />
+                </div>
+                <h3 className="relative z-10 text-2xl font-bold text-white mb-3 group-hover:text-[#FF7A00] transition-colors duration-500 tracking-tight">{remap.title}</h3>
+                <p className="relative z-10 text-white/50 text-base font-medium mb-6 flex-grow">{remap.description}</p>
+                <ul className="relative z-10 space-y-3 mb-6">
+                  {remap.highlights.map((h, idx) => (
+                    <li key={idx} className="flex items-start text-white/70 text-sm font-medium">
+                      <div className="w-1.5 h-1.5 bg-[#FF7A00] rounded-full mr-3 mt-1.5 shadow-[0_0_10px_rgba(255,122,0,0.5)]"></div>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/remapping"
+                  className="relative z-10 mt-auto pt-4 border-t border-white/5 text-xs font-mono text-[#FF7A00]/70 uppercase tracking-wider hover:text-[#FF7A00] transition-colors"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center reveal-item">
+            <Link
+              to="/remapping-booking"
+              className="inline-block btn-shine px-8 py-4 rounded-xl font-bold text-base text-white hover:text-white"
+            >
+              Book a Remap Consultation
+            </Link>
+          </div>
         </div>
 
         {/* Bottom CTA */}

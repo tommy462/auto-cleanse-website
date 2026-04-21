@@ -19,7 +19,14 @@ export default defineConfig({
         '/pricing',
         '/fuel-savings-calculator',
         '/dpf-cleaning-devon',
-        '/dpf-cleaning-totnes'
+        '/dpf-cleaning-totnes',
+        '/remapping',
+        '/remapping-booking',
+        '/dpf-cleaning-exeter',
+        '/dpf-cleaning-plymouth',
+        '/dpf-cleaning-torquay',
+        '/dpf-cleaning-paignton',
+        '/remapping-devon'
       ]
     })
   ],

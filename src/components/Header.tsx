@@ -20,6 +20,7 @@ const Header = () => {
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
     { name: 'Postal DPF', path: '/postal-dpf' },
+    { name: 'Remapping', path: '/remapping' },
     { name: 'Why Clean?', path: '/why-clean' },
     { name: 'Maintenance', path: '/maintenance' },
     { name: 'Our Process', path: '/how-it-works' },
@@ -59,7 +60,7 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center flex-1 justify-center space-x-4 xl:space-x-8 mx-4 overflow-hidden">
+            <nav className="hidden lg:flex items-center flex-1 justify-center space-x-3 xl:space-x-6 mx-4 overflow-hidden">
               {navItems.map((item) => (
                 <Link
                   key={item.path}

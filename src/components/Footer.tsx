@@ -10,7 +10,8 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: 'Services', path: '/services' },
+    { name: 'DPF Cleaning', path: '/services' },
+    { name: 'Remapping', path: '/remapping' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'How it works', path: '/how-it-works' },
     { name: 'About', path: '/about' },
@@ -32,7 +33,7 @@ const Footer = () => {
               Ready to restore<br /><span className="text-white/40 italic font-medium">expertly?</span>
             </h2>
             <p className="text-lg text-white/60 max-w-md font-medium leading-relaxed">
-              Professional DPF refurbishment services. Same-day return within 30 miles of Totnes. Trade-friendly pricing.
+              Professional DPF cleaning &amp; ECU remapping services. Same-day return within 30 miles of Totnes. Trade-friendly pricing.
             </p>
             <div className="pt-4 flex flex-wrap gap-4">
               <MagneticButton>
@@ -104,7 +105,7 @@ const Footer = () => {
           <div className="flex flex-wrap justify-center gap-4 text-xs tracking-wider uppercase">
             <span>Guaranteed Quality</span>
             <span className="text-[#FF7A00]">•</span>
-            <span>Same-day Return (Locally)</span>
+            <span>DPF Cleaning &amp; ECU Remapping</span>
           </div>
         </div>
       </div>

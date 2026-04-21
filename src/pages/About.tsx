@@ -64,7 +64,25 @@ const About = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="About Us | DPF Experts" description="Learn about AutoCleanse, the leading DPF, SCR, and DOC cleaning specialists based in Devon." path="/about" />
+      <SEO title="About AutoCleanse | DPF & Remapping Devon" description="AutoCleanse — Devon's DPF cleaning and ECU remapping specialists, based in Totnes. Trusted by trade garages, fleets and drivers across the South West." path="/about" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": ["LocalBusiness", "AutomotiveService"],
+        "name": "AutoCleanse",
+        "description": "Devon-based DPF cleaning and ECU remapping specialists. Operating from Totnes, serving trade garages, fleet operators and individual vehicle owners across Devon and the UK.",
+        "url": "https://auto-cleanse.co.uk/about",
+        "telephone": "0800 043 0609",
+        "email": "info@autocleanse.co.uk",
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
+        "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
+        "foundingDate": "2024",
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61573744325360",
+          "https://www.instagram.com/auto_cleansedpf/",
+          "https://www.linkedin.com/in/alex-rabone-102786158/"
+        ]
+      })}} />
       {/* Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
 
