@@ -196,7 +196,14 @@ const ScrollVideoSection: React.FC<ScrollVideoSectionProps> = ({
             );
         });
 
+        // Refresh after page transition completes (Framer Motion applies a transform
+        // during the 500ms entry animation which can offset GSAP's pin calculations)
+        const refreshTimer = setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 600);
+
         return () => {
+            clearTimeout(refreshTimer);
             // Clean up scoped triggers
             ScrollTrigger.getAll().forEach(t => {
                 if (t.vars.trigger === section || textBlocksDom.includes(t.vars.trigger)) {

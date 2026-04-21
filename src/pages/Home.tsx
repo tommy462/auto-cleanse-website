@@ -29,7 +29,7 @@ const customerLogos = [
 const splitText = (text: string, className: string = '') => {
   return text.split(' ').map((word, index) => (
     <span key={index} className="inline-block overflow-hidden pb-4 -mb-4 mr-[0.25em]">
-      <span className={`inline - block word - reveal ${className} `}>{word}</span>
+      <span className={`inline-block word-reveal ${className}`}>{word}</span>
     </span>
   ));
 };
@@ -517,7 +517,7 @@ const Home = () => {
       />
 
       {/* Hero Section - Split */}
-      <section className="relative min-h-[90vh] flex items-stretch overflow-hidden hero-section">
+      <section className="relative overflow-hidden hero-section">
         {/* Background Image - Parallax */}
         <div
           className="absolute inset-x-0 -top-[20%] h-[140%] bg-cover bg-center bg-no-repeat hero-bg"
@@ -527,50 +527,50 @@ const Home = () => {
         {/* Tint overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-[#0A0A0A]"></div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-stretch gap-4 lg:gap-6 py-20 lg:py-28 hero-content">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-stretch gap-4 lg:gap-6 py-32 pt-36 lg:py-28 lg:min-h-[90vh] hero-content">
 
           {/* Left Panel — DPF Cleaning */}
-          <div className="flex-1 flex flex-col justify-center p-8 sm:p-10 lg:p-14 rounded-3xl bg-black/50 border border-white/10 backdrop-blur-sm">
-            <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-5 hero-subtitle">Emission Control</div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-6 leading-[1.05] hero-title drop-shadow-2xl">
+          <div className="flex-1 flex flex-col justify-center p-6 sm:p-8 lg:p-14 rounded-3xl bg-black/50 border border-white/10 backdrop-blur-sm">
+            <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-4 hero-subtitle">Emission Control</div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-5 leading-[1.05] hero-title drop-shadow-2xl">
               {splitText('DPF Cleaning.', 'text-white')}
               <br />
               <span className="inline-block overflow-hidden pb-2 -mb-2">
                 <span className="inline-block word-reveal text-[#FF7A00]">Done right.</span>
               </span>
             </h1>
-            <p className="text-white/70 text-lg md:text-xl font-medium mb-8 max-w-md leading-relaxed hero-subtitle">
+            <p className="text-white/70 text-base sm:text-lg md:text-xl font-medium mb-6 max-w-md leading-relaxed hero-subtitle">
               Professional off-vehicle filter cleaning with same-day return within Devon. Nationwide postal service available.
             </p>
-            <div className="flex flex-wrap gap-4 hero-subtitle">
-              <Link to="/postal-dpf" className="btn-shine px-7 py-3.5 rounded-xl font-bold text-base text-white hover:text-white inline-block">
+            <div className="flex flex-wrap gap-3 hero-subtitle">
+              <Link to="/postal-dpf" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white hover:text-white inline-block">
                 Book DPF Clean
               </Link>
-              <Link to="/services" className="px-7 py-3.5 rounded-xl font-bold text-base text-white border border-white/20 hover:bg-white/10 transition-colors inline-block">
+              <Link to="/services" className="px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white border border-white/20 hover:bg-white/10 transition-colors inline-block">
                 Our Process
               </Link>
             </div>
           </div>
 
           {/* Right Panel — ECU Remapping */}
-          <div className="flex-1 flex flex-col justify-center p-8 sm:p-10 lg:p-14 rounded-3xl bg-[#FF7A00]/8 border border-[#FF7A00]/25 backdrop-blur-sm relative overflow-hidden">
+          <div className="flex-1 flex flex-col justify-center p-6 sm:p-8 lg:p-14 rounded-3xl bg-[#FF7A00]/8 border border-[#FF7A00]/25 backdrop-blur-sm relative overflow-hidden">
             {/* Subtle orange glow behind the right panel */}
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#FF7A00]/15 blur-[80px] rounded-full pointer-events-none"></div>
             <div className="relative z-10">
-              <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-5 hero-subtitle">Performance Tuning</div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-6 leading-[1.05] drop-shadow-2xl">
+              <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-4 hero-subtitle">Performance Tuning</div>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-5 leading-[1.05] drop-shadow-2xl">
                 <span className="text-white block">ECU</span>
                 <span className="text-white block">Remapping.</span>
-                <span className="text-white/30 italic font-medium block text-3xl md:text-4xl lg:text-5xl mt-2">Unlocked.</span>
+                <span className="text-white/30 italic font-medium block text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2">Unlocked.</span>
               </h2>
-              <p className="text-white/70 text-lg md:text-xl font-medium mb-8 max-w-md leading-relaxed hero-subtitle">
+              <p className="text-white/70 text-base sm:text-lg md:text-xl font-medium mb-6 max-w-md leading-relaxed hero-subtitle">
                 Stage 1 &amp; 2 maps tailored to your vehicle. More power, better economy, sharper throttle response — safely calibrated.
               </p>
-              <div className="flex flex-wrap gap-4 hero-subtitle">
-                <Link to="/remapping" className="btn-shine px-7 py-3.5 rounded-xl font-bold text-base text-white hover:text-white inline-block">
+              <div className="flex flex-wrap gap-3 hero-subtitle">
+                <Link to="/remapping" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white hover:text-white inline-block">
                   Explore Remapping
                 </Link>
-                <Link to="/remapping-booking" className="px-7 py-3.5 rounded-xl font-bold text-base text-white border border-[#FF7A00]/30 hover:border-[#FF7A00] hover:bg-[#FF7A00]/10 transition-all inline-block">
+                <Link to="/remapping-booking" className="px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white border border-[#FF7A00]/30 hover:border-[#FF7A00] hover:bg-[#FF7A00]/10 transition-all inline-block">
                   Book a Remap
                 </Link>
               </div>
