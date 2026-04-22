@@ -188,25 +188,21 @@ const Remapping = () => {
       </div>
 
       {/* ── FULL-BLEED IMAGE 1 ────────────────────────────────────────────────── */}
-      {/* The sticky image sits at z-index 1; the next dark section at z-index 2 slides over it */}
-      <div className="relative h-[55vh] md:h-[80vh]" style={{ zIndex: 1 }}>
-        <div className="sticky top-0 w-full h-[55vh] md:h-screen overflow-hidden">
-          <picture className="w-full h-full">
-            <source media="(max-width: 767px)" srcSet={REMAP_IMAGE_1_MOBILE} />
-            <img
-              src={REMAP_IMAGE_1}
-              alt="ECU remapping in action"
-              className="w-full h-full object-cover object-center"
-              loading="eager"
-            />
-          </picture>
-          {/* Top fade — blends into the dark hero above */}
+
+      {/* Mobile: full portrait image, no cropping */}
+      <div className="block md:hidden relative" style={{ zIndex: 1 }}>
+        <img src={REMAP_IMAGE_1_MOBILE} alt="ECU remapping in action" className="w-full h-auto" loading="eager" />
+        <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" style={{ height: '20%' }} />
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" style={{ height: '25%' }} />
+      </div>
+
+      {/* Desktop: sticky parallax */}
+      <div className="hidden md:block relative h-[80vh]" style={{ zIndex: 1 }}>
+        <div className="sticky top-0 w-full h-screen overflow-hidden">
+          <img src={REMAP_IMAGE_1} alt="ECU remapping in action" className="w-full h-full object-cover object-center" loading="eager" />
           <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" style={{ height: '35%' }} />
-          {/* Bottom fade — blends into the dark section below */}
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" style={{ height: '40%' }} />
-          {/* Subtle dark vignette sides */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/30 via-transparent to-[#0A0A0A]/30" />
-          {/* Orange accent tint — very subtle */}
           <div className="absolute inset-0 bg-[#FF7A00]/5 mix-blend-screen pointer-events-none" />
         </div>
       </div>
@@ -297,17 +293,18 @@ const Remapping = () => {
       </div>
 
       {/* ── FULL-BLEED IMAGE 2 ────────────────────────────────────────────────── */}
-      <div className="relative h-[45vh] md:h-[65vh]" style={{ zIndex: 1 }}>
-        <div className="sticky top-0 w-full h-[45vh] md:h-screen overflow-hidden">
-          <picture className="w-full h-full">
-            <source media="(max-width: 767px)" srcSet={REMAP_IMAGE_2_MOBILE} />
-            <img
-              src={REMAP_IMAGE_2}
-              alt="Remapped vehicle performance"
-              className="w-full h-full object-cover object-top md:object-center"
-              loading="lazy"
-            />
-          </picture>
+
+      {/* Mobile: full portrait image, no cropping */}
+      <div className="block md:hidden relative" style={{ zIndex: 1 }}>
+        <img src={REMAP_IMAGE_2_MOBILE} alt="Remapped vehicle performance" className="w-full h-auto" loading="lazy" />
+        <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" style={{ height: '20%' }} />
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" style={{ height: '25%' }} />
+      </div>
+
+      {/* Desktop: sticky parallax */}
+      <div className="hidden md:block relative h-[65vh]" style={{ zIndex: 1 }}>
+        <div className="sticky top-0 w-full h-screen overflow-hidden">
+          <img src={REMAP_IMAGE_2} alt="Remapped vehicle performance" className="w-full h-full object-cover object-center" loading="lazy" />
           <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" style={{ height: '35%' }} />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" style={{ height: '40%' }} />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/30 via-transparent to-[#0A0A0A]/30" />
