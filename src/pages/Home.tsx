@@ -4,7 +4,7 @@ import { Phone, Truck, Clock, Shield, Settings, Wrench, Zap, ChevronLeft, Chevro
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import ScrollVideoSection from '../components/ScrollVideoSection';
+import LoopingVideoSection from '../components/LoopingVideoSection';
 import SEO from '../components/SEO';
 import VehicleSchema from '../components/VehicleSchema';
 import MagneticButton from '../components/MagneticButton';
@@ -580,21 +580,19 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Premium Anatomy of a Clean Section (Moved up) */}
-      <ScrollVideoSection
+      {/* Premium Anatomy of a Clean Section */}
+      <LoopingVideoSection
         titlePrimary="The Anatomy of a"
         titleAccent="Clean"
-        subtitle="See our state-of-the-art DPF cleaning process in action as you scroll."
-        baseUrl="/frames/"
-        filenamePrefix="Timeline 1_"
-        startFrame={399}
-        endFrame={713}
+        subtitle="Watch our state-of-the-art DPF cleaning process in action."
+        videoUrl="https://hdegxhrhakxvgnadulgq.supabase.co/storage/v1/object/public/website-media/websitevid1.mp4"
         reverseLayout={false}
+        variant="steps"
         textBlocks={[
           { title: "Arrival & Inspection", desc: "Every filter is carefully logged and endoscoped before cleaning begins." },
-          { title: "Aqueous Cleaning Stage", desc: "Subjected to specialized environmentally safe solutions to safely break down compacted soot, ash, and oil." },
-          { title: "High-Pressure Flushing", desc: "A high-pressure reverse flush ensures absolutely zero particulate blockage remains deep within the honeycomb." },
-          { title: "Drying & Final Test", desc: "Thoroughly dried and back-pressure tested to confirm the filter has been returned to 98% of its new condition." }
+          { title: "Aqueous Cleaning Stage", desc: "Eco-safe solutions break down compacted soot, ash, and oil." },
+          { title: "High-Pressure Flushing", desc: "A reverse flush ensures zero particulate blockage remains deep within the honeycomb." },
+          { title: "Drying & Final Test", desc: "Every filter back-pressure tested before it leaves us — restored to 98% of new." }
         ]}
       />
 
@@ -788,22 +786,19 @@ const Home = () => {
 
 
 
-      {/* 2nd Premium Scroll Video Instance - Zigzag Layout */}
-      < ScrollVideoSection
+      {/* Advanced Filter Recovery Section */}
+      <LoopingVideoSection
         titlePrimary="Advanced Filter"
         titleAccent="Recovery"
         subtitle="Uncompromising deep cleaning that restores performance."
-        baseUrl="/2ndframes/"
-        filenamePrefix="scroll2_"
-        startFrame={0}
-        endFrame={149}
+        videoUrl="https://hdegxhrhakxvgnadulgq.supabase.co/storage/v1/object/public/website-media/websitevid2.mp4"
         reverseLayout={true}
-        textBlocks={
-          [
-            { title: "Blockage Removal", desc: "Targeted elimination of deep-seated particulate matter." },
-            { title: "Performance Uplift", desc: "Restoring airflow to OEM specifications." },
-            { title: "Longevity Ensured", desc: "A clean core prevents recurring warning lights." }
-          ]}
+        variant="editorial"
+        textBlocks={[
+          { title: "Blockage Removal", desc: "Targeted elimination of deep-seated particulate matter." },
+          { title: "Performance Uplift", desc: "Airflow restored to factory spec — guaranteed." },
+          { title: "Longevity Ensured", desc: "A clean core prevents recurring warning lights." }
+        ]}
       />
 
       {/* Customer Reviews Section */}
