@@ -10,7 +10,9 @@ import MagneticButton from '../components/MagneticButton';
 gsap.registerPlugin(ScrollTrigger);
 
 const REMAP_IMAGE_1 = 'https://hdegxhrhakxvgnadulgq.supabase.co/storage/v1/object/public/website-media/websiteremapimage1.png';
+const REMAP_IMAGE_1_MOBILE = 'https://hdegxhrhakxvgnadulgq.supabase.co/storage/v1/object/public/website-media/websiteremapimage1mobile.png';
 const REMAP_IMAGE_2 = 'https://hdegxhrhakxvgnadulgq.supabase.co/storage/v1/object/public/website-media/websiteremapimage2.png';
+const REMAP_IMAGE_2_MOBILE = 'https://hdegxhrhakxvgnadulgq.supabase.co/storage/v1/object/public/website-media/websiteremapimage2mobile.png';
 
 const splitText = (text: string, className: string = '') => {
   return text.split(' ').map((word, index) => (
@@ -189,12 +191,15 @@ const Remapping = () => {
       {/* The sticky image sits at z-index 1; the next dark section at z-index 2 slides over it */}
       <div className="relative h-[55vh] md:h-[80vh]" style={{ zIndex: 1 }}>
         <div className="sticky top-0 w-full h-[55vh] md:h-screen overflow-hidden">
-          <img
-            src={REMAP_IMAGE_1}
-            alt="ECU remapping in action"
-            className="w-full h-full object-cover object-center"
-            loading="eager"
-          />
+          <picture className="w-full h-full">
+            <source media="(max-width: 767px)" srcSet={REMAP_IMAGE_1_MOBILE} />
+            <img
+              src={REMAP_IMAGE_1}
+              alt="ECU remapping in action"
+              className="w-full h-full object-cover object-center"
+              loading="eager"
+            />
+          </picture>
           {/* Top fade — blends into the dark hero above */}
           <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" style={{ height: '35%' }} />
           {/* Bottom fade — blends into the dark section below */}
@@ -294,12 +299,15 @@ const Remapping = () => {
       {/* ── FULL-BLEED IMAGE 2 ────────────────────────────────────────────────── */}
       <div className="relative h-[45vh] md:h-[65vh]" style={{ zIndex: 1 }}>
         <div className="sticky top-0 w-full h-[45vh] md:h-screen overflow-hidden">
-          <img
-            src={REMAP_IMAGE_2}
-            alt="Remapped vehicle performance"
-            className="w-full h-full object-cover object-center"
-            loading="lazy"
-          />
+          <picture className="w-full h-full">
+            <source media="(max-width: 767px)" srcSet={REMAP_IMAGE_2_MOBILE} />
+            <img
+              src={REMAP_IMAGE_2}
+              alt="Remapped vehicle performance"
+              className="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+          </picture>
           <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" style={{ height: '35%' }} />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" style={{ height: '40%' }} />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/30 via-transparent to-[#0A0A0A]/30" />
