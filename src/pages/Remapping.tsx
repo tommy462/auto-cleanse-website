@@ -304,7 +304,7 @@ const Remapping = () => {
             <img
               src={REMAP_IMAGE_2}
               alt="Remapped vehicle performance"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-top md:object-center"
               loading="lazy"
             />
           </picture>
