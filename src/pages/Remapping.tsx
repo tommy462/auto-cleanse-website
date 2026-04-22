@@ -137,7 +137,7 @@ const Remapping = () => {
   ];
 
   return (
-    <div ref={container} className="bg-[#0A0A0A] min-h-screen relative overflow-x-hidden">
+    <div ref={container} className="bg-[#0A0A0A] min-h-screen relative">
       <SEO
         title="ECU Remapping | Stage 1, Stage 2 & Custom Maps"
         description="Professional ECU remapping in Devon. Stage 1 and Stage 2 maps for cars, vans, HGVs and commercial vehicles. Improved power, torque, and fuel economy — safely calibrated."
@@ -150,7 +150,7 @@ const Remapping = () => {
       />
 
       {/* ── HERO ─────────────────────────────────────────────────────────────── */}
-      <div className="pt-32 pb-24 relative">
+      <div className="pt-32 pb-24 relative overflow-hidden">
         {/* Ambient glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[500px] bg-[#FF7A00]/10 blur-[120px] rounded-[100%] pointer-events-none opacity-50" />
 
@@ -187,8 +187,8 @@ const Remapping = () => {
 
       {/* ── FULL-BLEED IMAGE 1 ────────────────────────────────────────────────── */}
       {/* The sticky image sits at z-index 1; the next dark section at z-index 2 slides over it */}
-      <div className="relative h-[80vh]">
-        <div className="sticky top-0 w-full h-screen overflow-hidden" style={{ zIndex: 1 }}>
+      <div className="relative h-[55vh] md:h-[80vh]" style={{ zIndex: 1 }}>
+        <div className="sticky top-0 w-full h-[55vh] md:h-screen overflow-hidden">
           <img
             src={REMAP_IMAGE_1}
             alt="ECU remapping in action"
@@ -196,7 +196,7 @@ const Remapping = () => {
             loading="eager"
           />
           {/* Top fade — blends into the dark hero above */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" style={{ height: '35%' }} />
+          <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" style={{ height: '35%' }} />
           {/* Bottom fade — blends into the dark section below */}
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" style={{ height: '40%' }} />
           {/* Subtle dark vignette sides */}
@@ -292,15 +292,15 @@ const Remapping = () => {
       </div>
 
       {/* ── FULL-BLEED IMAGE 2 ────────────────────────────────────────────────── */}
-      <div className="relative h-[65vh]" style={{ zIndex: 1 }}>
-        <div className="sticky top-0 w-full h-screen overflow-hidden">
+      <div className="relative h-[45vh] md:h-[65vh]" style={{ zIndex: 1 }}>
+        <div className="sticky top-0 w-full h-[45vh] md:h-screen overflow-hidden">
           <img
             src={REMAP_IMAGE_2}
             alt="Remapped vehicle performance"
             className="w-full h-full object-cover object-center"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" style={{ height: '35%' }} />
+          <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" style={{ height: '35%' }} />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" style={{ height: '40%' }} />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/30 via-transparent to-[#0A0A0A]/30" />
           <div className="absolute inset-0 bg-[#FF7A00]/5 mix-blend-screen pointer-events-none" />
