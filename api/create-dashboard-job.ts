@@ -157,7 +157,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         vehicle_id: vehicleId,
         job_type: serviceLabel ?? serviceType ?? 'ECU Remap',
         location_type: locationType,
-        job_address: bookingType === 'mobile' ? (address ?? null) : null,
         job_date: jobDate,
         time_preference: 'specific',
         specific_time: jobTime,
@@ -165,9 +164,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         notes: goals ?? null,
         quoted_price: 0,
         vat_included: true,
-        internal_notes: notes
-          ? `Customer notes: ${notes}\n\nBooked via website. Calendly: ${calendlyEventUri}`
-          : `Booked via website. Calendly: ${calendlyEventUri}`,
+        internal_notes: [
+          bookingType === 'mobile' && address ? `Address: ${address}` : null,
+          notes ? `Customer notes: ${notes}` : null,
+          `Booked via website. Calendly: ${calendlyEventUri}`,
+        ].filter(Boolean).join('\n\n'),
         status: 'booked',
       }),
     });
