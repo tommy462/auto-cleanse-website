@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
-import { BOOKING_CONFIG, REMAP_SERVICES, type RemapServiceValue } from '../config/booking';
+import { BOOKING_CONFIG, REMAP_SERVICES, REMAP_OPTIONS, BASE_PRICES, type RemapServiceValue } from '../config/booking';
 
 // Make.com webhook — receives combined booking record once Calendly confirms
 const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/uw0b9gab1m4qdj1zhs4m4mkkn9kt5fva';
@@ -35,6 +35,7 @@ const CALENDLY_BASE = 'https://calendly.com/auto-cleanse-info/30min';
 interface BookingForm {
   serviceType: RemapServiceValue | '';
   bookingType: 'workshop' | 'mobile' | '';
+  selectedOptions: string[];
   // Contact
   fullName: string;
   email: string;
@@ -53,6 +54,7 @@ interface BookingForm {
 
 const EMPTY: BookingForm = {
   serviceType: '', bookingType: '',
+  selectedOptions: [],
   fullName: '', email: '', phone: '',
   vehicleRegistration: '', vehicleMakeModel: '',
   goals: '', notes: '',
@@ -69,6 +71,26 @@ const LABEL = 'block text-xs font-bold text-white/50 mb-2 uppercase tracking-wid
 
 function getServiceLabel(value: string) {
   return REMAP_SERVICES.find((s) => s.value === value)?.label ?? value;
+}
+
+function calcQuotedPrice(serviceType: string, bookingType: string, selectedOptions: string[]): number {
+  if (!serviceType || !bookingType) return 0;
+  const prices = BASE_PRICES[serviceType as RemapServiceValue];
+  if (!prices) return 0;
+  const base = bookingType === 'mobile' ? prices.mobile : prices.workshop;
+  const extras = selectedOptions.reduce((sum, val) => {
+    return sum + (REMAP_OPTIONS.find((o) => o.value === val)?.extraCost ?? 0);
+  }, 0);
+  return base + extras;
+}
+
+function formatPrice(serviceType: string, bookingType: string, selectedOptions: string[]): string | null {
+  if (!serviceType || !bookingType || serviceType === 'not-sure') return null;
+  const prices = BASE_PRICES[serviceType as RemapServiceValue];
+  if (!prices) return null;
+  const total = calcQuotedPrice(serviceType, bookingType, selectedOptions);
+  const prefix = prices.fromPrice ? 'from ' : '';
+  return `${prefix}£${total}`;
 }
 
 function buildAddress(f: BookingForm) {
@@ -151,6 +173,12 @@ function BookingConfirmed({ form }: { form: BookingForm }) {
               },
               ...(form.bookingType === 'mobile'
                 ? [{ label: 'Address', value: buildAddress(form) }]
+                : []),
+              ...(form.selectedOptions.length > 0
+                ? [{ label: 'Add-ons', value: form.selectedOptions.map((v) => REMAP_OPTIONS.find((o) => o.value === v)?.label ?? v).join(', ') }]
+                : []),
+              ...(formatPrice(form.serviceType, form.bookingType, form.selectedOptions)
+                ? [{ label: 'Total', value: formatPrice(form.serviceType, form.bookingType, form.selectedOptions)! }]
                 : []),
             ].map(({ label, value }) => (
               <div key={label} className="flex gap-3 py-2 border-b border-white/5 last:border-0">
@@ -263,6 +291,8 @@ export default function RemappingBooking() {
       setBookingComplete(true);
       topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+      const quotedPrice = calcQuotedPrice(f.serviceType, f.bookingType, f.selectedOptions);
+
       // Build the shared payload once — sent to both Make.com and our dashboard API
       const bookingPayload = {
         type: 'remap_booking_confirmed',
@@ -283,6 +313,8 @@ export default function RemappingBooking() {
         notes: f.notes || null,
         address: f.bookingType === 'mobile' ? buildAddress(f) : null,
         postcode: f.bookingType === 'mobile' ? f.postcode : null,
+        selectedOptions: f.selectedOptions,
+        quotedPrice,
 
         // ── Calendly URIs ───────────────────────────────────────────────
         calendlyEventUri: payload.event?.uri ?? null,
@@ -622,14 +654,78 @@ export default function RemappingBooking() {
           </div>
         </div>
 
+        {/* ── 5. Add-on options ─────────────────────────────────────────── */}
+        {form.serviceType && form.serviceType !== 'not-sure' && (
+          <div className="rounded-3xl bg-[#1A1D22] border border-white/5 p-6 sm:p-8 mb-5">
+            <h2 className="text-sm font-black text-white mb-1 flex items-center gap-3">
+              <span className="w-6 h-6 rounded-full bg-[#FF7A00] text-black text-[10px] font-black flex items-center justify-center shrink-0">
+                5
+              </span>
+              Add-on Options
+            </h2>
+            <p className="text-white/30 text-xs mb-5 ml-9">Select any extras you'd like included — tick all that apply</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {REMAP_OPTIONS.map((opt) => {
+                const checked = form.selectedOptions.includes(opt.value);
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => {
+                      const next = checked
+                        ? form.selectedOptions.filter((v) => v !== opt.value)
+                        : [...form.selectedOptions, opt.value];
+                      update({ selectedOptions: next });
+                    }}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all ${
+                      checked
+                        ? 'bg-[#FF7A00]/10 border-[#FF7A00]/50'
+                        : 'bg-black/20 border-white/[0.07] hover:border-white/20'
+                    }`}
+                  >
+                    <span className={`w-4 h-4 rounded flex-shrink-0 border flex items-center justify-center transition-colors ${
+                      checked ? 'bg-[#FF7A00] border-[#FF7A00]' : 'border-white/20'
+                    }`}>
+                      {checked && <span className="text-black text-[10px] font-black leading-none">✓</span>}
+                    </span>
+                    <span className={`text-sm font-medium flex-1 ${checked ? 'text-white' : 'text-white/60'}`}>
+                      {opt.label}
+                    </span>
+                    {opt.extraCost > 0 && (
+                      <span className="text-xs font-bold text-[#FF7A00] bg-[#FF7A00]/10 px-2 py-0.5 rounded-lg shrink-0">
+                        +£{opt.extraCost}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* ── Proceed button ────────────────────────────────────────────── */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-20">
-          <div className="flex items-center gap-2 rounded-xl bg-[#FF7A00]/8 border border-[#FF7A00]/15 px-4 py-3">
-            <Zap size={14} className="text-[#FF7A00] shrink-0" />
-            <p className="text-white/50 text-xs leading-snug">
-              <span className="text-white font-bold">{BOOKING_CONFIG.depositAmountDisplay} deposit</span> secures your slot.
-              Balance due on the day.
-            </p>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 rounded-xl bg-[#FF7A00]/8 border border-[#FF7A00]/15 px-4 py-3">
+              <Zap size={14} className="text-[#FF7A00] shrink-0" />
+              <p className="text-white/50 text-xs leading-snug">
+                <span className="text-white font-bold">{BOOKING_CONFIG.depositAmountDisplay} deposit</span> secures your slot.
+                Balance due on the day.
+              </p>
+            </div>
+            {formatPrice(form.serviceType, form.bookingType, form.selectedOptions) && (
+              <div className="flex items-center gap-2 rounded-xl bg-white/[0.03] border border-white/5 px-4 py-3">
+                <span className="text-white/40 text-xs">Estimated total:</span>
+                <span className="text-white font-black text-sm">
+                  {formatPrice(form.serviceType, form.bookingType, form.selectedOptions)}
+                </span>
+                {form.selectedOptions.some((v) => REMAP_OPTIONS.find((o) => o.value === v && o.extraCost > 0)) && (
+                  <span className="text-white/30 text-xs">
+                    (inc. add-ons)
+                  </span>
+                )}
+              </div>
+            )}
           </div>
           <button
             type="button"

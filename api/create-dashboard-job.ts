@@ -53,6 +53,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     postcode,
     goals,
     notes,
+    selectedOptions,
+    quotedPrice,
     calendlyEventUri,
   } = req.body ?? {};
 
@@ -162,11 +164,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         specific_time: jobTime,
         technician: 'Unassigned',
         notes: goals ?? null,
-        quoted_price: 0,
+        quoted_price: typeof quotedPrice === 'number' && quotedPrice > 0 ? quotedPrice : 0,
         vat_included: true,
         internal_notes: [
           bookingType === 'mobile' && address ? `Address: ${address}` : null,
           notes ? `Customer notes: ${notes}` : null,
+          selectedOptions?.length ? `Add-ons: ${selectedOptions.join(', ')}` : null,
           `Booked via website. Calendly: ${calendlyEventUri}`,
         ].filter(Boolean).join('\n\n'),
         status: 'booked',

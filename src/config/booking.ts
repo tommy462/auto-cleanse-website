@@ -85,7 +85,7 @@ export const REMAP_SERVICES = [
   {
     value: 'dpf-remap-bundle',
     label: 'DPF Clean + Remap Bundle',
-    description: 'Combined DPF clean and ECU remap — best-value package',
+    description: 'DPF clean and ECU remap inc. labour to remove and refit — best-value package',
     icon: '🛠️',
   },
   {
@@ -97,3 +97,38 @@ export const REMAP_SERVICES = [
 ] as const;
 
 export type RemapServiceValue = typeof REMAP_SERVICES[number]['value'];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Add-on options (shown as checkboxes on the booking form)
+// extraCost is the additional charge in pounds (0 = included free)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const REMAP_OPTIONS = [
+  { value: 'dpf-gpf-opf-disable',  label: 'DPF/GPF/OPF Disable',               extraCost: 0  },
+  { value: 'egr-disable',          label: 'EGR Disable',                         extraCost: 0  },
+  { value: 'speed-limiter-disable',label: 'Speed Limiter Disable',               extraCost: 0  },
+  { value: 'dtc-disable',          label: 'DTC Disable',                         extraCost: 0  },
+  { value: 'lambda-o2-delete',     label: 'Lambda/O2 Delete',                    extraCost: 0  },
+  { value: 'flaps',                label: 'FLAPS',                               extraCost: 0  },
+  { value: 'scr-adblue-delete',    label: 'SCR/ADBLUE Delete',                   extraCost: 0  },
+  { value: 'additive-pats-eolys',  label: 'Additive/PATS/Eolys',                extraCost: 0  },
+  { value: 'possibly-is-tuned',    label: 'Possibly/Is Tuned',                   extraCost: 0  },
+  { value: 'cold-start-remove',    label: 'Cold Start Remove',                   extraCost: 0  },
+  { value: 'hard-cut-diesel',      label: 'Hard Cut Diesel',                     extraCost: 36 },
+  { value: 'immo-off',             label: 'IMMO Off',                            extraCost: 36 },
+  { value: 'crackles-petrol',      label: 'Crackles Petrol (only with CAT off)', extraCost: 36 },
+] as const;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Base prices per service type (£)
+// workshop = customer comes to us, mobile = we go to them
+// 0 = no price (e.g. advice call — quoted later)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const BASE_PRICES: Record<RemapServiceValue, { workshop: number; mobile: number; fromPrice?: boolean }> = {
+  'stage-1':         { workshop: 220, mobile: 240 },
+  'stage-2':         { workshop: 400, mobile: 420 },
+  'custom-fleet':    { workshop: 220, mobile: 240 },
+  'dpf-remap-bundle':{ workshop: 850, mobile: 850, fromPrice: true },
+  'not-sure':        { workshop: 0,   mobile: 0   },
+};
