@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft, ArrowRight, Car, MapPin, Wrench, CheckCircle,
-  Phone, ClipboardList, Zap,
+  Phone, ClipboardList, Zap, Loader2,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
@@ -246,6 +246,7 @@ function BookingConfirmed({ form }: { form: BookingForm }) {
 export default function RemappingBooking() {
   const [form, setForm] = useState<BookingForm>(EMPTY);
   const [showWidget, setShowWidget] = useState(false);
+  const [widgetLoading, setWidgetLoading] = useState(false);
   const [bookingComplete, setBookingComplete] = useState(false);
 
   // Ref keeps form value fresh inside the message-event listener (no stale closure)
@@ -357,26 +358,49 @@ export default function RemappingBooking() {
         form.townCity.trim() !== '' &&
         form.postcode.trim() !== ''));
 
-  // When the widget div is conditionally rendered into the DOM, Calendly's script
-  // has already run and won't auto-detect it. We call initInlineWidget manually
-  // after a short delay to give React time to commit the DOM update.
+  // Poll until the Calendly script has loaded, then call initInlineWidget.
+  // Mobile connections can take 30+ seconds to load the script, so we keep
+  // polling every 500ms rather than giving up after a fixed set of retries.
+  // A MutationObserver watches for the iframe Calendly injects — once it
+  // appears we know rendering is done and we hide the loading state.
   useEffect(() => {
     if (!showWidget) return;
 
-    const init = () => {
+    setWidgetLoading(true);
+    let initialized = false;
+
+    const tryInit = () => {
       const el = document.getElementById('calendly-inline');
-      if (el && window.Calendly) {
-        window.Calendly.initInlineWidget({
-          url: buildCalendlyUrl(form),
-          parentElement: el,
-        });
-      }
+      if (!el || !window.Calendly || initialized) return;
+      initialized = true;
+
+      window.Calendly.initInlineWidget({
+        url: buildCalendlyUrl(form),
+        parentElement: el,
+      });
+
+      // Watch for Calendly to inject its iframe, then clear the loading state
+      const observer = new MutationObserver(() => {
+        if (el.querySelector('iframe')) {
+          setWidgetLoading(false);
+          observer.disconnect();
+        }
+      });
+      observer.observe(el, { childList: true, subtree: true });
+
+      // Fallback: hide loader after 8s regardless (slow connections)
+      setTimeout(() => setWidgetLoading(false), 8000);
     };
 
-    // Retry up to ~2s in case the Calendly script hasn't finished loading yet
-    const attempts = [100, 400, 900, 1800];
-    const timers = attempts.map((delay) => setTimeout(init, delay));
-    return () => timers.forEach(clearTimeout);
+    tryInit();
+    const interval = setInterval(() => {
+      if (initialized) clearInterval(interval);
+      else tryInit();
+    }, 500);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, [showWidget]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleProceed = () => {
@@ -804,7 +828,17 @@ export default function RemappingBooking() {
               </div>
 
               {/* Calendly inline widget — initialised programmatically via initInlineWidget */}
-              <div className="rounded-3xl overflow-hidden border border-white/5 mb-6">
+              <div className="rounded-3xl overflow-hidden border border-white/5 mb-6 relative">
+                {/* Loading overlay — shown until Calendly iframe appears */}
+                {widgetLoading && (
+                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 bg-[#1A1D22]" style={{ minHeight: '400px' }}>
+                    <Loader2 size={32} className="animate-spin text-[#FF7A00]" />
+                    <div className="text-center">
+                      <p className="text-white/70 text-sm font-medium">Loading booking calendar…</p>
+                      <p className="text-white/30 text-xs mt-1">This may take a moment on mobile</p>
+                    </div>
+                  </div>
+                )}
                 <div
                   id="calendly-inline"
                   className="calendly-inline-widget"
