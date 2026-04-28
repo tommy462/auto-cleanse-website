@@ -1167,6 +1167,453 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
     relatedSlugs: ['vauxhall-vivaro-remap', 'ford-transit-custom-remap', 'vw-transporter-remap'],
     category: 'commercial', fuelType: 'diesel'
   },
+
+  // ── SEAT / SKODA (VAG) ────────────────────────────────────────────────────
+
+  {
+    slug: 'seat-leon-remap',
+    make: 'Seat', model: 'Leon', fullName: 'Seat Leon',
+    metaTitle: 'Seat Leon Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Seat Leon ECU remapping — unlock massive gains on the Cupra 2.0 TSI or better MPG on the 2.0 TDI. Expert VAG tuning in Devon.',
+    h1: 'Seat Leon Remap',
+    intro: 'Sharing its platform with the VW Golf, the Seat Leon is a fantastic car to tune. Whether you have the ultra-efficient 2.0 TDI, the punchy 1.4 TSI, or the high-performance Leon Cupra 2.0 TSI, a Stage 1 ECU remap safely unlocks the restricted power within the factory software. AutoCleanse offers Seat Leon remapping across Devon.',
+    engineOptions: [
+      { name: '2.0 TSI Cupra 290', stockPower: '290bhp', remapPower: '360bhp', stockTorque: '350Nm', remapTorque: '450Nm' },
+      { name: '2.0 TDI 150', stockPower: '150bhp', remapPower: '190bhp', stockTorque: '340Nm', remapTorque: '400Nm', mpgGain: 'up to 15%' },
+      { name: '1.4 TSI 150', stockPower: '150bhp', remapPower: '185bhp', stockTorque: '250Nm', remapTorque: '300Nm' },
+    ],
+    faqs: [
+      { q: 'Is the Leon Cupra the same engine as the Golf R?', a: 'Yes, the Cupra 280/290/300 shares the EA888 engine with the Golf R and Audi S3. This means it responds incredibly well to Stage 1 tuning, safely reaching 360bhp.' },
+      { q: 'Will a remap improve my Leon TDI fuel economy?', a: 'Yes, the 2.0 TDI gains a massive amount of mid-range torque, allowing you to hold higher gears on hills and motorways, typically improving MPG by 10-15%.' },
+      { q: 'Is it safe for the DSG gearbox?', a: 'Yes, Stage 1 torque limits are designed to be well within the tolerances of the DSG and manual gearboxes.' },
+      { q: 'Can you map the older 1.9 TDI Leons?', a: 'Yes, the legendary 1.9 TDI responds brilliantly to a remap, making it much more responsive for modern traffic.' },
+      { q: 'Do you offer mobile tuning for the Seat Leon?', a: 'Yes, we provide fully mobile remapping throughout Devon.' }
+    ],
+    relatedSlugs: ['vw-golf-gti-remap', 'vw-golf-r-remap', 'skoda-octavia-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  {
+    slug: 'seat-ibiza-remap',
+    make: 'Seat', model: 'Ibiza', fullName: 'Seat Ibiza',
+    metaTitle: 'Seat Ibiza Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Seat Ibiza ECU remapping — gain power and torque on the 1.0 TSI, 1.2 TSI and Cupra models. Expert tuning in Devon.',
+    h1: 'Seat Ibiza Remap',
+    intro: 'The Seat Ibiza is light, agile, and an excellent candidate for tuning. The popular 1.0 TSI and 1.2 TSI engines are heavily restricted from the factory and transform with a Stage 1 remap. The high-performance Ibiza Cupra 1.8 TSI also sees massive gains, turning it into a true pocket rocket. AutoCleanse maps Ibizas across Devon.',
+    engineOptions: [
+      { name: '1.8 TSI Cupra 192', stockPower: '192bhp', remapPower: '240bhp', stockTorque: '320Nm', remapTorque: '390Nm' },
+      { name: '1.0 TSI 95', stockPower: '95bhp', remapPower: '135bhp', stockTorque: '175Nm', remapTorque: '240Nm' },
+      { name: '1.2 TSI 110', stockPower: '110bhp', remapPower: '135bhp', stockTorque: '175Nm', remapTorque: '220Nm' },
+    ],
+    faqs: [
+      { q: 'Can you really get 135bhp from the 1.0 TSI engine?', a: 'Yes, the 1.0 TSI 95bhp and 115bhp are mechanically identical, just software-restricted. A remap unlocks the full safe potential of the turbo.' },
+      { q: 'Does remapping affect reliability?', a: 'No, a Stage 1 remap works safely within the factory limits of the engine components and turbocharger.' },
+      { q: 'Will a remap make my Ibiza better on the motorway?', a: 'Absolutely. The increased torque means you won\'t have to drop down a gear to overtake or tackle long inclines.' },
+      { q: 'Is the 1.8 TSI Cupra safe to map?', a: 'Yes, the 1.8 TSI EA888 engine is incredibly strong and comfortably handles 240bhp at Stage 1.' },
+      { q: 'Can you remap my Ibiza at home?', a: 'Yes, we offer a mobile service that covers all of Devon.' }
+    ],
+    relatedSlugs: ['seat-leon-remap', 'vw-golf-gti-remap', 'vauxhall-corsa-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  {
+    slug: 'skoda-octavia-remap',
+    make: 'Skoda', model: 'Octavia', fullName: 'Skoda Octavia',
+    metaTitle: 'Skoda Octavia Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Skoda Octavia ECU remapping — VAG tuning specialists in Devon. Huge gains for the Octavia vRS and better MPG for the TDI.',
+    h1: 'Skoda Octavia Remap',
+    intro: 'The Skoda Octavia is renowned for its practicality, but its VAG-group engines mean it also has incredible tuning potential. A Stage 1 ECU remap turns the Octavia vRS into a serious performance car, while tuning the 2.0 TDI models provides effortless towing ability and substantial fuel savings on long journeys. AutoCleanse offers Octavia tuning across Devon.',
+    engineOptions: [
+      { name: '2.0 TSI vRS 245', stockPower: '245bhp', remapPower: '310bhp', stockTorque: '370Nm', remapTorque: '450Nm' },
+      { name: '2.0 TDI vRS 184', stockPower: '184bhp', remapPower: '225bhp', stockTorque: '380Nm', remapTorque: '440Nm', mpgGain: 'up to 12%' },
+      { name: '2.0 TDI 150', stockPower: '150bhp', remapPower: '190bhp', stockTorque: '340Nm', remapTorque: '400Nm', mpgGain: 'up to 15%' },
+    ],
+    faqs: [
+      { q: 'What does a Stage 1 remap do to the Octavia vRS?', a: 'The petrol vRS 245 shares its engine with the Golf GTI Performance. A Stage 1 tune takes it to around 310bhp, transforming the acceleration and overall dynamics.' },
+      { q: 'Will a remap help the Octavia tow a caravan?', a: 'Yes, the extra 60Nm of torque on the 2.0 TDI 150 makes a huge difference when towing, reducing the need for gear changes.' },
+      { q: 'Is the remap safe for the high-mileage diesel engines?', a: 'Yes, the 2.0 TDI is a very robust engine. As long as it has been well-maintained, a Stage 1 map is completely safe.' },
+      { q: 'Will the dealer overwrite my remap?', a: 'If Skoda updates the ECU software during a service, the remap may be overwritten. Let us know if this happens and we can reapply it.' },
+      { q: 'Do you offer mobile tuning in Devon for the Octavia?', a: 'Yes, we provide fully mobile remapping for all Skoda models across Devon.' }
+    ],
+    relatedSlugs: ['skoda-superb-remap', 'vw-golf-gti-remap', 'seat-leon-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  {
+    slug: 'skoda-superb-remap',
+    make: 'Skoda', model: 'Superb', fullName: 'Skoda Superb',
+    metaTitle: 'Skoda Superb Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Skoda Superb ECU remapping — VAG tuning specialists in Devon. Improve MPG on the 2.0 TDI or unleash the 280 TSI.',
+    h1: 'Skoda Superb Remap',
+    intro: 'The Skoda Superb is a premium executive car with the engines to match. Whether you are doing high mileage in the 2.0 TDI and looking for maximum MPG, or you own the sleeper 2.0 TSI 280 (which shares the Golf R engine), a Stage 1 ECU remap from AutoCleanse will completely transform the driving experience.',
+    engineOptions: [
+      { name: '2.0 TSI 280 (4x4)', stockPower: '280bhp', remapPower: '360bhp', stockTorque: '350Nm', remapTorque: '450Nm' },
+      { name: '2.0 TDI 150', stockPower: '150bhp', remapPower: '190bhp', stockTorque: '340Nm', remapTorque: '400Nm', mpgGain: 'up to 15%' },
+      { name: '2.0 TDI 190', stockPower: '190bhp', remapPower: '235bhp', stockTorque: '400Nm', remapTorque: '460Nm', mpgGain: 'up to 12%' },
+    ],
+    faqs: [
+      { q: 'Can the Superb 280 really reach 360bhp?', a: 'Yes, the 2.0 TSI 280 uses the exact same EA888 engine and IS38 turbocharger as the VW Golf R and Audi S3. It is heavily detuned from the factory and safely maps to 360bhp.' },
+      { q: 'Is the Superb a good car for an economy remap?', a: 'Excellent. Due to its aerodynamics and long gearing, the added torque from a remap allows the Superb to cruise at lower RPMs, improving MPG significantly.' },
+      { q: 'Will the extra torque damage the DSG gearbox?', a: 'No, the DQ250 and DQ381 DSG gearboxes used in the Superb are rated for much higher torque than the factory outputs.' },
+      { q: 'Does remapping affect the Superb\'s ride comfort?', a: 'No, an ECU remap only changes engine mapping. The suspension and DCC (Dynamic Chassis Control) remain completely unaffected.' },
+      { q: 'Do you offer mobile tuning in Devon?', a: 'Yes, our mobile technicians cover the whole of Devon.' }
+    ],
+    relatedSlugs: ['skoda-octavia-remap', 'vw-passat-remap', 'audi-a6-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  // ── PORSCHE / VOLVO (PREMIUM) ─────────────────────────────────────────────
+
+  {
+    slug: 'porsche-macan-remap',
+    make: 'Porsche', model: 'Macan', fullName: 'Porsche Macan',
+    metaTitle: 'Porsche Macan Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Porsche Macan ECU remapping — unlock massive performance gains from the 2.0T, 3.0T, and 3.0 SD V6 engines in Devon.',
+    h1: 'Porsche Macan Remap',
+    intro: 'The Porsche Macan is the best-handling SUV on the market, but the factory engine mapping can leave it feeling a little restrained. A Stage 1 ECU remap unlocks serious performance. Whether you have the VAG-derived 2.0T, the punchy 3.0T V6, or the high-torque 3.0 SD diesel, remapping transforms the Macan into a true sports car. AutoCleanse offers Macan tuning in Devon.',
+    engineOptions: [
+      { name: '3.0T V6 S (Petrol)', stockPower: '340bhp', remapPower: '400bhp', stockTorque: '460Nm', remapTorque: '540Nm' },
+      { name: '2.0T (Petrol)', stockPower: '252bhp', remapPower: '310bhp', stockTorque: '370Nm', remapTorque: '450Nm' },
+      { name: '3.0 SD V6 (Diesel)', stockPower: '258bhp', remapPower: '310bhp', stockTorque: '580Nm', remapTorque: '680Nm', mpgGain: 'up to 10%' },
+    ],
+    faqs: [
+      { q: 'Does remapping a Macan affect the PDK gearbox?', a: 'The PDK is one of the strongest dual-clutch gearboxes in the world. It handles the Stage 1 torque increases easily and shifting remains incredibly fast and smooth.' },
+      { q: 'Will my Macan S be noticeably faster?', a: 'Yes, gaining 60bhp and 80Nm transforms the Macan S. The throttle response is sharper, turbo lag is reduced, and it pulls significantly harder through the rev range.' },
+      { q: 'Is it safe to remap a Porsche engine?', a: 'Absolutely. We use safe, tested calibrations that stay within the mechanical limits of the turbocharger and fuelling system.' },
+      { q: 'Will it improve fuel economy on the Macan SD?', a: 'Yes, the diesel Macan benefits from increased low-end torque, which means less throttle is needed to maintain cruising speeds, improving MPG.' },
+      { q: 'Can you remap my Macan at home in Devon?', a: 'Yes, we provide a fully mobile service, bringing our workshop-level equipment to your location.' }
+    ],
+    relatedSlugs: ['audi-q5-remap', 'bmw-x5-remap', 'range-rover-velar-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  {
+    slug: 'volvo-xc60-remap',
+    make: 'Volvo', model: 'XC60', fullName: 'Volvo XC60',
+    metaTitle: 'Volvo XC60 Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Volvo XC60 ECU remapping — improve performance, torque, and MPG on the D4 and D5 diesel engines. Volvo tuning specialists in Devon.',
+    h1: 'Volvo XC60 Remap',
+    intro: 'The Volvo XC60 is incredibly safe and comfortable, but the heavy body means the D4 and D5 diesel engines have to work hard. A Stage 1 ECU remap adds significant mid-range torque, making the XC60 much more responsive, easier to overtake with, and better at towing, while also improving fuel economy on long runs. AutoCleanse maps Volvos across Devon.',
+    engineOptions: [
+      { name: '2.0 D4 190 (SPA Gen)', stockPower: '190bhp', remapPower: '235bhp', stockTorque: '400Nm', remapTorque: '480Nm', mpgGain: 'up to 12%' },
+      { name: '2.0 D5 235 (SPA Gen)', stockPower: '235bhp', remapPower: '275bhp', stockTorque: '480Nm', remapTorque: '550Nm', mpgGain: 'up to 10%' },
+      { name: '2.4 D5 215 (Older Gen)', stockPower: '215bhp', remapPower: '260bhp', stockTorque: '440Nm', remapTorque: '520Nm', mpgGain: 'up to 10%' },
+    ],
+    faqs: [
+      { q: 'Will a remap make the XC60 better at towing?', a: 'Yes, the extra 70-80Nm of torque makes a massive difference when towing caravans, reducing gear hunting and making inclines much easier.' },
+      { q: 'Does it improve fuel economy?', a: 'Yes, the XC60 is heavy. Extra torque means the engine doesn\'t have to be pushed as hard to get up to speed, typically yielding a 10-12% MPG improvement.' },
+      { q: 'Are Volvo engines safe to remap?', a: 'Volvo engines are notoriously over-engineered and robust. A Stage 1 tune is completely safe and maintains excellent reliability.' },
+      { q: 'Will it fix the slow gearbox response?', a: 'By providing more power earlier in the rev range, the gearbox doesn\'t need to shift down as often, which makes the whole driving experience feel much more fluid.' },
+      { q: 'Do you offer a mobile service in Devon for Volvos?', a: 'Yes, we provide fully mobile remapping for all Volvo models across Devon.' }
+    ],
+    relatedSlugs: ['volvo-xc90-remap', 'audi-q5-remap', 'ford-kuga-remap'],
+    category: 'mixed', fuelType: 'diesel'
+  },
+
+  {
+    slug: 'volvo-xc90-remap',
+    make: 'Volvo', model: 'XC90', fullName: 'Volvo XC90',
+    metaTitle: 'Volvo XC90 Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Volvo XC90 ECU remapping — gain huge torque and better MPG for the D5 and B5 engines. Expert SUV tuning in Devon.',
+    h1: 'Volvo XC90 Remap',
+    intro: 'The Volvo XC90 is the ultimate family SUV, but its large size means the 2.0-litre D5 engine works extremely hard. A Stage 1 ECU remap delivers a massive boost in torque, which completely transforms the driving dynamics. The car feels lighter, accelerates more smoothly, and returns better fuel economy on motorways. AutoCleanse provides XC90 tuning in Devon.',
+    engineOptions: [
+      { name: '2.0 D5 235 (PowerPulse)', stockPower: '235bhp', remapPower: '280bhp', stockTorque: '480Nm', remapTorque: '550Nm', mpgGain: 'up to 10%' },
+      { name: '2.4 D5 200 (Older Gen)', stockPower: '200bhp', remapPower: '245bhp', stockTorque: '420Nm', remapTorque: '500Nm', mpgGain: 'up to 12%' },
+      { name: '2.0 T6 320 (Petrol)', stockPower: '320bhp', remapPower: '360bhp', stockTorque: '400Nm', remapTorque: '460Nm' },
+    ],
+    faqs: [
+      { q: 'Why does the XC90 need a remap?', a: 'The new generation XC90 is very heavy for a 2.0-litre engine. A remap gives it the low-end grunt of a larger 3.0-litre engine, making it much more effortless to drive.' },
+      { q: 'Will a remap damage the PowerPulse system?', a: 'No, the PowerPulse system (which uses compressed air to spool the turbo) works perfectly in conjunction with the remap, providing even better off-the-line response.' },
+      { q: 'Does remapping improve MPG on the XC90?', a: 'Yes, especially on the motorway. The extra torque allows the engine to sit in 8th gear comfortably without constantly downshifting on slight inclines.' },
+      { q: 'Is it safe for the 8-speed automatic gearbox?', a: 'Yes, the Aisin 8-speed gearbox handles the Stage 1 torque limits with ease.' },
+      { q: 'Can you remap my XC90 at my home?', a: 'Yes, our premium mobile tuning service covers the entirety of Devon.' }
+    ],
+    relatedSlugs: ['volvo-xc60-remap', 'land-rover-discovery-remap', 'audi-q7-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  // ── PEUGEOT / CITROEN / RENAULT / DACIA (FRENCH / BUDGET) ─────────────────
+
+  {
+    slug: 'peugeot-208-remap',
+    make: 'Peugeot', model: '208', fullName: 'Peugeot 208',
+    metaTitle: 'Peugeot 208 Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Peugeot 208 ECU remapping — gain power on the 1.2 PureTech and 1.6 BlueHDi. Mobile remapping across Devon.',
+    h1: 'Peugeot 208 Remap',
+    intro: 'The Peugeot 208 is a stylish and popular hatchback. The 1.2 PureTech petrol engines and the highly efficient 1.6 BlueHDi diesels are fantastic tuning platforms. A Stage 1 ECU remap safely unlocks more power, providing a punchier drive and even better fuel economy on diesel models. AutoCleanse offers Peugeot 208 tuning in Devon.',
+    engineOptions: [
+      { name: '1.2 PureTech 110', stockPower: '110bhp', remapPower: '140bhp', stockTorque: '205Nm', remapTorque: '250Nm' },
+      { name: '1.6 BlueHDi 100', stockPower: '100bhp', remapPower: '130bhp', stockTorque: '254Nm', remapTorque: '310Nm', mpgGain: 'up to 12%' },
+      { name: '1.6 THP GTi 208', stockPower: '208bhp', remapPower: '235bhp', stockTorque: '300Nm', remapTorque: '360Nm' },
+    ],
+    faqs: [
+      { q: 'Is the 1.2 PureTech engine safe to tune?', a: 'Yes, the turbocharged 1.2 PureTech engine responds incredibly well to Stage 1 tuning and handles the increased power perfectly.' },
+      { q: 'Will my 208 GTi be much faster?', a: 'Gaining nearly 30bhp and 60Nm transforms the GTi, making it pull much harder through the gears.' },
+      { q: 'Does remapping improve MPG on the diesel?', a: 'Yes, the BlueHDi engines typically see a 10-12% improvement in real-world fuel economy after a remap.' },
+      { q: 'Is remapping detectable during an MOT?', a: 'No, a Stage 1 remap keeps all factory emissions equipment intact and will pass an MOT without issue.' },
+      { q: 'Can you remap my 208 at my workplace?', a: 'Yes, we provide fully mobile remapping for all Peugeot models in Devon.' }
+    ],
+    relatedSlugs: ['peugeot-3008-remap', 'renault-clio-remap', 'citroen-berlingo-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  {
+    slug: 'peugeot-3008-remap',
+    make: 'Peugeot', model: '3008', fullName: 'Peugeot 3008',
+    metaTitle: 'Peugeot 3008 Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Peugeot 3008 ECU remapping — improve performance and MPG on the 1.5 and 2.0 BlueHDi engines. SUV tuning in Devon.',
+    h1: 'Peugeot 3008 Remap',
+    intro: 'The Peugeot 3008 is a superb family SUV, but the 1.5 and 2.0 BlueHDi engines can feel a little breathless when fully loaded. A Stage 1 ECU remap delivers a substantial increase in mid-range torque, transforming how the car overtakes and climbs hills, while also providing excellent fuel savings. AutoCleanse maps 3008s across Devon.',
+    engineOptions: [
+      { name: '2.0 BlueHDi 150', stockPower: '150bhp', remapPower: '190bhp', stockTorque: '370Nm', remapTorque: '430Nm', mpgGain: 'up to 15%' },
+      { name: '1.5 BlueHDi 130', stockPower: '130bhp', remapPower: '160bhp', stockTorque: '300Nm', remapTorque: '360Nm', mpgGain: 'up to 12%' },
+      { name: '1.2 PureTech 130', stockPower: '130bhp', remapPower: '155bhp', stockTorque: '230Nm', remapTorque: '280Nm' },
+    ],
+    faqs: [
+      { q: 'Does remapping a 3008 make it better for towing?', a: 'Yes, the additional torque, especially on the 2.0 BlueHDi, makes a massive difference when towing caravans or trailers.' },
+      { q: 'Will I get better MPG from the 1.5 BlueHDi?', a: 'Yes, because the engine produces more torque, it doesn\'t have to work as hard, which typically improves MPG by 10-12%.' },
+      { q: 'Is the 8-speed automatic gearbox safe to tune?', a: 'Yes, the EAT8 gearbox handles Stage 1 torque increases very comfortably.' },
+      { q: 'Will this fix the sluggish throttle response?', a: 'Yes, our remap significantly sharpens the throttle response, making the car feel much more eager off the line.' },
+      { q: 'Do you offer a mobile service for the Peugeot 3008?', a: 'Yes, our technicians cover the entirety of Devon.' }
+    ],
+    relatedSlugs: ['peugeot-208-remap', 'citroen-berlingo-remap', 'ford-kuga-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  {
+    slug: 'renault-clio-remap',
+    make: 'Renault', model: 'Clio', fullName: 'Renault Clio',
+    metaTitle: 'Renault Clio Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Renault Clio ECU remapping — unleash the Clio RS or improve the 0.9 and 1.5 dCi engines. Expert tuning in Devon.',
+    h1: 'Renault Clio Remap',
+    intro: 'The Renault Clio is agile and fun, particularly the Renaultsport (RS) models. Whether you are looking to squeeze maximum performance from the 1.6T RS, or you want better drivability and economy from the 1.5 dCi or 0.9 TCe, a Stage 1 ECU remap unlocks the car\'s true potential. AutoCleanse offers Clio remapping across Devon.',
+    engineOptions: [
+      { name: '1.6T RS 200 (Mk4)', stockPower: '200bhp', remapPower: '230bhp', stockTorque: '240Nm', remapTorque: '310Nm' },
+      { name: '1.5 dCi 90', stockPower: '90bhp', remapPower: '120bhp', stockTorque: '220Nm', remapTorque: '270Nm', mpgGain: 'up to 15%' },
+      { name: '0.9 TCe 90', stockPower: '90bhp', remapPower: '115bhp', stockTorque: '135Nm', remapTorque: '180Nm' },
+    ],
+    faqs: [
+      { q: 'How does a remap affect the Clio RS 200 EDC?', a: 'The remap adds significant mid-range punch and sharpens the throttle response, making the EDC automatic gearbox feel more decisive.' },
+      { q: 'Is the 1.5 dCi worth remapping for economy?', a: 'Absolutely. The 1.5 dCi is already incredibly economical, but a remap adds much-needed torque and often improves MPG by a further 10-15%.' },
+      { q: 'Can you remap the 0.9 TCe 3-cylinder?', a: 'Yes, the small turbo engine responds very well, gaining around 25bhp which transforms how the car drives.' },
+      { q: 'Will remapping affect my car insurance?', a: 'Yes, you must declare the modification to your insurer. Specialist brokers often provide excellent rates for mapped cars.' },
+      { q: 'Do you offer mobile tuning in Devon for the Clio?', a: 'Yes, we provide fully mobile remapping for all Renault models across Devon.' }
+    ],
+    relatedSlugs: ['renault-megane-remap', 'peugeot-208-remap', 'vauxhall-corsa-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  {
+    slug: 'renault-megane-remap',
+    make: 'Renault', model: 'Megane', fullName: 'Renault Megane',
+    metaTitle: 'Renault Megane Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Renault Megane ECU remapping — massive gains for the RS 280/300 and excellent economy for the 1.5 dCi. Devon tuning experts.',
+    h1: 'Renault Megane Remap',
+    intro: 'The Renault Megane RS is one of the greatest hot hatches on the market, and the standard models are fantastic cruisers. A Stage 1 ECU remap turns the Megane RS into a supercar-slayer, while tuning the 1.5 and 1.6 dCi diesels delivers massive improvements in MPG and overtaking ability. AutoCleanse maps Meganes across Devon.',
+    engineOptions: [
+      { name: '1.8T RS 280 (Mk4)', stockPower: '280bhp', remapPower: '320bhp', stockTorque: '390Nm', remapTorque: '450Nm' },
+      { name: '2.0T RS 250 (Mk3)', stockPower: '250bhp', remapPower: '300bhp', stockTorque: '340Nm', remapTorque: '410Nm' },
+      { name: '1.5 dCi 110', stockPower: '110bhp', remapPower: '140bhp', stockTorque: '260Nm', remapTorque: '310Nm', mpgGain: 'up to 15%' },
+    ],
+    faqs: [
+      { q: 'Does the Megane RS 280 respond well to a remap?', a: 'Incredibly well. The 1.8T engine easily reaches 320bhp at Stage 1, completely transforming the acceleration and top-end pull.' },
+      { q: 'Is it safe to push the older Megane RS 250 to 300bhp?', a: 'Yes, the F4Rt engine is legendary for its strength and handles 300bhp on standard internals perfectly safely.' },
+      { q: 'Can you remap the EDC automatic gearbox models?', a: 'Yes, the EDC gearbox handles the Stage 1 torque increases easily.' },
+      { q: 'Will a remap improve fuel economy on the dCi models?', a: 'Yes, the 1.5 and 1.6 dCi engines see fantastic economy gains (up to 15%) while becoming much punchier to drive.' },
+      { q: 'Can you remap my Megane at home in Devon?', a: 'Yes, our mobile tuning service covers the whole of Devon.' }
+    ],
+    relatedSlugs: ['renault-clio-remap', 'seat-leon-remap', 'vw-golf-gti-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  {
+    slug: 'citroen-berlingo-remap',
+    make: 'Citroen', model: 'Berlingo', fullName: 'Citroen Berlingo',
+    metaTitle: 'Citroen Berlingo Remap | Van Tuning Devon | AutoCleanse',
+    metaDescription: 'Citroen Berlingo ECU remapping — gain power, torque and MPG. Commercial van and MPV tuning in Devon.',
+    h1: 'Citroen Berlingo Remap',
+    intro: 'The Citroen Berlingo (and its Peugeot Partner sibling) is the ultimate compact van and family MPV. However, when fully loaded with tools or passengers, the 1.6 HDi and 1.5 BlueHDi engines can struggle. A Stage 1 ECU remap delivers essential mid-range torque, making the Berlingo feel effortless to drive while improving MPG. AutoCleanse tunes Berlingos across Devon.',
+    engineOptions: [
+      { name: '1.6 BlueHDi 100', stockPower: '100bhp', remapPower: '130bhp', stockTorque: '254Nm', remapTorque: '310Nm', mpgGain: 'up to 15%' },
+      { name: '1.5 BlueHDi 130', stockPower: '130bhp', remapPower: '160bhp', stockTorque: '300Nm', remapTorque: '360Nm', mpgGain: 'up to 12%' },
+      { name: '1.6 HDi 75 (Older Gen)', stockPower: '75bhp', remapPower: '110bhp', stockTorque: '185Nm', remapTorque: '260Nm', mpgGain: 'up to 15%' },
+    ],
+    faqs: [
+      { q: 'Will a remap help my Berlingo when it is fully loaded?', a: 'Yes, this is the biggest benefit. A remap adds around 60Nm of torque, which means the van pulls much harder even with a heavy payload in the back.' },
+      { q: 'Can the 75bhp version be mapped to match the 110bhp version?', a: 'Yes, they share the exact same engine hardware. A remap safely removes the factory software restrictions.' },
+      { q: 'Does remapping improve fuel economy for a working van?', a: 'Yes, because the van doesn\'t have to be driven as hard to keep up with traffic, fleet drivers often report a 10-15% improvement in MPG.' },
+      { q: 'Will a remap affect my MOT or emissions?', a: 'No, all our Stage 1 remaps keep the DPF, EGR, and AdBlue systems fully intact and legal.' },
+      { q: 'Do you offer a mobile service for tradesmen in Devon?', a: 'Yes, we can come to your site or driveway to map the van with minimal downtime.' }
+    ],
+    relatedSlugs: ['peugeot-boxer-remap', 'ford-transit-custom-remap', 'vauxhall-vivaro-remap'],
+    category: 'commercial', fuelType: 'diesel'
+  },
+
+  {
+    slug: 'dacia-duster-remap',
+    make: 'Dacia', model: 'Duster', fullName: 'Dacia Duster',
+    metaTitle: 'Dacia Duster Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Dacia Duster ECU remapping — gain more power and better fuel economy from the 1.5 dCi engine. Expert tuning in Devon.',
+    h1: 'Dacia Duster Remap',
+    intro: 'The Dacia Duster is fantastic value for money, but the Renault-sourced 1.5 dCi engines are tuned very conservatively. A Stage 1 ECU remap wakes the Duster up, delivering a strong surge of torque that transforms how it drives on the road and off it, while providing excellent MPG gains. AutoCleanse offers Duster remapping in Devon.',
+    engineOptions: [
+      { name: '1.5 dCi 110/115', stockPower: '110bhp', remapPower: '140bhp', stockTorque: '260Nm', remapTorque: '310Nm', mpgGain: 'up to 15%' },
+      { name: '1.5 dCi 90', stockPower: '90bhp', remapPower: '120bhp', stockTorque: '200Nm', remapTorque: '260Nm', mpgGain: 'up to 15%' },
+      { name: '1.3 TCe 150 (Petrol)', stockPower: '150bhp', remapPower: '175bhp', stockTorque: '250Nm', remapTorque: '300Nm' },
+    ],
+    faqs: [
+      { q: 'Why is the Duster so sluggish from the factory?', a: 'The 1.5 dCi engine is deliberately restricted for emissions and insurance purposes. A remap safely unlocks the power the engine was designed to produce.' },
+      { q: 'Will a remap help the Duster off-road?', a: 'Yes, the increased low-end torque makes the Duster much more capable on steep inclines and rough terrain.' },
+      { q: 'Does remapping the Duster improve MPG?', a: 'Yes, particularly on the 1.5 dCi diesel, where owners regularly see a 10-15% improvement in fuel economy.' },
+      { q: 'Is the 1.3 TCe petrol engine worth remapping?', a: 'Absolutely, gaining 25bhp and 50Nm makes the petrol Duster significantly punchier and better at overtaking.' },
+      { q: 'Do you offer mobile Dacia tuning in Devon?', a: 'Yes, we provide fully mobile remapping for all Dacia models across Devon.' }
+    ],
+    relatedSlugs: ['renault-clio-remap', 'renault-megane-remap', 'ford-kuga-remap'],
+    category: 'economy', fuelType: 'both'
+  },
+
+  // ── FIAT / ALFA (ITALIAN) ─────────────────────────────────────────────────
+
+  {
+    slug: 'fiat-500-remap',
+    make: 'Fiat', model: '500', fullName: 'Fiat 500 / Abarth',
+    metaTitle: 'Fiat 500 & Abarth Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Fiat 500 & Abarth 595 ECU remapping — unlock massive performance gains on the 1.4 T-Jet engines. Expert tuning in Devon.',
+    h1: 'Fiat 500 & Abarth Remap',
+    intro: 'The Fiat 500 and particularly the Abarth 595/695 models are some of the most characterful hot hatches on the road. The 1.4 T-Jet turbocharged engines are highly tuneable, and a Stage 1 ECU remap delivers explosive mid-range punch and sharpens the throttle response, making the car incredibly fun to drive. AutoCleanse offers Abarth tuning across Devon.',
+    engineOptions: [
+      { name: '1.4 T-Jet 145/160 (Abarth 595)', stockPower: '145bhp', remapPower: '175bhp', stockTorque: '206Nm', remapTorque: '290Nm' },
+      { name: '1.4 T-Jet 180 (Abarth Competizione)', stockPower: '180bhp', remapPower: '205bhp', stockTorque: '250Nm', remapTorque: '310Nm' },
+      { name: '1.2 8V 69 (Fiat 500)', stockPower: '69bhp', remapPower: '78bhp', stockTorque: '102Nm', remapTorque: '115Nm', mpgGain: 'up to 5%' },
+    ],
+    faqs: [
+      { q: 'Can the 145bhp Abarth 595 safely reach 175bhp?', a: 'Yes, the base 145bhp engine is mechanically identical to higher output models. A remap simply removes the software restrictions safely.' },
+      { q: 'Will a remap change how the Abarth sounds?', a: 'The remap itself doesn\'t change the exhaust, but the increased boost pressure often results in a slightly deeper, more aggressive tone under hard acceleration.' },
+      { q: 'Is it worth remapping the standard Fiat 500 1.2?', a: 'While gains on naturally aspirated engines are small, a remap significantly sharpens the throttle response, making the 1.2 feel much less sluggish around town.' },
+      { q: 'Will the remap affect my Sport mode button?', a: 'We can retain the functionality of the Sport button, ensuring the remap works seamlessly with the factory modes.' },
+      { q: 'Can you remap my Abarth at my home in Devon?', a: 'Yes, we provide fully mobile remapping for all Fiat and Abarth models.' }
+    ],
+    relatedSlugs: ['ford-fiesta-st-remap', 'vauxhall-corsa-remap', 'renault-clio-remap'],
+    category: 'performance', fuelType: 'petrol'
+  },
+
+  {
+    slug: 'fiat-ducato-remap',
+    make: 'Fiat', model: 'Ducato', fullName: 'Fiat Ducato',
+    metaTitle: 'Fiat Ducato Remap | Motorhome & Van Tuning Devon',
+    metaDescription: 'Fiat Ducato ECU remapping — gain torque and MPG. Perfect for vans and motorhomes. Expert tuning in Devon by AutoCleanse.',
+    h1: 'Fiat Ducato Remap',
+    intro: 'The Fiat Ducato is the undisputed king of the motorhome chassis, as well as a popular commercial van. Because motorhomes carry maximum payload permanently, the 2.3 MultiJet engines often feel underpowered on inclines. A Stage 1 ECU remap delivers the exact low-end torque needed to pull effortlessly, drastically improving the driving experience and MPG. AutoCleanse tunes Ducatos across Devon.',
+    engineOptions: [
+      { name: '2.3 MultiJet 130', stockPower: '130bhp', remapPower: '165bhp', stockTorque: '320Nm', remapTorque: '390Nm', mpgGain: 'up to 15%' },
+      { name: '2.3 MultiJet 150', stockPower: '150bhp', remapPower: '185bhp', stockTorque: '350Nm', remapTorque: '420Nm', mpgGain: 'up to 15%' },
+      { name: '2.3 MultiJet 180', stockPower: '180bhp', remapPower: '210bhp', stockTorque: '400Nm', remapTorque: '470Nm', mpgGain: 'up to 10%' },
+    ],
+    faqs: [
+      { q: 'Is remapping my Fiat Ducato motorhome safe for the engine?', a: 'Yes, the 2.3 MultiJet engine is an incredibly strong commercial unit designed for high mileage. A Stage 1 remap simply optimizes the power curve safely.' },
+      { q: 'Will it stop my motorhome from struggling on hills?', a: 'Yes. Gaining 70Nm of torque completely transforms the motorhome, meaning you won\'t have to constantly drop down gears on long motorway inclines.' },
+      { q: 'Can I get better fuel economy on long trips?', a: 'Yes, because the engine produces more torque lower down the rev range, you can cruise with less throttle input, improving MPG by up to 15%.' },
+      { q: 'Will the remap cause black smoke?', a: 'No, our remaps maintain correct air-to-fuel ratios and work perfectly with the factory DPF, ensuring no smoke.' },
+      { q: 'Can you come to my campsite or storage yard in Devon?', a: 'Yes, we provide a fully mobile service tailored to motorhomes and commercial vans.' }
+    ],
+    relatedSlugs: ['peugeot-boxer-remap', 'ford-transit-remap', 'mercedes-sprinter-remap'],
+    category: 'commercial', fuelType: 'diesel'
+  },
+
+  // ── NISSAN / TOYOTA / MAZDA (JAPANESE) ────────────────────────────────────
+
+  {
+    slug: 'mazda-cx-5-remap',
+    make: 'Mazda', model: 'CX-5', fullName: 'Mazda CX-5',
+    metaTitle: 'Mazda CX-5 Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Mazda CX-5 ECU remapping — gain power and huge torque on the 2.2 SkyActiv-D engine. Expert Mazda tuning in Devon.',
+    h1: 'Mazda CX-5 Remap',
+    intro: 'The Mazda CX-5 is an excellent handling SUV, but the 2.2 SkyActiv-D engine, particularly the 150bhp version, is heavily restricted. A Stage 1 ECU remap safely unlocks an enormous amount of power and torque, making the CX-5 significantly faster, more responsive, and better at towing, while improving fuel economy. AutoCleanse offers Mazda tuning in Devon.',
+    engineOptions: [
+      { name: '2.2 SkyActiv-D 150', stockPower: '150bhp', remapPower: '210bhp', stockTorque: '380Nm', remapTorque: '460Nm', mpgGain: 'up to 12%' },
+      { name: '2.2 SkyActiv-D 175', stockPower: '175bhp', remapPower: '210bhp', stockTorque: '420Nm', remapTorque: '460Nm', mpgGain: 'up to 12%' },
+      { name: '2.0 SkyActiv-G (Petrol)', stockPower: '165bhp', remapPower: '180bhp', stockTorque: '210Nm', remapTorque: '230Nm' },
+    ],
+    faqs: [
+      { q: 'How can the 150bhp diesel gain 60bhp?', a: 'The 150bhp and 175bhp 2.2 SkyActiv-D engines are mechanically identical. The 150bhp is purely software restricted. Our remap safely takes both engines to their natural 210bhp limit.' },
+      { q: 'Will a remap affect the Mazda DPF?', a: 'No, the remap works seamlessly with the factory DPF system and does not cause premature clogging or regeneration issues.' },
+      { q: 'Does remapping improve the CX-5 for towing?', a: 'Significantly. Gaining 80Nm of torque on the 150bhp model makes it an incredibly capable tow car for caravans.' },
+      { q: 'Can you map the naturally aspirated petrol engines?', a: 'Yes, although the gains on the SkyActiv-G petrols are smaller (around 15bhp), the remap dramatically improves throttle response and removes flat spots.' },
+      { q: 'Do you offer mobile tuning in Devon for Mazda?', a: 'Yes, we provide fully mobile remapping for all Mazda models across Devon.' }
+    ],
+    relatedSlugs: ['ford-kuga-remap', 'nissan-qashqai-remap', 'vw-tiguan-remap'],
+    category: 'economy', fuelType: 'diesel'
+  },
+
+  {
+    slug: 'nissan-qashqai-remap',
+    make: 'Nissan', model: 'Qashqai', fullName: 'Nissan Qashqai',
+    metaTitle: 'Nissan Qashqai Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Nissan Qashqai ECU remapping — improve performance and MPG on the 1.5 dCi and 1.6 dCi engines. Expert tuning in Devon.',
+    h1: 'Nissan Qashqai Remap',
+    intro: 'The Nissan Qashqai is the UK\'s definitive family crossover, but the 1.5 dCi and 1.6 dCi engines can feel a bit flat on the motorway or when fully loaded. A Stage 1 ECU remap safely increases power and mid-range torque, providing a much smoother, effortless drive and improving long-distance fuel economy. AutoCleanse offers Qashqai tuning in Devon.',
+    engineOptions: [
+      { name: '1.5 dCi 110', stockPower: '110bhp', remapPower: '140bhp', stockTorque: '260Nm', remapTorque: '310Nm', mpgGain: 'up to 15%' },
+      { name: '1.6 dCi 130', stockPower: '130bhp', remapPower: '160bhp', stockTorque: '320Nm', remapTorque: '380Nm', mpgGain: 'up to 12%' },
+      { name: '1.3 DIG-T 140 (Petrol)', stockPower: '140bhp', remapPower: '165bhp', stockTorque: '240Nm', remapTorque: '290Nm' },
+    ],
+    faqs: [
+      { q: 'Is the 1.5 dCi engine reliable after remapping?', a: 'Yes, the Renault-sourced 1.5 dCi is a robust engine that handles Stage 1 power perfectly, retaining factory reliability.' },
+      { q: 'Will a remap fix the Qashqai\'s slow acceleration?', a: 'Absolutely. The increased mid-range torque completely removes the sluggishness, making joining motorways and overtaking much safer.' },
+      { q: 'Does remapping improve fuel economy on the Qashqai?', a: 'Yes, particularly on the diesel models, drivers regularly report 10-15% improvements in real-world MPG.' },
+      { q: 'Is it safe for the automatic X-Tronic gearbox?', a: 'Yes, our Stage 1 remaps are designed to stay safely within the torque limits of the X-Tronic CVT gearbox.' },
+      { q: 'Can you remap my Qashqai at my home in Devon?', a: 'Yes, we offer fully mobile remapping across the whole of Devon.' }
+    ],
+    relatedSlugs: ['mazda-cx-5-remap', 'nissan-juke-remap', 'ford-kuga-remap'],
+    category: 'economy', fuelType: 'both'
+  },
+
+  {
+    slug: 'nissan-juke-remap',
+    make: 'Nissan', model: 'Juke', fullName: 'Nissan Juke',
+    metaTitle: 'Nissan Juke Remap | Stage 1 Tuning Devon | AutoCleanse',
+    metaDescription: 'Nissan Juke ECU remapping — gain power and better MPG from the 1.5 dCi, 1.2 DIG-T, and 1.6 Nismo models. Expert tuning in Devon.',
+    h1: 'Nissan Juke Remap',
+    intro: 'The Nissan Juke is a quirky and popular crossover. Whether you have the punchy 1.6T Nismo, the economical 1.5 dCi, or the 1.2 DIG-T, a Stage 1 ECU remap makes a world of difference. It sharpens the throttle, boosts mid-range torque, and transforms the driving experience from sluggish to genuinely fun. AutoCleanse maps Nissan Jukes across Devon.',
+    engineOptions: [
+      { name: '1.6 DIG-T Nismo RS 214', stockPower: '214bhp', remapPower: '240bhp', stockTorque: '280Nm', remapTorque: '340Nm' },
+      { name: '1.5 dCi 110', stockPower: '110bhp', remapPower: '140bhp', stockTorque: '260Nm', remapTorque: '310Nm', mpgGain: 'up to 15%' },
+      { name: '1.2 DIG-T 115', stockPower: '115bhp', remapPower: '135bhp', stockTorque: '190Nm', remapTorque: '240Nm' },
+    ],
+    faqs: [
+      { q: 'Does a remap make the Juke Nismo significantly faster?', a: 'Yes, gaining 25bhp and 60Nm turns the Nismo into a seriously quick crossover with much more aggressive mid-range pull.' },
+      { q: 'Will a remap fix the turbo lag on the 1.2 DIG-T?', a: 'Yes, the remap optimizes the boost pressure earlier in the rev range, dramatically reducing turbo lag and improving responsiveness.' },
+      { q: 'Is the 1.5 dCi good for an economy remap?', a: 'It is one of the best. The 1.5 dCi is already efficient, but a remap adds torque, meaning you can cruise in higher gears, improving MPG by up to 15%.' },
+      { q: 'Does remapping affect the driving modes (Eco, Normal, Sport)?', a: 'The remap works harmoniously with the factory driving modes, enhancing the characteristics of each.' },
+      { q: 'Do you offer mobile tuning in Devon for the Juke?', a: 'Yes, we provide fully mobile remapping for all Nissan models across Devon.' }
+    ],
+    relatedSlugs: ['nissan-qashqai-remap', 'renault-clio-remap', 'peugeot-208-remap'],
+    category: 'mixed', fuelType: 'both'
+  },
+
+  {
+    slug: 'toyota-land-cruiser-remap',
+    make: 'Toyota', model: 'Land Cruiser', fullName: 'Toyota Land Cruiser',
+    metaTitle: 'Toyota Land Cruiser Remap | 4x4 Tuning Devon | AutoCleanse',
+    metaDescription: 'Toyota Land Cruiser ECU remapping — unlock massive torque and towing ability from the 2.8 and 3.0 D-4D engines. Devon tuning experts.',
+    h1: 'Toyota Land Cruiser Remap',
+    intro: 'The Toyota Land Cruiser is arguably the toughest 4x4 in the world, but Toyota tunes the 3.0 and 2.8 D-4D engines very conservatively for global fuel variations. A Stage 1 ECU remap wakes the Land Cruiser up, providing a massive surge of torque that completely transforms its towing capabilities and on-road drivability. AutoCleanse offers Land Cruiser tuning across Devon.',
+    engineOptions: [
+      { name: '2.8 D-4D 177 (150 Series)', stockPower: '177bhp', remapPower: '215bhp', stockTorque: '450Nm', remapTorque: '530Nm', mpgGain: 'up to 12%' },
+      { name: '3.0 D-4D 190 (150 Series)', stockPower: '190bhp', remapPower: '230bhp', stockTorque: '420Nm', remapTorque: '500Nm', mpgGain: 'up to 10%' },
+      { name: '4.5 V8 D-4D 286 (200 Series)', stockPower: '286bhp', remapPower: '340bhp', stockTorque: '650Nm', remapTorque: '780Nm', mpgGain: 'up to 10%' },
+    ],
+    faqs: [
+      { q: 'Why is the Land Cruiser so sluggish, and will a remap help?', a: 'Toyota heavily detunes these engines for extreme global environments. A Stage 1 remap safely unlocks the power the engine was actually designed to produce, making the car much more responsive.' },
+      { q: 'Does remapping improve towing performance?', a: 'Massively. Gaining 80Nm of torque means the Land Cruiser will pull heavy trailers and horseboxes up inclines effortlessly without dropping gears.' },
+      { q: 'Will a remap affect the legendary Toyota reliability?', a: 'No, our Stage 1 remaps operate well within the safe mechanical limits of the D-4D engines, preserving their legendary longevity.' },
+      { q: 'Can you remap the big 4.5 V8 diesel?', a: 'Yes, the V8 D-4D responds incredibly well, producing a colossal 780Nm of torque which makes it feel like an unstoppable freight train.' },
+      { q: 'Do you offer a mobile service for the Land Cruiser in Devon?', a: 'Yes, our technicians offer fully mobile remapping across the whole of Devon.' }
+    ],
+    relatedSlugs: ['toyota-hilux-remap', 'land-rover-discovery-remap', 'nissan-navara-remap'],
+    category: 'commercial', fuelType: 'diesel'
+  },
 ];
 
 export function getVehicleBySlug(slug: string): VehicleRemapData | undefined {

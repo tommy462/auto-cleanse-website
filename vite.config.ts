@@ -119,7 +119,26 @@ export default defineConfig({
         '/nissan-navara-remap',
         '/toyota-hilux-remap',
         '/peugeot-boxer-remap',
-        '/renault-trafic-remap'
+        '/renault-trafic-remap',
+        '/seat-leon-remap',
+        '/seat-ibiza-remap',
+        '/skoda-octavia-remap',
+        '/skoda-superb-remap',
+        '/porsche-macan-remap',
+        '/volvo-xc60-remap',
+        '/volvo-xc90-remap',
+        '/peugeot-208-remap',
+        '/peugeot-3008-remap',
+        '/renault-clio-remap',
+        '/renault-megane-remap',
+        '/citroen-berlingo-remap',
+        '/dacia-duster-remap',
+        '/fiat-500-remap',
+        '/fiat-ducato-remap',
+        '/mazda-cx-5-remap',
+        '/nissan-qashqai-remap',
+        '/nissan-juke-remap',
+        '/toyota-land-cruiser-remap'
       ]
     })
   ],
