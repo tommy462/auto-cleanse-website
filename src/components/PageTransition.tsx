@@ -21,6 +21,7 @@ import DPFCleaningPlymouth from '../pages/DPFCleaningPlymouth';
 import DPFCleaningTorquay from '../pages/DPFCleaningTorquay';
 import DPFCleaningPaignton from '../pages/DPFCleaningPaignton';
 import RemappingDevon from '../pages/RemappingDevon';
+import RemappingLocation from '../pages/RemappingLocation';
 import BookingSuccess from '../pages/BookingSuccess';
 import BookingCancel from '../pages/BookingCancel';
 
@@ -66,6 +67,7 @@ export default function PageTransition() {
                     <Route path="/dpf-cleaning-torquay" element={<DPFCleaningTorquay />} />
                     <Route path="/dpf-cleaning-paignton" element={<DPFCleaningPaignton />} />
                     <Route path="/remapping-devon" element={<RemappingDevon />} />
+                    <Route path="/:slug" element={<RemappingLocation />} />
                     <Route path="/booking-success" element={<BookingSuccess />} />
                     <Route path="/booking-cancel" element={<BookingCancel />} />
                 </Routes>

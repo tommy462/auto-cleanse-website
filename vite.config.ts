@@ -26,7 +26,17 @@ export default defineConfig({
         '/dpf-cleaning-plymouth',
         '/dpf-cleaning-torquay',
         '/dpf-cleaning-paignton',
-        '/remapping-devon'
+        '/remapping-devon',
+        '/ecu-remapping-plymouth',
+        '/ecu-remapping-exeter',
+        '/ecu-remapping-torquay',
+        '/ecu-remapping-paignton',
+        '/ecu-remapping-newton-abbot',
+        '/ecu-remapping-torbay',
+        '/ecu-remapping-totnes',
+        '/ecu-remapping-ivybridge',
+        '/ecu-remapping-tavistock',
+        '/ecu-remapping-kingsbridge'
       ]
     })
   ],
