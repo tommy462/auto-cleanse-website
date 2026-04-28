@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation, Routes, Route } from 'react-router-dom';
+import { useLocation, Routes, Route, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 
 // Import all pages here
@@ -14,13 +14,14 @@ import Contact from '../pages/Contact';
 import PostalDPF from '../pages/PostalDPF';
 import DPFCleaningTotnes from '../pages/DPFCleaningTotnes';
 import DPFCleaningDevon from '../pages/DPFCleaningDevon';
-import Remapping from '../pages/Remapping';
-import RemappingBooking from '../pages/RemappingBooking';
 import DPFCleaningExeter from '../pages/DPFCleaningExeter';
 import DPFCleaningPlymouth from '../pages/DPFCleaningPlymouth';
 import DPFCleaningTorquay from '../pages/DPFCleaningTorquay';
 import DPFCleaningPaignton from '../pages/DPFCleaningPaignton';
-import RemappingDevon from '../pages/RemappingDevon';
+import RemappingBooking from '../pages/RemappingBooking';
+import EcuRemappingHub from '../pages/EcuRemappingHub';
+import RemappingLocationsHub from '../pages/RemappingLocationsHub';
+import VehicleRemappingHub from '../pages/VehicleRemappingHub';
 import DynamicPage from '../pages/DynamicPage';
 import BookingSuccess from '../pages/BookingSuccess';
 import BookingCancel from '../pages/BookingCancel';
@@ -60,13 +61,22 @@ export default function PageTransition() {
                     <Route path="/postal-dpf" element={<PostalDPF />} />
                     <Route path="/dpf-cleaning-totnes" element={<DPFCleaningTotnes />} />
                     <Route path="/dpf-cleaning-devon" element={<DPFCleaningDevon />} />
-                    <Route path="/remapping" element={<Remapping />} />
+                    
+                    {/* ECU Remapping Architecture */}
+                    <Route path="/ecu-remapping" element={<EcuRemappingHub />} />
+                    <Route path="/ecu-remapping-locations" element={<RemappingLocationsHub />} />
+                    <Route path="/vehicle-remapping" element={<VehicleRemappingHub />} />
+                    
+                    {/* Redirect old routes */}
+                    <Route path="/remapping" element={<Navigate to="/ecu-remapping" replace />} />
+                    <Route path="/remapping-devon" element={<Navigate to="/ecu-remapping" replace />} />
+                    
                     <Route path="/remapping-booking" element={<RemappingBooking />} />
+                    
                     <Route path="/dpf-cleaning-exeter" element={<DPFCleaningExeter />} />
                     <Route path="/dpf-cleaning-plymouth" element={<DPFCleaningPlymouth />} />
                     <Route path="/dpf-cleaning-torquay" element={<DPFCleaningTorquay />} />
                     <Route path="/dpf-cleaning-paignton" element={<DPFCleaningPaignton />} />
-                    <Route path="/remapping-devon" element={<RemappingDevon />} />
                     <Route path="/:slug" element={<DynamicPage />} />
                     <Route path="/booking-success" element={<BookingSuccess />} />
                     <Route path="/booking-cancel" element={<BookingCancel />} />

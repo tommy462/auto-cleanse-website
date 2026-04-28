@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
+import Breadcrumbs from '../components/Breadcrumbs';
 import { VehicleRemapData, getVehicleBySlug } from '../data/vehicle-remapping';
 import { VEHICLE_REMAPS } from '../data/vehicle-remapping';
 
@@ -85,21 +86,18 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[700px] h-[400px] bg-[#FF7A00]/6 blur-[130px] rounded-[100%] pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex items-center gap-2 text-white/25 text-xs font-medium mb-8">
-            <Link to="/" className="hover:text-white/50 transition-colors">Home</Link>
-            <span>/</span>
-            <Link to="/remapping" className="hover:text-white/50 transition-colors">Remapping</Link>
-            <span>/</span>
-            <span className="text-white/40">{vehicle.make}</span>
-            <span>/</span>
-            <span className="text-white/40">{vehicle.model}</span>
-          </div>
+          <Breadcrumbs items={[
+            { name: 'ECU Remapping', path: '/ecu-remapping' },
+            { name: 'Vehicles', path: '/vehicle-remapping' },
+            { name: vehicle.make, path: '/vehicle-remapping' },
+            { name: vehicle.model }
+          ]} />
 
           <div className="flex items-center gap-2 mb-4">
             <Zap size={14} className="text-[#FF7A00]" />
-            <span className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest">
+            <Link to="/stage-1-remaps-devon" className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">
               Stage 1 Tuning Specialists
-            </span>
+            </Link>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter text-white leading-[1.05] mb-6">
@@ -230,12 +228,20 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
                <p className="text-white/60 text-sm leading-relaxed mb-6">
                  We cover the entirety of Devon. We can remap your {vehicle.fullName} at your home, workplace, or driveway, providing the same high-quality service as you'd receive in our workshop.
                </p>
-               <Link
-                 to="/remapping-booking"
-                 className="text-[#FF7A00] text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all"
-               >
-                 Book a mobile appointment <ArrowRight size={14} />
-               </Link>
+               <div className="space-y-3">
+                 <Link
+                   to="/ecu-remapping-locations"
+                   className="text-white/70 hover:text-white text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all"
+                 >
+                   View mobile coverage areas <ArrowRight size={14} className="text-[#FF7A00]" />
+                 </Link>
+                 <Link
+                   to="/remapping-booking"
+                   className="text-[#FF7A00] text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all"
+                 >
+                   Book a mobile appointment <ArrowRight size={14} />
+                 </Link>
+               </div>
             </div>
           </div>
         </div>

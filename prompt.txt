@@ -1,0 +1,260 @@
+Phase 2 → Vehicle Pages (THIS ONE COULD GET BIG)
+
+This is where things get very interesting because local SEO alone isn’t enough.
+
+Someone may search:
+
+“Plymouth ECU remap”
+
+But a LOT of buyers search:
+
+“Audi A4 stage 1 remap”
+“BMW 320d remap”
+“Golf R remap”
+“Ford Transit custom remap”
+“Range Rover Sport remap”
+“Mercedes A35 remap”
+
+These are often higher intent because they already know what they want.
+
+Structure
+
+We break this into layers.
+
+Tier 1: Most common UK manufacturers
+
+These need dedicated manufacturer hubs:
+
+Audi
+BMW
+Mercedes
+Volkswagen
+Ford
+Land Rover
+Range Rover
+Vauxhall
+Seat
+Skoda
+Nissan
+Toyota
+Peugeot
+Renault
+Volvo
+Mini
+Porsche
+Jaguar
+Fiat
+Hyundai
+Kia
+Tier 2: Individual high-demand models
+
+This becomes large.
+
+Examples:
+
+Audi
+Audi A3 remap
+Audi A4 remap
+Audi S3 remap
+Audi S4 remap
+Audi A6 remap
+Audi Q5 remap
+Audi Q7 remap
+Audi RS3 remap
+BMW
+320d remap
+330d remap
+M140i remap
+M340i remap
+X5 remap
+118d remap
+Mercedes
+A35 remap
+A45 remap
+C220 remap
+C63 remap
+GLC63 remap
+E220 remap
+Sprinter remap
+Ford
+Transit remap
+Transit Custom remap
+Ranger remap
+Focus ST remap
+Fiesta ST remap
+VW
+Golf GTI remap
+Golf R remap
+Transporter remap
+Amarok remap
+Passat remap
+Land Rover / Range Rover
+Discovery remap
+Defender remap
+Range Rover Sport remap
+Evoque remap
+Velar remap
+
+And this keeps expanding.
+
+Eventually you could have 200+ model pages.
+
+Tier 3: Fuel-specific pages
+
+These rank surprisingly well:
+
+diesel remapping
+petrol remapping
+hybrid tuning (if relevant)
+economy remaps
+towing remaps
+fleet van remaps
+Tier 4: Stage pages
+
+These convert well:
+
+Stage 1 remaps
+Stage 2 remaps
+Pops and bangs (if you offer)
+DSG gearbox tuning
+Adblue solutions
+DPF solutions
+Page template for model pages
+
+Example:
+
+/audi-s4-stage-1-remap
+
+H1:
+
+Audi S4 Stage 1 Remap
+
+Sections:
+performance gains
+torque gains
+MPG improvements
+what’s included
+safety/reliability
+FAQ
+booking CTA
+Why this works so well
+
+Because Google starts seeing:
+
+Auto-Cleanse = relevant for:
+
+location searches
+vehicle searches
+service searches
+
+That creates massive authority.
+
+Phase 2: Top 50 Vehicle Pages (Priority Launch)
+
+These are pages worth building first because they hit:
+
+high ownership in the UK
+common remap demand
+diesel + petrol balance
+fleet/commercial opportunities
+enthusiast traffic
+realistic customers
+AUDI (8)
+Audi A3 remap
+Audi A4 remap
+Audi A5 remap
+Audi A6 remap
+Audi Q5 remap
+Audi S3 stage 1 remap
+Audi S4 stage 1 remap (perfect — you own one)
+Audi RS3 remap
+BMW (8)
+BMW 320d remap
+BMW 330d remap
+BMW 118d remap
+BMW 120d remap
+BMW M140i remap
+BMW M340i remap
+BMW X5 remap
+BMW 520d remap
+MERCEDES (7)
+Mercedes A35 remap
+Mercedes A45 remap
+Mercedes C220 remap
+Mercedes C63 remap
+Mercedes GLC63 remap (perfect — you have one)
+Mercedes Sprinter remap
+Mercedes E220 remap
+VOLKSWAGEN (7)
+VW Golf GTI remap
+VW Golf R remap
+VW Golf GTD remap
+VW Transporter remap
+VW Amarok remap
+VW Passat remap
+VW Tiguan remap
+FORD (7)
+Ford Transit remap
+Ford Transit Custom remap
+Ford Ranger remap
+Ford Fiesta ST remap
+Ford Focus ST remap
+Ford Kuga remap
+Ford Mondeo remap
+LAND ROVER / RANGE ROVER (6)
+Range Rover Sport remap
+Range Rover Evoque remap
+Range Rover Velar remap
+Land Rover Discovery remap
+Land Rover Defender remap
+Range Rover Vogue remap
+VAUXHALL / OTHER HIGH VOLUME (7)
+Vauxhall Vivaro remap
+Vauxhall Astra remap
+Vauxhall Corsa remap
+Nissan Navara remap
+Toyota Hilux remap
+Peugeot Boxer remap
+Renault Traffic remap
+Why these first?
+
+These hit:
+
+✅ commuters
+✅ van owners
+✅ tradesmen
+✅ fleet owners
+✅ enthusiasts
+✅ luxury owners
+✅ performance buyers
+
+Very balanced.
+
+URL structure
+
+Keep it clean:
+
+/audi-a3-remap
+
+/bmw-320d-remap
+
+/vw-golf-r-stage-1-remap
+
+/ford-transit-custom-remap
+
+/range-rover-sport-remap
+
+FAQ
+Booking CTA
+Commercial opportunity pages (VERY underrated)
+
+These deserve standalone pages too:
+
+van remapping Devon
+fleet remapping Devon
+business vehicle remapping
+fuel economy remapping for vans
+towing remaps
+motorhome remaps
+
+These can become huge for you given the trade/fleet background.
