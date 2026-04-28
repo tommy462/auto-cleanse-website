@@ -42,6 +42,19 @@ const EcuRemappingHub = () => {
         description="Professional ECU remapping services. We offer Stage 1, Stage 2, Economy and Commercial Van tuning across Devon. Select your vehicle or location to learn more."
         path="/ecu-remapping"
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": ["AutomotiveService", "LocalBusiness"],
+        "name": "AutoCleanse",
+        "description": "ECU remapping service across Devon. Stage 1 and Stage 2 maps for cars, vans, HGVs and commercial vehicles.",
+        "url": "https://auto-cleanse.co.uk/ecu-remapping",
+        "telephone": "08000430609",
+        "email": "info@autocleanse.co.uk",
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
+        "serviceType": "ECU Remapping",
+        "priceRange": "££"
+      })}} />
 
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
 

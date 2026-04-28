@@ -1,4 +1,8 @@
 {
+  "redirects": [
+    { "source": "/remapping", "destination": "/ecu-remapping", "permanent": true },
+    { "source": "/remapping-devon", "destination": "/ecu-remapping", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/" }
   ]
