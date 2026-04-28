@@ -352,7 +352,6 @@ export default function RemappingBooking() {
     form.phone.trim() !== '' &&
     form.vehicleRegistration.trim() !== '' &&
     form.vehicleMakeModel.trim() !== '' &&
-    form.goals.trim() !== '' &&
     (form.bookingType !== 'mobile' ||
       (form.addressLine1.trim() !== '' &&
         form.townCity.trim() !== '' &&
@@ -656,7 +655,7 @@ export default function RemappingBooking() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label className={LABEL}>What are you hoping to achieve? *</label>
+              <label className={LABEL}>What are you hoping to achieve?</label>
               <textarea
                 value={form.goals}
                 onChange={(e) => update({ goals: e.target.value })}
