@@ -398,7 +398,6 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     ],
     relatedSlugs: ['ecu-remapping-totnes', 'ecu-remapping-ivybridge', 'ecu-remapping-paignton'],
   },
-];
 
   // ── Batch 2 ─────────────────────────────────────────────────────────────
 
