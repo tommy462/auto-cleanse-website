@@ -67,7 +67,7 @@ export default function RemappingLocation() {
     '@type': ['AutomotiveService', 'LocalBusiness'],
     name: 'AutoCleanse',
     description: `ECU remapping service covering ${location.name} and ${location.region}. Stage 1, Stage 2, economy and mobile remapping for cars, vans and commercial vehicles.`,
-    url: `https://auto-cleanse.co.uk/${location.slug}`,
+    url: `https://www.auto-cleanse.co.uk/${location.slug}`,
     telephone: '08000430609',
     email: 'info@auto-cleanse.co.uk',
     address: {

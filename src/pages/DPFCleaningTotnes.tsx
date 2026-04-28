@@ -53,7 +53,7 @@ const DPFCleaningTotnes = () => {
         "@type": ["AutomotiveService", "LocalBusiness"],
         "name": "AutoCleanse",
         "description": "DPF cleaning workshop in Totnes, Devon. Drop off your filter before 10am for same-day return. Serving South Devon and nationwide by post.",
-        "url": "https://auto-cleanse.co.uk/dpf-cleaning-totnes",
+        "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-totnes",
         "telephone": "0800 043 0609",
         "email": "info@autocleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },

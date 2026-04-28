@@ -13,12 +13,12 @@ const SEO: React.FC<SEOProps> = ({
   title,
   description,
   path = '',
-  ogImage = 'https://auto-cleanse.co.uk/og-image.jpg',
+  ogImage = 'https://www.auto-cleanse.co.uk/og-image.jpg',
   ogType = 'website'
 }) => {
   const siteName = 'AutoCleanse | DPF Cleaning & Remapping';
   const fullTitle = `${title} | ${siteName}`;
-  const siteUrl = 'https://auto-cleanse.co.uk';
+  const siteUrl = 'https://www.auto-cleanse.co.uk';
   const fullUrl = `${siteUrl}${path}`;
 
   return (

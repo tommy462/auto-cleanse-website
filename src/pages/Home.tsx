@@ -274,10 +274,10 @@ const Home = () => {
               "name": "AutoCleanse",
               "alternateName": ["Auto Cleanse", "AutoCleanse DPF", "AutoCleanse Remapping"],
               "description": "Professional DPF cleaning and ECU remapping services based in Totnes, Devon. Specialists in off-vehicle DPF cleaning, Stage 1 & 2 ECU remapping, SCR, DOC and GPF cleaning for cars, vans, HGVs and commercial fleets across Devon and the UK.",
-              "url": "https://auto-cleanse.co.uk",
+              "url": "https://www.auto-cleanse.co.uk",
               "telephone": "0800 043 0609",
               "email": "info@autocleanse.co.uk",
-              "image": "https://auto-cleanse.co.uk/og-image.jpg",
+              "image": "https://www.auto-cleanse.co.uk/og-image.jpg",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate",
@@ -327,7 +327,7 @@ const Home = () => {
                       "@type": "Service",
                       "name": "DPF Cleaning",
                       "description": "Professional off-vehicle DPF cleaning restoring filters to 98% of original flow capacity. Same-day return locally in Devon.",
-                      "url": "https://auto-cleanse.co.uk/services"
+                      "url": "https://www.auto-cleanse.co.uk/services"
                     }
                   },
                   {
@@ -336,7 +336,7 @@ const Home = () => {
                       "@type": "Service",
                       "name": "ECU Remapping",
                       "description": "Stage 1 and Stage 2 ECU remapping for cars, vans and HGVs in Devon. Improved power, torque and fuel economy. Safely calibrated.",
-                      "url": "https://auto-cleanse.co.uk/remapping"
+                      "url": "https://www.auto-cleanse.co.uk/remapping"
                     }
                   },
                   {
@@ -345,7 +345,7 @@ const Home = () => {
                       "@type": "Service",
                       "name": "Postal DPF Cleaning",
                       "description": "Nationwide postal DPF cleaning with tracked next-day return. Send your DPF from anywhere in the UK.",
-                      "url": "https://auto-cleanse.co.uk/postal-dpf"
+                      "url": "https://www.auto-cleanse.co.uk/postal-dpf"
                     }
                   },
                   {
@@ -411,7 +411,7 @@ const Home = () => {
               "@context": "https://schema.org",
               "@type": "Service",
               "name": "Off-Vehicle DPF Cleaning Devon",
-              "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://auto-cleanse.co.uk" },
+              "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://www.auto-cleanse.co.uk" },
               "areaServed": [
                 { "@type": "AdministrativeArea", "name": "Devon" },
                 { "@type": "Country", "name": "United Kingdom" }
@@ -422,17 +422,17 @@ const Home = () => {
                 "priceCurrency": "GBP",
                 "lowPrice": "210.00",
                 "highPrice": "299.00",
-                "url": "https://auto-cleanse.co.uk/pricing"
+                "url": "https://www.auto-cleanse.co.uk/pricing"
               }
             },
             {
               "@context": "https://schema.org",
               "@type": "Service",
               "name": "ECU Remapping Devon",
-              "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://auto-cleanse.co.uk" },
+              "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://www.auto-cleanse.co.uk" },
               "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
               "description": "Stage 1 and Stage 2 ECU remapping for cars, vans, HGVs and commercial vehicles in Devon. Improved power, torque and fuel economy. Custom fleet maps available.",
-              "url": "https://auto-cleanse.co.uk/remapping"
+              "url": "https://www.auto-cleanse.co.uk/remapping"
             },
             {
               "@context": "https://schema.org",
@@ -496,19 +496,19 @@ const Home = () => {
                   "@type": "ListItem",
                   "position": 1,
                   "name": "Home",
-                  "item": "https://auto-cleanse.co.uk/"
+                  "item": "https://www.auto-cleanse.co.uk/"
                 },
                 {
                   "@type": "ListItem",
                   "position": 2,
                   "name": "Services",
-                  "item": "https://auto-cleanse.co.uk/services"
+                  "item": "https://www.auto-cleanse.co.uk/services"
                 },
                 {
                   "@type": "ListItem",
                   "position": 3,
                   "name": "Nationwide Postal DPF",
-                  "item": "https://auto-cleanse.co.uk/postal-dpf"
+                  "item": "https://www.auto-cleanse.co.uk/postal-dpf"
                 }
               ]
             }

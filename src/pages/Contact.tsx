@@ -111,7 +111,7 @@ const Contact = () => {
         "@type": "ContactPage",
         "name": "Contact AutoCleanse",
         "description": "Contact AutoCleanse for DPF cleaning and ECU remapping services in Devon.",
-        "url": "https://auto-cleanse.co.uk/contact",
+        "url": "https://www.auto-cleanse.co.uk/contact",
         "mainEntity": {
           "@type": ["LocalBusiness", "AutomotiveService"],
           "name": "AutoCleanse",

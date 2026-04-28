@@ -20,13 +20,13 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://auto-cleanse.co.uk/'
+        item: 'https://www.auto-cleanse.co.uk/'
       },
       ...items.map((item, index) => ({
         '@type': 'ListItem',
         position: index + 2,
         name: item.name,
-        item: item.path ? `https://auto-cleanse.co.uk${item.path}` : undefined
+        item: item.path ? `https://www.auto-cleanse.co.uk${item.path}` : undefined
       }))
     ]
   };

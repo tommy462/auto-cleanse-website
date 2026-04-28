@@ -53,7 +53,7 @@ const DPFCleaningDevon = () => {
         "@type": ["AutomotiveService", "LocalBusiness"],
         "name": "AutoCleanse",
         "description": "Professional DPF cleaning across Devon — Exeter, Plymouth, Torquay, Paignton, Newton Abbot and all Devon towns. Same-day return available.",
-        "url": "https://auto-cleanse.co.uk/dpf-cleaning-devon",
+        "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-devon",
         "telephone": "0800 043 0609",
         "email": "info@autocleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },

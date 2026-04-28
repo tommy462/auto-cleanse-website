@@ -70,7 +70,7 @@ const About = () => {
         "@type": ["LocalBusiness", "AutomotiveService"],
         "name": "AutoCleanse",
         "description": "Devon-based DPF cleaning and ECU remapping specialists. Operating from Totnes, serving trade garages, fleet operators and individual vehicle owners across Devon and the UK.",
-        "url": "https://auto-cleanse.co.uk/about",
+        "url": "https://www.auto-cleanse.co.uk/about",
         "telephone": "0800 043 0609",
         "email": "info@autocleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },

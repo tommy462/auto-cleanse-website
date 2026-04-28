@@ -2,24 +2,13 @@
   "redirects": [
     { 
       "source": "/remapping", 
-      "destination": "https://auto-cleanse.co.uk/ecu-remapping", 
+      "destination": "https://www.auto-cleanse.co.uk/ecu-remapping", 
       "permanent": true 
     },
     { 
       "source": "/remapping-devon", 
-      "destination": "https://auto-cleanse.co.uk/ecu-remapping", 
+      "destination": "https://www.auto-cleanse.co.uk/ecu-remapping", 
       "permanent": true 
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.auto-cleanse.co.uk"
-        }
-      ],
-      "destination": "https://auto-cleanse.co.uk/$1",
-      "permanent": true
     }
   ],
   "rewrites": [

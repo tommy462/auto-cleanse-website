@@ -57,7 +57,7 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
       }
     },
     description: vehicle.metaDescription,
-    url: `https://auto-cleanse.co.uk/${vehicle.slug}`,
+    url: `https://www.auto-cleanse.co.uk/${vehicle.slug}`,
     category: 'ECU Remapping',
     offers: {
       '@type': 'Offer',

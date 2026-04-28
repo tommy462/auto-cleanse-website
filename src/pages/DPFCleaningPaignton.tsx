@@ -46,7 +46,7 @@ const DPFCleaningPaignton = () => {
         "@type": ["AutomotiveService", "LocalBusiness"],
         "name": "AutoCleanse",
         "description": "Professional DPF cleaning service for Paignton and Torbay. Based in Totnes, Devon — 10 miles from Paignton.",
-        "url": "https://auto-cleanse.co.uk/dpf-cleaning-paignton",
+        "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-paignton",
         "telephone": "0800 043 0609",
         "email": "info@autocleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },

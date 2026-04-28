@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     sitemap({
-      hostname: 'https://auto-cleanse.co.uk',
+      hostname: 'https://www.auto-cleanse.co.uk',
       dynamicRoutes: [
         '/',
         '/services',

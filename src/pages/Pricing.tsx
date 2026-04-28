@@ -132,7 +132,7 @@ const Pricing = () => {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": "DPF Cleaning & ECU Remapping",
-        "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://auto-cleanse.co.uk" },
+        "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://www.auto-cleanse.co.uk" },
         "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
         "offers": [
           { "@type": "Offer", "name": "DPF Cleaning — Within 10 Miles of Totnes", "priceCurrency": "GBP", "price": "210.00", "description": "Professional DPF cleaning with collection and same-day return within 10 miles of Totnes, Devon." },
