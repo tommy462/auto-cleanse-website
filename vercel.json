@@ -11,14 +11,14 @@
       "permanent": true 
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.auto-cleanse.co.uk"
         }
       ],
-      "destination": "https://auto-cleanse.co.uk/:path*",
+      "destination": "https://auto-cleanse.co.uk/$1",
       "permanent": true
     }
   ],
