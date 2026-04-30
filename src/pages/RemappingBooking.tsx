@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft, ArrowRight, Car, MapPin, Wrench, CheckCircle,
-  Phone, ClipboardList, Zap, Loader2,
+  Phone, ClipboardList, Zap, Loader2, AlertTriangle, CalendarOff,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
@@ -36,6 +36,7 @@ interface BookingForm {
   serviceType: RemapServiceValue | '';
   bookingType: 'workshop' | 'mobile' | '';
   selectedOptions: string[];
+  legalAcknowledged: boolean;
   // Contact
   fullName: string;
   email: string;
@@ -55,6 +56,7 @@ interface BookingForm {
 const EMPTY: BookingForm = {
   serviceType: '', bookingType: '',
   selectedOptions: [],
+  legalAcknowledged: false,
   fullName: '', email: '', phone: '',
   vehicleRegistration: '', vehicleMakeModel: '',
   goals: '', notes: '',
@@ -248,6 +250,7 @@ export default function RemappingBooking() {
   const [showWidget, setShowWidget] = useState(false);
   const [widgetLoading, setWidgetLoading] = useState(false);
   const [bookingComplete, setBookingComplete] = useState(false);
+  const [blockedDates, setBlockedDates] = useState<{ date: string; reason: string | null }[]>([]);
 
   // Ref keeps form value fresh inside the message-event listener (no stale closure)
   const formRef = useRef<BookingForm>(EMPTY);
@@ -258,6 +261,14 @@ export default function RemappingBooking() {
 
   const topRef = useRef<HTMLDivElement>(null);
   const calendlySection = useRef<HTMLDivElement>(null);
+
+  // ── Fetch blocked dates from dashboard API ──────────────────────────────
+  useEffect(() => {
+    fetch('/api/blocked-dates')
+      .then((r) => r.ok ? r.json() : { dates: [] })
+      .then((data) => setBlockedDates(data.dates ?? []))
+      .catch(() => {}); // fail silently — don't break the booking form
+  }, []);
 
   // ── Load Calendly embed script ──────────────────────────────────────────
   useEffect(() => {
@@ -344,6 +355,10 @@ export default function RemappingBooking() {
 
   const update = (u: Partial<BookingForm>) => setForm((f) => ({ ...f, ...u }));
 
+  const hasOffRoadOptions = form.selectedOptions.some(
+    (v) => REMAP_OPTIONS.find((o) => o.value === v)?.offRoadOnly,
+  );
+
   const canProceed =
     form.serviceType !== '' &&
     form.bookingType !== '' &&
@@ -355,7 +370,8 @@ export default function RemappingBooking() {
     (form.bookingType !== 'mobile' ||
       (form.addressLine1.trim() !== '' &&
         form.townCity.trim() !== '' &&
-        form.postcode.trim() !== ''));
+        form.postcode.trim() !== '')) &&
+    (!hasOffRoadOptions || form.legalAcknowledged);
 
   // Poll until the Calendly script has loaded, then call initInlineWidget.
   // Mobile connections can take 30+ seconds to load the script, so we keep
@@ -698,31 +714,99 @@ export default function RemappingBooking() {
                       const next = checked
                         ? form.selectedOptions.filter((v) => v !== opt.value)
                         : [...form.selectedOptions, opt.value];
-                      update({ selectedOptions: next });
+                      update({ selectedOptions: next, legalAcknowledged: false });
                     }}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all ${
+                    className={`flex flex-col gap-1.5 px-4 py-3 rounded-xl border text-left transition-all ${
                       checked
-                        ? 'bg-[#FF7A00]/10 border-[#FF7A00]/50'
+                        ? opt.offRoadOnly
+                          ? 'bg-amber-500/10 border-amber-500/50'
+                          : 'bg-[#FF7A00]/10 border-[#FF7A00]/50'
                         : 'bg-black/20 border-white/[0.07] hover:border-white/20'
                     }`}
                   >
-                    <span className={`w-4 h-4 rounded flex-shrink-0 border flex items-center justify-center transition-colors ${
-                      checked ? 'bg-[#FF7A00] border-[#FF7A00]' : 'border-white/20'
-                    }`}>
-                      {checked && <span className="text-black text-[10px] font-black leading-none">✓</span>}
-                    </span>
-                    <span className={`text-sm font-medium flex-1 ${checked ? 'text-white' : 'text-white/60'}`}>
-                      {opt.label}
-                    </span>
-                    {opt.extraCost > 0 && (
-                      <span className="text-xs font-bold text-[#FF7A00] bg-[#FF7A00]/10 px-2 py-0.5 rounded-lg shrink-0">
-                        +£{opt.extraCost}
+                    <div className="flex items-center gap-3">
+                      <span className={`w-4 h-4 rounded flex-shrink-0 border flex items-center justify-center transition-colors ${
+                        checked
+                          ? opt.offRoadOnly ? 'bg-amber-500 border-amber-500' : 'bg-[#FF7A00] border-[#FF7A00]'
+                          : 'border-white/20'
+                      }`}>
+                        {checked && <span className="text-black text-[10px] font-black leading-none">✓</span>}
                       </span>
+                      <span className={`text-sm font-medium flex-1 ${checked ? 'text-white' : 'text-white/60'}`}>
+                        {opt.label}
+                      </span>
+                      {opt.extraCost > 0 && (
+                        <span className="text-xs font-bold text-[#FF7A00] bg-[#FF7A00]/10 px-2 py-0.5 rounded-lg shrink-0">
+                          +£{opt.extraCost}
+                        </span>
+                      )}
+                    </div>
+                    {opt.offRoadOnly && (
+                      <div className="flex items-center gap-1.5 ml-7">
+                        <AlertTriangle size={10} className="text-amber-400 shrink-0" />
+                        <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider">Off-road / export use only</span>
+                      </div>
                     )}
                   </button>
                 );
               })}
             </div>
+
+            {/* Legal disclaimer — shown when any off-road-only option is selected */}
+            {hasOffRoadOptions && (
+              <div className="mt-5 rounded-2xl bg-amber-500/8 border border-amber-500/30 p-5">
+                <div className="flex gap-3 mb-3">
+                  <AlertTriangle size={18} className="text-amber-400 shrink-0 mt-0.5" />
+                  <p className="text-amber-300 text-xs font-black uppercase tracking-widest">
+                    Important Legal Notice — Please Read
+                  </p>
+                </div>
+                <div className="text-white/60 text-xs leading-relaxed space-y-2 mb-4">
+                  <p>
+                    In the UK, a <strong className="text-white/80">DPF filter, EGR valve, AdBlue/SCR system,
+                    and intake flaps</strong> must be fitted and functioning on your vehicle to comply with
+                    emissions regulations under the Road Vehicles (Construction and Use) Regulations 1986
+                    and the Motor Vehicles (Type Approval) Regulations.
+                  </p>
+                  <p>
+                    Software deletion of these systems means the vehicle will <strong className="text-white/80">no longer
+                    comply with UK road law</strong> and <strong className="text-amber-400">must not be driven on
+                    public roads in the UK</strong>. This service is only lawful for vehicles used exclusively
+                    off-road, for export outside the UK, or for competition/track use where road-legal emissions
+                    compliance is not required.
+                  </p>
+                  <p>
+                    By proceeding you confirm that you understand and accept these legal responsibilities,
+                    and that the vehicle will not be used on UK public roads following this modification.
+                  </p>
+                </div>
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <button
+                    type="button"
+                    onClick={() => update({ legalAcknowledged: !form.legalAcknowledged })}
+                    className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
+                      form.legalAcknowledged
+                        ? 'bg-amber-500 border-amber-500'
+                        : 'border-amber-500/50 group-hover:border-amber-500'
+                    }`}
+                  >
+                    {form.legalAcknowledged && (
+                      <span className="text-black text-[11px] font-black leading-none">✓</span>
+                    )}
+                  </button>
+                  <span className="text-white/70 text-xs leading-relaxed">
+                    I confirm I have read and understood the above. The vehicle is for{' '}
+                    <strong className="text-white/90">off-road, export, or competition use only</strong> and
+                    I accept full legal responsibility for its use following this modification.
+                  </span>
+                </label>
+                {!form.legalAcknowledged && (
+                  <p className="text-amber-400/70 text-[10px] font-bold mt-3 ml-8 uppercase tracking-wider">
+                    ↑ You must tick this box before proceeding
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         )}
 
@@ -777,6 +861,36 @@ export default function RemappingBooking() {
                   {BOOKING_CONFIG.depositAmountDisplay} deposit via Stripe to confirm.
                 </p>
               </div>
+
+              {/* Blocked dates notice */}
+              {blockedDates.length > 0 && (
+                <div className="rounded-2xl bg-red-500/8 border border-red-500/25 px-5 py-4 mb-6">
+                  <div className="flex gap-3 mb-2">
+                    <CalendarOff size={16} className="text-red-400 shrink-0 mt-0.5" />
+                    <p className="text-red-300 text-xs font-black uppercase tracking-widest">
+                      Unavailable Dates
+                    </p>
+                  </div>
+                  <p className="text-white/50 text-xs leading-relaxed mb-3 ml-7">
+                    The following dates are currently unavailable for bookings. Please avoid
+                    selecting them in the calendar below — if you do, we'll be in touch to reschedule.
+                  </p>
+                  <ul className="ml-7 space-y-1">
+                    {blockedDates.map(({ date, reason }) => {
+                      const [y, m, d] = date.split('-').map(Number);
+                      const label = new Date(y, m - 1, d).toLocaleDateString('en-GB', {
+                        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+                      });
+                      return (
+                        <li key={date} className="text-xs text-red-300 font-medium">
+                          {label}
+                          {reason && <span className="text-white/30 font-normal ml-1.5">— {reason}</span>}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
 
               {/* Summary strip — shows what was entered in step 1 */}
               <div className="rounded-2xl bg-[#1A1D22] border border-[#FF7A00]/20 px-5 py-4 mb-6">

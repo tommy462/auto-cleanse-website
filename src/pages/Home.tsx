@@ -567,8 +567,8 @@ const Home = () => {
                 Stage 1 &amp; 2 maps tailored to your vehicle. More power, better economy, sharper throttle response — safely calibrated.
               </p>
               <div className="flex flex-wrap gap-3 hero-subtitle">
-                <Link to="/remapping" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white hover:text-white inline-block">
-                  Explore Remapping
+                <Link to="/vehicle-performance-lookup" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white hover:text-white inline-block">
+                  Check Your Car's Gains
                 </Link>
                 <Link to="/remapping-booking" className="px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white border border-[#FF7A00]/30 hover:border-[#FF7A00] hover:bg-[#FF7A00]/10 transition-all inline-block">
                   Book a Remap

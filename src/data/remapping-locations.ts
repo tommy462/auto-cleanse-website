@@ -1355,7 +1355,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       "ECU remapping across South Hams — Kingsbridge, Totnes, Dartmouth, Salcombe, Ivybridge and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
     h1: "ECU Remapping Across the South Hams",
     intro:
-      "The South Hams is one of Devon's most scenic and diverse areas — and AutoCleanse is right at its heart, based in Totnes. We provide ECU remapping across the entire South Hams district, covering everything from Kingsbridge and Salcombe on the coast to Ivybridge and Buckfastleigh on the Dartmoor edge. Our mobile remapping service is ideal for the more remote areas of the South Hams where the journey to a workshop can be impractical.",
+      "Covering the picturesque South Hams district requires a vehicle that can handle steep coastal climbs and narrow rural lanes with ease. From our central hub in Totnes, we provide expert ECU remapping across the entire region, from the sailing hubs of Salcombe and Dartmouth to the bustling market towns of Kingsbridge and Ivybridge. Our tailored tuning solutions focus on delivering the low-end torque essential for navigating the South Hams' undulating landscape, ensuring your car or van feels lighter and more responsive on every journey.",
     distanceNote: "based in the South Hams — Totnes",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1370,20 +1370,20 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     ],
     faqs: [
       {
-        q: "Do you cover the whole South Hams area?",
-        a: "Yes — as a Totnes-based business, the South Hams is our home territory. We cover the full district from coast to moor, both via our workshop and mobile service.",
+        q: "Since you're based in Totnes, do I get a discount for a South Hams remap?",
+        a: "As the South Hams is our home territory, we can often offer the most flexible scheduling for local clients. While our pricing is competitive across Devon, being local means we can usually reach you faster for mobile appointments in areas like Modbury or Kingsbridge.",
       },
       {
-        q: "Is mobile remapping available across the South Hams?",
-        a: "Yes — mobile remapping is available across the South Hams. Given the rural nature of much of the district, many customers prefer us to come to them.",
+        q: "Is a remap beneficial for the steep hills around Dartmouth and Salcombe?",
+        a: "Absolutely. The primary benefit of our Stage 1 tuning is a significant increase in mid-range torque. This is exactly what's needed to pull a vehicle up steep coastal inclines without the engine hunting for gears or feeling underpowered.",
       },
       {
-        q: "What vehicles do you remap across the South Hams?",
-        a: "Cars, vans, 4x4s, pickups and light commercials. Diesel remapping is particularly popular in rural South Hams where fuel economy and towing ability really matter.",
+        q: "Can you remap 4x4s used on South Hams farms?",
+        a: "Yes, we specialise in diesel 4x4 remapping for Land Rovers, Hiluxes, and Rangers. Our 'utility' maps are perfect for agricultural use, providing the extra grunt needed for towing and heavy field work.",
       },
       {
-        q: "Do you serve farmers and rural tradespeople in South Hams?",
-        a: "Yes — many of our South Hams customers are farmers, rural tradespeople or land managers using pickups and 4x4s. A diesel remap adds meaningful torque for challenging terrain and towing.",
+        q: "Do you offer DPF cleaning in the South Hams as well?",
+        a: "Yes, we are the region's leading DPF specialists. Many South Hams drivers who do short trips between local villages suffer from DPF blockages; we can clean the filter and remap the ECU in a single visit.",
       },
     ],
     relatedSlugs: [
@@ -1403,7 +1403,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       "ECU remapping across East Devon — covering Exeter, Sidmouth, Honiton, Axminster, Exmouth and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
     h1: "ECU Remapping Across East Devon",
     intro:
-      "AutoCleanse provides ECU remapping to customers across East Devon — from the Exe Estuary coast to the Blackdown Hills, and from Exeter's outskirts to the Dorset border. Whether you're in Sidmouth, Honiton, Axminster or any of the villages in between, our mobile remapping service brings professional ECU tuning directly to your door. Workshop appointments at our Totnes base are also available for those happy to make the journey.",
+      "From the bustling commuter routes of the Exe Estuary to the rural stretches of the Blackdown Hills, East Devon presents a varied challenge for any engine. Whether you're a high-mileage commuter in Exmouth or a tradesperson navigating the A30 corridor near Honiton, our ECU remapping service is designed to optimise your vehicle for these specific conditions. We bring professional-grade tuning directly to your driveway across East Devon, unlocking the performance and fuel efficiency that modern manufacturers often restrict.",
     distanceNote: "covering the full East Devon area",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1418,20 +1418,20 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     ],
     faqs: [
       {
-        q: "Do you cover the whole of East Devon?",
-        a: "Yes — East Devon is fully within our service area. Mobile remapping covers the district from the coast to the Blackdown Hills, and workshop appointments are available at our Totnes base.",
+        q: "Do you cover the coastal towns like Sidmouth and Budleigh Salterton?",
+        a: "Yes, our mobile tuning units frequently visit the East Devon coast. We can perform a full Stage 1 remap at your home or workplace in any of the coastal towns or surrounding villages.",
       },
       {
-        q: "Is mobile remapping available in East Devon?",
-        a: "Yes — given the rural spread of East Devon, mobile remapping is the most convenient option for many customers. We cover the area regularly.",
+        q: "Will an economy remap help with my commute into Exeter?",
+        a: "Definitely. If you're frequently using the A376 or A3052, an economy-focused map optimizes your fuel injection and boost pressure for steady-state driving, often yielding a 10-15% improvement in MPG.",
       },
       {
-        q: "What services do you offer in East Devon?",
-        a: "Stage 1 remaps, Stage 2 remaps, economy diesel tunes, van remapping, DPF bundle and custom fleet mapping are all available across East Devon.",
+        q: "Can you remap motorhomes stored in East Devon?",
+        a: "Yes, we are highly experienced in tuning Fiat Ducato and Peugeot Boxer based motorhomes. Added torque is a must for motorhomes navigating the hilly terrain around the Blackdown Hills.",
       },
       {
-        q: "Do you cover Exmouth and the Exe Estuary?",
-        a: "Yes — Exmouth, Budleigh Salterton, Topsham and the Exe Estuary area are all within our mobile service coverage.",
+        q: "How long does a mobile remap take in East Devon?",
+        a: "The entire process, including a full pre-tune diagnostic health check, takes approximately 90 minutes to 2 hours. Your vehicle is ready to drive immediately afterwards.",
       },
     ],
     relatedSlugs: [
@@ -1451,7 +1451,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       "ECU remapping across North Devon — covering Barnstaple, Bideford, Ilfracombe and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
     h1: "ECU Remapping Across North Devon",
     intro:
-      "AutoCleanse provides ECU remapping across North Devon — from the towns of Barnstaple and Bideford to the coastal villages of Ilfracombe and Croyde, and inland through South Molton and Great Torrington. Our mobile remapping service is the most convenient option for most North Devon customers, bringing professional ECU tuning directly to your location without the need to travel to our Totnes workshop.",
+      "North Devon's unique geography, defined by the long stretches of the A361 North Devon Link Road and the rugged Atlantic Highway, makes engine optimization a necessity rather than a luxury. For drivers in Barnstaple, Bideford, and the coastal stretches of Ilfracombe, our mobile ECU remapping service eliminates the need for a long journey south. We bring the latest in tuning technology directly to you, providing the torque and power needed to master the undulating terrain of Exmoor and the North Devon coast.",
     distanceNote: "mobile service covers the full North Devon area",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1466,20 +1466,20 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     ],
     faqs: [
       {
-        q: "Do you offer mobile remapping across North Devon?",
-        a: "Yes — mobile ECU remapping covers the full North Devon area. Given the distances involved, mobile is typically the most practical option and we carry the same professional kit as our workshop.",
+        q: "Is mobile remapping in North Devon as good as a workshop service?",
+        a: "Yes, our mobile units are fully equipped with the same high-end OBD and bench-flashing tools used in our main workshop. We provide the same lifetime software warranty and pre-tune diagnostics anywhere in North Devon.",
       },
       {
-        q: "Do you cover Ilfracombe and the North Devon coast?",
-        a: "Yes — Ilfracombe, Croyde, Braunton, Combe Martin and the North Devon coast are all within our mobile service coverage.",
+        q: "Can you help with the fuel costs of my commute on the A361?",
+        a: "Economy remapping is very popular for North Devon commuters. By optimising the engine's efficiency for the 60-70mph cruise, we can typically lower your fuel spend by up to 15%, paying for the remap in just a few months.",
       },
       {
-        q: "What's popular for North Devon customers?",
-        a: "Diesel van remapping and 4x4 tuning are particularly in demand in North Devon, where rural trade routes and hilly terrain make improved torque and economy especially valuable.",
+        q: "Do you cover remote areas like Lynton or Combe Martin?",
+        a: "Yes, we regularly travel to the furthest reaches of the North Devon coast and Exmoor. Our service is completely mobile, so we can tune your car on your driveway even in the most rural locations.",
       },
       {
-        q: "Is the journey to Totnes practical from North Devon?",
-        a: "For many North Devon customers, our mobile service is more practical. However, the A361 makes the journey to our Totnes workshop manageable for those who prefer a workshop appointment.",
+        q: "What's the best remap for a 4x4 used in North Devon?",
+        a: "For 4x4s like the Land Rover Defender or Mitsubishi L200, our Stage 1 High Torque map is best. It provides the low-down grunt needed for hilly terrain and towing without compromising the engine's long-term reliability.",
       },
     ],
     relatedSlugs: [

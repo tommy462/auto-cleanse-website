@@ -25,6 +25,9 @@ import VehicleRemappingHub from '../pages/VehicleRemappingHub';
 import DynamicPage from '../pages/DynamicPage';
 import BookingSuccess from '../pages/BookingSuccess';
 import BookingCancel from '../pages/BookingCancel';
+import VehiclePerformanceLookup from '../pages/VehiclePerformanceLookup';
+import DiagnosticMatcher from '../pages/DiagnosticMatcher';
+import DVLADiagnostic from '../pages/DVLADiagnostic';
 
 export default function PageTransition() {
     const location = useLocation();
@@ -66,6 +69,8 @@ export default function PageTransition() {
                     <Route path="/ecu-remapping" element={<EcuRemappingHub />} />
                     <Route path="/ecu-remapping-locations" element={<RemappingLocationsHub />} />
                     <Route path="/vehicle-remapping" element={<VehicleRemappingHub />} />
+                    <Route path="/vehicle-performance-lookup" element={<VehiclePerformanceLookup />} />
+                    <Route path="/diagnostic-matcher" element={<DiagnosticMatcher />} />
                     
                     {/* Redirect old routes */}
                     <Route path="/remapping" element={<Navigate to="/ecu-remapping" replace />} />
@@ -80,6 +85,7 @@ export default function PageTransition() {
                     <Route path="/:slug" element={<DynamicPage />} />
                     <Route path="/booking-success" element={<BookingSuccess />} />
                     <Route path="/booking-cancel" element={<BookingCancel />} />
+                    <Route path="/debug/dvla" element={<DVLADiagnostic />} />
                 </Routes>
             </motion.div>
         </AnimatePresence>
