@@ -1,12 +1,312 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Papa from 'papaparse';
 import SEO from '../components/SEO';
-import { ChevronDown, Zap, TrendingUp, Settings, Car, Search, Check } from 'lucide-react';
+import { Activity, AlertTriangle, ArrowLeft, ArrowRight, CheckCircle, ChevronDown, Info, Zap, TrendingUp, Settings, Car, Search, Check } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
+import { lookupVehicle, DVLAVehicleData } from '../services/dvla';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// ── Reg lookup types & helpers ────────────────────────────────────────────────
+
+interface RemapRow {
+  manufacturer: string;
+  model: string;
+  year: string;
+  engine_dropdown: string;
+  engine_name: string;
+  stock_bhp: string;
+  stage1_bhp: string;
+  bhp_gain: string;
+  stock_torque: string;
+  stage1_torque: string;
+  torque_gain: string;
+  options_available: string;
+}
+
+interface ScoredRow extends RemapRow { score: number; }
+
+interface ModelGroup {
+  manufacturer: string;
+  model: string;
+  bestScore: number;
+  engines: ScoredRow[];
+  topEngine: ScoredRow;
+  displayYear: string;
+}
+
+const extractYear = (s: string) => { const m = s.match(/\d{4}/g); return m ? parseInt(m[m.length - 1]) : NaN; };
+const parseYearRange = (f: string) => {
+  const [left, right] = f.split('->').map(s => s.trim());
+  return { start: extractYear(left), end: right === '...' || right === undefined ? 2035 : extractYear(right) };
+};
+const ccToLitre = (cc: number) => Math.round(cc / 100) / 10;
+const inferFuel = (text: string): 'petrol' | 'diesel' | '' => {
+  const t = text.toLowerCase();
+  if (/\btdi\b|\bdiesel\b|\bdci\b|\bcdti\b|\bhdi\b|\bjtd\b/.test(t)) return 'diesel';
+  if (/\btfsi\b|\btsi\b|\bvtec\b|\bfsi\b|\bpetrol\b|\bgdi\b/.test(t)) return 'petrol';
+  if (/\b\d+\.\d+t\b/i.test(t)) return 'petrol';
+  return '';
+};
+const parseOptions = (raw: string) =>
+  raw ? raw.replace(/[\[\]'"]/g, '').split(',').map(s => s.trim()).filter(Boolean) : [];
+const PERF_VARIANTS = ['s3','s4','s5','s6','s7','s8','sq5','sq7','sq8','rs3','rs4','rs5','rs6','rs7'];
+
+// ── Reg Lookup Section ────────────────────────────────────────────────────────
+
+function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady: boolean }) {
+  const [registration, setRegistration] = useState('');
+  const [dvlaData, setDvlaData] = useState<DVLAVehicleData | null>(null);
+  const [modelGroups, setModelGroups] = useState<ModelGroup[]>([]);
+  const [selectedGroup, setSelectedGroup] = useState<ModelGroup | null>(null);
+  const [step, setStep] = useState<'input' | 'models' | 'specs'>('input');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const runLookup = async () => {
+    if (!registration.trim() || !csvReady) return;
+    setIsLoading(true);
+    setError(null);
+    setModelGroups([]);
+    setSelectedGroup(null);
+
+    try {
+      const dvla = await lookupVehicle(registration.trim().toUpperCase());
+      setDvlaData(dvla);
+
+      const dvlaMake  = dvla.make.toLowerCase().trim();
+      const dvlaYear  = dvla.yearOfManufacture;
+      const dvlaFuel  = dvla.fuelType.toLowerCase().trim();
+      const dvlaLitre = ccToLitre(dvla.engineCapacity);
+      const isLargePetrol = dvlaFuel === 'petrol' && dvlaLitre >= 2.9;
+
+      const scored: ScoredRow[] = csvData
+        .filter(row => row.manufacturer.toLowerCase().trim() === dvlaMake)
+        .map(row => {
+          const text = `${row.engine_dropdown} ${row.engine_name}`;
+          const { start, end } = parseYearRange(row.year);
+          if (!isNaN(start) && !isNaN(end) && (dvlaYear < start - 1 || dvlaYear > end + 1)) return null;
+          const rowFuel = inferFuel(text);
+          if (rowFuel !== '' && rowFuel !== dvlaFuel) return null;
+          let score = 40;
+          if (!isNaN(start) && dvlaYear >= start && dvlaYear <= end) score += 20;
+          if (rowFuel === dvlaFuel) score += 20;
+          const litreMatch = text.match(/(\d\.\d)/);
+          if (litreMatch) {
+            const diff = Math.abs(parseFloat(litreMatch[1]) - dvlaLitre);
+            if (diff < 0.05) score += 30; else if (diff <= 0.15) score += 15;
+          }
+          if (isLargePetrol) {
+            const lower = `${row.model} ${row.engine_name}`.toLowerCase();
+            if (PERF_VARIANTS.some(v => lower.includes(v))) score += 15;
+          }
+          return { ...row, score };
+        })
+        .filter((r): r is ScoredRow => r !== null && r.score > 50);
+
+      const groupMap = new Map<string, ModelGroup>();
+      for (const row of scored) {
+        const key = `${row.manufacturer}::${row.model}`;
+        if (!groupMap.has(key)) {
+          const { start, end } = parseYearRange(row.year);
+          groupMap.set(key, {
+            manufacturer: row.manufacturer,
+            model: row.model,
+            bestScore: row.score,
+            engines: [row],
+            topEngine: row,
+            displayYear: isNaN(start) ? '' : end >= 2030 ? `${start}+` : `${start}–${end}`,
+          });
+        } else {
+          const g = groupMap.get(key)!;
+          g.engines.push(row);
+          if (row.score > g.bestScore) { g.bestScore = row.score; g.topEngine = row; }
+        }
+      }
+
+      const groups = Array.from(groupMap.values()).sort((a, b) => b.bestScore - a.bestScore).slice(0, 6);
+      setModelGroups(groups);
+      setStep('models');
+    } catch (err: any) {
+      setError(err.message || 'Lookup failed. Check the registration and try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="relative p-8 md:p-12 rounded-[2.5rem] bg-[#111111] border border-white/5 shadow-2xl shadow-black mb-6 overflow-visible reveal-container">
+      <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-[#FF7A00]/5 to-transparent pointer-events-none" />
+
+      {/* Header */}
+      <div className="flex items-center gap-4 mb-8 relative z-10">
+        <div className="w-12 h-12 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/20 flex items-center justify-center flex-shrink-0">
+          <Search size={22} className="text-[#FF7A00]" />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold text-white tracking-tight">Quick Lookup by Reg Plate</h2>
+          <p className="text-white/40 text-sm font-medium mt-0.5">Enter your number plate to instantly find your remap data</p>
+        </div>
+      </div>
+
+      {/* Input */}
+      <div className="relative mb-4 z-10">
+        <input
+          type="text"
+          placeholder="ENTER REG (e.g. AB12 CDE)"
+          value={registration}
+          onChange={e => setRegistration(e.target.value.toUpperCase())}
+          onKeyDown={e => e.key === 'Enter' && runLookup()}
+          className="w-full bg-[#0A0A0A] border-2 border-white/10 rounded-2xl px-6 py-4 text-xl font-black tracking-widest text-white focus:outline-none focus:border-[#FF7A00] transition-all placeholder:text-white/20"
+        />
+        <button
+          onClick={runLookup}
+          disabled={isLoading || !registration.trim() || !csvReady}
+          className="absolute right-2 top-2 bottom-2 bg-[#FF7A00] hover:bg-[#FF9500] text-black px-6 rounded-xl font-bold transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+        >
+          {isLoading ? <Activity className="animate-spin" size={18} /> : <><Search size={15} /> Look Up</>}
+        </button>
+      </div>
+      {!csvReady && !error && <p className="text-white/25 text-xs mb-4 relative z-10">Loading vehicle database…</p>}
+      {error && <p className="text-red-400 text-sm font-bold mb-4 relative z-10">{error}</p>}
+
+      {/* DVLA strip */}
+      {dvlaData && (
+        <div className="bg-[#0A0A0A] border border-white/5 rounded-xl px-5 py-3 flex flex-wrap items-center gap-2 text-sm mb-6 relative z-10">
+          <Info size={13} className="text-blue-400 shrink-0" />
+          <span className="text-white/30 font-bold uppercase tracking-wider text-xs">DVLA</span>
+          <span className="text-white font-bold">{dvlaData.make}</span>
+          <span className="text-white/20">·</span>
+          <span className="text-white font-bold">{dvlaData.yearOfManufacture}</span>
+          <span className="text-white/20">·</span>
+          <span className="text-white font-bold">{dvlaData.fuelType}</span>
+          <span className="text-white/20">·</span>
+          <span className="text-white font-bold">{dvlaData.engineCapacity}cc ({ccToLitre(dvlaData.engineCapacity)}L)</span>
+          {dvlaData.model && <>
+            <span className="text-white/20">·</span>
+            <span className="text-white/50">{dvlaData.model}</span>
+          </>}
+        </div>
+      )}
+
+      {/* Model cards */}
+      {step === 'models' && (
+        <div className="relative z-10">
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-xs font-bold uppercase tracking-widest text-white/40">Select Your Model</p>
+            <span className="text-xs text-white/25">{modelGroups.length} match{modelGroups.length !== 1 ? 'es' : ''} found</span>
+          </div>
+          {modelGroups.length === 0 ? (
+            <div className="bg-[#0A0A0A] border border-dashed border-white/8 rounded-2xl p-10 text-center">
+              <AlertTriangle className="text-yellow-500/50 mx-auto mb-3" size={28} />
+              <p className="text-white/50 font-bold mb-1">No Matches Found</p>
+              <p className="text-white/25 text-sm">Try a different registration or use the manual selector below.</p>
+            </div>
+          ) : (
+            <div className="grid gap-2">
+              {modelGroups.map((group, i) => (
+                <button
+                  key={i}
+                  onClick={() => { setSelectedGroup(group); setStep('specs'); }}
+                  className="bg-[#0A0A0A] border border-white/5 rounded-xl p-4 hover:border-[#FF7A00]/40 transition-all group text-left w-full"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-7 h-7 rounded-lg bg-[#FF7A00]/10 flex items-center justify-center shrink-0">
+                      <span className="text-[#FF7A00] font-black text-xs">{i + 1}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-white font-black group-hover:text-[#FF7A00] transition-colors leading-none">{group.manufacturer} {group.model}</p>
+                      <p className="text-white/30 text-xs mt-0.5 truncate">{group.topEngine.engine_name}{group.displayYear ? ` · ${group.displayYear}` : ''}</p>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      {parseInt(group.topEngine.bhp_gain) > 0 && (
+                        <span className="text-[10px] font-bold bg-green-500/10 text-green-400 px-2 py-0.5 rounded-full">+{group.topEngine.bhp_gain} BHP</span>
+                      )}
+                      <ArrowRight className="text-white/20 group-hover:text-[#FF7A00] transition-colors" size={14} />
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Spec view */}
+      {step === 'specs' && selectedGroup && (
+        <div className="relative z-10">
+          <button
+            onClick={() => setStep('models')}
+            className="flex items-center gap-1.5 text-white/30 hover:text-white/70 text-sm font-bold mb-4 transition-colors"
+          >
+            <ArrowLeft size={13} /> Back to models
+          </button>
+          <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+            {selectedGroup.manufacturer} {selectedGroup.model} — {selectedGroup.engines.length} variant{selectedGroup.engines.length !== 1 ? 's' : ''}
+          </p>
+          <div className="space-y-3">
+            {selectedGroup.engines.sort((a, b) => b.score - a.score).map((engine, i) => {
+              const options = parseOptions(engine.options_available);
+              return (
+                <div key={i} className="bg-[#0A0A0A] border border-white/5 rounded-xl p-5 hover:border-[#FF7A00]/15 transition-all">
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    <div>
+                      <p className="text-white font-black leading-none">{engine.engine_name}</p>
+                      <p className="text-white/25 text-xs mt-0.5">{engine.year}</p>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <div className="text-center">
+                        <p className="text-white/30 text-[10px] uppercase font-bold">Stock</p>
+                        <p className="text-white font-black text-xl leading-none">{engine.stock_bhp}</p>
+                        <p className="text-white/30 text-[10px]">BHP</p>
+                      </div>
+                      <ArrowRight className="text-[#FF7A00]" size={15} />
+                      <div className="text-center">
+                        <p className="text-green-400/50 text-[10px] uppercase font-bold">Stage 1</p>
+                        <p className="text-green-400 font-black text-xl leading-none">{engine.stage1_bhp}</p>
+                        <p className="text-green-400/30 text-[10px]">BHP</p>
+                      </div>
+                      <div className="bg-[#FF7A00]/10 border border-[#FF7A00]/20 rounded-lg px-2.5 py-1.5 text-center ml-1">
+                        <p className="text-[#FF7A00] text-[10px] uppercase font-bold">Gain</p>
+                        <p className="text-[#FF7A00] font-black text-lg leading-none">+{engine.bhp_gain}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 mb-3">
+                    <div className="bg-[#111111] p-2.5 rounded-lg text-center">
+                      <p className="text-white/25 text-[9px] uppercase font-bold mb-0.5">Stock Torque</p>
+                      <p className="text-white text-sm font-bold">{engine.stock_torque} <span className="text-white/25 text-xs font-normal">Nm</span></p>
+                    </div>
+                    <div className="bg-[#111111] p-2.5 rounded-lg text-center border border-green-500/10">
+                      <p className="text-green-400/40 text-[9px] uppercase font-bold mb-0.5">Stage 1 Torque</p>
+                      <p className="text-green-400 text-sm font-bold">{engine.stage1_torque} <span className="text-green-400/25 text-xs font-normal">Nm</span></p>
+                    </div>
+                    <div className="bg-[#111111] p-2.5 rounded-lg text-center border border-[#FF7A00]/10">
+                      <p className="text-[#FF7A00]/40 text-[9px] uppercase font-bold mb-0.5">Torque Gain</p>
+                      <p className="text-[#FF7A00] text-sm font-bold">+{engine.torque_gain} <span className="text-[#FF7A00]/25 text-xs font-normal">Nm</span></p>
+                    </div>
+                  </div>
+                  {options.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                      {options.map((opt, oIdx) => (
+                        <span key={oIdx} className="flex items-center gap-1 text-[10px] font-bold bg-white/5 text-white/40 px-2 py-0.5 rounded-full">
+                          <CheckCircle size={9} className="text-green-400 shrink-0" />{opt}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -359,11 +659,25 @@ export default function VehiclePerformanceLookup() {
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedEngine, setSelectedEngine] = useState('');
 
+  const [csvData, setCsvData] = useState<RemapRow[]>([]);
+  const [csvReady, setCsvReady] = useState(false);
+
   useEffect(() => {
     fetch('/data/remap-lookup.json')
       .then(r => { if (!r.ok) throw new Error('Failed'); return r.json(); })
       .then(setLookupData)
       .catch(() => setDataError(true));
+  }, []);
+
+  useEffect(() => {
+    fetch('/data/remap-data.csv')
+      .then(r => r.text())
+      .then(csv => Papa.parse(csv, {
+        header: true,
+        skipEmptyLines: true,
+        complete: results => { setCsvData(results.data as RemapRow[]); setCsvReady(true); },
+      }))
+      .catch(() => {});
   }, []);
 
   useGSAP(() => {
@@ -434,6 +748,16 @@ export default function VehiclePerformanceLookup() {
           <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium max-w-3xl mx-auto reveal-item">
             Select your vehicle to see exactly what performance gains are achievable with a Stage 1 remap.
           </p>
+        </div>
+
+        {/* Reg Plate Lookup */}
+        <RegLookupSection csvData={csvData} csvReady={csvReady} />
+
+        {/* Divider */}
+        <div className="flex items-center gap-4 my-8">
+          <div className="flex-1 h-px bg-white/5" />
+          <span className="text-white/20 text-xs font-bold uppercase tracking-widest px-2">or search manually</span>
+          <div className="flex-1 h-px bg-white/5" />
         </div>
 
         {/* Lookup Card */}
