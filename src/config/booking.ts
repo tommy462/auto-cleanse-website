@@ -1,4 +1,4 @@
-﻿// ─────────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
 // Booking system configuration
 // Adjust these values to match your business. API keys go in .env.local only.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -110,19 +110,20 @@ export interface RemapOption {
   label: string;
   extraCost: number;
   offRoadOnly?: boolean;
+  freeIncluded?: boolean; // true = included at no extra cost, displayed with a FREE badge
 }
 
 export const REMAP_OPTIONS: RemapOption[] = [
-  { value: 'dpf-gpf-opf-disable',  label: 'DPF/GPF/OPF Disable',               extraCost: 24, offRoadOnly: true  },
-  { value: 'egr-disable',          label: 'EGR Delete',                          extraCost: 24, offRoadOnly: true  },
-  { value: 'speed-limiter-disable',label: 'Speed Limiter Disable',               extraCost: 0  },
-  { value: 'dtc-disable',          label: 'DTC Disable',                         extraCost: 0  },
-  { value: 'lambda-o2-delete',     label: 'Lambda/O2 Delete',                    extraCost: 0  },
-  { value: 'flaps',                label: 'Flap Removal',                        extraCost: 24, offRoadOnly: true  },
-  { value: 'scr-adblue-delete',    label: 'SCR/AdBlue Delete',                   extraCost: 24, offRoadOnly: true  },
-  { value: 'additive-pats-eolys',  label: 'Additive/PATS/Eolys',                extraCost: 0  },
-  { value: 'possibly-is-tuned',    label: 'Possibly/Is Tuned',                   extraCost: 0  },
-  { value: 'cold-start-remove',    label: 'Cold Start Remove',                   extraCost: 0  },
+  { value: 'dpf-gpf-opf-disable',  label: 'DPF/GPF/OPF Disable',               extraCost: 0,  offRoadOnly: true,  freeIncluded: true },
+  { value: 'egr-disable',          label: 'EGR Delete',                          extraCost: 20, offRoadOnly: true  },
+  { value: 'speed-limiter-disable',label: 'Speed Limiter Disable',               extraCost: 20 },
+  { value: 'dtc-disable',          label: 'DTC Disable',                         extraCost: 20 },
+  { value: 'lambda-o2-delete',     label: 'Lambda/O2 Delete',                    extraCost: 20 },
+  { value: 'flaps',                label: 'Flap Removal',                        extraCost: 20, offRoadOnly: true  },
+  { value: 'scr-adblue-delete',    label: 'SCR/AdBlue Delete',                   extraCost: 20, offRoadOnly: true  },
+  { value: 'additive-pats-eolys',  label: 'Additive/PATS/Eolys',                extraCost: 20 },
+  { value: 'possibly-is-tuned',    label: 'Possibly/Is Tuned',                   extraCost: 20 },
+  { value: 'cold-start-remove',    label: 'Cold Start Remove',                   extraCost: 20 },
   { value: 'hard-cut-diesel',      label: 'Hard Cut Diesel',                     extraCost: 36 },
   { value: 'immo-off',             label: 'IMMO Off',                            extraCost: 36 },
   { value: 'crackles-petrol',      label: 'Crackles Petrol (only with CAT off)', extraCost: 36 },

@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft, ArrowRight, Car, MapPin, Wrench, CheckCircle,
@@ -714,6 +714,7 @@ export default function RemappingBooking() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {REMAP_OPTIONS.map((opt) => {
                 const checked = form.selectedOptions.includes(opt.value);
+                const isFree = opt.freeIncluded;
                 return (
                   <button
                     key={opt.value}
@@ -726,29 +727,44 @@ export default function RemappingBooking() {
                     }}
                     className={`flex flex-col gap-1.5 px-4 py-3 rounded-xl border text-left transition-all ${
                       checked
-                        ? opt.offRoadOnly
+                        ? isFree
+                          ? 'bg-green-500/10 border-green-500/50'
+                          : opt.offRoadOnly
                           ? 'bg-amber-500/10 border-amber-500/50'
                           : 'bg-[#FF7A00]/10 border-[#FF7A00]/50'
+                        : isFree
+                        ? 'bg-green-500/5 border-green-500/25 hover:border-green-500/50'
                         : 'bg-black/20 border-white/[0.07] hover:border-white/20'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <span className={`w-4 h-4 rounded flex-shrink-0 border flex items-center justify-center transition-colors ${
                         checked
-                          ? opt.offRoadOnly ? 'bg-amber-500 border-amber-500' : 'bg-[#FF7A00] border-[#FF7A00]'
-                          : 'border-white/20'
+                          ? isFree
+                            ? 'bg-green-500 border-green-500'
+                            : opt.offRoadOnly ? 'bg-amber-500 border-amber-500' : 'bg-[#FF7A00] border-[#FF7A00]'
+                          : isFree ? 'border-green-500/40' : 'border-white/20'
                       }`}>
                         {checked && <span className="text-black text-[10px] font-black leading-none">✓</span>}
                       </span>
-                      <span className={`text-sm font-medium flex-1 ${checked ? 'text-white' : 'text-white/60'}`}>
+                      <span className={`text-sm font-medium flex-1 ${checked ? 'text-white' : isFree ? 'text-white/80' : 'text-white/60'}`}>
                         {opt.label}
                       </span>
-                      {opt.extraCost > 0 && (
+                      {isFree ? (
+                        <span className="flex items-center gap-1 text-[10px] font-black text-green-400 bg-green-500/15 border border-green-500/30 px-2 py-0.5 rounded-lg shrink-0 tracking-wide uppercase">
+                          ✦ Free
+                        </span>
+                      ) : opt.extraCost > 0 ? (
                         <span className="text-xs font-bold text-[#FF7A00] bg-[#FF7A00]/10 px-2 py-0.5 rounded-lg shrink-0">
                           +£{opt.extraCost}
                         </span>
-                      )}
+                      ) : null}
                     </div>
+                    {isFree && (
+                      <p className="ml-7 text-[10px] text-green-400/60 font-medium">
+                        Included at no extra cost
+                      </p>
+                    )}
                     {opt.offRoadOnly && (
                       <div className="flex items-center gap-1.5 ml-7">
                         <AlertTriangle size={10} className="text-amber-400 shrink-0" />
