@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Papa from 'papaparse';
 import SEO from '../components/SEO';
 import { Activity, AlertTriangle, ArrowLeft, ArrowRight, CheckCircle, ChevronDown, Info, Zap, TrendingUp, Settings, Car, Search, Check } from 'lucide-react';
@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
 import { lookupVehicle, DVLAVehicleData } from '../services/dvla';
+import { VEHICLE_REMAPS } from '../data/vehicle-remapping';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -774,6 +775,19 @@ export default function VehiclePerformanceLookup() {
 
   const stepsComplete = [selectedMake, selectedModel, selectedYear, selectedEngine].filter(Boolean).length;
 
+  // Group vehicles by manufacturer for SEO links
+  const vehiclesByMake = useMemo(() => {
+    return VEHICLE_REMAPS.reduce((acc, vehicle) => {
+      if (!acc[vehicle.make]) {
+        acc[vehicle.make] = [];
+      }
+      acc[vehicle.make].push(vehicle);
+      return acc;
+    }, {} as Record<string, typeof VEHICLE_REMAPS>);
+  }, []);
+
+  const sortedMakes = Object.keys(vehiclesByMake).sort();
+
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
@@ -781,6 +795,35 @@ export default function VehiclePerformanceLookup() {
         description="Look up Stage 1 remap performance gains for your vehicle. Select your make, model, year and engine to see BHP and torque improvements."
         path="/vehicle-performance-lookup"
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Vehicle Performance Lookup Tool",
+        "applicationCategory": "Automotive Business",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "AutoCleanse",
+          "telephone": "08000430609",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "The Old Barn Industrial Estate, Webbers Yard",
+            "addressLocality": "Totnes",
+            "addressRegion": "Devon",
+            "postalCode": "TQ9 6JY",
+            "addressCountry": "GB"
+          }
+        },
+        "description": "Look up Stage 1 remap performance gains for your vehicle. Select your make, model, year and engine to see BHP and torque improvements.",
+        "url": "https://www.auto-cleanse.co.uk/vehicle-performance-lookup",
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "GBP"
+          }
+        }
+      })}} />
 
       <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-[#FF7A00]/5 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#FF7A00]/3 blur-[120px] rounded-full pointer-events-none" />
@@ -1000,6 +1043,50 @@ export default function VehiclePerformanceLookup() {
             </div>
           </div>
         )}
+
+        {/* SEO Directory Links */}
+        <div className="mt-32 pt-16 border-t border-white/5 reveal-container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-black text-white tracking-tighter mb-4 reveal-item">
+              Browse by Manufacturer
+            </h2>
+            <p className="text-white/50 max-w-2xl mx-auto reveal-item">
+              Select your exact make and model to see tailored performance figures and expected Stage 1 gains.
+            </p>
+          </div>
+          
+          <div className="space-y-16">
+            {sortedMakes.map((make) => (
+              <div key={make} className="reveal-item">
+                <h3 className="text-2xl font-bold text-white mb-6 border-b border-white/10 pb-4 flex items-center">
+                  <Car className="text-[#FF7A00] mr-4" size={24} />
+                  {make}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {vehiclesByMake[make].map((vehicle) => (
+                    <a 
+                      key={vehicle.slug} 
+                      href={`/${vehicle.slug}`}
+                      className="p-6 rounded-2xl bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 hover:bg-white/5 transition-all group flex flex-col justify-between h-full"
+                    >
+                      <div>
+                        <h4 className="font-bold text-xl text-white/90 group-hover:text-white transition-colors mb-2">
+                          {vehicle.model}
+                        </h4>
+                        <p className="text-sm text-white/40 mb-4 capitalize">
+                          {vehicle.fuelType} / {vehicle.category}
+                        </p>
+                      </div>
+                      <div className="flex items-center text-[#FF7A00] text-sm font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all">
+                        View Gains <ArrowRight size={14} className="ml-1" />
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
       </div>
     </div>

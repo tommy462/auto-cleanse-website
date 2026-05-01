@@ -1,4 +1,4 @@
-﻿import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation, Routes, Route, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 
@@ -21,7 +21,6 @@ import DPFCleaningPaignton from '../pages/DPFCleaningPaignton';
 import RemappingBooking from '../pages/RemappingBooking';
 import EcuRemappingHub from '../pages/EcuRemappingHub';
 import RemappingLocationsHub from '../pages/RemappingLocationsHub';
-import VehicleRemappingHub from '../pages/VehicleRemappingHub';
 import DynamicPage from '../pages/DynamicPage';
 import BookingSuccess from '../pages/BookingSuccess';
 import BookingCancel from '../pages/BookingCancel';
@@ -68,13 +67,13 @@ export default function PageTransition() {
                     {/* ECU Remapping Architecture */}
                     <Route path="/ecu-remapping" element={<EcuRemappingHub />} />
                     <Route path="/ecu-remapping-locations" element={<RemappingLocationsHub />} />
-                    <Route path="/vehicle-remapping" element={<VehicleRemappingHub />} />
                     <Route path="/vehicle-performance-lookup" element={<VehiclePerformanceLookup />} />
                     <Route path="/diagnostic-matcher" element={<DiagnosticMatcher />} />
                     
                     {/* Redirect old routes */}
                     <Route path="/remapping" element={<Navigate to="/ecu-remapping" replace />} />
                     <Route path="/remapping-devon" element={<Navigate to="/ecu-remapping" replace />} />
+                    <Route path="/vehicle-remapping" element={<Navigate to="/vehicle-performance-lookup" replace />} />
                     
                     <Route path="/remapping-booking" element={<RemappingBooking />} />
                     

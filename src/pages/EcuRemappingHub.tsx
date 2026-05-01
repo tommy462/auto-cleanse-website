@@ -1,4 +1,4 @@
-﻿import { useRef } from 'react';
+import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Zap, Settings2, Car, Truck, Fuel, ArrowRight } from 'lucide-react';
@@ -112,12 +112,12 @@ const EcuRemappingHub = () => {
           </Link>
 
           {/* Directory Hubs */}
-          <Link to="/vehicle-remapping" className="group md:col-span-2 lg:col-span-1 p-8 rounded-[2rem] bg-[#FF7A00]/10 border border-[#FF7A00]/20 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/15 transition-all duration-300 reveal-item">
-            <Car className="text-[#FF7A00] mb-6" size={32} />
-            <h3 className="text-2xl font-bold text-white mb-3">Vehicle Database</h3>
-            <p className="text-white/70 mb-6">Select your exact make and model to see tailored performance figures and expected gains.</p>
+          <Link to="/vehicle-performance-lookup" className="group md:col-span-2 lg:col-span-1 p-8 rounded-[2rem] bg-[#FF7A00]/10 border border-[#FF7A00]/20 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/15 transition-all duration-300 reveal-item">
+            <Zap className="text-[#FF7A00] mb-6" size={32} />
+            <h3 className="text-2xl font-bold text-white mb-3">Check My Vehicle</h3>
+            <p className="text-white/70 mb-6">Enter your reg plate or search manually to see exact Stage 1 BHP, torque and economy gains for your vehicle.</p>
             <div className="flex items-center text-[#FF7A00] font-bold group-hover:translate-x-2 transition-transform">
-              Find Your Vehicle <ArrowRight size={16} className="ml-2" />
+              Look Up My Car <ArrowRight size={16} className="ml-2" />
             </div>
           </Link>
 
