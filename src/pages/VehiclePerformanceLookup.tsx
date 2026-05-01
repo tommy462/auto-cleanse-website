@@ -46,8 +46,8 @@ const parseYearRange = (f: string) => {
 const ccToLitre = (cc: number) => Math.round(cc / 100) / 10;
 const inferFuel = (text: string): 'petrol' | 'diesel' | '' => {
   const t = text.toLowerCase();
-  if (/\btdi\b|\bdiesel\b|\bdci\b|\bcdti\b|\bhdi\b|\bjtd\b/.test(t)) return 'diesel';
-  if (/\btfsi\b|\btsi\b|\bvtec\b|\bfsi\b|\bpetrol\b|\bgdi\b/.test(t)) return 'petrol';
+  if (/\btdi\b|\btdci\b|\btddi\b|\bddi\b|\bdiesel\b|\bdci\b|\bcdti\b|\bhdi\b|\bjtd\b|\bcdi\b|\bcrdi\b|\becoblue\b|\bbluehdi\b|\btdv\b|\bsdv\b|\bd4d\b|\bd5\b/.test(t)) return 'diesel';
+  if (/\btfsi\b|\btsi\b|\bvtec\b|\bfsi\b|\bpetrol\b|\bgdi\b|\becoboost\b|\bgtdi\b/.test(t)) return 'petrol';
   if (/\b\d+\.\d+t\b/i.test(t)) return 'petrol';
   return '';
 };
