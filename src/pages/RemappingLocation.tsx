@@ -8,7 +8,6 @@ import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { getLocationBySlug, REMAP_LOCATIONS } from '../data/remapping-locations';
-import { VEHICLE_REMAPS } from '../data/vehicle-remapping';
 
 const SERVICES = [
   { icon: <Zap size={20} />, title: 'Stage 1 Remap', desc: 'Software-only tune for standard vehicles - the most popular upgrade. More power, better torque, sharper throttle.' },
@@ -215,6 +214,30 @@ export default function RemappingLocation() {
         </section>
       )}
 
+      {/* ── Towing ────────────────────────────────────────────────────────── */}
+      {location.towingContent && (
+        <section className="py-16 border-t border-white/5">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="rounded-3xl bg-[#1A1D22] border border-white/5 p-8 sm:p-10">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/20 flex items-center justify-center shrink-0">
+                  <Truck size={22} className="text-[#FF7A00]" />
+                </div>
+                <div>
+                  <p className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest mb-1">Towing</p>
+                  <h2 className="text-2xl font-black tracking-tighter text-white">Remapping for Towing Vehicles</h2>
+                </div>
+              </div>
+              <div className="space-y-4">
+                {location.towingContent.map((para, i) => (
+                  <p key={i} className="text-white/55 text-sm leading-relaxed">{para}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── Why AutoCleanse ───────────────────────────────────────────────── */}
       <section className="py-16 border-t border-white/5">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -268,38 +291,6 @@ export default function RemappingLocation() {
         </div>
       </section>
 
-      {/* ── Popular Vehicles ────────────────────────────────────────────────── */}
-      <section className="py-16 border-t border-white/5">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <p className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest mb-3">Vehicle Database</p>
-              <h2 className="text-2xl font-black tracking-tighter text-white">
-                Popular Vehicles We Map in {location.name}
-              </h2>
-            </div>
-            <Link to="/vehicle-remapping" className="text-[#FF7A00] text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all shrink-0">
-              View all vehicles <ArrowRight size={14} />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {VEHICLE_REMAPS.slice(0, 4).map((vehicle) => (
-              <Link
-                key={vehicle.slug}
-                to={`/${vehicle.slug}`}
-                className="rounded-2xl bg-[#1A1D22] border border-white/5 p-5 hover:border-[#FF7A00]/30 transition-colors group"
-              >
-                <p className="text-white font-bold text-sm group-hover:text-[#FF7A00] transition-colors mb-2">
-                  {vehicle.fullName}
-                </p>
-                <p className="text-white/40 text-xs flex items-center gap-1">
-                  View performance <ArrowRight size={11} className="text-[#FF7A00] opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
-                </p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
       <section className="py-16 border-t border-white/5">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10">

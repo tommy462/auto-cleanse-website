@@ -16,6 +16,7 @@ export interface RemapLocation {
   nearbyAreas: string[];
   faqs: RemapFaq[];
   relatedSlugs: string[];
+  towingContent?: string[];
 }
 
 export const REMAP_LOCATIONS: RemapLocation[] = [
@@ -1646,6 +1647,12 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       "fleet-vehicle-remapping-devon",
       "diesel-remapping-devon",
       "mobile-ecu-remapping-devon",
+    ],
+    towingContent: [
+      "If your van or 4x4 is used for towing - whether that's a trailer, horsebox, boat or equipment - a remap can make a significant difference. Towing puts additional load on the engine, and factory maps are typically calibrated for the vehicle unladen. The result is that towing at or near maximum capacity can feel strained, with the engine hunting for gears and fuel consumption climbing sharply.",
+      "A remap increases torque output - particularly low-end torque, which is exactly what matters when pulling a heavy trailer from a standstill or maintaining speed on a hill. Diesel vans remapped by AutoCleanse typically gain 40–80Nm of torque, which translates directly into a more composed, controlled towing experience. Less gear-changing, less laboured engine noise, and noticeably better pulling power on Devon's hills and rural A-roads.",
+      "Economy is also improved when towing after a remap. Because the engine isn't working as hard to maintain speed under load, fuel consumption under tow drops - often meaningfully over longer journeys. For Devon tradespeople who regularly tow plant trailers, or horse owners travelling across the county, this adds up over time.",
+      "We remap vans and 4x4s used for towing regularly at AutoCleanse. Whether you're in a Ford Transit with a plant trailer or a Land Rover Discovery with a horsebox, we can calibrate your ECU to better suit the demands of regular towing use.",
     ],
   },
 
