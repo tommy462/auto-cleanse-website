@@ -246,7 +246,15 @@ function BookingConfirmed({ form }: { form: BookingForm }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function RemappingBooking() {
-  const [form, setForm] = useState<BookingForm>(EMPTY);
+  const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  const prefillReg     = searchParams.get('reg') ?? '';
+  const prefillVehicle = searchParams.get('vehicle') ?? '';
+
+  const [form, setForm] = useState<BookingForm>({
+    ...EMPTY,
+    vehicleRegistration: prefillReg.toUpperCase(),
+    vehicleMakeModel: prefillVehicle,
+  });
   const [showWidget, setShowWidget] = useState(false);
   const [widgetLoading, setWidgetLoading] = useState(false);
   const [bookingComplete, setBookingComplete] = useState(false);

@@ -129,8 +129,11 @@ const DiagnosticMatcher = () => {
 
           let score = 40; // Manufacturer baseline
 
-          // Year bonus (+20)
-          if (!isNaN(start) && dvlaYear >= start && dvlaYear <= end) score += 20;
+          // Year bonus (+20) + precision bonus (+10) for recently-started ranges
+          if (!isNaN(start) && dvlaYear >= start && dvlaYear <= end) {
+            score += 20;
+            if (dvlaYear - start <= 5) score += 10;
+          }
 
           // Confirmed fuel match (+20)
           if (rowFuel === dvlaFuel) score += 20;

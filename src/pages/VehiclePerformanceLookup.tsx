@@ -92,7 +92,11 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
           const rowFuel = inferFuel(text);
           if (rowFuel !== '' && rowFuel !== dvlaFuel) return null;
           let score = 40;
-          if (!isNaN(start) && dvlaYear >= start && dvlaYear <= end) score += 20;
+          if (!isNaN(start) && dvlaYear >= start && dvlaYear <= end) {
+            score += 20;
+            // Precision bonus: range started recently → more likely the right generation
+            if (dvlaYear - start <= 5) score += 10;
+          }
           if (rowFuel === dvlaFuel) score += 20;
           const litreMatch = text.match(/(\d\.\d)/);
           if (litreMatch) {
@@ -206,31 +210,46 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
               <p className="text-white/25 text-sm">Try a different registration or use the manual selector below.</p>
             </div>
           ) : (
-            <div className="grid gap-2">
-              {modelGroups.map((group, i) => (
-                <button
-                  key={i}
-                  onClick={() => { setSelectedGroup(group); setStep('specs'); }}
-                  className="bg-[#0A0A0A] border border-white/5 rounded-xl p-4 hover:border-[#FF7A00]/40 transition-all group text-left w-full"
+            <>
+              <div className="grid gap-2">
+                {modelGroups.map((group, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setSelectedGroup(group); setStep('specs'); }}
+                    className="bg-[#0A0A0A] border border-white/5 rounded-xl p-4 hover:border-[#FF7A00]/40 transition-all group text-left w-full"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-7 h-7 rounded-lg bg-[#FF7A00]/10 flex items-center justify-center shrink-0">
+                        <span className="text-[#FF7A00] font-black text-xs">{i + 1}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-white font-black group-hover:text-[#FF7A00] transition-colors leading-none">{group.manufacturer} {group.model}</p>
+                        <p className="text-white/30 text-xs mt-0.5 truncate">{group.topEngine.engine_name}{group.displayYear ? ` · ${group.displayYear}` : ''}</p>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        {parseInt(group.topEngine.bhp_gain) > 0 && (
+                          <span className="text-[10px] font-bold bg-green-500/10 text-green-400 px-2 py-0.5 rounded-full">+{group.topEngine.bhp_gain} BHP</span>
+                        )}
+                        <ArrowRight className="text-white/20 group-hover:text-[#FF7A00] transition-colors" size={14} />
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* Not finding vehicle prompt */}
+              <div className="mt-5 flex items-center justify-center gap-3">
+                <div className="flex-1 h-px bg-white/5" />
+                <a
+                  href="#manual-selector"
+                  className="flex items-center gap-2 text-white/30 hover:text-[#FF7A00] transition-colors text-xs font-bold uppercase tracking-wider whitespace-nowrap"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-lg bg-[#FF7A00]/10 flex items-center justify-center shrink-0">
-                      <span className="text-[#FF7A00] font-black text-xs">{i + 1}</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-white font-black group-hover:text-[#FF7A00] transition-colors leading-none">{group.manufacturer} {group.model}</p>
-                      <p className="text-white/30 text-xs mt-0.5 truncate">{group.topEngine.engine_name}{group.displayYear ? ` · ${group.displayYear}` : ''}</p>
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      {parseInt(group.topEngine.bhp_gain) > 0 && (
-                        <span className="text-[10px] font-bold bg-green-500/10 text-green-400 px-2 py-0.5 rounded-full">+{group.topEngine.bhp_gain} BHP</span>
-                      )}
-                      <ArrowRight className="text-white/20 group-hover:text-[#FF7A00] transition-colors" size={14} />
-                    </div>
-                  </div>
-                </button>
-              ))}
-            </div>
+                  Vehicle not here? Search manually below
+                  <ArrowRight size={12} className="rotate-90" />
+                </a>
+                <div className="flex-1 h-px bg-white/5" />
+              </div>
+            </>
           )}
         </div>
       )}
@@ -252,27 +271,35 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
               const options = parseOptions(engine.options_available);
               return (
                 <div key={i} className="bg-[#0A0A0A] border border-white/5 rounded-xl p-5 hover:border-[#FF7A00]/15 transition-all">
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                    <div>
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
+                    <div className="flex-1 min-w-0">
                       <p className="text-white font-black leading-none">{engine.engine_name}</p>
                       <p className="text-white/25 text-xs mt-0.5">{engine.year}</p>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <div className="text-center">
-                        <p className="text-white/30 text-[10px] uppercase font-bold">Stock</p>
-                        <p className="text-white font-black text-xl leading-none">{engine.stock_bhp}</p>
-                        <p className="text-white/30 text-[10px]">BHP</p>
+                    <div className="flex items-center gap-2 shrink-0 flex-wrap justify-end">
+                      <div className="flex items-center gap-2">
+                        <div className="text-center">
+                          <p className="text-white/30 text-[10px] uppercase font-bold">Stock</p>
+                          <p className="text-white font-black text-xl leading-none">{engine.stock_bhp}</p>
+                          <p className="text-white/30 text-[10px]">BHP</p>
+                        </div>
+                        <ArrowRight className="text-[#FF7A00]" size={15} />
+                        <div className="text-center">
+                          <p className="text-green-400/50 text-[10px] uppercase font-bold">Stage 1</p>
+                          <p className="text-green-400 font-black text-xl leading-none">{engine.stage1_bhp}</p>
+                          <p className="text-green-400/30 text-[10px]">BHP</p>
+                        </div>
+                        <div className="bg-[#FF7A00]/10 border border-[#FF7A00]/20 rounded-lg px-2.5 py-1.5 text-center ml-1">
+                          <p className="text-[#FF7A00] text-[10px] uppercase font-bold">Gain</p>
+                          <p className="text-[#FF7A00] font-black text-lg leading-none">+{engine.bhp_gain}</p>
+                        </div>
                       </div>
-                      <ArrowRight className="text-[#FF7A00]" size={15} />
-                      <div className="text-center">
-                        <p className="text-green-400/50 text-[10px] uppercase font-bold">Stage 1</p>
-                        <p className="text-green-400 font-black text-xl leading-none">{engine.stage1_bhp}</p>
-                        <p className="text-green-400/30 text-[10px]">BHP</p>
-                      </div>
-                      <div className="bg-[#FF7A00]/10 border border-[#FF7A00]/20 rounded-lg px-2.5 py-1.5 text-center ml-1">
-                        <p className="text-[#FF7A00] text-[10px] uppercase font-bold">Gain</p>
-                        <p className="text-[#FF7A00] font-black text-lg leading-none">+{engine.bhp_gain}</p>
-                      </div>
+                      <a
+                        href={`/remapping-booking?reg=${encodeURIComponent(registration)}&vehicle=${encodeURIComponent(`${selectedGroup.manufacturer} ${selectedGroup.model} ${engine.engine_name}`)}`}
+                        className="flex items-center gap-1.5 bg-[#FF7A00] hover:bg-[#FF9500] text-black text-xs font-black px-3 py-2 rounded-lg transition-all"
+                      >
+                        <Zap size={12} /> Book this
+                      </a>
                     </div>
                   </div>
                   <div className="grid grid-cols-3 gap-2 mb-3">
@@ -761,7 +788,7 @@ export default function VehiclePerformanceLookup() {
         </div>
 
         {/* Lookup Card */}
-        <div className="relative p-8 md:p-12 rounded-[2.5rem] bg-[#111111] border border-white/5 shadow-2xl shadow-black mb-10 reveal-container overflow-visible">
+        <div id="manual-selector" className="relative p-8 md:p-12 rounded-[2.5rem] bg-[#111111] border border-white/5 shadow-2xl shadow-black mb-10 reveal-container overflow-visible">
           <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-[#FF7A00]/5 to-transparent pointer-events-none" />
 
           <div className="flex items-center gap-4 mb-10 relative z-10">
