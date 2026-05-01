@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+﻿import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { Check, ChevronDown, Zap } from 'lucide-react';
@@ -97,15 +97,15 @@ const Pricing = () => {
     },
     {
       question: 'What areas do you cover locally for DPF cleaning?',
-      answer: 'We cover a 10-mile radius from Totnes, Devon for our lowest rate. This includes much of South Devon. We also collect from Exeter, Plymouth, Torquay, Paignton, Newton Abbot and across Devon — same-day return guaranteed when collected before 10am.',
+      answer: 'We cover a 10-mile radius from Totnes, Devon for our lowest rate. This includes much of South Devon. We also collect from Exeter, Plymouth, Torquay, Paignton, Newton Abbot and across Devon - same-day return guaranteed when collected before 10am.',
     },
     {
       question: 'How much does ECU remapping cost?',
-      answer: 'Remapping prices are quoted on enquiry as they depend on the vehicle make, model, engine, and the type of map required (Stage 1, Stage 2, or custom). Contact us for a personalised quote — there is no obligation.',
+      answer: 'Remapping prices are quoted on enquiry as they depend on the vehicle make, model, engine, and the type of map required (Stage 1, Stage 2, or custom). Contact us for a personalised quote - there is no obligation.',
     },
     {
       question: 'Is ECU remapping included in the DPF prices shown?',
-      answer: 'No, the prices shown above are for DPF cleaning only. ECU remapping is a separate service — please contact us or visit our remapping page for details and to book a consultation.',
+      answer: 'No, the prices shown above are for DPF cleaning only. ECU remapping is a separate service - please contact us or visit our remapping page for details and to book a consultation.',
     },
     {
       question: 'How do you test filters?',
@@ -135,9 +135,9 @@ const Pricing = () => {
         "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://www.auto-cleanse.co.uk" },
         "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
         "offers": [
-          { "@type": "Offer", "name": "DPF Cleaning — Within 10 Miles of Totnes", "priceCurrency": "GBP", "price": "210.00", "description": "Professional DPF cleaning with collection and same-day return within 10 miles of Totnes, Devon." },
-          { "@type": "Offer", "name": "DPF Cleaning — Outside 10 Miles / Nationwide", "priceCurrency": "GBP", "price": "230.00", "description": "DPF cleaning for customers outside 10 miles of Totnes or nationwide postal service." },
-          { "@type": "Offer", "name": "DPF Cleaning — HGV & Plant", "priceCurrency": "GBP", "price": "299.00", "description": "Professional DPF cleaning for HGVs, plant machinery and commercial vehicles." },
+          { "@type": "Offer", "name": "DPF Cleaning - Within 10 Miles of Totnes", "priceCurrency": "GBP", "price": "210.00", "description": "Professional DPF cleaning with collection and same-day return within 10 miles of Totnes, Devon." },
+          { "@type": "Offer", "name": "DPF Cleaning - Outside 10 Miles / Nationwide", "priceCurrency": "GBP", "price": "230.00", "description": "DPF cleaning for customers outside 10 miles of Totnes or nationwide postal service." },
+          { "@type": "Offer", "name": "DPF Cleaning - HGV & Plant", "priceCurrency": "GBP", "price": "299.00", "description": "Professional DPF cleaning for HGVs, plant machinery and commercial vehicles." },
           { "@type": "Offer", "name": "ECU Remapping", "priceCurrency": "GBP", "price": "0", "description": "Stage 1 and Stage 2 ECU remapping in Devon. Contact for a personalised quote." }
         ]
       })}} />
@@ -246,7 +246,7 @@ const Pricing = () => {
               ECU <span className="text-[#FF7A00]">Remapping</span>
             </h2>
             <p className="text-white/50 text-lg font-medium max-w-xl mx-auto">
-              Remapping prices are quoted on enquiry — every vehicle is different. Contact us for a fast, no-obligation quote.
+              Remapping prices are quoted on enquiry - every vehicle is different. Contact us for a fast, no-obligation quote.
             </p>
           </div>
 

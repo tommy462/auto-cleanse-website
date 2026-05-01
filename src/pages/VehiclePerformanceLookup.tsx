@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+﻿import { useState, useEffect, useRef, useCallback } from 'react';
 import Papa from 'papaparse';
 import SEO from '../components/SEO';
 import { Activity, AlertTriangle, ArrowLeft, ArrowRight, CheckCircle, ChevronDown, Info, Zap, TrendingUp, Settings, Car, Search, Check } from 'lucide-react';
@@ -264,7 +264,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
             <ArrowLeft size={13} /> Back to models
           </button>
           <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
-            {selectedGroup.manufacturer} {selectedGroup.model} — {selectedGroup.engines.length} variant{selectedGroup.engines.length !== 1 ? 's' : ''}
+            {selectedGroup.manufacturer} {selectedGroup.model} - {selectedGroup.engines.length} variant{selectedGroup.engines.length !== 1 ? 's' : ''}
           </p>
           <div className="space-y-3">
             {selectedGroup.engines.sort((a, b) => b.score - a.score).map((engine, i) => {
@@ -763,7 +763,7 @@ export default function VehiclePerformanceLookup() {
         <div className="text-center mb-20 reveal-container">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7A00]/10 border border-[#FF7A00]/20 text-[#FF7A00] text-sm font-semibold mb-8 reveal-item">
             <Search size={14} />
-            Stage 1 Remap Data — 85 Manufacturers
+            Stage 1 Remap Data - 85 Manufacturers
           </div>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
             {splitText('Vehicle Performance', 'text-white')}
@@ -978,7 +978,7 @@ export default function VehiclePerformanceLookup() {
   );
 }
 
-// Larger version for result card header — no lazy load, slightly different sizing
+// Larger version for result card header - no lazy load, slightly different sizing
 function BrandLogoLarge({ make }: { make: string }) {
   const [failed, setFailed] = useState(false);
   const domain = LOGO_DOMAINS[make];

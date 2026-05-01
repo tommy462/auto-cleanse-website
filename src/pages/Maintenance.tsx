@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Calendar, DollarSign, Fuel, AlertTriangle, Truck, Settings, CheckCircle, Clock } from 'lucide-react';
 import gsap from 'gsap';

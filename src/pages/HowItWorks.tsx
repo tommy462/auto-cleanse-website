@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Search, Settings, Wind, TestTube, Truck } from 'lucide-react';
 import gsap from 'gsap';
@@ -72,7 +72,7 @@ const HowItWorks = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="How DPF Cleaning Works | AutoCleanse Process" description="Our 5-step professional DPF cleaning process — aqueous treatment, high-pressure flush, flow testing and same-day return across Devon." path="/how-it-works" />
+      <SEO title="How DPF Cleaning Works | AutoCleanse Process" description="Our 5-step professional DPF cleaning process - aqueous treatment, high-pressure flush, flow testing and same-day return across Devon." path="/how-it-works" />
 
       {/* Background ambient light */}
       <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-[#FF7A00]/5 blur-[120px] rounded-[100%] pointer-events-none"></div>

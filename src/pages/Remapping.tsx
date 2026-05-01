@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Zap, Shield, BarChart3, Settings2, ArrowRight, Phone, CheckCircle2 } from 'lucide-react';
 import gsap from 'gsap';
@@ -120,7 +120,7 @@ const Remapping = () => {
       icon: BarChart3,
       title: 'Custom & Fleet Maps',
       tag: 'Commercial',
-      description: 'Bespoke calibration for commercial operators, agricultural machinery, and specialist vehicles. Economy, power, or towing bias — tailored to your exact use case.',
+      description: 'Bespoke calibration for commercial operators, agricultural machinery, and specialist vehicles. Economy, power, or towing bias - tailored to your exact use case.',
       highlights: [
         'Fleet and commercial operators',
         'Agricultural and plant machinery',
@@ -133,7 +133,7 @@ const Remapping = () => {
 
   const benefits = [
     { icon: Zap, title: 'More Power', description: 'Unlock hidden performance that manufacturers deliberately restrict from the factory map.' },
-    { icon: BarChart3, title: 'Better Economy', description: 'A well-calibrated map can improve MPG, reducing fuel costs — especially on diesel vehicles.' },
+    { icon: BarChart3, title: 'Better Economy', description: 'A well-calibrated map can improve MPG, reducing fuel costs - especially on diesel vehicles.' },
     { icon: Shield, title: 'Safer Calibration', description: 'Every map is written within safe mechanical limits. We do not push components beyond their design tolerance.' },
     { icon: Settings2, title: 'Sharper Response', description: 'Reduced turbo lag and more linear throttle response make the vehicle more predictable and enjoyable to drive.' },
   ];
@@ -142,7 +142,7 @@ const Remapping = () => {
     <div ref={container} className="bg-[#0A0A0A] min-h-screen relative">
       <SEO
         title="ECU Remapping | Stage 1, Stage 2 & Custom Maps"
-        description="Professional ECU remapping in Devon. Stage 1 and Stage 2 maps for cars, vans, HGVs and commercial vehicles. Improved power, torque, and fuel economy — safely calibrated."
+        description="Professional ECU remapping in Devon. Stage 1 and Stage 2 maps for cars, vans, HGVs and commercial vehicles. Improved power, torque, and fuel economy - safely calibrated."
         path="/remapping"
       />
 
@@ -168,7 +168,7 @@ const Remapping = () => {
             </h1>
             <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto mb-8 rounded-full" />
             <p className="text-xl md:text-2xl text-white/60 max-w-4xl mx-auto leading-relaxed font-medium reveal-item">
-              Stage 1 &amp; 2 maps tailored to your vehicle. More power, better economy, sharper response —
+              Stage 1 &amp; 2 maps tailored to your vehicle. More power, better economy, sharper response -
               every remap written within safe mechanical limits.
             </p>
             <div className="flex flex-wrap gap-4 justify-center mt-10 reveal-item">
@@ -219,7 +219,7 @@ const Remapping = () => {
                 Choose Your <span className="text-[#FF7A00]">Map</span>
               </h2>
               <p className="text-white/50 text-lg font-medium max-w-2xl mx-auto">
-                From a simple road-legal Stage 1 to fully custom commercial calibrations — we have a map for every vehicle and goal.
+                From a simple road-legal Stage 1 to fully custom commercial calibrations - we have a map for every vehicle and goal.
               </p>
             </div>
 

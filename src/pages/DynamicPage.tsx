@@ -1,4 +1,4 @@
-import { useParams, Navigate } from 'react-router-dom';
+﻿import { useParams, Navigate } from 'react-router-dom';
 import { getLocationBySlug } from '../data/remapping-locations';
 import { getVehicleBySlug } from '../data/vehicle-remapping';
 import RemappingLocation from './RemappingLocation';

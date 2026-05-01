@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Settings, Shield, Truck, ArrowRight } from 'lucide-react';
@@ -70,7 +70,7 @@ const DPFCleaningExeter = () => {
           <div className="max-w-4xl mx-auto reveal-item">
             <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium">
               AutoCleanse provides professional DPF cleaning for Exeter drivers, garages and fleet operators.
-              We collect from Exeter, deep clean your filter at our Totnes workshop, and return it — often the same day.
+              We collect from Exeter, deep clean your filter at our Totnes workshop, and return it - often the same day.
             </p>
           </div>
         </div>
@@ -86,7 +86,7 @@ const DPFCleaningExeter = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Exeter is within our regular collection route, making professional DPF cleaning fast and convenient for Exeter-based garages, fleet operators and individual vehicle owners. We collect your filter, transport it to our Totnes workshop, and complete a full deep clean using our METclean XL system — restoring it to 98% of original flow capacity.
+                Exeter is within our regular collection route, making professional DPF cleaning fast and convenient for Exeter-based garages, fleet operators and individual vehicle owners. We collect your filter, transport it to our Totnes workshop, and complete a full deep clean using our METclean XL system - restoring it to 98% of original flow capacity.
               </p>
               <p>
                 For Exeter customers who prefer to drop off directly, our workshop at The Old Barn Industrial Estate, Totnes is a straightforward drive down the A38. Filters dropped off before 10am are typically returned the same working day.
@@ -100,11 +100,11 @@ const DPFCleaningExeter = () => {
               <div className="w-16 h-16 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/30 flex items-center justify-center mr-6 group-hover:scale-110 group-hover:bg-[#FF7A00]/20 transition-all duration-500 shadow-[0_0_20px_rgba(255,122,0,0.2)]">
                 <Shield size={28} className="text-[#FF7A00]" />
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">DPF Cleaning vs Replacement — Exeter</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">DPF Cleaning vs Replacement - Exeter</h2>
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                A replacement DPF can cost Exeter drivers anywhere from £500 to over £2,000 fitted — and many aftermarket units don't match OEM performance. Professional cleaning by AutoCleanse typically costs £210–£230 and restores the original filter to factory specification, including full flow testing and a detailed report.
+                A replacement DPF can cost Exeter drivers anywhere from £500 to over £2,000 fitted - and many aftermarket units don't match OEM performance. Professional cleaning by AutoCleanse typically costs £210–£230 and restores the original filter to factory specification, including full flow testing and a detailed report.
               </p>
               <p>
                 For Exeter garages managing customer vehicles, our trade-friendly process minimises downtime and provides a cost-effective, documented solution that keeps vehicles on the road and customers satisfied.
@@ -143,7 +143,7 @@ const DPFCleaningExeter = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-4 text-lg md:text-xl font-medium relative z-10">
               <p>
-                As well as Exeter itself, we regularly collect from Exmouth, Topsham, Crediton, Honiton, Sidmouth and the wider East Devon area. If you're not sure whether we cover your location, call us on 0800 043 0609 — we'll confirm quickly.
+                As well as Exeter itself, we regularly collect from Exmouth, Topsham, Crediton, Honiton, Sidmouth and the wider East Devon area. If you're not sure whether we cover your location, call us on 0800 043 0609 - we'll confirm quickly.
               </p>
               <p>
                 We also offer <Link to="/remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Exeter drivers looking to improve performance or fuel economy alongside their DPF service.
@@ -157,7 +157,7 @@ const DPFCleaningExeter = () => {
               {[
                 { to: '/services', label: 'Full range of filter cleaning services' },
                 { to: '/postal-dpf', label: 'Nationwide postal DPF cleaning' },
-                { to: '/remapping', label: 'ECU remapping — Stage 1 & Stage 2' },
+                { to: '/remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
                 { to: '/dpf-cleaning-devon', label: 'DPF cleaning across Devon' },
                 { to: '/why-clean', label: 'Why cleaning beats replacement' },
               ].map(({ to, label }) => (

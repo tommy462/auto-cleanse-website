@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Shield, Zap } from 'lucide-react';
 import gsap from 'gsap';
@@ -64,7 +64,7 @@ const About = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="About AutoCleanse | DPF & Remapping Devon" description="AutoCleanse — Devon's DPF cleaning and ECU remapping specialists, based in Totnes. Trusted by trade garages, fleets and drivers across the South West." path="/about" />
+      <SEO title="About AutoCleanse | DPF & Remapping Devon" description="AutoCleanse - Devon's DPF cleaning and ECU remapping specialists, based in Totnes. Trusted by trade garages, fleets and drivers across the South West." path="/about" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["LocalBusiness", "AutomotiveService"],

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft, ArrowRight, Car, MapPin, Wrench, CheckCircle,
@@ -8,7 +8,7 @@ import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
 import { BOOKING_CONFIG, REMAP_SERVICES, REMAP_OPTIONS, BASE_PRICES, type RemapServiceValue } from '../config/booking';
 
-// Make.com webhook — receives combined booking record once Calendly confirms
+// Make.com webhook - receives combined booking record once Calendly confirms
 const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/uw0b9gab1m4qdj1zhs4m4mkkn9kt5fva';
 
 // Tell TypeScript about the Calendly global the embed script adds to window
@@ -25,7 +25,7 @@ declare global {
   }
 }
 
-// Calendly event type URL — update the slug if you create a different event type
+// Calendly event type URL - update the slug if you create a different event type
 const CALENDLY_BASE = 'https://calendly.com/auto-cleanse-info/30min';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -166,7 +166,7 @@ function BookingConfirmed({ form }: { form: BookingForm }) {
               {
                 label: 'Type',
                 value: form.bookingType === 'mobile'
-                  ? '🚗 Mobile — we come to you'
+                  ? '�- Mobile - we come to you'
                   : '🏪 Workshop visit',
               },
               {
@@ -210,7 +210,7 @@ function BookingConfirmed({ form }: { form: BookingForm }) {
             <li className="flex gap-3">
               <span className="w-5 h-5 rounded-full bg-[#FF7A00]/20 text-[#FF7A00] text-[10px] font-black flex items-center justify-center shrink-0 mt-0.5">3</span>
               {form.bookingType === 'mobile'
-                ? "We'll arrive at your address at the booked time — please make sure the vehicle is accessible."
+                ? "We'll arrive at your address at the booked time - please make sure the vehicle is accessible."
                 : 'Bring your vehicle to us at the booked time with a full tank of fuel.'}
             </li>
             <li className="flex gap-3">
@@ -275,7 +275,7 @@ export default function RemappingBooking() {
     fetch('/api/blocked-dates')
       .then((r) => r.ok ? r.json() : { dates: [] })
       .then((data) => setBlockedDates(data.dates ?? []))
-      .catch(() => {}); // fail silently — don't break the booking form
+      .catch(() => {}); // fail silently - don't break the booking form
   }, []);
 
   // ── Load Calendly embed script ──────────────────────────────────────────
@@ -297,7 +297,7 @@ export default function RemappingBooking() {
   //   1. Show our own confirmation UI
   //   2. POST a combined record (our form data + Calendly URIs) to Make.com
   //
-  // The Calendly event payload contains `event.uri` and `invitee.uri` — Make.com
+  // The Calendly event payload contains `event.uri` and `invitee.uri` - Make.com
   // can call the Calendly API with these to retrieve name / email / time / etc.
   useEffect(() => {
     const handleMessage = async (e: MessageEvent) => {
@@ -313,7 +313,7 @@ export default function RemappingBooking() {
 
       const quotedPrice = calcQuotedPrice(f.serviceType, f.bookingType, f.selectedOptions);
 
-      // Build the shared payload once — sent to both Make.com and our dashboard API
+      // Build the shared payload once - sent to both Make.com and our dashboard API
       const bookingPayload = {
         type: 'remap_booking_confirmed',
         source: 'calendly-inline',
@@ -341,7 +341,7 @@ export default function RemappingBooking() {
         calendlyInviteeUri: payload.invitee?.uri ?? null,
       };
 
-      // Fire both in parallel — failures are non-blocking
+      // Fire both in parallel - failures are non-blocking
       await Promise.allSettled([
         fetch(MAKE_WEBHOOK_URL, {
           method: 'POST',
@@ -384,7 +384,7 @@ export default function RemappingBooking() {
   // Poll until the Calendly script has loaded, then call initInlineWidget.
   // Mobile connections can take 30+ seconds to load the script, so we keep
   // polling every 500ms rather than giving up after a fixed set of retries.
-  // A MutationObserver watches for the iframe Calendly injects — once it
+  // A MutationObserver watches for the iframe Calendly injects - once it
   // appears we know rendering is done and we hide the loading state.
   useEffect(() => {
     if (!showWidget) return;
@@ -443,7 +443,7 @@ export default function RemappingBooking() {
   return (
     <div ref={topRef} className="pt-28 pb-20 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title="Book a Remap | ECU Remapping Booking — AutoCleanse"
+        title="Book a Remap | ECU Remapping Booking - AutoCleanse"
         description="Book your ECU remapping appointment online. Choose your service, pick a slot, and pay the £50 deposit to confirm. Devon and surrounding areas."
         path="/remapping-booking"
       />
@@ -471,7 +471,7 @@ export default function RemappingBooking() {
             <span className="text-[#FF7A00]">Details.</span>
           </h1>
           <p className="text-white/50 text-base font-medium leading-relaxed max-w-md">
-            Tell us about your vehicle and what you need — then choose a slot and pay
+            Tell us about your vehicle and what you need - then choose a slot and pay
             the {BOOKING_CONFIG.depositAmountDisplay} deposit to confirm.
           </p>
         </div>
@@ -535,7 +535,7 @@ export default function RemappingBooking() {
                 value: 'mobile' as const,
                 icon: <MapPin size={18} />,
                 title: 'Mobile Booking',
-                desc: `We come to you — within ${BOOKING_CONFIG.maxServiceRadiusMiles} miles of ${BOOKING_CONFIG.workshopAddressDisplay}`,
+                desc: `We come to you - within ${BOOKING_CONFIG.maxServiceRadiusMiles} miles of ${BOOKING_CONFIG.workshopAddressDisplay}`,
               },
             ].map(({ value, icon, title, desc }) => {
               const selected = form.bookingType === value;
@@ -562,7 +562,7 @@ export default function RemappingBooking() {
             })}
           </div>
 
-          {/* Mobile address — revealed when mobile is selected */}
+          {/* Mobile address - revealed when mobile is selected */}
           {form.bookingType === 'mobile' && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 pt-6 border-t border-white/5">
               <div className="sm:col-span-2">
@@ -710,7 +710,7 @@ export default function RemappingBooking() {
               </span>
               Add-on Options
             </h2>
-            <p className="text-white/30 text-xs mb-5 ml-9">Select any extras you'd like included — tick all that apply</p>
+            <p className="text-white/30 text-xs mb-5 ml-9">Select any extras you'd like included - tick all that apply</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {REMAP_OPTIONS.map((opt) => {
                 const checked = form.selectedOptions.includes(opt.value);
@@ -760,13 +760,13 @@ export default function RemappingBooking() {
               })}
             </div>
 
-            {/* Legal disclaimer — shown when any off-road-only option is selected */}
+            {/* Legal disclaimer - shown when any off-road-only option is selected */}
             {hasOffRoadOptions && (
               <div className="mt-5 rounded-2xl bg-amber-500/8 border border-amber-500/30 p-5">
                 <div className="flex gap-3 mb-3">
                   <AlertTriangle size={18} className="text-amber-400 shrink-0 mt-0.5" />
                   <p className="text-amber-300 text-xs font-black uppercase tracking-widest">
-                    Important Legal Notice — Please Read
+                    Important Legal Notice - Please Read
                   </p>
                 </div>
                 <div className="text-white/60 text-xs leading-relaxed space-y-2 mb-4">
@@ -881,7 +881,7 @@ export default function RemappingBooking() {
                   </div>
                   <p className="text-white/50 text-xs leading-relaxed mb-3 ml-7">
                     The following dates are currently unavailable for bookings. Please avoid
-                    selecting them in the calendar below — if you do, we'll be in touch to reschedule.
+                    selecting them in the calendar below - if you do, we'll be in touch to reschedule.
                   </p>
                   <ul className="ml-7 space-y-1">
                     {blockedDates.map(({ date, reason }) => {
@@ -892,7 +892,7 @@ export default function RemappingBooking() {
                       return (
                         <li key={date} className="text-xs text-red-300 font-medium">
                           {label}
-                          {reason && <span className="text-white/30 font-normal ml-1.5">— {reason}</span>}
+                          {reason && <span className="text-white/30 font-normal ml-1.5">- {reason}</span>}
                         </li>
                       );
                     })}
@@ -900,7 +900,7 @@ export default function RemappingBooking() {
                 </div>
               )}
 
-              {/* Summary strip — shows what was entered in step 1 */}
+              {/* Summary strip - shows what was entered in step 1 */}
               <div className="rounded-2xl bg-[#1A1D22] border border-[#FF7A00]/20 px-5 py-4 mb-6">
                 <div className="flex flex-wrap gap-x-6 gap-y-2 items-start">
                   <div>
@@ -916,7 +916,7 @@ export default function RemappingBooking() {
                       Type
                     </span>
                     <span className="text-white text-sm font-medium">
-                      {form.bookingType === 'mobile' ? '🚗 Mobile' : '🏪 Workshop'}
+                      {form.bookingType === 'mobile' ? '�- Mobile' : '🏪 Workshop'}
                     </span>
                   </div>
                   <div>
@@ -948,9 +948,9 @@ export default function RemappingBooking() {
                 </div>
               </div>
 
-              {/* Calendly inline widget — initialised programmatically via initInlineWidget */}
+              {/* Calendly inline widget - initialised programmatically via initInlineWidget */}
               <div className="rounded-3xl overflow-hidden border border-white/5 mb-6 relative">
-                {/* Loading overlay — shown until Calendly iframe appears */}
+                {/* Loading overlay - shown until Calendly iframe appears */}
                 {widgetLoading && (
                   <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 bg-[#1A1D22]" style={{ minHeight: '400px' }}>
                     <Loader2 size={32} className="animate-spin text-[#FF7A00]" />

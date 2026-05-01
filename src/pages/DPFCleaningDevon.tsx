@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Settings, Shield, Truck, ArrowRight } from 'lucide-react';
@@ -47,12 +47,12 @@ const DPFCleaningDevon = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning Devon | Same-Day Collection" description="Expert DPF cleaning across Devon — Exeter, Plymouth, Torquay, Newton Abbot & beyond. Local collection, deep clean and same-day return. Based in Totnes." path="/dpf-cleaning-devon" />
+      <SEO title="DPF Cleaning Devon | Same-Day Collection" description="Expert DPF cleaning across Devon - Exeter, Plymouth, Torquay, Newton Abbot & beyond. Local collection, deep clean and same-day return. Based in Totnes." path="/dpf-cleaning-devon" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],
         "name": "AutoCleanse",
-        "description": "Professional DPF cleaning across Devon — Exeter, Plymouth, Torquay, Paignton, Newton Abbot and all Devon towns. Same-day return available.",
+        "description": "Professional DPF cleaning across Devon - Exeter, Plymouth, Torquay, Paignton, Newton Abbot and all Devon towns. Same-day return available.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-devon",
         "telephone": "0800 043 0609",
         "email": "info@autocleanse.co.uk",

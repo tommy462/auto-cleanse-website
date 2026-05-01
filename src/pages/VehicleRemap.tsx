@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   MapPin, Phone, Zap, ArrowRight, CheckCircle, ChevronDown,
@@ -204,7 +204,7 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
                 Professional ECU Tuning in Devon
               </h2>
               <p className="text-white/50 text-sm leading-relaxed mb-6">
-                Every remap we perform includes a full pre-tune diagnostic check to ensure your {vehicle.make} is healthy before we start. We don't flash generic files — we use safe, proven calibrations tailored to your engine's specific hardware.
+                Every remap we perform includes a full pre-tune diagnostic check to ensure your {vehicle.make} is healthy before we start. We don't flash generic files - we use safe, proven calibrations tailored to your engine's specific hardware.
               </p>
               <div className="space-y-4">
                 {[

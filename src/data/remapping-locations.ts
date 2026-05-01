@@ -1,4 +1,4 @@
-export interface RemapFaq {
+﻿export interface RemapFaq {
   q: string;
   a: string;
 }
@@ -26,10 +26,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Plymouth | Stage 1 & Mobile Remapping | AutoCleanse",
     metaDescription:
-      "Professional ECU remapping in Plymouth — Stage 1, Stage 2, economy and mobile remapping. Cars, vans, diesels and 4x4s. Book online or call AutoCleanse.",
+      "Professional ECU remapping in Plymouth - Stage 1, Stage 2, economy and mobile remapping. Cars, vans, diesels and 4x4s. Book online or call AutoCleanse.",
     h1: "ECU Remapping in Plymouth",
     intro:
-      "Looking for ECU remapping in Plymouth? AutoCleanse provides professional ECU tuning across Plymouth and the surrounding area — from Stage 1 performance remaps to economy tunes for diesel vans and fleet vehicles. Whether you want more power, better fuel economy or a custom map to match your modifications, our experienced technicians handle it all. We offer both workshop appointments at our Totnes base and mobile remapping where we come directly to you in Plymouth — so there's no need to travel if you'd prefer we come to you.",
+      "Looking for ECU remapping in Plymouth? AutoCleanse provides professional ECU tuning across Plymouth and the surrounding area - from Stage 1 performance remaps to economy tunes for diesel vans and fleet vehicles. Whether you want more power, better fuel economy or a custom map to match your modifications, our experienced technicians handle it all. We offer both workshop appointments at our Totnes base and mobile remapping where we come directly to you in Plymouth - so there's no need to travel if you'd prefer we come to you.",
     distanceNote: "approximately 25 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -45,11 +45,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile ECU remapping in Plymouth?",
-        a: "Yes — we offer mobile remapping across Plymouth and surrounding areas including Plympton, Plymstock and Saltash. We'll come to your home or workplace, so you don't need to drive to us. Mobile bookings are available subject to slot availability.",
+        a: "Yes - we offer mobile remapping across Plymouth and surrounding areas including Plympton, Plymstock and Saltash. We'll come to your home or workplace, so you don't need to drive to us. Mobile bookings are available subject to slot availability.",
       },
       {
         q: "How far is AutoCleanse from Plymouth?",
-        a: "Our workshop is based in Totnes, South Devon — approximately 25 miles from Plymouth city centre. Most customers from Plymouth either book a mobile visit or make the short drive to our workshop for the appointment.",
+        a: "Our workshop is based in Totnes, South Devon - approximately 25 miles from Plymouth city centre. Most customers from Plymouth either book a mobile visit or make the short drive to our workshop for the appointment.",
       },
       {
         q: "How long does a Stage 1 remap take in Plymouth?",
@@ -57,15 +57,15 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Can you remap diesel vans in Plymouth?",
-        a: "Absolutely. We regularly remap diesel vans including Transit, Sprinter, Crafter, Vivaro and Trafic variants. A diesel van remap can improve both performance and fuel economy — particularly useful for tradespeople and delivery drivers covering high mileage.",
+        a: "Absolutely. We regularly remap diesel vans including Transit, Sprinter, Crafter, Vivaro and Trafic variants. A diesel van remap can improve both performance and fuel economy - particularly useful for tradespeople and delivery drivers covering high mileage.",
       },
       {
         q: "Is ECU remapping safe for my car?",
-        a: "When carried out professionally, ECU remapping is safe and reliable. We only work within the safe operating limits of your engine, and all our remaps are backed by a diagnostic check. We don't use generic off-the-shelf files — every map is applied carefully to your specific vehicle.",
+        a: "When carried out professionally, ECU remapping is safe and reliable. We only work within the safe operating limits of your engine, and all our remaps are backed by a diagnostic check. We don't use generic off-the-shelf files - every map is applied carefully to your specific vehicle.",
       },
       {
         q: "Do you cover Saltash and the Cornwall border areas?",
-        a: "Yes — our mobile remapping service covers Saltash and areas just across the Tamar. If you're unsure whether we cover your exact location, give us a call and we'll confirm.",
+        a: "Yes - our mobile remapping service covers Saltash and areas just across the Tamar. If you're unsure whether we cover your exact location, give us a call and we'll confirm.",
       },
     ],
     relatedSlugs: [
@@ -82,10 +82,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Exeter | Stage 1 Tuning & Mobile Remapping | AutoCleanse",
     metaDescription:
-      "ECU remapping in Exeter — Stage 1, Stage 2, economy remaps and mobile tuning. Cars, vans and diesels covered. AutoCleanse, based in Totnes, Devon.",
+      "ECU remapping in Exeter - Stage 1, Stage 2, economy remaps and mobile tuning. Cars, vans and diesels covered. AutoCleanse, based in Totnes, Devon.",
     h1: "ECU Remapping in Exeter",
     intro:
-      "AutoCleanse provides professional ECU remapping to customers across Exeter and East Devon. From Stage 1 power upgrades to diesel economy remaps for company vans, our technicians deliver results you can feel from the first drive. Exeter sits at the heart of Devon's road network, and many of our customers travel the A38 or A380 to our Totnes workshop — or choose our mobile remapping service for added convenience. We cover the full Exeter area including Heavitree, Alphington, Topsham and the surrounding villages.",
+      "AutoCleanse provides professional ECU remapping to customers across Exeter and East Devon. From Stage 1 power upgrades to diesel economy remaps for company vans, our technicians deliver results you can feel from the first drive. Exeter sits at the heart of Devon's road network, and many of our customers travel the A38 or A380 to our Totnes workshop - or choose our mobile remapping service for added convenience. We cover the full Exeter area including Heavitree, Alphington, Topsham and the surrounding villages.",
     distanceNote: "approximately 27 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -101,7 +101,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Exeter?",
-        a: "Yes — we offer mobile ECU remapping across Exeter and surrounding areas including Exmouth, Topsham and Crediton. We come to your home or place of work, meaning no time off work or long journeys required.",
+        a: "Yes - we offer mobile ECU remapping across Exeter and surrounding areas including Exmouth, Topsham and Crediton. We come to your home or place of work, meaning no time off work or long journeys required.",
       },
       {
         q: "What's the best route from Exeter to your Totnes workshop?",
@@ -109,11 +109,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Can you remap petrol cars as well as diesels?",
-        a: "Yes — we remap both petrol and diesel vehicles. Stage 1 remaps on modern turbocharged petrol engines can yield very noticeable gains in power and throttle response. We also handle naturally aspirated vehicles where gains are more modest but still worthwhile.",
+        a: "Yes - we remap both petrol and diesel vehicles. Stage 1 remaps on modern turbocharged petrol engines can yield very noticeable gains in power and throttle response. We also handle naturally aspirated vehicles where gains are more modest but still worthwhile.",
       },
       {
         q: "Do you cover Exmouth and Topsham?",
-        a: "Yes — Exmouth, Topsham, Cranbrook and the wider East Devon area are all within our mobile service coverage. We regularly visit customers across these areas.",
+        a: "Yes - Exmouth, Topsham, Cranbrook and the wider East Devon area are all within our mobile service coverage. We regularly visit customers across these areas.",
       },
       {
         q: "Will a remap affect my car's warranty?",
@@ -137,10 +137,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "Torbay",
     metaTitle: "ECU Remapping Torquay | Stage 1 & Mobile Tuning | AutoCleanse",
     metaDescription:
-      "ECU remapping in Torquay and Torbay — Stage 1, economy remaps and mobile tuning for cars, vans and 4x4s. AutoCleanse, South Devon.",
+      "ECU remapping in Torquay and Torbay - Stage 1, economy remaps and mobile tuning for cars, vans and 4x4s. AutoCleanse, South Devon.",
     h1: "ECU Remapping in Torquay",
     intro:
-      "AutoCleanse offers professional ECU remapping to customers across Torquay, Torbay and the surrounding South Devon coastline. Whether you're after a Stage 1 performance remap to sharpen up your daily drive, an economy tune to cut fuel costs on a diesel van, or a full Stage 2 map to match your hardware upgrades, we've got you covered. Our Totnes workshop is just 15 miles from Torquay, making it an easy trip — or opt for our mobile remapping service and we'll come straight to you.",
+      "AutoCleanse offers professional ECU remapping to customers across Torquay, Torbay and the surrounding South Devon coastline. Whether you're after a Stage 1 performance remap to sharpen up your daily drive, an economy tune to cut fuel costs on a diesel van, or a full Stage 2 map to match your hardware upgrades, we've got you covered. Our Totnes workshop is just 15 miles from Torquay, making it an easy trip - or opt for our mobile remapping service and we'll come straight to you.",
     distanceNote: "approximately 15 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -156,27 +156,27 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Torquay?",
-        a: "Yes — we provide mobile ECU remapping across Torquay and the wider Torbay area, including Paignton and Brixham. We'll come to your home or business, saving you the drive to our workshop.",
+        a: "Yes - we provide mobile ECU remapping across Torquay and the wider Torbay area, including Paignton and Brixham. We'll come to your home or business, saving you the drive to our workshop.",
       },
       {
         q: "How far is AutoCleanse from Torquay?",
-        a: "Our workshop in Totnes is approximately 15 miles from Torquay centre — around 25 minutes via the A385. Many Torquay customers find the journey straightforward and enjoy a quick coffee while the work is completed.",
+        a: "Our workshop in Totnes is approximately 15 miles from Torquay centre - around 25 minutes via the A385. Many Torquay customers find the journey straightforward and enjoy a quick coffee while the work is completed.",
       },
       {
         q: "Can you remap 4x4s and SUVs?",
-        a: "Absolutely — we remap a wide range of 4x4s and SUVs including Land Rover Defender, Discovery, Range Rover, BMW X5, VW Touareg and many more. Both diesel and petrol variants are catered for.",
+        a: "Absolutely - we remap a wide range of 4x4s and SUVs including Land Rover Defender, Discovery, Range Rover, BMW X5, VW Touareg and many more. Both diesel and petrol variants are catered for.",
       },
       {
         q: "Will a Stage 1 remap improve my fuel economy?",
-        a: "For diesel vehicles in particular, a Stage 1 economy-focused remap can significantly improve fuel efficiency — especially at motorway speeds and for vehicles used in stop-start traffic. We tailor the map to your driving style and goals.",
+        a: "For diesel vehicles in particular, a Stage 1 economy-focused remap can significantly improve fuel efficiency - especially at motorway speeds and for vehicles used in stop-start traffic. We tailor the map to your driving style and goals.",
       },
       {
         q: "Is remapping legal on UK roads?",
-        a: "Yes — ECU remapping is legal in the UK. The modification must be declared to your insurance company, as it may affect your premium. Some insurers are now very familiar with remapping and have specialist performance vehicle policies available.",
+        a: "Yes - ECU remapping is legal in the UK. The modification must be declared to your insurance company, as it may affect your premium. Some insurers are now very familiar with remapping and have specialist performance vehicle policies available.",
       },
       {
         q: "Do you cover Brixham and Paignton too?",
-        a: "Yes — Brixham, Paignton, Goodrington and the wider Torbay area are all covered by both our workshop appointments and mobile remapping service.",
+        a: "Yes - Brixham, Paignton, Goodrington and the wider Torbay area are all covered by both our workshop appointments and mobile remapping service.",
       },
     ],
     relatedSlugs: [
@@ -193,10 +193,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Paignton | Stage 1 Tuning & Mobile Remap | AutoCleanse",
     metaDescription:
-      "Professional ECU remapping in Paignton — Stage 1, economy and performance tuning for cars and vans. Mobile remapping available. AutoCleanse, Devon.",
+      "Professional ECU remapping in Paignton - Stage 1, economy and performance tuning for cars and vans. Mobile remapping available. AutoCleanse, Devon.",
     h1: "ECU Remapping in Paignton",
     intro:
-      "AutoCleanse serves Paignton and the Torbay area with professional ECU remapping for cars, vans and commercial vehicles. Based in Totnes — just 12 miles away — we're well placed to handle remaps for Paignton customers quickly and efficiently. Whether you're looking to unlock more power from a turbocharged petrol, reduce diesel consumption on your van, or get a bespoke Stage 2 map to match performance upgrades, we'll get your vehicle running at its best. Mobile remapping is also available if you'd prefer we come to you.",
+      "AutoCleanse serves Paignton and the Torbay area with professional ECU remapping for cars, vans and commercial vehicles. Based in Totnes - just 12 miles away - we're well placed to handle remaps for Paignton customers quickly and efficiently. Whether you're looking to unlock more power from a turbocharged petrol, reduce diesel consumption on your van, or get a bespoke Stage 2 map to match performance upgrades, we'll get your vehicle running at its best. Mobile remapping is also available if you'd prefer we come to you.",
     distanceNote: "approximately 12 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -212,7 +212,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you do mobile remapping in Paignton?",
-        a: "Yes — we offer mobile ECU remapping in Paignton and across the surrounding Torbay area. We carry all the necessary equipment to carry out a full remap at your home or workplace.",
+        a: "Yes - we offer mobile ECU remapping in Paignton and across the surrounding Torbay area. We carry all the necessary equipment to carry out a full remap at your home or workplace.",
       },
       {
         q: "What services do you offer in the Paignton area?",
@@ -220,7 +220,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Can you remap my diesel van in Paignton?",
-        a: "Absolutely — diesel van remapping is one of our most popular services. We remap Transits, Sprinters, Crafters, Viveths and most other commercial vans, improving pulling power and fuel economy.",
+        a: "Absolutely - diesel van remapping is one of our most popular services. We remap Transits, Sprinters, Crafters, Viveths and most other commercial vans, improving pulling power and fuel economy.",
       },
       {
         q: "How long does a remap take?",
@@ -228,7 +228,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Is AutoCleanse local to Paignton?",
-        a: "Our workshop is in Totnes — just 12 miles from Paignton, roughly a 20-minute drive via the A385. We also offer mobile remapping if you'd prefer we come to you in Paignton.",
+        a: "Our workshop is in Totnes - just 12 miles from Paignton, roughly a 20-minute drive via the A385. We also offer mobile remapping if you'd prefer we come to you in Paignton.",
       },
     ],
     relatedSlugs: [
@@ -245,10 +245,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Newton Abbot | Stage 1 & Economy Remaps | AutoCleanse",
     metaDescription:
-      "ECU remapping in Newton Abbot — Stage 1, Stage 2, economy and mobile remapping for cars and vans. Just 8 miles from Totnes. AutoCleanse Devon.",
+      "ECU remapping in Newton Abbot - Stage 1, Stage 2, economy and mobile remapping for cars and vans. Just 8 miles from Totnes. AutoCleanse Devon.",
     h1: "ECU Remapping in Newton Abbot",
     intro:
-      "Newton Abbot is one of our busiest service areas — just 8 miles from our Totnes workshop and sitting right at the crossroads of South Devon's road network. AutoCleanse provides ECU remapping for cars, vans, 4x4s and commercial vehicles across Newton Abbot and the surrounding towns. Stage 1 and Stage 2 remaps, economy diesel tunes and custom fleet mapping are all available. With easy access via the A381 and A380, getting to us is simple — or we can come to you with our mobile service.",
+      "Newton Abbot is one of our busiest service areas - just 8 miles from our Totnes workshop and sitting right at the crossroads of South Devon's road network. AutoCleanse provides ECU remapping for cars, vans, 4x4s and commercial vehicles across Newton Abbot and the surrounding towns. Stage 1 and Stage 2 remaps, economy diesel tunes and custom fleet mapping are all available. With easy access via the A381 and A380, getting to us is simple - or we can come to you with our mobile service.",
     distanceNote: "approximately 8 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -264,27 +264,27 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "How close is AutoCleanse to Newton Abbot?",
-        a: "Our Totnes workshop is just 8 miles from Newton Abbot — approximately 15 minutes via the A381. Newton Abbot is one of our closest major service areas, and we regularly serve customers from across the town and surrounding villages.",
+        a: "Our Totnes workshop is just 8 miles from Newton Abbot - approximately 15 minutes via the A381. Newton Abbot is one of our closest major service areas, and we regularly serve customers from across the town and surrounding villages.",
       },
       {
         q: "Do you offer mobile remapping in Newton Abbot?",
-        a: "Yes — we offer mobile ECU remapping across Newton Abbot and nearby areas including Kingsteignton, Bovey Tracey and Teignmouth. We come to your preferred location with all the equipment needed to complete the remap on-site.",
+        a: "Yes - we offer mobile ECU remapping across Newton Abbot and nearby areas including Kingsteignton, Bovey Tracey and Teignmouth. We come to your preferred location with all the equipment needed to complete the remap on-site.",
       },
       {
         q: "Can you remap a turbocharged petrol car?",
-        a: "Absolutely — modern turbocharged petrols respond very well to remapping. A Stage 1 remap on a petrol turbo can unlock significant improvements in power, torque and throttle response without any hardware changes needed.",
+        a: "Absolutely - modern turbocharged petrols respond very well to remapping. A Stage 1 remap on a petrol turbo can unlock significant improvements in power, torque and throttle response without any hardware changes needed.",
       },
       {
         q: "What van brands do you remap?",
-        a: "We remap virtually all modern van makes — Ford Transit, Mercedes Sprinter, VW Crafter, Vauxhall Vivaro, Renault Trafic, Peugeot Boxer, Citroen Relay, Fiat Ducato and more. Diesel vans see the best results from remapping.",
+        a: "We remap virtually all modern van makes - Ford Transit, Mercedes Sprinter, VW Crafter, Vauxhall Vivaro, Renault Trafic, Peugeot Boxer, Citroen Relay, Fiat Ducato and more. Diesel vans see the best results from remapping.",
       },
       {
         q: "Will remapping void my insurance?",
-        a: "You must declare a remap to your insurance provider as it is a modification. Some insurers will add a small premium, while others — particularly specialist performance or commercial vehicle insurers — treat it as standard. Always declare to stay fully covered.",
+        a: "You must declare a remap to your insurance provider as it is a modification. Some insurers will add a small premium, while others - particularly specialist performance or commercial vehicle insurers - treat it as standard. Always declare to stay fully covered.",
       },
       {
         q: "Do you cover Bovey Tracey and Ashburton?",
-        a: "Yes — Bovey Tracey, Ashburton, Buckfastleigh and the surrounding Dartmoor edge villages are all within our service area. Contact us to confirm availability for mobile appointments.",
+        a: "Yes - Bovey Tracey, Ashburton, Buckfastleigh and the surrounding Dartmoor edge villages are all within our service area. Contact us to confirm availability for mobile appointments.",
       },
     ],
     relatedSlugs: [
@@ -301,10 +301,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Torbay | Torquay, Paignton & Brixham | AutoCleanse",
     metaDescription:
-      "ECU remapping across Torbay — covering Torquay, Paignton and Brixham. Stage 1, Stage 2, economy and mobile remapping. AutoCleanse, South Devon.",
+      "ECU remapping across Torbay - covering Torquay, Paignton and Brixham. Stage 1, Stage 2, economy and mobile remapping. AutoCleanse, South Devon.",
     h1: "ECU Remapping in Torbay",
     intro:
-      "AutoCleanse provides ECU remapping services across the entire Torbay area — covering Torquay, Paignton and Brixham — as well as the villages and coastal communities in between. Whether you're a Torquay tradesperson looking to cut fuel costs on your diesel van, a Paignton driver wanting more performance from a turbo petrol, or a Brixham fleet operator after consistent maps across multiple vehicles, we handle it all. Our Totnes workshop is a short drive inland, or we can come to you with our mobile remapping service.",
+      "AutoCleanse provides ECU remapping services across the entire Torbay area - covering Torquay, Paignton and Brixham - as well as the villages and coastal communities in between. Whether you're a Torquay tradesperson looking to cut fuel costs on your diesel van, a Paignton driver wanting more performance from a turbo petrol, or a Brixham fleet operator after consistent maps across multiple vehicles, we handle it all. Our Totnes workshop is a short drive inland, or we can come to you with our mobile remapping service.",
     distanceNote: "approximately 13 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -320,7 +320,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you cover the whole Torbay area?",
-        a: "Yes — we cover Torquay, Paignton and Brixham as well as surrounding villages like Kingswear, Churston Ferrers, Galmpton and Stoke Gabriel. Both mobile remapping and workshop appointments are available.",
+        a: "Yes - we cover Torquay, Paignton and Brixham as well as surrounding villages like Kingswear, Churston Ferrers, Galmpton and Stoke Gabriel. Both mobile remapping and workshop appointments are available.",
       },
       {
         q: "What types of vehicles do you remap in Torbay?",
@@ -328,11 +328,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Is mobile remapping available in Torbay?",
-        a: "Yes — mobile remapping is available across Torbay. We'll bring all the necessary equipment to your driveway, workplace car park or any suitable location and complete the remap on-site.",
+        a: "Yes - mobile remapping is available across Torbay. We'll bring all the necessary equipment to your driveway, workplace car park or any suitable location and complete the remap on-site.",
       },
       {
         q: "What are the benefits of a Stage 1 remap?",
-        a: "A Stage 1 remap optimises your engine's ECU software without requiring any hardware modifications. Typical benefits include increased power output (often 15–30%), improved torque, better throttle response and — particularly for diesel vehicles — improved fuel economy.",
+        a: "A Stage 1 remap optimises your engine's ECU software without requiring any hardware modifications. Typical benefits include increased power output (often 15–30%), improved torque, better throttle response and - particularly for diesel vehicles - improved fuel economy.",
       },
       {
         q: "How do I book a remap for my Torbay vehicle?",
@@ -352,10 +352,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "South Devon",
     metaTitle: "ECU Remapping Totnes | Local Workshop | AutoCleanse",
     metaDescription:
-      "ECU remapping in Totnes — AutoCleanse is based here. Stage 1, Stage 2, economy remaps and DPF solutions. Local workshop, professional service.",
+      "ECU remapping in Totnes - AutoCleanse is based here. Stage 1, Stage 2, economy remaps and DPF solutions. Local workshop, professional service.",
     h1: "ECU Remapping in Totnes",
     intro:
-      "AutoCleanse is based right here in Totnes — so if you're looking for ECU remapping locally, you've found us. Our workshop on the edge of Totnes handles everything from Stage 1 performance remaps to economy diesel tunes, DPF software solutions and full Stage 2 custom maps. As a Totnes-based business, we serve the surrounding South Hams area daily — from Dartington and Buckfastleigh to Newton Abbot and Kingsbridge. Local, professional and with genuine expertise in modern ECU tuning.",
+      "AutoCleanse is based right here in Totnes - so if you're looking for ECU remapping locally, you've found us. Our workshop on the edge of Totnes handles everything from Stage 1 performance remaps to economy diesel tunes, DPF software solutions and full Stage 2 custom maps. As a Totnes-based business, we serve the surrounding South Hams area daily - from Dartington and Buckfastleigh to Newton Abbot and Kingsbridge. Local, professional and with genuine expertise in modern ECU tuning.",
     distanceNote: "our workshop is based in Totnes",
     mobileAvailable: true,
     nearbyAreas: [
@@ -371,11 +371,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Where is your Totnes workshop?",
-        a: "We're based at The Old Barn Industrial Estate, Webbers Yard, Totnes TQ9. We're easy to find with good parking on-site — just call ahead or book online to confirm your slot.",
+        a: "We're based at The Old Barn Industrial Estate, Webbers Yard, Totnes TQ9. We're easy to find with good parking on-site - just call ahead or book online to confirm your slot.",
       },
       {
         q: "Do you offer mobile remapping around Totnes?",
-        a: "Yes — even as a Totnes-based business, we offer mobile remapping for customers who can't easily get to our workshop. We regularly cover Dartington, Buckfastleigh, Ashburton and surrounding villages.",
+        a: "Yes - even as a Totnes-based business, we offer mobile remapping for customers who can't easily get to our workshop. We regularly cover Dartington, Buckfastleigh, Ashburton and surrounding villages.",
       },
       {
         q: "What services are available at your Totnes workshop?",
@@ -387,7 +387,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Do you remap camper vans and motorhomes near Totnes?",
-        a: "Yes — we've remapped a wide variety of motorhome and camper van base vehicles including Fiat Ducato, VW Crafter, Mercedes Sprinter and Peugeot Boxer conversions. A diesel remap can meaningfully improve pulling power when towing or loaded.",
+        a: "Yes - we've remapped a wide variety of motorhome and camper van base vehicles including Fiat Ducato, VW Crafter, Mercedes Sprinter and Peugeot Boxer conversions. A diesel remap can meaningfully improve pulling power when towing or loaded.",
       },
     ],
     relatedSlugs: [
@@ -403,10 +403,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "South Hams",
     metaTitle: "ECU Remapping Ivybridge | Stage 1 & Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Ivybridge and South Hams — Stage 1, economy remaps and mobile tuning. AutoCleanse covers Ivybridge, Modbury, Ugborough and surrounding areas.",
+      "ECU remapping in Ivybridge and South Hams - Stage 1, economy remaps and mobile tuning. AutoCleanse covers Ivybridge, Modbury, Ugborough and surrounding areas.",
     h1: "ECU Remapping in Ivybridge",
     intro:
-      "Ivybridge sits at the southern edge of Dartmoor with easy access to both Plymouth and South Hams — making it a natural hub for customers across this part of Devon. AutoCleanse provides ECU remapping for Ivybridge customers both at our Totnes workshop and via our mobile service. Stage 1 remaps, diesel economy tunes and commercial van mapping are all available, with a pre and post diagnostic check included as standard. Whether you're commuting to Plymouth, working across South Hams or covering Dartmoor, we'll get your vehicle performing at its best.",
+      "Ivybridge sits at the southern edge of Dartmoor with easy access to both Plymouth and South Hams - making it a natural hub for customers across this part of Devon. AutoCleanse provides ECU remapping for Ivybridge customers both at our Totnes workshop and via our mobile service. Stage 1 remaps, diesel economy tunes and commercial van mapping are all available, with a pre and post diagnostic check included as standard. Whether you're commuting to Plymouth, working across South Hams or covering Dartmoor, we'll get your vehicle performing at its best.",
     distanceNote: "approximately 15 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -422,11 +422,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Ivybridge?",
-        a: "Yes — we cover Ivybridge and the surrounding South Hams villages with our mobile remapping service. We'll come to your home, farm or business premises with all the kit to complete the remap on-site.",
+        a: "Yes - we cover Ivybridge and the surrounding South Hams villages with our mobile remapping service. We'll come to your home, farm or business premises with all the kit to complete the remap on-site.",
       },
       {
         q: "How far is Ivybridge from your workshop?",
-        a: "Ivybridge is approximately 15 miles from our Totnes workshop — around 20–25 minutes via the A38. The A38 dual carriageway makes the route very straightforward.",
+        a: "Ivybridge is approximately 15 miles from our Totnes workshop - around 20–25 minutes via the A38. The A38 dual carriageway makes the route very straightforward.",
       },
       {
         q: "Can you remap agricultural and farm vehicles near Ivybridge?",
@@ -434,11 +434,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "What's the difference between Stage 1 and Stage 2?",
-        a: "Stage 1 is a software-only remap for a standard, unmodified vehicle. Stage 2 is for vehicles with hardware upgrades — such as an uprated intercooler, intake or exhaust — and extracts more performance to match those modifications. We'll advise which is right for your car.",
+        a: "Stage 1 is a software-only remap for a standard, unmodified vehicle. Stage 2 is for vehicles with hardware upgrades - such as an uprated intercooler, intake or exhaust - and extracts more performance to match those modifications. We'll advise which is right for your car.",
       },
       {
         q: "Do you cover South Brent and Modbury?",
-        a: "Yes — South Brent, Modbury, Ugborough, Ermington and the wider rural South Hams area are all within our mobile remapping coverage. Call or book online to check availability.",
+        a: "Yes - South Brent, Modbury, Ugborough, Ermington and the wider rural South Hams area are all within our mobile remapping coverage. Call or book online to check availability.",
       },
     ],
     relatedSlugs: [
@@ -454,10 +454,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "West Devon",
     metaTitle: "ECU Remapping Tavistock | Stage 1 & Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Tavistock and West Devon — Stage 1, economy and performance remaps for cars and vans. Mobile remapping available. AutoCleanse Devon.",
+      "ECU remapping in Tavistock and West Devon - Stage 1, economy and performance remaps for cars and vans. Mobile remapping available. AutoCleanse Devon.",
     h1: "ECU Remapping in Tavistock",
     intro:
-      "AutoCleanse provides ECU remapping to customers across Tavistock and West Devon, covering everything from Stage 1 performance remaps on turbocharged cars to economy diesel tunes for vans and commercial vehicles. Tavistock is a popular base for businesses and tradespeople working across Dartmoor and into Plymouth — areas where strong engine performance and good fuel economy really count. Our Totnes workshop is roughly 25 miles away, or we can bring our mobile remapping service directly to you in Tavistock.",
+      "AutoCleanse provides ECU remapping to customers across Tavistock and West Devon, covering everything from Stage 1 performance remaps on turbocharged cars to economy diesel tunes for vans and commercial vehicles. Tavistock is a popular base for businesses and tradespeople working across Dartmoor and into Plymouth - areas where strong engine performance and good fuel economy really count. Our Totnes workshop is roughly 25 miles away, or we can bring our mobile remapping service directly to you in Tavistock.",
     distanceNote: "approximately 25 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -473,23 +473,23 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Tavistock?",
-        a: "Yes — mobile remapping is available in Tavistock and across the West Devon area including Yelverton, Bere Alston and Horrabridge. We'll come to you with everything needed to complete the remap.",
+        a: "Yes - mobile remapping is available in Tavistock and across the West Devon area including Yelverton, Bere Alston and Horrabridge. We'll come to you with everything needed to complete the remap.",
       },
       {
         q: "How do I get to your workshop from Tavistock?",
-        a: "From Tavistock, the quickest route is via Plymouth and then the A38 east towards Totnes — approximately 45 minutes. Alternatively, you can take the B3357 across Dartmoor, which is a scenic but slightly longer route.",
+        a: "From Tavistock, the quickest route is via Plymouth and then the A38 east towards Totnes - approximately 45 minutes. Alternatively, you can take the B3357 across Dartmoor, which is a scenic but slightly longer route.",
       },
       {
         q: "Can you remap Land Rovers and off-road vehicles?",
-        a: "Yes — Land Rover Defender, Discovery and Range Rover remapping is something we do regularly. Both TDI and SDV engines respond well to remapping, and West Devon's terrain is exactly the kind of environment where the extra torque really shows.",
+        a: "Yes - Land Rover Defender, Discovery and Range Rover remapping is something we do regularly. Both TDI and SDV engines respond well to remapping, and West Devon's terrain is exactly the kind of environment where the extra torque really shows.",
       },
       {
         q: "Does a remap improve towing ability?",
-        a: "Yes — one of the most common reasons customers in rural areas remap their vehicles is to improve towing performance. A diesel remap increases torque significantly, making towing trailers, horse boxes and livestock transporters considerably easier.",
+        a: "Yes - one of the most common reasons customers in rural areas remap their vehicles is to improve towing performance. A diesel remap increases torque significantly, making towing trailers, horse boxes and livestock transporters considerably easier.",
       },
       {
         q: "Do you cover Okehampton and the Dartmoor area?",
-        a: "Yes — Okehampton, Princetown, Yelverton and the wider Dartmoor area are within our mobile service coverage. Contact us to confirm slot availability for your location.",
+        a: "Yes - Okehampton, Princetown, Yelverton and the wider Dartmoor area are within our mobile service coverage. Contact us to confirm slot availability for your location.",
       },
     ],
     relatedSlugs: [
@@ -506,10 +506,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Kingsbridge | South Hams Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Kingsbridge and South Hams — Stage 1, economy remaps and mobile tuning. Covering Salcombe, Dartmouth, Modbury and surrounding areas.",
+      "ECU remapping in Kingsbridge and South Hams - Stage 1, economy remaps and mobile tuning. Covering Salcombe, Dartmouth, Modbury and surrounding areas.",
     h1: "ECU Remapping in Kingsbridge",
     intro:
-      "Kingsbridge sits at the heart of the South Hams — one of Devon's most scenic and rural areas, where reliable, efficient vehicles really matter. AutoCleanse provides ECU remapping across Kingsbridge and the surrounding South Hams coastline, with both workshop appointments and mobile remapping available. From Stage 1 performance tunes to diesel economy remaps for working vehicles, we serve farmers, tradespeople and everyday drivers across this part of Devon. Our Totnes workshop is just 14 miles away via the A381.",
+      "Kingsbridge sits at the heart of the South Hams - one of Devon's most scenic and rural areas, where reliable, efficient vehicles really matter. AutoCleanse provides ECU remapping across Kingsbridge and the surrounding South Hams coastline, with both workshop appointments and mobile remapping available. From Stage 1 performance tunes to diesel economy remaps for working vehicles, we serve farmers, tradespeople and everyday drivers across this part of Devon. Our Totnes workshop is just 14 miles away via the A381.",
     distanceNote: "approximately 14 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -525,27 +525,27 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Kingsbridge?",
-        a: "Yes — mobile remapping is available across Kingsbridge and the South Hams area including Salcombe, Modbury, Loddiswell and surrounding villages. We come to your home, farm or business.",
+        a: "Yes - mobile remapping is available across Kingsbridge and the South Hams area including Salcombe, Modbury, Loddiswell and surrounding villages. We come to your home, farm or business.",
       },
       {
         q: "How far is AutoCleanse from Kingsbridge?",
-        a: "Our Totnes workshop is approximately 14 miles from Kingsbridge via the A381 — around 25 minutes in normal traffic. It's a simple and scenic drive through South Hams.",
+        a: "Our Totnes workshop is approximately 14 miles from Kingsbridge via the A381 - around 25 minutes in normal traffic. It's a simple and scenic drive through South Hams.",
       },
       {
         q: "Can you remap diesel pickups and 4x4s used in farming?",
-        a: "Absolutely — diesel pickups such as Ford Ranger, Toyota Hilux, Mitsubishi L200 and Isuzu D-Max all respond well to remapping. Increased torque is particularly useful for working vehicles in agricultural and rural settings.",
+        a: "Absolutely - diesel pickups such as Ford Ranger, Toyota Hilux, Mitsubishi L200 and Isuzu D-Max all respond well to remapping. Increased torque is particularly useful for working vehicles in agricultural and rural settings.",
       },
       {
         q: "Does remapping improve fuel economy as well as performance?",
-        a: "Yes — we can tune specifically for economy if that's your priority. Diesel vehicles covering high rural mileage often see noticeable fuel savings after a properly calibrated economy remap.",
+        a: "Yes - we can tune specifically for economy if that's your priority. Diesel vehicles covering high rural mileage often see noticeable fuel savings after a properly calibrated economy remap.",
       },
       {
         q: "Do you cover Salcombe and Dartmouth?",
-        a: "Yes — Salcombe, Dartmouth, Torcross and the South Devon coast are all within our mobile remapping coverage. Access to some areas can be tricky so let us know your location when booking and we'll confirm.",
+        a: "Yes - Salcombe, Dartmouth, Torcross and the South Devon coast are all within our mobile remapping coverage. Access to some areas can be tricky so let us know your location when booking and we'll confirm.",
       },
       {
         q: "Do I need to declare a remap to DVLA?",
-        a: "No — ECU remapping does not need to be declared to the DVLA. However, you must declare it to your insurance provider as it constitutes a modification to your vehicle.",
+        a: "No - ECU remapping does not need to be declared to the DVLA. However, you must declare it to your insurance provider as it constitutes a modification to your vehicle.",
       },
     ],
     relatedSlugs: [
@@ -563,10 +563,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "Torbay",
     metaTitle: "ECU Remapping Brixham | Stage 1 & Mobile Tuning | AutoCleanse",
     metaDescription:
-      "ECU remapping in Brixham — Stage 1, economy and mobile remapping for cars, vans and diesel vehicles. AutoCleanse, South Devon.",
+      "ECU remapping in Brixham - Stage 1, economy and mobile remapping for cars, vans and diesel vehicles. AutoCleanse, South Devon.",
     h1: "ECU Remapping in Brixham",
     intro:
-      "AutoCleanse provides professional ECU remapping to customers across Brixham and the southern Torbay coastline. Whether you're a local tradesperson looking to cut diesel costs on your van, or a driver wanting more performance from a turbocharged petrol, we've got the right solution. Brixham is just 18 miles from our Totnes workshop via the A3022 — an easy journey — or we can bring our mobile remapping service directly to you.",
+      "AutoCleanse provides professional ECU remapping to customers across Brixham and the southern Torbay coastline. Whether you're a local tradesperson looking to cut diesel costs on your van, or a driver wanting more performance from a turbocharged petrol, we've got the right solution. Brixham is just 18 miles from our Totnes workshop via the A3022 - an easy journey - or we can bring our mobile remapping service directly to you.",
     distanceNote: "approximately 18 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -581,15 +581,15 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Brixham?",
-        a: "Yes — we cover Brixham and the wider Torbay south coast with mobile remapping. We'll come to your home or workplace with all the equipment needed to carry out the full remap on-site.",
+        a: "Yes - we cover Brixham and the wider Torbay south coast with mobile remapping. We'll come to your home or workplace with all the equipment needed to carry out the full remap on-site.",
       },
       {
         q: "How far is Brixham from your Totnes workshop?",
-        a: "Brixham is approximately 18 miles from our Totnes base — around 30 minutes via the A3022 and A385. Alternatively, many customers combine the workshop visit with a trip through the South Hams.",
+        a: "Brixham is approximately 18 miles from our Totnes base - around 30 minutes via the A3022 and A385. Alternatively, many customers combine the workshop visit with a trip through the South Hams.",
       },
       {
         q: "Can you remap diesel fishing and marine support vehicles?",
-        a: "Yes — we remap road vehicles used in all trades including those supporting the fishing and marine industries. Transit vans, pickups and 4x4s are all covered.",
+        a: "Yes - we remap road vehicles used in all trades including those supporting the fishing and marine industries. Transit vans, pickups and 4x4s are all covered.",
       },
       {
         q: "What's included with a Stage 1 remap?",
@@ -597,7 +597,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Do you cover Kingswear and Dartmouth from Brixham?",
-        a: "Yes — Kingswear, Dartmouth and the surrounding coastal villages are all within our mobile service coverage. Contact us to confirm slot availability.",
+        a: "Yes - Kingswear, Dartmouth and the surrounding coastal villages are all within our mobile service coverage. Contact us to confirm slot availability.",
       },
     ],
     relatedSlugs: [
@@ -614,10 +614,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Teignmouth | Stage 1 & Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Teignmouth — Stage 1, economy remaps and mobile tuning for cars and vans. AutoCleanse Devon covers Teignmouth and surrounding areas.",
+      "ECU remapping in Teignmouth - Stage 1, economy remaps and mobile tuning for cars and vans. AutoCleanse Devon covers Teignmouth and surrounding areas.",
     h1: "ECU Remapping in Teignmouth",
     intro:
-      "AutoCleanse serves Teignmouth and the surrounding South Devon estuary area with professional ECU remapping for cars, vans and commercial vehicles. Teignmouth is conveniently positioned between Exeter and Torbay, making it an easy stop on the way to our Totnes workshop — or we can come to you with our mobile remapping service. Stage 1 performance tunes, economy diesel remaps and commercial van mapping are all available.",
+      "AutoCleanse serves Teignmouth and the surrounding South Devon estuary area with professional ECU remapping for cars, vans and commercial vehicles. Teignmouth is conveniently positioned between Exeter and Torbay, making it an easy stop on the way to our Totnes workshop - or we can come to you with our mobile remapping service. Stage 1 performance tunes, economy diesel remaps and commercial van mapping are all available.",
     distanceNote: "approximately 16 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -632,11 +632,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Teignmouth?",
-        a: "Yes — we provide mobile ECU remapping in Teignmouth and nearby areas including Shaldon, Dawlish and Bishopsteignton. We carry all the equipment needed to complete the job at your location.",
+        a: "Yes - we provide mobile ECU remapping in Teignmouth and nearby areas including Shaldon, Dawlish and Bishopsteignton. We carry all the equipment needed to complete the job at your location.",
       },
       {
         q: "Can a remap improve fuel economy on the A380?",
-        a: "Absolutely — many customers in the Teignmouth area use the A380 daily to commute to Exeter or Newton Abbot. A diesel economy remap can noticeably reduce fuel consumption on this kind of regular dual carriageway driving.",
+        a: "Absolutely - many customers in the Teignmouth area use the A380 daily to commute to Exeter or Newton Abbot. A diesel economy remap can noticeably reduce fuel consumption on this kind of regular dual carriageway driving.",
       },
       {
         q: "How long does a workshop appointment take?",
@@ -644,11 +644,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Do you remap both petrol and diesel in Teignmouth?",
-        a: "Yes — we handle petrol and diesel remaps for cars and vans across the Teignmouth area. Turbocharged engines of both types respond well to remapping.",
+        a: "Yes - we handle petrol and diesel remaps for cars and vans across the Teignmouth area. Turbocharged engines of both types respond well to remapping.",
       },
       {
         q: "Do you cover Dawlish and Shaldon?",
-        a: "Yes — Dawlish, Shaldon, Bishopsteignton and the wider Teign Estuary area are all within our mobile service coverage.",
+        a: "Yes - Dawlish, Shaldon, Bishopsteignton and the wider Teign Estuary area are all within our mobile service coverage.",
       },
     ],
     relatedSlugs: [
@@ -664,10 +664,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "South Devon",
     metaTitle: "ECU Remapping Dawlish | Mobile & Workshop Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Dawlish — Stage 1, economy and mobile remapping for cars, vans and diesel vehicles. AutoCleanse, Devon.",
+      "ECU remapping in Dawlish - Stage 1, economy and mobile remapping for cars, vans and diesel vehicles. AutoCleanse, Devon.",
     h1: "ECU Remapping in Dawlish",
     intro:
-      "AutoCleanse provides ECU remapping for customers in Dawlish and the surrounding coastal South Devon area. Whether you're commuting to Exeter, working across the Exe Estuary or covering local trade routes, a professional remap can make a real difference to how your vehicle performs. We're based in Totnes — about 20 miles from Dawlish — and offer both workshop appointments and mobile remapping across the area.",
+      "AutoCleanse provides ECU remapping for customers in Dawlish and the surrounding coastal South Devon area. Whether you're commuting to Exeter, working across the Exe Estuary or covering local trade routes, a professional remap can make a real difference to how your vehicle performs. We're based in Totnes - about 20 miles from Dawlish - and offer both workshop appointments and mobile remapping across the area.",
     distanceNote: "approximately 20 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -682,11 +682,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Dawlish?",
-        a: "Yes — mobile remapping is available in Dawlish and nearby areas including Dawlish Warren, Starcross and Kenton. We'll come to you at a time that suits.",
+        a: "Yes - mobile remapping is available in Dawlish and nearby areas including Dawlish Warren, Starcross and Kenton. We'll come to you at a time that suits.",
       },
       {
         q: "Is Dawlish within your service area?",
-        a: "Yes — Dawlish and the Exe Estuary area are well within our service range. It's approximately 20 miles from our Totnes workshop, and mobile bookings are available for even more convenience.",
+        a: "Yes - Dawlish and the Exe Estuary area are well within our service range. It's approximately 20 miles from our Totnes workshop, and mobile bookings are available for even more convenience.",
       },
       {
         q: "What are the most popular remaps for Dawlish customers?",
@@ -694,11 +694,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Can you remap a motorhome or camper van near Dawlish?",
-        a: "Yes — Fiat Ducato, VW Crafter, Mercedes Sprinter and Peugeot Boxer base vehicles are all remappable. A diesel remap adds useful torque for coastal and hillier Devon roads.",
+        a: "Yes - Fiat Ducato, VW Crafter, Mercedes Sprinter and Peugeot Boxer base vehicles are all remappable. A diesel remap adds useful torque for coastal and hillier Devon roads.",
       },
       {
         q: "Do you cover Starcross and Exminster?",
-        a: "Yes — Starcross, Exminster, Kenton and the wider Exe Estuary villages are covered by our mobile service.",
+        a: "Yes - Starcross, Exminster, Kenton and the wider Exe Estuary villages are covered by our mobile service.",
       },
     ],
     relatedSlugs: [
@@ -715,10 +715,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Ashburton | Dartmoor Edge Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Ashburton — Stage 1, economy remaps and mobile tuning near Dartmoor. AutoCleanse covers Ashburton, Buckfastleigh and surrounding areas.",
+      "ECU remapping in Ashburton - Stage 1, economy remaps and mobile tuning near Dartmoor. AutoCleanse covers Ashburton, Buckfastleigh and surrounding areas.",
     h1: "ECU Remapping in Ashburton",
     intro:
-      "Sitting on the southern edge of Dartmoor, Ashburton is a gateway for vehicles covering both the moor and the South Hams beyond. AutoCleanse provides ECU remapping for Ashburton customers with easy access via the A38 to our Totnes workshop — just 12 miles away — or through our mobile remapping service for those who'd prefer we come to them. Stage 1 remaps, economy diesel tunes and 4x4 mapping are particularly popular with customers in this area.",
+      "Sitting on the southern edge of Dartmoor, Ashburton is a gateway for vehicles covering both the moor and the South Hams beyond. AutoCleanse provides ECU remapping for Ashburton customers with easy access via the A38 to our Totnes workshop - just 12 miles away - or through our mobile remapping service for those who'd prefer we come to them. Stage 1 remaps, economy diesel tunes and 4x4 mapping are particularly popular with customers in this area.",
     distanceNote: "approximately 12 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -733,23 +733,23 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Ashburton?",
-        a: "Yes — mobile remapping is available in Ashburton and the surrounding Dartmoor edge villages. We regularly cover this area and can visit your home, farm or business.",
+        a: "Yes - mobile remapping is available in Ashburton and the surrounding Dartmoor edge villages. We regularly cover this area and can visit your home, farm or business.",
       },
       {
         q: "Are you close to Ashburton?",
-        a: "Very close — our Totnes workshop is just 12 miles from Ashburton, around 15–20 minutes via the A38. Ashburton is one of our nearest service areas.",
+        a: "Very close - our Totnes workshop is just 12 miles from Ashburton, around 15–20 minutes via the A38. Ashburton is one of our nearest service areas.",
       },
       {
         q: "Is remapping good for Dartmoor driving?",
-        a: "Yes — the hills and varied terrain of Dartmoor mean that improved torque from a remap is immediately noticeable. Both diesel and turbocharged petrol vehicles benefit from the extra pulling power on steep grades.",
+        a: "Yes - the hills and varied terrain of Dartmoor mean that improved torque from a remap is immediately noticeable. Both diesel and turbocharged petrol vehicles benefit from the extra pulling power on steep grades.",
       },
       {
         q: "Do you remap 4x4s used on Dartmoor?",
-        a: "Absolutely — Land Rover Defender, Discovery, Freelander, Range Rover and other 4x4s are a regular part of our remapping work. Diesel 4x4s in particular respond very well to remapping.",
+        a: "Absolutely - Land Rover Defender, Discovery, Freelander, Range Rover and other 4x4s are a regular part of our remapping work. Diesel 4x4s in particular respond very well to remapping.",
       },
       {
         q: "Do you cover Buckfastleigh and Widecombe?",
-        a: "Yes — Buckfastleigh, Widecombe-in-the-Moor, Poundsgate and the surrounding Dartmoor villages are all within our service area.",
+        a: "Yes - Buckfastleigh, Widecombe-in-the-Moor, Poundsgate and the surrounding Dartmoor villages are all within our service area.",
       },
     ],
     relatedSlugs: [
@@ -766,10 +766,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Buckfastleigh | Stage 1 & Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Buckfastleigh — Stage 1, economy and mobile remapping near Dartmoor. AutoCleanse Devon, based just 10 miles away in Totnes.",
+      "ECU remapping in Buckfastleigh - Stage 1, economy and mobile remapping near Dartmoor. AutoCleanse Devon, based just 10 miles away in Totnes.",
     h1: "ECU Remapping in Buckfastleigh",
     intro:
-      "Buckfastleigh sits at the foot of Dartmoor, just a short distance from our Totnes workshop. AutoCleanse provides ECU remapping for Buckfastleigh customers with some of the shortest journey times of any location we serve — or we can come to you with our mobile service. Popular with rural tradespeople and drivers covering the moor and surrounding South Hams, Stage 1 remaps and diesel economy tunes are both in high demand here.",
+      "Buckfastleigh sits at the foot of Dartmoor, just a short distance from our Totnes workshop. AutoCleanse provides ECU remapping for Buckfastleigh customers with some of the shortest journey times of any location we serve - or we can come to you with our mobile service. Popular with rural tradespeople and drivers covering the moor and surrounding South Hams, Stage 1 remaps and diesel economy tunes are both in high demand here.",
     distanceNote: "approximately 10 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -784,23 +784,23 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "How close is AutoCleanse to Buckfastleigh?",
-        a: "Our Totnes workshop is just 10 miles from Buckfastleigh — approximately 15 minutes via the A38. It's one of our closest service areas.",
+        a: "Our Totnes workshop is just 10 miles from Buckfastleigh - approximately 15 minutes via the A38. It's one of our closest service areas.",
       },
       {
         q: "Do you offer mobile remapping near Buckfastleigh?",
-        a: "Yes — mobile remapping is available in and around Buckfastleigh including Dean Prior, Dartington and surrounding villages.",
+        a: "Yes - mobile remapping is available in and around Buckfastleigh including Dean Prior, Dartington and surrounding villages.",
       },
       {
         q: "Is a remap worth it for rural driving and farming vehicles?",
-        a: "Absolutely — improved torque from a diesel remap is particularly useful for rural and agricultural routes. Vans, pickups and 4x4s covering Devon lanes and Dartmoor roads all benefit.",
+        a: "Absolutely - improved torque from a diesel remap is particularly useful for rural and agricultural routes. Vans, pickups and 4x4s covering Devon lanes and Dartmoor roads all benefit.",
       },
       {
         q: "Can you remap a campervan near Buckfastleigh?",
-        a: "Yes — Fiat Ducato, VW Crafter and Sprinter based campervans are all remappable. Many owners in this part of Devon find the extra torque helps significantly on Dartmoor climbs.",
+        a: "Yes - Fiat Ducato, VW Crafter and Sprinter based campervans are all remappable. Many owners in this part of Devon find the extra torque helps significantly on Dartmoor climbs.",
       },
       {
         q: "Do you cover Dean Prior and Dartington?",
-        a: "Yes — Dean Prior, Dartington, Staverton and surrounding villages are all within easy reach of our Totnes workshop and mobile service.",
+        a: "Yes - Dean Prior, Dartington, Staverton and surrounding villages are all within easy reach of our Totnes workshop and mobile service.",
       },
     ],
     relatedSlugs: [
@@ -817,10 +817,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Dartmouth | Mobile & Workshop Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Dartmouth — Stage 1, economy and mobile remapping for cars, vans and 4x4s. AutoCleanse South Hams, based in Totnes.",
+      "ECU remapping in Dartmouth - Stage 1, economy and mobile remapping for cars, vans and 4x4s. AutoCleanse South Hams, based in Totnes.",
     h1: "ECU Remapping in Dartmouth",
     intro:
-      "Dartmouth sits at the mouth of the Dart estuary — a beautiful but relatively remote corner of South Devon that puts extra demands on vehicles. AutoCleanse provides ECU remapping for Dartmouth customers via both our Totnes workshop and mobile appointments. Whether you're looking to improve pulling power on Devon's hilly roads, cut fuel costs on a diesel van, or unlock more performance from a turbocharged car, we're well placed to help.",
+      "Dartmouth sits at the mouth of the Dart estuary - a beautiful but relatively remote corner of South Devon that puts extra demands on vehicles. AutoCleanse provides ECU remapping for Dartmouth customers via both our Totnes workshop and mobile appointments. Whether you're looking to improve pulling power on Devon's hilly roads, cut fuel costs on a diesel van, or unlock more performance from a turbocharged car, we're well placed to help.",
     distanceNote: "approximately 16 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -835,23 +835,23 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Dartmouth?",
-        a: "Yes — we offer mobile remapping in Dartmouth and surrounding areas including Kingswear, Stoke Fleming and Torcross. Given the ferry crossing, mobile is often the most convenient option for Dartmouth customers.",
+        a: "Yes - we offer mobile remapping in Dartmouth and surrounding areas including Kingswear, Stoke Fleming and Torcross. Given the ferry crossing, mobile is often the most convenient option for Dartmouth customers.",
       },
       {
         q: "How do I get to your workshop from Dartmouth?",
-        a: "The most direct route avoids the Higher Ferry — take the B3205 to Halwell and then the A381 north to Totnes. The journey is typically around 25–30 minutes.",
+        a: "The most direct route avoids the Higher Ferry - take the B3205 to Halwell and then the A381 north to Totnes. The journey is typically around 25–30 minutes.",
       },
       {
         q: "Can a remap help with Devon's hilly terrain?",
-        a: "Absolutely — increased torque from a diesel remap is immediately noticeable on South Devon's steep lanes and hills. Many customers in rural areas remap specifically for the improved hill-pulling ability.",
+        a: "Absolutely - increased torque from a diesel remap is immediately noticeable on South Devon's steep lanes and hills. Many customers in rural areas remap specifically for the improved hill-pulling ability.",
       },
       {
         q: "Do you remap diesel vans and commercial vehicles near Dartmouth?",
-        a: "Yes — diesel vans are one of our most common remapping jobs across the South Hams. Transit, Sprinter, Crafter and similar vans all respond well to remapping.",
+        a: "Yes - diesel vans are one of our most common remapping jobs across the South Hams. Transit, Sprinter, Crafter and similar vans all respond well to remapping.",
       },
       {
         q: "Do you cover Kingswear and Torcross?",
-        a: "Yes — Kingswear, Torcross, Stoke Fleming and the surrounding coastal villages are all within our mobile service coverage.",
+        a: "Yes - Kingswear, Torcross, Stoke Fleming and the surrounding coastal villages are all within our mobile service coverage.",
       },
     ],
     relatedSlugs: [
@@ -867,10 +867,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "South Hams",
     metaTitle: "ECU Remapping Salcombe | Mobile Remap South Hams | AutoCleanse",
     metaDescription:
-      "ECU remapping in Salcombe and South Hams — Stage 1, economy remaps and mobile tuning. AutoCleanse Devon covers Salcombe, Kingsbridge and surrounding areas.",
+      "ECU remapping in Salcombe and South Hams - Stage 1, economy remaps and mobile tuning. AutoCleanse Devon covers Salcombe, Kingsbridge and surrounding areas.",
     h1: "ECU Remapping in Salcombe",
     intro:
-      "Salcombe is one of Devon's most sought-after locations — and its narrow lanes and hilly approach roads mean your vehicle needs to be in its best shape. AutoCleanse provides ECU remapping for Salcombe customers via our mobile service — ideal given the location — as well as workshop appointments at our Totnes base, just 20 miles away via the A381. Stage 1 remaps, economy diesel tunes and 4x4 mapping are all available.",
+      "Salcombe is one of Devon's most sought-after locations - and its narrow lanes and hilly approach roads mean your vehicle needs to be in its best shape. AutoCleanse provides ECU remapping for Salcombe customers via our mobile service - ideal given the location - as well as workshop appointments at our Totnes base, just 20 miles away via the A381. Stage 1 remaps, economy diesel tunes and 4x4 mapping are all available.",
     distanceNote: "approximately 20 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -885,23 +885,23 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer mobile remapping in Salcombe?",
-        a: "Yes — given Salcombe's location, mobile remapping is often the best option. We'll come to your home or the local area with all the equipment needed to complete the full remap.",
+        a: "Yes - given Salcombe's location, mobile remapping is often the best option. We'll come to your home or the local area with all the equipment needed to complete the full remap.",
       },
       {
         q: "How far is AutoCleanse from Salcombe?",
-        a: "Our Totnes workshop is approximately 20 miles from Salcombe — around 30–35 minutes via the A381 through Kingsbridge.",
+        a: "Our Totnes workshop is approximately 20 miles from Salcombe - around 30–35 minutes via the A381 through Kingsbridge.",
       },
       {
         q: "Can you remap boats' road vehicles and marine support trailers?",
-        a: "We remap road vehicles only — cars, vans, 4x4s and light commercials. If you use a Land Rover or pickup to tow your boat trailer, a remap can significantly improve towing ability.",
+        a: "We remap road vehicles only - cars, vans, 4x4s and light commercials. If you use a Land Rover or pickup to tow your boat trailer, a remap can significantly improve towing ability.",
       },
       {
         q: "Are Land Rover and 4x4 remaps available near Salcombe?",
-        a: "Yes — Land Rover Defender, Discovery and Range Rover diesel remapping is something we do regularly. The narrow lanes around Salcombe and South Hams are exactly the terrain where the extra torque shows.",
+        a: "Yes - Land Rover Defender, Discovery and Range Rover diesel remapping is something we do regularly. The narrow lanes around Salcombe and South Hams are exactly the terrain where the extra torque shows.",
       },
       {
         q: "Do you cover Hope Cove and Malborough?",
-        a: "Yes — Hope Cove, Malborough, Thurlestone and the wider South Hams coast are within our mobile service coverage.",
+        a: "Yes - Hope Cove, Malborough, Thurlestone and the wider South Hams coast are within our mobile service coverage.",
       },
     ],
     relatedSlugs: [
@@ -918,7 +918,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Okehampton | Stage 1 & Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Okehampton and West Devon — Stage 1, economy and mobile remapping for cars, vans and 4x4s. AutoCleanse Devon.",
+      "ECU remapping in Okehampton and West Devon - Stage 1, economy and mobile remapping for cars, vans and 4x4s. AutoCleanse Devon.",
     h1: "ECU Remapping in Okehampton",
     intro:
       "Sitting right on the edge of Dartmoor, Okehampton demands vehicles that can handle steep gradients and heavy payloads. If your 4x4 feels sluggish towing up to the moor, or your trade van lacks the punch it needs when fully loaded, a professional ECU tune is the answer. We bypass the generic, conservative software installed at the factory, replacing it with a custom map designed specifically to maximise your engine's torque curve. Best of all, our mobile unit brings this service straight to your door.",
@@ -964,7 +964,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "East Devon",
     metaTitle: "ECU Remapping Sidmouth | Mobile & Workshop Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Sidmouth and East Devon — Stage 1, economy and mobile remapping for cars and vans. AutoCleanse Devon covers Sidmouth and surrounding areas.",
+      "ECU remapping in Sidmouth and East Devon - Stage 1, economy and mobile remapping for cars and vans. AutoCleanse Devon covers Sidmouth and surrounding areas.",
     h1: "ECU Remapping in Sidmouth",
     intro:
       "If you're based in Sidmouth or along the Jurassic Coast, getting your vehicle to perform at its peak doesn't mean a massive trek across the county. Our remapping technicians travel throughout East Devon to deliver bespoke tuning directly to your doorstep. Whether you need a sharper throttle response for coastal driving, better pulling power to tackle the steep hills heading out of town, or a pure economy map to keep fuel costs down on longer runs, we tailor the software to your specific requirements.",
@@ -1017,7 +1017,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Barnstaple | North Devon Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Barnstaple and North Devon — Stage 1, economy and mobile remapping for cars, vans and 4x4s. AutoCleanse Devon.",
+      "ECU remapping in Barnstaple and North Devon - Stage 1, economy and mobile remapping for cars, vans and 4x4s. AutoCleanse Devon.",
     h1: "ECU Remapping in Barnstaple",
     intro:
       "Living and working in North Devon often means covering serious mileage. For drivers in Barnstaple, an underperforming engine or poor fuel economy can quickly become frustrating and expensive. Our fully mobile tuning units frequently travel up the A361 to deliver performance and economy remaps directly to our Barnstaple clients. We specialise in optimising commercial vans, robust 4x4s, and daily commuters to ensure they handle the long, undulating roads of North Devon with ease.",
@@ -1068,7 +1068,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Bideford | North Devon Stage 1 & Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Bideford and North Devon — Stage 1, economy and mobile remapping for cars, vans and diesels. AutoCleanse Devon.",
+      "ECU remapping in Bideford and North Devon - Stage 1, economy and mobile remapping for cars, vans and diesels. AutoCleanse Devon.",
     h1: "ECU Remapping in Bideford",
     intro:
       "Whether you're navigating the tight streets of Bideford or commuting along the A39 Atlantic Highway, a sluggish engine can turn every drive into a chore. We bring high-end ECU tuning directly to Bideford and the surrounding Torridge district. By recalibrating your engine's software, we eliminate flat spots, improve the throttle response, and drastically enhance pulling power. It's a vital upgrade for the many local tradespeople who rely on fully-loaded transit vans day in and day out.",
@@ -1119,7 +1119,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Tiverton | Mid Devon Stage 1 & Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Tiverton and Mid Devon — Stage 1, economy and mobile remapping for cars, vans and diesels. AutoCleanse Devon.",
+      "ECU remapping in Tiverton and Mid Devon - Stage 1, economy and mobile remapping for cars, vans and diesels. AutoCleanse Devon.",
     h1: "ECU Remapping in Tiverton",
     intro:
       "Located perfectly on the link between the M5 and the rugged landscapes of Exmoor, Tiverton sees a massive variety of traffic. From high-mileage commuters pushing up the motorway to agricultural workers needing serious towing power on rural lanes, standard engine software rarely cuts it. We bring our advanced diagnostic and tuning equipment directly to Tiverton, rewriting the ECU data to unlock the performance your manufacturer deliberately held back.",
@@ -1165,7 +1165,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "East Devon",
     metaTitle: "ECU Remapping Honiton | East Devon Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Honiton and East Devon — Stage 1, economy and mobile remapping for cars and vans. AutoCleanse Devon.",
+      "ECU remapping in Honiton and East Devon - Stage 1, economy and mobile remapping for cars and vans. AutoCleanse Devon.",
     h1: "ECU Remapping in Honiton",
     intro:
       "Positioned right on the busy A30 corridor, Honiton is a key location for tradespeople and commuters. If you're finding that your daily drive lacks urgency or is burning through fuel too quickly, a software recalibration can transform the vehicle. We specialise in extracting safe, reliable power gains from modern turbocharged engines. We bring the tuning process straight to you in Honiton, saving you hours of transit time and letting you get on with your day.",
@@ -1212,7 +1212,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Axminster | East Devon Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Axminster and East Devon — Stage 1, economy and mobile remapping for cars and vans. AutoCleanse Devon.",
+      "ECU remapping in Axminster and East Devon - Stage 1, economy and mobile remapping for cars and vans. AutoCleanse Devon.",
     h1: "ECU Remapping in Axminster",
     intro:
       "Sitting right on the Devon and Dorset border, Axminster represents the eastern edge of our extensive coverage zone. Whether you run a local delivery fleet navigating rural country roads or simply want to unlock the true potential of your turbocharged car, our software engineers provide the exact recalibration you need. We pride ourselves on eliminating factory flat spots and delivering a smooth, surging power band that completely transforms the driving experience.",
@@ -1258,7 +1258,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "Mid Devon",
     metaTitle: "ECU Remapping Crediton | Mid Devon Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Crediton and Mid Devon — Stage 1, economy and mobile remapping for cars, vans and 4x4s. AutoCleanse Devon.",
+      "ECU remapping in Crediton and Mid Devon - Stage 1, economy and mobile remapping for cars, vans and 4x4s. AutoCleanse Devon.",
     h1: "ECU Remapping in Crediton",
     intro:
       "Navigating the winding roads of the Creedy Valley requires a vehicle that responds the instant you touch the pedal. For drivers in Crediton, manufacturer-imposed flat spots and artificial limiters can make overtaking on tight rural lanes unnecessarily stressful. We erase those software bottlenecks. By loading a tailored performance or economy file directly to your ECU, we grant you access to the full potential of your engine without compromising its long-term reliability.",
@@ -1305,7 +1305,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Cullompton | M5 Corridor Mobile Remap | AutoCleanse",
     metaDescription:
-      "ECU remapping in Cullompton and Mid Devon — Stage 1, economy and mobile remapping. Convenient M5 J28 location. AutoCleanse Devon.",
+      "ECU remapping in Cullompton and Mid Devon - Stage 1, economy and mobile remapping. Convenient M5 J28 location. AutoCleanse Devon.",
     h1: "ECU Remapping in Cullompton",
     intro:
       "With the M5 right on your doorstep, Cullompton is home to thousands of high-mileage drivers. If you are spending hours cruising at 70mph, a factory-standard ECU is simply burning more diesel than necessary. Our custom economy files are designed to alter the injection timing and request a fraction more boost at cruising RPMs, lowering the effort required by the engine to maintain speed. We deploy our mobile technicians straight to you, ensuring zero disruption to your day.",
@@ -1352,11 +1352,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping South Hams | Mobile Remap Across South Devon | AutoCleanse",
     metaDescription:
-      "ECU remapping across South Hams — Kingsbridge, Totnes, Dartmouth, Salcombe, Ivybridge and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
+      "ECU remapping across South Hams - Kingsbridge, Totnes, Dartmouth, Salcombe, Ivybridge and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
     h1: "ECU Remapping Across the South Hams",
     intro:
       "Covering the picturesque South Hams district requires a vehicle that can handle steep coastal climbs and narrow rural lanes with ease. From our central hub in Totnes, we provide expert ECU remapping across the entire region, from the sailing hubs of Salcombe and Dartmouth to the bustling market towns of Kingsbridge and Ivybridge. Our tailored tuning solutions focus on delivering the low-end torque essential for navigating the South Hams' undulating landscape, ensuring your car or van feels lighter and more responsive on every journey.",
-    distanceNote: "based in the South Hams — Totnes",
+    distanceNote: "based in the South Hams - Totnes",
     mobileAvailable: true,
     nearbyAreas: [
       "Kingsbridge",
@@ -1400,7 +1400,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping East Devon | Exeter, Sidmouth, Honiton | AutoCleanse",
     metaDescription:
-      "ECU remapping across East Devon — covering Exeter, Sidmouth, Honiton, Axminster, Exmouth and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
+      "ECU remapping across East Devon - covering Exeter, Sidmouth, Honiton, Axminster, Exmouth and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
     h1: "ECU Remapping Across East Devon",
     intro:
       "From the bustling commuter routes of the Exe Estuary to the rural stretches of the Blackdown Hills, East Devon presents a varied challenge for any engine. Whether you're a high-mileage commuter in Exmouth or a tradesperson navigating the A30 corridor near Honiton, our ECU remapping service is designed to optimise your vehicle for these specific conditions. We bring professional-grade tuning directly to your driveway across East Devon, unlocking the performance and fuel efficiency that modern manufacturers often restrict.",
@@ -1448,7 +1448,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping North Devon | Barnstaple, Bideford & Beyond | AutoCleanse",
     metaDescription:
-      "ECU remapping across North Devon — covering Barnstaple, Bideford, Ilfracombe and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
+      "ECU remapping across North Devon - covering Barnstaple, Bideford, Ilfracombe and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
     h1: "ECU Remapping Across North Devon",
     intro:
       "North Devon's unique geography, defined by the long stretches of the A361 North Devon Link Road and the rugged Atlantic Highway, makes engine optimization a necessity rather than a luxury. For drivers in Barnstaple, Bideford, and the coastal stretches of Ilfracombe, our mobile ECU remapping service eliminates the need for a long journey south. We bring the latest in tuning technology directly to you, providing the torque and power needed to master the undulating terrain of Exmoor and the North Devon coast.",
@@ -1497,11 +1497,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "Mobile Service",
     metaTitle: "Mobile ECU Remapping Devon | We Come to You | AutoCleanse",
     metaDescription:
-      "Mobile ECU remapping across Devon — we come to your home, driveway or workplace. Stage 1, economy and performance remapping. AutoCleanse, based in Totnes.",
+      "Mobile ECU remapping across Devon - we come to your home, driveway or workplace. Stage 1, economy and performance remapping. AutoCleanse, based in Totnes.",
     h1: "Mobile ECU Remapping Across Devon",
     intro:
-      "AutoCleanse provides mobile ECU remapping across Devon — we bring everything we need to your home, driveway, workplace or any suitable location. No need to arrange transport or take time off work to get to a workshop. Our mobile setup carries the same professional OBD and bench flashing equipment we use at our Totnes base, delivering the same quality results wherever you are across the county. We cover Plymouth, Exeter, Torbay, South Hams, East Devon, Mid Devon, West Devon and North Devon.",
-    distanceNote: "we come to you — anywhere in Devon",
+      "AutoCleanse provides mobile ECU remapping across Devon - we bring everything we need to your home, driveway, workplace or any suitable location. No need to arrange transport or take time off work to get to a workshop. Our mobile setup carries the same professional OBD and bench flashing equipment we use at our Totnes base, delivering the same quality results wherever you are across the county. We cover Plymouth, Exeter, Torbay, South Hams, East Devon, Mid Devon, West Devon and North Devon.",
+    distanceNote: "we come to you - anywhere in Devon",
     mobileAvailable: true,
     nearbyAreas: [
       "Plymouth",
@@ -1516,19 +1516,19 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "How does mobile ECU remapping work?",
-        a: "We arrive at your chosen location with all the equipment needed to read and write your vehicle's ECU. We carry out a pre-remap diagnostic check, apply the remap, and run a post-remap check — all on your driveway or at your workplace.",
+        a: "We arrive at your chosen location with all the equipment needed to read and write your vehicle's ECU. We carry out a pre-remap diagnostic check, apply the remap, and run a post-remap check - all on your driveway or at your workplace.",
       },
       {
         q: "Is mobile remapping as good as workshop remapping?",
-        a: "Yes — the equipment and process are identical. Our mobile kit carries the same OBD and bench flashing hardware we use in our Totnes workshop. The only difference is the location.",
+        a: "Yes - the equipment and process are identical. Our mobile kit carries the same OBD and bench flashing hardware we use in our Totnes workshop. The only difference is the location.",
       },
       {
         q: "How far across Devon do you travel for mobile remapping?",
-        a: "We cover the full county of Devon — from North Devon's Barnstaple and Bideford down to Plymouth in the west and Axminster in the east. Contact us if you're unsure whether your location is covered.",
+        a: "We cover the full county of Devon - from North Devon's Barnstaple and Bideford down to Plymouth in the west and Axminster in the east. Contact us if you're unsure whether your location is covered.",
       },
       {
         q: "What do I need to prepare for a mobile remap?",
-        a: "Just make sure the vehicle is accessible, ideally on a flat surface, with the engine at normal temperature. We'll handle everything else. A power supply isn't needed — we run from the vehicle's own battery.",
+        a: "Just make sure the vehicle is accessible, ideally on a flat surface, with the engine at normal temperature. We'll handle everything else. A power supply isn't needed - we run from the vehicle's own battery.",
       },
       {
         q: "How long does a mobile remap take?",
@@ -1536,7 +1536,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "What areas of Devon do you cover for mobile remapping?",
-        a: "We cover all of Devon — South Devon, East Devon, Mid Devon, West Devon and North Devon. Key areas include Plymouth, Exeter, Torbay, Barnstaple, Bideford, Okehampton, Kingsbridge, Totnes, Newton Abbot, Teignmouth and beyond.",
+        a: "We cover all of Devon - South Devon, East Devon, Mid Devon, West Devon and North Devon. Key areas include Plymouth, Exeter, Torbay, Barnstaple, Bideford, Okehampton, Kingsbridge, Totnes, Newton Abbot, Teignmouth and beyond.",
       },
     ],
     relatedSlugs: [
@@ -1552,10 +1552,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "Stage 1 Remapping",
     metaTitle: "Stage 1 Remaps Devon | ECU Tuning | AutoCleanse",
     metaDescription:
-      "Stage 1 ECU remapping across Devon — more power, better torque, improved fuel economy. Cars, vans and 4x4s. AutoCleanse, based in Totnes, South Devon.",
+      "Stage 1 ECU remapping across Devon - more power, better torque, improved fuel economy. Cars, vans and 4x4s. AutoCleanse, based in Totnes, South Devon.",
     h1: "Stage 1 Remaps Across Devon",
     intro:
-      "A Stage 1 remap is the most popular ECU upgrade for standard, unmodified vehicles — and AutoCleanse carries them out across Devon at our Totnes workshop and via mobile appointments. Stage 1 tuning optimises your engine's fuel, timing and boost parameters to extract more power, improve torque and often reduce fuel consumption, all without any hardware changes. It's the single most cost-effective performance upgrade available for a modern turbocharged car, van or 4x4.",
+      "A Stage 1 remap is the most popular ECU upgrade for standard, unmodified vehicles - and AutoCleanse carries them out across Devon at our Totnes workshop and via mobile appointments. Stage 1 tuning optimises your engine's fuel, timing and boost parameters to extract more power, improve torque and often reduce fuel consumption, all without any hardware changes. It's the single most cost-effective performance upgrade available for a modern turbocharged car, van or 4x4.",
     distanceNote: "workshop in Totnes, mobile across Devon",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1571,7 +1571,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "What is a Stage 1 remap?",
-        a: "A Stage 1 remap is a software-only ECU tune for a vehicle in standard specification — no hardware modifications required. It adjusts fuel delivery, ignition timing and boost pressure within your engine's safe limits to improve power output, torque and often fuel economy.",
+        a: "A Stage 1 remap is a software-only ECU tune for a vehicle in standard specification - no hardware modifications required. It adjusts fuel delivery, ignition timing and boost pressure within your engine's safe limits to improve power output, torque and often fuel economy.",
       },
       {
         q: "How much power will I gain from a Stage 1 remap?",
@@ -1579,15 +1579,15 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Is a Stage 1 remap safe?",
-        a: "Yes — when carried out professionally within your engine's safe operating parameters, a Stage 1 remap is perfectly safe and reliable. We include a full pre and post-remap diagnostic check with every job.",
+        a: "Yes - when carried out professionally within your engine's safe operating parameters, a Stage 1 remap is perfectly safe and reliable. We include a full pre and post-remap diagnostic check with every job.",
       },
       {
         q: "Can I have a Stage 1 remap if my car is standard?",
-        a: "Yes — Stage 1 is specifically designed for standard, unmodified vehicles. If you have hardware upgrades, Stage 2 is the appropriate option.",
+        a: "Yes - Stage 1 is specifically designed for standard, unmodified vehicles. If you have hardware upgrades, Stage 2 is the appropriate option.",
       },
       {
         q: "Do you offer Stage 1 remaps across Devon?",
-        a: "Yes — Stage 1 remapping is available at our Totnes workshop and via mobile appointments across the whole of Devon, from Plymouth and Exeter to Barnstaple and the North Devon coast.",
+        a: "Yes - Stage 1 remapping is available at our Totnes workshop and via mobile appointments across the whole of Devon, from Plymouth and Exeter to Barnstaple and the North Devon coast.",
       },
     ],
     relatedSlugs: [
@@ -1604,10 +1604,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "Van Remapping Devon | Transit, Sprinter, Crafter & More | AutoCleanse",
     metaDescription:
-      "Van remapping across Devon — Ford Transit, Mercedes Sprinter, VW Crafter, Vauxhall Vivaro and more. Better economy and performance. AutoCleanse, Totnes.",
+      "Van remapping across Devon - Ford Transit, Mercedes Sprinter, VW Crafter, Vauxhall Vivaro and more. Better economy and performance. AutoCleanse, Totnes.",
     h1: "Van Remapping Across Devon",
     intro:
-      "AutoCleanse specialises in diesel van remapping across Devon — improving fuel economy, pulling power and overall drivability for tradespeople, delivery drivers and fleet operators. We remap Ford Transit, Mercedes Sprinter, VW Crafter, Vauxhall Vivaro, Renault Trafic, Peugeot Boxer, Citroen Relay, Fiat Ducato and most other modern diesel vans. Workshop appointments are available at our Totnes base and mobile remapping can be arranged across Devon.",
+      "AutoCleanse specialises in diesel van remapping across Devon - improving fuel economy, pulling power and overall drivability for tradespeople, delivery drivers and fleet operators. We remap Ford Transit, Mercedes Sprinter, VW Crafter, Vauxhall Vivaro, Renault Trafic, Peugeot Boxer, Citroen Relay, Fiat Ducato and most other modern diesel vans. Workshop appointments are available at our Totnes base and mobile remapping can be arranged across Devon.",
     distanceNote: "workshop in Totnes, mobile across Devon",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1623,7 +1623,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Which vans do you remap in Devon?",
-        a: "We remap virtually all modern diesel vans — Ford Transit, Transit Custom, Transit Connect; Mercedes Sprinter, Vito; VW Crafter, Transporter; Vauxhall Vivaro, Movano; Renault Trafic, Master; Peugeot Boxer; Citroen Relay; Fiat Ducato; Iveco Daily and more.",
+        a: "We remap virtually all modern diesel vans - Ford Transit, Transit Custom, Transit Connect; Mercedes Sprinter, Vito; VW Crafter, Transporter; Vauxhall Vivaro, Movano; Renault Trafic, Master; Peugeot Boxer; Citroen Relay; Fiat Ducato; Iveco Daily and more.",
       },
       {
         q: "How much can van remapping improve fuel economy?",
@@ -1631,15 +1631,15 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Will remapping improve my van's pulling power?",
-        a: "Yes — increased torque is one of the most noticeable effects of a van remap. Better low-end pulling power makes driving fully loaded or towing trailers much less stressful.",
+        a: "Yes - increased torque is one of the most noticeable effects of a van remap. Better low-end pulling power makes driving fully loaded or towing trailers much less stressful.",
       },
       {
         q: "Is van remapping available as a mobile service across Devon?",
-        a: "Yes — mobile van remapping is available across Devon. We'll come to your depot, yard or home with all the equipment needed to remap your van on-site.",
+        a: "Yes - mobile van remapping is available across Devon. We'll come to your depot, yard or home with all the equipment needed to remap your van on-site.",
       },
       {
         q: "Do you remap fleet vans in Devon?",
-        a: "Yes — we offer fleet remapping with consistent mapping across multiple vehicles. Contact us to discuss your fleet requirements and get a quote.",
+        a: "Yes - we offer fleet remapping with consistent mapping across multiple vehicles. Contact us to discuss your fleet requirements and get a quote.",
       },
     ],
     relatedSlugs: [
@@ -1656,7 +1656,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "Performance Remapping Devon | Stage 1 & Stage 2 Tuning | AutoCleanse",
     metaDescription:
-      "Performance ECU remapping in Devon — Stage 1 and Stage 2 tuning for cars and 4x4s. More power, better torque, sharper response. AutoCleanse, Totnes.",
+      "Performance ECU remapping in Devon - Stage 1 and Stage 2 tuning for cars and 4x4s. More power, better torque, sharper response. AutoCleanse, Totnes.",
     h1: "Performance Remapping Across Devon",
     intro:
       "AutoCleanse provides performance-focused ECU remapping for drivers across Devon who want to get the best out of their vehicle. From a Stage 1 software tune on a standard car to a fully optimised Stage 2 map for a modified vehicle, we tailor every remap to your engine, your modifications and your driving goals. Performance remapping is available at our Totnes workshop and via mobile appointments across the county.",
@@ -1679,7 +1679,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "What's the difference between Stage 1 and Stage 2?",
-        a: "Stage 1 is for standard vehicles with no hardware modifications. Stage 2 is for vehicles with uprated components — such as an intercooler, exhaust, intake or fuel system — and produces more significant gains by working with those hardware upgrades.",
+        a: "Stage 1 is for standard vehicles with no hardware modifications. Stage 2 is for vehicles with uprated components - such as an intercooler, exhaust, intake or fuel system - and produces more significant gains by working with those hardware upgrades.",
       },
       {
         q: "Which cars benefit most from performance remapping?",
@@ -1687,11 +1687,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Do you offer performance remapping on mobile across Devon?",
-        a: "Yes — mobile performance remapping is available across Devon. We carry the same professional equipment on mobile visits as in our Totnes workshop.",
+        a: "Yes - mobile performance remapping is available across Devon. We carry the same professional equipment on mobile visits as in our Totnes workshop.",
       },
       {
         q: "Is a performance remap reversible?",
-        a: "Yes — we can restore your ECU to the original factory map if you decide to reverse the remap. Just let us know and we'll sort it.",
+        a: "Yes - we can restore your ECU to the original factory map if you decide to reverse the remap. Just let us know and we'll sort it.",
       },
     ],
     relatedSlugs: [
@@ -1707,10 +1707,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "Economy Remapping",
     metaTitle: "Fuel Economy Remaps Devon | Save on Fuel | AutoCleanse",
     metaDescription:
-      "Economy ECU remapping across Devon — reduce fuel consumption on diesel cars, vans and 4x4s. AutoCleanse, Totnes. Mobile and workshop appointments.",
+      "Economy ECU remapping across Devon - reduce fuel consumption on diesel cars, vans and 4x4s. AutoCleanse, Totnes. Mobile and workshop appointments.",
     h1: "Fuel Economy Remaps Across Devon",
     intro:
-      "An economy remap is one of the most practical upgrades you can make to a diesel vehicle — and AutoCleanse carries them out across Devon at our Totnes workshop and via mobile appointments. By optimising fuel delivery, injection timing and turbo response, an economy-focused remap can reduce fuel consumption by 8–18% in real-world driving — especially on A-roads and motorways. For tradespeople and fleet operators covering Devon's roads daily, the savings add up quickly.",
+      "An economy remap is one of the most practical upgrades you can make to a diesel vehicle - and AutoCleanse carries them out across Devon at our Totnes workshop and via mobile appointments. By optimising fuel delivery, injection timing and turbo response, an economy-focused remap can reduce fuel consumption by 8–18% in real-world driving - especially on A-roads and motorways. For tradespeople and fleet operators covering Devon's roads daily, the savings add up quickly.",
     distanceNote: "workshop in Totnes, mobile across Devon",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1730,7 +1730,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Do economy remaps reduce performance?",
-        a: "Not necessarily — many economy remaps actually improve torque alongside economy. We tune for the best balance of efficiency and drivability, so your van or car feels stronger as well as more economical.",
+        a: "Not necessarily - many economy remaps actually improve torque alongside economy. We tune for the best balance of efficiency and drivability, so your van or car feels stronger as well as more economical.",
       },
       {
         q: "Which vehicles benefit most from economy remapping?",
@@ -1738,11 +1738,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Is a fuel economy remap available on mobile across Devon?",
-        a: "Yes — economy remapping is available via our mobile service across Devon. We come to your home, depot or workplace.",
+        a: "Yes - economy remapping is available via our mobile service across Devon. We come to your home, depot or workplace.",
       },
       {
         q: "How long does it take to recoup the cost of a remap in fuel savings?",
-        a: "This depends on your mileage and fuel costs. A van driver covering 30,000 miles per year and spending £6,000 annually on diesel could save £500–£900 per year — often paying back the remap cost within a few months.",
+        a: "This depends on your mileage and fuel costs. A van driver covering 30,000 miles per year and spending £6,000 annually on diesel could save £500–£900 per year - often paying back the remap cost within a few months.",
       },
     ],
     relatedSlugs: [
@@ -1758,10 +1758,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "Diesel Remapping",
     metaTitle: "Diesel Remapping Devon | Cars, Vans & 4x4s | AutoCleanse",
     metaDescription:
-      "Diesel ECU remapping across Devon — improved power, torque and fuel economy for diesel cars, vans, 4x4s and commercials. AutoCleanse, Totnes.",
+      "Diesel ECU remapping across Devon - improved power, torque and fuel economy for diesel cars, vans, 4x4s and commercials. AutoCleanse, Totnes.",
     h1: "Diesel Remapping Across Devon",
     intro:
-      "Diesel remapping is AutoCleanse's most common service — and for good reason. Modern diesel engines are deliberately restricted by manufacturers to hit emissions targets and protect lower-specification variants of the same model. A professional diesel remap unlocks that hidden potential, delivering more power, better torque and improved fuel efficiency without any hardware changes. We remap diesel cars, vans, 4x4s, pickups and light commercials across Devon.",
+      "Diesel remapping is AutoCleanse's most common service - and for good reason. Modern diesel engines are deliberately restricted by manufacturers to hit emissions targets and protect lower-specification variants of the same model. A professional diesel remap unlocks that hidden potential, delivering more power, better torque and improved fuel efficiency without any hardware changes. We remap diesel cars, vans, 4x4s, pickups and light commercials across Devon.",
     distanceNote: "workshop in Totnes, mobile across Devon",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1785,15 +1785,15 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Do you remap diesel 4x4s across Devon?",
-        a: "Yes — Land Rover Defender, Discovery, Range Rover, BMW X5, Audi Q7, Volkswagen Touareg and most other diesel 4x4s are regularly remapped by AutoCleanse.",
+        a: "Yes - Land Rover Defender, Discovery, Range Rover, BMW X5, Audi Q7, Volkswagen Touareg and most other diesel 4x4s are regularly remapped by AutoCleanse.",
       },
       {
         q: "Is diesel remapping available on mobile across Devon?",
-        a: "Yes — mobile diesel remapping is available across the county, from Plymouth and Exeter to Barnstaple and the North Devon coast.",
+        a: "Yes - mobile diesel remapping is available across the county, from Plymouth and Exeter to Barnstaple and the North Devon coast.",
       },
       {
         q: "Can you remap my diesel after a DPF clean?",
-        a: "Yes — we offer a DPF Clean + Remap Bundle as a combined service. Getting both done together is cost-effective and ensures your engine software is optimised after the DPF is restored.",
+        a: "Yes - we offer a DPF Clean + Remap Bundle as a combined service. Getting both done together is cost-effective and ensures your engine software is optimised after the DPF is restored.",
       },
     ],
     relatedSlugs: [
@@ -1810,10 +1810,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "Petrol Remapping Devon | Stage 1 Tuning for Petrol Cars | AutoCleanse",
     metaDescription:
-      "Petrol ECU remapping across Devon — Stage 1 and Stage 2 tuning for turbocharged petrol cars and SUVs. More power, better response. AutoCleanse, Totnes.",
+      "Petrol ECU remapping across Devon - Stage 1 and Stage 2 tuning for turbocharged petrol cars and SUVs. More power, better response. AutoCleanse, Totnes.",
     h1: "Petrol Remapping Across Devon",
     intro:
-      "Modern turbocharged petrol engines respond extremely well to ECU remapping — and AutoCleanse carries out petrol remaps across Devon at our Totnes workshop and via mobile service. Whether you drive a hot hatch, a turbocharged family car or a performance SUV, a Stage 1 petrol remap can deliver impressive gains in power, torque and throttle response without any modifications. For vehicles with hardware upgrades, Stage 2 mapping extracts even more.",
+      "Modern turbocharged petrol engines respond extremely well to ECU remapping - and AutoCleanse carries out petrol remaps across Devon at our Totnes workshop and via mobile service. Whether you drive a hot hatch, a turbocharged family car or a performance SUV, a Stage 1 petrol remap can deliver impressive gains in power, torque and throttle response without any modifications. For vehicles with hardware upgrades, Stage 2 mapping extracts even more.",
     distanceNote: "workshop in Totnes, mobile across Devon",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1829,19 +1829,19 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Can you remap a turbocharged petrol car in Devon?",
-        a: "Yes — turbocharged petrol engines (TSI, TFSI, T-GDI, EcoBoost, GTi etc.) respond very well to remapping. Stage 1 power gains of 20–40bhp are common on modern turbo petrols.",
+        a: "Yes - turbocharged petrol engines (TSI, TFSI, T-GDI, EcoBoost, GTi etc.) respond very well to remapping. Stage 1 power gains of 20–40bhp are common on modern turbo petrols.",
       },
       {
         q: "Do naturally aspirated petrol cars benefit from remapping?",
-        a: "Yes, but to a lesser extent. Without forced induction, gains are more modest — typically 5–10% — but improved throttle response and smoother power delivery are still noticeable.",
+        a: "Yes, but to a lesser extent. Without forced induction, gains are more modest - typically 5–10% - but improved throttle response and smoother power delivery are still noticeable.",
       },
       {
         q: "What petrol cars do you remap?",
-        a: "We remap turbocharged petrols across all major manufacturers — VW Group (Golf GTi, Audi S3, Cupra Formentor), BMW (M140i, 330i), Ford (Focus ST, Fiesta ST), Vauxhall (Astra GSi), Mercedes (AMG), Renault (Megane RS) and many more.",
+        a: "We remap turbocharged petrols across all major manufacturers - VW Group (Golf GTi, Audi S3, Cupra Formentor), BMW (M140i, 330i), Ford (Focus ST, Fiesta ST), Vauxhall (Astra GSi), Mercedes (AMG), Renault (Megane RS) and many more.",
       },
       {
         q: "Is petrol remapping available on mobile in Devon?",
-        a: "Yes — mobile petrol remapping is available across Devon. Same equipment, same results, at your location.",
+        a: "Yes - mobile petrol remapping is available across Devon. Same equipment, same results, at your location.",
       },
       {
         q: "Will a petrol remap affect my fuel economy?",
@@ -1862,10 +1862,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "4x4 Remapping Devon | Land Rover, Hilux, Defender & More | AutoCleanse",
     metaDescription:
-      "4x4 ECU remapping across Devon — Land Rover, Toyota Hilux, Ford Ranger, Mitsubishi L200 and more. Better torque, towing and economy. AutoCleanse, Totnes.",
+      "4x4 ECU remapping across Devon - Land Rover, Toyota Hilux, Ford Ranger, Mitsubishi L200 and more. Better torque, towing and economy. AutoCleanse, Totnes.",
     h1: "4x4 Remapping Across Devon",
     intro:
-      "AutoCleanse is well known across Devon for 4x4 and off-road vehicle remapping — particularly for Land Rover Defenders, Discoveries, Range Rovers, Toyota Hilux, Ford Rangers and Mitsubishi L200 pickups. Devon's rural and hilly terrain demands real pulling power, and a diesel remap delivers exactly that — more torque, better towing ability and often improved economy. Whether you use your 4x4 for work, farm or leisure, we've got the experience to tune it properly.",
+      "AutoCleanse is well known across Devon for 4x4 and off-road vehicle remapping - particularly for Land Rover Defenders, Discoveries, Range Rovers, Toyota Hilux, Ford Rangers and Mitsubishi L200 pickups. Devon's rural and hilly terrain demands real pulling power, and a diesel remap delivers exactly that - more torque, better towing ability and often improved economy. Whether you use your 4x4 for work, farm or leisure, we've got the experience to tune it properly.",
     distanceNote: "workshop in Totnes, mobile across Devon",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1885,19 +1885,19 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Will a 4x4 remap improve towing ability?",
-        a: "Yes — improved torque is one of the biggest benefits for 4x4 owners. Whether you're towing a horse box, livestock trailer, boat or caravan, the difference in pulling power after a remap is immediately noticeable.",
+        a: "Yes - improved torque is one of the biggest benefits for 4x4 owners. Whether you're towing a horse box, livestock trailer, boat or caravan, the difference in pulling power after a remap is immediately noticeable.",
       },
       {
         q: "Is 4x4 remapping available on mobile across Devon?",
-        a: "Yes — mobile 4x4 remapping is available across Devon, including rural and farm locations. We regularly visit customers with Land Rovers and pickups across the county.",
+        a: "Yes - mobile 4x4 remapping is available across Devon, including rural and farm locations. We regularly visit customers with Land Rovers and pickups across the county.",
       },
       {
         q: "Can you remap a Land Rover Defender?",
-        a: "Yes — Land Rover Defender remapping is something we do regularly. All common Defender diesel variants are covered, including Td5, 2.4 TDCi (Puma) and the newer 2.0D and 3.0D variants.",
+        a: "Yes - Land Rover Defender remapping is something we do regularly. All common Defender diesel variants are covered, including Td5, 2.4 TDCi (Puma) and the newer 2.0D and 3.0D variants.",
       },
       {
         q: "Does a 4x4 remap affect off-road ability?",
-        a: "A remap improves on-road and off-road performance equally. Better torque is useful in both environments — on Devon's steep lanes as well as across fields and moorland tracks.",
+        a: "A remap improves on-road and off-road performance equally. Better torque is useful in both environments - on Devon's steep lanes as well as across fields and moorland tracks.",
       },
     ],
     relatedSlugs: [
@@ -1914,10 +1914,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "Fleet Vehicle Remapping Devon | Commercial & Van Fleets | AutoCleanse",
     metaDescription:
-      "Fleet ECU remapping across Devon — consistent maps across multiple vans, cars and commercials. Improve economy and performance fleet-wide. AutoCleanse, Totnes.",
+      "Fleet ECU remapping across Devon - consistent maps across multiple vans, cars and commercials. Improve economy and performance fleet-wide. AutoCleanse, Totnes.",
     h1: "Fleet Vehicle Remapping Across Devon",
     intro:
-      "AutoCleanse provides fleet remapping for businesses across Devon — delivering consistent ECU maps across multiple vehicles to improve fuel economy, performance and drivability fleet-wide. Whether you operate a small van fleet of 3–4 vehicles or a larger commercial operation, we can remap each vehicle to a consistent standard, reducing fuel spend and improving overall fleet efficiency. Mobile fleet remapping is available across Devon, minimising vehicle downtime.",
+      "AutoCleanse provides fleet remapping for businesses across Devon - delivering consistent ECU maps across multiple vehicles to improve fuel economy, performance and drivability fleet-wide. Whether you operate a small van fleet of 3–4 vehicles or a larger commercial operation, we can remap each vehicle to a consistent standard, reducing fuel spend and improving overall fleet efficiency. Mobile fleet remapping is available across Devon, minimising vehicle downtime.",
     distanceNote: "workshop in Totnes, mobile fleet visits across Devon",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1933,11 +1933,11 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "Do you offer fleet remapping discounts in Devon?",
-        a: "Yes — we offer fleet pricing for businesses remapping multiple vehicles. Contact us with your fleet details and we'll provide a tailored quote.",
+        a: "Yes - we offer fleet pricing for businesses remapping multiple vehicles. Contact us with your fleet details and we'll provide a tailored quote.",
       },
       {
         q: "Can you remap our fleet on-site at our depot?",
-        a: "Yes — fleet mobile remapping is a key service we offer. We'll visit your depot or yard and work through the fleet systematically, minimising vehicle downtime.",
+        a: "Yes - fleet mobile remapping is a key service we offer. We'll visit your depot or yard and work through the fleet systematically, minimising vehicle downtime.",
       },
       {
         q: "What fleet vehicle types do you remap?",
@@ -1965,10 +1965,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "ECU Tuning",
     metaTitle: "ECU Tuning Devon | Professional ECU Remapping | AutoCleanse",
     metaDescription:
-      "Professional ECU tuning across Devon — Stage 1, Stage 2, economy and custom maps for cars, vans and 4x4s. AutoCleanse, based in Totnes, South Devon.",
+      "Professional ECU tuning across Devon - Stage 1, Stage 2, economy and custom maps for cars, vans and 4x4s. AutoCleanse, based in Totnes, South Devon.",
     h1: "ECU Tuning Across Devon",
     intro:
-      "ECU tuning — also known as remapping or chip tuning — is the process of modifying your vehicle's engine control unit software to improve performance, economy or both. AutoCleanse provides professional ECU tuning across Devon for a wide range of vehicles, from standard daily drivers to modified performance cars, diesel vans and 4x4s. Based in Totnes with a mobile service covering the whole county, we're Devon's go-to ECU tuning specialist.",
+      "ECU tuning - also known as remapping or chip tuning - is the process of modifying your vehicle's engine control unit software to improve performance, economy or both. AutoCleanse provides professional ECU tuning across Devon for a wide range of vehicles, from standard daily drivers to modified performance cars, diesel vans and 4x4s. Based in Totnes with a mobile service covering the whole county, we're Devon's go-to ECU tuning specialist.",
     distanceNote: "workshop in Totnes, mobile across Devon",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1984,15 +1984,15 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     faqs: [
       {
         q: "What is ECU tuning?",
-        a: "ECU tuning (or remapping) is the modification of the software inside your vehicle's engine control unit. The ECU governs fuel delivery, ignition timing, turbo boost and more — tuning these parameters improves power, torque and fuel economy beyond the conservative factory settings.",
+        a: "ECU tuning (or remapping) is the modification of the software inside your vehicle's engine control unit. The ECU governs fuel delivery, ignition timing, turbo boost and more - tuning these parameters improves power, torque and fuel economy beyond the conservative factory settings.",
       },
       {
         q: "Is ECU tuning the same as remapping?",
-        a: "Yes — the terms ECU tuning, ECU remapping, chip tuning and engine tuning all refer to the same process of modifying your ECU's software to improve engine performance.",
+        a: "Yes - the terms ECU tuning, ECU remapping, chip tuning and engine tuning all refer to the same process of modifying your ECU's software to improve engine performance.",
       },
       {
         q: "Do you offer ECU tuning on mobile across Devon?",
-        a: "Yes — mobile ECU tuning is available across Devon. We come to your location with all the equipment needed to read, modify and write your ECU software.",
+        a: "Yes - mobile ECU tuning is available across Devon. We come to your location with all the equipment needed to read, modify and write your ECU software.",
       },
       {
         q: "What's the most popular ECU tuning service in Devon?",
@@ -2000,7 +2000,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "How do I know which type of ECU tune is right for me?",
-        a: "Contact us or book a call — we'll ask about your vehicle, its condition, any modifications, and what you're hoping to achieve, then recommend the right service. There's no obligation.",
+        a: "Contact us or book a call - we'll ask about your vehicle, its condition, any modifications, and what you're hoping to achieve, then recommend the right service. There's no obligation.",
       },
     ],
     relatedSlugs: [

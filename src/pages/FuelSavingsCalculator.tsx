@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+﻿import React, { useState, useEffect, useCallback, useRef } from 'react';
 import SEO from '../components/SEO';
 import { Calculator, RotateCcw, Share2, TrendingUp, Fuel, PoundSterling, Clock, Percent, CheckCircle, Circle } from 'lucide-react';
 import gsap from 'gsap';

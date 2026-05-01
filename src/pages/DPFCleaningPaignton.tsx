@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Settings, Shield, Truck, ArrowRight } from 'lucide-react';
@@ -45,7 +45,7 @@ const DPFCleaningPaignton = () => {
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],
         "name": "AutoCleanse",
-        "description": "Professional DPF cleaning service for Paignton and Torbay. Based in Totnes, Devon — 10 miles from Paignton.",
+        "description": "Professional DPF cleaning service for Paignton and Torbay. Based in Totnes, Devon - 10 miles from Paignton.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-paignton",
         "telephone": "0800 043 0609",
         "email": "info@autocleanse.co.uk",
@@ -72,7 +72,7 @@ const DPFCleaningPaignton = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto mb-8 rounded-full"></div>
           <div className="max-w-4xl mx-auto reveal-item">
             <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium">
-              AutoCleanse is just 10 miles from Paignton — making us the closest professional DPF cleaning workshop in the area.
+              AutoCleanse is just 10 miles from Paignton - making us the closest professional DPF cleaning workshop in the area.
               Same-day return available for collections before 10am.
             </p>
           </div>
@@ -89,7 +89,7 @@ const DPFCleaningPaignton = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Our Totnes workshop is just 10 miles from Paignton — qualifying for our lowest collection rate of £210. Filters from Paignton garages and private customers are collected on our regular daily route, cleaned with our METclean XL process, and returned within the same working day for collections before 10am.
+                Our Totnes workshop is just 10 miles from Paignton - qualifying for our lowest collection rate of £210. Filters from Paignton garages and private customers are collected on our regular daily route, cleaned with our METclean XL process, and returned within the same working day for collections before 10am.
               </p>
               <p>
                 Paignton has a high volume of tourist-season vehicle traffic alongside year-round commercial activity. AutoCleanse provides fast, professional DPF refurbishment to keep local fleets, taxis, and private vehicles running smoothly.
@@ -103,7 +103,7 @@ const DPFCleaningPaignton = () => {
               <div className="w-16 h-16 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/30 flex items-center justify-center mr-6 group-hover:scale-110 group-hover:bg-[#FF7A00]/20 transition-all duration-500 shadow-[0_0_20px_rgba(255,122,0,0.2)]">
                 <Shield size={28} className="text-[#FF7A00]" />
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">DPF Cleaning vs Replacement — Paignton</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">DPF Cleaning vs Replacement - Paignton</h2>
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
@@ -125,10 +125,10 @@ const DPFCleaningPaignton = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                We clean DPFs from cars, vans, taxis, HGVs, and plant machinery — covering the full range of vehicles operating in Paignton and the Torbay area. Our process includes full inspection, aqueous cleaning, high-pressure pneumatic flush, and back-pressure flow testing before and after.
+                We clean DPFs from cars, vans, taxis, HGVs, and plant machinery - covering the full range of vehicles operating in Paignton and the Torbay area. Our process includes full inspection, aqueous cleaning, high-pressure pneumatic flush, and back-pressure flow testing before and after.
               </p>
               <p>
-                We also offer <Link to="/remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Paignton vehicles — Stage 1 maps are particularly popular with van and taxi operators looking to improve fuel economy.
+                We also offer <Link to="/remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Paignton vehicles - Stage 1 maps are particularly popular with van and taxi operators looking to improve fuel economy.
               </p>
             </div>
           </section>
@@ -152,7 +152,7 @@ const DPFCleaningPaignton = () => {
               {[
                 { to: '/services', label: 'Full range of filter cleaning services' },
                 { to: '/dpf-cleaning-torquay', label: 'DPF cleaning Torquay' },
-                { to: '/remapping', label: 'ECU remapping — Stage 1 & Stage 2' },
+                { to: '/remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
                 { to: '/dpf-cleaning-devon', label: 'DPF cleaning across Devon' },
                 { to: '/pricing', label: 'DPF cleaning prices from £210' },
               ].map(({ to, label }) => (
@@ -171,7 +171,7 @@ const DPFCleaningPaignton = () => {
                 DPF Cleaning for <span className="text-[#FF7A00]">Paignton</span>
               </h3>
               <p className="relative z-10 text-white/60 text-lg md:text-xl font-medium mb-10 max-w-2xl mx-auto">
-                Book a DPF collection from Paignton — just 10 miles from our Totnes workshop. Trade accounts welcome.
+                Book a DPF collection from Paignton - just 10 miles from our Totnes workshop. Trade accounts welcome.
               </p>
               <div className="relative z-10 flex flex-col sm:flex-row gap-6 justify-center">
                 <MagneticButton className="block">

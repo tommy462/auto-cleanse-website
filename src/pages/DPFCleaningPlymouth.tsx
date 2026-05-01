@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Settings, Shield, Truck, ArrowRight } from 'lucide-react';
@@ -70,7 +70,7 @@ const DPFCleaningPlymouth = () => {
           <div className="max-w-4xl mx-auto reveal-item">
             <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium">
               AutoCleanse offers professional DPF cleaning for Plymouth drivers, independent garages, and commercial fleet operators.
-              We collect from Plymouth, clean at our Totnes workshop, and return — with same-day service available.
+              We collect from Plymouth, clean at our Totnes workshop, and return - with same-day service available.
             </p>
           </div>
         </div>
@@ -86,7 +86,7 @@ const DPFCleaningPlymouth = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Plymouth is well within our regular collection area. Whether you're a trade garage in the city centre, a fleet operator in Plympton, or an individual in Plymstock — AutoCleanse will collect your DPF, perform a full professional clean using our METclean XL aqueous process, and return it as quickly as possible.
+                Plymouth is well within our regular collection area. Whether you're a trade garage in the city centre, a fleet operator in Plympton, or an individual in Plymstock - AutoCleanse will collect your DPF, perform a full professional clean using our METclean XL aqueous process, and return it as quickly as possible.
               </p>
               <p>
                 Our workshop in Totnes is approximately 25 miles from Plymouth via the A38. Filters received before 10am are typically returned the same working day, making us one of the most responsive DPF cleaning services in the area.
@@ -104,7 +104,7 @@ const DPFCleaningPlymouth = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Plymouth drivers facing a blocked DPF often get quoted £800–£2,500 for a replacement — including a part that may be aftermarket rather than OEM. Professional DPF cleaning with AutoCleanse starts from £210 and uses your original filter, restored to factory performance standards.
+                Plymouth drivers facing a blocked DPF often get quoted £800–£2,500 for a replacement - including a part that may be aftermarket rather than OEM. Professional DPF cleaning with AutoCleanse starts from £210 and uses your original filter, restored to factory performance standards.
               </p>
               <p>
                 For Plymouth fleet operators, the cost saving across multiple vehicles is substantial. We offer trade accounts and can work with your maintenance schedule to keep downtime minimal.
@@ -122,7 +122,7 @@ const DPFCleaningPlymouth = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Plymouth has a large commercial vehicle population across logistics, construction, marine supply, and the military. AutoCleanse supports all these sectors with professional DPF cleaning for vans, HGVs, plant machinery, and specialist vehicles — with no-quibble turnaround and comprehensive test reporting.
+                Plymouth has a large commercial vehicle population across logistics, construction, marine supply, and the military. AutoCleanse supports all these sectors with professional DPF cleaning for vans, HGVs, plant machinery, and specialist vehicles - with no-quibble turnaround and comprehensive test reporting.
               </p>
               <p>
                 We also offer <Link to="/remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Plymouth drivers wanting to combine a DPF clean with a Stage 1 or Stage 2 performance tune.
@@ -151,7 +151,7 @@ const DPFCleaningPlymouth = () => {
               {[
                 { to: '/services', label: 'Full range of filter cleaning services' },
                 { to: '/postal-dpf', label: 'Nationwide postal DPF cleaning' },
-                { to: '/remapping', label: 'ECU remapping — Stage 1 & Stage 2' },
+                { to: '/remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
                 { to: '/dpf-cleaning-devon', label: 'DPF cleaning across Devon' },
                 { to: '/pricing', label: 'DPF cleaning prices' },
               ].map(({ to, label }) => (

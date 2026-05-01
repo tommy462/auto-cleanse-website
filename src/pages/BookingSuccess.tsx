@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CheckCircle, Calendar, Car, MapPin, Phone, Loader2, AlertCircle, Zap } from 'lucide-react';
 import SEO from '../components/SEO';
@@ -141,8 +141,8 @@ export default function BookingSuccess() {
                   label: 'Location',
                   value:
                     details.bookingType === 'mobile'
-                      ? `Mobile — ${details.address ?? ''}`
-                      : 'Workshop — bring your vehicle to us',
+                      ? `Mobile - ${details.address ?? ''}`
+                      : 'Workshop - bring your vehicle to us',
                 },
               ].map(({ icon, label, value }) => (
                 <div key={label} className="flex gap-4 py-3 border-b border-white/5 last:border-0">

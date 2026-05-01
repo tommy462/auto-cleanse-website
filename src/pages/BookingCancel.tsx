@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import { XCircle, ArrowLeft, Phone } from 'lucide-react';
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';

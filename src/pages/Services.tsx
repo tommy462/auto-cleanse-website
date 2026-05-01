@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { Settings, Shield, TestTube, Wind, Wrench, Zap, Phone, Mail, ArrowRight } from 'lucide-react';

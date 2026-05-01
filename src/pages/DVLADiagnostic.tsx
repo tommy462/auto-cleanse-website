@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+﻿import { useState, useRef } from 'react';
 import { Search, Info, AlertCircle, CheckCircle2, Car, Cpu, Droplets, Zap } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -68,7 +68,7 @@ export default function DVLADiagnostic() {
         <div className="mb-12 text-center reveal-item">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7A00]/10 border border-[#FF7A00]/20 text-[#FF7A00] text-xs font-bold mb-6">
             <Zap size={14} />
-            Diagnostic Mode — v1.0
+            Diagnostic Mode - v1.0
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-4">
             DVLA <span className="text-[#FF7A00]">Data Inspector.</span>
@@ -135,7 +135,7 @@ export default function DVLADiagnostic() {
               <div>
                 <p className="text-emerald-200 font-bold text-lg">Data Captured</p>
                 <p className="text-emerald-200/60 text-sm font-medium">
-                  {rawResponse.make} {rawResponse.registrationNumber} — {rawResponse.fuelType}
+                  {rawResponse.make} {rawResponse.registrationNumber} - {rawResponse.fuelType}
                 </p>
               </div>
             </div>
@@ -201,7 +201,7 @@ function DataField({ label, value }: { label: string, value: any }) {
   return (
     <div className="flex justify-between items-center py-1.5 border-b border-white/5 last:border-0">
       <span className="text-white/40 text-sm font-medium">{label}</span>
-      <span className="text-white font-bold">{value?.toString() || '—'}</span>
+      <span className="text-white font-bold">{value?.toString() || '-'}</span>
     </div>
   );
 }

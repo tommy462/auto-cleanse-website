@@ -1,4 +1,4 @@
-export interface DVLAVehicleData {
+﻿export interface DVLAVehicleData {
   make: string;
   yearOfManufacture: number;
   fuelType: string;

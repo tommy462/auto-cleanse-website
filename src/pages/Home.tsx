@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Truck, Clock, Shield, Settings, Wrench, Zap, ChevronLeft, ChevronRight, CheckCircle2, Droplets, Leaf, Settings2, BarChart3, ArrowRight, MousePointer2, Play, Facebook, Instagram, Youtube } from 'lucide-react';
 import gsap from 'gsap';
@@ -529,7 +529,7 @@ const Home = () => {
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-stretch gap-4 lg:gap-6 py-32 pt-36 lg:py-28 lg:min-h-[90vh] hero-content">
 
-          {/* Left Panel — DPF Cleaning */}
+          {/* Left Panel - DPF Cleaning */}
           <div className="flex-1 flex flex-col justify-center p-6 sm:p-8 lg:p-14 rounded-3xl bg-black/50 border border-white/10 backdrop-blur-sm">
             <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-4 hero-subtitle">Emission Control</div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-5 leading-[1.05] hero-title drop-shadow-2xl">
@@ -552,7 +552,7 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Right Panel — ECU Remapping */}
+          {/* Right Panel - ECU Remapping */}
           <div className="flex-1 flex flex-col justify-center p-6 sm:p-8 lg:p-14 rounded-3xl bg-[#FF7A00]/8 border border-[#FF7A00]/25 backdrop-blur-sm relative overflow-hidden">
             {/* Subtle orange glow behind the right panel */}
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#FF7A00]/15 blur-[80px] rounded-full pointer-events-none"></div>
@@ -564,7 +564,7 @@ const Home = () => {
                 <span className="text-white/30 italic font-medium block text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2">Unlocked.</span>
               </h2>
               <p className="text-white/70 text-base sm:text-lg md:text-xl font-medium mb-6 max-w-md leading-relaxed hero-subtitle">
-                Stage 1 &amp; 2 maps tailored to your vehicle. More power, better economy, sharper throttle response — safely calibrated.
+                Stage 1 &amp; 2 maps tailored to your vehicle. More power, better economy, sharper throttle response - safely calibrated.
               </p>
               <div className="flex flex-wrap gap-3 hero-subtitle">
                 <Link to="/vehicle-performance-lookup" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white hover:text-white inline-block">
@@ -592,7 +592,7 @@ const Home = () => {
           { title: "Arrival & Inspection", desc: "Every filter is carefully logged and endoscoped before cleaning begins." },
           { title: "Aqueous Cleaning Stage", desc: "Eco-safe solutions break down compacted soot, ash, and oil." },
           { title: "High-Pressure Flushing", desc: "A reverse flush ensures zero particulate blockage remains deep within the honeycomb." },
-          { title: "Drying & Final Test", desc: "Every filter back-pressure tested before it leaves us — restored to 98% of new." }
+          { title: "Drying & Final Test", desc: "Every filter back-pressure tested before it leaves us - restored to 98% of new." }
         ]}
       />
 
@@ -757,7 +757,7 @@ const Home = () => {
                     to="/remapping"
                     className="block text-[#FF7A00] hover:text-[#FFB37A] transition-colors text-sm font-medium"
                   >
-                    ECU remapping — Stage 1, Stage 2 &amp; custom maps →
+                    ECU remapping - Stage 1, Stage 2 &amp; custom maps →
                   </Link>
                   <Link
                     to="/why-clean"
@@ -796,7 +796,7 @@ const Home = () => {
         variant="editorial"
         textBlocks={[
           { title: "Blockage Removal", desc: "Targeted elimination of deep-seated particulate matter." },
-          { title: "Performance Uplift", desc: "Airflow restored to factory spec — guaranteed." },
+          { title: "Performance Uplift", desc: "Airflow restored to factory spec - guaranteed." },
           { title: "Longevity Ensured", desc: "A clean core prevents recurring warning lights." }
         ]}
       />
@@ -999,7 +999,7 @@ const Home = () => {
           <h2 className="text-3xl font-bold text-white mb-4">
             Trade garages welcome. Fleet operators supported.
           </h2>
-          <p className="text-white/50 text-lg font-medium mb-8">DPF cleaning &amp; ECU remapping — one trusted team.</p>
+          <p className="text-white/50 text-lg font-medium mb-8">DPF cleaning &amp; ECU remapping - one trusted team.</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <MagneticButton>

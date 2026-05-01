@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Shield, Zap, DollarSign, Clock, Settings, Truck, CheckCircle, Leaf } from 'lucide-react';
 import gsap from 'gsap';

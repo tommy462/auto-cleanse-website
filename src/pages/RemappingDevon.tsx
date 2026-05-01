@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Zap, BarChart3, Settings2, ArrowRight } from 'lucide-react';
@@ -38,7 +38,7 @@ const RemappingDevon = () => {
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="ECU Remapping Devon | Stage 1 & 2 Maps"
-        description="Professional ECU remapping across Devon — Exeter, Plymouth, Torquay, Newton Abbot & beyond. Stage 1, Stage 2 and custom maps. Based in Totnes, South Devon."
+        description="Professional ECU remapping across Devon - Exeter, Plymouth, Torquay, Newton Abbot & beyond. Stage 1, Stage 2 and custom maps. Based in Totnes, South Devon."
         path="/remapping-devon"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -67,7 +67,7 @@ const RemappingDevon = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20 reveal-container">
-          <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-6 reveal-item">Performance Tuning — Devon</div>
+          <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-6 reveal-item">Performance Tuning - Devon</div>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
             {splitText('ECU Remapping', 'text-white')}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
@@ -78,7 +78,7 @@ const RemappingDevon = () => {
           <div className="max-w-4xl mx-auto reveal-item">
             <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium">
               AutoCleanse provides Stage 1 and Stage 2 ECU remapping across Devon, operating from our Totnes workshop.
-              More power, improved fuel economy, sharper throttle response — safely calibrated for your vehicle.
+              More power, improved fuel economy, sharper throttle response - safely calibrated for your vehicle.
             </p>
           </div>
         </div>
@@ -94,10 +94,10 @@ const RemappingDevon = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                A Stage 1 remap is the most popular choice for Devon drivers — no hardware changes required, road-legal, and immediately noticeable. We recalibrate your engine's fuelling, boost, ignition and torque curves to unlock performance that manufacturers deliberately restrict from the factory map.
+                A Stage 1 remap is the most popular choice for Devon drivers - no hardware changes required, road-legal, and immediately noticeable. We recalibrate your engine's fuelling, boost, ignition and torque curves to unlock performance that manufacturers deliberately restrict from the factory map.
               </p>
               <p>
-                Typical gains on a diesel car or van include 20–50bhp and 40–80Nm of torque, alongside improved fuel economy at motorway speeds. Every map is written specifically for your make, model, engine variant and current mileage — not a generic flash file.
+                Typical gains on a diesel car or van include 20–50bhp and 40–80Nm of torque, alongside improved fuel economy at motorway speeds. Every map is written specifically for your make, model, engine variant and current mileage - not a generic flash file.
               </p>
             </div>
           </section>
@@ -108,14 +108,14 @@ const RemappingDevon = () => {
               <div className="w-16 h-16 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/30 flex items-center justify-center mr-6 group-hover:scale-110 group-hover:bg-[#FF7A00]/20 transition-all duration-500 shadow-[0_0_20px_rgba(255,122,0,0.2)]">
                 <Settings2 size={28} className="text-[#FF7A00]" />
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">Stage 2 & Custom Maps — Devon</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">Stage 2 & Custom Maps - Devon</h2>
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Stage 2 remapping is designed for vehicles that already have hardware upgrades — an uprated intercooler, performance exhaust, or modified intake. Our Stage 2 maps are calibrated to match your specific hardware, safely extracting maximum gains within your engine's mechanical limits.
+                Stage 2 remapping is designed for vehicles that already have hardware upgrades - an uprated intercooler, performance exhaust, or modified intake. Our Stage 2 maps are calibrated to match your specific hardware, safely extracting maximum gains within your engine's mechanical limits.
               </p>
               <p>
-                We also produce custom maps for agricultural machinery, commercial vehicles, and fleet operators across Devon who need an economy-biased map rather than a power-focused one. If you have specific requirements — towing, payload, fuel economy targets — we can calibrate to meet them.
+                We also produce custom maps for agricultural machinery, commercial vehicles, and fleet operators across Devon who need an economy-biased map rather than a power-focused one. If you have specific requirements - towing, payload, fuel economy targets - we can calibrate to meet them.
               </p>
             </div>
           </section>
@@ -133,7 +133,7 @@ const RemappingDevon = () => {
                 For Devon drivers covering rural A-roads, dual carriageways and motorways, a Stage 1 remap can make a noticeable difference to everyday driving. Better throttle response on overtakes, less gear-changing on hills, and improved MPG on longer runs between towns are all commonly reported after a remap.
               </p>
               <p>
-                Fleet operators running vans or light commercials across the South West often find that economy-biased remaps reduce fuel spend meaningfully across their vehicles — especially when combined with a DPF clean to ensure the engine is breathing freely.
+                Fleet operators running vans or light commercials across the South West often find that economy-biased remaps reduce fuel spend meaningfully across their vehicles - especially when combined with a DPF clean to ensure the engine is breathing freely.
               </p>
             </div>
           </section>
@@ -157,7 +157,7 @@ const RemappingDevon = () => {
             <h3 className="relative z-10 text-2xl font-bold text-white mb-8 tracking-tight">Related Services</h3>
             <div className="relative z-10 space-y-4">
               {[
-                { to: '/remapping', label: 'ECU remapping — full service overview' },
+                { to: '/remapping', label: 'ECU remapping - full service overview' },
                 { to: '/remapping-booking', label: 'Book a remap consultation' },
                 { to: '/services', label: 'DPF, SCR & filter cleaning services' },
                 { to: '/dpf-cleaning-devon', label: 'DPF cleaning across Devon' },

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Settings, Shield, Truck, ArrowRight } from 'lucide-react';
@@ -73,7 +73,7 @@ const DPFCleaningTorquay = () => {
           <div className="max-w-4xl mx-auto reveal-item">
             <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium">
               AutoCleanse provides professional DPF cleaning for Torquay, Paignton, Brixham and the wider Torbay area.
-              We collect, deep clean and return — fast, reliable, trade-friendly.
+              We collect, deep clean and return - fast, reliable, trade-friendly.
             </p>
           </div>
         </div>
@@ -85,11 +85,11 @@ const DPFCleaningTorquay = () => {
               <div className="w-16 h-16 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/30 flex items-center justify-center mr-6 group-hover:scale-110 group-hover:bg-[#FF7A00]/20 transition-all duration-500 shadow-[0_0_20px_rgba(255,122,0,0.2)]">
                 <Truck size={28} className="text-[#FF7A00]" />
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">Local DPF Collection — Torquay & Torbay</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">Local DPF Collection - Torquay & Torbay</h2>
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Torquay is one of our closest collection areas — just 12 miles from our Totnes workshop. We regularly collect from Torquay, Paignton, Brixham and the surrounding Torbay area. With same-day return for filters received before 10am, we're the most convenient DPF cleaning option for local garages and vehicle owners.
+                Torquay is one of our closest collection areas - just 12 miles from our Totnes workshop. We regularly collect from Torquay, Paignton, Brixham and the surrounding Torbay area. With same-day return for filters received before 10am, we're the most convenient DPF cleaning option for local garages and vehicle owners.
               </p>
               <p>
                 Our METclean XL process removes soot, ash and oil contamination from even the most blocked DPFs, restoring them to 98% of original flow capacity with before-and-after test documentation provided.
@@ -107,7 +107,7 @@ const DPFCleaningTorquay = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                For Torquay-area customers, DPF cleaning with AutoCleanse starts from £210 for vehicles within 10 miles of Totnes — which includes most of the Torbay area. This is a fixed, transparent price with no hidden extras. Nationwide postal cleaning is also available from £230 if you prefer to arrange courier delivery.
+                For Torquay-area customers, DPF cleaning with AutoCleanse starts from £210 for vehicles within 10 miles of Totnes - which includes most of the Torbay area. This is a fixed, transparent price with no hidden extras. Nationwide postal cleaning is also available from £230 if you prefer to arrange courier delivery.
               </p>
               <p>
                 Compare that to a replacement DPF, which can cost Torquay drivers £600–£2,000+ fitted, often using an aftermarket part that doesn't meet OEM specifications. Professional cleaning is the smarter choice for most blocked filters.
@@ -152,7 +152,7 @@ const DPFCleaningTorquay = () => {
               {[
                 { to: '/services', label: 'Full range of filter cleaning services' },
                 { to: '/dpf-cleaning-paignton', label: 'DPF cleaning Paignton' },
-                { to: '/remapping', label: 'ECU remapping — Stage 1 & Stage 2' },
+                { to: '/remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
                 { to: '/dpf-cleaning-devon', label: 'DPF cleaning across Devon' },
                 { to: '/pricing', label: 'DPF cleaning prices' },
               ].map(({ to, label }) => (

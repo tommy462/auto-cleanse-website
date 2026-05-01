@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import { lookupVehicle, DVLAVehicleData } from '../services/dvla';
 import SEO from '../components/SEO';
@@ -80,7 +80,7 @@ const DiagnosticMatcher = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load full CSV on mount — use response.text() not a streaming reader
+  // Load full CSV on mount - use response.text() not a streaming reader
   useEffect(() => {
     fetch('/data/remap-data.csv')
       .then(r => r.text())
@@ -119,11 +119,11 @@ const DiagnosticMatcher = () => {
         .map(row => {
           const text = `${row.engine_dropdown} ${row.engine_name}`;
 
-          // Hard year filter — exclude rows clearly from a different generation
+          // Hard year filter - exclude rows clearly from a different generation
           const { start, end } = parseYearRange(row.year);
           if (!isNaN(start) && !isNaN(end) && (dvlaYear < start - 1 || dvlaYear > end + 1)) return null;
 
-          // Hard fuel filter — if fuel is determinable and wrong, skip
+          // Hard fuel filter - if fuel is determinable and wrong, skip
           const rowFuel = inferFuel(text);
           if (rowFuel !== '' && rowFuel !== dvlaFuel) return null;
 
@@ -343,7 +343,7 @@ const DiagnosticMatcher = () => {
               <span className="text-[#FF7A00]">{selectedGroup.model}</span>
             </h2>
             <p className="text-white/40 text-sm mb-8">
-              {selectedGroup.engines.length} matching engine variant{selectedGroup.engines.length !== 1 ? 's' : ''} — pick the closest to your car
+              {selectedGroup.engines.length} matching engine variant{selectedGroup.engines.length !== 1 ? 's' : ''} - pick the closest to your car
             </p>
 
             <div className="space-y-4">

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import {
   MapPin, Phone, Zap, ArrowRight, CheckCircle, ChevronDown,
@@ -11,17 +11,17 @@ import { getLocationBySlug, REMAP_LOCATIONS } from '../data/remapping-locations'
 import { VEHICLE_REMAPS } from '../data/vehicle-remapping';
 
 const SERVICES = [
-  { icon: <Zap size={20} />, title: 'Stage 1 Remap', desc: 'Software-only tune for standard vehicles — the most popular upgrade. More power, better torque, sharper throttle.' },
+  { icon: <Zap size={20} />, title: 'Stage 1 Remap', desc: 'Software-only tune for standard vehicles - the most popular upgrade. More power, better torque, sharper throttle.' },
   { icon: <BarChart3 size={20} />, title: 'Stage 2 Remap', desc: 'For vehicles with hardware upgrades. Optimised maps to match intercooler, exhaust or intake changes.' },
-  { icon: <Fuel size={20} />, title: 'Economy Remap', desc: 'Diesel-focused tuning to reduce fuel consumption — popular with van drivers and high-mileage commuters.' },
+  { icon: <Fuel size={20} />, title: 'Economy Remap', desc: 'Diesel-focused tuning to reduce fuel consumption - popular with van drivers and high-mileage commuters.' },
   { icon: <Truck size={20} />, title: 'Van & Commercial', desc: 'Transit, Sprinter, Crafter, Trafic and more. Better pulling power and economy for working vehicles.' },
   { icon: <Settings2 size={20} />, title: 'Custom / Fleet Map', desc: 'Consistent mapping across multiple vehicles, tailored for fleet operators and commercial customers.' },
-  { icon: <Wrench size={20} />, title: 'DPF Clean + Remap Bundle', desc: 'Combined DPF clean and ECU remap — inc. labour to remove and refit. Best-value diesel health package.' },
+  { icon: <Wrench size={20} />, title: 'DPF Clean + Remap Bundle', desc: 'Combined DPF clean and ECU remap - inc. labour to remove and refit. Best-value diesel health package.' },
 ];
 
 const TRUST = [
   'Pre and post-remap diagnostic check included',
-  'Real vehicle footage — see our results on social media',
+  'Real vehicle footage - see our results on social media',
   'Professional OBD and bench flashing equipment',
   'Experienced with petrol, diesel, 4x4 and commercial vehicles',
   'Google-reviewed local business',
@@ -198,7 +198,7 @@ export default function RemappingLocation() {
                   Mobile Remapping Available in {location.name}
                 </h2>
                 <p className="text-white/50 text-sm leading-relaxed">
-                  We come to your home, driveway or workplace — {location.distanceNote}. No need to take time off or arrange transport.
+                  We come to your home, driveway or workplace - {location.distanceNote}. No need to take time off or arrange transport.
                   Our mobile setup carries the same professional OBD and bench equipment as our workshop.
                 </p>
               </div>
@@ -222,10 +222,10 @@ export default function RemappingLocation() {
             <div>
               <p className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest mb-3">Why choose us</p>
               <h2 className="text-3xl font-black tracking-tighter text-white mb-6">
-                Professional ECU Tuning — Not Just a Flash and Go
+                Professional ECU Tuning - Not Just a Flash and Go
               </h2>
               <p className="text-white/50 text-sm leading-relaxed mb-6">
-                Every vehicle we remap gets a full diagnostic check before we touch the ECU — and another one after. We don't use generic off-the-shelf files or rush through jobs. Our remaps are applied carefully, tested properly, and backed by our real-world experience with hundreds of vehicles across Devon.
+                Every vehicle we remap gets a full diagnostic check before we touch the ECU - and another one after. We don't use generic off-the-shelf files or rush through jobs. Our remaps are applied carefully, tested properly, and backed by our real-world experience with hundreds of vehicles across Devon.
               </p>
               <p className="text-white/50 text-sm leading-relaxed">
                 We're a genuine local Devon business, not a national franchise. When you call us, you speak to the people doing the work.
@@ -305,7 +305,7 @@ export default function RemappingLocation() {
           <div className="mb-10">
             <p className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest mb-3">FAQ</p>
             <h2 className="text-3xl font-black tracking-tighter text-white">
-              Common Questions — {location.name}
+              Common Questions - {location.name}
             </h2>
           </div>
           <div className="rounded-3xl bg-[#1A1D22] border border-white/5 px-6 sm:px-8">
@@ -356,7 +356,7 @@ export default function RemappingLocation() {
             <span className="text-[#FF7A00]">in {location.name}.</span>
           </h2>
           <p className="text-white/40 text-base mb-8 max-w-md mx-auto">
-            Book online in minutes. Choose your service, tell us about your vehicle and pick a slot — workshop or mobile.
+            Book online in minutes. Choose your service, tell us about your vehicle and pick a slot - workshop or mobile.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <MagneticButton>

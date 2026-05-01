@@ -1,4 +1,4 @@
-// ─────────────────────────────────────────────────────────────────────────────
+﻿// ─────────────────────────────────────────────────────────────────────────────
 // Booking system configuration
 // Adjust these values to match your business. API keys go in .env.local only.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -67,7 +67,7 @@ export const REMAP_SERVICES = [
   {
     value: 'stage-1',
     label: 'Stage 1 Remap',
-    description: 'Software-only tune — standard vehicle, no hardware changes needed',
+    description: 'Software-only tune - standard vehicle, no hardware changes needed',
     icon: '⚡',
   },
   {
@@ -85,12 +85,12 @@ export const REMAP_SERVICES = [
   {
     value: 'dpf-remap-bundle',
     label: 'DPF Clean + Remap Bundle',
-    description: 'DPF clean and ECU remap inc. labour to remove and refit — best-value package',
+    description: 'DPF clean and ECU remap inc. labour to remove and refit - best-value package',
     icon: '🛠️',
   },
   {
     value: 'not-sure',
-    label: 'Not Sure — Need Advice',
+    label: 'Not Sure - Need Advice',
     description: "Tell us your goals and we'll recommend the right option",
     icon: '💬',
   },
@@ -102,7 +102,7 @@ export type RemapServiceValue = typeof REMAP_SERVICES[number]['value'];
 // Add-on options (shown as checkboxes on the booking form)
 // extraCost is the additional charge in pounds (0 = included free)
 // offRoadOnly: true means the option is for off-road/export vehicles only and
-//   is not road-legal in the UK — a legal disclaimer must be shown and accepted
+//   is not road-legal in the UK - a legal disclaimer must be shown and accepted
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface RemapOption {
@@ -131,7 +131,7 @@ export const REMAP_OPTIONS: RemapOption[] = [
 // ─────────────────────────────────────────────────────────────────────────────
 // Base prices per service type (£)
 // workshop = customer comes to us, mobile = we go to them
-// 0 = no price (e.g. advice call — quoted later)
+// 0 = no price (e.g. advice call - quoted later)
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const BASE_PRICES: Record<RemapServiceValue, { workshop: number; mobile: number; fromPrice?: boolean }> = {
