@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Papa from 'papaparse';
 import SEO from '../components/SEO';
 import { Activity, AlertTriangle, ArrowLeft, ArrowRight, CheckCircle, ChevronDown, Info, Zap, TrendingUp, Settings, Car, Search, Check } from 'lucide-react';
@@ -270,54 +270,76 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
             {selectedGroup.engines.sort((a, b) => b.score - a.score).map((engine, i) => {
               const options = parseOptions(engine.options_available);
               return (
-                <div key={i} className="bg-[#0A0A0A] border border-white/5 rounded-xl p-5 hover:border-[#FF7A00]/15 transition-all">
-                  <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
-                    <div className="flex-1 min-w-0">
+                <div key={i} className="bg-[#0A0A0A] border border-white/5 rounded-2xl overflow-hidden hover:border-[#FF7A00]/20 transition-all">
+
+                  {/* Header: engine name + Book button */}
+                  <div className="flex items-center justify-between gap-3 px-5 pt-4 pb-3 border-b border-white/5">
+                    <div className="min-w-0">
                       <p className="text-white font-black leading-none">{engine.engine_name}</p>
                       <p className="text-white/25 text-xs mt-0.5">{engine.year}</p>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0 flex-wrap justify-end">
-                      <div className="flex items-center gap-2">
-                        <div className="text-center">
-                          <p className="text-white/30 text-[10px] uppercase font-bold">Stock</p>
-                          <p className="text-white font-black text-xl leading-none">{engine.stock_bhp}</p>
-                          <p className="text-white/30 text-[10px]">BHP</p>
+                    <a
+                      href={`/remapping-booking?reg=${encodeURIComponent(registration)}&vehicle=${encodeURIComponent(`${selectedGroup.manufacturer} ${selectedGroup.model} ${engine.engine_name}`)}`}
+                      className="flex items-center gap-1.5 bg-[#FF7A00] hover:bg-[#FF9500] text-black text-xs font-black px-3.5 py-2 rounded-lg transition-all shrink-0 shadow-[0_0_12px_rgba(255,122,0,0.25)]"
+                    >
+                      <Zap size={12} /> Book this
+                    </a>
+                  </div>
+
+                  {/* Stats: Power | Torque side by side */}
+                  <div className="grid grid-cols-2 divide-x divide-white/5">
+
+                    {/* Power (BHP) */}
+                    <div className="px-5 py-4">
+                      <p className="text-white/30 text-[10px] uppercase font-bold tracking-widest mb-3">Power</p>
+                      <div className="flex items-end gap-3">
+                        <div>
+                          <p className="text-white/35 text-[10px] uppercase font-bold mb-0.5">Stock</p>
+                          <p className="text-white font-black text-2xl leading-none">{engine.stock_bhp}</p>
+                          <p className="text-white/25 text-[10px] mt-0.5">bhp</p>
                         </div>
-                        <ArrowRight className="text-[#FF7A00]" size={15} />
-                        <div className="text-center">
-                          <p className="text-green-400/50 text-[10px] uppercase font-bold">Stage 1</p>
-                          <p className="text-green-400 font-black text-xl leading-none">{engine.stage1_bhp}</p>
-                          <p className="text-green-400/30 text-[10px]">BHP</p>
+                        <ArrowRight className="text-[#FF7A00]/50 mb-3 shrink-0" size={13} />
+                        <div>
+                          <p className="text-green-400/50 text-[10px] uppercase font-bold mb-0.5">Stage 1</p>
+                          <p className="text-green-400 font-black text-2xl leading-none">{engine.stage1_bhp}</p>
+                          <p className="text-green-400/30 text-[10px] mt-0.5">bhp</p>
                         </div>
-                        <div className="bg-[#FF7A00]/10 border border-[#FF7A00]/20 rounded-lg px-2.5 py-1.5 text-center ml-1">
-                          <p className="text-[#FF7A00] text-[10px] uppercase font-bold">Gain</p>
-                          <p className="text-[#FF7A00] font-black text-lg leading-none">+{engine.bhp_gain}</p>
+                        <div className="ml-auto self-center bg-[#FF7A00]/10 border border-[#FF7A00]/25 rounded-lg px-2.5 py-1.5 text-center">
+                          <p className="text-[#FF7A00] text-[9px] uppercase font-bold tracking-wide">Gain</p>
+                          <p className="text-[#FF7A00] font-black text-base leading-none">+{engine.bhp_gain}</p>
+                          <p className="text-[#FF7A00]/40 text-[9px]">bhp</p>
                         </div>
                       </div>
-                      <a
-                        href={`/remapping-booking?reg=${encodeURIComponent(registration)}&vehicle=${encodeURIComponent(`${selectedGroup.manufacturer} ${selectedGroup.model} ${engine.engine_name}`)}`}
-                        className="flex items-center gap-1.5 bg-[#FF7A00] hover:bg-[#FF9500] text-black text-xs font-black px-3 py-2 rounded-lg transition-all"
-                      >
-                        <Zap size={12} /> Book this
-                      </a>
                     </div>
+
+                    {/* Torque (Nm) */}
+                    <div className="px-5 py-4">
+                      <p className="text-white/30 text-[10px] uppercase font-bold tracking-widest mb-3">Torque</p>
+                      <div className="flex items-end gap-3">
+                        <div>
+                          <p className="text-white/35 text-[10px] uppercase font-bold mb-0.5">Stock</p>
+                          <p className="text-white font-black text-2xl leading-none">{engine.stock_torque}</p>
+                          <p className="text-white/25 text-[10px] mt-0.5">Nm</p>
+                        </div>
+                        <ArrowRight className="text-[#FF7A00]/50 mb-3 shrink-0" size={13} />
+                        <div>
+                          <p className="text-green-400/50 text-[10px] uppercase font-bold mb-0.5">Stage 1</p>
+                          <p className="text-green-400 font-black text-2xl leading-none">{engine.stage1_torque}</p>
+                          <p className="text-green-400/30 text-[10px] mt-0.5">Nm</p>
+                        </div>
+                        <div className="ml-auto self-center bg-[#FF7A00]/10 border border-[#FF7A00]/25 rounded-lg px-2.5 py-1.5 text-center">
+                          <p className="text-[#FF7A00] text-[9px] uppercase font-bold tracking-wide">Gain</p>
+                          <p className="text-[#FF7A00] font-black text-base leading-none">+{engine.torque_gain}</p>
+                          <p className="text-[#FF7A00]/40 text-[9px]">Nm</p>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
-                  <div className="grid grid-cols-3 gap-2 mb-3">
-                    <div className="bg-[#111111] p-2.5 rounded-lg text-center">
-                      <p className="text-white/25 text-[9px] uppercase font-bold mb-0.5">Stock Torque</p>
-                      <p className="text-white text-sm font-bold">{engine.stock_torque} <span className="text-white/25 text-xs font-normal">Nm</span></p>
-                    </div>
-                    <div className="bg-[#111111] p-2.5 rounded-lg text-center border border-green-500/10">
-                      <p className="text-green-400/40 text-[9px] uppercase font-bold mb-0.5">Stage 1 Torque</p>
-                      <p className="text-green-400 text-sm font-bold">{engine.stage1_torque} <span className="text-green-400/25 text-xs font-normal">Nm</span></p>
-                    </div>
-                    <div className="bg-[#111111] p-2.5 rounded-lg text-center border border-[#FF7A00]/10">
-                      <p className="text-[#FF7A00]/40 text-[9px] uppercase font-bold mb-0.5">Torque Gain</p>
-                      <p className="text-[#FF7A00] text-sm font-bold">+{engine.torque_gain} <span className="text-[#FF7A00]/25 text-xs font-normal">Nm</span></p>
-                    </div>
-                  </div>
+
+                  {/* Available options badges */}
                   {options.length > 0 && (
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-1 px-5 pb-4 pt-1 border-t border-white/5">
                       {options.map((opt, oIdx) => (
                         <span key={oIdx} className="flex items-center gap-1 text-[10px] font-bold bg-white/5 text-white/40 px-2 py-0.5 rounded-full">
                           <CheckCircle size={9} className="text-green-400 shrink-0" />{opt}
