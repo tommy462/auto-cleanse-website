@@ -91,6 +91,13 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
           if (!isNaN(start) && !isNaN(end) && (dvlaYear < start - 1 || dvlaYear > end + 1)) return null;
           const rowFuel = inferFuel(text);
           if (rowFuel !== '' && rowFuel !== dvlaFuel) return null;
+          // Hard engine-size filter: if the row has a readable litre value and it's
+          // more than 0.3L away from the DVLA value, exclude it (e.g. 2.0 vs 4.4)
+          const litreMatch = text.match(/(\d\.\d)/);
+          if (litreMatch) {
+            const diff = Math.abs(parseFloat(litreMatch[1]) - dvlaLitre);
+            if (diff > 0.3) return null;
+          }
           let score = 40;
           if (!isNaN(start) && dvlaYear >= start && dvlaYear <= end) {
             score += 20;
@@ -98,7 +105,6 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
             if (dvlaYear - start <= 5) score += 10;
           }
           if (rowFuel === dvlaFuel) score += 20;
-          const litreMatch = text.match(/(\d\.\d)/);
           if (litreMatch) {
             const diff = Math.abs(parseFloat(litreMatch[1]) - dvlaLitre);
             if (diff < 0.05) score += 30; else if (diff <= 0.15) score += 15;

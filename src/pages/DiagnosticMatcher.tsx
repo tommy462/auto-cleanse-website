@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import { lookupVehicle, DVLAVehicleData } from '../services/dvla';
 import SEO from '../components/SEO';
@@ -127,6 +127,14 @@ const DiagnosticMatcher = () => {
           const rowFuel = inferFuel(text);
           if (rowFuel !== '' && rowFuel !== dvlaFuel) return null;
 
+          // Hard engine-size filter: if the row has a readable litre value and it's
+          // more than 0.3L away from the DVLA value, exclude it (e.g. 2.0 vs 4.4)
+          const litreMatch = text.match(/(\d\.\d)/);
+          if (litreMatch) {
+            const diff = Math.abs(parseFloat(litreMatch[1]) - dvlaLitre);
+            if (diff > 0.3) return null;
+          }
+
           let score = 40; // Manufacturer baseline
 
           // Year bonus (+20) + precision bonus (+10) for recently-started ranges
@@ -139,7 +147,6 @@ const DiagnosticMatcher = () => {
           if (rowFuel === dvlaFuel) score += 20;
 
           // Engine capacity match
-          const litreMatch = text.match(/(\d\.\d)/);
           if (litreMatch) {
             const diff = Math.abs(parseFloat(litreMatch[1]) - dvlaLitre);
             if (diff < 0.05)       score += 30; // Exact
