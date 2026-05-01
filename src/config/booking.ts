@@ -110,11 +110,10 @@ export interface RemapOption {
   label: string;
   extraCost: number;
   offRoadOnly?: boolean;
-  freeIncluded?: boolean; // true = included at no extra cost, displayed with a FREE badge
 }
 
 export const REMAP_OPTIONS: RemapOption[] = [
-  { value: 'dpf-gpf-opf-disable',  label: 'DPF/GPF/OPF Disable',               extraCost: 0,  offRoadOnly: true,  freeIncluded: true },
+  { value: 'dpf-gpf-opf-disable',  label: 'DPF/GPF/OPF Disable',               extraCost: 20, offRoadOnly: true  },
   { value: 'egr-disable',          label: 'EGR Delete',                          extraCost: 20, offRoadOnly: true  },
   { value: 'speed-limiter-disable',label: 'Speed Limiter Disable',               extraCost: 20 },
   { value: 'dtc-disable',          label: 'DTC Disable',                         extraCost: 20 },

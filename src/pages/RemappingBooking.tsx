@@ -75,12 +75,23 @@ function getServiceLabel(value: string) {
   return REMAP_SERVICES.find((s) => s.value === value)?.label ?? value;
 }
 
+// Returns the value of the first selected option that is eligible for the free slot
+// (i.e. not a £36 option). Returns null if none qualify.
+function getFirstFreeOptionValue(selectedOptions: string[]): string | null {
+  return selectedOptions.find((val) => {
+    const opt = REMAP_OPTIONS.find((o) => o.value === val);
+    return opt && opt.extraCost < 36;
+  }) ?? null;
+}
+
 function calcQuotedPrice(serviceType: string, bookingType: string, selectedOptions: string[]): number {
   if (!serviceType || !bookingType) return 0;
   const prices = BASE_PRICES[serviceType as RemapServiceValue];
   if (!prices) return 0;
   const base = bookingType === 'mobile' ? prices.mobile : prices.workshop;
+  const freeVal = getFirstFreeOptionValue(selectedOptions);
   const extras = selectedOptions.reduce((sum, val) => {
+    if (val === freeVal) return sum; // first eligible add-on is free
     return sum + (REMAP_OPTIONS.find((o) => o.value === val)?.extraCost ?? 0);
   }, 0);
   return base + extras;
@@ -710,11 +721,22 @@ export default function RemappingBooking() {
               </span>
               Add-on Options
             </h2>
-            <p className="text-white/30 text-xs mb-5 ml-9">Select any extras you'd like included - tick all that apply</p>
+            <p className="text-white/30 text-xs mb-4 ml-9">Select any extras you'd like included - tick all that apply</p>
+
+            {/* First standard add-on free callout */}
+            <div className="ml-9 mb-5 flex items-center gap-2.5 bg-green-500/8 border border-green-500/20 rounded-xl px-4 py-2.5">
+              <span className="text-green-400 text-base leading-none">✦</span>
+              <p className="text-green-400 text-xs font-bold">
+                First add-on included <span className="uppercase tracking-wider">FREE</span>
+                <span className="text-green-400/50 font-normal ml-1">- additional add-ons from +£20</span>
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {REMAP_OPTIONS.map((opt) => {
                 const checked = form.selectedOptions.includes(opt.value);
-                const isFree = opt.freeIncluded;
+                const freeVal = getFirstFreeOptionValue(form.selectedOptions);
+                const isFreeSlot = checked && opt.value === freeVal;
                 return (
                   <button
                     key={opt.value}
@@ -727,30 +749,28 @@ export default function RemappingBooking() {
                     }}
                     className={`flex flex-col gap-1.5 px-4 py-3 rounded-xl border text-left transition-all ${
                       checked
-                        ? isFree
+                        ? isFreeSlot
                           ? 'bg-green-500/10 border-green-500/50'
                           : opt.offRoadOnly
                           ? 'bg-amber-500/10 border-amber-500/50'
                           : 'bg-[#FF7A00]/10 border-[#FF7A00]/50'
-                        : isFree
-                        ? 'bg-green-500/5 border-green-500/25 hover:border-green-500/50'
                         : 'bg-black/20 border-white/[0.07] hover:border-white/20'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <span className={`w-4 h-4 rounded flex-shrink-0 border flex items-center justify-center transition-colors ${
                         checked
-                          ? isFree
+                          ? isFreeSlot
                             ? 'bg-green-500 border-green-500'
                             : opt.offRoadOnly ? 'bg-amber-500 border-amber-500' : 'bg-[#FF7A00] border-[#FF7A00]'
-                          : isFree ? 'border-green-500/40' : 'border-white/20'
+                          : 'border-white/20'
                       }`}>
                         {checked && <span className="text-black text-[10px] font-black leading-none">✓</span>}
                       </span>
-                      <span className={`text-sm font-medium flex-1 ${checked ? 'text-white' : isFree ? 'text-white/80' : 'text-white/60'}`}>
+                      <span className={`text-sm font-medium flex-1 ${checked ? 'text-white' : 'text-white/60'}`}>
                         {opt.label}
                       </span>
-                      {isFree ? (
+                      {isFreeSlot ? (
                         <span className="flex items-center gap-1 text-[10px] font-black text-green-400 bg-green-500/15 border border-green-500/30 px-2 py-0.5 rounded-lg shrink-0 tracking-wide uppercase">
                           ✦ Free
                         </span>
@@ -760,7 +780,7 @@ export default function RemappingBooking() {
                         </span>
                       ) : null}
                     </div>
-                    {isFree && (
+                    {isFreeSlot && (
                       <p className="ml-7 text-[10px] text-green-400/60 font-medium">
                         Included at no extra cost
                       </p>
