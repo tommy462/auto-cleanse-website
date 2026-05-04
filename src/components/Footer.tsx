@@ -31,7 +31,7 @@ const Footer = () => {
     { name: 'Ford Transit Custom', path: '/ford-transit-custom-remap' },
     { name: 'VW Transporter', path: '/vw-transporter-remap' },
     { name: 'Audi A3', path: '/audi-a3-remap' },
-    { name: 'BMW 3 Series', path: '/bmw-3-series-remap' },
+    { name: 'BMW 3 Series', path: '/bmw-320d-remap' },
     { name: 'Land Rover Discovery', path: '/land-rover-discovery-remap' },
     { name: 'View All', path: '/vehicle-remapping' },
   ];
