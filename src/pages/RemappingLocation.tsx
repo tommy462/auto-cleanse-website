@@ -8,6 +8,8 @@ import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { getLocationBySlug, REMAP_LOCATIONS } from '../data/remapping-locations';
+import { MayOfferBanner, DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
+import { PRIORITY_SLUGS } from '../data/campaign';
 
 const SERVICES = [
   { icon: <Zap size={20} />, title: 'Stage 1 Remap', desc: 'Software-only tune for standard vehicles - the most popular upgrade. More power, better torque, sharper throttle.' },
@@ -162,6 +164,13 @@ export default function RemappingLocation() {
         </div>
       </section>
 
+      {/* ── May Launch Offer Banner ───────────────────────────────────────── */}
+      {PRIORITY_SLUGS.has(location.slug) && (
+        <section className="pt-2 pb-8">
+          <MayOfferBanner />
+        </section>
+      )}
+
       {/* ── Services ──────────────────────────────────────────────────────── */}
       <section className="py-16 border-t border-white/5">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -265,6 +274,14 @@ export default function RemappingLocation() {
           </div>
         </div>
       </section>
+
+      {/* ── DPF Trust Signal + Recent Remaps ───────────────────��─────────── */}
+      {PRIORITY_SLUGS.has(location.slug) && (
+        <>
+          <DpfTrustSignal />
+          <RecentRemaps />
+        </>
+      )}
 
       {/* ── Nearby areas ──────────────────────────────────────────────────── */}
       <section className="py-16 border-t border-white/5">

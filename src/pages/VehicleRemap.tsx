@@ -9,6 +9,8 @@ import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { VehicleRemapData, getVehicleBySlug } from '../data/vehicle-remapping';
 import { VEHICLE_REMAPS } from '../data/vehicle-remapping';
+import { MayOfferBanner, DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
+import { PRIORITY_SLUGS } from '../data/campaign';
 
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
@@ -136,6 +138,13 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
         </div>
       </section>
 
+      {/* ── May Launch Offer Banner ───────────────────────────────────────── */}
+      {PRIORITY_SLUGS.has(vehicle.slug) && (
+        <section className="pt-2 pb-8">
+          <MayOfferBanner />
+        </section>
+      )}
+
       {/* ── Engine Options ────────────────────────────────────────────────── */}
       <section className="py-16 border-t border-white/5">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -246,6 +255,14 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
           </div>
         </div>
       </section>
+
+      {/* ── DPF Trust Signal + Recent Remaps ─────────────────────────────── */}
+      {PRIORITY_SLUGS.has(vehicle.slug) && (
+        <>
+          <DpfTrustSignal />
+          <RecentRemaps />
+        </>
+      )}
 
       {/* ── FAQ ───────────────────────────────────────────────────────────── */}
       <section className="py-16 border-t border-white/5">
