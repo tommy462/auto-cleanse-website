@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
 import { lookupVehicle, DVLAVehicleData } from '../services/dvla';
 import { VEHICLE_REMAPS } from '../data/vehicle-remapping';
+import { getManufacturerLogoPath } from '../data/manufacturer-logos';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -469,12 +470,12 @@ const LOGO_DOMAINS: Record<string, string> = {
 
 function BrandLogo({ make, size = 28 }: { make: string; size?: number }) {
   const [failed, setFailed] = useState(false);
-  const domain = LOGO_DOMAINS[make];
+  const logoPath = getManufacturerLogoPath(make);
   const initials = make.replace(/[^A-Za-z ]/g, '').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || make[0];
   const hue = make.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0) % 360;
   const radius = Math.round(size * 0.28);
 
-  if (!domain || failed) {
+  if (!logoPath || failed) {
     return (
       <div
         style={{
@@ -497,7 +498,7 @@ function BrandLogo({ make, size = 28 }: { make: string; size?: number }) {
       className="bg-white/8 flex items-center justify-center overflow-hidden flex-shrink-0 border border-white/6"
     >
       <img
-        src={`https://logo.clearbit.com/${domain}`}
+        src={logoPath}
         alt={make}
         style={{ width: size * 0.78, height: size * 0.78, objectFit: 'contain' }}
         onError={() => setFailed(true)}
@@ -1096,11 +1097,11 @@ export default function VehiclePerformanceLookup() {
 // Larger version for result card header - no lazy load, slightly different sizing
 function BrandLogoLarge({ make }: { make: string }) {
   const [failed, setFailed] = useState(false);
-  const domain = LOGO_DOMAINS[make];
+  const logoPath = getManufacturerLogoPath(make);
   const initials = make.replace(/[^A-Za-z ]/g, '').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || make[0];
   const hue = make.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0) % 360;
 
-  if (!domain || failed) {
+  if (!logoPath || failed) {
     return (
       <div
         style={{ background: `hsl(${hue}, 55%, 18%)`, fontSize: 20 }}
@@ -1113,7 +1114,7 @@ function BrandLogoLarge({ make }: { make: string }) {
 
   return (
     <img
-      src={`https://logo.clearbit.com/${domain}`}
+      src={logoPath}
       alt={make}
       className="w-11 h-11 object-contain"
       onError={() => setFailed(true)}
