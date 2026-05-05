@@ -247,7 +247,7 @@ const PostalDPF = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="Postal DPF Cleaning UK | Next-Day Return" description="Send your blocked DPF anywhere in the UK. AutoCleanse cleans it to 98% efficiency and returns it next working day via tracked delivery. From £230." path="/postal-dpf" />
+      <SEO title="Postal DPF Cleaning UK | AutoCleanse" description="Send your blocked DPF anywhere in the UK. AutoCleanse cleans it to 98% efficiency and returns it next working day via tracked delivery. From £230." path="/postal-dpf" />
       {/* Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
 

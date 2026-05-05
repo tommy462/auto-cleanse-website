@@ -47,7 +47,7 @@ const DPFCleaningDevon = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning Devon | Same-Day Collection" description="Expert DPF cleaning across Devon - Exeter, Plymouth, Torquay, Newton Abbot & beyond. Local collection, deep clean and same-day return. Based in Totnes." path="/dpf-cleaning-devon" />
+      <SEO title="DPF Cleaning Devon | Same-Day Return | AutoCleanse" description="Expert DPF cleaning across Devon - Exeter, Plymouth, Torquay, Newton Abbot & beyond. Local collection, deep clean and same-day return. Based in Totnes." path="/dpf-cleaning-devon" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],

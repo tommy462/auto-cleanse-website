@@ -18,6 +18,8 @@ const template = rawTemplate
   .replace(/<(?:meta|link)\s[^>]*data-rh="true"[^>]*\/?>/g, '')
   // Remove Helmet script blocks (JSON-LD etc.)
   .replace(/<script\s[^>]*data-rh="true"[^>]*>[\s\S]*?<\/script>/g, '')
+  // Remove any static <meta name="description"> — Helmet injects the correct one per page
+  .replace(/<meta\s[^>]*name="description"[^>]*\/?>/g, '')
   // Normalise any existing <title> tag (with or without data-rh) to a plain placeholder
   .replace(/<title[^>]*>[\s\S]*?<\/title>/, '<title>__SSR_TITLE__</title>')
   // Clear any previously rendered root div content (greedy match finds the outermost </div>

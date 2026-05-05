@@ -209,7 +209,7 @@ const DiagnosticMatcher = () => {
   return (
     <div className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title="Vehicle Remap Lookup | Auto Cleanse"
+        title="Vehicle Remap Lookup | AutoCleanse Devon"
         description="Enter your reg to discover your vehicle's ECU remap potential."
         path="/remap-lookup"
       />

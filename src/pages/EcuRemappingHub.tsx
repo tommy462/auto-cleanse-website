@@ -38,7 +38,7 @@ const EcuRemappingHub = () => {
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title="ECU Remapping Services | Stage 1, Stage 2 & Economy Tuning"
+        title="ECU Remapping Devon | Stage 1 & 2 Tuning | AutoCleanse"
         description="Professional ECU remapping services. We offer Stage 1, Stage 2, Economy and Commercial Van tuning across Devon. Select your vehicle or location to learn more."
         path="/ecu-remapping"
       />

@@ -17,7 +17,8 @@ const SEO: React.FC<SEOProps> = ({
   ogType = 'website'
 }) => {
   const siteName = 'AutoCleanse | DPF Cleaning & Remapping';
-  const fullTitle = `${title} | ${siteName}`;
+  // Title prop is already fully formed (includes brand suffix); do not append again
+  const fullTitle = title;
   const siteUrl = 'https://www.auto-cleanse.co.uk';
   const fullUrl = `${siteUrl}${path}`;
 

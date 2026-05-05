@@ -47,7 +47,7 @@ const DPFCleaningTotnes = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning Totnes | Same-Day Drop-Off" description="AutoCleanse DPF cleaning workshop in Totnes, Devon. Drop off before 10am for same-day return. Cars, vans, HGVs & plant. Trade accounts welcome." path="/dpf-cleaning-totnes" />
+      <SEO title="DPF Cleaning Totnes | Same-Day Drop-Off | AutoCleanse" description="AutoCleanse DPF cleaning workshop in Totnes, Devon. Drop off before 10am for same-day return. Cars, vans, HGVs & plant. Trade accounts welcome." path="/dpf-cleaning-totnes" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],

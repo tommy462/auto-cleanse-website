@@ -127,7 +127,7 @@ const Pricing = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning & Remap Prices | Devon" description="Transparent DPF cleaning from £210 and ECU remapping prices in Devon. No hidden fees. Trade & fleet rates available. Based in Totnes." path="/pricing" />
+      <SEO title="DPF Cleaning & Remap Prices | AutoCleanse Devon" description="Transparent DPF cleaning from £210 and ECU remapping prices in Devon. No hidden fees. Trade & fleet rates available. Based in Totnes." path="/pricing" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",

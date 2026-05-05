@@ -258,7 +258,7 @@ const Home = () => {
   return (
     <main ref={container} className="block">
       <SEO
-        title="DPF Cleaning & ECU Remapping | Devon & Nationwide"
+        title="DPF Cleaning & ECU Remapping Devon | AutoCleanse"
         description="Professional DPF cleaning and ECU remapping services. Same-day filter return within Devon, nationwide postal service, and Stage 1 & 2 remap tuning available."
         path="/"
       />

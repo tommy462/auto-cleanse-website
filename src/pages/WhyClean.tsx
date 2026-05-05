@@ -94,7 +94,7 @@ const WhyClean = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning vs Replacement | Save £1000s" description="Professional DPF cleaning costs a fraction of a new filter. Restore 98% efficiency, pass your MOT, and avoid £1,000+ replacement bills. Devon & UK." path="/why-clean" />
+      <SEO title="DPF Cleaning vs Replacement | AutoCleanse Devon" description="Professional DPF cleaning costs a fraction of a new filter. Restore 98% efficiency, pass your MOT, and avoid £1,000+ replacement bills. Devon & UK." path="/why-clean" />
 
       {/* Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>

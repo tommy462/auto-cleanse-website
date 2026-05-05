@@ -363,7 +363,7 @@ const FuelSavingsCalculator = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="Fuel Savings Calculator | DPF Performance" description="Calculate how much a clean DPF can save you in improved MPG and performance." path="/calculator" />
+      <SEO title="Fuel Savings Calculator | AutoCleanse Devon" description="Calculate how much a clean DPF can save you in improved MPG and performance." path="/calculator" />
 
       {/* Background ambient light */}
       <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>

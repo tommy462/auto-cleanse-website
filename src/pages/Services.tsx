@@ -124,7 +124,7 @@ const Services = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="Our Services | DPF Cleaning & ECU Remapping" description="Professional DPF, SCR, DOC and filter cleaning services plus ECU remapping. Mobile, HQ drop-off, and nationwide postal options." path="/services" />
+      <SEO title="DPF Cleaning & ECU Remapping Services | AutoCleanse" description="Professional DPF, SCR, DOC and filter cleaning services plus ECU remapping. Mobile, HQ drop-off, and nationwide postal options." path="/services" />
 
       {/* Background ambient light */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[500px] bg-[#FF7A00]/10 blur-[120px] rounded-[100%] pointer-events-none opacity-50"></div>
