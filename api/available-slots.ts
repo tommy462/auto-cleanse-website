@@ -51,11 +51,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Invalid date. Use YYYY-MM-DD.' });
   }
 
-  // 1. Check if this date is blocked
+  // 1. Check blocked_dates — full-day blocks return immediately, partial blocks are applied later
+  let partialBlocks: { start_time: string; end_time: string }[] = [];
   try {
-    const blocked = await sbGet(`/blocked_dates?date=eq.${date}&select=date,reason`);
+    const blocked = await sbGet(`/blocked_dates?date=eq.${date}&select=date,reason,start_time,end_time`);
     if (blocked && blocked.length > 0) {
-      return res.status(200).json({ slots: [], reason: 'blocked', message: blocked[0].reason ?? 'Unavailable' });
+      // If any entry has no start_time it is a full-day block
+      const hasFullDayBlock = blocked.some((b: { start_time: string | null }) => !b.start_time);
+      if (hasFullDayBlock) {
+        const entry = blocked.find((b: { start_time: string | null }) => !b.start_time);
+        return res.status(200).json({ slots: [], reason: 'blocked', message: entry?.reason ?? 'Unavailable' });
+      }
+      // Otherwise collect partial blocks to subtract specific slots below
+      partialBlocks = blocked.filter(
+        (b: { start_time: string | null; end_time: string | null }) => b.start_time && b.end_time,
+      );
     }
   } catch {
     // Non-fatal — continue
@@ -92,7 +102,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const booked = new Set<string>(
       (jobs ?? []).map((j: { specific_time?: string }) => (j.specific_time ?? '').slice(0, 5)),
     );
-    const available = allSlots.filter((s) => !booked.has(s));
+    const available = allSlots.filter((slot) => {
+      if (booked.has(slot)) return false;
+      // Remove slots that fall within a partial blocked-date range
+      for (const pb of partialBlocks) {
+        if (slot >= pb.start_time && slot < pb.end_time) return false;
+      }
+      return true;
+    });
     return res.status(200).json({ slots: available });
   } catch {
     // If Supabase is unreachable, return all slots rather than blocking bookings
