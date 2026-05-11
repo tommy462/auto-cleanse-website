@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const SUPABASE_URL = process.env.AUTOCLEANSE_SUPABASE_URL!;
 const SUPABASE_KEY = process.env.AUTOCLEANSE_SUPABASE_SERVICE_KEY!;
-const CALENDLY_API_KEY = process.env.CALENDLY_API_KEY!;
+const CALENDLY_API_KEY = process.env.CALENDLY_API_KEY;
 const XERO_CUSTOMER_WEBHOOK = 'https://hook.eu2.make.com/d05n3zm6lrn2pvpu6j3cz5hxfxowpsy6';
 
 // ── Supabase REST helper ───────────────────────────────────────────────────────
@@ -56,22 +56,38 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     selectedOptions,
     quotedPrice,
     calendlyEventUri,
+    // Direct date/time (used when not coming from Calendly)
+    jobDate: bodyJobDate,
+    jobTime: bodyJobTime,
   } = req.body ?? {};
 
-  if (!customerName || !customerEmail || !vehicleRegistration || !calendlyEventUri) {
+  const hasDirectDateTime = bodyJobDate && bodyJobTime;
+
+  if (!customerName || !customerEmail || !vehicleRegistration) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+  if (!calendlyEventUri && !hasDirectDateTime) {
+    return res.status(400).json({ error: 'Either calendlyEventUri or jobDate+jobTime is required' });
   }
 
   try {
-    // ── 1. Fetch booking date/time from Calendly ────────────────────────────
-    const { start_time } = await getCalendlyEvent(calendlyEventUri);
-    const jobDate = start_time.slice(0, 10); // YYYY-MM-DD
-    const jobTime = new Intl.DateTimeFormat('en-GB', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-      timeZone: 'Europe/London',
-    }).format(new Date(start_time));
+    // ── 1. Resolve booking date/time ────────────────────────────────────────
+    let jobDate: string;
+    let jobTime: string;
+
+    if (calendlyEventUri && CALENDLY_API_KEY) {
+      const { start_time } = await getCalendlyEvent(calendlyEventUri);
+      jobDate = start_time.slice(0, 10);
+      jobTime = new Intl.DateTimeFormat('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        timeZone: 'Europe/London',
+      }).format(new Date(start_time));
+    } else {
+      jobDate = bodyJobDate as string;
+      jobTime = bodyJobTime as string;
+    }
 
     // ── 2. Find or create customer ──────────────────────────────────────────
     const existing: any[] = await sb(
@@ -170,7 +186,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           bookingType === 'mobile' && address ? `Address: ${address}` : null,
           notes ? `Customer notes: ${notes}` : null,
           selectedOptions?.length ? `Add-ons: ${selectedOptions.join(', ')}` : null,
-          `Booked via website. Calendly: ${calendlyEventUri}`,
+          calendlyEventUri
+          ? `Booked via website. Calendly: ${calendlyEventUri}`
+          : 'Booked via website (internal booking system).',
         ].filter(Boolean).join('\n\n'),
         status: 'booked',
       }),
