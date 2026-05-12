@@ -12,11 +12,13 @@ export const BOOKING_CONFIG = {
   // ── Business hours ──────────────────────────────────────────────────────
   // Set a day to null to mark it as closed
   businessHours: {
-    monday:    { open: '08:00', close: '17:00' } as DayHours,
-    tuesday:   { open: '08:00', close: '17:00' } as DayHours,
-    wednesday: { open: '08:00', close: '17:00' } as DayHours,
-    thursday:  { open: '08:00', close: '17:00' } as DayHours,
-    friday:    { open: '08:00', close: '17:00' } as DayHours,
+    // close time = last slot start + appointmentDurationMinutes
+    // Weekdays: last slot 16:30 + 60 min = close 17:30
+    monday:    { open: '09:00', close: '17:30' } as DayHours,
+    tuesday:   { open: '09:00', close: '17:30' } as DayHours,
+    wednesday: { open: '09:00', close: '17:30' } as DayHours,
+    thursday:  { open: '09:00', close: '17:30' } as DayHours,
+    friday:    { open: '09:00', close: '17:30' } as DayHours,
     saturday:  { open: '09:00', close: '14:00' } as DayHours,
     sunday:    null as DayHours | null,
   },
@@ -25,8 +27,12 @@ export const BOOKING_CONFIG = {
   // How long each remap appointment takes (minutes)
   appointmentDurationMinutes: 60,
 
-  // How often slots are offered, e.g. 60 = slots at 09:00, 10:00, 11:00…
-  slotIntervalMinutes: 60,
+  // How often slots are offered — 30 = slots at 09:00, 09:30, 10:00…
+  slotIntervalMinutes: 30,
+
+  // Buffer time (minutes) blocked after each appointment for travel/prep.
+  // e.g. 30 means a 09:00 booking blocks 09:00–10:30, next slot is 10:30.
+  postAppointmentBufferMinutes: 30,
 
   // ── Deposit ──────────────────────────────────────────────────────────────
   // Amount charged upfront via Stripe (in pence, e.g. 5000 = £50)

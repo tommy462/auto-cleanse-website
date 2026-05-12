@@ -9,20 +9,21 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 const SUPABASE_URL = process.env.AUTOCLEANSE_SUPABASE_URL!;
 const SUPABASE_KEY = process.env.AUTOCLEANSE_SUPABASE_SERVICE_KEY!;
 
-// Mirrors BOOKING_CONFIG in src/config/booking.ts
+// Mirrors BOOKING_CONFIG in src/config/booking.ts — keep in sync
 const BUSINESS_HOURS: Record<string, { open: string; close: string } | null> = {
   sunday:    null,
-  monday:    { open: '08:00', close: '17:00' },
-  tuesday:   { open: '08:00', close: '17:00' },
-  wednesday: { open: '08:00', close: '17:00' },
-  thursday:  { open: '08:00', close: '17:00' },
-  friday:    { open: '08:00', close: '17:00' },
-  saturday:  { open: '09:00', close: '14:00' },
+  monday:    { open: '09:00', close: '17:30' }, // last slot 16:30 + 60 min = 17:30
+  tuesday:   { open: '09:00', close: '17:30' },
+  wednesday: { open: '09:00', close: '17:30' },
+  thursday:  { open: '09:00', close: '17:30' },
+  friday:    { open: '09:00', close: '17:30' },
+  saturday:  { open: '09:00', close: '14:00' }, // last slot 13:00
 };
 
 const DAY_NAMES = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 const APPOINTMENT_DURATION_MIN = 60;
-const SLOT_INTERVAL_MIN = 60;
+const SLOT_INTERVAL_MIN        = 30;  // 30-minute increments
+const POST_APPOINTMENT_BUFFER  = 30;  // 30-min travel buffer after each job
 
 async function sbGet(path: string) {
   const res = await fetch(`${SUPABASE_URL}/rest/v1${path}`, {
@@ -94,22 +95,41 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     allSlots.push(`${hh}:${mm}`);
   }
 
-  // 4. Subtract already-booked slots from the dashboard
+  // 4. Subtract booked slots (+ post-appointment buffer) from the dashboard
   try {
     const jobs = await sbGet(
       `/jobs?job_date=eq.${date}&select=specific_time&status=neq.cancelled`,
     );
-    const booked = new Set<string>(
-      (jobs ?? []).map((j: { specific_time?: string }) => (j.specific_time ?? '').slice(0, 5)),
-    );
+
+    // Convert each booked time to minutes-from-midnight for range comparisons
+    const bookedRanges: { start: number; end: number }[] = (jobs ?? [])
+      .map((j: { specific_time?: string }) => {
+        const t = (j.specific_time ?? '').slice(0, 5);
+        const [h, m] = t.split(':').map(Number);
+        if (isNaN(h) || isNaN(m)) return null;
+        const start = h * 60 + m;
+        // Block from job start until end of appointment + travel buffer
+        return { start, end: start + APPOINTMENT_DURATION_MIN + POST_APPOINTMENT_BUFFER };
+      })
+      .filter(Boolean) as { start: number; end: number }[];
+
     const available = allSlots.filter((slot) => {
-      if (booked.has(slot)) return false;
+      const [sh, sm] = slot.split(':').map(Number);
+      const slotMin = sh * 60 + sm;
+
+      // Blocked if this slot starts inside any booked range [start, end)
+      for (const { start, end } of bookedRanges) {
+        if (slotMin >= start && slotMin < end) return false;
+      }
+
       // Remove slots that fall within a partial blocked-date range
       for (const pb of partialBlocks) {
         if (slot >= pb.start_time && slot < pb.end_time) return false;
       }
+
       return true;
     });
+
     return res.status(200).json({ slots: available });
   } catch {
     // If Supabase is unreachable, return all slots rather than blocking bookings
