@@ -364,11 +364,17 @@ export default function RemappingBooking() {
     return cards;
   }
 
-  // If form changes make current card invalid, fall back
+  // Fixed ordering — used to find the nearest preceding card when the current
+  // card is removed from the sequence (e.g. switching mobile → workshop removes 'address')
+  const FULL_ORDER: CardId[] = ['service', 'location', 'address', 'contact', 'vehicle', 'addons', 'legal', 'date', 'time', 'payment'];
+
+  // If form changes make current card invalid, fall back to the nearest preceding valid card
   useEffect(() => {
     const seq = getSequence();
     if (!seq.includes(currentCard)) {
-      const fallback = seq[seq.length - 1] ?? 'service';
+      const fullIdx = FULL_ORDER.indexOf(currentCard);
+      // Walk backwards through the canonical order to find the last card still in seq
+      const fallback = [...seq].reverse().find(c => FULL_ORDER.indexOf(c) < fullIdx) ?? seq[0];
       setCurrentCard(fallback);
       setAnimKey(k => k + 1);
       setAnimDir('back');
@@ -510,7 +516,7 @@ export default function RemappingBooking() {
   // ── Build sequence & progress ─────────────────────────────────────────────────
 
   const sequence   = getSequence();
-  const cardIndex  = sequence.indexOf(currentCard);
+  const cardIndex  = Math.max(0, sequence.indexOf(currentCard)); // clamp -1 during effect async gap
   const isFirst    = cardIndex === 0;
   const progress   = Math.round(((cardIndex + 1) / sequence.length) * 100);
   const meta       = CARD_META[currentCard];
