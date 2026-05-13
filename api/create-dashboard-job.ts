@@ -191,6 +191,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           : 'Booked via website (internal booking system).',
         ].filter(Boolean).join('\n\n'),
         status: 'booked',
+        service_category: 'ECU',
       }),
     });
 
