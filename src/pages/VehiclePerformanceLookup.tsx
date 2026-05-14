@@ -84,6 +84,10 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
       const dvlaFuel  = dvla.fuelType.toLowerCase().trim();
       const dvlaLitre = ccToLitre(dvla.engineCapacity);
       const isLargePetrol = dvlaFuel === 'petrol' && dvlaLitre >= 2.9;
+      // Extract key words from the API model name for matching (e.g. "FIESTA TITANIUM TDCI" → ["fiesta","titanium","tdci"])
+      const dvlaModelWords = dvla.model
+        ? dvla.model.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 2)
+        : [];
 
       const scored: ScoredRow[] = csvData
         .filter(row => row.manufacturer.toLowerCase().trim() === dvlaMake)
@@ -114,6 +118,12 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
           if (isLargePetrol) {
             const lower = `${row.model} ${row.engine_name}`.toLowerCase();
             if (PERF_VARIANTS.some(v => lower.includes(v))) score += 15;
+          }
+          // Boost score when API model words match CSV model/engine name
+          if (dvlaModelWords.length > 0) {
+            const rowLower = `${row.model} ${row.engine_name}`.toLowerCase();
+            const matchCount = dvlaModelWords.filter(w => rowLower.includes(w)).length;
+            score += matchCount * 8; // up to ~40 bonus for strong model match
           }
           return { ...row, score };
         })
@@ -187,20 +197,46 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
 
       {/* DVLA strip */}
       {dvlaData && (
-        <div className="bg-[#0A0A0A] border border-white/5 rounded-xl px-5 py-3 flex flex-wrap items-center gap-2 text-sm mb-6 relative z-10">
-          <Info size={13} className="text-blue-400 shrink-0" />
-          <span className="text-white/30 font-bold uppercase tracking-wider text-xs">DVLA</span>
-          <span className="text-white font-bold">{dvlaData.make}</span>
-          <span className="text-white/20">·</span>
-          <span className="text-white font-bold">{dvlaData.yearOfManufacture}</span>
-          <span className="text-white/20">·</span>
-          <span className="text-white font-bold">{dvlaData.fuelType}</span>
-          <span className="text-white/20">·</span>
-          <span className="text-white font-bold">{dvlaData.engineCapacity}cc ({ccToLitre(dvlaData.engineCapacity)}L)</span>
-          {dvlaData.model && <>
-            <span className="text-white/20">·</span>
-            <span className="text-white/50">{dvlaData.model}</span>
-          </>}
+        <div className="bg-[#0A0A0A] border border-white/8 rounded-xl px-5 py-4 mb-6 relative z-10">
+          <div className="flex flex-wrap items-center gap-2 text-sm mb-2">
+            <Info size={13} className="text-blue-400 shrink-0" />
+            <span className="text-white/30 font-bold uppercase tracking-wider text-xs">Vehicle Found</span>
+            {dvlaData.confidence && (
+              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ml-auto ${
+                dvlaData.confidence === 'HIGH'
+                  ? 'bg-green-500/10 text-green-400'
+                  : dvlaData.confidence === 'MEDIUM'
+                  ? 'bg-yellow-500/10 text-yellow-400'
+                  : 'bg-white/5 text-white/30'
+              }`}>
+                {dvlaData.confidence} confidence
+              </span>
+            )}
+          </div>
+          {/* Main vehicle name */}
+          <p className="text-white font-black text-lg leading-tight mb-2">
+            {dvlaData.make}{dvlaData.model ? ` ${dvlaData.model}` : ''}
+          </p>
+          {/* Details row */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span className="text-white/50 font-medium text-sm">{dvlaData.yearOfManufacture}</span>
+            <span className="text-white/15">·</span>
+            <span className="text-white/50 font-medium text-sm">{dvlaData.fuelType}</span>
+            <span className="text-white/15">·</span>
+            <span className="text-white/50 font-medium text-sm">{dvlaData.engineCapacity}cc ({ccToLitre(dvlaData.engineCapacity)}L)</span>
+            {dvlaData.colour && <>
+              <span className="text-white/15">·</span>
+              <span className="text-white/50 font-medium text-sm">{dvlaData.colour}</span>
+            </>}
+            {dvlaData.transmission && <>
+              <span className="text-white/15">·</span>
+              <span className="text-white/50 font-medium text-sm">{dvlaData.transmission}</span>
+            </>}
+            {dvlaData.bodyType && <>
+              <span className="text-white/15">·</span>
+              <span className="text-white/50 font-medium text-sm">{dvlaData.bodyType}</span>
+            </>}
+          </div>
         </div>
       )}
 

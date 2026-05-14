@@ -6,6 +6,15 @@
   model?: string;
   colour?: string;
   typeApproval?: string;
+  // Enhanced fields from multi-source lookup
+  transmission?: string;
+  bodyType?: string;
+  doors?: string;
+  taxStatus?: string;
+  motStatus?: string;
+  co2Emissions?: number;
+  confidence?: string;
+  sources?: string[];
 }
 
 /**
