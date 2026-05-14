@@ -210,17 +210,6 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
           <div className="flex flex-wrap items-center gap-2 text-sm mb-2">
             <Info size={13} className="text-blue-400 shrink-0" />
             <span className="text-white/30 font-bold uppercase tracking-wider text-xs">Vehicle Found</span>
-            {dvlaData.confidence && (
-              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ml-auto ${
-                dvlaData.confidence === 'HIGH'
-                  ? 'bg-green-500/10 text-green-400'
-                  : dvlaData.confidence === 'MEDIUM'
-                  ? 'bg-yellow-500/10 text-yellow-400'
-                  : 'bg-white/5 text-white/30'
-              }`}>
-                {dvlaData.confidence} confidence
-              </span>
-            )}
           </div>
           {/* Main vehicle name */}
           <p className="text-white font-black text-lg leading-tight mb-2">
@@ -403,16 +392,12 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
                   );
                 })}
 
-                {/* Show other engine variants toggle */}
-                {sortedEngines.length > 1 && (
-                  <button
-                    onClick={() => setShowAllEngines(v => !v)}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-white/8 text-white/30 hover:text-white/60 hover:border-white/15 text-xs font-bold transition-all"
-                  >
-                    <ChevronDown size={13} className={`transition-transform ${showAllEngines ? 'rotate-180' : ''}`} />
-                    {showAllEngines ? 'Show fewer options' : `See ${sortedEngines.length - 1} other engine variant${sortedEngines.length - 1 !== 1 ? 's' : ''}`}
-                  </button>
-                )}
+                <p className="text-center text-white/25 text-xs pt-1">
+                  Not finding your vehicle?{' '}
+                  <a href="#manual-selector" className="text-white/40 hover:text-[#FF7A00] underline underline-offset-2 transition-colors">
+                    Search manually below
+                  </a>
+                </p>
               </div>
             );
           })()}
