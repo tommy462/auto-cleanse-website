@@ -151,7 +151,14 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
 
       const groups = Array.from(groupMap.values()).sort((a, b) => b.bestScore - a.bestScore).slice(0, 6);
       setModelGroups(groups);
-      setStep('models');
+
+      // Auto-select the top match — skip the model picker entirely
+      if (groups.length > 0) {
+        setSelectedGroup(groups[0]);
+        setStep('specs');
+      } else {
+        setStep('models'); // shows "no matches" state
+      }
     } catch (err: any) {
       setError(err.message || 'Lookup failed. Check the registration and try again.');
     } finally {
@@ -240,7 +247,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
         </div>
       )}
 
-      {/* Model cards */}
+      {/* Model cards — shown only when user clicks "Wrong vehicle?" */}
       {step === 'models' && (
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-3">
@@ -301,15 +308,19 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
       {/* Spec view */}
       {step === 'specs' && selectedGroup && (
         <div className="relative z-10">
-          <button
-            onClick={() => setStep('models')}
-            className="flex items-center gap-1.5 text-white/30 hover:text-white/70 text-sm font-bold mb-4 transition-colors"
-          >
-            <ArrowLeft size={13} /> Back to models
-          </button>
-          <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
-            {selectedGroup.manufacturer} {selectedGroup.model} - {selectedGroup.engines.length} variant{selectedGroup.engines.length !== 1 ? 's' : ''}
-          </p>
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-xs font-bold uppercase tracking-widest text-white/40">
+              {selectedGroup.manufacturer} {selectedGroup.model} — {selectedGroup.engines.length} variant{selectedGroup.engines.length !== 1 ? 's' : ''}
+            </p>
+            {modelGroups.length > 1 && (
+              <button
+                onClick={() => setStep('models')}
+                className="flex items-center gap-1.5 text-white/30 hover:text-[#FF7A00] text-xs font-bold transition-colors"
+              >
+                Wrong vehicle? See {modelGroups.length - 1} other{modelGroups.length - 1 !== 1 ? 's' : ''} <ArrowRight size={11} />
+              </button>
+            )}
+          </div>
           <div className="space-y-3">
             {selectedGroup.engines.sort((a, b) => b.score - a.score).map((engine, i) => {
               const options = parseOptions(engine.options_available);

@@ -26,16 +26,13 @@ function cleanText(s: string): string {
 
 function parseEngineCc(text: string): number | undefined {
   const t = text.toLowerCase().replace(/,/g, '.');
-  // "1.499 cc" or "1,499 cc" form
   let m = t.match(/(\d+\.\d+)\s*cc/);
   if (m) {
     const val = parseFloat(m[1]);
     return Math.round(val < 100 ? val * 1000 : val);
   }
-  // plain integer cc: "1499 cc"
   m = t.match(/(\d{3,4})\s*cc/);
   if (m) return parseInt(m[1], 10);
-  // litre form: "1.6 litre"
   m = t.match(/(\d+\.\d+)\s*(?:l|litre)/);
   if (m) return Math.round(parseFloat(m[1]) * 1000);
   return undefined;
@@ -45,6 +42,7 @@ function normaliseMake(make: string): string {
   const MAP: Record<string, string> = {
     VW: 'Volkswagen', VOLKSWAGEN: 'Volkswagen', BMW: 'BMW',
     MERCEDES: 'Mercedes-Benz', 'MERCEDES-BENZ': 'Mercedes-Benz',
+    'MERCEDES BENZ': 'Mercedes-Benz',
     'LAND ROVER': 'Land Rover', 'ALFA ROMEO': 'Alfa Romeo',
     'ASTON MARTIN': 'Aston Martin', MINI: 'MINI', FORD: 'Ford',
     VAUXHALL: 'Vauxhall', TOYOTA: 'Toyota', HONDA: 'Honda',
@@ -57,6 +55,8 @@ function normaliseMake(make: string): string {
     BENTLEY: 'Bentley', JEEP: 'Jeep', DODGE: 'Dodge', MG: 'MG',
     ROVER: 'Rover', SAAB: 'Saab', DACIA: 'Dacia', CUPRA: 'CUPRA',
     POLESTAR: 'Polestar', 'ROLLS ROYCE': 'Rolls-Royce',
+    INFINITI: 'Infiniti', GENESIS: 'Genesis', MASERATI: 'Maserati',
+    FERRARI: 'Ferrari', LAMBORGHINI: 'Lamborghini', MCLAREN: 'McLaren',
   };
   const upper = make.trim().toUpperCase();
   return MAP[upper] ?? make.trim().replace(/\b\w/g, c => c.toUpperCase());
@@ -64,19 +64,27 @@ function normaliseMake(make: string): string {
 
 function normaliseModel(model: string): string {
   if (!model) return '';
-  // Remove registration plate artefacts
   let m = model.replace(/\b[A-Z]{2}\d{2}[A-Z]{3}\b/g, '').trim();
-  // Deduplicate adjacent words: "SPRINTER SPRINTER 314" → "SPRINTER 314"
   const words = m.toUpperCase().split(/\s+/);
   const deduped: string[] = [words[0]];
   for (let i = 1; i < words.length; i++) {
     if (words[i] !== words[i - 1]) deduped.push(words[i]);
   }
+  // Also strip longest repeated suffix
+  const w = deduped;
+  const n = w.length;
+  for (let suffixLen = Math.floor(n / 2); suffixLen > 1; suffixLen--) {
+    const suffix = w.slice(n - suffixLen);
+    for (let start = 0; start < n - suffixLen; start++) {
+      if (w.slice(start, start + suffixLen).join(' ') === suffix.join(' ')) {
+        return w.slice(0, start + suffixLen).join(' ');
+      }
+    }
+  }
   return deduped.join(' ');
 }
 
 // ─── Source 1: DVLA VES API ──────────────────────────────────────────────────
-// Gives: make, colour, fuel, year, engine CC — but NOT model
 
 async function fetchDvlaVes(plate: string, apiKey: string): Promise<SourceResult | null> {
   try {
@@ -108,7 +116,6 @@ async function fetchDvlaVes(plate: string, apiKey: string): Promise<SourceResult
 }
 
 // ─── Source 2: carcheck.co.uk ────────────────────────────────────────────────
-// Gives: make, model (FULL trim), year, engine, fuel, colour, gearbox, doors, power, CO2
 
 async function fetchCarcheck(plate: string): Promise<SourceResult | null> {
   try {
@@ -116,51 +123,110 @@ async function fetchCarcheck(plate: string): Promise<SourceResult | null> {
     const res = await fetch(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-GB,en;q=0.9',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'none',
+        'Upgrade-Insecure-Requests': '1',
         'DNT': '1',
       },
-      signal: AbortSignal.timeout(5000),
+      signal: AbortSignal.timeout(6000),
     });
     if (!res.ok) return null;
 
     const html = await res.text();
-    const result: SourceResult = { source: 'carcheck.co.uk' };
+    // If blocked by Cloudflare or bot detection, bail early
+    if (html.includes('cf-browser-verification') || html.includes('Checking your browser') || html.length < 500) return null;
 
-    // Extract all <tr> blocks from the page
+    const result: SourceResult = { source: 'carcheck.co.uk' };
     const trMatches = html.match(/<tr[\s\S]*?<\/tr>/gi) ?? [];
 
     for (const tr of trMatches) {
-      // Extract all td/th cell contents from this row
       const cellMatches = tr.match(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi) ?? [];
       if (cellMatches.length < 2) continue;
-
       const label = cleanText(cellMatches[0]).toLowerCase();
       const value = cleanText(cellMatches[cellMatches.length - 1]);
-
       if (!label || !value || /^[?\s]+$/.test(value)) continue;
       if (value.toLowerCase() === 'n/a' || value === '-' || value === '–') continue;
 
-      if (label === 'make') {
-        result.make = normaliseMake(value);
-      } else if (label === 'model') {
-        result.model = normaliseModel(value);
-      } else if (label === 'colour') {
-        result.colour = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-      } else if (label === 'fuel type') {
-        result.fuelType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-      } else if (label === 'year of manufacture') {
-        const y = value.match(/\d{4}/);
-        if (y) result.year = parseInt(y[0], 10);
-      } else if (label === 'engine capacity') {
-        result.engineCapacity = parseEngineCc(value);
-      } else if (label === 'gearbox') {
-        const tx = value.replace(/^[-–\s]+/, '').trim();
-        if (tx) result.transmission = tx.charAt(0).toUpperCase() + tx.slice(1).toLowerCase();
-      } else if (label === 'body type' || label === 'body style') {
-        result.bodyType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-      } else if (label === 'number of doors') {
-        result.doors = value;
+      if (label === 'make') result.make = normaliseMake(value);
+      else if (label === 'model') result.model = normaliseModel(value);
+      else if (label === 'colour') result.colour = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+      else if (label === 'fuel type') result.fuelType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+      else if (label === 'year of manufacture') { const y = value.match(/\d{4}/); if (y) result.year = parseInt(y[0], 10); }
+      else if (label === 'engine capacity') result.engineCapacity = parseEngineCc(value);
+      else if (label === 'gearbox') { const tx = value.replace(/^[-–\s]+/, '').trim(); if (tx) result.transmission = tx.charAt(0).toUpperCase() + tx.slice(1).toLowerCase(); }
+      else if (label === 'body type' || label === 'body style') result.bodyType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+      else if (label === 'number of doors') result.doors = value;
+    }
+
+    return result.make ? result : null;
+  } catch {
+    return null;
+  }
+}
+
+// ─── Source 3: myvehicle.co.uk ───────────────────────────────────────────────
+
+async function fetchMyvehicle(plate: string): Promise<SourceResult | null> {
+  try {
+    const url = `https://myvehicle.co.uk/${plate}`;
+    const res = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-GB,en;q=0.9',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        'Referer': 'https://myvehicle.co.uk/',
+      },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return null;
+
+    const html = await res.text();
+    if (html.length < 500) return null;
+
+    const result: SourceResult = { source: 'myvehicle.co.uk' };
+    const trMatches = html.match(/<tr[\s\S]*?<\/tr>/gi) ?? [];
+
+    for (const tr of trMatches) {
+      const cellMatches = tr.match(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi) ?? [];
+      if (cellMatches.length < 2) continue;
+      const label = cleanText(cellMatches[0]).toLowerCase();
+      const value = cleanText(cellMatches[cellMatches.length - 1]);
+      if (!label || !value || value.toLowerCase() === 'n/a' || value === '-') continue;
+
+      if (label.includes('make')) result.make = normaliseMake(value);
+      else if (label.includes('model')) result.model = normaliseModel(value.toUpperCase());
+      else if (label.includes('colour')) result.colour = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+      else if (label.includes('fuel')) result.fuelType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+      else if (label.includes('year')) { const y = value.match(/\d{4}/); if (y) result.year = parseInt(y[0], 10); }
+      else if (label.includes('engine')) result.engineCapacity = parseEngineCc(value);
+      else if (label.includes('gearbox') || label.includes('transmission')) { const tx = value.replace(/^[-–\s]+/, '').trim(); if (tx) result.transmission = tx.charAt(0).toUpperCase() + tx.slice(1).toLowerCase(); }
+      else if (label.includes('body')) result.bodyType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+    }
+
+    // Also try dl/dt/dd pattern
+    if (!result.make) {
+      const dlMatches = html.match(/<dl[\s\S]*?<\/dl>/gi) ?? [];
+      for (const dl of dlMatches) {
+        const dts = [...dl.matchAll(/<dt[^>]*>([\s\S]*?)<\/dt>/gi)].map(m => cleanText(m[1]).toLowerCase());
+        const dds = [...dl.matchAll(/<dd[^>]*>([\s\S]*?)<\/dd>/gi)].map(m => cleanText(m[1]));
+        for (let i = 0; i < dts.length && i < dds.length; i++) {
+          const label = dts[i]; const value = dds[i];
+          if (!value || value.toLowerCase() === 'n/a') continue;
+          if (label.includes('make')) result.make = normaliseMake(value);
+          else if (label.includes('model')) result.model = normaliseModel(value.toUpperCase());
+          else if (label.includes('colour')) result.colour = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+          else if (label.includes('fuel')) result.fuelType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+          else if (label.includes('year')) { const y = value.match(/\d{4}/); if (y) result.year = parseInt(y[0], 10); }
+          else if (label.includes('engine')) result.engineCapacity = parseEngineCc(value);
+        }
       }
     }
 
@@ -170,8 +236,67 @@ async function fetchCarcheck(plate: string): Promise<SourceResult | null> {
   }
 }
 
-// ─── Source 3: DVSA MOT History API ─────────────────────────────────────────
-// Gives: make, model, colour, fuel, year, engine — most complete govt source
+// ─── Source 4: motorcheck.co.uk ──────────────────────────────────────────────
+
+async function fetchMotorcheck(plate: string): Promise<SourceResult | null> {
+  try {
+    const url = `https://www.motorcheck.co.uk/free-car-check/${plate}/`;
+    const res = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-GB,en;q=0.9',
+        'Referer': 'https://www.motorcheck.co.uk/',
+      },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return null;
+
+    const html = await res.text();
+    if (html.length < 500 || html.includes('cf-browser-verification')) return null;
+
+    const result: SourceResult = { source: 'motorcheck.co.uk' };
+
+    // motorcheck uses definition lists heavily
+    const dlMatches = html.match(/<dl[\s\S]*?<\/dl>/gi) ?? [];
+    for (const dl of dlMatches) {
+      const dts = [...dl.matchAll(/<dt[^>]*>([\s\S]*?)<\/dt>/gi)].map(m => cleanText(m[1]).toLowerCase());
+      const dds = [...dl.matchAll(/<dd[^>]*>([\s\S]*?)<\/dd>/gi)].map(m => cleanText(m[1]));
+      for (let i = 0; i < dts.length && i < dds.length; i++) {
+        const label = dts[i]; const value = dds[i];
+        if (!value || value.toLowerCase() === 'n/a' || value === '-') continue;
+        if (label.includes('make')) result.make = normaliseMake(value);
+        else if (label.includes('model')) result.model = normaliseModel(value.toUpperCase());
+        else if (label.includes('colour')) result.colour = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+        else if (label.includes('fuel')) result.fuelType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+        else if (label.includes('year') || label.includes('manufactured')) { const y = value.match(/\d{4}/); if (y) result.year = parseInt(y[0], 10); }
+        else if (label.includes('engine')) result.engineCapacity = parseEngineCc(value);
+        else if (label.includes('gearbox') || label.includes('transmission')) { const tx = value.replace(/^[-–\s]+/, '').trim(); if (tx) result.transmission = tx.charAt(0).toUpperCase() + tx.slice(1).toLowerCase(); }
+        else if (label.includes('body')) result.bodyType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+      }
+    }
+
+    // Also try table rows
+    if (!result.make) {
+      const trMatches = html.match(/<tr[\s\S]*?<\/tr>/gi) ?? [];
+      for (const tr of trMatches) {
+        const cellMatches = tr.match(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi) ?? [];
+        if (cellMatches.length < 2) continue;
+        const label = cleanText(cellMatches[0]).toLowerCase();
+        const value = cleanText(cellMatches[cellMatches.length - 1]);
+        if (!label || !value || value.toLowerCase() === 'n/a') continue;
+        if (label.includes('make')) result.make = normaliseMake(value);
+        else if (label.includes('model')) result.model = normaliseModel(value.toUpperCase());
+      }
+    }
+
+    return result.make ? result : null;
+  } catch {
+    return null;
+  }
+}
+
+// ─── Source 5: DVSA MOT History API ─────────────────────────────────────────
 
 async function fetchDvsaMot(plate: string, apiKey: string): Promise<SourceResult | null> {
   if (!apiKey) return null;
@@ -198,13 +323,18 @@ async function fetchDvsaMot(plate: string, apiKey: string): Promise<SourceResult
 }
 
 // ─── Merge ───────────────────────────────────────────────────────────────────
-// Priority: DVSA MOT > carcheck > DVLA VES for each field
+// Priority: DVSA MOT > carcheck > myvehicle > motorcheck > DVLA VES
 
 function merge(results: (SourceResult | null)[]): SourceResult & { sources: string[]; confidence: string } {
   const valid = results.filter(Boolean) as SourceResult[];
 
-  // Source priority order
-  const priority = ['DVSA MOT History API', 'carcheck.co.uk', 'DVLA VES API'];
+  const priority = [
+    'DVSA MOT History API',
+    'carcheck.co.uk',
+    'myvehicle.co.uk',
+    'motorcheck.co.uk',
+    'DVLA VES API',
+  ];
   const sorted = [...valid].sort((a, b) => {
     const ai = priority.findIndex(p => a.source.includes(p));
     const bi = priority.findIndex(p => b.source.includes(p));
@@ -232,7 +362,8 @@ function merge(results: (SourceResult | null)[]): SourceResult & { sources: stri
   const hasMake = Boolean(merged.make);
   const hasModel = Boolean(merged.model);
   const n = sorted.length;
-  const usedReliable = sources.some(s => ['carcheck.co.uk', 'DVSA MOT History API'].includes(s));
+  const reliableSources = ['carcheck.co.uk', 'DVSA MOT History API', 'myvehicle.co.uk', 'motorcheck.co.uk'];
+  const usedReliable = sources.some(s => reliableSources.includes(s));
 
   let confidence: string;
   if (hasMake && hasModel && (n >= 2 || usedReliable)) confidence = 'HIGH';
@@ -262,28 +393,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const dvsaKey = process.env.DVSA_API_KEY ?? '';
 
     // Run all sources concurrently
-    const [dvlaResult, carcheckResult, dvsaResult] = await Promise.allSettled([
+    const settled = await Promise.allSettled([
       fetchDvlaVes(plate, dvlaKey),
       fetchCarcheck(plate),
+      fetchMyvehicle(plate),
+      fetchMotorcheck(plate),
       fetchDvsaMot(plate, dvsaKey),
     ]);
 
-    const results = [
-      dvlaResult.status === 'fulfilled' ? dvlaResult.value : null,
-      carcheckResult.status === 'fulfilled' ? carcheckResult.value : null,
-      dvsaResult.status === 'fulfilled' ? dvsaResult.value : null,
-    ];
-
+    const results = settled.map(r => r.status === 'fulfilled' ? r.value : null);
     const merged = merge(results);
 
     if (!merged.make) {
       return res.status(404).json({ error: 'Vehicle not found' });
     }
 
-    // Return in a format compatible with the existing DVLAVehicleData interface
-    // plus all the extra fields for richer display
     return res.status(200).json({
-      // Original DVLA VES field names (backwards compatibility)
       make: merged.make,
       model: merged.model ?? null,
       colour: merged.colour ?? null,
@@ -293,11 +418,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       taxStatus: merged.taxStatus ?? null,
       motStatus: merged.motStatus ?? null,
       co2Emissions: merged.co2Emissions ?? null,
-      // Extra fields
       transmission: merged.transmission ?? null,
       bodyType: merged.bodyType ?? null,
       doors: merged.doors ?? null,
-      // Metadata
       confidence: merged.confidence,
       sources: merged.sources,
     });
