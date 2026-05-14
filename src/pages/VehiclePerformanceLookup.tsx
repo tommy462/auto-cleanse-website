@@ -169,17 +169,17 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
   };
 
   return (
-    <div className="relative p-8 md:p-12 rounded-[2.5rem] bg-[#111111] border border-white/5 shadow-2xl shadow-black mb-6 overflow-visible reveal-container">
-      <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-[#FF7A00]/5 to-transparent pointer-events-none" />
+    <div className="relative p-4 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] bg-[#111111] border border-white/5 shadow-2xl shadow-black mb-6 overflow-visible reveal-container">
+      <div className="absolute inset-0 rounded-[2rem] sm:rounded-[2.5rem] bg-gradient-to-br from-[#FF7A00]/5 to-transparent pointer-events-none" />
 
       {/* Header */}
-      <div className="flex items-center gap-4 mb-8 relative z-10">
-        <div className="w-12 h-12 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/20 flex items-center justify-center flex-shrink-0">
-          <Search size={22} className="text-[#FF7A00]" />
+      <div className="flex items-center gap-3 mb-6 md:mb-8 relative z-10">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/20 flex items-center justify-center flex-shrink-0">
+          <Search size={20} className="text-[#FF7A00]" />
         </div>
-        <div>
-          <h2 className="text-2xl font-bold text-white tracking-tight">Quick Lookup by Reg Plate</h2>
-          <p className="text-white/40 text-sm font-medium mt-0.5">Enter your number plate to instantly find your remap data</p>
+        <div className="min-w-0">
+          <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Quick Lookup by Reg Plate</h2>
+          <p className="text-white/40 text-xs sm:text-sm font-medium mt-0.5">Enter your number plate to instantly find your remap data</p>
         </div>
       </div>
 
@@ -206,17 +206,17 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
 
       {/* DVLA strip */}
       {dvlaData && (
-        <div className="bg-[#0A0A0A] border border-white/8 rounded-xl px-5 py-4 mb-6 relative z-10">
+        <div className="bg-[#0A0A0A] border border-white/8 rounded-xl px-4 sm:px-5 py-3 sm:py-4 mb-6 relative z-10">
           <div className="flex flex-wrap items-center gap-2 text-sm mb-2">
             <Info size={13} className="text-blue-400 shrink-0" />
             <span className="text-white/30 font-bold uppercase tracking-wider text-xs">Vehicle Found</span>
           </div>
           {/* Main vehicle name */}
-          <p className="text-white font-black text-lg leading-tight mb-2">
+          <p className="text-white font-black text-base sm:text-lg leading-tight mb-2">
             {dvlaData.make}{dvlaData.model ? ` ${dvlaData.model}` : ''}
           </p>
           {/* Details row */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <div className="flex flex-wrap items-center gap-x-2 sm:gap-x-3 gap-y-1">
             <span className="text-white/50 font-medium text-sm">{dvlaData.yearOfManufacture}</span>
             <span className="text-white/15">·</span>
             <span className="text-white/50 font-medium text-sm">{dvlaData.fuelType}</span>
@@ -299,14 +299,14 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
       {/* Spec view */}
       {step === 'specs' && selectedGroup && (
         <div className="relative z-10">
-          <div className="flex items-center justify-between mb-4">
-            <p className="text-xs font-bold uppercase tracking-widest text-white/40">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 mb-4">
+            <p className="text-xs font-bold uppercase tracking-widest text-white/40 leading-relaxed">
               {selectedGroup.manufacturer} {selectedGroup.model} — {selectedGroup.engines.length} variant{selectedGroup.engines.length !== 1 ? 's' : ''}
             </p>
             {modelGroups.length > 1 && (
               <button
                 onClick={() => setStep('models')}
-                className="flex items-center gap-1.5 text-white/30 hover:text-[#FF7A00] text-xs font-bold transition-colors"
+                className="flex items-center gap-1.5 text-white/30 hover:text-[#FF7A00] text-xs font-bold transition-colors self-start sm:self-auto shrink-0"
               >
                 Wrong vehicle? See {modelGroups.length - 1} other{modelGroups.length - 1 !== 1 ? 's' : ''} <ArrowRight size={11} />
               </button>
@@ -322,58 +322,58 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
                   return (
                     <div key={i} className="bg-[#0A0A0A] border border-white/5 rounded-2xl overflow-hidden hover:border-[#FF7A00]/20 transition-all">
                       {/* Header: engine name + Book button */}
-                      <div className="flex items-center justify-between gap-3 px-5 pt-4 pb-3 border-b border-white/5">
+                      <div className="flex items-start sm:items-center justify-between gap-3 px-4 sm:px-5 pt-4 pb-3 border-b border-white/5">
                         <div className="min-w-0">
-                          <p className="text-white font-black leading-none">{engine.engine_name}</p>
+                          <p className="text-white font-black leading-tight text-sm sm:text-base">{engine.engine_name}</p>
                           <p className="text-white/25 text-xs mt-0.5">{engine.year}</p>
                         </div>
                         <a
                           href={`/remapping-booking?reg=${encodeURIComponent(registration)}&vehicle=${encodeURIComponent(`${selectedGroup.manufacturer} ${selectedGroup.model} ${engine.engine_name}`)}`}
-                          className="flex items-center gap-1.5 bg-[#FF7A00] hover:bg-[#FF9500] text-black text-xs font-black px-3.5 py-2 rounded-lg transition-all shrink-0 shadow-[0_0_12px_rgba(255,122,0,0.25)]"
+                          className="flex items-center gap-1.5 bg-[#FF7A00] hover:bg-[#FF9500] text-black text-xs font-black px-3 sm:px-3.5 py-2 rounded-lg transition-all shrink-0 shadow-[0_0_12px_rgba(255,122,0,0.25)]"
                         >
-                          <Zap size={12} /> Book this
+                          <Zap size={12} /> Book
                         </a>
                       </div>
-                      {/* Stats: Power | Torque */}
-                      <div className="grid grid-cols-2 divide-x divide-white/5">
-                        <div className="px-5 py-4">
+                      {/* Stats: Power | Torque — stacked on mobile, side-by-side on sm+ */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-white/5">
+                        <div className="px-4 sm:px-5 py-3 sm:py-4">
                           <p className="text-white/30 text-[10px] uppercase font-bold tracking-widest mb-3">Power</p>
-                          <div className="flex items-end gap-3">
+                          <div className="flex items-end gap-2 sm:gap-3">
                             <div>
                               <p className="text-white/35 text-[10px] uppercase font-bold mb-0.5">Stock</p>
-                              <p className="text-white font-black text-2xl leading-none">{engine.stock_bhp}</p>
+                              <p className="text-white font-black text-xl sm:text-2xl leading-none">{engine.stock_bhp}</p>
                               <p className="text-white/25 text-[10px] mt-0.5">bhp</p>
                             </div>
-                            <ArrowRight className="text-[#FF7A00]/50 mb-3 shrink-0" size={13} />
+                            <ArrowRight className="text-[#FF7A00]/50 mb-3 shrink-0" size={12} />
                             <div>
                               <p className="text-green-400/50 text-[10px] uppercase font-bold mb-0.5">Stage 1</p>
-                              <p className="text-green-400 font-black text-2xl leading-none">{engine.stage1_bhp}</p>
+                              <p className="text-green-400 font-black text-xl sm:text-2xl leading-none">{engine.stage1_bhp}</p>
                               <p className="text-green-400/30 text-[10px] mt-0.5">bhp</p>
                             </div>
-                            <div className="ml-auto self-center bg-[#FF7A00]/10 border border-[#FF7A00]/25 rounded-lg px-2.5 py-1.5 text-center">
+                            <div className="ml-auto self-center bg-[#FF7A00]/10 border border-[#FF7A00]/25 rounded-lg px-2 sm:px-2.5 py-1.5 text-center">
                               <p className="text-[#FF7A00] text-[9px] uppercase font-bold tracking-wide">Gain</p>
-                              <p className="text-[#FF7A00] font-black text-base leading-none">+{engine.bhp_gain}</p>
+                              <p className="text-[#FF7A00] font-black text-sm sm:text-base leading-none">+{engine.bhp_gain}</p>
                               <p className="text-[#FF7A00]/40 text-[9px]">bhp</p>
                             </div>
                           </div>
                         </div>
-                        <div className="px-5 py-4">
+                        <div className="px-4 sm:px-5 py-3 sm:py-4">
                           <p className="text-white/30 text-[10px] uppercase font-bold tracking-widest mb-3">Torque</p>
-                          <div className="flex items-end gap-3">
+                          <div className="flex items-end gap-2 sm:gap-3">
                             <div>
                               <p className="text-white/35 text-[10px] uppercase font-bold mb-0.5">Stock</p>
-                              <p className="text-white font-black text-2xl leading-none">{engine.stock_torque}</p>
+                              <p className="text-white font-black text-xl sm:text-2xl leading-none">{engine.stock_torque}</p>
                               <p className="text-white/25 text-[10px] mt-0.5">Nm</p>
                             </div>
-                            <ArrowRight className="text-[#FF7A00]/50 mb-3 shrink-0" size={13} />
+                            <ArrowRight className="text-[#FF7A00]/50 mb-3 shrink-0" size={12} />
                             <div>
                               <p className="text-green-400/50 text-[10px] uppercase font-bold mb-0.5">Stage 1</p>
-                              <p className="text-green-400 font-black text-2xl leading-none">{engine.stage1_torque}</p>
+                              <p className="text-green-400 font-black text-xl sm:text-2xl leading-none">{engine.stage1_torque}</p>
                               <p className="text-green-400/30 text-[10px] mt-0.5">Nm</p>
                             </div>
-                            <div className="ml-auto self-center bg-[#FF7A00]/10 border border-[#FF7A00]/25 rounded-lg px-2.5 py-1.5 text-center">
+                            <div className="ml-auto self-center bg-[#FF7A00]/10 border border-[#FF7A00]/25 rounded-lg px-2 sm:px-2.5 py-1.5 text-center">
                               <p className="text-[#FF7A00] text-[9px] uppercase font-bold tracking-wide">Gain</p>
-                              <p className="text-[#FF7A00] font-black text-base leading-none">+{engine.torque_gain}</p>
+                              <p className="text-[#FF7A00] font-black text-sm sm:text-base leading-none">+{engine.torque_gain}</p>
                               <p className="text-[#FF7A00]/40 text-[9px]">Nm</p>
                             </div>
                           </div>
@@ -721,23 +721,23 @@ function CustomDropdown({ label, value, onChange, options, placeholder, disabled
 // ── Stat Block ───────────────────────────────────────────────────────────────
 
 const StatBlock = ({ label, stock, stage1, gain, unit }: { label: string; stock: number; stage1: number; gain: number; unit: string }) => (
-  <div className="relative p-6 rounded-2xl bg-[#0A0A0A] border border-white/5 overflow-hidden group">
+  <div className="relative p-4 sm:p-6 rounded-2xl bg-[#0A0A0A] border border-white/5 overflow-hidden group">
     <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-    <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-5">{label}</p>
-    <div className="flex items-end justify-between gap-4 relative z-10">
+    <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4 sm:mb-5">{label}</p>
+    <div className="flex items-end justify-between gap-2 sm:gap-4 relative z-10">
       <div className="text-center">
-        <p className="text-3xl font-black text-white/60">{stock}</p>
+        <p className="text-2xl sm:text-3xl font-black text-white/60">{stock}</p>
         <p className="text-xs text-white/30 mt-1 font-medium">Stock {unit}</p>
       </div>
-      <div className="flex items-center gap-2 mb-1">
-        <div className="w-8 h-px bg-white/20" />
-        <div className="px-2.5 py-1 rounded-lg bg-[#FF7A00]/15 border border-[#FF7A00]/30">
-          <p className="text-[#FF7A00] font-black text-sm">+{gain}</p>
+      <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
+        <div className="w-5 sm:w-8 h-px bg-white/20" />
+        <div className="px-2 sm:px-2.5 py-1 rounded-lg bg-[#FF7A00]/15 border border-[#FF7A00]/30">
+          <p className="text-[#FF7A00] font-black text-xs sm:text-sm">+{gain}</p>
         </div>
-        <div className="w-8 h-px bg-[#FF7A00]/50" />
+        <div className="w-5 sm:w-8 h-px bg-[#FF7A00]/50" />
       </div>
       <div className="text-center">
-        <p className="text-3xl font-black text-[#FF7A00] drop-shadow-[0_0_12px_rgba(255,122,0,0.5)]">{stage1}</p>
+        <p className="text-2xl sm:text-3xl font-black text-[#FF7A00] drop-shadow-[0_0_12px_rgba(255,122,0,0.5)]">{stage1}</p>
         <p className="text-xs text-[#FF7A00]/60 mt-1 font-medium">Stage 1 {unit}</p>
       </div>
     </div>
@@ -832,7 +832,7 @@ export default function VehiclePerformanceLookup() {
   const sortedMakes = Object.keys(vehiclesByMake).sort();
 
   return (
-    <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
+    <div ref={container} className="pt-24 md:pt-32 pb-16 md:pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="Vehicle Performance Lookup | ECU Remap Data | AutoCleanse"
         description="Look up Stage 1 remap performance gains for your vehicle. Select your make, model, year and engine to see BHP and torque improvements."
@@ -874,12 +874,12 @@ export default function VehiclePerformanceLookup() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Hero */}
-        <div className="text-center mb-20 reveal-container">
+        <div className="text-center mb-12 md:mb-20 reveal-container">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF7A00]/10 border border-[#FF7A00]/20 text-[#FF7A00] text-sm font-semibold mb-8 reveal-item">
             <Search size={14} />
             Stage 1 Remap Data - 85 Manufacturers
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 sm:mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
             {splitText('Vehicle Performance', 'text-white')}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em] w-full sm:w-auto">
               <span className="inline-block word-reveal text-[#FF7A00] sm:ml-3">Lookup.</span>
@@ -902,15 +902,15 @@ export default function VehiclePerformanceLookup() {
         </div>
 
         {/* Lookup Card */}
-        <div id="manual-selector" className="relative p-8 md:p-12 rounded-[2.5rem] bg-[#111111] border border-white/5 shadow-2xl shadow-black mb-10 reveal-container overflow-visible">
-          <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-[#FF7A00]/5 to-transparent pointer-events-none" />
+        <div id="manual-selector" className="relative p-4 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] bg-[#111111] border border-white/5 shadow-2xl shadow-black mb-10 reveal-container overflow-visible">
+          <div className="absolute inset-0 rounded-[2rem] sm:rounded-[2.5rem] bg-gradient-to-br from-[#FF7A00]/5 to-transparent pointer-events-none" />
 
-          <div className="flex items-center gap-4 mb-10 relative z-10">
-            <div className="w-12 h-12 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/20 flex items-center justify-center flex-shrink-0">
-              <Car size={22} className="text-[#FF7A00]" />
+          <div className="flex items-center gap-3 mb-6 md:mb-10 relative z-10">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/20 flex items-center justify-center flex-shrink-0">
+              <Car size={20} className="text-[#FF7A00]" />
             </div>
-            <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight">Select Your Vehicle</h2>
+            <div className="min-w-0">
+              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Select Your Vehicle</h2>
               <p className="text-white/40 text-sm font-medium mt-0.5">{stepsComplete} of 4 steps complete</p>
             </div>
             {stepsComplete > 0 && (
@@ -924,7 +924,7 @@ export default function VehiclePerformanceLookup() {
           </div>
 
           {/* Progress bar */}
-          <div className="w-full h-1 bg-white/5 rounded-full mb-10 relative z-10 overflow-hidden">
+          <div className="w-full h-1 bg-white/5 rounded-full mb-6 md:mb-10 relative z-10 overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-[#FF7A00] to-[#FF9A33] rounded-full transition-all duration-500"
               style={{ width: `${(stepsComplete / 4) * 100}%` }}
@@ -987,33 +987,33 @@ export default function VehiclePerformanceLookup() {
           <div ref={resultRef} className="relative rounded-[2.5rem] overflow-hidden border border-[#FF7A00]/20 shadow-[0_0_60px_rgba(255,122,0,0.12)] bg-[#111111]">
 
             {/* Header */}
-            <div className="relative px-8 md:px-12 py-10 bg-gradient-to-br from-[#1A1200] via-[#150D00] to-[#111111] border-b border-[#FF7A00]/15">
+            <div className="relative px-4 sm:px-8 md:px-12 py-6 sm:py-10 bg-gradient-to-br from-[#1A1200] via-[#150D00] to-[#111111] border-b border-[#FF7A00]/15">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,122,0,0.15)_0%,transparent_60%)] pointer-events-none" />
-              <div className="relative z-10 flex flex-wrap items-center justify-between gap-6">
-                <div className="flex items-center gap-5">
+              <div className="relative z-10 flex flex-wrap items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
                   {/* Large manufacturer logo */}
                   <div className="relative flex-shrink-0">
-                    <div className="w-16 h-16 rounded-2xl bg-white/6 border border-white/10 flex items-center justify-center overflow-hidden shadow-xl">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/6 border border-white/10 flex items-center justify-center overflow-hidden shadow-xl">
                       <BrandLogoLarge make={selectedMake} />
                     </div>
-                    <div className="absolute inset-0 rounded-2xl shadow-[0_0_20px_rgba(255,255,255,0.05)] pointer-events-none" />
+                    <div className="absolute inset-0 rounded-xl sm:rounded-2xl shadow-[0_0_20px_rgba(255,255,255,0.05)] pointer-events-none" />
                   </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-[#FF7A00]/60 mb-2">Stage 1 Remap Data</p>
-                    <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-widest text-[#FF7A00]/60 mb-1.5">Stage 1 Remap Data</p>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
                       {selectedMake} {selectedModel}
                     </h2>
-                    <p className="text-white/50 font-medium mt-1 text-lg">{selectedYear} &middot; {result.engine_name}</p>
+                    <p className="text-white/50 font-medium mt-1 text-base sm:text-lg truncate">{selectedYear} &middot; {result.engine_name}</p>
                   </div>
                 </div>
-                <span className="px-4 py-2 rounded-xl bg-[#FF7A00] text-black text-sm font-black uppercase tracking-wide self-start">
+                <span className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-[#FF7A00] text-black text-xs sm:text-sm font-black uppercase tracking-wide self-start shrink-0">
                   Stage 1
                 </span>
               </div>
             </div>
 
             {/* Stats */}
-            <div className="px-8 md:px-12 py-10">
+            <div className="px-4 sm:px-8 md:px-12 py-6 sm:py-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
                 <StatBlock label="Power Output" stock={result.stock_bhp} stage1={result.stage1_bhp} gain={result.bhp_gain} unit="BHP" />
                 <StatBlock label="Torque Output" stock={result.stock_torque} stage1={result.stage1_torque} gain={result.torque_gain} unit="Nm" />
@@ -1051,7 +1051,7 @@ export default function VehiclePerformanceLookup() {
             </div>
 
             {/* CTA */}
-            <div className="px-8 md:px-12 py-8 border-t border-white/5 bg-[#0D0D0D] flex flex-col sm:flex-row items-center justify-between gap-5">
+            <div className="px-4 sm:px-8 md:px-12 py-6 sm:py-8 border-t border-white/5 bg-[#0D0D0D] flex flex-col sm:flex-row items-center justify-between gap-5">
               <div>
                 <p className="text-white font-bold text-lg">Ready to remap your {selectedMake}?</p>
                 <p className="text-white/40 text-sm font-medium mt-0.5">Mobile ECU remapping across Devon &amp; South West</p>
