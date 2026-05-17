@@ -1,0 +1,190 @@
+AUTOCLEANSE — 6-MONTH TRADE EMAIL CAMPAIGN SCHEDULE
+=====================================================
+Weekly rotation: DPF → Remap → Revenue → Real Job → repeat
+One goal per email. One point. Keep it short.
+
+FILE NAMING: week-XX-[category]-[slug].html
+
+
+MONTH 1
+───────────────────────────────────────────────────────────
+W01  DPF       "When a forced regen isn't enough"
+               ✓ FILE READY: week-01-dpf-when-regen-isnt-enough.html
+
+W02  REMAP     "Mobile remapping — now available for trade customers"
+               ✓ FILE READY: week-02-remap-mobile-now-available.html
+
+W03  REVENUE   "Something your customers are already asking about"
+               ✓ FILE READY: week-03-revenue-keep-customers-inhouse.html
+
+W04  REAL JOB  "This week: Transit Custom economy remap"
+               ✓ FILE READY: week-04-job-transit-custom-economy.html
+
+
+MONTH 2
+───────────────────────────────────────────────────────────
+W05  DPF       "What actually causes repeated DPF blockages"
+               Angle: explain ash vs soot. Most garages think it's
+               just soot. Ash and cerium oxide don't burn off.
+               Callout: "Repeated blockages usually mean an
+               underlying issue — we flag it in the report."
+
+W06  REMAP     "How long does a remap actually take?"
+               Angle: remove friction. Garages assume it's a long job.
+               It's 1 hour. Full diagnostics included. No lift needed.
+               Callout: "1 hour on a standard diesel. Vehicle drives
+               away the same day."
+
+W07  REVENUE   "Offer more without buying more equipment"
+               Angle: zero investment required from the garage.
+               No training, no tools, no certification needed.
+               We bring everything.
+               Callout: "You provide the customer and the bay.
+               We provide everything else."
+
+W08  REAL JOB  "VW Transporter T6 — Stage 1, before/after"
+               Angle: popular van in the trade. Real numbers.
+               Keep it factual — bhp, nm, appointment time.
+               Callout: "T6 2.0 TDI 150 → 185bhp / 380 → 450nm.
+               1 hour 10 minutes."
+
+
+MONTH 3
+───────────────────────────────────────────────────────────
+W09  DPF       "DPF pressure readings: what the numbers mean"
+               Angle: educate on differential pressure.
+               Positions AutoCleanse as the diagnostic experts,
+               not just a cleaning service.
+               Callout: "We send a full pressure report with
+               every clean. Before and after."
+
+W10  REMAP     "Economy-focused remaps for diesel vans"
+               Angle: fuel economy angle is strongest for trade vans.
+               Tradesmen doing high mileage care about fuel bills.
+               Callout: "Stage 1 economy tune from £220 mobile.
+               Typical saving: 10–15%."
+
+W11  REVENUE   "The DPF + remap combo — one visit, two jobs done"
+               Angle: they're already pulling the DPF off.
+               Adding a remap at the same time saves a second visit.
+               Better value for the customer, less hassle for the garage.
+               Callout: "DPF off anyway? Remap takes 1 hour while
+               it's being cleaned."
+
+W12  REAL JOB  "BMW 320d — DPF clean + Stage 1 remap combo"
+               Angle: show the bundle in action. Real vehicle,
+               real results. Customer saved money vs two separate jobs.
+               Callout: "One visit. DPF restored + Stage 1 remap.
+               Left with a full diagnostic report."
+
+
+MONTH 4
+───────────────────────────────────────────────────────────
+W13  DPF       "Signs a DPF is structurally damaged vs just blocked"
+               Angle: genuinely useful triage info for garages.
+               Helps them advise customers correctly.
+               Positions AutoCleanse as the people who actually know.
+               Callout: "Not sure? Send it to us — we'll give you
+               an honest assessment before you commit."
+
+W14  REMAP     "Stage 1 vs Stage 2 — what's the actual difference?"
+               Angle: clear explanation without jargon.
+               Stage 1 = software only. Stage 2 = hardware upgrades first.
+               Most trade customers will be Stage 1.
+               Callout: "If the vehicle is standard, it's Stage 1.
+               From £200 trade rate."
+
+W15  REVENUE   "Keep your customers in-house — don't send them elsewhere"
+               Angle: every time a garage says "I don't do that,
+               try someone else" they risk losing that customer.
+               AutoCleanse is the answer to "we can sort that for you."
+               Callout: "We work under your workshop, not alongside it.
+               Your customer, your relationship."
+
+W16  REAL JOB  "Land Rover Defender — Stage 1 remap, diagnostic screenshots"
+               Angle: Defenders are common in Devon / rural areas.
+               Great vehicle to showcase. Show the before/after OBD data.
+               Callout: "Defender 2.0D — +32bhp, +70nm.
+               Customer noticed the difference immediately."
+
+
+MONTH 5
+───────────────────────────────────────────────────────────
+W17  DPF       "Why postal DPF cleaning works — and when it doesn't"
+               Angle: useful for garages further afield.
+               Explains the postal service clearly.
+               Sets expectations (what's needed, turnaround time).
+               Callout: "Turnaround usually 2–3 working days.
+               We cover the UK."
+
+W18  REMAP     "Petrol remapping — it's not just diesels"
+               Angle: many garages assume remapping is a diesel thing.
+               Broaden awareness. Stage 1 works well on modern petrol turbo.
+               Callout: "Golf GTI, Focus ST, Astra GSi — common
+               petrol Stage 1 vehicles."
+
+W19  REVENUE   "Additional revenue without workshop disruption"
+               Angle: we come to them. They don't reorganise anything.
+               One phone call and we handle the rest.
+               Short email. Direct. No fluff.
+               Callout: "We work around your schedule.
+               You don't rearrange for us."
+
+W20  REAL JOB  "Audi A4 2.0 TDi — via a garage referral"
+               Angle: customer came via a garage who uses AutoCleanse.
+               Subtle social proof — other workshops are already doing this.
+               Callout: "Referred by the garage. Customer came to us,
+               job done, customer went back to the garage happy."
+
+
+MONTH 6
+───────────────────────────────────────────────────────────
+W21  DPF       "What we see inside a neglected DPF"
+               Angle: vivid description of what a badly blocked DPF
+               actually looks like internally. Makes the case for
+               regular cleaning without being preachy.
+               Callout: "Most DPFs we clean have never been
+               properly serviced. They don't need replacing —
+               they need a proper clean."
+
+W22  REMAP     "Common vehicles we're remapping this month"
+               Angle: shows activity. Builds credibility.
+               List 5–6 real vehicle types (Transit, Transporter,
+               Discovery, A4, 320d etc.) Keep it brief.
+               Callout: "If you've got one of these in the workshop,
+               give us a call."
+
+W23  REVENUE   "What to say when a customer asks about remapping"
+               Angle: genuinely practical. Give garages a script.
+               "We work with a specialist — they can come to us
+               or you can drop it to them. Takes about an hour."
+               Callout: "That's all you need to say.
+               We handle everything from there."
+
+W24  REAL JOB  "6 months of workshop visits — a round-up"
+               Angle: end of campaign summary. Show volume and variety.
+               List vehicle types, number of jobs, services done.
+               Makes AutoCleanse look established and busy.
+               Callout: "If we haven't worked together on a remap yet
+               — now's a good time to start."
+
+
+SENDING GUIDE
+───────────────────────────────────────────────────────────
+- Send day:       Tuesday or Wednesday morning (highest open rates)
+- Subject lines:  Sound like a person, not a campaign
+- From name:      AutoCleanse (not "AutoCleanse Marketing")
+- Batch split:    57 contacts day 1, 58 contacts day 2 (free tier)
+- Review before:  Each job spotlight — make sure the figures are real
+- Image policy:   Add a photo to job spotlights if you have one.
+                  DPF/Revenue/Remap emails work well text-only.
+
+TONE RULES (non-negotiable)
+───────────────────────────────────────────────────────────
+  Short sentences. Always.
+  UK spelling: tyre, colour, authorised, kerb.
+  No: revolutionary, cutting-edge, seamless, bespoke, solutions.
+  No: "In today's fast-paced world..."
+  Numbers as numerals: 1 hour, 3 days, £200.
+  Talk to a busy workshop manager. Respect their time.
+  One point per email. That's it.
