@@ -138,11 +138,13 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
           const rowFuel = inferFuel(text);
           if (rowFuel !== '' && rowFuel !== dvlaFuel) return null;
 
-          // 4. Engine size: exclude if more than 0.3L away from DVLA value
+          // 4. Engine size: exclude if 0.1L or more away from DVLA value.
+          // 0.1L catches e.g. RS4 2.9L appearing for an S4 3.0L car (diff = 0.1).
+          // Legitimate same-family engines always round to the same 0.1L bucket.
           const litreMatch = text.match(/(\d\.\d)/);
           if (litreMatch) {
             const diff = Math.abs(parseFloat(litreMatch[1]) - dvlaLitre);
-            if (diff > 0.3) return null;
+            if (diff >= 0.1) return null;
           }
 
           // 5. Required performance variants (ST, RS, GTI…) — must appear in engine name
