@@ -68,12 +68,13 @@ const PORTFOLIO_VEHICLES: PortfolioVehicle[] = [
 function StatBox({ label, unit, stock, tuned, gain }: { label: string; unit: string; stock: number; tuned: number; gain: number }) {
   return (
     <div className="flex-1 bg-black/50 border border-white/10 rounded-xl px-2.5 py-2 backdrop-blur-sm min-w-0">
-      <p className="text-[9px] font-bold uppercase tracking-widest text-white/40 mb-1">{label}</p>
-      <div className="flex items-baseline gap-1 flex-wrap">
-        <span className="text-white/50 font-black text-xs">{stock}</span>
-        <ArrowRight size={8} className="text-[#FF7A00]/50 shrink-0" />
-        <span className="text-white font-black text-sm">{tuned}</span>
-        <span className="text-[#FF7A00] font-black text-xs ml-0.5">+{gain}</span>
+      <p className="text-[9px] font-bold uppercase tracking-widest text-white/40 mb-1.5">{label}</p>
+      {/* Single line — whitespace-nowrap keeps stock → tuned +gain on one row always */}
+      <div className="flex items-center gap-1 whitespace-nowrap">
+        <span className="text-white/50 font-bold text-[11px]">{stock}</span>
+        <ArrowRight size={7} className="text-[#FF7A00]/50 shrink-0" />
+        <span className="text-white font-black text-[13px]">{tuned}</span>
+        <span className="text-[#FF7A00] font-black text-[11px]">+{gain}</span>
       </div>
       <p className="text-white/25 text-[9px] mt-0.5">{unit}</p>
     </div>
