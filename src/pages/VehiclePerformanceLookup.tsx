@@ -129,10 +129,10 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
           // 1. If we identified a base model, only keep rows for that exact model
           if (matchedCsvModel && rowModelLower !== matchedCsvModel) return null;
 
-          // 2. Year range. Allow +1 on the end (car sitting at dealer into new year)
-          // but NO tolerance on the start — a 2008 car cannot be a 2009+ model.
+          // 2. Year range — hard boundaries on both ends.
+          // A 2024 car cannot be a 2019-2023 model, and a 2008 car cannot be a 2009+ model.
           const { start, end } = parseYearRange(row.year);
-          if (!isNaN(start) && !isNaN(end) && (dvlaYear < start || dvlaYear > end + 1)) return null;
+          if (!isNaN(start) && !isNaN(end) && (dvlaYear < start || dvlaYear > end)) return null;
 
           // 3. Fuel type
           const rowFuel = inferFuel(text);
