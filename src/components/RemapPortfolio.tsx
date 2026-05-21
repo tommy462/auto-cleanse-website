@@ -1,5 +1,5 @@
 /**
- * RemapPortfolio — Premium ECU remap showcase section.
+ * RemapPortfolio - Premium ECU remap showcase section.
  * Data-driven: add vehicles to PORTFOLIO_VEHICLES to grow the gallery.
  */
 import { useState } from 'react';
@@ -69,7 +69,7 @@ function StatBox({ label, unit, stock, tuned, gain }: { label: string; unit: str
   return (
     <div className="flex-1 bg-black/50 border border-white/10 rounded-xl px-2.5 py-2 backdrop-blur-sm min-w-0">
       <p className="text-[9px] font-bold uppercase tracking-widest text-white/40 mb-1.5">{label}</p>
-      {/* Single line — whitespace-nowrap keeps stock → tuned +gain on one row always */}
+      {/* Single line - whitespace-nowrap keeps stock → tuned +gain on one row always */}
       <div className="flex items-center gap-1 whitespace-nowrap">
         <span className="text-white/50 font-bold text-[11px]">{stock}</span>
         <ArrowRight size={7} className="text-[#FF7A00]/50 shrink-0" />
@@ -119,7 +119,7 @@ function VehicleCard({ v }: { v: PortfolioVehicle }) {
           style={{ background: 'radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.55) 100%)' }}
         />
 
-        {/* Bottom gradient — deepens on hover */}
+        {/* Bottom gradient - deepens on hover */}
         <div
           className="absolute bottom-0 left-0 right-0 pointer-events-none"
           style={{
@@ -142,10 +142,10 @@ function VehicleCard({ v }: { v: PortfolioVehicle }) {
         />
       </div>
 
-      {/* ── Content overlay — sits on top, NOT inside overflow-hidden, never clipped ── */}
+      {/* ── Content overlay - sits on top, NOT inside overflow-hidden, never clipped ── */}
       <div className="absolute inset-0 flex flex-col justify-between p-4 pointer-events-none rounded-2xl">
 
-        {/* Stage 1 badge — top right */}
+        {/* Stage 1 badge - top right */}
         <div className="flex justify-end">
           <div className="flex items-center gap-1.5 bg-[#FF7A00] text-black text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-[0_0_16px_rgba(255,122,0,0.5)]">
             <Zap size={10} fill="currentColor" />
@@ -172,7 +172,7 @@ function VehicleCard({ v }: { v: PortfolioVehicle }) {
             <StatBox label="Torque" unit="Nm" stock={v.stockNm} tuned={v.tunedNm} gain={nmGain} />
           </div>
 
-          {/* Mobile stats — always visible */}
+          {/* Mobile stats - always visible */}
           <div className="flex md:hidden gap-2">
             <StatBox label="Power" unit="bhp" stock={v.stockBhp} tuned={v.tunedBhp} gain={bhpGain} />
             <StatBox label="Torque" unit="Nm" stock={v.stockNm} tuned={v.tunedNm} gain={nmGain} />
@@ -202,7 +202,7 @@ export default function RemapPortfolio() {
                 Recent ECU <span className="text-[#FF7A00]">Remaps</span>
               </h2>
               <p className="text-white/50 text-base md:text-lg font-medium max-w-xl leading-relaxed">
-                A growing portfolio of real vehicles tuned by Auto-Cleanse — from performance cars to commercial vans.
+                A growing portfolio of real vehicles tuned by Auto-Cleanse - from performance cars to commercial vans.
               </p>
               <p className="text-white/30 text-sm font-medium mt-2 max-w-xl">
                 Every vehicle is diagnosed, read, tuned and tested properly for safe, usable performance gains.
@@ -218,7 +218,7 @@ export default function RemapPortfolio() {
           </div>
         </div>
 
-        {/* Grid — 2 cols on tablet, 4 cols on desktop */}
+        {/* Grid - 2 cols on tablet, 4 cols on desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5 reveal-container">
           {PORTFOLIO_VEHICLES.map((v, i) => (
             <div key={i} className="reveal-item">

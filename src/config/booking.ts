@@ -27,7 +27,7 @@ export const BOOKING_CONFIG = {
   // How long each remap appointment takes (minutes)
   appointmentDurationMinutes: 60,
 
-  // How often slots are offered — 30 = slots at 09:00, 09:30, 10:00…
+  // How often slots are offered - 30 = slots at 09:00, 09:30, 10:00…
   slotIntervalMinutes: 30,
 
   // Buffer time (minutes) blocked after each appointment for travel/prep.

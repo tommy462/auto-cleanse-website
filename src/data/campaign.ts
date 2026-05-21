@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// May 2026 Launch Campaign — configurable data
+// May 2026 Launch Campaign - configurable data
 // All values you need to edit during the campaign are at the top of this file.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -18,13 +18,13 @@ export const MAY_OFFER = {
 // "we're new to remapping" context line.
 
 export const RECENT_REMAPS_FRAMING =
-  "We launched remapping services in early 2026. The entries below are our first completed customer remaps — more are added as jobs complete.";
+  "We launched remapping services in early 2026. The entries below are our first completed customer remaps - more are added as jobs complete.";
 // To remove the framing text: set the above to ''
 
 export interface RemapCard {
   month: string;         // e.g. "April 2026"
   vehicle: string;       // e.g. "Audi S4 (B9)"
-  serviceType?: string;  // e.g. "Stage 1" — omit if not applicable
+  serviceType?: string;  // e.g. "Stage 1" - omit if not applicable
   ownerNote: string;     // Brief honest note (shown in quotes)
   customerQuote?: string; // Optional separate customer quote line
 }

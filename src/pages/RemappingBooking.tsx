@@ -287,7 +287,7 @@ function BookingConfirmed({ booking }: { booking: PendingBooking }) {
           <ol className="space-y-3 text-sm text-white/50 leading-relaxed">
             {["You'll receive a confirmation email shortly.",
               "We may call to confirm your vehicle details and advise on preparation.",
-              booking.bookingType === 'mobile' ? "We'll arrive at your address at the booked time — please ensure the vehicle is accessible." : "Bring your vehicle to us at the booked time with a full tank of fuel.",
+              booking.bookingType === 'mobile' ? "We'll arrive at your address at the booked time - please ensure the vehicle is accessible." : "Bring your vehicle to us at the booked time with a full tank of fuel.",
               "Remaining balance is due on the day once the job is complete."
             ].map((step, i) => (
               <li key={i} className="flex gap-3">
@@ -322,7 +322,7 @@ const CARD_META: Record<CardId, { title: string; subtitle?: string }> = {
   address:  { title: 'Your address', subtitle: 'Where should we come to?' },
   contact:  { title: 'Your contact details', subtitle: "So we can confirm your booking" },
   vehicle:  { title: 'Your vehicle', subtitle: 'Tell us about the car we\'ll be working on' },
-  addons:   { title: 'Add-on options', subtitle: 'First add-on is FREE — extras from +£20' },
+  addons:   { title: 'Add-on options', subtitle: 'First add-on is FREE - extras from +£20' },
   legal:    { title: 'Legal notice', subtitle: 'Please read and confirm before continuing' },
   date:     { title: 'Choose a date', subtitle: 'Select an available day' },
   time:     { title: 'Choose a time', subtitle: 'Pick an available slot' },
@@ -380,7 +380,7 @@ export default function RemappingBooking() {
     return cards;
   }
 
-  // Fixed ordering — used to find the nearest preceding card when the current
+  // Fixed ordering - used to find the nearest preceding card when the current
   // card is removed from the sequence (e.g. switching mobile → workshop removes 'address')
   const FULL_ORDER: CardId[] = ['service', 'location', 'address', 'contact', 'vehicle', 'addons', 'legal', 'date', 'time', 'payment'];
 
@@ -574,7 +574,7 @@ export default function RemappingBooking() {
           <div className="grid grid-cols-1 gap-3">
             {([
               { value: 'workshop' as const, icon: <Wrench size={20} />, title: 'Workshop Visit', desc: `Bring your vehicle to us in ${BOOKING_CONFIG.workshopAddressDisplay}` },
-              { value: 'mobile'   as const, icon: <MapPin size={20} />, title: 'Mobile Booking',  desc: `We come to you — within ${BOOKING_CONFIG.maxServiceRadiusMiles} miles of ${BOOKING_CONFIG.workshopAddressDisplay}` },
+              { value: 'mobile'   as const, icon: <MapPin size={20} />, title: 'Mobile Booking',  desc: `We come to you - within ${BOOKING_CONFIG.maxServiceRadiusMiles} miles of ${BOOKING_CONFIG.workshopAddressDisplay}` },
             ]).map(({ value, icon, title, desc }) => {
               const sel = form.bookingType === value;
               return (
@@ -670,7 +670,7 @@ export default function RemappingBooking() {
               <span className="text-green-400 text-sm">✦</span>
               <p className="text-green-400 text-xs font-bold">
                 First add-on <span className="uppercase tracking-wider">FREE</span>
-                <span className="text-green-400/50 font-normal ml-1">— extras from +£20</span>
+                <span className="text-green-400/50 font-normal ml-1">- extras from +£20</span>
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -757,7 +757,7 @@ export default function RemappingBooking() {
                     return (
                       <li key={date} className="text-[10px] text-red-300 font-medium">
                         {new Date(y,m-1,d).toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}
-                        {reason && <span className="text-white/30 font-normal ml-1">— {reason}</span>}
+                        {reason && <span className="text-white/30 font-normal ml-1">- {reason}</span>}
                       </li>
                     );
                   })}
@@ -773,7 +773,7 @@ export default function RemappingBooking() {
               <div className="flex items-start gap-2.5 rounded-xl bg-amber-500/8 border border-amber-500/20 px-3 py-2.5 mt-3">
                 <span className="text-amber-400 text-sm shrink-0 leading-none mt-0.5">⚠</span>
                 <p className="text-amber-300 text-xs leading-snug">
-                  <span className="font-bold">Weekend booking — +£{BOOKING_CONFIG.weekendSurchargePounds} surcharge</span>
+                  <span className="font-bold">Weekend booking - +£{BOOKING_CONFIG.weekendSurchargePounds} surcharge</span>
                   <span className="text-amber-400/60"> applies to all Saturday and Sunday appointments.</span>
                 </p>
               </div>
@@ -796,7 +796,7 @@ export default function RemappingBooking() {
               <div className="flex items-start gap-2.5 rounded-xl bg-amber-500/8 border border-amber-500/20 px-3 py-2.5 mb-4">
                 <span className="text-amber-400 text-sm shrink-0 leading-none mt-0.5">⚠</span>
                 <p className="text-amber-300 text-xs leading-snug">
-                  <span className="font-bold">Weekend booking — +£{BOOKING_CONFIG.weekendSurchargePounds} surcharge</span>
+                  <span className="font-bold">Weekend booking - +£{BOOKING_CONFIG.weekendSurchargePounds} surcharge</span>
                   <span className="text-amber-400/60"> applies to this appointment.</span>
                 </p>
               </div>
@@ -854,7 +854,7 @@ export default function RemappingBooking() {
               <dl className="space-y-0">
                 {[
                   { l: 'Service', v: getServiceLabel(form.serviceType) },
-                  { l: 'Date',    v: selectedDate && selectedTime ? formatSlotDisplay(selectedDate, selectedTime) : '—' },
+                  { l: 'Date',    v: selectedDate && selectedTime ? formatSlotDisplay(selectedDate, selectedTime) : '-' },
                   { l: 'Type',    v: form.bookingType === 'mobile' ? '🚗 Mobile' : '🏪 Workshop' },
                   { l: 'Vehicle', v: `${form.vehicleMakeModel} (${form.vehicleRegistration})` },
                   ...(form.bookingType === 'mobile' ? [{ l: 'Address', v: buildAddress(form) }] : []),
@@ -970,7 +970,7 @@ export default function RemappingBooking() {
             {renderContent()}
           </div>
 
-          {/* Card footer — Next button (hidden for auto-advance cards and payment) */}
+          {/* Card footer - Next button (hidden for auto-advance cards and payment) */}
           {currentCard !== 'service' && currentCard !== 'location' && currentCard !== 'time' && currentCard !== 'payment' && (
             <div className="px-5 sm:px-7 py-5 flex items-center justify-between gap-3 border-t border-white/[0.04] mt-4">
               {/* Price estimate (visible once service + type are chosen) */}

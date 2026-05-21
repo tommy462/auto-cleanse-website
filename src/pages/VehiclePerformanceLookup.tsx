@@ -88,7 +88,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
       const dvlaLitre = ccToLitre(dvla.engineCapacity);
       const isLargePetrol = dvlaFuel === 'petrol' && dvlaLitre >= 2.9;
 
-      // All words in the API model string — keep short ones too (ST, RS, GT etc.)
+      // All words in the API model string - keep short ones too (ST, RS, GT etc.)
       const dvlaModelRaw = (dvla.model || '').toLowerCase();
       const dvlaModelWords = dvlaModelRaw
         .replace(/[^a-z0-9\s]/g, ' ')
@@ -114,7 +114,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
         : 0;
       const variantTokens = dvlaModelWords.slice(baseWordCount);
 
-      // Performance variant keywords — if present in the API model the CSV row MUST
+      // Performance variant keywords - if present in the API model the CSV row MUST
       // contain them, preventing e.g. Focus ST from ever matching Mondeo rows.
       const HARD_VARIANT_KEYWORDS = new Set(['st', 'rs', 'gti', 'gtd', 'gts', 'vxr', 'svr', 'amg', 'cupra']);
       const requiredVariants = variantTokens.filter(t => HARD_VARIANT_KEYWORDS.has(t));
@@ -129,7 +129,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
           // 1. If we identified a base model, only keep rows for that exact model
           if (matchedCsvModel && rowModelLower !== matchedCsvModel) return null;
 
-          // 2. Year range — hard boundaries on both ends.
+          // 2. Year range - hard boundaries on both ends.
           // A 2024 car cannot be a 2019-2023 model, and a 2008 car cannot be a 2009+ model.
           const { start, end } = parseYearRange(row.year);
           if (!isNaN(start) && !isNaN(end) && (dvlaYear < start || dvlaYear > end)) return null;
@@ -147,7 +147,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
             if (diff >= 0.1) return null;
           }
 
-          // 5. Required performance variants (ST, RS, GTI…) — must appear in engine name
+          // 5. Required performance variants (ST, RS, GTI…) - must appear in engine name
           if (requiredVariants.length > 0) {
             const rowLower = `${row.model} ${row.engine_name} ${row.engine_dropdown}`.toLowerCase();
             if (!requiredVariants.every(v => rowLower.includes(v))) return null;
@@ -201,7 +201,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
       const groups = Array.from(groupMap.values()).sort((a, b) => b.bestScore - a.bestScore).slice(0, 6);
       setModelGroups(groups);
 
-      // Auto-select the top match — skip the model picker entirely
+      // Auto-select the top match - skip the model picker entirely
       if (groups.length > 0) {
         setSelectedGroup(groups[0]);
         setShowAllEngines(false);
@@ -286,7 +286,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
         </div>
       )}
 
-      {/* Model cards — shown only when user clicks "Wrong vehicle?" */}
+      {/* Model cards - shown only when user clicks "Wrong vehicle?" */}
       {step === 'models' && (
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-3">
@@ -349,7 +349,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
         <div className="relative z-10">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 mb-4">
             <p className="text-xs font-bold uppercase tracking-widest text-white/40 leading-relaxed">
-              {selectedGroup.manufacturer} {selectedGroup.model} — {selectedGroup.engines.length} variant{selectedGroup.engines.length !== 1 ? 's' : ''}
+              {selectedGroup.manufacturer} {selectedGroup.model} - {selectedGroup.engines.length} variant{selectedGroup.engines.length !== 1 ? 's' : ''}
             </p>
             {modelGroups.length > 1 && (
               <button
@@ -371,7 +371,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
             const options = parseOptions(engine.options_available);
             return (
               <div className="space-y-3">
-                {/* BHP picker — only shown when the API can't distinguish power variants */}
+                {/* BHP picker - only shown when the API can't distinguish power variants */}
                 {hasMultiplePowerVariants && (
                   <div className="bg-[#0A0A0A] border border-amber-500/20 rounded-2xl p-4">
                     <p className="text-[10px] font-bold uppercase tracking-widest text-amber-400/70 mb-1">
@@ -414,7 +414,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
                           <Zap size={12} /> Book
                         </a>
                       </div>
-                      {/* Stats: Power | Torque — stacked on mobile, side-by-side on sm+ */}
+                      {/* Stats: Power | Torque - stacked on mobile, side-by-side on sm+ */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-white/5">
                         <div className="px-4 sm:px-5 py-3 sm:py-4">
                           <p className="text-white/30 text-[10px] uppercase font-bold tracking-widest mb-3">Power</p>

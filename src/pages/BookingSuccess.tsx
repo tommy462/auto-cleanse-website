@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
 import type { PendingBooking } from './RemappingBooking';
 
-// Make.com webhook — same as used in RemappingBooking
+// Make.com webhook - same as used in RemappingBooking
 const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/uw0b9gab1m4qdj1zhs4m4mkkn9kt5fva';
 
 export default function BookingSuccess() {
@@ -18,7 +18,7 @@ export default function BookingSuccess() {
     const raw = typeof window !== 'undefined' ? sessionStorage.getItem('pendingBooking') : null;
 
     if (!raw) {
-      // No sessionStorage data — payment may have been processed via the inline event
+      // No sessionStorage data - payment may have been processed via the inline event
       // or the user navigated here directly. Show a generic success message.
       setLoading(false);
       return;
@@ -35,7 +35,7 @@ export default function BookingSuccess() {
     setBooking(pending);
     setLoading(false);
 
-    // Create dashboard job + notify Make.com — only once per page load
+    // Create dashboard job + notify Make.com - only once per page load
     if (jobCreated.current) return;
     jobCreated.current = true;
 
@@ -118,7 +118,7 @@ export default function BookingSuccess() {
               </p>
             </div>
 
-            {/* Booking summary — shown when we have the data */}
+            {/* Booking summary - shown when we have the data */}
             {booking && (
               <>
                 <div className="rounded-3xl bg-[#1A1D22] border border-white/5 p-6 sm:p-8 space-y-0 mb-6">
@@ -143,8 +143,8 @@ export default function BookingSuccess() {
                       icon: <MapPin size={16} className="text-[#FF7A00]" />,
                       label: 'Location',
                       value: booking.bookingType === 'mobile'
-                        ? `Mobile — ${booking.address ?? ''}`
-                        : 'Workshop — bring your vehicle to us',
+                        ? `Mobile - ${booking.address ?? ''}`
+                        : 'Workshop - bring your vehicle to us',
                     },
                   ].map(({ icon, label, value }) => (
                     <div key={label} className="flex gap-4 py-3 border-b border-white/5 last:border-0">

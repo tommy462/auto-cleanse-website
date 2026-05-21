@@ -24,7 +24,7 @@ export function MayOfferBanner() {
             <Tag size={15} className="text-white/30" />
           </div>
           <p className="text-white/55 text-sm font-semibold flex-1">
-            May offer fully booked —{' '}
+            May offer fully booked -{' '}
             <span className="text-white">June bookings now open</span>
           </p>
           <MagneticButton className="shrink-0">
@@ -89,7 +89,7 @@ export function MayOfferBanner() {
 
 // ── Element 2: DPF-Specialist Trust Signal ───────────────────────────────────
 // Position: immediately after the "Why choose us" section.
-// Self-contained section block — drop it between any two sections.
+// Self-contained section block - drop it between any two sections.
 
 export function DpfTrustSignal() {
   return (
@@ -105,7 +105,7 @@ export function DpfTrustSignal() {
             </p>
             <p className="text-white/65 text-sm leading-relaxed">
               We're DPF specialists who remap. Every map we write is tuned to
-              protect your filter — because we're the ones who clean them when
+              protect your filter - because we're the ones who clean them when
               they fail. Hundreds of DPFs cleaned across Devon, and that
               experience goes into every remap we do.
             </p>
