@@ -11,7 +11,7 @@ const SUPABASE_KEY = process.env.AUTOCLEANSE_SUPABASE_SERVICE_KEY!;
 
 // Mirrors BOOKING_CONFIG in src/config/booking.ts — keep in sync
 const BUSINESS_HOURS: Record<string, { open: string; close: string } | null> = {
-  sunday:    null,
+  sunday:    { open: '09:00', close: '14:00' },
   monday:    { open: '09:00', close: '17:30' }, // last slot 16:30 + 60 min = 17:30
   tuesday:   { open: '09:00', close: '17:30' },
   wednesday: { open: '09:00', close: '17:30' },

@@ -20,7 +20,7 @@ export const BOOKING_CONFIG = {
     thursday:  { open: '09:00', close: '17:30' } as DayHours,
     friday:    { open: '09:00', close: '17:30' } as DayHours,
     saturday:  { open: '09:00', close: '14:00' } as DayHours,
-    sunday:    null as DayHours | null,
+    sunday:    { open: '09:00', close: '14:00' } as DayHours,
   },
 
   // ── Appointment settings ─────────────────────────────────────────────────
@@ -63,6 +63,10 @@ export const BOOKING_CONFIG = {
   // ── Blocked dates ─────────────────────────────────────────────────────────
   // Array of YYYY-MM-DD strings that are completely unavailable
   unavailableDates: [] as string[],
+
+  // ── Weekend surcharge ─────────────────────────────────────────────────────
+  // Additional charge (£) applied to Saturday and Sunday bookings
+  weekendSurchargePounds: 30,
 } as const;
 
 // ─────────────────────────────────────────────────────────────────────────────

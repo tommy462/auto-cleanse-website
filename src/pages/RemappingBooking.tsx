@@ -107,25 +107,32 @@ const getServiceLabel = (v: string) =>
 const getFirstFreeOption = (opts: string[]) =>
   opts.find((v) => { const o = REMAP_OPTIONS.find((x) => x.value === v); return o && o.extraCost < 36; }) ?? null;
 
-function calcQuotedPrice(serviceType: string, bookingType: string, opts: string[]): number {
+function calcQuotedPrice(serviceType: string, bookingType: string, opts: string[], dateStr?: string | null): number {
   if (!serviceType || !bookingType) return 0;
   const prices = BASE_PRICES[serviceType as RemapServiceValue];
   if (!prices) return 0;
   const base = bookingType === 'mobile' ? prices.mobile : prices.workshop;
   const freeVal = getFirstFreeOption(opts);
-  return base + opts.reduce((s, v) => v === freeVal ? s : s + (REMAP_OPTIONS.find((o) => o.value === v)?.extraCost ?? 0), 0);
+  const addons = opts.reduce((s, v) => v === freeVal ? s : s + (REMAP_OPTIONS.find((o) => o.value === v)?.extraCost ?? 0), 0);
+  const surcharge = dateStr && isWeekendDate(dateStr) ? BOOKING_CONFIG.weekendSurchargePounds : 0;
+  return base + addons + surcharge;
 }
 
-function formatPrice(serviceType: string, bookingType: string, opts: string[]): string | null {
+function formatPrice(serviceType: string, bookingType: string, opts: string[], dateStr?: string | null): string | null {
   if (!serviceType || !bookingType || serviceType === 'not-sure') return null;
   const prices = BASE_PRICES[serviceType as RemapServiceValue];
   if (!prices) return null;
-  const total = calcQuotedPrice(serviceType, bookingType, opts);
+  const total = calcQuotedPrice(serviceType, bookingType, opts, dateStr);
   return `${prices.fromPrice ? 'from ' : ''}£${total}`;
 }
 
 const buildAddress = (f: BookingForm) =>
   [f.addressLine1, f.addressLine2, f.townCity, f.postcode].filter(Boolean).join(', ');
+
+const isWeekendDate = (dateStr: string) => {
+  const day = new Date(`${dateStr}T12:00:00`).getDay();
+  return day === 0 || day === 6;
+};
 
 const formatSlotDisplay = (dateStr: string, time: string) => {
   const [y, m, d] = dateStr.split('-').map(Number);
@@ -166,7 +173,7 @@ function DatePicker({ blockedDates, selected, onSelect }: {
 
   const isDisabled = (ds: string) => {
     const d = new Date(`${ds}T12:00:00`);
-    return d < minDate || d > maxDate || d.getDay() === 0 || blockedSet.has(ds);
+    return d < minDate || d > maxDate || blockedSet.has(ds);
   };
 
   const monthKey    = viewYear * 100 + viewMonth;
@@ -202,6 +209,7 @@ function DatePicker({ blockedDates, selected, onSelect }: {
           const isSelected = dateStr === selected;
           const isToday    = dateStr === todayStr;
           const isBlocked  = blockedSet.has(dateStr);
+          const isWeekend = isWeekendDate(dateStr);
           return (
             <button key={dateStr} type="button" disabled={disabled} onClick={() => onSelect(dateStr)}
               className={[
@@ -209,8 +217,12 @@ function DatePicker({ blockedDates, selected, onSelect }: {
                 disabled ? 'text-white/15 cursor-not-allowed' : 'cursor-pointer hover:bg-white/10 text-white',
                 isSelected && !disabled ? '!bg-[#FF7A00] !text-black font-black' : '',
                 isToday && !isSelected ? 'ring-1 ring-[#FF7A00]/40' : '',
+                isWeekend && !disabled && !isSelected ? 'ring-1 ring-amber-500/30' : '',
               ].join(' ')}>
               {dayNum}
+              {isWeekend && !disabled && !isSelected && (
+                <span className="text-[7px] font-bold text-amber-400/70 leading-none mt-0.5">+£30</span>
+              )}
               {isBlocked && !isSelected && <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-red-400/70" />}
             </button>
           );
@@ -223,6 +235,10 @@ function DatePicker({ blockedDates, selected, onSelect }: {
             {label}
           </div>
         ))}
+        <div className="flex items-center gap-1.5 text-[9px] text-amber-400/50 font-medium">
+          <span className="w-2 h-2 rounded-sm ring-1 ring-amber-500/40 inline-block" />
+          Weekend +£{BOOKING_CONFIG.weekendSurchargePounds}
+        </div>
       </div>
     </div>
   );
@@ -453,7 +469,7 @@ export default function RemappingBooking() {
       address: form.bookingType === 'mobile' ? buildAddress(form) : null,
       postcode: form.bookingType === 'mobile' ? form.postcode : null,
       selectedOptions: form.selectedOptions,
-      quotedPrice: calcQuotedPrice(form.serviceType, form.bookingType, form.selectedOptions),
+      quotedPrice: calcQuotedPrice(form.serviceType, form.bookingType, form.selectedOptions, selectedDate),
       jobDate: selectedDate, jobTime: selectedTime,
       slotDisplay: formatSlotDisplay(selectedDate, selectedTime),
     };
@@ -753,6 +769,15 @@ export default function RemappingBooking() {
               selected={selectedDate}
               onSelect={d => { setSelectedDate(d); setSelectedTime(null); }}
             />
+            {selectedDate && isWeekendDate(selectedDate) && (
+              <div className="flex items-start gap-2.5 rounded-xl bg-amber-500/8 border border-amber-500/20 px-3 py-2.5 mt-3">
+                <span className="text-amber-400 text-sm shrink-0 leading-none mt-0.5">⚠</span>
+                <p className="text-amber-300 text-xs leading-snug">
+                  <span className="font-bold">Weekend booking — +£{BOOKING_CONFIG.weekendSurchargePounds} surcharge</span>
+                  <span className="text-amber-400/60"> applies to all Saturday and Sunday appointments.</span>
+                </p>
+              </div>
+            )}
           </div>
         );
 
@@ -766,6 +791,15 @@ export default function RemappingBooking() {
                 {new Date(`${selectedDate}T12:00:00`).toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
                 <button type="button" onClick={() => navigate('date','back')} className="text-[#FF7A00]/70 hover:text-[#FF7A00] transition-colors ml-1">← change</button>
               </p>
+            )}
+            {selectedDate && isWeekendDate(selectedDate) && (
+              <div className="flex items-start gap-2.5 rounded-xl bg-amber-500/8 border border-amber-500/20 px-3 py-2.5 mb-4">
+                <span className="text-amber-400 text-sm shrink-0 leading-none mt-0.5">⚠</span>
+                <p className="text-amber-300 text-xs leading-snug">
+                  <span className="font-bold">Weekend booking — +£{BOOKING_CONFIG.weekendSurchargePounds} surcharge</span>
+                  <span className="text-amber-400/60"> applies to this appointment.</span>
+                </p>
+              </div>
             )}
             {slotsLoading && (
               <div className="flex items-center justify-center py-10 gap-3">
@@ -824,8 +858,9 @@ export default function RemappingBooking() {
                   { l: 'Type',    v: form.bookingType === 'mobile' ? '🚗 Mobile' : '🏪 Workshop' },
                   { l: 'Vehicle', v: `${form.vehicleMakeModel} (${form.vehicleRegistration})` },
                   ...(form.bookingType === 'mobile' ? [{ l: 'Address', v: buildAddress(form) }] : []),
-                  ...(formatPrice(form.serviceType, form.bookingType, form.selectedOptions)
-                    ? [{ l: 'Est. total', v: formatPrice(form.serviceType, form.bookingType, form.selectedOptions)! }]
+                  ...(selectedDate && isWeekendDate(selectedDate) ? [{ l: 'Weekend', v: `+£${BOOKING_CONFIG.weekendSurchargePounds}` }] : []),
+                  ...(formatPrice(form.serviceType, form.bookingType, form.selectedOptions, selectedDate)
+                    ? [{ l: 'Est. total', v: formatPrice(form.serviceType, form.bookingType, form.selectedOptions, selectedDate)! }]
                     : []),
                 ].map(({ l, v }) => (
                   <div key={l} className="flex gap-3 py-2 border-b border-white/5 last:border-0">
@@ -939,11 +974,11 @@ export default function RemappingBooking() {
           {currentCard !== 'service' && currentCard !== 'location' && currentCard !== 'time' && currentCard !== 'payment' && (
             <div className="px-5 sm:px-7 py-5 flex items-center justify-between gap-3 border-t border-white/[0.04] mt-4">
               {/* Price estimate (visible once service + type are chosen) */}
-              {formatPrice(form.serviceType, form.bookingType, form.selectedOptions) && (
+              {formatPrice(form.serviceType, form.bookingType, form.selectedOptions, selectedDate) && (
                 <div className="flex items-center gap-1.5">
                   <span className="text-white/25 text-[10px]">Est.</span>
                   <span className="text-white font-black text-sm">
-                    {formatPrice(form.serviceType, form.bookingType, form.selectedOptions)}
+                    {formatPrice(form.serviceType, form.bookingType, form.selectedOptions, selectedDate)}
                   </span>
                 </div>
               )}
