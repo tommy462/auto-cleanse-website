@@ -65,6 +65,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
   const [modelGroups, setModelGroups] = useState<ModelGroup[]>([]);
   const [selectedGroup, setSelectedGroup] = useState<ModelGroup | null>(null);
   const [showAllEngines, setShowAllEngines] = useState(false);
+  const [selectedEngineIdx, setSelectedEngineIdx] = useState(0);
   const [step, setStep] = useState<'input' | 'models' | 'specs'>('input');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -75,6 +76,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
     setError(null);
     setModelGroups([]);
     setSelectedGroup(null);
+    setSelectedEngineIdx(0);
 
     try {
       const dvla = await lookupVehicle(registration.trim().toUpperCase());
@@ -301,7 +303,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
                 {modelGroups.map((group, i) => (
                   <button
                     key={i}
-                    onClick={() => { setSelectedGroup(group); setStep('specs'); }}
+                    onClick={() => { setSelectedGroup(group); setSelectedEngineIdx(0); setStep('specs'); }}
                     className="bg-[#0A0A0A] border border-white/5 rounded-xl p-4 hover:border-[#FF7A00]/40 transition-all group text-left w-full"
                   >
                     <div className="flex items-center gap-3">
@@ -357,12 +359,44 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
             )}
           </div>
           {(() => {
-            const sortedEngines = selectedGroup.engines.sort((a, b) => b.score - a.score);
-            const enginesToShow = showAllEngines ? sortedEngines : [sortedEngines[0]];
+            // Sort engines by stock BHP ascending so picker shows 110 → 136 → 150 → 170
+            const enginesByBhp = [...selectedGroup.engines].sort(
+              (a, b) => parseInt(a.stock_bhp) - parseInt(b.stock_bhp)
+            );
+            const uniqueBhpValues = [...new Set(enginesByBhp.map(e => e.stock_bhp))];
+            const hasMultiplePowerVariants = uniqueBhpValues.length > 1;
+            const engine = enginesByBhp[selectedEngineIdx] ?? enginesByBhp[0];
+            const options = parseOptions(engine.options_available);
             return (
               <div className="space-y-3">
-                {enginesToShow.map((engine, i) => {
-                  const options = parseOptions(engine.options_available);
+                {/* BHP picker — only shown when the API can't distinguish power variants */}
+                {hasMultiplePowerVariants && (
+                  <div className="bg-[#0A0A0A] border border-amber-500/20 rounded-2xl p-4">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-amber-400/70 mb-1">
+                      Multiple power variants found
+                    </p>
+                    <p className="text-white/40 text-xs mb-3">Select your stock BHP to see the correct figures:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {enginesByBhp.map((eng, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setSelectedEngineIdx(i)}
+                          className={`px-3 py-1.5 rounded-lg text-sm font-black transition-all ${
+                            i === selectedEngineIdx
+                              ? 'bg-[#FF7A00] text-black shadow-[0_0_12px_rgba(255,122,0,0.3)]'
+                              : 'bg-white/5 text-white/50 hover:bg-white/10 hover:text-white border border-white/10'
+                          }`}
+                        >
+                          {eng.stock_bhp} BHP
+                        </button>
+                      ))}
+                    </div>
+                    <p className="text-[10px] text-white/20 mt-2">Not sure? Check your V5C logbook or dealer spec sheet.</p>
+                  </div>
+                )}
+
+                {/* Spec card for the selected (or only) engine */}
+                {[engine].map((engine, i) => {
                   return (
                     <div key={i} className="bg-[#0A0A0A] border border-white/5 rounded-2xl overflow-hidden hover:border-[#FF7A00]/20 transition-all">
                       {/* Header: engine name + Book button */}
