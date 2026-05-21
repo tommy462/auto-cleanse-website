@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
+import RemapPortfolio from '../components/RemapPortfolio';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -310,6 +311,11 @@ const Remapping = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/30 via-transparent to-[#0A0A0A]/30" />
           <div className="absolute inset-0 bg-[#FF7A00]/5 mix-blend-screen pointer-events-none" />
         </div>
+      </div>
+
+      {/* ── PORTFOLIO ─────────────────────────────────────────────────────────── */}
+      <div className="relative" style={{ zIndex: 2 }}>
+        <RemapPortfolio />
       </div>
 
       {/* ── FAQ + RELATED + CTA ───────────────────────────────────────────────── */}
