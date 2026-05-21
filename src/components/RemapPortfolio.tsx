@@ -65,6 +65,21 @@ const PORTFOLIO_VEHICLES: PortfolioVehicle[] = [
   },
 ];
 
+function StatBox({ label, unit, stock, tuned, gain }: { label: string; unit: string; stock: number; tuned: number; gain: number }) {
+  return (
+    <div className="flex-1 bg-black/50 border border-white/10 rounded-xl px-2.5 py-2 backdrop-blur-sm min-w-0">
+      <p className="text-[9px] font-bold uppercase tracking-widest text-white/40 mb-1">{label}</p>
+      <div className="flex items-baseline gap-1 flex-wrap">
+        <span className="text-white/50 font-black text-xs">{stock}</span>
+        <ArrowRight size={8} className="text-[#FF7A00]/50 shrink-0" />
+        <span className="text-white font-black text-sm">{tuned}</span>
+        <span className="text-[#FF7A00] font-black text-xs ml-0.5">+{gain}</span>
+      </div>
+      <p className="text-white/25 text-[9px] mt-0.5">{unit}</p>
+    </div>
+  );
+}
+
 function VehicleCard({ v }: { v: PortfolioVehicle }) {
   const [active, setActive] = useState(false);
   const bhpGain = v.tunedBhp - v.stockBhp;
@@ -72,7 +87,7 @@ function VehicleCard({ v }: { v: PortfolioVehicle }) {
 
   return (
     <div
-      className="group relative rounded-2xl overflow-hidden cursor-pointer select-none"
+      className="group relative rounded-2xl cursor-pointer select-none"
       style={{
         boxShadow: active
           ? '0 0 0 1px rgba(255,122,0,0.5), 0 24px 60px rgba(0,0,0,0.7), 0 0 40px rgba(255,122,0,0.12)'
@@ -83,8 +98,8 @@ function VehicleCard({ v }: { v: PortfolioVehicle }) {
       onMouseLeave={() => setActive(false)}
       onTouchStart={() => setActive(v => !v)}
     >
-      {/* ── Photo ── */}
-      <div className="relative w-full" style={{ paddingBottom: '72%' }}>
+      {/* ── Photo (overflow-hidden ONLY here so zoom is clipped but text never is) ── */}
+      <div className="relative w-full overflow-hidden rounded-2xl" style={{ paddingBottom: '75%' }}>
         <img
           src={v.image}
           alt={v.alt}
@@ -93,116 +108,73 @@ function VehicleCard({ v }: { v: PortfolioVehicle }) {
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out"
           style={{
             transform: active ? 'scale(1.06)' : 'scale(1)',
-            filter: active ? 'contrast(1.06) brightness(0.85)' : 'contrast(1.02) brightness(0.95)',
+            filter: active ? 'contrast(1.06) brightness(0.82)' : 'contrast(1.02) brightness(0.95)',
           }}
         />
 
-        {/* Permanent vignette so corners are always darkened */}
+        {/* Permanent vignette */}
         <div
           className="absolute inset-0 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.55) 100%)' }}
+        />
+
+        {/* Bottom gradient — deepens on hover */}
+        <div
+          className="absolute bottom-0 left-0 right-0 pointer-events-none"
           style={{
-            background:
-              'radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.55) 100%)',
+            height: '70%',
+            background: 'linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.75) 45%, transparent 100%)',
+            opacity: active ? 1 : 0.9,
+            transition: 'opacity 0.4s ease',
           }}
         />
 
-        {/* Bottom gradient — always visible, deepens on hover */}
+        {/* Orange accent line */}
         <div
-          className="absolute bottom-0 left-0 right-0 pointer-events-none transition-opacity duration-400"
-          style={{
-            height: '65%',
-            background:
-              'linear-gradient(to top, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0.70) 40%, transparent 100%)',
-            opacity: active ? 1 : 0.88,
-          }}
-        />
-
-        {/* Orange accent line — slides in on hover */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-[2px] pointer-events-none transition-all duration-500 ease-out"
+          className="absolute bottom-0 left-0 right-0 h-[2px] pointer-events-none"
           style={{
             background: 'linear-gradient(to right, transparent, #FF7A00, transparent)',
             opacity: active ? 1 : 0,
             transform: active ? 'scaleX(1)' : 'scaleX(0.4)',
+            transition: 'all 0.5s ease',
           }}
         />
+      </div>
+
+      {/* ── Content overlay — sits on top, NOT inside overflow-hidden, never clipped ── */}
+      <div className="absolute inset-0 flex flex-col justify-between p-4 pointer-events-none rounded-2xl">
 
         {/* Stage 1 badge — top right */}
-        <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-[#FF7A00] text-black text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-[0_0_16px_rgba(255,122,0,0.5)]">
-          <Zap size={10} fill="currentColor" />
-          Stage 1 Remap
+        <div className="flex justify-end">
+          <div className="flex items-center gap-1.5 bg-[#FF7A00] text-black text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-[0_0_16px_rgba(255,122,0,0.5)]">
+            <Zap size={10} fill="currentColor" />
+            Stage 1 Remap
+          </div>
         </div>
 
-        {/* ── Card content overlay ── */}
-        <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 pt-2">
-          {/* Vehicle name — always visible */}
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[#FF7A00]/80 mb-0.5">
-            {v.make}
-          </p>
-          <h3 className="text-white font-black text-lg leading-tight tracking-tight mb-0.5">
-            {v.model}
-          </h3>
+        {/* Bottom: name + stats */}
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[#FF7A00]/80 mb-0.5">{v.make}</p>
+          <h3 className="text-white font-black text-lg leading-tight tracking-tight mb-0.5">{v.model}</h3>
           <p className="text-white/40 text-xs font-medium mb-3">{v.engine}</p>
 
-          {/* Stats — visible on mobile always, fade in on hover desktop */}
+          {/* Desktop hover stats */}
           <div
-            className="transition-all duration-400 ease-out"
+            className="hidden md:flex gap-2"
             style={{
               opacity: active ? 1 : 0,
               transform: active ? 'translateY(0)' : 'translateY(8px)',
+              transition: 'opacity 0.35s ease, transform 0.35s ease',
             }}
           >
-            {/* Mobile always shows stats via the CSS below */}
-            <div className="flex items-stretch gap-2">
-              {/* BHP */}
-              <div className="flex-1 bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2.5 backdrop-blur-sm">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-white/40 mb-1">Power</p>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-white/60 font-black text-sm">{v.stockBhp}</span>
-                  <ArrowRight size={10} className="text-[#FF7A00]/60 shrink-0" />
-                  <span className="text-white font-black text-sm">{v.tunedBhp}</span>
-                  <span className="ml-auto text-[#FF7A00] font-black text-xs">+{bhpGain}</span>
-                </div>
-                <p className="text-white/25 text-[9px] mt-0.5">bhp</p>
-              </div>
-              {/* Torque */}
-              <div className="flex-1 bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2.5 backdrop-blur-sm">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-white/40 mb-1">Torque</p>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-white/60 font-black text-sm">{v.stockNm}</span>
-                  <ArrowRight size={10} className="text-[#FF7A00]/60 shrink-0" />
-                  <span className="text-white font-black text-sm">{v.tunedNm}</span>
-                  <span className="ml-auto text-[#FF7A00] font-black text-xs">+{nmGain}</span>
-                </div>
-                <p className="text-white/25 text-[9px] mt-0.5">Nm</p>
-              </div>
-            </div>
+            <StatBox label="Power" unit="bhp" stock={v.stockBhp} tuned={v.tunedBhp} gain={bhpGain} />
+            <StatBox label="Torque" unit="Nm" stock={v.stockNm} tuned={v.tunedNm} gain={nmGain} />
           </div>
 
-          {/* Mobile stats — always visible, hidden on md+ (hover handles it there) */}
-          <div className="md:hidden mt-2">
-            <div className="flex items-stretch gap-2">
-              <div className="flex-1 bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2.5">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-white/40 mb-1">Power</p>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-white/60 font-black text-sm">{v.stockBhp}</span>
-                  <ArrowRight size={10} className="text-[#FF7A00]/60 shrink-0" />
-                  <span className="text-white font-black text-sm">{v.tunedBhp}</span>
-                  <span className="ml-auto text-[#FF7A00] font-black text-xs">+{bhpGain}</span>
-                </div>
-                <p className="text-white/25 text-[9px] mt-0.5">bhp</p>
-              </div>
-              <div className="flex-1 bg-white/[0.06] border border-white/10 rounded-xl px-3 py-2.5">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-white/40 mb-1">Torque</p>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-white/60 font-black text-sm">{v.stockNm}</span>
-                  <ArrowRight size={10} className="text-[#FF7A00]/60 shrink-0" />
-                  <span className="text-white font-black text-sm">{v.tunedNm}</span>
-                  <span className="ml-auto text-[#FF7A00] font-black text-xs">+{nmGain}</span>
-                </div>
-                <p className="text-white/25 text-[9px] mt-0.5">Nm</p>
-              </div>
-            </div>
+          {/* Mobile stats — always visible */}
+          <div className="flex md:hidden gap-2">
+            <StatBox label="Power" unit="bhp" stock={v.stockBhp} tuned={v.tunedBhp} gain={bhpGain} />
+            <StatBox label="Torque" unit="Nm" stock={v.stockNm} tuned={v.tunedNm} gain={nmGain} />
           </div>
         </div>
       </div>
