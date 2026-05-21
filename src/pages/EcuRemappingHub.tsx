@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
+import RemapPortfolio from '../components/RemapPortfolio';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -132,6 +133,8 @@ const EcuRemappingHub = () => {
             </div>
           </Link>
         </div>
+
+        <RemapPortfolio />
 
         <section className="text-center mt-16 reveal-item">
           <div className="relative p-12 md:p-16 rounded-[3rem] bg-[#1A1D22] border border-white/5 shadow-2xl shadow-black overflow-hidden group hover:border-[#FF7A00]/20 transition-all duration-700">
