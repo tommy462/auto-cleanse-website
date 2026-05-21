@@ -85,30 +85,73 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
       const dvlaFuel  = dvla.fuelType.toLowerCase().trim();
       const dvlaLitre = ccToLitre(dvla.engineCapacity);
       const isLargePetrol = dvlaFuel === 'petrol' && dvlaLitre >= 2.9;
-      // Extract key words from the API model name for matching (e.g. "FIESTA TITANIUM TDCI" → ["fiesta","titanium","tdci"])
-      const dvlaModelWords = dvla.model
-        ? dvla.model.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 2)
-        : [];
+
+      // All words in the API model string — keep short ones too (ST, RS, GT etc.)
+      const dvlaModelRaw = (dvla.model || '').toLowerCase();
+      const dvlaModelWords = dvlaModelRaw
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .split(/\s+/)
+        .filter(w => w.length > 0);
+
+      // ── Hard model matching ────────────────────────────────────────────────
+      // Find which CSV model name the API model *starts with*, trying longer names
+      // first so "Transit Custom" beats "Transit", "C Class" beats "C" etc.
+      const makeRows = csvData.filter(row => row.manufacturer.toLowerCase().trim() === dvlaMake);
+      const uniqueModels = [...new Set(makeRows.map(row => row.model.toLowerCase().trim()))];
+      uniqueModels.sort((a, b) => b.split(/\s+/).length - a.split(/\s+/).length || b.length - a.length);
+
+      const matchedCsvModel = uniqueModels.find(csvModel => {
+        const csvWords = csvModel.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean);
+        return csvWords.length > 0 && csvWords.every((w, i) => dvlaModelWords[i] === w);
+      }) ?? '';
+
+      // Variant/trim tokens: everything after the matched base model
+      // e.g. "FOCUS ST-2" with base "focus" → variantTokens = ["st", "2"]
+      const baseWordCount = matchedCsvModel
+        ? matchedCsvModel.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean).length
+        : 0;
+      const variantTokens = dvlaModelWords.slice(baseWordCount);
+
+      // Performance variant keywords — if present in the API model the CSV row MUST
+      // contain them, preventing e.g. Focus ST from ever matching Mondeo rows.
+      const HARD_VARIANT_KEYWORDS = new Set(['st', 'rs', 'gti', 'gtd', 'gts', 'vxr', 'svr', 'amg', 'cupra']);
+      const requiredVariants = variantTokens.filter(t => HARD_VARIANT_KEYWORDS.has(t));
 
       const scored: ScoredRow[] = csvData
         .filter(row => row.manufacturer.toLowerCase().trim() === dvlaMake)
         .map(row => {
+          const rowModelLower = row.model.toLowerCase().trim();
           const text = `${row.engine_dropdown} ${row.engine_name}`;
+
+          // ── Hard filters ──────────────────────────────────────────────────
+          // 1. If we identified a base model, only keep rows for that exact model
+          if (matchedCsvModel && rowModelLower !== matchedCsvModel) return null;
+
+          // 2. Year range (allow ±1 year for registration-year vs manufacture-year drift)
           const { start, end } = parseYearRange(row.year);
           if (!isNaN(start) && !isNaN(end) && (dvlaYear < start - 1 || dvlaYear > end + 1)) return null;
+
+          // 3. Fuel type
           const rowFuel = inferFuel(text);
           if (rowFuel !== '' && rowFuel !== dvlaFuel) return null;
-          // Hard engine-size filter: if the row has a readable litre value and it's
-          // more than 0.3L away from the DVLA value, exclude it (e.g. 2.0 vs 4.4)
+
+          // 4. Engine size: exclude if more than 0.3L away from DVLA value
           const litreMatch = text.match(/(\d\.\d)/);
           if (litreMatch) {
             const diff = Math.abs(parseFloat(litreMatch[1]) - dvlaLitre);
             if (diff > 0.3) return null;
           }
+
+          // 5. Required performance variants (ST, RS, GTI…) — must appear in engine name
+          if (requiredVariants.length > 0) {
+            const rowLower = `${row.model} ${row.engine_name} ${row.engine_dropdown}`.toLowerCase();
+            if (!requiredVariants.every(v => rowLower.includes(v))) return null;
+          }
+
+          // ── Scoring (ranks the remaining candidates for the right engine variant) ──
           let score = 40;
           if (!isNaN(start) && dvlaYear >= start && dvlaYear <= end) {
             score += 20;
-            // Precision bonus: range started recently → more likely the right generation
             if (dvlaYear - start <= 5) score += 10;
           }
           if (rowFuel === dvlaFuel) score += 20;
@@ -120,11 +163,11 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
             const lower = `${row.model} ${row.engine_name}`.toLowerCase();
             if (PERF_VARIANTS.some(v => lower.includes(v))) score += 15;
           }
-          // Boost score when API model words match CSV model/engine name
-          if (dvlaModelWords.length > 0) {
-            const rowLower = `${row.model} ${row.engine_name}`.toLowerCase();
-            const matchCount = dvlaModelWords.filter(w => rowLower.includes(w)).length;
-            score += matchCount * 8; // up to ~40 bonus for strong model match
+          // Bonus for matching variant tokens in the engine name (e.g. power level digits)
+          if (variantTokens.length > 0) {
+            const rowLower = `${row.model} ${row.engine_name} ${row.engine_dropdown}`.toLowerCase();
+            const matchCount = variantTokens.filter(w => w.length > 1 && rowLower.includes(w)).length;
+            score += matchCount * 8;
           }
           return { ...row, score };
         })
