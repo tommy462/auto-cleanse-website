@@ -512,7 +512,7 @@ const Home = () => {
         {/* Tint overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-[#0A0A0A]"></div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-stretch gap-4 lg:gap-6 py-32 pt-36 lg:py-28 lg:min-h-[90vh] hero-content">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-stretch gap-4 lg:gap-6 py-20 pt-28 lg:py-28 lg:min-h-[90vh] hero-content">
 
           {/* Left Panel - DPF Cleaning */}
           <div className="flex-1 flex flex-col justify-center p-6 sm:p-8 lg:p-14 rounded-3xl bg-black/50 border border-white/10 backdrop-blur-sm">
@@ -583,25 +583,25 @@ const Home = () => {
 
 
       {/* Why Choose AutoCleanse - Immersive List */}
-      <section className="py-32 section-gradient-6 relative overflow-hidden">
+      <section className="py-16 lg:py-32 section-gradient-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
 
             {/* Left Column: Sticky Header */}
             <div className="lg:col-span-5 relative">
               <div className="sticky top-40 reveal-item">
-                <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 lg:mb-6 leading-tight tracking-tight">
                   <span className="text-white">Why Choose </span>
                   <br className="hidden lg:block" />
                   <span className="text-[#FF7A00]">Auto Cleanse</span>
                   <span className="text-[#FF7A00]">?</span>
                 </h2>
-                <p className="text-white/60 text-lg md:text-xl font-medium max-w-sm hidden lg:block leading-relaxed mt-6">
+                <p className="text-white/60 text-base md:text-lg font-medium max-w-sm hidden lg:block leading-relaxed mt-4">
                   We don't just clean filters. We engineer complete flow restorations using state-of-the-art diagnostic and fluid dynamics technology.
                 </p>
 
                 {/* DPFs Cleaned Counter */}
-                <div className="mt-12 p-8 rounded-[2rem] bg-[#1A1D22] border border-white/5 relative overflow-hidden group shadow-2xl shadow-black/50 block max-w-sm">
+                <div className="mt-8 lg:mt-12 p-6 md:p-8 rounded-[2rem] bg-[#1A1D22] border border-white/5 relative overflow-hidden group shadow-2xl shadow-black/50 block max-w-sm">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
                   {/* Decorative glow */}
@@ -616,12 +616,12 @@ const Home = () => {
                         separator=","
                         direction="up"
                         duration={2.5}
-                        className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-white/70 tracking-tighter"
+                        className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-white/70 tracking-tighter"
                         startWhen={true}
                       />
                       <span className="text-6xl font-black text-[#FF7A00] ml-1">+</span>
                     </div>
-                    <div className="text-white/50 font-medium mt-3 text-lg">DPF Systems Restored</div>
+                    <div className="text-white/50 font-medium mt-2 text-base md:text-lg">DPF Systems Restored</div>
                   </div>
                 </div>
               </div>
@@ -632,7 +632,7 @@ const Home = () => {
               {whyChooseUs.map((item, index) => (
                 <div
                   key={index}
-                  className="group relative flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 py-10 sm:py-12 border-b border-white/10 last:border-0 hover:-translate-y-1 transition-all duration-500 reveal-item cursor-default"
+                  className="group relative flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8 py-7 sm:py-10 border-b border-white/10 last:border-0 hover:-translate-y-1 transition-all duration-500 reveal-item cursor-default"
                 >
                   {/* Big Number Ambient Effect */}
                   <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[100px] sm:text-[140px] font-black text-white/[0.02] group-hover:text-[#FF7A00]/[0.05] group-hover:scale-105 group-hover:-translate-x-4 transition-all duration-700 pointer-events-none z-0">
@@ -648,11 +648,11 @@ const Home = () => {
                   {/* Text Content */}
                   <div className="relative z-10 flex-1">
                     <div className="flex flex-wrap items-center gap-3 mb-3">
-                      <h3 className="text-2xl sm:text-3xl font-bold text-white group-hover:text-[#FF7A00] transition-colors duration-500 tracking-tight">
+                      <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#FF7A00] transition-colors duration-500 tracking-tight">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="text-white/50 text-lg font-medium leading-relaxed max-w-md group-hover:text-white/70 transition-colors duration-500">
+                    <p className="text-white/50 text-base font-medium leading-relaxed max-w-md group-hover:text-white/70 transition-colors duration-500">
                       {item.description}
                     </p>
                   </div>
@@ -665,9 +665,9 @@ const Home = () => {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-32 section-gradient-1">
+      <section className="py-16 lg:py-32 section-gradient-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 lg:mb-16">
             <span className="text-[#FF7A00]">Our Pricing</span>
           </h2>
 
@@ -694,11 +694,11 @@ const Home = () => {
       </section >
 
       {/* Specialists in Professional DPF Cleaning */}
-      < section className="py-20 section-gradient-2" >
+      < section className="py-12 md:py-20 section-gradient-2" >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="gradient-card rounded-2xl p-8 card-hover">
-              <h2 className="text-3xl font-bold text-center mb-8">
+            <div className="gradient-card rounded-2xl p-6 md:p-8 card-hover">
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8">
                 <span className="text-white">Specialists in </span>
                 <span className="text-[#FF7A00]">DPF Cleaning & ECU Remapping</span>
               </h2>
@@ -769,9 +769,9 @@ const Home = () => {
       />
 
       {/* Customer Reviews Section */}
-      <section className="py-32 section-gradient-3">
+      <section className="py-16 lg:py-32 section-gradient-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 lg:mb-16">
             <span className="text-white">What Our </span>
             <span className="text-[#FF7A00]">Customers Say</span>
           </h2>
@@ -831,9 +831,9 @@ const Home = () => {
       </section>
 
       {/* Bento Box Services Grid */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-14 lg:py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-10 lg:mb-16">
             <span className="text-white">Our </span>
             <span className="text-[#FF7A00]">Capabilities</span>
           </h2>
@@ -906,22 +906,22 @@ const Home = () => {
 
 
       {/* ECU Remapping Promo Banner */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-14 lg:py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-[2.5rem] overflow-hidden bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/20 transition-colors duration-500 reveal-container">
+          <div className="relative rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/20 transition-colors duration-500 reveal-container">
             {/* Background glow */}
             <div className="absolute -inset-x-20 -top-20 h-[250px] bg-[#FF7A00]/10 blur-[100px] rounded-full pointer-events-none"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-[#FF7A00]/5 via-transparent to-transparent pointer-events-none"></div>
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-0">
               {/* Left: Content */}
-              <div className="p-10 lg:p-14 flex flex-col justify-center reveal-item">
-                <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-4">Now Available</div>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-4 leading-tight">
+              <div className="p-7 sm:p-10 lg:p-14 flex flex-col justify-center reveal-item">
+                <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-3">Now Available</div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter text-white mb-3 leading-tight">
                   ECU Remapping<br />
                   <span className="text-white/40 italic font-medium">for every vehicle.</span>
                 </h2>
-                <p className="text-white/60 text-lg font-medium leading-relaxed mb-8 max-w-lg">
+                <p className="text-white/60 text-base lg:text-lg font-medium leading-relaxed mb-6 max-w-lg">
                   Stage 1 maps for everyday drivers. Stage 2 for those who want more. Custom maps for fleet and commercial operators.
                   Every remap is tailored, dyno-verified, and safe.
                 </p>
@@ -942,7 +942,7 @@ const Home = () => {
               </div>
 
               {/* Right: Stats / Features */}
-              <div className="border-t lg:border-t-0 lg:border-l border-white/5 p-10 lg:p-14 grid grid-cols-2 gap-6 reveal-item">
+              <div className="border-t lg:border-t-0 lg:border-l border-white/5 p-7 sm:p-10 lg:p-14 grid grid-cols-2 gap-5 reveal-item">
                 {[
                   { stat: 'Stage 1', label: 'Safe, road-legal power gain', mono: true },
                   { stat: 'Stage 2', label: 'Hardware-matched performance', mono: true },
@@ -950,8 +950,8 @@ const Home = () => {
                   { stat: 'Custom', label: 'Fleet & commercial bespoke maps', mono: true },
                 ].map(({ stat, label, mono }) => (
                   <div key={stat} className="flex flex-col justify-center">
-                    <div className={`text-3xl font-black text-[#FF7A00] mb-2 ${mono ? 'font-mono' : ''}`}>{stat}</div>
-                    <div className="text-white/50 text-sm font-medium leading-snug">{label}</div>
+                    <div className={`text-2xl md:text-3xl font-black text-[#FF7A00] mb-1.5 ${mono ? 'font-mono' : ''}`}>{stat}</div>
+                    <div className="text-white/50 text-xs md:text-sm font-medium leading-snug">{label}</div>
                   </div>
                 ))}
               </div>
@@ -961,12 +961,12 @@ const Home = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 section-gradient-1">
+      <section className="py-14 lg:py-16 section-gradient-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
             Trade garages welcome. Fleet operators supported.
           </h2>
-          <p className="text-white/50 text-lg font-medium mb-8">DPF cleaning &amp; ECU remapping - one trusted team.</p>
+          <p className="text-white/50 text-base md:text-lg font-medium mb-7">DPF cleaning &amp; ECU remapping - one trusted team.</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <MagneticButton>
