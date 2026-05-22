@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Zap, Settings2, Car, Truck, Fuel, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Zap, Truck, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -83,21 +83,12 @@ const EcuRemappingHub = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 reveal-container">
-          
-          {/* Core Services */}
+
+          {/* Core Services - 3 equal columns on lg */}
           <Link to="/stage-1-remaps-devon" className="group p-8 rounded-[2rem] bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-all duration-300 reveal-item">
             <Zap className="text-[#FF7A00] mb-6" size={32} />
             <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#FF7A00] transition-colors">Stage 1 Remapping</h3>
             <p className="text-white/60 mb-6">The perfect balance of power and reliability. No hardware changes required.</p>
-            <div className="flex items-center text-[#FF7A00] font-medium group-hover:translate-x-2 transition-transform">
-              Learn more <ArrowRight size={16} className="ml-2" />
-            </div>
-          </Link>
-
-          <Link to="/fuel-economy-remaps-devon" className="group p-8 rounded-[2rem] bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-all duration-300 reveal-item">
-            <Fuel className="text-[#FF7A00] mb-6" size={32} />
-            <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#FF7A00] transition-colors">Economy Remaps</h3>
-            <p className="text-white/60 mb-6">Optimised for maximum MPG. Ideal for high-mileage drivers and fleet operators.</p>
             <div className="flex items-center text-[#FF7A00] font-medium group-hover:translate-x-2 transition-transform">
               Learn more <ArrowRight size={16} className="ml-2" />
             </div>
@@ -112,8 +103,8 @@ const EcuRemappingHub = () => {
             </div>
           </Link>
 
-          {/* Directory Hubs */}
-          <Link to="/vehicle-performance-lookup" className="group md:col-span-2 lg:col-span-1 p-8 rounded-[2rem] bg-[#FF7A00]/10 border border-[#FF7A00]/20 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/15 transition-all duration-300 reveal-item">
+          {/* Check My Vehicle - highlighted card, 3rd column */}
+          <Link to="/vehicle-performance-lookup" className="group p-8 rounded-[2rem] bg-[#FF7A00]/10 border border-[#FF7A00]/20 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/15 transition-all duration-300 reveal-item">
             <Zap className="text-[#FF7A00] mb-6" size={32} />
             <h3 className="text-2xl font-bold text-white mb-3">Check My Vehicle</h3>
             <p className="text-white/70 mb-6">Enter your reg plate or search manually to see exact Stage 1 BHP, torque and economy gains for your vehicle.</p>
@@ -122,13 +113,14 @@ const EcuRemappingHub = () => {
             </div>
           </Link>
 
-          <Link to="/ecu-remapping-locations" className="group md:col-span-2 p-8 rounded-[2rem] bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-all duration-300 reveal-item flex flex-col justify-between">
+          {/* Locations - full width bottom row */}
+          <Link to="/ecu-remapping-locations" className="group md:col-span-2 lg:col-span-3 p-8 rounded-[2rem] bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-all duration-300 reveal-item flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <MapPin className="text-[#FF7A00] mb-6" size={32} />
-              <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#FF7A00] transition-colors">Mobile Remapping Locations</h3>
-              <p className="text-white/60 mb-6 max-w-lg">We offer a fully mobile remapping service across Devon. Find your nearest town or city to see our local coverage and services.</p>
+              <MapPin className="text-[#FF7A00] mb-4" size={32} />
+              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#FF7A00] transition-colors">Mobile Remapping Locations</h3>
+              <p className="text-white/60 max-w-2xl">We offer a fully mobile remapping service across Devon. Find your nearest town or city to see our local coverage and services.</p>
             </div>
-            <div className="flex items-center text-[#FF7A00] font-medium group-hover:translate-x-2 transition-transform">
+            <div className="flex items-center text-[#FF7A00] font-medium group-hover:translate-x-2 transition-transform shrink-0">
               View All Locations <ArrowRight size={16} className="ml-2" />
             </div>
           </Link>

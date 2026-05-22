@@ -1709,57 +1709,6 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
   },
 
   {
-    slug: "fuel-economy-remaps-devon",
-    name: "Devon",
-    region: "Economy Remapping",
-    metaTitle: "Fuel Economy Remaps Devon | Save on Fuel | AutoCleanse",
-    metaDescription:
-      "Economy ECU remapping across Devon - reduce fuel consumption on diesel cars, vans and 4x4s. AutoCleanse, Totnes. Mobile and workshop appointments.",
-    h1: "Fuel Economy Remaps Across Devon",
-    intro:
-      "An economy remap is one of the most practical upgrades you can make to a diesel vehicle - and AutoCleanse carries them out across Devon at our Totnes workshop and via mobile appointments. By optimising fuel delivery, injection timing and turbo response, an economy-focused remap can reduce fuel consumption by 8–18% in real-world driving - especially on A-roads and motorways. For tradespeople and fleet operators covering Devon's roads daily, the savings add up quickly.",
-    distanceNote: "workshop in Totnes, mobile across Devon",
-    mobileAvailable: true,
-    nearbyAreas: [
-      "Plymouth",
-      "Exeter",
-      "Torquay",
-      "Newton Abbot",
-      "Barnstaple",
-      "Tiverton",
-      "Cullompton",
-      "Tavistock",
-    ],
-    faqs: [
-      {
-        q: "How much can an economy remap save on fuel?",
-        a: "Real-world results vary by vehicle and driving style, but diesel cars and vans typically see 8–18% fuel economy improvement. Smooth, consistent driving on A-roads and dual carriageways sees the biggest gains.",
-      },
-      {
-        q: "Do economy remaps reduce performance?",
-        a: "Not necessarily - many economy remaps actually improve torque alongside economy. We tune for the best balance of efficiency and drivability, so your van or car feels stronger as well as more economical.",
-      },
-      {
-        q: "Which vehicles benefit most from economy remapping?",
-        a: "Diesel cars, vans and 4x4s covering high mileage see the greatest benefit. High-mileage commuters, tradespeople and fleet operators covering Devon's roads regularly are the ideal candidates.",
-      },
-      {
-        q: "Is a fuel economy remap available on mobile across Devon?",
-        a: "Yes - economy remapping is available via our mobile service across Devon. We come to your home, depot or workplace.",
-      },
-      {
-        q: "How long does it take to recoup the cost of a remap in fuel savings?",
-        a: "This depends on your mileage and fuel costs. A van driver covering 30,000 miles per year and spending £6,000 annually on diesel could save £500–£900 per year - often paying back the remap cost within a few months.",
-      },
-    ],
-    relatedSlugs: [
-      "van-remapping-devon",
-      "diesel-remapping-devon",
-      "fleet-vehicle-remapping-devon",
-    ],
-  },
-
-  {
     slug: "diesel-remapping-devon",
     name: "Devon",
     region: "Diesel Remapping",
@@ -1805,7 +1754,6 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     ],
     relatedSlugs: [
       "van-remapping-devon",
-      "fuel-economy-remaps-devon",
       "ecu-remapping-devon",
     ],
   },
@@ -1962,7 +1910,6 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     relatedSlugs: [
       "van-remapping-devon",
       "diesel-remapping-devon",
-      "fuel-economy-remaps-devon",
     ],
   },
 

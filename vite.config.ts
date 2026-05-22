@@ -69,7 +69,6 @@ export default defineConfig(({ mode }) => {
           '/stage-1-remaps-devon',
           '/van-remapping-devon',
           '/performance-remapping-devon',
-          '/fuel-economy-remaps-devon',
           '/diesel-remapping-devon',
           '/petrol-remapping-devon',
           '/4x4-remapping-devon',

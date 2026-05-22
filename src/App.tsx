@@ -2,6 +2,7 @@
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
 import PageTransition from './components/PageTransition';
+import MayMadnessBanner from './components/MayMadnessBanner';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <div className="noise-bg"></div>
 
       <Header />
+      <MayMadnessBanner />
       <main>
         <PageTransition />
       </main>

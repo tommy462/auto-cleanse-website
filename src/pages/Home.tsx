@@ -1,6 +1,6 @@
 ﻿import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Truck, Clock, Shield, Settings, Wrench, Zap, ChevronLeft, ChevronRight, CheckCircle2, Droplets, Leaf, Settings2, BarChart3, ArrowRight, MousePointer2, Play, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Phone, Truck, Clock, Shield, Settings, Wrench, Zap, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,22 +9,7 @@ import SEO from '../components/SEO';
 import VehicleSchema from '../components/VehicleSchema';
 import MagneticButton from '../components/MagneticButton';
 import CountUp from '../components/CountUp';
-import LogoLoop from '../components/LogoLoop';
-
 gsap.registerPlugin(ScrollTrigger);
-
-const customerLogos = [
-  { src: '/customer/ChatGPT Image Mar 11, 2026, 10_22_01 AM.png', alt: 'Customer 1' },
-  { src: '/customer/ChatGPT Image Mar 11, 2026, 10_22_47 AM.png', alt: 'Customer 2' },
-  { src: '/customer/ChatGPT Image Mar 11, 2026, 10_23_26 AM.png', alt: 'Customer 3' },
-  { src: '/customer/ChatGPT Image Mar 11, 2026, 10_24_11 AM.png', alt: 'Customer 4' },
-  { src: '/customer/ChatGPT Image Mar 11, 2026, 10_27_16 AM.png', alt: 'Customer 5' },
-  { src: '/customer/ChatGPT Image Mar 11, 2026, 10_27_45 AM.png', alt: 'Customer 6' },
-  { src: '/customer/ChatGPT Image Mar 11, 2026, 10_33_10 AM.png', alt: 'Customer 7' },
-  { src: '/customer/ChatGPT Image Mar 11, 2026, 10_33_47 AM.png', alt: 'Customer 8' },
-  { src: '/customer/ChatGPT Image Mar 11, 2026, 10_40_28 AM.png', alt: 'Customer 9' },
-  { src: '/customer/ChatGPT Image Mar 11, 2026, 10_41_22 AM.png', alt: 'Customer 10' }
-];
 
 const splitText = (text: string, className: string = '') => {
   return text.split(' ').map((word, index) => (
@@ -596,24 +581,6 @@ const Home = () => {
         ]}
       />
 
-      {/* Customer Logos Carousel */}
-      <section className="py-20 bg-[#0A0A0A] border-y border-white/5 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
-          <h3 className="text-sm font-bold tracking-[0.2em] text-white/40 uppercase">Trusted by leading fleets & local businesses</h3>
-        </div>
-        <div className="w-full relative overflow-hidden" style={{ height: '80px' }}>
-          <LogoLoop
-            logos={customerLogos}
-            speed={40}
-            direction="left"
-            logoHeight={60}
-            gap={80}
-            fadeOut
-            fadeOutColor="#0A0A0A"
-            ariaLabel="Customer partner logos"
-          />
-        </div>
-      </section>
 
       {/* Why Choose AutoCleanse - Immersive List */}
       <section className="py-32 section-gradient-6 relative overflow-hidden">
