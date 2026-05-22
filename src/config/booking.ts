@@ -145,7 +145,8 @@ export const REMAP_OPTIONS: RemapOption[] = [
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const BASE_PRICES: Record<RemapServiceValue, { workshop: number; mobile: number; fromPrice?: boolean }> = {
-  'stage-1':         { workshop: 220, mobile: 240 },
+  // May Madness promo - was £220/£240, reduced to £199 both
+  'stage-1':         { workshop: 199, mobile: 199 },
   'stage-2':         { workshop: 400, mobile: 420 },
   'custom-fleet':    { workshop: 220, mobile: 240 },
   'dpf-remap-bundle':{ workshop: 850, mobile: 850, fromPrice: true },

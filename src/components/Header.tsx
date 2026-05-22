@@ -38,9 +38,9 @@ const Header = () => {
     <>
       {/* Main Header */}
       <header
-        className={`sticky z-50 transition-all duration-700 ease-in-out ${isScrolled
-          ? 'top-2 mx-2 md:mx-auto max-w-[98%] lg:max-w-7xl rounded-2xl md:rounded-[2rem] glass-panel-heavy border border-white/10 shadow-2xl shadow-black/80 py-1'
-          : 'top-0 mx-0 max-w-full gradient-bg-primary border-b border-[#1A1D22] py-2'
+        className={`transition-all duration-700 ease-in-out ${isScrolled
+          ? 'mt-2 mx-2 md:mx-auto max-w-[98%] lg:max-w-7xl rounded-2xl md:rounded-[2rem] glass-panel-heavy border border-white/10 shadow-2xl shadow-black/80 py-1'
+          : 'mt-0 mx-0 max-w-full gradient-bg-primary border-b border-[#1A1D22] py-2'
           }`}
       >
         <div className="w-full px-4 sm:px-6 lg:px-8">

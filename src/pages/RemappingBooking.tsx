@@ -871,6 +871,18 @@ export default function RemappingBooking() {
               </dl>
             </div>
 
+            {/* May Madness promo indicator - shown for Stage 1 only */}
+            {form.serviceType === 'stage-1' && (
+              <div className="flex items-center gap-2.5 rounded-xl bg-[#FF7A00]/12 border border-[#FF7A00]/30 px-4 py-3 mb-3">
+                <Zap size={14} className="text-[#FF7A00] shrink-0" fill="currentColor" />
+                <p className="text-white/80 text-xs leading-snug">
+                  <span className="text-[#FF7A00] font-black">May Madness price applied - </span>
+                  <span className="line-through text-white/30 font-normal">£220</span>
+                  {' '}<span className="text-white font-bold">£199</span>
+                </p>
+              </div>
+            )}
+
             {/* Deposit callout */}
             <div className="flex items-center gap-2.5 rounded-xl bg-[#FF7A00]/8 border border-[#FF7A00]/15 px-4 py-3 mb-5">
               <Zap size={14} className="text-[#FF7A00] shrink-0" />

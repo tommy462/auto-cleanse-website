@@ -13,8 +13,11 @@ function App() {
       </div>
       <div className="noise-bg"></div>
 
-      <Header />
-      <MayMadnessBanner />
+      {/* Sticky shell — header + promo banner stick together as one unit */}
+      <div className="sticky top-0 z-50">
+        <Header />
+        <MayMadnessBanner />
+      </div>
       <main>
         <PageTransition />
       </main>
