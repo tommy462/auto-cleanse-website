@@ -231,22 +231,34 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
         </div>
       </div>
 
-      {/* Input */}
-      <div className="relative mb-4 z-10">
-        <input
-          type="text"
-          placeholder="ENTER REG (e.g. AB12 CDE)"
-          value={registration}
-          onChange={e => setRegistration(e.target.value.toUpperCase())}
-          onKeyDown={e => e.key === 'Enter' && runLookup()}
-          className="w-full bg-[#0A0A0A] border-2 border-white/10 rounded-2xl px-6 py-4 text-xl font-black tracking-widest text-white focus:outline-none focus:border-[#FF7A00] transition-all placeholder:text-white/20"
-        />
+      {/* Input — stacked on mobile, inline on sm+ */}
+      <div className="mb-4 z-10 relative">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="e.g. AB12 CDE"
+            value={registration}
+            onChange={e => setRegistration(e.target.value.toUpperCase())}
+            onKeyDown={e => e.key === 'Enter' && runLookup()}
+            className="w-full bg-[#0A0A0A] border-2 border-white/10 rounded-2xl px-5 py-4 sm:pr-[148px] text-xl font-black tracking-widest text-white focus:outline-none focus:border-[#FF7A00] transition-all placeholder:text-white/20"
+          />
+          {/* Desktop: button sits inside the input field */}
+          <button
+            onClick={runLookup}
+            disabled={isLoading || !registration.trim() || !csvReady}
+            className="hidden sm:flex absolute right-2 top-2 bottom-2 bg-[#FF7A00] hover:bg-[#FF9500] text-black px-6 rounded-xl font-bold transition-all items-center justify-center gap-2 disabled:opacity-50"
+          >
+            {isLoading ? <Activity className="animate-spin" size={18} /> : <><Search size={15} /> Look Up</>}
+          </button>
+        </div>
+
+        {/* Mobile: full-width button below the input */}
         <button
           onClick={runLookup}
           disabled={isLoading || !registration.trim() || !csvReady}
-          className="absolute right-2 top-2 bottom-2 bg-[#FF7A00] hover:bg-[#FF9500] text-black px-6 rounded-xl font-bold transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+          className="sm:hidden mt-2.5 w-full bg-[#FF7A00] hover:bg-[#FF9500] active:bg-[#e06d00] text-black py-4 rounded-2xl font-black text-base transition-all flex items-center justify-center gap-2 disabled:opacity-50 shadow-[0_4px_20px_rgba(255,122,0,0.3)]"
         >
-          {isLoading ? <Activity className="animate-spin" size={18} /> : <><Search size={15} /> Look Up</>}
+          {isLoading ? <><Activity className="animate-spin" size={18} /> Looking up…</> : <><Search size={16} /> Look Up My Car</>}
         </button>
       </div>
       {!csvReady && !error && <p className="text-white/25 text-xs mb-4 relative z-10">Loading vehicle database…</p>}
