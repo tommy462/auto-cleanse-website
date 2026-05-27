@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight, Zap, TrendingUp } from 'lucide-react';
 // ─────────────────────────────────────────────────────────────────────────────
 const portfolioItems = [
   {
-    image: '/portfolio-0.jpg',
+    image: '/transit2.jpg',
     vehicle: 'Ford Transit Custom',
     service: 'Stage 1 Remap',
     bhpBefore: 130,
@@ -16,7 +16,7 @@ const portfolioItems = [
     nmAfter: 430,
   },
   {
-    image: '/portfolio-1.jpg',
+    image: '/aygo.jpg',
     vehicle: 'Toyota Aygo',
     service: 'Stage 1 Remap',
     bhpBefore: 68,
@@ -25,7 +25,7 @@ const portfolioItems = [
     nmAfter: 107,
   },
   {
-    image: '/portfolio-2.jpg',
+    image: '/ranger.jpg',
     vehicle: 'Ford Ranger',
     service: 'Stage 1 Remap',
     bhpBefore: 213,
@@ -34,7 +34,7 @@ const portfolioItems = [
     nmAfter: 580,
   },
   {
-    image: '/portfolio-3.jpg',
+    image: '/tiguan.jpg',
     vehicle: 'VW Tiguan',
     service: 'Stage 1 Remap',
     bhpBefore: 125,
