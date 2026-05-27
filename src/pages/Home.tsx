@@ -9,6 +9,7 @@ import SEO from '../components/SEO';
 import VehicleSchema from '../components/VehicleSchema';
 import MagneticButton from '../components/MagneticButton';
 import CountUp from '../components/CountUp';
+import RemapPortfolioCarousel from '../components/RemapPortfolioCarousel';
 gsap.registerPlugin(ScrollTrigger);
 
 const splitText = (text: string, className: string = '') => {
@@ -959,6 +960,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Remap Portfolio Carousel */}
+      <RemapPortfolioCarousel />
 
       {/* Final CTA */}
       <section className="py-14 lg:py-16 section-gradient-1">
