@@ -234,10 +234,10 @@ export default function RemapPortfolio() {
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#FF7A00]/5 blur-[160px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="relative z-10">
 
         {/* Section header */}
-        <div className="mb-14 md:mb-16 reveal-container">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14 md:mb-16 reveal-container">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 reveal-item">
             <div>
               <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-4">
@@ -247,7 +247,7 @@ export default function RemapPortfolio() {
                 Recent ECU <span className="text-[#FF7A00]">Remaps</span>
               </h2>
               <p className="text-white/50 text-base md:text-lg font-medium max-w-xl leading-relaxed">
-                A growing portfolio of real vehicles tuned by Auto-Cleanse - from performance cars to commercial vans.
+                A growing portfolio of real vehicles tuned by Auto-Cleanse — from performance cars to commercial vans.
               </p>
               <p className="text-white/30 text-sm font-medium mt-2 max-w-xl">
                 Every vehicle is diagnosed, read, tuned and tested properly for safe, usable performance gains.
@@ -263,17 +263,24 @@ export default function RemapPortfolio() {
           </div>
         </div>
 
-        {/* Grid - 2 cols on tablet, 4 cols on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5 reveal-container">
-          {PORTFOLIO_VEHICLES.map((v, i) => (
-            <div key={i} className="reveal-item">
-              <VehicleCard v={v} />
-            </div>
-          ))}
+        {/* ── Marquee carousel ── */}
+        <div className="relative w-full overflow-hidden">
+          {/* Left / right fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
+
+          {/* Duplicate items for seamless loop — same pattern as the reviews marquee */}
+          <div className="flex w-max animate-marquee py-4">
+            {[...PORTFOLIO_VEHICLES, ...PORTFOLIO_VEHICLES].map((v, i) => (
+              <div key={i} className="w-[280px] md:w-[320px] mx-3 flex-shrink-0">
+                <VehicleCard v={v} />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Bottom note */}
-        <p className="text-center text-white/20 text-xs font-medium mt-8">
+        <p className="text-center text-white/20 text-xs font-medium mt-8 px-4">
           All figures shown are indicative Stage 1 gains. Actual results may vary by vehicle condition and specification.
         </p>
       </div>
