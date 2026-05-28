@@ -47,7 +47,7 @@ const DPFCleaningExeter = () => {
         "name": "AutoCleanse",
         "description": "Professional DPF cleaning service collecting from Exeter and across Devon. Based in Totnes, Devon.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-exeter",
-        "telephone": "0800 043 0609",
+        "telephone": "01803 269895",
         "email": "info@autocleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
@@ -143,7 +143,7 @@ const DPFCleaningExeter = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-4 text-lg md:text-xl font-medium relative z-10">
               <p>
-                As well as Exeter itself, we regularly collect from Exmouth, Topsham, Crediton, Honiton, Sidmouth and the wider East Devon area. If you're not sure whether we cover your location, call us on 0800 043 0609 - we'll confirm quickly.
+                As well as Exeter itself, we regularly collect from Exmouth, Topsham, Crediton, Honiton, Sidmouth and the wider East Devon area. If you're not sure whether we cover your location, call us on 01803 269895 - we'll confirm quickly.
               </p>
               <p>
                 We also offer <Link to="/remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Exeter drivers looking to improve performance or fuel economy alongside their DPF service.
@@ -180,8 +180,8 @@ const DPFCleaningExeter = () => {
               </p>
               <div className="relative z-10 flex flex-col sm:flex-row gap-6 justify-center">
                 <MagneticButton className="block">
-                  <a href="tel:08000430609" className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center text-lg">
-                    <Phone size={24} className="mr-3 text-[#FF7A00]" /> 0800 043 0609
+                  <a href="tel:01803269895" className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center text-lg">
+                    <Phone size={24} className="mr-3 text-[#FF7A00]" /> 01803 269895
                   </a>
                 </MagneticButton>
                 <MagneticButton className="block">

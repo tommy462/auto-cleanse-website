@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Zap, Truck, ArrowRight } from 'lucide-react';
@@ -49,7 +49,7 @@ const EcuRemappingHub = () => {
         "name": "AutoCleanse",
         "description": "ECU remapping service across Devon. Stage 1 and Stage 2 maps for cars, vans, HGVs and commercial vehicles.",
         "url": "https://www.auto-cleanse.co.uk/ecu-remapping",
-        "telephone": "08000430609",
+        "telephone": "01803269895",
         "email": "info@autocleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
@@ -139,8 +139,8 @@ const EcuRemappingHub = () => {
             </p>
             <div className="relative z-10 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
               <MagneticButton className="block">
-                <a href="tel:08000430609" className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold transition-all flex items-center justify-center text-base sm:text-lg">
-                  <Phone size={20} className="mr-3 text-[#FF7A00]" /> 0800 043 0609
+                <a href="tel:01803269895" className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold transition-all flex items-center justify-center text-base sm:text-lg">
+                  <Phone size={20} className="mr-3 text-[#FF7A00]" /> 01803 269895
                 </a>
               </MagneticButton>
               <MagneticButton className="block">

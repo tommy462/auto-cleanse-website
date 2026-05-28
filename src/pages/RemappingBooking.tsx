@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft, Car, MapPin, Wrench, CheckCircle,
@@ -299,7 +299,7 @@ function BookingConfirmed({ booking }: { booking: PendingBooking }) {
         </div>
         <div className="flex flex-wrap gap-3 justify-center">
           <MagneticButton>
-            <a href="tel:08000430609" className="btn-shine px-7 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-flex items-center gap-2">
+            <a href="tel:01803269895" className="btn-shine px-7 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-flex items-center gap-2">
               <Phone size={15} /> Call Us
             </a>
           </MagneticButton>
@@ -1019,8 +1019,8 @@ export default function RemappingBooking() {
         {/* Alt contact */}
         <p className="text-center text-white/20 text-xs font-medium mt-6">
           Prefer to book by phone?{' '}
-          <a href="tel:08000430609" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors font-bold">
-            <Phone size={11} className="inline mb-0.5 mr-0.5" />0800 043 0609
+          <a href="tel:01803269895" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors font-bold">
+            <Phone size={11} className="inline mb-0.5 mr-0.5" />01803 269895
           </a>
         </p>
 

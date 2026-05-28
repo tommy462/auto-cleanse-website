@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Calendar, Car, MapPin, Phone, Loader2, Zap } from 'lucide-react';
 import SEO from '../components/SEO';
@@ -197,7 +197,7 @@ export default function BookingSuccess() {
             <div className="flex flex-wrap gap-3 justify-center">
               <MagneticButton>
                 <a
-                  href="tel:08000430609"
+                  href="tel:01803269895"
                   className="btn-shine px-7 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-flex items-center gap-2"
                 >
                   <Phone size={16} /> Call Us

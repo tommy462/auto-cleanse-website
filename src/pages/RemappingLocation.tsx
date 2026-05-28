@@ -69,7 +69,7 @@ export default function RemappingLocation() {
     name: 'AutoCleanse',
     description: `ECU remapping service covering ${location.name} and ${location.region}. Stage 1, Stage 2, economy and mobile remapping for cars, vans and commercial vehicles.`,
     url: `https://www.auto-cleanse.co.uk/${location.slug}`,
-    telephone: '08000430609',
+    telephone: '01803269895',
     email: 'info@auto-cleanse.co.uk',
     address: {
       '@type': 'PostalAddress',
@@ -145,10 +145,10 @@ export default function RemappingLocation() {
               </Link>
             </MagneticButton>
             <a
-              href="tel:08000430609"
+              href="tel:01803269895"
               className="px-7 py-3.5 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center gap-2"
             >
-              <Phone size={15} /> 0800 043 0609
+              <Phone size={15} /> 01803 269895
             </a>
           </div>
 
@@ -376,10 +376,10 @@ export default function RemappingLocation() {
               </Link>
             </MagneticButton>
             <a
-              href="tel:08000430609"
+              href="tel:01803269895"
               className="px-8 py-4 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center gap-2"
             >
-              <Phone size={15} /> 0800 043 0609
+              <Phone size={15} /> 01803 269895
             </a>
           </div>
           <p className="text-white/20 text-xs mt-6">

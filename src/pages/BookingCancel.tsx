@@ -36,9 +36,9 @@ export default function BookingCancel() {
             <ArrowLeft size={15} /> Try Again
           </Link>
           <MagneticButton>
-            <a href="tel:08000430609"
+            <a href="tel:01803269895"
               className="px-7 py-3.5 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center gap-2">
-              <Phone size={15} /> Call 0800 043 0609
+              <Phone size={15} /> Call 01803 269895
             </a>
           </MagneticButton>
         </div>

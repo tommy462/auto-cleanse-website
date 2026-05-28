@@ -54,7 +54,7 @@ const DPFCleaningDevon = () => {
         "name": "AutoCleanse",
         "description": "Professional DPF cleaning across Devon - Exeter, Plymouth, Torquay, Paignton, Newton Abbot and all Devon towns. Same-day return available.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-devon",
-        "telephone": "0800 043 0609",
+        "telephone": "01803 269895",
         "email": "info@autocleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
@@ -247,11 +247,11 @@ const DPFCleaningDevon = () => {
               <div className="relative z-10 flex flex-col sm:flex-row gap-6 justify-center">
                 <MagneticButton className="block">
                   <a
-                    href="tel:08000430609"
+                    href="tel:01803269895"
                     className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center text-lg"
                   >
                     <Phone size={24} className="mr-3 text-[#FF7A00]" />
-                    0800 043 0609
+                    01803 269895
                   </a>
                 </MagneticButton>
                 <MagneticButton className="block">

@@ -47,7 +47,7 @@ const DPFCleaningPlymouth = () => {
         "name": "AutoCleanse",
         "description": "Professional DPF cleaning service collecting from Plymouth and South Devon. Based in Totnes, Devon.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-plymouth",
-        "telephone": "0800 043 0609",
+        "telephone": "01803 269895",
         "email": "info@autocleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
@@ -140,7 +140,7 @@ const DPFCleaningPlymouth = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-4 text-lg md:text-xl font-medium relative z-10">
               <p>
-                We cover Plymouth and the surrounding areas including Plympton, Plymstock, Saltash (Cornwall), Tavistock, Ivybridge, and Yelverton. Not sure if we cover you? Call 0800 043 0609 and we'll let you know straight away.
+                We cover Plymouth and the surrounding areas including Plympton, Plymstock, Saltash (Cornwall), Tavistock, Ivybridge, and Yelverton. Not sure if we cover you? Call 01803 269895 and we'll let you know straight away.
               </p>
             </div>
           </section>
@@ -174,8 +174,8 @@ const DPFCleaningPlymouth = () => {
               </p>
               <div className="relative z-10 flex flex-col sm:flex-row gap-6 justify-center">
                 <MagneticButton className="block">
-                  <a href="tel:08000430609" className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center text-lg">
-                    <Phone size={24} className="mr-3 text-[#FF7A00]" /> 0800 043 0609
+                  <a href="tel:01803269895" className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center text-lg">
+                    <Phone size={24} className="mr-3 text-[#FF7A00]" /> 01803 269895
                   </a>
                 </MagneticButton>
                 <MagneticButton className="block">

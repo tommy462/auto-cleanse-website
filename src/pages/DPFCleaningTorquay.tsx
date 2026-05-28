@@ -47,7 +47,7 @@ const DPFCleaningTorquay = () => {
         "name": "AutoCleanse",
         "description": "Professional DPF cleaning service for Torquay, Paignton, Brixham and the English Riviera. Based in Totnes, Devon.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-torquay",
-        "telephone": "0800 043 0609",
+        "telephone": "01803 269895",
         "email": "info@autocleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
@@ -142,7 +142,7 @@ const DPFCleaningTorquay = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">Areas Near Torquay We Cover</h2>
             </div>
             <div className="text-white/60 leading-relaxed space-y-4 text-lg md:text-xl font-medium relative z-10">
-              <p>As well as Torquay, we regularly cover Paignton, Brixham, Newton Abbot, Totnes, Dartmouth, Kingsbridge, Teignmouth and Dawlish. Call 0800 043 0609 to confirm collection availability in your area.</p>
+              <p>As well as Torquay, we regularly cover Paignton, Brixham, Newton Abbot, Totnes, Dartmouth, Kingsbridge, Teignmouth and Dawlish. Call 01803 269895 to confirm collection availability in your area.</p>
             </div>
           </section>
 
@@ -175,8 +175,8 @@ const DPFCleaningTorquay = () => {
               </p>
               <div className="relative z-10 flex flex-col sm:flex-row gap-6 justify-center">
                 <MagneticButton className="block">
-                  <a href="tel:08000430609" className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center text-lg">
-                    <Phone size={24} className="mr-3 text-[#FF7A00]" /> 0800 043 0609
+                  <a href="tel:01803269895" className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center text-lg">
+                    <Phone size={24} className="mr-3 text-[#FF7A00]" /> 01803 269895
                   </a>
                 </MagneticButton>
                 <MagneticButton className="block">

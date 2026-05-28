@@ -55,7 +55,7 @@ const Footer = () => {
             </p>
             <div className="pt-2 flex flex-col sm:flex-row lg:flex-col gap-4">
               <MagneticButton className="inline-block">
-                <a href="tel:08000430609" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-block shadow-2xl shadow-[#FF7A00]/20 text-center w-full sm:w-auto lg:w-full">
+                <a href="tel:01803269895" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-block shadow-2xl shadow-[#FF7A00]/20 text-center w-full sm:w-auto lg:w-full">
                   Call Us
                 </a>
               </MagneticButton>
@@ -119,7 +119,7 @@ const Footer = () => {
                   </li>
                 ))}
                 <li>
-                  <a href="tel:08000430609" className="text-white/70 hover:text-[#FF7A00] transition-colors text-sm flex items-center group font-medium">
+                  <a href="tel:01803269895" className="text-white/70 hover:text-[#FF7A00] transition-colors text-sm flex items-center group font-medium">
                     Call Us
                   </a>
                 </li>

@@ -337,7 +337,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "How do I book a remap for my Torbay vehicle?",
-        a: "You can book online via our booking page, or call us on 0800 043 0609. Choose your service, tell us about your vehicle, and pick a slot. We offer both workshop and mobile appointment options.",
+        a: "You can book online via our booking page, or call us on 01803 269895. Choose your service, tell us about your vehicle, and pick a slot. We offer both workshop and mobile appointment options.",
       },
     ],
     relatedSlugs: [
@@ -384,7 +384,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       },
       {
         q: "Can I drop in without booking?",
-        a: "We work by appointment to ensure every customer gets our full attention. Booking takes just a few minutes online, or call us on 0800 043 0609 and we'll get you booked in quickly.",
+        a: "We work by appointment to ensure every customer gets our full attention. Booking takes just a few minutes online, or call us on 01803 269895 and we'll get you booked in quickly.",
       },
       {
         q: "Do you remap camper vans and motorhomes near Totnes?",

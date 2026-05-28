@@ -62,7 +62,7 @@ const VehicleSchema = () => {
         "provider": {
             "@type": "LocalBusiness",
             "name": "AutoCleanse DPF Specialists",
-            "telephone": "08000430609",
+            "telephone": "01803269895",
             "url": "https://www.auto-cleanse.co.uk"
         },
         "serviceType": "Diesel Particulate Filter (DPF) Cleaning & Refurbishment",

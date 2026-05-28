@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+﻿import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Papa from 'papaparse';
 import SEO from '../components/SEO';
 import { Activity, AlertTriangle, ArrowLeft, ArrowRight, CheckCircle, ChevronDown, Info, Zap, TrendingUp, Settings, Car, Search, Check } from 'lucide-react';
@@ -938,7 +938,7 @@ export default function VehiclePerformanceLookup() {
         "provider": {
           "@type": "LocalBusiness",
           "name": "AutoCleanse",
-          "telephone": "08000430609",
+          "telephone": "01803269895",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "The Old Barn Industrial Estate, Webbers Yard",
@@ -1150,8 +1150,8 @@ export default function VehiclePerformanceLookup() {
               </div>
               <div className="flex gap-3 flex-shrink-0">
                 <MagneticButton>
-                  <a href="tel:08000430609" className="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold transition-all text-sm">
-                    0800 043 0609
+                  <a href="tel:01803269895" className="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold transition-all text-sm">
+                    01803 269895
                   </a>
                 </MagneticButton>
                 <MagneticButton>

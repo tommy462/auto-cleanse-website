@@ -48,7 +48,7 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
     provider: {
       '@type': 'LocalBusiness',
       name: 'AutoCleanse',
-      telephone: '08000430609',
+      telephone: '01803269895',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'The Old Barn Industrial Estate, Webbers Yard',
@@ -120,10 +120,10 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
               </Link>
             </MagneticButton>
             <a
-              href="tel:08000430609"
+              href="tel:01803269895"
               className="px-7 py-3.5 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center gap-2"
             >
-              <Phone size={15} /> 0800 043 0609
+              <Phone size={15} /> 01803 269895
             </a>
           </div>
 
@@ -328,10 +328,10 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
               </Link>
             </MagneticButton>
             <a
-              href="tel:08000430609"
+              href="tel:01803269895"
               className="px-8 py-4 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center gap-2"
             >
-              <Phone size={15} /> 0800 043 0609
+              <Phone size={15} /> 01803 269895
             </a>
           </div>
           <p className="text-white/20 text-xs mt-6">

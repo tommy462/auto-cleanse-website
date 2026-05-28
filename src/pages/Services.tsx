@@ -273,9 +273,9 @@ const Services = () => {
 
               <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto shrink-0">
                 <MagneticButton className="w-full sm:w-auto">
-                  <a href="tel:08000430609" className="flex items-center justify-center gap-2 bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 text-[#FF7A00] border border-[#FF7A00]/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 w-full">
+                  <a href="tel:01803269895" className="flex items-center justify-center gap-2 bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 text-[#FF7A00] border border-[#FF7A00]/30 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 w-full">
                     <Phone size={20} />
-                    0800 043 0609
+                    01803 269895
                   </a>
                 </MagneticButton>
 
