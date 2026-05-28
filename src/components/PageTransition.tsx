@@ -28,6 +28,7 @@ import VehiclePerformanceLookup from '../pages/VehiclePerformanceLookup';
 import DiagnosticMatcher from '../pages/DiagnosticMatcher';
 import FuelSavingsCalculator from '../pages/FuelSavingsCalculator';
 import DVLADiagnostic from '../pages/DVLADiagnostic';
+import BookNow from '../pages/BookNow';
 
 export default function PageTransition() {
     const location = useLocation();
@@ -78,6 +79,7 @@ export default function PageTransition() {
                     <Route path="/vehicle-remapping" element={<Navigate to="/vehicle-performance-lookup" replace />} />
                     
                     <Route path="/remapping-booking" element={<RemappingBooking />} />
+                    <Route path="/book" element={<BookNow />} />
                     
                     <Route path="/dpf-cleaning-exeter" element={<DPFCleaningExeter />} />
                     <Route path="/dpf-cleaning-plymouth" element={<DPFCleaningPlymouth />} />

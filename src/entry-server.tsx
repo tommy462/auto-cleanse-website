@@ -28,6 +28,7 @@ const STATIC_ROUTES = [
   '/',
   '/services',
   '/postal-dpf',
+  '/book',
   '/why-clean',
   '/maintenance',
   '/about',

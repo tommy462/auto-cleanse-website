@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => {
           '/',
           '/services',
           '/postal-dpf',
+          '/book',
           '/why-clean',
           '/maintenance',
           '/about',

@@ -96,7 +96,7 @@ const Header = () => {
 
               {/* Book Now Button */}
               <Link
-                to="/postal-dpf"
+                to="/book"
                 className="btn-shine px-6 py-2 rounded-lg font-medium text-sm text-white hover:text-white"
               >
                 Book Now
@@ -132,7 +132,7 @@ const Header = () => {
 
               <div className="pt-4 border-t border-white/10 space-y-3">
                 <Link
-                  to="/postal-dpf"
+                  to="/book"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="w-full btn-shine px-6 py-2 rounded-lg font-medium text-sm text-white hover:text-white block text-center shadow-lg hover:shadow-[#FF7A00]/20"
                 >
