@@ -10,7 +10,7 @@ const dpfFeatures = [
 ];
 
 const remapFeatures = [
-  { icon: Zap,          text: 'Stage 1 from £199 — May Madness price' },
+  { icon: Zap,          text: 'Stage 1 from £220 — workshop' },
   { icon: CheckCircle2, text: 'Mobile or workshop appointment' },
   { icon: Shield,       text: 'Safe, road-legal calibration' },
   { icon: Clock,        text: '£50 deposit secures your slot' },
@@ -121,11 +121,6 @@ export default function BookNow() {
 
               <div className="relative z-10 flex flex-col flex-1 p-7 sm:p-8 lg:p-10">
 
-                {/* May Madness badge */}
-                <div className="absolute top-7 right-7 flex items-center gap-1 bg-[#FF7A00] text-black text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full shadow-lg shadow-[#FF7A00]/30">
-                  <Zap size={8} fill="currentColor" /> May Madness
-                </div>
-
                 {/* Icon */}
                 <div className="w-14 h-14 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/20 flex items-center justify-center mb-6 group-hover:border-[#FF7A00]/40 group-hover:bg-[#FF7A00]/15 transition-all duration-300">
                   <Zap size={26} className="text-[#FF7A00]" fill="currentColor" />
@@ -144,8 +139,7 @@ export default function BookNow() {
                 {/* Price */}
                 <div className="flex items-baseline gap-2 mb-4">
                   <span className="text-white/40 text-sm font-medium">from</span>
-                  <span className="line-through text-white/25 text-xl font-bold">£220</span>
-                  <span className="text-3xl font-black text-[#FF7A00]">£199</span>
+                  <span className="text-3xl font-black text-[#FF7A00]">£220</span>
                 </div>
 
                 {/* Desc */}

@@ -1,8 +1,7 @@
-﻿import Header from './components/Header';
+import Header from './components/Header';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
 import PageTransition from './components/PageTransition';
-import MayMadnessBanner from './components/MayMadnessBanner';
 
 function App() {
   return (
@@ -13,10 +12,9 @@ function App() {
       </div>
       <div className="noise-bg"></div>
 
-      {/* Sticky shell — header + promo banner stick together as one unit */}
+      {/* Sticky header */}
       <div className="sticky top-0 z-50">
         <Header />
-        <MayMadnessBanner />
       </div>
       <main>
         <PageTransition />
