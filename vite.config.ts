@@ -15,6 +15,7 @@ export default defineConfig(({ mode }) => {
         dynamicRoutes: [
           '/',
           '/services',
+          '/dpf-cleaning',
           '/postal-dpf',
           '/book',
           '/why-clean',
@@ -28,7 +29,8 @@ export default defineConfig(({ mode }) => {
           '/dpf-cleaning-totnes',
           '/ecu-remapping',
           '/ecu-remapping-locations',
-          '/vehicle-remapping',
+          '/ecu-cloning',
+          '/vehicle-performance-lookup',
           '/remapping-booking',
           '/dpf-cleaning-exeter',
           '/dpf-cleaning-plymouth',

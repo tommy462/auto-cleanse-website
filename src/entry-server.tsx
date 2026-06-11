@@ -27,6 +27,7 @@ export function render(url: string): RenderResult {
 const STATIC_ROUTES = [
   '/',
   '/services',
+  '/dpf-cleaning',
   '/postal-dpf',
   '/book',
   '/why-clean',
@@ -44,6 +45,7 @@ const STATIC_ROUTES = [
   '/dpf-cleaning-paignton',
   '/ecu-remapping',
   '/ecu-remapping-locations',
+  '/ecu-cloning',
   '/vehicle-performance-lookup',
   '/remapping-booking',
 ];

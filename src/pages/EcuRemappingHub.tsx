@@ -1,7 +1,7 @@
 ﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Zap, Truck, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Zap, Truck, ArrowRight, Cpu } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -103,7 +103,17 @@ const EcuRemappingHub = () => {
             </div>
           </Link>
 
-          {/* Check My Vehicle - highlighted card, 3rd column */}
+          {/* ECU Cloning */}
+          <Link to="/ecu-cloning" className="group p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-all duration-300 reveal-item">
+            <Cpu className="text-[#FF7A00] mb-4 md:mb-6" size={28} />
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-[#FF7A00] transition-colors">ECU Cloning</h3>
+            <p className="text-white/60 text-sm md:text-base mb-4 md:mb-6">Faulty or incompatible donor ECU? We clone your original image — VIN, immobiliser and tune preserved.</p>
+            <div className="flex items-center text-[#FF7A00] font-medium group-hover:translate-x-2 transition-transform text-sm">
+              Learn more <ArrowRight size={14} className="ml-2" />
+            </div>
+          </Link>
+
+          {/* Check My Vehicle - highlighted card */}
           <Link to="/vehicle-performance-lookup" className="group p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] bg-[#FF7A00]/10 border border-[#FF7A00]/20 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/15 transition-all duration-300 reveal-item">
             <Zap className="text-[#FF7A00] mb-4 md:mb-6" size={28} />
             <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3">Check My Vehicle</h3>
@@ -113,7 +123,7 @@ const EcuRemappingHub = () => {
             </div>
           </Link>
 
-          {/* Locations - full width bottom row */}
+          {/* Locations - spans remaining columns */}
           <Link to="/ecu-remapping-locations" className="group md:col-span-2 lg:col-span-3 p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-all duration-300 reveal-item flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6">
             <div>
               <MapPin className="text-[#FF7A00] mb-3 md:mb-4" size={28} />

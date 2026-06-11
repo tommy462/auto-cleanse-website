@@ -12,6 +12,7 @@ import Maintenance from '../pages/Maintenance';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 import PostalDPF from '../pages/PostalDPF';
+import DPFCleaningHub from '../pages/DPFCleaningHub';
 import DPFCleaningTotnes from '../pages/DPFCleaningTotnes';
 import DPFCleaningDevon from '../pages/DPFCleaningDevon';
 import DPFCleaningExeter from '../pages/DPFCleaningExeter';
@@ -29,6 +30,7 @@ import DiagnosticMatcher from '../pages/DiagnosticMatcher';
 import FuelSavingsCalculator from '../pages/FuelSavingsCalculator';
 import DVLADiagnostic from '../pages/DVLADiagnostic';
 import BookNow from '../pages/BookNow';
+import EcuCloning from '../pages/EcuCloning';
 
 export default function PageTransition() {
     const location = useLocation();
@@ -63,6 +65,7 @@ export default function PageTransition() {
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/postal-dpf" element={<PostalDPF />} />
+                    <Route path="/dpf-cleaning" element={<DPFCleaningHub />} />
                     <Route path="/dpf-cleaning-totnes" element={<DPFCleaningTotnes />} />
                     <Route path="/dpf-cleaning-devon" element={<DPFCleaningDevon />} />
                     
@@ -80,6 +83,7 @@ export default function PageTransition() {
                     
                     <Route path="/remapping-booking" element={<RemappingBooking />} />
                     <Route path="/book" element={<BookNow />} />
+                    <Route path="/ecu-cloning" element={<EcuCloning />} />
                     
                     <Route path="/dpf-cleaning-exeter" element={<DPFCleaningExeter />} />
                     <Route path="/dpf-cleaning-plymouth" element={<DPFCleaningPlymouth />} />
