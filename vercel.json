@@ -8,6 +8,11 @@
       "permanent": true
     },
     {
+      "source": "/home",
+      "destination": "https://www.auto-cleanse.co.uk/",
+      "permanent": true
+    },
+    {
       "source": "/remapping",
       "destination": "https://www.auto-cleanse.co.uk/ecu-remapping",
       "permanent": true
