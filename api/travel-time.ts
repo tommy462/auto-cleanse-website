@@ -7,7 +7,7 @@
 // The Google Maps API key is NEVER exposed to the client.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { BOOKING_CONFIG } from '../src/config/booking';
+import { BOOKING_CONFIG } from '../src/config/booking.js';
 
 function corsHeaders(res: VercelResponse) {
   res.setHeader('Access-Control-Allow-Origin', process.env.SITE_URL ?? '*');

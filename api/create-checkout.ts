@@ -8,7 +8,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Stripe from 'stripe';
 import { google } from 'googleapis';
-import { BOOKING_CONFIG, REMAP_SERVICES } from '../src/config/booking';
+import { BOOKING_CONFIG, REMAP_SERVICES } from '../src/config/booking.js';
 
 function corsHeaders(res: VercelResponse) {
   res.setHeader('Access-Control-Allow-Origin', process.env.SITE_URL ?? '*');

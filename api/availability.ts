@@ -6,7 +6,7 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { google } from 'googleapis';
-import { BOOKING_CONFIG } from '../src/config/booking';
+import { BOOKING_CONFIG } from '../src/config/booking.js';
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
