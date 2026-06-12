@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
+import QuickEnquiryForm from '../components/QuickEnquiryForm';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,7 +49,7 @@ const DPFCleaningExeter = () => {
         "description": "Professional DPF cleaning service collecting from Exeter and across Devon. Based in Totnes, Devon.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-exeter",
         "telephone": "01803 269895",
-        "email": "info@autocleanse.co.uk",
+        "email": "info@auto-cleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [{ "@type": "City", "name": "Exeter" }, { "@type": "AdministrativeArea", "name": "Devon" }],
@@ -169,6 +170,20 @@ const DPFCleaningExeter = () => {
             </div>
           </section>
 
+          <section className="reveal-item">
+            <div className="relative p-8 md:p-12 rounded-[2.5rem] bg-[#1A1D22] border border-white/5 shadow-xl shadow-black overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/5 to-transparent opacity-50 pointer-events-none"></div>
+              <div className="relative z-10">
+                <QuickEnquiryForm
+                  defaultService="DPF Cleaning"
+                  source="dpf-cleaning-exeter"
+                  heading="Request a DPF Cleaning Callback"
+                  subheading="Send your details and we'll call you back about your DPF clean."
+                />
+              </div>
+            </div>
+          </section>
+
           <section className="text-center mt-16 reveal-item">
             <div className="relative p-12 md:p-16 rounded-[3rem] bg-[#1A1D22] border border-white/5 shadow-2xl shadow-black overflow-hidden group hover:border-[#FF7A00]/20 transition-all duration-700">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,122,0,0.1)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none"></div>
@@ -185,7 +200,7 @@ const DPFCleaningExeter = () => {
                   </a>
                 </MagneticButton>
                 <MagneticButton className="block">
-                  <a href="mailto:info@autocleanse.co.uk" className="w-full sm:w-auto bg-[#FF7A00] hover:bg-[#FF9500] text-black px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)] flex items-center justify-center text-lg">
+                  <a href="mailto:info@auto-cleanse.co.uk" className="w-full sm:w-auto bg-[#FF7A00] hover:bg-[#FF9500] text-black px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)] flex items-center justify-center text-lg">
                     <Mail size={24} className="mr-3" /> Send enquiry
                   </a>
                 </MagneticButton>

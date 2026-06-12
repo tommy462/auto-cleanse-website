@@ -381,7 +381,7 @@ const WhyClean = () => {
               </MagneticButton>
               <MagneticButton>
                 <a
-                  href="mailto:info@autocleanse.co.uk"
+                  href="mailto:info@auto-cleanse.co.uk"
                   className="w-full sm:w-auto bg-[#FF7A00] hover:bg-[#FF9500] text-black px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)] text-center block text-lg"
                 >
                   Send enquiry

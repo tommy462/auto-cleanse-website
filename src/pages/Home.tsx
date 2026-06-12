@@ -262,7 +262,7 @@ const Home = () => {
               "description": "Professional DPF cleaning and ECU remapping services based in Totnes, Devon. Specialists in off-vehicle DPF cleaning, Stage 1 & 2 ECU remapping, SCR, DOC and GPF cleaning for cars, vans, HGVs and commercial fleets across Devon and the UK.",
               "url": "https://www.auto-cleanse.co.uk",
               "telephone": "01803 269895",
-              "email": "info@autocleanse.co.uk",
+              "email": "info@auto-cleanse.co.uk",
               "image": "https://www.auto-cleanse.co.uk/og-image.jpg",
               "address": {
                 "@type": "PostalAddress",
@@ -381,17 +381,8 @@ const Home = () => {
                 "telephone": "01803 269895",
                 "contactType": "customer service",
                 "availableLanguage": "English",
-                "areaServed": "GB",
-                "contactOption": "TollFree"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "5",
-                "reviewCount": "9",
-                "bestRating": "5",
-                "worstRating": "1"
-              },
-              "keywords": "DPF cleaning Devon, DPF cleaning near me, ECU remapping Devon, car remapping Devon, DPF cleaning Exeter, DPF cleaning Plymouth, DPF cleaning Torquay, engine tuning Devon, blocked DPF Devon, DPF cleaning cost UK"
+                "areaServed": "GB"
+              }
             },
             {
               "@context": "https://schema.org",

@@ -10,6 +10,7 @@ export default function BookingCancel() {
         title="Booking Cancelled | AutoCleanse Remapping"
         description="Your remapping booking was cancelled. No payment has been taken."
         path="/booking-cancel"
+        noindex
       />
 
       {/* Ambient glow */}

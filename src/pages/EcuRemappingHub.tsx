@@ -50,7 +50,7 @@ const EcuRemappingHub = () => {
         "description": "ECU remapping service across Devon. Stage 1 and Stage 2 maps for cars, vans, HGVs and commercial vehicles.",
         "url": "https://www.auto-cleanse.co.uk/ecu-remapping",
         "telephone": "01803269895",
-        "email": "info@autocleanse.co.uk",
+        "email": "info@auto-cleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "serviceType": "ECU Remapping",

@@ -1,11 +1,11 @@
-﻿import React, { useState, useRef } from 'react';
+﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
-import Tooltip from '../components/Tooltip';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
+import QuickEnquiryForm from '../components/QuickEnquiryForm';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,58 +44,6 @@ const Contact = () => {
       );
     });
   }, { scope: container });
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch('https://hook.eu2.make.com/nh3pvoagqc4y22cg5240jqwcjzjdrpa8', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          timestamp: new Date().toISOString(),
-          source: 'contact_form'
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', phone: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus('idle'), 3000);
-    }
-  };
 
   const socialLinks = [
     { Icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61573744325360', name: 'Facebook' },
@@ -105,7 +53,7 @@ const Contact = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="Contact AutoCleanse | DPF Cleaning & Remapping" description="Contact AutoCleanse for DPF cleaning or ECU remapping in Devon. Call free on 01803 269895 or send an enquiry. Same-day response." path="/contact" />
+      <SEO title="Contact AutoCleanse | DPF Cleaning & Remapping" description="Contact AutoCleanse for DPF cleaning or ECU remapping in Devon. Call us on 01803 269895 or send an enquiry. Same-day response." path="/contact" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "ContactPage",
@@ -116,10 +64,10 @@ const Contact = () => {
           "@type": ["LocalBusiness", "AutomotiveService"],
           "name": "AutoCleanse",
           "telephone": "01803 269895",
-          "email": "info@autocleanse.co.uk",
+          "email": "info@auto-cleanse.co.uk",
           "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
           "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" }],
-          "contactPoint": { "@type": "ContactPoint", "telephone": "01803 269895", "contactType": "customer service", "contactOption": "TollFree", "areaServed": "GB", "availableLanguage": "English" }
+          "contactPoint": { "@type": "ContactPoint", "telephone": "01803 269895", "contactType": "customer service", "areaServed": "GB", "availableLanguage": "English" }
         }
       })}} />
 
@@ -170,7 +118,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-white/40 font-mono text-sm uppercase tracking-wider mb-1">Email</p>
-                    <a href="mailto:info@autocleanse.co.uk" className="text-xl font-bold text-white hover:text-[#FF7A00] transition-colors break-all">
+                    <a href="mailto:info@auto-cleanse.co.uk" className="text-xl font-bold text-white hover:text-[#FF7A00] transition-colors break-all">
                       info@auto-cleanse.co.uk
                     </a>
                   </div>
@@ -191,7 +139,7 @@ const Contact = () => {
 
             {/* Social Media */}
             <div className="relative p-10 rounded-3xl bg-[#1A1D22] border border-white/5 overflow-hidden group hover:border-[#FF7A00]/20 transition-colors duration-500">
-              <h3 className="relative z-10 text-xl font-bold text-white mb-6">Social Resonance</h3>
+              <h3 className="relative z-10 text-xl font-bold text-white mb-6">Follow Us</h3>
               <div className="relative z-10 flex flex-wrap gap-4">
                 {socialLinks.map(({ Icon, href, name }) => (
                   <MagneticButton key={name}>
@@ -215,114 +163,14 @@ const Contact = () => {
           <div className="relative p-10 rounded-3xl bg-[#1A1D22] border border-white/5 overflow-hidden reveal-item shadow-2xl shadow-black/50">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF7A00]/5 blur-[80px] rounded-full pointer-events-none"></div>
 
-            <h2 className="relative z-10 text-3xl font-bold text-white mb-8 tracking-tight">Transmission Protocol</h2>
+            <h2 className="relative z-10 text-3xl font-bold text-white mb-2 tracking-tight">Send an Enquiry</h2>
+            <p className="relative z-10 text-white/50 text-sm mb-8">
+              Leave your details and we&rsquo;ll call you back. Fields marked * are required.
+            </p>
 
-            <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
-              <div className="group/input">
-                <label htmlFor="name" className="block text-white/50 font-mono text-sm uppercase tracking-wider mb-2 group-focus-within/input:text-[#FF7A00] transition-colors">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#FF7A00] focus:ring-1 focus:ring-[#FF7A00] transition-all"
-                  placeholder="Lead Engineer"
-                />
-              </div>
-
-              <div className="group/input">
-                <label htmlFor="email" className="block text-white/50 font-mono text-sm uppercase tracking-wider mb-2 group-focus-within/input:text-[#FF7A00] transition-colors">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#FF7A00] focus:ring-1 focus:ring-[#FF7A00] transition-all"
-                  placeholder="contact@fleet.com"
-                />
-              </div>
-
-              <div className="group/input">
-                <label htmlFor="phone" className="block text-white/50 font-mono text-sm uppercase tracking-wider mb-2 group-focus-within/input:text-[#FF7A00] transition-colors">
-                  Comms Link
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#FF7A00] focus:ring-1 focus:ring-[#FF7A00] transition-all"
-                  placeholder="07700 900000"
-                />
-              </div>
-
-              <div className="group/input">
-                <label htmlFor="message" className="block text-white/50 font-mono text-sm uppercase tracking-wider mb-2 group-focus-within/input:text-[#FF7A00] transition-colors">
-                  Payload *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={5}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#FF7A00] focus:ring-1 focus:ring-[#FF7A00] transition-all resize-none"
-                  placeholder="Define requirements... (e.g. 5x Volvo FH DPFs requiring strict turnaround)"
-                />
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Tooltip content="Direct booking portal pending deployment">
-                  <div className="flex-1">
-                    <MagneticButton className="w-full h-full block">
-                      <button
-                        type="button"
-                        disabled
-                        className="w-full h-full bg-white/5 border border-white/10 text-white/50 px-6 py-4 rounded-xl font-bold opacity-60 cursor-not-allowed transition-all"
-                        aria-label="Book now - Coming soon"
-                      >
-                        Initialize Booking
-                      </button>
-                    </MagneticButton>
-                  </div>
-                </Tooltip>
-
-                <div className="flex-1">
-                  <MagneticButton className="w-full block">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-[#FF7A00] hover:bg-[#FF9500] text-black px-6 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)] disabled:opacity-70 disabled:cursor-not-allowed"
-                    >
-                      {isSubmitting ? 'Transmitting...' : 'Transmit Data'}
-                    </button>
-                  </MagneticButton>
-                </div>
-              </div>
-            </form>
-
-            {/* Success/Error Messages */}
-            {submitStatus === 'success' && (
-              <div className="mt-4 p-4 bg-green-500/20 border border-green-500/30 rounded-lg">
-                <p className="text-green-400 text-sm">Message sent successfully! We'll get back to you soon.</p>
-              </div>
-            )}
-
-            {submitStatus === 'error' && (
-              <div className="mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded-lg">
-                <p className="text-red-400 text-sm">Failed to send message. Please try again or call us directly.</p>
-              </div>
-            )}
+            <div className="relative z-10">
+              <QuickEnquiryForm source="contact_page" />
+            </div>
           </div>
         </div>
       </div>

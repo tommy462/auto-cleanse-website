@@ -88,7 +88,7 @@ export default function EcuCloning() {
               description: 'Professional ECU cloning service in Devon. Faulty or damaged ECU replacement via full image cloning — VIN, immobiliser, calibration and tune preserved.',
               url: 'https://www.auto-cleanse.co.uk/ecu-cloning',
               telephone: '01803269895',
-              email: 'info@autocleanse.co.uk',
+              email: 'info@auto-cleanse.co.uk',
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: 'The Old Barn Industrial Estate, Webbers Yard Estate',

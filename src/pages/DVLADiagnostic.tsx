@@ -58,6 +58,7 @@ export default function DVLADiagnostic() {
         title="DVLA Data Diagnostic | AutoCleanse" 
         description="Internal tool for investigating DVLA vehicle data for remapping profile matching."
         path="/debug/dvla"
+        noindex
       />
 
       {/* Background blobs */}

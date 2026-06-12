@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Facebook, Instagram, Youtube, Menu, X } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Menu, X, Phone } from 'lucide-react';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -79,7 +79,7 @@ const Header = () => {
             {/* Desktop CTAs and Social */}
             <div className="hidden lg:flex items-center space-x-4 shrink-0">
               {/* Social Icons */}
-              <div className="flex items-center space-x-2 mr-4">
+              <div className="hidden xl:flex items-center space-x-2 mr-2">
                 {socialIcons.map(({ Icon, href }, index) => (
                   <a
                     key={index}
@@ -93,6 +93,16 @@ const Header = () => {
                   </a>
                 ))}
               </div>
+
+              {/* Click-to-call */}
+              <a
+                href="tel:01803269895"
+                className="flex items-center gap-2 text-white hover:text-[#FF7A00] transition-colors font-bold text-sm whitespace-nowrap"
+                aria-label="Call AutoCleanse on 01803 269895"
+              >
+                <Phone size={16} className="text-[#FF7A00]" />
+                <span>01803 269895</span>
+              </a>
 
               {/* Book Now Button */}
               <Link
@@ -131,6 +141,13 @@ const Header = () => {
               ))}
 
               <div className="pt-4 border-t border-white/10 space-y-3">
+                <a
+                  href="tel:01803269895"
+                  className="w-full px-6 py-2 rounded-lg font-bold text-sm text-white border border-[#FF7A00]/40 bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 transition-colors flex items-center justify-center gap-2"
+                  aria-label="Call AutoCleanse on 01803 269895"
+                >
+                  <Phone size={16} className="text-[#FF7A00]" /> 01803 269895
+                </a>
                 <Link
                   to="/book"
                   onClick={() => setIsMobileMenuOpen(false)}

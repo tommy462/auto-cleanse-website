@@ -280,7 +280,7 @@ const Services = () => {
                 </MagneticButton>
 
                 <MagneticButton className="w-full sm:w-auto">
-                  <a href="mailto:info@autocleanse.co.uk" className="flex items-center justify-center gap-2 bg-[#FF7A00] hover:bg-[#FF9500] text-black px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 w-full shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)]">
+                  <a href="mailto:info@auto-cleanse.co.uk" className="flex items-center justify-center gap-2 bg-[#FF7A00] hover:bg-[#FF9500] text-black px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 w-full shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)]">
                     <Mail size={20} />
                     Email Us
                   </a>

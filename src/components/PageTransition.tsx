@@ -31,6 +31,7 @@ import FuelSavingsCalculator from '../pages/FuelSavingsCalculator';
 import DVLADiagnostic from '../pages/DVLADiagnostic';
 import BookNow from '../pages/BookNow';
 import EcuCloning from '../pages/EcuCloning';
+import NotFound from '../pages/NotFound';
 
 export default function PageTransition() {
     const location = useLocation();
@@ -93,6 +94,7 @@ export default function PageTransition() {
                     <Route path="/booking-success" element={<BookingSuccess />} />
                     <Route path="/booking-cancel" element={<BookingCancel />} />
                     <Route path="/debug/dvla" element={<DVLADiagnostic />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </motion.div>
         </AnimatePresence>

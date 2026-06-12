@@ -1,5 +1,5 @@
 ﻿import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import MagneticButton from './MagneticButton';
 
 const Footer = () => {
@@ -56,7 +56,7 @@ const Footer = () => {
             <div className="pt-2 flex flex-col sm:flex-row lg:flex-col gap-4">
               <MagneticButton className="inline-block">
                 <a href="tel:01803269895" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-block shadow-2xl shadow-[#FF7A00]/20 text-center w-full sm:w-auto lg:w-full">
-                  Call Us
+                  Call 01803 269895
                 </a>
               </MagneticButton>
               <MagneticButton className="inline-block">
@@ -65,6 +65,26 @@ const Footer = () => {
                 </Link>
               </MagneticButton>
             </div>
+
+            {/* Crawlable NAP (name, address, phone) */}
+            <address className="not-italic space-y-3 text-sm text-white/60 font-medium pt-2">
+              <p className="flex items-start gap-3">
+                <MapPin size={16} className="text-[#FF7A00] shrink-0 mt-0.5" />
+                <span>AutoCleanse, The Old Barn Industrial Estate, Webbers Yard Estate, Totnes, Devon, TQ9 6JY</span>
+              </p>
+              <p className="flex items-center gap-3">
+                <Phone size={16} className="text-[#FF7A00] shrink-0" />
+                <a href="tel:01803269895" className="hover:text-[#FF7A00] transition-colors">01803 269895</a>
+              </p>
+              <p className="flex items-center gap-3">
+                <Mail size={16} className="text-[#FF7A00] shrink-0" />
+                <a href="mailto:info@auto-cleanse.co.uk" className="hover:text-[#FF7A00] transition-colors">info@auto-cleanse.co.uk</a>
+              </p>
+              <p className="flex items-center gap-3">
+                <Clock size={16} className="text-[#FF7A00] shrink-0" />
+                <span>Mon–Fri: 8:00am – 5:00pm</span>
+              </p>
+            </address>
           </div>
 
           {/* Links Columns */}
@@ -120,7 +140,7 @@ const Footer = () => {
                 ))}
                 <li>
                   <a href="tel:01803269895" className="text-white/70 hover:text-[#FF7A00] transition-colors text-sm flex items-center group font-medium">
-                    Call Us
+                    <Phone size={16} className="text-white/40 group-hover:text-[#FF7A00] transition-colors mr-2" /> 01803 269895
                   </a>
                 </li>
               </ul>

@@ -7,6 +7,7 @@ interface SEOProps {
   path?: string;
   ogImage?: string;
   ogType?: string;
+  noindex?: boolean;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -14,7 +15,8 @@ const SEO: React.FC<SEOProps> = ({
   description,
   path = '',
   ogImage = 'https://www.auto-cleanse.co.uk/og-image.jpg',
-  ogType = 'website'
+  ogType = 'website',
+  noindex = false
 }) => {
   const siteName = 'AutoCleanse | DPF Cleaning & Remapping';
   // Title prop is already fully formed (includes brand suffix); do not append again
@@ -29,7 +31,9 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
       <meta name="theme-color" content="#FF9500" />
-      <link rel="canonical" href={fullUrl} />
+      {noindex
+        ? <meta name="robots" content="noindex, follow" />
+        : <link rel="canonical" href={fullUrl} />}
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />

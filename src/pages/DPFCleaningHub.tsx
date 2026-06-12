@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
+import QuickEnquiryForm from '../components/QuickEnquiryForm';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,7 +47,7 @@ const DPFCleaningHub = () => {
         'description': 'Professional DPF cleaning service in Devon. Workshop drop-off, local collection, and UK-wide postal DPF cleaning.',
         'url': 'https://www.auto-cleanse.co.uk/dpf-cleaning',
         'telephone': '01803 269895',
-        'email': 'info@autocleanse.co.uk',
+        'email': 'info@auto-cleanse.co.uk',
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': 'The Old Barn Industrial Estate, Webbers Yard Estate',
@@ -151,6 +152,21 @@ const DPFCleaningHub = () => {
                 <span className="text-white/50 text-sm">{loc.note}</span>
               </Link>
             ))}
+          </div>
+        </section>
+
+        {/* Quick enquiry */}
+        <section className="mb-12 md:mb-16 reveal-container">
+          <div className="max-w-3xl mx-auto relative p-8 md:p-10 rounded-[2rem] bg-[#1A1D22] border border-white/5 shadow-xl shadow-black overflow-hidden reveal-item">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/5 to-transparent opacity-50 pointer-events-none"></div>
+            <div className="relative z-10">
+              <QuickEnquiryForm
+                defaultService="DPF Cleaning"
+                source="dpf-cleaning"
+                heading="Request a DPF Cleaning Callback"
+                subheading="Send your details and we'll call you back about your DPF clean."
+              />
+            </div>
           </div>
         </section>
 

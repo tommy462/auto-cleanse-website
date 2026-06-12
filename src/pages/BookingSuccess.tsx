@@ -85,6 +85,7 @@ export default function BookingSuccess() {
         title="Booking Confirmed | AutoCleanse Remapping"
         description="Your ECU remapping booking has been confirmed. £50 deposit received."
         path="/booking-success"
+        noindex
       />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] bg-[#FF7A00]/6 blur-[100px] rounded-[100%] pointer-events-none opacity-60" />
 

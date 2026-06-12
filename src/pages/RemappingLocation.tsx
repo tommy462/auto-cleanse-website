@@ -7,6 +7,7 @@ import {
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
+import QuickEnquiryForm from '../components/QuickEnquiryForm';
 import { getLocationBySlug, REMAP_LOCATIONS } from '../data/remapping-locations';
 import { MayOfferBanner, DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
 import { PRIORITY_SLUGS } from '../data/campaign';
@@ -386,6 +387,15 @@ export default function RemappingLocation() {
             <Shield size={11} className="inline mb-0.5 mr-1" />
             Pre & post diagnostic check included with every remap
           </p>
+
+          <div className="mt-12 text-left rounded-3xl bg-[#1A1D22] border border-white/5 p-6 sm:p-8 shadow-2xl shadow-black/40">
+            <QuickEnquiryForm
+              defaultService="ECU Remapping"
+              source={location.slug}
+              heading={`Request a Callback in ${location.name}`}
+              subheading="No obligation — tell us about your vehicle and we'll get back to you."
+            />
+          </div>
         </div>
       </section>
     </div>

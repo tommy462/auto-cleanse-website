@@ -212,6 +212,7 @@ const DiagnosticMatcher = () => {
         title="Vehicle Remap Lookup | AutoCleanse Devon"
         description="Enter your reg to discover your vehicle's ECU remap potential."
         path="/remap-lookup"
+        noindex
       />
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none" />
 

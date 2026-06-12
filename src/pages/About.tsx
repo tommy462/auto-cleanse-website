@@ -72,7 +72,7 @@ const About = () => {
         "description": "Devon-based DPF cleaning and ECU remapping specialists. Operating from Totnes, serving trade garages, fleet operators and individual vehicle owners across Devon and the UK.",
         "url": "https://www.auto-cleanse.co.uk/about",
         "telephone": "01803 269895",
-        "email": "info@autocleanse.co.uk",
+        "email": "info@auto-cleanse.co.uk",
         "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
@@ -195,7 +195,7 @@ const About = () => {
               </MagneticButton>
               <MagneticButton className="block">
                 <a
-                  href="mailto:info@autocleanse.co.uk"
+                  href="mailto:info@auto-cleanse.co.uk"
                   className="w-full sm:w-auto bg-[#FF7A00] hover:bg-[#FF9500] text-black px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)] flex items-center justify-center text-lg"
                 >
                   Send enquiry

@@ -2,6 +2,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
 import PageTransition from './components/PageTransition';
+import MobileCallBar from './components/MobileCallBar';
+import LeadTracking from './components/LeadTracking';
+import Analytics from './components/Analytics';
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
       </main>
       <Footer />
       <Chatbot />
+      <MobileCallBar />
+      <LeadTracking />
+      <Analytics />
     </div>
   );
 }

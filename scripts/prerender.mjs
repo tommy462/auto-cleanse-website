@@ -26,13 +26,16 @@ const template = rawTemplate
   // before the first <script>, which is always the root div's closing tag in a Vite build)
   .replace(/<div id="root">[\s\S]*(<\/div>\s*<script)/, '<div id="root">$1');
 
-const total = routes.length;
+// De-duplicate routes so a page (e.g. "/") is never rendered or listed twice.
+const uniqueRoutes = [...new Set(routes)];
+
+const total = uniqueRoutes.length;
 let rendered = 0;
 let errors = 0;
 
 console.log(`\nPrerendering ${total} pages...\n`);
 
-for (const url of routes) {
+for (const url of uniqueRoutes) {
   try {
     const { html: appHtml, helmet } = render(url);
 
@@ -77,6 +80,47 @@ for (const url of routes) {
 }
 
 console.log(`\n${rendered} pages rendered${errors > 0 ? `, ${errors} errors` : ''}.`);
+
+// ── Generate sitemap.xml with tiered priorities ───────────────────────────
+const HOSTNAME = 'https://www.auto-cleanse.co.uk';
+const lastmod = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+
+const CORE_HUBS = new Set([
+  '/services',
+  '/dpf-cleaning',
+  '/dpf-cleaning-devon',
+  '/ecu-remapping',
+  '/ecu-remapping-locations',
+  '/postal-dpf',
+  '/ecu-cloning',
+]);
+
+function rankFor(url) {
+  if (url === '/') return { priority: '1.0', changefreq: 'weekly' };
+  if (CORE_HUBS.has(url)) return { priority: '0.9', changefreq: 'weekly' };
+  // Town/location landing pages (highest local-SEO value after hubs)
+  if (url.startsWith('/ecu-remapping-') || url.startsWith('/dpf-cleaning-'))
+    return { priority: '0.8', changefreq: 'monthly' };
+  // Service-type "…-devon" pages (e.g. van-remapping-devon)
+  if (url.endsWith('-devon')) return { priority: '0.7', changefreq: 'monthly' };
+  // Vehicle remap pages
+  if (url.endsWith('-remap')) return { priority: '0.6', changefreq: 'monthly' };
+  // Conversion / utility pages (book, contact, pricing, about, tools…)
+  return { priority: '0.5', changefreq: 'monthly' };
+}
+
+const sitemapBody = uniqueRoutes
+  .map((url) => {
+    const { priority, changefreq } = rankFor(url);
+    const loc = `${HOSTNAME}${url === '/' ? '/' : url}`;
+    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+  })
+  .join('\n');
+
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapBody}\n</urlset>\n`;
+
+writeFileSync(join(projectRoot, 'dist/sitemap.xml'), sitemapXml, 'utf-8');
+console.log(`Sitemap written with ${uniqueRoutes.length} URLs.`);
 
 if (errors > 0) {
   process.exit(1);

@@ -1,8 +1,9 @@
-﻿import { useParams, Navigate } from 'react-router-dom';
+﻿import { useParams } from 'react-router-dom';
 import { getLocationBySlug } from '../data/remapping-locations';
 import { getVehicleBySlug } from '../data/vehicle-remapping';
 import RemappingLocation from './RemappingLocation';
 import VehicleRemap from './VehicleRemap';
+import NotFound from './NotFound';
 
 export default function DynamicPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -23,6 +24,7 @@ export default function DynamicPage() {
     return <VehicleRemap vehicle={vehicle} />;
   }
 
-  // If neither, fallback to the main remapping page
-  return <Navigate to="/remapping" replace />;
+  // Unknown slug — render a proper 404 (noindex) instead of redirecting to a
+  // real page, which previously created a soft-404 redirect chain.
+  return <NotFound />;
 }
