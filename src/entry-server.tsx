@@ -43,6 +43,7 @@ const STATIC_ROUTES = [
   '/dpf-cleaning-plymouth',
   '/dpf-cleaning-torquay',
   '/dpf-cleaning-paignton',
+  '/dpf-cleaning-newton-abbot',
   '/ecu-remapping',
   '/ecu-remapping-locations',
   '/ecu-cloning',

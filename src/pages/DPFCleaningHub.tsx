@@ -15,6 +15,7 @@ const locations = [
   { name: 'Devon', path: '/dpf-cleaning-devon', note: 'Full county coverage' },
   { name: 'Exeter', path: '/dpf-cleaning-exeter', note: 'East Devon' },
   { name: 'Plymouth', path: '/dpf-cleaning-plymouth', note: 'South West Devon' },
+  { name: 'Newton Abbot', path: '/dpf-cleaning-newton-abbot', note: 'South Devon' },
   { name: 'Torquay', path: '/dpf-cleaning-torquay', note: 'Torbay' },
   { name: 'Paignton', path: '/dpf-cleaning-paignton', note: 'Torbay' },
   { name: 'Totnes', path: '/dpf-cleaning-totnes', note: 'Our workshop base' },

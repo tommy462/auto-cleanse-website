@@ -10,12 +10,21 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: 'DPF Cleaning', path: '/services' },
+    { name: 'DPF Cleaning', path: '/dpf-cleaning' },
     { name: 'ECU Remapping', path: '/ecu-remapping' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'How it works', path: '/how-it-works' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
+  ];
+
+  const dpfLocations = [
+    { name: 'Devon', path: '/dpf-cleaning-devon' },
+    { name: 'Plymouth', path: '/dpf-cleaning-plymouth' },
+    { name: 'Exeter', path: '/dpf-cleaning-exeter' },
+    { name: 'Newton Abbot', path: '/dpf-cleaning-newton-abbot' },
+    { name: 'Torquay', path: '/dpf-cleaning-torquay' },
+    { name: 'All DPF Cleaning', path: '/dpf-cleaning' },
   ];
 
   const popularLocations = [
@@ -88,7 +97,7 @@ const Footer = () => {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8 lg:mt-2">
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:mt-2">
             <nav aria-label="Footer quick links">
               <h3 className="text-white font-bold mb-6 text-xs tracking-widest uppercase text-white/40">Services</h3>
               <ul className="space-y-4">
@@ -115,8 +124,21 @@ const Footer = () => {
               </ul>
             </nav>
 
-            <nav aria-label="Popular Locations">
-              <h3 className="text-white font-bold mb-6 text-xs tracking-widest uppercase text-white/40">Locations</h3>
+            <nav aria-label="DPF cleaning locations">
+              <h3 className="text-white font-bold mb-6 text-xs tracking-widest uppercase text-white/40">DPF Cleaning</h3>
+              <ul className="space-y-4">
+                {dpfLocations.map((link) => (
+                  <li key={link.path}>
+                    <Link to={link.path} className="text-white/70 hover:text-[#FF7A00] transition-colors text-sm relative group inline-block font-medium">
+                      <span className="relative z-10">{link.name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <nav aria-label="Remapping locations">
+              <h3 className="text-white font-bold mb-6 text-xs tracking-widest uppercase text-white/40">Remapping</h3>
               <ul className="space-y-4">
                 {popularLocations.map((link) => (
                   <li key={link.path}>

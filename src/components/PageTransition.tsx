@@ -19,6 +19,7 @@ import DPFCleaningExeter from '../pages/DPFCleaningExeter';
 import DPFCleaningPlymouth from '../pages/DPFCleaningPlymouth';
 import DPFCleaningTorquay from '../pages/DPFCleaningTorquay';
 import DPFCleaningPaignton from '../pages/DPFCleaningPaignton';
+import DPFCleaningNewtonAbbot from '../pages/DPFCleaningNewtonAbbot';
 import RemappingBooking from '../pages/RemappingBooking';
 import EcuRemappingHub from '../pages/EcuRemappingHub';
 import RemappingLocationsHub from '../pages/RemappingLocationsHub';
@@ -90,6 +91,7 @@ export default function PageTransition() {
                     <Route path="/dpf-cleaning-plymouth" element={<DPFCleaningPlymouth />} />
                     <Route path="/dpf-cleaning-torquay" element={<DPFCleaningTorquay />} />
                     <Route path="/dpf-cleaning-paignton" element={<DPFCleaningPaignton />} />
+                    <Route path="/dpf-cleaning-newton-abbot" element={<DPFCleaningNewtonAbbot />} />
                     <Route path="/:slug" element={<DynamicPage />} />
                     <Route path="/booking-success" element={<BookingSuccess />} />
                     <Route path="/booking-cancel" element={<BookingCancel />} />
