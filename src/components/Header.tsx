@@ -60,7 +60,7 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center flex-1 justify-center space-x-3 xl:space-x-6 mx-4 overflow-hidden">
+            <nav className="hidden lg:flex items-center flex-1 justify-center space-x-3 xl:space-x-5 mx-4 overflow-hidden">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
@@ -78,8 +78,8 @@ const Header = () => {
 
             {/* Desktop CTAs and Social */}
             <div className="hidden lg:flex items-center space-x-4 shrink-0">
-              {/* Social Icons */}
-              <div className="hidden xl:flex items-center space-x-2 mr-2">
+              {/* Social Icons - hidden once scrolled so the compact panel keeps room for the full nav */}
+              <div className={`${isScrolled ? 'hidden' : 'hidden xl:flex'} items-center space-x-2 mr-2`}>
                 {socialIcons.map(({ Icon, href }, index) => (
                   <a
                     key={index}

@@ -8,6 +8,8 @@ import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
+import Reviews from '../components/Reviews';
+import { getReviews, ECU_COMPACT_REVIEW_IDS } from '../data/reviews';
 import { getLocationBySlug, REMAP_LOCATIONS } from '../data/remapping-locations';
 import { MayOfferBanner, DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
 import { PRIORITY_SLUGS } from '../data/campaign';
@@ -355,6 +357,18 @@ export default function RemappingLocation() {
       )}
 
       {/* ── CTA ───────────────────────────────────────────────────────────── */}
+      <section className="py-16 border-t border-white/5">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reviews
+            reviews={getReviews(ECU_COMPACT_REVIEW_IDS)}
+            heading={<><span className="text-white">Remapping </span><span className="text-[#FF7A00]">Reviews</span></>}
+            columns={3}
+            showGoogleCta
+            showCallCta
+          />
+        </div>
+      </section>
+
       <section className="py-20 border-t border-white/5">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-4">

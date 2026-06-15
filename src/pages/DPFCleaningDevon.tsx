@@ -7,6 +7,8 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
+import Reviews from '../components/Reviews';
+import { getReviews, DPF_TOWN_REVIEW_IDS } from '../data/reviews';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -231,6 +233,16 @@ const DPFCleaningDevon = () => {
                 <span className="font-medium text-lg">Why professional cleaning beats replacement</span>
               </Link>
             </div>
+          </section>
+
+          <section className="reveal-item">
+            <Reviews
+              reviews={getReviews(DPF_TOWN_REVIEW_IDS)}
+              heading={<><span className="text-white">Trusted for </span><span className="text-[#FF7A00]">DPF Cleaning</span></>}
+              columns={3}
+              showGoogleCta
+              showCallCta
+            />
           </section>
 
           <section className="reveal-item">

@@ -10,6 +10,8 @@ import VehicleSchema from '../components/VehicleSchema';
 import MagneticButton from '../components/MagneticButton';
 import CountUp from '../components/CountUp';
 import RemapPortfolio from '../components/RemapPortfolio';
+import Reviews from '../components/Reviews';
+import { getReviews, HOMEPAGE_REVIEW_IDS } from '../data/reviews';
 gsap.registerPlugin(ScrollTrigger);
 
 const splitText = (text: string, className: string = '') => {
@@ -152,54 +154,6 @@ const Home = () => {
       description: 'Emission control cleaning',
       features: ['Precious metal safe formulation', 'Unblocks exhaust flow', 'Clears engine lights']
     },
-  ];
-
-  const reviews = [
-    {
-      text: "Auto Cleanse removed, cleaned and replaced my dpf effectively and promptly, all in all a trouble free service. Communication was excellent and I'm no longer scared of my DPF. I'd recommend this company.",
-      author: "James Riggs",
-      company: ""
-    },
-    {
-      text: "I took my VW Golf diesel to AutoClean after it went into limp mode with a flashing glow-plug light and suspected DPF blockage. Tom carried out proper diagnostics and confirmed the DPF itself was healthy. Instead of replacing parts unnecessarily, they identified a faulty DPF differential pressure sensor as the root cause. The issue was explained clearly, the costs were transparent, and the repair was completed promptly. Limp mode resolved immediately.",
-      author: "Martin Amis",
-      company: "Local Guide"
-    },
-    {
-      text: "Alex was so helpful in getting car in immediately to VMS in Paignton and kept me updated on progress and likely resolution. Couldn't fault how he dealt with it",
-      author: "Mordiford Man",
-      company: ""
-    },
-    {
-      text: "Just wanted to say thanks again for the super quick response and turnaround for DPF Cleaning, picked up and dropped off within two hours. Can't fault the service and advice from Alex at Auto Cleanse, we will definitely be using your services in the future. Would 100% recommend Auto Cleanse to anyone.",
-      author: "Antony Moore",
-      company: "TSH Garage"
-    },
-    {
-      text: "Quick, efficient and professional service from start to finish. would highly recommend .",
-      author: "Luke Thomas",
-      company: "LT Garage"
-    },
-    {
-      text: "Absolutely brilliant service, called Alex explained the problem, advised him of heavy oil contamination from a failed turbo, explained needed it turned around quick. Alex turned up within 20mins and said a time of 11am next day and he was with me by 10.30 will definitely be using him from now on for all my off car DPF cleans.",
-      author: "OTR Mobile Mechanic & Garage Services",
-      company: ""
-    },
-    {
-      text: "Brilliant. Fast efficient service. Collected, cleaned and returned quickly.",
-      author: "Win Scutt",
-      company: ""
-    },
-    {
-      text: "Efficient service provided, good lines of communication, fairly priced.",
-      author: "Claire",
-      company: "Honeywill Vehicle Repairs"
-    },
-    {
-      text: "Excellent service spoke to Alex who was really helpful. Collected the part from us and had it cleaned and returned all within a few hours definitely would use them again. 5 star service",
-      author: "Danny Hunt",
-      company: ""
-    }
   ];
 
   const whyChooseUs = [
@@ -763,62 +717,15 @@ const Home = () => {
       {/* Customer Reviews Section */}
       <section className="py-16 lg:py-32 section-gradient-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 lg:mb-16">
-            <span className="text-white">What Our </span>
-            <span className="text-[#FF7A00]">Customers Say</span>
-          </h2>
-
-          <div className="relative w-full overflow-hidden mt-8">
-            {/* Left and Right fade gradients for smooth entrance/exit */}
-            <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10 pointer-events-none"></div>
-
-            <div className="flex w-max animate-marquee py-4">
-              {/* Duplicate array mapping twice to create an infinite loop effect */}
-              {[...reviews, ...reviews].map((review, index) => (
-                <div
-                  key={index}
-                  className="gradient-card rounded-2xl p-8 card-hover w-[320px] md:w-[450px] mx-4 flex flex-col justify-between flex-shrink-0 whitespace-normal group"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex text-[#FF7A00]">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} className="w-5 h-5 fill-current group-hover:drop-shadow-[0_0_8px_rgba(255,122,0,0.8)] transition-all duration-300" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <div className="bg-[#FF7A00]/10 px-3 py-1 rounded-full border border-[#FF7A00]/20">
-                        <span className="text-xs font-bold text-[#FF7A00] tracking-wider uppercase">Verified</span>
-                      </div>
-                    </div>
-
-                    <blockquote className="text-white/90 text-sm md:text-[15px] leading-relaxed mb-6 font-medium">
-                      "{review.text}"
-                    </blockquote>
-                  </div>
-
-                  <div className="border-t border-[#1A1D22] pt-6 flex items-center justify-between group-hover:border-[#FF7A00]/30 transition-colors duration-500">
-                    <div>
-                      <p className="text-white font-bold">{review.author}</p>
-                      {review.company && (
-                        <p className="text-xs text-[#FF7A00] font-bold mt-1 uppercase tracking-wider">
-                          {review.company}
-                        </p>
-                      )}
-                    </div>
-                    {/* Minimal Avatar Placeholder */}
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#1A1D22] to-black border border-white/5 flex items-center justify-center group-hover:border-[#FF7A00]/50 transition-colors duration-500">
-                      <span className="text-white/40 font-bold text-sm group-hover:text-[#FF7A00] transition-colors duration-500">
-                        {review.author.charAt(0)}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Reviews
+            reviews={getReviews(HOMEPAGE_REVIEW_IDS)}
+            intro="Real feedback from customers and garages across Devon who trust Auto-Cleanse for DPF cleaning, diagnostics and ECU remapping."
+            columns={3}
+            showGoogleCta
+            showContactCta
+            showCallCta
+            showInternalLinks
+          />
         </div>
       </section>
 

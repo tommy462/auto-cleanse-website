@@ -8,6 +8,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import RemapPortfolio from '../components/RemapPortfolio';
+import Reviews from '../components/Reviews';
+import { getReviews, ECU_REVIEW_IDS } from '../data/reviews';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -137,6 +139,18 @@ const EcuRemappingHub = () => {
         </div>
 
         <RemapPortfolio />
+
+        {/* Reviews */}
+        <section className="mb-12 md:mb-16 reveal-container">
+          <Reviews
+            reviews={getReviews(ECU_REVIEW_IDS)}
+            heading={<><span className="text-white">Remapping </span><span className="text-[#FF7A00]">Reviews</span></>}
+            intro="What Devon drivers say after a remap with Auto-Cleanse."
+            columns={3}
+            showGoogleCta
+            showCallCta
+          />
+        </section>
 
         <section className="text-center mt-12 md:mt-16 reveal-item">
           <div className="relative p-8 md:p-12 lg:p-16 rounded-[2rem] lg:rounded-[3rem] bg-[#1A1D22] border border-white/5 shadow-2xl shadow-black overflow-hidden group hover:border-[#FF7A00]/20 transition-all duration-700">

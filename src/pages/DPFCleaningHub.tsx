@@ -8,6 +8,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
+import Reviews from '../components/Reviews';
+import { getReviews, DPF_REVIEW_IDS } from '../data/reviews';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -154,6 +156,18 @@ const DPFCleaningHub = () => {
               </Link>
             ))}
           </div>
+        </section>
+
+        {/* Reviews */}
+        <section className="mb-12 md:mb-16 reveal-container">
+          <Reviews
+            reviews={getReviews(DPF_REVIEW_IDS)}
+            heading={<><span className="text-white">Trusted for </span><span className="text-[#FF7A00]">DPF Cleaning</span></>}
+            intro="Genuine feedback from drivers, garages and fleets across Devon."
+            columns={3}
+            showGoogleCta
+            showCallCta
+          />
         </section>
 
         {/* Quick enquiry */}
