@@ -21,7 +21,7 @@ export default function BookNow() {
     <>
       <SEO
         title="Book Now | AutoCleanse — DPF Cleaning & ECU Remapping Devon"
-        description="Book a DPF clean or ECU remap with AutoCleanse. Same-day local DPF cleaning from £210, nationwide postal service, and Stage 1 remaps from £199."
+        description="Book a DPF clean or ECU remap with AutoCleanse. Same-day local DPF cleaning from £210, nationwide postal service, and Stage 1, Stage 2 and economy remapping available."
         path="/book"
       />
 

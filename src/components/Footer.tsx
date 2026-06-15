@@ -19,10 +19,12 @@ const Footer = () => {
   ];
 
   const dpfLocations = [
-    { name: 'Devon', path: '/dpf-cleaning-devon' },
+    { name: 'DPF Diagnostics', path: '/dpf-diagnostics-devon' },
+    { name: 'Blocked DPF Cleaning', path: '/blocked-dpf-cleaning-devon' },
+    { name: 'DPF Cleaning Devon', path: '/dpf-cleaning-devon' },
+    { name: 'Newton Abbot', path: '/dpf-cleaning-newton-abbot' },
     { name: 'Plymouth', path: '/dpf-cleaning-plymouth' },
     { name: 'Exeter', path: '/dpf-cleaning-exeter' },
-    { name: 'Newton Abbot', path: '/dpf-cleaning-newton-abbot' },
     { name: 'Torquay', path: '/dpf-cleaning-torquay' },
     { name: 'All DPF Cleaning', path: '/dpf-cleaning' },
   ];

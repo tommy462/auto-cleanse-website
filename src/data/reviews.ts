@@ -162,6 +162,9 @@ export const DPF_REVIEW_IDS = [
   'james-riggs', 'martin-amis', 'antony-moore', 'otr-mobile', 'win-scutt', 'danny-hunt',
 ];
 export const DPF_TOWN_REVIEW_IDS = ['james-riggs', 'martin-amis', 'antony-moore'];
+// Diagnostics page leads with Martin Amis (sensor fault found, no unnecessary work).
+export const DPF_DIAGNOSTICS_REVIEW_IDS = ['martin-amis', 'james-riggs', 'antony-moore'];
+export const BLOCKED_DPF_REVIEW_IDS = ['james-riggs', 'martin-amis', 'danny-hunt'];
 export const ECU_REVIEW_IDS = ['jamie-webb', 'reece-lloyd', 'dave-lewis', 'luke-thomas'];
 export const ECU_COMPACT_REVIEW_IDS = ['jamie-webb', 'reece-lloyd', 'dave-lewis'];
 

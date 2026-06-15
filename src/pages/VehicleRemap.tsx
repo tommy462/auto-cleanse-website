@@ -9,7 +9,7 @@ import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { VehicleRemapData, getVehicleBySlug } from '../data/vehicle-remapping';
 import { VEHICLE_REMAPS } from '../data/vehicle-remapping';
-import { MayOfferBanner, DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
+import { DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
 import { PRIORITY_SLUGS } from '../data/campaign';
 
 function FaqItem({ q, a }: { q: string; a: string }) {
@@ -137,13 +137,6 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
           </div>
         </div>
       </section>
-
-      {/* ── May Launch Offer Banner ───────────────────────────────────────── */}
-      {PRIORITY_SLUGS.has(vehicle.slug) && (
-        <section className="pt-2 pb-8">
-          <MayOfferBanner />
-        </section>
-      )}
 
       {/* ── Engine Options ────────────────────────────────────────────────── */}
       <section className="py-16 border-t border-white/5">

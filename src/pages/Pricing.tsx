@@ -1,7 +1,7 @@
 ﻿import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { Check, ChevronDown, Zap } from 'lucide-react';
+import { Check, ChevronDown, Zap, Package } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -72,7 +72,7 @@ const Pricing = () => {
   const remapTiers = [
     {
       title: 'Stage 1 Remap',
-      price: 'POA',
+      price: 'From £220',
       subtitle: 'Cars, vans & light commercials',
       note: 'No hardware changes required',
     },
@@ -101,7 +101,7 @@ const Pricing = () => {
     },
     {
       question: 'How much does ECU remapping cost?',
-      answer: 'Remapping prices are quoted on enquiry as they depend on the vehicle make, model, engine, and the type of map required (Stage 1, Stage 2, or custom). Contact us for a personalised quote - there is no obligation.',
+      answer: 'Stage 1 remaps start from £220. Stage 2 and custom maps are quoted on enquiry as they depend on the vehicle make, model, engine and the work required. Contact us for a personalised quote, there is no obligation.',
     },
     {
       question: 'Is ECU remapping included in the DPF prices shown?',
@@ -127,7 +127,7 @@ const Pricing = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning & Remap Prices | AutoCleanse Devon" description="Transparent DPF cleaning from £210 and ECU remapping prices in Devon. No hidden fees. Trade & fleet rates available. Based in Totnes." path="/pricing" />
+      <SEO title="DPF Cleaning & Remap Prices | AutoCleanse Devon" description="Transparent pricing in Devon: DPF cleaning from £210 and Stage 1 ECU remaps from £220. Nationwide postal DPF available. No hidden fees, trade & fleet rates. Based in Totnes." path="/pricing" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
@@ -138,7 +138,7 @@ const Pricing = () => {
           { "@type": "Offer", "name": "DPF Cleaning - Within 10 Miles of Totnes", "priceCurrency": "GBP", "price": "210.00", "description": "Professional DPF cleaning with collection and same-day return within 10 miles of Totnes, Devon." },
           { "@type": "Offer", "name": "DPF Cleaning - Outside 10 Miles / Nationwide", "priceCurrency": "GBP", "price": "230.00", "description": "DPF cleaning for customers outside 10 miles of Totnes or nationwide postal service." },
           { "@type": "Offer", "name": "DPF Cleaning - HGV & Plant", "priceCurrency": "GBP", "price": "299.00", "description": "Professional DPF cleaning for HGVs, plant machinery and commercial vehicles." },
-          { "@type": "Offer", "name": "ECU Remapping", "priceCurrency": "GBP", "price": "0", "description": "Stage 1 and Stage 2 ECU remapping in Devon. Contact for a personalised quote." }
+          { "@type": "Offer", "name": "ECU Remapping - Stage 1", "priceCurrency": "GBP", "price": "220.00", "description": "Stage 1 ECU remapping in Devon from £220. Stage 2 and custom maps quoted on enquiry." }
         ]
       })}} />
 
@@ -166,7 +166,7 @@ const Pricing = () => {
                 <div
                   key={index}
                   className={`relative p-8 rounded-3xl bg-[#1A1D22] border transition-all duration-500 reveal-item group ${tier.popular
-                    ? 'border-[#FF7A00]/50 shadow-[0_0_30px_rgba(255,122,0,0.15)] hover:shadow-[0_0_50px_rgba(255,122,0,0.3)] hover:-translate-y-2 relative z-10 scale hover:scale-105'
+                    ? 'border-[#FF7A00]/50 shadow-[0_0_30px_rgba(255,122,0,0.15)] hover:shadow-[0_0_50px_rgba(255,122,0,0.3)] hover:-translate-y-2 z-10 md:scale-105'
                     : 'border-white/5 hover:border-[#FF7A00]/30 hover:shadow-2xl hover:shadow-black hover:-translate-y-2 md:scale-95'
                     }`}
                 >
@@ -175,8 +175,8 @@ const Pricing = () => {
                   )}
 
                   {tier.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                      <span className="bg-[#FF7A00] text-black px-6 py-1.5 rounded-full text-xs uppercase tracking-widest font-black shadow-[0_0_20px_rgba(255,122,0,0.5)]">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
+                      <span className="inline-block whitespace-nowrap bg-[#FF7A00] text-black px-4 py-1.5 rounded-full text-[11px] leading-none uppercase tracking-widest font-black shadow-[0_0_20px_rgba(255,122,0,0.5)]">
                         Most Popular
                       </span>
                     </div>
@@ -221,18 +221,19 @@ const Pricing = () => {
 
               <div className="relative z-10">
                 <div className="w-20 h-20 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/30 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:bg-[#FF7A00]/20 transition-all duration-500 shadow-[0_0_20px_rgba(255,122,0,0.2)]">
-                  <div className="w-8 h-8 rounded bg-[#FF7A00]"></div>
+                  <Package size={32} className="text-[#FF7A00]" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2 tracking-tight group-hover:text-[#FF7A00] transition-colors">Nationwide Service</h3>
-                <p className="text-[#FF7A00] font-mono text-xs uppercase tracking-widest mb-8">Coming Soon</p>
-
-                {/* Progress Indicator */}
-                <div className="w-full bg-black/50 rounded-full h-1.5 mb-3 border border-white/5 overflow-hidden">
-                  <div className="bg-[#FF7A00] h-full rounded-full w-3/4 transition-all duration-1000 shadow-[0_0_10px_rgba(255,122,0,1)] relative">
-                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent animate-[shimmer_2s_infinite]"></div>
-                  </div>
-                </div>
-                <p className="text-white/40 text-xs font-mono">75% Complete</p>
+                <h3 className="text-xl font-bold text-white mb-2 tracking-tight group-hover:text-[#FF7A00] transition-colors">Nationwide Postal DPF</h3>
+                <p className="text-[#FF7A00] font-mono text-xs uppercase tracking-widest mb-5">Available Now</p>
+                <p className="text-white/50 text-sm leading-relaxed mb-7">
+                  Too far for collection? Remove your DPF, post it to us, and we clean and return it anywhere in the UK.
+                </p>
+                <Link
+                  to="/postal-dpf"
+                  className="btn-shine px-6 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-block w-full text-center"
+                >
+                  Postal DPF Service
+                </Link>
               </div>
             </div>
           </div>
@@ -246,7 +247,7 @@ const Pricing = () => {
               ECU <span className="text-[#FF7A00]">Remapping</span>
             </h2>
             <p className="text-white/50 text-lg font-medium max-w-xl mx-auto">
-              Remapping prices are quoted on enquiry - every vehicle is different. Contact us for a fast, no-obligation quote.
+              Stage 1 remaps start from £220. Stage 2 and custom maps are quoted on enquiry, as every vehicle is different. Contact us for a fast, no-obligation quote.
             </p>
           </div>
 

@@ -1,18 +1,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// May 2026 Launch Campaign - configurable data
-// All values you need to edit during the campaign are at the top of this file.
+// Remapping social-proof data (recent remaps + priority pages).
 // ─────────────────────────────────────────────────────────────────────────────
 
-// ── Element 1: Offer Banner ───────────────────────────────────────────────────
-// Decrement slotsRemaining as bookings come in.
-// When it reaches 0, the offer banner is replaced with "fully booked" message.
-
-export const MAY_OFFER = {
-  slotsRemaining: 10,   // ← UPDATE THIS as each booking is confirmed
-  slotsTotal: 10,
-};
-
-// ── Element 3: Recent Remaps ──────────────────────────────────────────────────
+// ── Recent Remaps ─────────────────────────────────────────────────────────────
 // Add a new entry here when each customer remap completes.
 // Set framingText to '' once you have 5+ real entries and no longer need the
 // "we're new to remapping" context line.

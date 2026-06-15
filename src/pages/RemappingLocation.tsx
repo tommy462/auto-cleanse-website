@@ -11,7 +11,7 @@ import QuickEnquiryForm from '../components/QuickEnquiryForm';
 import Reviews from '../components/Reviews';
 import { getReviews, ECU_COMPACT_REVIEW_IDS } from '../data/reviews';
 import { getLocationBySlug, REMAP_LOCATIONS } from '../data/remapping-locations';
-import { MayOfferBanner, DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
+import { DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
 import { PRIORITY_SLUGS } from '../data/campaign';
 
 const SERVICES = [
@@ -166,13 +166,6 @@ export default function RemappingLocation() {
           </div>
         </div>
       </section>
-
-      {/* ── May Launch Offer Banner ───────────────────────────────────────── */}
-      {PRIORITY_SLUGS.has(location.slug) && (
-        <section className="pt-2 pb-8">
-          <MayOfferBanner />
-        </section>
-      )}
 
       {/* ── Services ──────────────────────────────────────────────────────── */}
       <section className="py-16 border-t border-white/5">

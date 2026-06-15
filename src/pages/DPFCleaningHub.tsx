@@ -138,6 +138,29 @@ const DPFCleaningHub = () => {
 
         </div>
 
+        {/* Common DPF problems */}
+        <section className="mb-12 md:mb-16 reveal-container">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 reveal-item">Common DPF Problems We Solve</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            <Link to="/blocked-dpf-cleaning-devon" className="group p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-all duration-300 reveal-item">
+              <Shield className="text-[#FF7A00] mb-4" size={26} />
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-[#FF7A00] transition-colors">Blocked DPF Cleaning</h3>
+              <p className="text-white/60 text-sm md:text-base mb-4">Warning light, limp mode or a failed regen? We diagnose the cause and professionally clean blocked filters.</p>
+              <div className="flex items-center text-[#FF7A00] font-medium group-hover:translate-x-2 transition-transform text-sm">
+                Blocked DPF help <ArrowRight size={14} className="ml-2" />
+              </div>
+            </Link>
+            <Link to="/dpf-diagnostics-devon" className="group p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-all duration-300 reveal-item">
+              <Settings className="text-[#FF7A00] mb-4" size={26} />
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-[#FF7A00] transition-colors">DPF Diagnostics</h3>
+              <p className="text-white/60 text-sm md:text-base mb-4">Find the real cause before paying for cleaning or a costly replacement. Evidence-based, honest diagnosis.</p>
+              <div className="flex items-center text-[#FF7A00] font-medium group-hover:translate-x-2 transition-transform text-sm">
+                DPF diagnostics <ArrowRight size={14} className="ml-2" />
+              </div>
+            </Link>
+          </div>
+        </section>
+
         {/* Location sub-pages */}
         <section className="mb-12 md:mb-16 reveal-container">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 reveal-item">DPF Cleaning by Location</h2>

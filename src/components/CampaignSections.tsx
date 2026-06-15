@@ -1,93 +1,11 @@
-import { Link } from 'react-router-dom';
-import { Tag, ArrowRight, Wrench } from 'lucide-react';
-import MagneticButton from './MagneticButton';
 import {
-  MAY_OFFER,
   RECENT_REMAPS,
   RECENT_REMAPS_FRAMING,
   type RemapCard,
 } from '../data/campaign';
+import { Wrench } from 'lucide-react';
 
-// ── Element 1: May Launch Offer Banner ───────────────────────────────────────
-// Position: between hero and the first content section.
-// Renders the £199 offer when slots remain; switches to "fully booked" once
-// slotsRemaining hits 0 in campaign.ts.
-
-export function MayOfferBanner() {
-  const { slotsRemaining, slotsTotal } = MAY_OFFER;
-
-  if (slotsRemaining <= 0) {
-    return (
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-        <div className="rounded-2xl bg-white/[0.03] border border-white/10 px-7 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <div className="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-            <Tag size={15} className="text-white/30" />
-          </div>
-          <p className="text-white/55 text-sm font-semibold flex-1">
-            May offer fully booked -{' '}
-            <span className="text-white">June bookings now open</span>
-          </p>
-          <MagneticButton className="shrink-0">
-            <Link
-              to="/remapping-booking"
-              className="btn-shine px-5 py-2.5 rounded-xl font-bold text-xs text-white inline-flex items-center gap-2"
-            >
-              Book for June <ArrowRight size={11} />
-            </Link>
-          </MagneticButton>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-      <div className="rounded-3xl bg-[#FF7A00]/[0.09] border border-[#FF7A00]/30 p-7 sm:p-9 relative overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#FF7A00]/20 blur-[90px] rounded-full pointer-events-none" />
-
-        <div className="relative z-10">
-          {/* Label pill */}
-          <div className="inline-flex items-center gap-2 bg-[#FF7A00] text-white text-xs font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-5">
-            <Tag size={10} />
-            May Launch Offer
-          </div>
-
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-            <div>
-              <p className="text-white text-2xl sm:text-3xl font-black tracking-tight leading-snug mb-1.5">
-                £199 ECU Remap
-              </p>
-              <p className="text-white/75 text-sm font-semibold mb-1">
-                Devon's DPF-Specialist Remapper
-              </p>
-              <p className="text-white/40 text-xs">
-                May only&nbsp;&nbsp;·&nbsp;&nbsp;Normal rates from June&nbsp;&nbsp;·&nbsp;&nbsp;Limited bookings
-              </p>
-            </div>
-
-            <div className="flex flex-col items-start sm:items-end gap-3 shrink-0">
-              <MagneticButton>
-                <Link
-                  to="/remapping-booking"
-                  className="btn-shine px-6 py-3 rounded-xl font-bold text-sm text-white inline-flex items-center gap-2"
-                >
-                  Claim Slot <ArrowRight size={13} />
-                </Link>
-              </MagneticButton>
-              <p className="text-white/50 text-xs font-medium">
-                <span className="text-[#FF7A00] font-bold">{slotsRemaining}</span>
-                {' '}of {slotsTotal} slots remaining
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── Element 2: DPF-Specialist Trust Signal ───────────────────────────────────
+// ── DPF-Specialist Trust Signal ──────────────────────────────────────────────
 // Position: immediately after the "Why choose us" section.
 // Self-contained section block - drop it between any two sections.
 
@@ -116,7 +34,7 @@ export function DpfTrustSignal() {
   );
 }
 
-// ── Element 3: Recent Remaps ─────────────────────────────────────────────────
+// ── Recent Remaps ────────────────────────────────────────────────────────────
 // Position: after DpfTrustSignal, before the FAQ section.
 // Add new entries to RECENT_REMAPS in campaign.ts as jobs complete.
 
