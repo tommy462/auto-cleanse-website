@@ -81,6 +81,10 @@ const EcuRemappingHub = () => {
               Transform your vehicle's performance with our custom-calibrated ECU remaps.
               Whether you want maximum power, better towing torque, or increased MPG, we have a solution.
             </p>
+            <p className="text-sm md:text-base text-white/40 mt-4 reveal-item">
+              Running a modern diesel? We also handle{' '}
+              <Link to="/adblue-repair-devon" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">AdBlue repair &amp; fault diagnostics</Link>.
+            </p>
           </div>
         </div>
 

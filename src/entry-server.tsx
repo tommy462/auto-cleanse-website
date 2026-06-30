@@ -46,6 +46,7 @@ const STATIC_ROUTES = [
   '/dpf-cleaning-newton-abbot',
   '/dpf-diagnostics-devon',
   '/blocked-dpf-cleaning-devon',
+  '/adblue-repair-devon',
   '/ecu-remapping',
   '/ecu-remapping-locations',
   '/ecu-cloning',

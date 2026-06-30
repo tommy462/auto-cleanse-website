@@ -673,6 +673,12 @@ const Home = () => {
                     ECU remapping - Stage 1, Stage 2 &amp; custom maps →
                   </Link>
                   <Link
+                    to="/adblue-repair-devon"
+                    className="block text-[#FF7A00] hover:text-[#FFB37A] transition-colors text-sm font-medium"
+                  >
+                    AdBlue repair &amp; fault diagnostics →
+                  </Link>
+                  <Link
                     to="/why-clean"
                     className="block text-[#FF7A00] hover:text-[#FFB37A] transition-colors text-sm font-medium"
                   >

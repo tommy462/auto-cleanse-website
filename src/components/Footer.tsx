@@ -12,6 +12,7 @@ const Footer = () => {
   const quickLinks = [
     { name: 'DPF Cleaning', path: '/dpf-cleaning' },
     { name: 'ECU Remapping', path: '/ecu-remapping' },
+    { name: 'AdBlue Repair', path: '/adblue-repair-devon' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'How it works', path: '/how-it-works' },
     { name: 'About', path: '/about' },

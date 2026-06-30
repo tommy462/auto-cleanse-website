@@ -10,6 +10,7 @@ export const LEADS_WEBHOOK_URL =
 export const SERVICE_OPTIONS = [
   'DPF Cleaning',
   'DPF Diagnostics',
+  'AdBlue / SCR Repair',
   'ECU Remapping',
   'Mobile Remapping',
   'Vehicle Diagnostics',
