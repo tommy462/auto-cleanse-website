@@ -23,6 +23,8 @@ import DPFCleaningNewtonAbbot from '../pages/DPFCleaningNewtonAbbot';
 import DPFDiagnosticsDevon from '../pages/DPFDiagnosticsDevon';
 import BlockedDPFCleaningDevon from '../pages/BlockedDPFCleaningDevon';
 import AdBlueRepairDevon from '../pages/AdBlueRepairDevon';
+import BlogIndex from '../pages/BlogIndex';
+import BlogPost from '../pages/BlogPost';
 import RemappingBooking from '../pages/RemappingBooking';
 import EcuRemappingHub from '../pages/EcuRemappingHub';
 import RemappingLocationsHub from '../pages/RemappingLocationsHub';
@@ -98,6 +100,8 @@ export default function PageTransition() {
                     <Route path="/dpf-diagnostics-devon" element={<DPFDiagnosticsDevon />} />
                     <Route path="/blocked-dpf-cleaning-devon" element={<BlockedDPFCleaningDevon />} />
                     <Route path="/adblue-repair-devon" element={<AdBlueRepairDevon />} />
+                    <Route path="/blog" element={<BlogIndex />} />
+                    <Route path="/blog/:slug" element={<BlogPost />} />
                     <Route path="/:slug" element={<DynamicPage />} />
                     <Route path="/booking-success" element={<BookingSuccess />} />
                     <Route path="/booking-cancel" element={<BookingCancel />} />

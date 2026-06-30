@@ -13,8 +13,9 @@ const Footer = () => {
     { name: 'DPF Cleaning', path: '/dpf-cleaning' },
     { name: 'ECU Remapping', path: '/ecu-remapping' },
     { name: 'AdBlue Repair', path: '/adblue-repair-devon' },
+    { name: 'Blog', path: '/blog' },
     { name: 'Pricing', path: '/pricing' },
-    { name: 'How it works', path: '/how-it-works' },
+    { name: 'Maintenance', path: '/maintenance' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];

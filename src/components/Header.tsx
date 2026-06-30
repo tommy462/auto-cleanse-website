@@ -22,8 +22,8 @@ const Header = () => {
     { name: 'Postal DPF', path: '/postal-dpf' },
     { name: 'ECU Remapping', path: '/ecu-remapping' },
     { name: 'AdBlue', path: '/adblue-repair-devon' },
-    { name: 'Maintenance', path: '/maintenance' },
     { name: 'Our Process', path: '/how-it-works' },
+    { name: 'Blog', path: '/blog' },
     { name: 'About Us', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];

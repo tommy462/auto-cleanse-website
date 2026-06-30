@@ -6,7 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '..');
 
 // Load the SSR bundle produced by: vite build --ssr src/entry-server.tsx --outDir dist-server --mode ssr
-const { render, routes } = await import('../dist-server/entry-server.js');
+const { render, routes, blogPosts } = await import('../dist-server/entry-server.js');
 
 // Read the client-side index.html template (produced by: vite build)
 const rawTemplate = readFileSync(join(projectRoot, 'dist/index.html'), 'utf-8');
@@ -98,6 +98,9 @@ const CORE_HUBS = new Set([
 function rankFor(url) {
   if (url === '/') return { priority: '1.0', changefreq: 'weekly' };
   if (CORE_HUBS.has(url)) return { priority: '0.9', changefreq: 'weekly' };
+  // Blog index + posts
+  if (url === '/blog') return { priority: '0.7', changefreq: 'weekly' };
+  if (url.startsWith('/blog/')) return { priority: '0.6', changefreq: 'monthly' };
   // Town/location landing pages (highest local-SEO value after hubs)
   if (url.startsWith('/ecu-remapping-') || url.startsWith('/dpf-cleaning-'))
     return { priority: '0.8', changefreq: 'monthly' };
@@ -121,6 +124,22 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http:
 
 writeFileSync(join(projectRoot, 'dist/sitemap.xml'), sitemapXml, 'utf-8');
 console.log(`Sitemap written with ${uniqueRoutes.length} URLs.`);
+
+// ── RSS feed for the blog ──────────────────────────────────────────────────
+function escapeXml(s = '') {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+const rssItems = (blogPosts ?? [])
+  .map((p) => {
+    const link = `${HOSTNAME}/blog/${p.slug}`;
+    const pub = p.date ? new Date(p.date).toUTCString() : new Date().toUTCString();
+    return `    <item>\n      <title>${escapeXml(p.title)}</title>\n      <link>${link}</link>\n      <guid isPermaLink="true">${link}</guid>\n      <pubDate>${pub}</pubDate>\n      <category>${escapeXml(p.category)}</category>\n      <description>${escapeXml(p.excerpt)}</description>\n    </item>`;
+  })
+  .join('\n');
+const rssXml = `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n  <channel>\n    <title>Auto-Cleanse Workshop Blog</title>\n    <link>${HOSTNAME}/blog</link>\n    <description>DPF cleaning, AdBlue and ECU remapping advice from Auto-Cleanse, Devon.</description>\n    <language>en-GB</language>\n    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>\n${rssItems}\n  </channel>\n</rss>\n`;
+mkdirSync(join(projectRoot, 'dist/blog'), { recursive: true });
+writeFileSync(join(projectRoot, 'dist/blog/rss.xml'), rssXml, 'utf-8');
+console.log(`RSS written with ${(blogPosts ?? []).length} posts.`);
 
 if (errors > 0) {
   process.exit(1);

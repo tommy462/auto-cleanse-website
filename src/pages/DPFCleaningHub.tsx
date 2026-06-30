@@ -9,6 +9,7 @@ import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
 import Reviews from '../components/Reviews';
+import LatestPosts from '../components/LatestPosts';
 import { getReviews, DPF_REVIEW_IDS } from '../data/reviews';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -214,6 +215,11 @@ const DPFCleaningHub = () => {
               />
             </div>
           </div>
+        </section>
+
+        {/* Latest from the workshop */}
+        <section className="mb-12 md:mb-16">
+          <LatestPosts category="DPF" />
         </section>
 
         {/* CTA */}

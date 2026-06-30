@@ -6,6 +6,7 @@ import InfoSection from '../components/InfoSection';
 import SymptomList from '../components/SymptomList';
 import FaqSection, { type Faq } from '../components/FaqSection';
 import Reviews from '../components/Reviews';
+import LatestPosts from '../components/LatestPosts';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
 import { getReviews, DPF_DIAGNOSTICS_REVIEW_IDS } from '../data/reviews';
 
@@ -295,6 +296,11 @@ export default function AdBlueRepairDevon() {
                 </Link>
               ))}
             </div>
+          </section>
+
+          {/* Latest from the workshop */}
+          <section>
+            <LatestPosts category="AdBlue" />
           </section>
 
           {/* Final CTA */}

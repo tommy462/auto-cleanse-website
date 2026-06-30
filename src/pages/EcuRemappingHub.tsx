@@ -9,6 +9,7 @@ import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import RemapPortfolio from '../components/RemapPortfolio';
 import Reviews from '../components/Reviews';
+import LatestPosts from '../components/LatestPosts';
 import { getReviews, ECU_REVIEW_IDS } from '../data/reviews';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -154,6 +155,11 @@ const EcuRemappingHub = () => {
             showGoogleCta
             showCallCta
           />
+        </section>
+
+        {/* Latest from the workshop */}
+        <section className="mb-12 md:mb-16">
+          <LatestPosts category="ECU" />
         </section>
 
         <section className="text-center mt-12 md:mt-16 reveal-item">
