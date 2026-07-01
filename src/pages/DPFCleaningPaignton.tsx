@@ -47,12 +47,12 @@ const DPFCleaningPaignton = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "AutoCleanse",
+        "name": "Auto-Cleanse",
         "description": "Professional DPF cleaning service for Paignton and Torbay. Based in Totnes, Devon - 10 miles from Paignton.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-paignton",
-        "telephone": "01803 269895",
+        "telephone": "+441803269895",
         "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [
           { "@type": "City", "name": "Paignton" }, { "@type": "City", "name": "Torquay" },
@@ -92,7 +92,7 @@ const DPFCleaningPaignton = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Our Totnes workshop is just 10 miles from Paignton - qualifying for our lowest collection rate of £210. Filters from Paignton garages and private customers are collected on our regular daily route, cleaned with our METclean XL process, and returned within the same working day for collections before 10am.
+                Our Totnes workshop is just 10 miles from Paignton. DPF cleaning starts from £210, with nationwide postal DPF cleaning from £230. Filters from Paignton garages and private customers can be collected on our regular daily route, cleaned with our METclean XL process, and returned within the same working day for collections before 10am - collection and return may vary depending on location and availability.
               </p>
               <p>
                 Paignton has a high volume of tourist-season vehicle traffic alongside year-round commercial activity. AutoCleanse provides fast, professional DPF refurbishment to keep local fleets, taxis, and private vehicles running smoothly.
@@ -110,7 +110,7 @@ const DPFCleaningPaignton = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Paignton drivers and garages can save significant money by choosing professional DPF cleaning over replacement. Our service costs £210 for vehicles within 10 miles (which covers all of Paignton and much of Torbay), compared to £500–£2,000+ for a replacement DPF that may be aftermarket quality.
+                Paignton drivers and garages can save significant money by choosing professional DPF cleaning over replacement. DPF cleaning starts from £210, with nationwide postal DPF cleaning from £230, compared to £500–£2,000+ for a replacement DPF that may be aftermarket quality. Collection and return may vary depending on location and availability.
               </p>
               <p>
                 The original filter, properly cleaned, outperforms most aftermarket alternatives and keeps your vehicle fully MOT-compliant and emissions-legal.
@@ -131,7 +131,7 @@ const DPFCleaningPaignton = () => {
                 We clean DPFs from cars, vans, taxis, HGVs, and plant machinery - covering the full range of vehicles operating in Paignton and the Torbay area. Our process includes full inspection, aqueous cleaning, high-pressure pneumatic flush, and back-pressure flow testing before and after.
               </p>
               <p>
-                We also offer <Link to="/remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Paignton vehicles - Stage 1 maps are particularly popular with van and taxi operators looking to improve fuel economy.
+                We also offer <Link to="/ecu-remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Paignton vehicles - Stage 1 maps are particularly popular with van and taxi operators looking to improve fuel economy.
               </p>
             </div>
           </section>
@@ -153,10 +153,11 @@ const DPFCleaningPaignton = () => {
             <h3 className="relative z-10 text-2xl font-bold text-white mb-8 tracking-tight">Related Services</h3>
             <div className="relative z-10 space-y-4">
               {[
-                { to: '/services', label: 'Full range of filter cleaning services' },
+                { to: '/dpf-cleaning', label: 'DPF cleaning Devon - main hub' },
                 { to: '/dpf-cleaning-torquay', label: 'DPF cleaning Torquay' },
-                { to: '/remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
-                { to: '/dpf-cleaning-devon', label: 'DPF cleaning across Devon' },
+                { to: '/dpf-diagnostics-devon', label: 'DPF diagnostics - find the cause first' },
+                { to: '/blocked-dpf-cleaning-devon', label: 'Blocked DPF? Warning light & limp mode help' },
+                { to: '/ecu-remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
                 { to: '/pricing', label: 'DPF cleaning prices from £210' },
               ].map(({ to, label }) => (
                 <Link key={to} to={to} className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link">

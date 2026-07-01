@@ -50,16 +50,16 @@ const DPFCleaningTotnes = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning Totnes | Same-Day Drop-Off | AutoCleanse" description="AutoCleanse DPF cleaning workshop in Totnes, Devon. Drop off before 10am for same-day return. Cars, vans, HGVs & plant. Trade accounts welcome." path="/dpf-cleaning-totnes" />
+      <SEO title="DPF Cleaning Totnes | Fast Turnaround | AutoCleanse" description="AutoCleanse DPF cleaning workshop in Totnes, Devon. Fast turnaround, often same-day where possible when the filter is with us before 10am. Cars, vans, HGVs & plant. Trade accounts welcome." path="/dpf-cleaning-totnes" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "AutoCleanse",
+        "name": "Auto-Cleanse",
         "description": "DPF cleaning workshop in Totnes, Devon. Drop off your filter before 10am for same-day return. Serving South Devon and nationwide by post.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-totnes",
-        "telephone": "01803 269895",
+        "telephone": "+441803269895",
         "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [{ "@type": "City", "name": "Totnes" }, { "@type": "AdministrativeArea", "name": "Devon" }],
         "priceRange": "££",
@@ -82,9 +82,10 @@ const DPFCleaningTotnes = () => {
 
           <div className="max-w-4xl mx-auto reveal-item">
             <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium">
-              AutoCleanse provides professional off-vehicle DPF cleaning from our Totnes location,
-              serving Totnes and surrounding areas across South Devon. We offer same-day service
-              for filters collected before 10am, ensuring minimal downtime for your vehicles.
+              Totnes is home for us - our DPF cleaning workshop is here at The Old Barn Industrial Estate,
+              so if you are local it is the easiest place to drop your filter off in person. We deep clean
+              off the vehicle for cars, vans, HGVs and plant, with same-day return where possible for
+              filters received before 10am.
             </p>
           </div>
         </div>
@@ -133,9 +134,11 @@ const DPFCleaningTotnes = () => {
                 caused by blockages rather than structural failure, making cleaning the appropriate solution.
               </p>
               <p>
-                We maintain transparent pricing with no hidden costs, providing a cost-effective solution
-                that restores your filter to optimal performance while preserving all original calibrations
-                and sensor compatibility.
+                DPF cleaning at our Totnes workshop starts from £210, with UK-wide postal DPF cleaning
+                from £230 - transparent, fixed pricing and no hidden costs. Collection and return may vary
+                depending on location and availability. Compared with a replacement filter at £500-£2,000+ fitted,
+                a professional clean restores your existing DPF to optimal flow while preserving all original
+                calibrations and sensor compatibility.
               </p>
             </div>
           </section>
@@ -158,8 +161,8 @@ const DPFCleaningTotnes = () => {
                 and quick turnaround times for businesses that depend on their vehicles.
               </p>
               <p>
-                Our commitment to same-day service within 30 miles of Totnes ensures minimal disruption
-                to your operations, whether you're managing a single vehicle or an entire fleet.
+                Fast turnaround - often same-day within 30 miles of Totnes when the filter is with us
+                before 10am - keeps disruption to a minimum, whether you're managing a single vehicle or an entire fleet.
               </p>
             </div>
           </section>
@@ -184,31 +187,46 @@ const DPFCleaningTotnes = () => {
             </div>
           </section>
 
-          {/* Internal Links Section */}
+          {/* Totnes DPF FAQs */}
+          <section className="relative p-10 md:p-12 rounded-[2.5rem] bg-[#1A1D22] border border-white/5 reveal-item overflow-hidden shadow-xl shadow-black">
+            <h2 className="relative z-10 text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight">Totnes DPF Cleaning FAQs</h2>
+            <div className="relative z-10 space-y-6 text-white/60 text-lg font-medium leading-relaxed">
+              <div>
+                <p className="text-white font-bold mb-1">Where do I drop my DPF off in Totnes?</p>
+                <p>Our workshop is at The Old Barn Industrial Estate, Webbers Yard, Totnes TQ9. Call ahead on 01803 269895 so we can have the bench ready. Filters dropped before 10am are usually returned the same working day.</p>
+              </div>
+              <div>
+                <p className="text-white font-bold mb-1">How much does DPF cleaning cost?</p>
+                <p>DPF cleaning starts from £210, with nationwide postal DPF cleaning from £230. Collection and return may vary depending on location and availability. It is a fixed price with before-and-after flow testing included - no hidden extras.</p>
+              </div>
+              <div>
+                <p className="text-white font-bold mb-1">Is the DPF cleaned on or off the vehicle?</p>
+                <p>Off the vehicle. The filter is removed and deep cleaned on our workshop equipment, which is far more effective than an in-car regen or additive. It is a workshop service - we do not clean DPFs at the roadside.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* DPF services & booking links */}
           <section className="relative p-10 md:p-12 rounded-[2.5rem] bg-[#1A1D22] border border-white/5 reveal-item group hover:border-[#FF7A00]/30 transition-all duration-500 overflow-hidden shadow-xl shadow-black">
-            <h3 className="relative z-10 text-2xl font-bold text-white mb-8 tracking-tight">Learn More About Our Services</h3>
+            <h3 className="relative z-10 text-2xl font-bold text-white mb-8 tracking-tight">DPF Services & Booking</h3>
             <div className="relative z-10 space-y-4">
-              <Link
-                to="/services"
-                className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link"
-              >
-                <ArrowRight size={20} className="text-[#FF7A00] mr-4 group-hover/link:translate-x-2 transition-transform" />
-                <span className="font-medium text-lg">View all DPF and emissions services</span>
-              </Link>
-              <Link
-                to="/why-clean"
-                className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link"
-              >
-                <ArrowRight size={20} className="text-[#FF7A00] mr-4 group-hover/link:translate-x-2 transition-transform" />
-                <span className="font-medium text-lg">Why clean your DPF instead of replacing it?</span>
-              </Link>
-              <Link
-                to="/postal-dpf"
-                className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link"
-              >
-                <ArrowRight size={20} className="text-[#FF7A00] mr-4 group-hover/link:translate-x-2 transition-transform" />
-                <span className="font-medium text-lg">Nationwide postal DPF cleaning service</span>
-              </Link>
+              {[
+                { to: '/dpf-cleaning', label: 'DPF cleaning Devon - main hub' },
+                { to: '/dpf-diagnostics-devon', label: 'DPF diagnostics - find the cause first' },
+                { to: '/blocked-dpf-cleaning-devon', label: 'Blocked DPF? Warning light & limp mode help' },
+                { to: '/postal-dpf', label: 'Nationwide postal DPF cleaning' },
+                { to: '/pricing', label: 'DPF cleaning prices' },
+                { to: '/book', label: 'Book a DPF clean' },
+              ].map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link"
+                >
+                  <ArrowRight size={20} className="text-[#FF7A00] mr-4 group-hover/link:translate-x-2 transition-transform" />
+                  <span className="font-medium text-lg">{label}</span>
+                </Link>
+              ))}
             </div>
           </section>
 

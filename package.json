@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-server --mode ssr && node scripts/prerender.mjs",
+    "clean": "node scripts/clean-dist.mjs",
+    "build": "node scripts/clean-dist.mjs && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server --mode ssr && node scripts/prerender.mjs",
     "build:client": "vite build",
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-server --mode ssr",
     "prerender": "node scripts/prerender.mjs",

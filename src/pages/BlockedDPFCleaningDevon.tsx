@@ -55,11 +55,11 @@ const schema = {
       '@id': 'https://www.auto-cleanse.co.uk/#business',
       name: 'Auto-Cleanse',
       url: 'https://www.auto-cleanse.co.uk/blocked-dpf-cleaning-devon',
-      telephone: '01803 269895',
+      telephone: '+441803269895',
       email: 'info@auto-cleanse.co.uk',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'The Old Barn Industrial Estate, Webbers Yard Estate',
+        streetAddress: 'The Old Barn Industrial Estate, Webbers Yard',
         addressLocality: 'Totnes',
         addressRegion: 'Devon',
         postalCode: 'TQ9 6JY',

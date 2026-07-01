@@ -50,16 +50,16 @@ const DPFCleaningDevon = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning Devon | Same-Day Return | AutoCleanse" description="Expert DPF cleaning across Devon - Exeter, Plymouth, Torquay, Newton Abbot & beyond. Local collection, deep clean and same-day return. Based in Totnes." path="/dpf-cleaning-devon" />
+      <SEO title="DPF Collection & Trade Cleaning Across Devon | AutoCleanse" description="Devon-wide DPF collection and return for garages, fleets and trade customers - plus workshop drop-off and UK postal cleaning. Areas covered across Devon from our Totnes base." path="/dpf-cleaning-devon" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "AutoCleanse",
+        "name": "Auto-Cleanse",
         "description": "Professional DPF cleaning across Devon - Exeter, Plymouth, Torquay, Paignton, Newton Abbot and all Devon towns. Same-day return available.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-devon",
-        "telephone": "01803 269895",
+        "telephone": "+441803269895",
         "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [
           { "@type": "City", "name": "Exeter" }, { "@type": "City", "name": "Plymouth" },
@@ -81,7 +81,7 @@ const DPFCleaningDevon = () => {
         {/* Header */}
         <div className="text-center mb-20 reveal-container">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
-            {splitText('DPF Cleaning Across', 'text-white')}
+            {splitText('DPF Collection Across', 'text-white')}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
               <span className="inline-block word-reveal text-[#FF7A00] ml-3">Devon.</span>
             </span>
@@ -90,10 +90,10 @@ const DPFCleaningDevon = () => {
 
           <div className="max-w-4xl mx-auto reveal-item">
             <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium">
-              AutoCleanse provides professional DPF cleaning services across Devon, supporting
-              local garages, fleet operators, and commercial vehicle owners throughout the county.
-              Operating from our central workshop location in Totnes, we deliver reliable filter
-              refurbishment services with minimal disruption to your operations.
+              This page covers how we reach vehicles right across Devon - collection and return for
+              garages, fleets and trade customers, workshop drop-off at our Totnes base, and UK-wide
+              postal cleaning. For a full overview of the cleaning process itself, see our main{' '}
+              <Link to="/dpf-cleaning" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">DPF cleaning page</Link>.
             </p>
           </div>
         </div>
@@ -207,31 +207,57 @@ const DPFCleaningDevon = () => {
             </div>
           </section>
 
-          {/* Internal Links Section */}
+          {/* Collection areas across Devon */}
+          <section className="relative p-10 md:p-12 rounded-[2.5rem] bg-[#1A1D22] border border-white/5 reveal-item group hover:border-[#FF7A00]/20 transition-all duration-500 overflow-hidden shadow-xl shadow-black">
+            <div className="flex items-center mb-8 relative z-10">
+              <div className="w-16 h-16 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/30 flex items-center justify-center mr-6 shadow-[0_0_20px_rgba(255,122,0,0.2)]">
+                <MapPin size={28} className="text-[#FF7A00]" />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">Areas We Collect Across Devon</h2>
+            </div>
+            <p className="text-white/60 leading-relaxed text-lg font-medium relative z-10 mb-6">
+              We run local collection and return routes across South Devon and reach the wider county by
+              arrangement. Choose your nearest town for local detail and pricing, or ask us to confirm a
+              collection for your postcode:
+            </p>
+            <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 gap-3">
+              {[
+                { to: '/dpf-cleaning-exeter', label: 'Exeter' },
+                { to: '/dpf-cleaning-plymouth', label: 'Plymouth' },
+                { to: '/dpf-cleaning-torquay', label: 'Torquay' },
+                { to: '/dpf-cleaning-paignton', label: 'Paignton' },
+                { to: '/dpf-cleaning-newton-abbot', label: 'Newton Abbot' },
+                { to: '/dpf-cleaning-totnes', label: 'Totnes (workshop)' },
+              ].map(({ to, label }) => (
+                <Link key={to} to={to} className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/80 hover:text-white transition-all group/link">
+                  <span className="font-bold">{label}</span>
+                  <ArrowRight size={16} className="text-[#FF7A00] group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          {/* DPF services & booking links */}
           <section className="relative p-10 md:p-12 rounded-[2.5rem] bg-[#1A1D22] border border-white/5 reveal-item group hover:border-[#FF7A00]/30 transition-all duration-500 overflow-hidden shadow-xl shadow-black">
-            <h3 className="relative z-10 text-2xl font-bold text-white mb-8 tracking-tight">Learn More About Our Services</h3>
+            <h3 className="relative z-10 text-2xl font-bold text-white mb-8 tracking-tight">DPF Services & Booking</h3>
             <div className="relative z-10 space-y-4">
-              <Link
-                to="/"
-                className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link"
-              >
-                <ArrowRight size={20} className="text-[#FF7A00] mr-4 group-hover/link:translate-x-2 transition-transform" />
-                <span className="font-medium text-lg">AutoCleanse homepage and service overview</span>
-              </Link>
-              <Link
-                to="/services"
-                className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link"
-              >
-                <ArrowRight size={20} className="text-[#FF7A00] mr-4 group-hover/link:translate-x-2 transition-transform" />
-                <span className="font-medium text-lg">Complete range of filter cleaning services</span>
-              </Link>
-              <Link
-                to="/why-clean"
-                className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link"
-              >
-                <ArrowRight size={20} className="text-[#FF7A00] mr-4 group-hover/link:translate-x-2 transition-transform" />
-                <span className="font-medium text-lg">Why professional cleaning beats replacement</span>
-              </Link>
+              {[
+                { to: '/dpf-cleaning', label: 'DPF cleaning - main page & process' },
+                { to: '/dpf-diagnostics-devon', label: 'DPF diagnostics - find the cause first' },
+                { to: '/blocked-dpf-cleaning-devon', label: 'Blocked DPF - warning light & limp mode help' },
+                { to: '/postal-dpf', label: 'Nationwide postal DPF cleaning' },
+                { to: '/pricing', label: 'DPF cleaning prices' },
+                { to: '/book', label: 'Book a DPF clean or collection' },
+              ].map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link"
+                >
+                  <ArrowRight size={20} className="text-[#FF7A00] mr-4 group-hover/link:translate-x-2 transition-transform" />
+                  <span className="font-medium text-lg">{label}</span>
+                </Link>
+              ))}
             </div>
           </section>
 

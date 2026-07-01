@@ -631,7 +631,7 @@ export default function RemappingBooking() {
             </div>
             <div>
               <label className={LABEL}>Phone Number *</label>
-              <input type="tel" value={form.phone} onChange={e => update({ phone: e.target.value })} className={INPUT} placeholder="07700 000000" />
+              <input type="tel" value={form.phone} onChange={e => update({ phone: e.target.value })} className={INPUT} placeholder="Your phone number" />
             </div>
           </div>
         );
@@ -917,7 +917,7 @@ export default function RemappingBooking() {
       <div className="max-w-lg mx-auto px-4 sm:px-6 relative z-10">
 
         {/* Back to remapping */}
-        <Link to="/remapping"
+        <Link to="/ecu-remapping"
           className="inline-flex items-center gap-2 text-white/30 hover:text-[#FF7A00] transition-colors text-sm font-medium mb-6">
           <ArrowLeft size={14} /> Back to Remapping
         </Link>

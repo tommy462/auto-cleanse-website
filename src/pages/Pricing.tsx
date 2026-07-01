@@ -97,7 +97,7 @@ const Pricing = () => {
     },
     {
       question: 'What areas do you cover locally for DPF cleaning?',
-      answer: 'We cover a 10-mile radius from Totnes, Devon for our lowest rate. This includes much of South Devon. We also collect from Exeter, Plymouth, Torquay, Paignton, Newton Abbot and across Devon - same-day return guaranteed when collected before 10am.',
+      answer: 'We cover a 10-mile radius from Totnes, Devon for our lowest rate. This includes much of South Devon. We also collect from Exeter, Plymouth, Torquay, Paignton, Newton Abbot and across Devon - with same-day return often possible when collected before 10am.',
     },
     {
       question: 'How much does ECU remapping cost?',
@@ -132,7 +132,7 @@ const Pricing = () => {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": "DPF Cleaning & ECU Remapping",
-        "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://www.auto-cleanse.co.uk" },
+        "provider": { "@type": "LocalBusiness", "name": "Auto-Cleanse", "url": "https://www.auto-cleanse.co.uk" },
         "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
         "offers": [
           { "@type": "Offer", "name": "DPF Cleaning - Within 10 Miles of Totnes", "priceCurrency": "GBP", "price": "210.00", "description": "Professional DPF cleaning with collection and same-day return within 10 miles of Totnes, Devon." },
@@ -208,7 +208,7 @@ const Pricing = () => {
               <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 flex items-start gap-4 hover:border-[#FF7A00]/20 transition-colors">
                 <Check className="text-[#FF7A00] shrink-0 mt-0.5" size={20} />
                 <p className="text-white/70 text-sm md:text-base">
-                  Same-day return guarantee applies when ready for collection before 10am and within 30 miles of Totnes.
+                  Same-day return is usually possible when your filter is ready for collection before 10am and within 30 miles of Totnes.
                 </p>
               </div>
             </div>
@@ -270,7 +270,7 @@ const Pricing = () => {
             <Link to="/remapping-booking" className="btn-shine px-8 py-4 rounded-xl font-bold text-base text-white hover:text-white inline-block mr-4">
               Get a Remap Quote
             </Link>
-            <Link to="/remapping" className="px-8 py-4 rounded-xl font-bold text-base text-white border border-white/20 hover:bg-white/10 transition-colors inline-block">
+            <Link to="/ecu-remapping" className="px-8 py-4 rounded-xl font-bold text-base text-white border border-white/20 hover:bg-white/10 transition-colors inline-block">
               Learn About Remapping
             </Link>
           </div>

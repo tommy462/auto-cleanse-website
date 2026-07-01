@@ -7,6 +7,11 @@
   mpgGain?: string;
 }
 
+export interface VehicleContentSection {
+  heading: string;
+  paragraphs: string[];
+}
+
 export interface VehicleRemapData {
   slug: string;
   make: string;
@@ -21,6 +26,9 @@ export interface VehicleRemapData {
   relatedSlugs: string[];
   category: 'performance' | 'economy' | 'commercial' | 'mixed';
   fuelType: 'diesel' | 'petrol' | 'both';
+  /** Optional long-form, vehicle-specific prose rendered below the engine table
+   *  to add genuine depth on priority/rewritten pages. */
+  contentSections?: VehicleContentSection[];
 }
 
 export const VEHICLE_REMAPS: VehicleRemapData[] = [
@@ -43,7 +51,7 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
     faqs: [
       { q: 'How much power does an Audi A3 remap add?', a: 'The 2.0 TDI 150 typically gains around 40bhp and 60Nm of torque at Stage 1. Petrol variants see similar gains. Diesel A3s also improve real-world MPG by up to 15% thanks to the improved torque curve reducing the need to change down.' },
       { q: 'Will remapping my A3 void the warranty?', a: 'If your A3 is within the manufacturer warranty period, remapping may affect Audi\'s obligation to cover drivetrain faults. We recommend checking your warranty terms first. Once out of warranty, this is not a concern.' },
-      { q: 'Is an A3 remap safe and reliable?', a: 'Yes - Stage 1 remapping operates within the factory hardware limits. We adjust boost pressure, fuelling, and ignition timing within safe parameters, and we always carry out a pre-remap diagnostic to identify any existing faults before writing the map.' },
+      { q: 'Is an A3 remap safe and reliable?', a: 'Yes - Stage 1 remapping operates within the factory hardware limits. We adjust boost pressure, fuelling, and ignition timing within safe parameters, and we always carry out a pre-remap diagnostic to identify any existing faults before the remap is applied.' },
       { q: 'Can I get Stage 2 on my A3?', a: 'Stage 2 is possible on most A3 variants but requires supporting modifications - typically an uprated intercooler and a freer-flowing exhaust. Most A3 owners find Stage 1 delivers excellent real-world results without the added cost.' },
       { q: 'Do you offer mobile remapping for the A3 across Devon?', a: 'Yes - we cover the whole of Devon with our mobile remapping service. We come to your home or workplace with all the equipment needed to carry out the full remap on-site, no need to drive to us.' },
     ],
@@ -182,7 +190,7 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
     faqs: [
       { q: 'How much power does an S4 gain from a Stage 1 remap?', a: 'The B9 S4 354 typically gains around 65–70bhp at Stage 1, reaching around 420bhp and 580Nm. The B8 supercharged variant gains similarly proportionally. In both cases the real-world impact is dramatic - 0–60 drops noticeably and in-gear acceleration is transformed.' },
       { q: 'Is the B9 S4 turbocharged engine better for remapping than the B8 supercharged?', a: 'Both respond very well. The B9 turbocharged engine generally allows slightly higher gains at Stage 1. The B8 supercharged engine is also excellent and has a well-established tuning history. We carry maps for both generations.' },
-      { q: 'What supporting modifications does S4 Stage 1 require?', a: 'None - Stage 1 is a software-only upgrade. We read the ECU, write the new map, and verify the result. No hardware changes are required at Stage 1.' },
+      { q: 'What supporting modifications does S4 Stage 1 require?', a: 'None - Stage 1 is a software-only upgrade. We read the ECU, apply the new map, and verify the result. No hardware changes are required at Stage 1.' },
       { q: 'Does the S tronic DSG handle S4 Stage 1 power?', a: 'Yes - the S tronic in the S4 is well-engineered and handles Stage 1 power levels without issue. If you plan to go Stage 2 or beyond, a gearbox remap or transmission service is advisable.' },
       { q: 'Do you offer a home visit for S4 remapping in Devon?', a: 'Yes - we offer mobile remapping across Devon for the S4. Book a slot and we\'ll come to you with all the equipment needed. The remap typically takes around 1.5–2 hours including our pre-remap health check.' },
     ],
@@ -228,9 +236,45 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
     faqs: [
       { q: 'How much power does a BMW 320d gain from remapping?', a: 'The B47 190 variant typically gains around 45bhp and 60Nm at Stage 1, reaching approximately 235bhp and 460Nm. The N47 163 gains similar proportional improvements. In real-world driving this transforms the 320d from capable to genuinely quick.' },
       { q: 'Does the 320d remap improve MPG?', a: 'Yes - the torque improvements allow the engine to work less hard at motorway speeds. Drivers regularly report 10–12% real-world MPG gains after remapping, making the remap pay for itself quickly for high-mileage users.' },
-      { q: 'Is the BMW B47 engine reliable after remapping?', a: 'Yes - the B47 is a modern, robust diesel engine with good headroom at Stage 1 power levels. We always carry out a pre-remap diagnostic to identify any existing issues before writing the new map.' },
+      { q: 'Is the BMW B47 engine reliable after remapping?', a: 'Yes - the B47 is a modern, robust diesel engine with good headroom at Stage 1 power levels. We always carry out a pre-remap diagnostic to identify any existing issues before the remap is applied.' },
       { q: 'Can I get Stage 2 on my 320d?', a: 'The 320d is generally best suited to Stage 1. The B47 hardware doesn\'t offer as much headroom for Stage 2 as larger engines. Stage 1 delivers excellent results without the added cost and complexity of hardware upgrades.' },
       { q: 'Do you offer 320d remapping in Exeter and Plymouth?', a: 'Yes - both are within our mobile coverage area. We also cover Torbay, Totnes, Newton Abbot, and the wider Devon area. Book online or call us to arrange a mobile visit.' },
+    ],
+    contentSections: [
+      {
+        heading: 'What to expect from a BMW 320d remap',
+        paragraphs: [
+          'A Stage 1 remap on the 320d is less about outright top speed and more about how the car feels in everyday driving. The biggest change is mid-range torque: the extra 60Nm arrives from around 1,800–2,500rpm, which is exactly where you spend most of your time on Devon A-roads and the A38. Overtakes that previously needed a downshift happen in the current gear, and the car pulls cleanly out of roundabouts and junctions without the slightly hesitant, over-emissions-tuned feel BMW ships from the factory.',
+          'On the motorway the difference shows up as more relaxed cruising. Because the engine is doing the same work at lower effort, you sit in a higher gear for longer and the drivetrain feels less busy. It is a genuinely useful upgrade for high-mileage company-car and commuter drivers rather than a novelty.',
+        ],
+      },
+      {
+        heading: 'N47 vs B47: which 320d do you have?',
+        paragraphs: [
+          'Pre-2015 320ds (E90, early F30) use the N47 2.0 diesel, while F30 facelift and G20 cars use the newer B47. Both respond well to Stage 1, but they are not identical. The N47 is a proven, torquey unit that we remap regularly; on higher-mileage examples it is worth being aware of the well-documented timing-chain history, which is exactly why we run a full health check first. The B47 is smoother, cleaner and slightly more tuneable, and it is the engine in most F30 facelift and G20 cars on the road today.',
+          'Tell us your registration when you book and we will confirm the exact engine, the realistic gains for that variant, and whether your car is a good candidate before you commit to anything.',
+        ],
+      },
+      {
+        heading: 'Gearbox and economy: the ZF8 auto and real-world MPG',
+        paragraphs: [
+          'Most 320ds sold in the last decade use the ZF 8-speed automatic, which comfortably handles Stage 1 torque levels — it is a strong, well-proven gearbox and our maps stay within its safe operating window. Manual cars are equally suitable at Stage 1, though as with any torque increase a very worn clutch may show its age sooner, so we will flag it if yours feels marginal.',
+          'On economy, drivers who keep to a steady right foot typically see a real-world 8–12% MPG improvement, mostly from motorway and dual-carriageway cruising where the engine works less hard. If you use the extra performance at every opportunity, expect economy to stay roughly the same — the gain is a choice, not automatic.',
+        ],
+      },
+      {
+        heading: 'Is Stage 1 the right choice, and how we protect your engine',
+        paragraphs: [
+          'For the 320d we almost always recommend Stage 1. It needs no hardware changes, keeps the DPF and emissions equipment in place, and delivers the vast majority of the usable gain. Stage 2 offers limited additional benefit on this engine relative to the cost and supporting work involved, so it is rarely the sensible option for a road-going 320d.',
+          'Every remap starts with a paid diagnostic health check — we are upfront that this is not a free add-on. We read the ECU for stored and pending faults, check the DPF, EGR and boost readings, and only proceed if the engine is healthy. If we find an underlying problem, we tell you before any remap is applied. We keep a backup of your original file so the car can be returned to stock at any time.',
+        ],
+      },
+      {
+        heading: 'Insurance, warranty and the law',
+        paragraphs: [
+          'A remap is a modification, and you must declare it to your insurer — many specialist and mainstream insurers cover remapped vehicles at a reasonable premium, but not declaring it can invalidate a claim. If your 320d is still within BMW warranty, be aware a remap may affect drivetrain cover, so it is worth checking your terms first. Stage 1 remapping keeps your DPF and emissions hardware intact and is legal for road use in the UK; we do not offer DPF or emissions-equipment removal for road cars.',
+        ],
+      },
     ],
     relatedSlugs: ['bmw-330d-remap', 'bmw-520d-remap', 'audi-a4-remap'],
     category: 'economy', fuelType: 'diesel',
@@ -474,6 +518,42 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
       { q: 'Can you remap a T5 Transporter as well as a T6?', a: 'Yes - we remap both T5 and T6 Transporters. The 2.0 TDI engine used in the T5 from 2009 onwards responds well to remapping, as does the T6 and T6.1.' },
       { q: 'Do you offer fleet pricing for multiple Transporters?', a: 'Yes - contact us to discuss fleet pricing and scheduling. We can accommodate multiple vehicles and come to your premises.' },
       { q: 'Is mobile remapping available for Transporters?', a: 'Yes - our mobile service covers all Transporter variants across Devon. We come to your depot, yard, or home.' },
+    ],
+    contentSections: [
+      {
+        heading: 'What to expect from a Transporter remap',
+        paragraphs: [
+          'For a working van, the point of a Transporter remap is loaded driveability rather than headline power. The extra torque arrives low in the rev range, so a fully laden T5 or T6 pulls away from junctions and climbs Devon hills without you having to work the gearbox or bury the throttle. If you carry a tool-heavy payload, tow a trailer or plant, or run motorway miles between jobs, that is exactly where the difference is felt every day.',
+          'The lower-powered 102 and 140 vans benefit the most in relative terms — they go from feeling underpowered when loaded to genuinely comfortable. The 150 and 204 vans gain strong, usable mid-range that makes long runs far less tiring.',
+        ],
+      },
+      {
+        heading: 'T5, T6 and T6.1: engine variants',
+        paragraphs: [
+          'We remap the 2.0 TDI across the T5 (2009 on), T6 and T6.1. The single-turbo 102 and 150 and the twin-turbo 180/204 all respond well at Stage 1, but the safe, sensible gain differs by variant — a 102 will not reach 204 figures, and we would never claim it does. Tell us the exact model, year and power output when you book and we will confirm realistic numbers for your specific van.',
+          'Many Transporters are camper conversions. These remap just the same, and the added torque is particularly welcome when the van is loaded with a full interior, water and gear on hilly or coastal routes.',
+        ],
+      },
+      {
+        heading: 'Gearbox, economy and fleet considerations',
+        paragraphs: [
+          'DSG-equipped Transporters are well suited to Stage 1 — our maps respect the gearbox\'s torque limits. On manual vans, a healthy clutch copes fine, but a clutch already worn from heavy loaded use may need attention sooner, and we will tell you honestly if yours feels close.',
+          'Economy is the number one reason operators remap their vans: a better torque curve means less throttle to maintain speed, and drivers commonly report 10–18% real-world MPG improvements depending on load and route. Over 30,000+ miles a year that adds up quickly. For fleets we can apply a consistent map across multiple vans and schedule them around your work — ask about fleet pricing.',
+        ],
+      },
+      {
+        heading: 'Diagnostics first, and mobile visits to your yard',
+        paragraphs: [
+          'Every van gets a paid diagnostic health check before we touch the ECU — this is not a free add-on. We scan for faults, check the DPF and EGR condition and confirm the van is healthy before the remap is applied, because remapping a van with an existing problem simply masks it. We keep your original file backed up so the van can be returned to standard whenever you need.',
+          'Because downtime costs you money, we offer mobile ECU remapping across Devon and can come to your depot, yard or home — the same equipment and process as our Totnes workshop, without taking the van off the road for a trip.',
+        ],
+      },
+      {
+        heading: 'Insurance and the law',
+        paragraphs: [
+          'A remap is a declarable modification. Make sure your commercial or fleet policy is informed — most insurers cover remapped vans, but an undeclared modification can invalidate a claim. Stage 1 remapping keeps your DPF and emissions equipment in place and is road-legal; we do not remove DPFs or emissions hardware on road-going vehicles.',
+        ],
+      },
     ],
     relatedSlugs: ['vw-amarok-remap', 'ford-transit-remap', 'mercedes-sprinter-remap'],
     category: 'commercial', fuelType: 'diesel',

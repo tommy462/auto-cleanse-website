@@ -22,7 +22,7 @@ export function DpfTrustSignal() {
               DPF Specialists First
             </p>
             <p className="text-white/65 text-sm leading-relaxed">
-              We're DPF specialists who remap. Every map we write is tuned to
+              We're DPF specialists who remap. Every remap we apply is chosen to
               protect your filter - because we're the ones who clean them when
               they fail. Hundreds of DPFs cleaned across Devon, and that
               experience goes into every remap we do.

@@ -236,7 +236,7 @@ const Services = () => {
                   ))}
                 </ul>
                 <Link
-                  to="/remapping"
+                  to="/ecu-remapping"
                   className="relative z-10 mt-auto pt-4 border-t border-white/5 text-xs font-mono text-[#FF7A00]/70 uppercase tracking-wider hover:text-[#FF7A00] transition-colors"
                 >
                   Learn More →

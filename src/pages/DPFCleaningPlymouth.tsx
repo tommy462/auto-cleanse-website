@@ -47,12 +47,12 @@ const DPFCleaningPlymouth = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "AutoCleanse",
+        "name": "Auto-Cleanse",
         "description": "Professional DPF cleaning service collecting from Plymouth and South Devon. Based in Totnes, Devon.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-plymouth",
-        "telephone": "01803 269895",
+        "telephone": "+441803269895",
         "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [{ "@type": "City", "name": "Plymouth" }, { "@type": "AdministrativeArea", "name": "Devon" }],
         "priceRange": "££",
@@ -107,7 +107,7 @@ const DPFCleaningPlymouth = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Plymouth drivers facing a blocked DPF often get quoted £800–£2,500 for a replacement - including a part that may be aftermarket rather than OEM. Professional DPF cleaning with AutoCleanse starts from £210 and uses your original filter, restored to factory performance standards.
+                Plymouth drivers facing a blocked DPF often get quoted £800–£2,500 for a replacement - including a part that may be aftermarket rather than OEM. Professional DPF cleaning with AutoCleanse starts from £210, with nationwide postal DPF cleaning from £230, and uses your original filter, restored to factory performance standards. Collection and return may vary depending on location and availability.
               </p>
               <p>
                 For Plymouth fleet operators, the cost saving across multiple vehicles is substantial. We offer trade accounts and can work with your maintenance schedule to keep downtime minimal.
@@ -128,7 +128,7 @@ const DPFCleaningPlymouth = () => {
                 Plymouth has a large commercial vehicle population across logistics, construction, marine supply, and the military. AutoCleanse supports all these sectors with professional DPF cleaning for vans, HGVs, plant machinery, and specialist vehicles - with no-quibble turnaround and comprehensive test reporting.
               </p>
               <p>
-                We also offer <Link to="/remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Plymouth drivers wanting to combine a DPF clean with a Stage 1 or Stage 2 performance tune.
+                We also offer <Link to="/ecu-remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Plymouth drivers wanting to combine a DPF clean with a Stage 1 or Stage 2 performance tune.
               </p>
             </div>
           </section>
@@ -152,10 +152,11 @@ const DPFCleaningPlymouth = () => {
             <h3 className="relative z-10 text-2xl font-bold text-white mb-8 tracking-tight">Related Services</h3>
             <div className="relative z-10 space-y-4">
               {[
-                { to: '/services', label: 'Full range of filter cleaning services' },
+                { to: '/dpf-cleaning', label: 'DPF cleaning Devon - main hub' },
+                { to: '/dpf-diagnostics-devon', label: 'DPF diagnostics - find the cause first' },
+                { to: '/blocked-dpf-cleaning-devon', label: 'Blocked DPF? Warning light & limp mode help' },
                 { to: '/postal-dpf', label: 'Nationwide postal DPF cleaning' },
-                { to: '/remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
-                { to: '/dpf-cleaning-devon', label: 'DPF cleaning across Devon' },
+                { to: '/ecu-remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
                 { to: '/pricing', label: 'DPF cleaning prices' },
               ].map(({ to, label }) => (
                 <Link key={to} to={to} className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link">

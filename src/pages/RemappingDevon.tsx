@@ -44,12 +44,12 @@ const RemappingDevon = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "AutoCleanse",
+        "name": "Auto-Cleanse",
         "description": "ECU remapping service across Devon. Stage 1 and Stage 2 maps for cars, vans, HGVs and commercial vehicles. Based in Totnes, South Devon.",
         "url": "https://www.auto-cleanse.co.uk/remapping-devon",
-        "telephone": "01803 269895",
+        "telephone": "+441803269895",
         "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [
           { "@type": "City", "name": "Exeter" }, { "@type": "City", "name": "Plymouth" },
@@ -97,7 +97,7 @@ const RemappingDevon = () => {
                 A Stage 1 remap is the most popular choice for Devon drivers - no hardware changes required, road-legal, and immediately noticeable. We recalibrate your engine's fuelling, boost, ignition and torque curves to unlock performance that manufacturers deliberately restrict from the factory map.
               </p>
               <p>
-                Typical gains on a diesel car or van include 20–50bhp and 40–80Nm of torque, alongside improved fuel economy at motorway speeds. Every map is written specifically for your make, model, engine variant and current mileage - not a generic flash file.
+                Typical gains on a diesel car or van include 20–50bhp and 40–80Nm of torque, alongside improved fuel economy at motorway speeds. Every remap is matched specifically to your make, model, engine variant and current mileage - not a generic flash file.
               </p>
             </div>
           </section>

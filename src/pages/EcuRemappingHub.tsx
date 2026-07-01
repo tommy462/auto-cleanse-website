@@ -11,6 +11,7 @@ import RemapPortfolio from '../components/RemapPortfolio';
 import Reviews from '../components/Reviews';
 import LatestPosts from '../components/LatestPosts';
 import { getReviews, ECU_REVIEW_IDS } from '../data/reviews';
+import { localBusinessSchema } from '../data/business';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,19 +47,10 @@ const EcuRemappingHub = () => {
         description="Professional ECU remapping services. We offer Stage 1, Stage 2, Economy and Commercial Van tuning across Devon. Select your vehicle or location to learn more."
         path="/ecu-remapping"
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "AutoCleanse",
-        "description": "ECU remapping service across Devon. Stage 1 and Stage 2 maps for cars, vans, HGVs and commercial vehicles.",
-        "url": "https://www.auto-cleanse.co.uk/ecu-remapping",
-        "telephone": "01803269895",
-        "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
-        "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
-        "serviceType": "ECU Remapping",
-        "priceRange": "££"
-      })}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema({
+        description: 'ECU remapping service across Devon. Stage 1 and Stage 2 maps for cars, vans, HGVs and commercial vehicles. Available at our Totnes workshop or mobile across Devon.',
+        serviceType: 'ECU Remapping',
+      })) }} />
 
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
 
@@ -85,6 +77,19 @@ const EcuRemappingHub = () => {
             <p className="text-sm md:text-base text-white/40 mt-4 reveal-item">
               Running a modern diesel? We also handle{' '}
               <Link to="/adblue-repair-devon" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">AdBlue repair &amp; fault diagnostics</Link>.
+            </p>
+          </div>
+        </div>
+
+        {/* AI-answer block */}
+        <div className="max-w-4xl mx-auto mb-12 md:mb-16 reveal-container">
+          <div className="rounded-2xl bg-[#1A1D22] border border-white/5 border-l-4 border-l-[#FF7A00] p-6 md:p-8 reveal-item">
+            <p className="text-white/70 text-base md:text-lg leading-relaxed">
+              <span className="text-white font-bold">Auto-Cleanse</span> is a Totnes-based ECU remapping and DPF
+              cleaning specialist serving trade and private customers across Devon. ECU remapping is available at
+              our Totnes workshop or mobile across Devon - the remap we apply is a file matched to your exact
+              vehicle, applied carefully, with a paid diagnostic check before and after (not a generic flash-and-go).
+              For road cars we keep the DPF, EGR and AdBlue systems intact and road-legal.
             </p>
           </div>
         </div>

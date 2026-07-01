@@ -21,17 +21,17 @@ const About = () => {
     {
       icon: Shield,
       title: 'Service',
-      description: 'We pride ourselves on our service, delivering consistent quality and reliability that trade professionals can depend on.',
+      description: 'Consistent quality and reliability for both trade customers and private drivers - every DPF clean and every remap done properly.',
     },
     {
       icon: Shield,
-      title: 'Transparency',
-      description: 'Clear pricing, honest communication, and detailed reporting ensure you always know exactly what you\'re getting.',
+      title: 'Diagnostics first',
+      description: 'Every remap includes a paid diagnostic health check before and after. We only proceed on a healthy engine, and your original file is always saved.',
     },
     {
       icon: Zap,
-      title: 'Speed',
-      description: 'Same-day turnaround within 30 miles of Totnes when collected before 10am, minimising your vehicle downtime.',
+      title: 'Honest & local',
+      description: 'A genuine Totnes-based Devon business. Clear pricing, no off-the-shelf files, and we are upfront about what we do - including that DPF cleaning is workshop-based, not mobile.',
     },
   ];
 
@@ -64,16 +64,16 @@ const About = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="About AutoCleanse | DPF & Remapping Devon" description="AutoCleanse - Devon's DPF cleaning and ECU remapping specialists, based in Totnes. Trusted by trade garages, fleets and drivers across the South West." path="/about" />
+      <SEO title="About Auto-Cleanse | DPF Cleaning & ECU Remapping Devon" description="Auto-Cleanse is a Totnes-based DPF cleaning and ECU remapping specialist serving trade and private customers across Devon. DPF cleaning is workshop/off-vehicle or postal; ECU remapping is workshop or mobile." path="/about" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["LocalBusiness", "AutomotiveService"],
-        "name": "AutoCleanse",
+        "name": "Auto-Cleanse",
         "description": "Devon-based DPF cleaning and ECU remapping specialists. Operating from Totnes, serving trade garages, fleet operators and individual vehicle owners across Devon and the UK.",
         "url": "https://www.auto-cleanse.co.uk/about",
-        "telephone": "01803 269895",
+        "telephone": "+441803269895",
         "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
         "foundingDate": "2024",
@@ -92,7 +92,7 @@ const About = () => {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
             {splitText('About', 'text-white')}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
-              <span className="inline-block word-reveal text-[#FF7A00] ml-3">AutoCleanse</span>
+              <span className="inline-block word-reveal text-[#FF7A00] ml-3">Auto-Cleanse</span>
             </span>
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto rounded-full"></div>
@@ -102,30 +102,36 @@ const About = () => {
           {/* Story */}
           <div className="reveal-item">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tight leading-tight">
-              Your local, reliable, <br />
-              <span className="text-[#FF7A00] font-mono">trade-friendly</span> partner
+              Devon's DPF cleaning and <br />
+              <span className="text-[#FF7A00] font-mono">ECU remapping</span> specialist
             </h2>
             <div className="space-y-6 text-white/60 text-lg font-medium leading-relaxed">
               <p>
-                Based in Totnes, Devon, AutoCleanse has established itself as the go-to specialist for
-                DPF refurbishment services across South Devon and beyond. We understand the challenges
-                faced by trade garages, fleet operators, and plant machinery businesses when dealing
-                with blocked filters and the associated downtime.
+                Auto-Cleanse is a Totnes-based specialist in two things: professional DPF cleaning and
+                ECU remapping. We work with both trade customers - garages, fleets and plant businesses -
+                and private drivers across Devon, from Plymouth and Exeter to Torbay, the South Hams and
+                North Devon.
               </p>
 
               <div className="p-6 bg-[#1A1D22] border border-[#FF7A00]/20 rounded-2xl shadow-lg border-l-4 border-l-[#FF7A00] relative overflow-hidden group hover:border-[#FF7A00]/40 transition-all duration-300">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#FF7A00]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 <p className="relative z-10 text-white/80">
-                  Our commitment to same-day turnaround within a 30-mile radius of Totnes sets us apart
-                  in the industry. When your filter is ready for collection before 10am, we guarantee
-                  it will be back to you the same day, fully cleaned, tested, and certified.
+                  DPF cleaning is carried out off the vehicle using our workshop equipment in Totnes, with
+                  local collection across Devon and UK-wide postal cleaning - we do not offer mobile,
+                  roadside DPF cleaning. ECU remapping is available at our Totnes workshop or mobile across
+                  Devon, since remapping can be done at your home or workplace.
                 </p>
               </div>
 
               <p>
-                We work exclusively with trade professionals, offering transparent pricing and
-                reliable service that helps keep your operations running smoothly. From single
-                vehicle repairs to fleet maintenance programmes, we scale our service to meet your needs.
+                Every remap starts with a paid diagnostic health check before and after the work - not a
+                free scan - and the remap we apply is a file matched to your exact vehicle, applied carefully;
+                we don't write ECU files from scratch or use generic flash-and-go downloads. For road cars we
+                keep the DPF, EGR and AdBlue systems intact and road-legal.
+              </p>
+
+              <p className="text-white/40 text-base">
+                Auto-Cleanse is sometimes written as "AutoCleanse" online - it's the same Devon business either way.
               </p>
             </div>
           </div>

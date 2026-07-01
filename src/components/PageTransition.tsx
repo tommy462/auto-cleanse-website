@@ -33,7 +33,6 @@ import BookingSuccess from '../pages/BookingSuccess';
 import BookingCancel from '../pages/BookingCancel';
 import VehiclePerformanceLookup from '../pages/VehiclePerformanceLookup';
 import DiagnosticMatcher from '../pages/DiagnosticMatcher';
-import FuelSavingsCalculator from '../pages/FuelSavingsCalculator';
 import DVLADiagnostic from '../pages/DVLADiagnostic';
 import BookNow from '../pages/BookNow';
 import EcuCloning from '../pages/EcuCloning';
@@ -81,7 +80,6 @@ export default function PageTransition() {
                     <Route path="/ecu-remapping-locations" element={<RemappingLocationsHub />} />
                     <Route path="/vehicle-performance-lookup" element={<VehiclePerformanceLookup />} />
                     <Route path="/diagnostic-matcher" element={<DiagnosticMatcher />} />
-                    <Route path="/fuel-savings-calculator" element={<FuelSavingsCalculator />} />
                     
                     {/* Redirect old routes */}
                     <Route path="/remapping" element={<Navigate to="/ecu-remapping" replace />} />

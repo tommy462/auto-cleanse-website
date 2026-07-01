@@ -21,6 +21,21 @@
       "source": "/remapping-devon",
       "destination": "https://www.auto-cleanse.co.uk/ecu-remapping",
       "permanent": true
+    },
+    {
+      "source": "/fuel-savings-calculator",
+      "destination": "https://www.auto-cleanse.co.uk/dpf-cleaning",
+      "permanent": true
+    },
+    {
+      "source": "/ecu-tuning-devon",
+      "destination": "https://www.auto-cleanse.co.uk/ecu-remapping",
+      "permanent": true
+    },
+    {
+      "source": "/performance-remapping-devon",
+      "destination": "https://www.auto-cleanse.co.uk/stage-1-remaps-devon",
+      "permanent": true
     }
   ],
   "rewrites": [

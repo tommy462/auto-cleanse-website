@@ -590,7 +590,7 @@ const PostalDPF = () => {
                       <div className="text-white/70 text-lg font-medium space-y-1 bg-[#1A1D22] p-6 rounded-xl border border-white/5">
                         <p className="text-white font-bold">Auto-Cleanse</p>
                         <p>The Old Barn Industrial Estate</p>
-                        <p>Webbers Yard Estate</p>
+                        <p>Webbers Yard</p>
                         <p>Totnes, Devon</p>
                         <p className="text-[#FF7A00] font-bold text-xl mt-2">TQ9 6JY</p>
                         <p>United Kingdom</p>
@@ -674,6 +674,23 @@ const PostalDPF = () => {
                     <h3 className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-[#FF7A00] transition-colors relative z-10">{step.title}</h3>
                     <p className="text-white/60 text-lg font-medium leading-relaxed relative z-10">{step.description}</p>
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ — rendered visibly so it matches the FAQPage schema above */}
+        <section className="mb-24 reveal-container">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-8 tracking-tight text-center reveal-item">
+              Postal DPF Cleaning <span className="text-[#FF7A00]">FAQs</span>
+            </h2>
+            <div className="rounded-3xl bg-[#1A1D22] border border-white/5 divide-y divide-white/5 reveal-item">
+              {faqSchema.mainEntity.map((item) => (
+                <div key={item.name} className="p-6 md:p-8">
+                  <p className="text-white font-semibold text-base md:text-lg mb-2">{item.name}</p>
+                  <p className="text-white/55 text-sm md:text-base leading-relaxed">{item.acceptedAnswer.text}</p>
                 </div>
               ))}
             </div>

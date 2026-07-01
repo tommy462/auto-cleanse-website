@@ -95,7 +95,7 @@ export const REMAP_SERVICES = [
   {
     value: 'dpf-remap-bundle',
     label: 'DPF Clean + Remap Bundle',
-    description: 'DPF clean and ECU remap inc. labour to remove and refit - best-value package',
+    description: 'DPF clean combined with an ECU remap - removal and refit arranged subject to availability',
     icon: '🛠️',
   },
   {

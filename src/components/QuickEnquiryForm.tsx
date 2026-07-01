@@ -104,7 +104,7 @@ export default function QuickEnquiryForm({
         <div>
           <label htmlFor="qe-phone" className={labelClass}>Phone *</label>
           <input id="qe-phone" name="phone" type="tel" required autoComplete="tel"
-            value={data.phone} onChange={handleChange} placeholder="07700 900000" className={fieldClass} />
+            value={data.phone} onChange={handleChange} placeholder="Your phone number" className={fieldClass} />
         </div>
       </div>
 

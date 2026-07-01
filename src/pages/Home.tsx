@@ -211,16 +211,18 @@ const Home = () => {
             {
               "@context": "https://schema.org",
               "@type": ["AutomotiveService", "LocalBusiness"],
-              "name": "AutoCleanse",
-              "alternateName": ["Auto Cleanse", "AutoCleanse DPF", "AutoCleanse Remapping"],
+              "@id": "https://www.auto-cleanse.co.uk/#business",
+              "name": "Auto-Cleanse",
+              "alternateName": ["AutoCleanse", "Auto Cleanse", "AutoCleanse DPF", "AutoCleanse Remapping"],
               "description": "Professional DPF cleaning and ECU remapping services based in Totnes, Devon. Specialists in off-vehicle DPF cleaning, Stage 1 & 2 ECU remapping, SCR, DOC and GPF cleaning for cars, vans, HGVs and commercial fleets across Devon and the UK.",
               "url": "https://www.auto-cleanse.co.uk",
-              "telephone": "01803 269895",
+              "telephone": "+441803269895",
               "email": "info@auto-cleanse.co.uk",
               "image": "https://www.auto-cleanse.co.uk/og-image.jpg",
+              "logo": "https://www.auto-cleanse.co.uk/autocleanse-text-logo.png",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate",
+                "streetAddress": "The Old Barn Industrial Estate, Webbers Yard",
                 "addressLocality": "Totnes",
                 "addressRegion": "Devon",
                 "postalCode": "TQ9 6JY",
@@ -257,8 +259,8 @@ const Home = () => {
                 { "@type": "Country", "name": "United Kingdom" }
               ],
               "serviceType": ["DPF Cleaning", "ECU Remapping", "SCR Cleaning", "DOC Cleaning", "GPF Cleaning", "EGR Cleaning"],
-              "hasOfferingCatalog": {
-                "@type": "OfferingCatalog",
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
                 "name": "DPF Cleaning & ECU Remapping Services",
                 "itemListElement": [
                   {
@@ -332,7 +334,7 @@ const Home = () => {
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "01803 269895",
+                "telephone": "+441803269895",
                 "contactType": "customer service",
                 "availableLanguage": "English",
                 "areaServed": "GB"
@@ -342,7 +344,7 @@ const Home = () => {
               "@context": "https://schema.org",
               "@type": "Service",
               "name": "Off-Vehicle DPF Cleaning Devon",
-              "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://www.auto-cleanse.co.uk" },
+              "provider": { "@type": "LocalBusiness", "name": "Auto-Cleanse", "url": "https://www.auto-cleanse.co.uk" },
               "areaServed": [
                 { "@type": "AdministrativeArea", "name": "Devon" },
                 { "@type": "Country", "name": "United Kingdom" }
@@ -360,7 +362,7 @@ const Home = () => {
               "@context": "https://schema.org",
               "@type": "Service",
               "name": "ECU Remapping Devon",
-              "provider": { "@type": "LocalBusiness", "name": "AutoCleanse", "url": "https://www.auto-cleanse.co.uk" },
+              "provider": { "@type": "LocalBusiness", "name": "Auto-Cleanse", "url": "https://www.auto-cleanse.co.uk" },
               "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
               "description": "Stage 1 and Stage 2 ECU remapping for cars, vans, HGVs and commercial vehicles in Devon. Improved power, torque and fuel economy. Custom fleet maps available.",
               "url": "https://www.auto-cleanse.co.uk/remapping"
@@ -398,7 +400,7 @@ const Home = () => {
                   "name": "Is ECU remapping legal in the UK?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes, ECU remapping is legal in the UK. You should notify your insurance provider as it counts as a modification. We write all maps within safe mechanical limits."
+                    "text": "Yes, ECU remapping is legal in the UK. You should notify your insurance provider as it counts as a modification. Every remap we apply stays within safe mechanical limits."
                   }
                 },
                 {
@@ -508,6 +510,20 @@ const Home = () => {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* AI-answer / entity summary block */}
+      <section className="relative z-10 py-8 lg:py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-[#1A1D22] border border-white/5 border-l-4 border-l-[#FF7A00] p-6 md:p-8">
+            <p className="text-white/70 text-base md:text-lg leading-relaxed">
+              <span className="text-white font-bold">Auto-Cleanse</span> is a Totnes-based DPF cleaning and ECU
+              remapping specialist serving trade and private customers across Devon. DPF cleaning is workshop /
+              off-vehicle or postal (we do not offer mobile DPF cleaning), while ECU remapping is available at
+              our Totnes workshop or mobile across Devon. Diagnostics are a paid check before and after every remap.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -667,7 +683,7 @@ const Home = () => {
                 <h3 className="text-lg font-bold text-white mb-4">Explore Our Services</h3>
                 <div className="space-y-2">
                   <Link
-                    to="/remapping"
+                    to="/ecu-remapping"
                     className="block text-[#FF7A00] hover:text-[#FFB37A] transition-colors text-sm font-medium"
                   >
                     ECU remapping - Stage 1, Stage 2 &amp; custom maps →
@@ -832,7 +848,7 @@ const Home = () => {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link
-                    to="/remapping"
+                    to="/ecu-remapping"
                     className="btn-shine px-8 py-4 rounded-xl font-bold text-base text-white hover:text-white inline-block"
                   >
                     Learn About Remapping

@@ -47,12 +47,12 @@ const DPFCleaningTorquay = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "AutoCleanse",
+        "name": "Auto-Cleanse",
         "description": "Professional DPF cleaning service for Torquay, Paignton, Brixham and the English Riviera. Based in Totnes, Devon.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-torquay",
-        "telephone": "01803 269895",
+        "telephone": "+441803269895",
         "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [
           { "@type": "City", "name": "Torquay" }, { "@type": "City", "name": "Paignton" },
@@ -110,7 +110,7 @@ const DPFCleaningTorquay = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                For Torquay-area customers, DPF cleaning with AutoCleanse starts from £210 for vehicles within 10 miles of Totnes - which includes most of the Torbay area. This is a fixed, transparent price with no hidden extras. Nationwide postal cleaning is also available from £230 if you prefer to arrange courier delivery.
+                For Torquay-area customers, DPF cleaning with AutoCleanse starts from £210, with nationwide postal DPF cleaning from £230 if you prefer to arrange courier delivery. Both are fixed, transparent prices with no hidden extras. Collection and return may vary depending on location and availability, so call us and we'll confirm the best option for Torquay and the wider Torbay area.
               </p>
               <p>
                 Compare that to a replacement DPF, which can cost Torquay drivers £600–£2,000+ fitted, often using an aftermarket part that doesn't meet OEM specifications. Professional cleaning is the smarter choice for most blocked filters.
@@ -131,7 +131,7 @@ const DPFCleaningTorquay = () => {
                 Torbay has a busy independent garage sector and a range of fleet operators across tourism, construction and logistics. AutoCleanse supports all of these with trade accounts, fast turnaround and the flexibility to handle multiple filters simultaneously. Our process is fully documented, which is ideal for warranty or insurance records.
               </p>
               <p>
-                We also offer <Link to="/remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Torquay-area vehicles seeking a Stage 1 or Stage 2 performance map alongside DPF cleaning.
+                We also offer <Link to="/ecu-remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Torquay-area vehicles seeking a Stage 1 or Stage 2 performance map alongside DPF cleaning.
               </p>
             </div>
           </section>
@@ -149,15 +149,36 @@ const DPFCleaningTorquay = () => {
             </div>
           </section>
 
+          {/* Torquay DPF FAQs */}
+          <section className="relative p-10 md:p-12 rounded-[2.5rem] bg-[#1A1D22] border border-white/5 reveal-item overflow-hidden shadow-xl shadow-black">
+            <h2 className="relative z-10 text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight">Torquay DPF Cleaning FAQs</h2>
+            <div className="relative z-10 space-y-6 text-white/60 text-lg font-medium leading-relaxed">
+              <div>
+                <p className="text-white font-bold mb-1">Do you collect from my part of Torquay?</p>
+                <p>We regularly collect across Torquay including Chelston, St Marychurch, Babbacombe and the harbourside, plus Paignton and Brixham. If you are just outside these areas, call us and we will confirm a collection for your postcode.</p>
+              </div>
+              <div>
+                <p className="text-white font-bold mb-1">I run a garage in Torbay - can you handle trade work?</p>
+                <p>Yes. We work with a number of Torbay independent garages on a trade basis, handling multiple filters with documented before-and-after flow testing for your customer records. Ask about trade accounts.</p>
+              </div>
+              <div>
+                <p className="text-white font-bold mb-1">Is this the same as an in-car DPF clean?</p>
+                <p>No. This is off-vehicle cleaning at our Totnes workshop - the filter is removed and deep cleaned, which is far more thorough than an additive or forced regen. It is a workshop-based service, not a mobile one.</p>
+              </div>
+            </div>
+          </section>
+
           <section className="relative p-10 md:p-12 rounded-[2.5rem] bg-[#1A1D22] border border-white/5 reveal-item group hover:border-[#FF7A00]/30 transition-all duration-500 overflow-hidden shadow-xl shadow-black">
             <h3 className="relative z-10 text-2xl font-bold text-white mb-8 tracking-tight">Related Services</h3>
             <div className="relative z-10 space-y-4">
               {[
-                { to: '/services', label: 'Full range of filter cleaning services' },
+                { to: '/dpf-cleaning', label: 'DPF cleaning Devon - main hub' },
                 { to: '/dpf-cleaning-paignton', label: 'DPF cleaning Paignton' },
-                { to: '/remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
-                { to: '/dpf-cleaning-devon', label: 'DPF cleaning across Devon' },
+                { to: '/dpf-diagnostics-devon', label: 'DPF diagnostics - find the cause first' },
+                { to: '/blocked-dpf-cleaning-devon', label: 'Blocked DPF? Warning light & limp mode help' },
+                { to: '/ecu-remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
                 { to: '/pricing', label: 'DPF cleaning prices' },
+                { to: '/book', label: 'Book a DPF clean or collection' },
               ].map(({ to, label }) => (
                 <Link key={to} to={to} className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link">
                   <ArrowRight size={20} className="text-[#FF7A00] mr-4 group-hover/link:translate-x-2 transition-transform" />

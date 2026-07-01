@@ -1,6 +1,6 @@
 ﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
-import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -62,12 +62,12 @@ const Contact = () => {
         "url": "https://www.auto-cleanse.co.uk/contact",
         "mainEntity": {
           "@type": ["LocalBusiness", "AutomotiveService"],
-          "name": "AutoCleanse",
-          "telephone": "01803 269895",
+          "name": "Auto-Cleanse",
+          "telephone": "+441803269895",
           "email": "info@auto-cleanse.co.uk",
-          "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+          "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
           "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" }],
-          "contactPoint": { "@type": "ContactPoint", "telephone": "01803 269895", "contactType": "customer service", "areaServed": "GB", "availableLanguage": "English" }
+          "contactPoint": { "@type": "ContactPoint", "telephone": "+441803269895", "contactType": "customer service", "areaServed": "GB", "availableLanguage": "English" }
         }
       })}} />
 
@@ -129,9 +129,22 @@ const Contact = () => {
                     <MapPin size={24} className="text-[#FF7A00]" />
                   </div>
                   <div>
-                    <p className="text-white/40 font-mono text-sm uppercase tracking-wider mb-1">Service Area</p>
-                    <p className="text-xl font-bold text-white">Totnes, Devon</p>
-                    <p className="text-white/50 text-sm mt-1">30-mile collection radius</p>
+                    <p className="text-white/40 font-mono text-sm uppercase tracking-wider mb-1">Workshop</p>
+                    <p className="text-lg font-bold text-white leading-snug">Auto-Cleanse</p>
+                    <p className="text-white/60 text-sm mt-1 leading-relaxed">
+                      The Old Barn Industrial Estate, Webbers Yard,<br />Totnes, Devon, TQ9 6JY
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-6 group/item">
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover/item:border-[#FF7A00]/50 group-hover/item:bg-[#FF7A00]/10 transition-all duration-300">
+                    <Clock size={24} className="text-[#FF7A00]" />
+                  </div>
+                  <div>
+                    <p className="text-white/40 font-mono text-sm uppercase tracking-wider mb-1">Opening Hours</p>
+                    <p className="text-lg font-bold text-white">Monday-Friday, 08:00-17:00</p>
+                    <p className="text-white/50 text-sm mt-1">Serving trade &amp; private customers across Devon. DPF cleaning is workshop/off-vehicle or postal; ECU remapping is workshop or mobile across Devon.</p>
                   </div>
                 </div>
               </div>

@@ -46,7 +46,7 @@ const Footer = () => {
     { name: 'Audi A3', path: '/audi-a3-remap' },
     { name: 'BMW 3 Series', path: '/bmw-320d-remap' },
     { name: 'Land Rover Discovery', path: '/land-rover-discovery-remap' },
-    { name: 'View All', path: '/vehicle-remapping' },
+    { name: 'View All', path: '/vehicle-performance-lookup' },
   ];
 
   return (
@@ -64,7 +64,7 @@ const Footer = () => {
               Ready to restore<br /><span className="text-[#FF7A00] italic font-medium">expertly?</span>
             </h2>
             <p className="text-sm text-white/60 max-w-sm font-medium leading-relaxed">
-              Professional DPF cleaning &amp; ECU remapping services. Same-day return within 30 miles of Totnes. Trade-friendly pricing.
+              Professional DPF cleaning &amp; ECU remapping services. Fast turnaround, often same-day within 30 miles of Totnes. Trade-friendly pricing.
             </p>
             <div className="pt-2 flex flex-col sm:flex-row lg:flex-col gap-4">
               <MagneticButton className="inline-block">
@@ -83,7 +83,7 @@ const Footer = () => {
             <address className="not-italic space-y-3 text-sm text-white/60 font-medium pt-2">
               <p className="flex items-start gap-3">
                 <MapPin size={16} className="text-[#FF7A00] shrink-0 mt-0.5" />
-                <span>AutoCleanse, The Old Barn Industrial Estate, Webbers Yard Estate, Totnes, Devon, TQ9 6JY</span>
+                <span>AutoCleanse, The Old Barn Industrial Estate, Webbers Yard, Totnes, Devon, TQ9 6JY</span>
               </p>
               <p className="flex items-center gap-3">
                 <Phone size={16} className="text-[#FF7A00] shrink-0" />

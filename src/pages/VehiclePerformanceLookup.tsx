@@ -937,8 +937,8 @@ export default function VehiclePerformanceLookup() {
         "applicationCategory": "Automotive Business",
         "provider": {
           "@type": "LocalBusiness",
-          "name": "AutoCleanse",
-          "telephone": "01803269895",
+          "name": "Auto-Cleanse",
+          "telephone": "+441803269895",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "The Old Barn Industrial Estate, Webbers Yard",

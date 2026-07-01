@@ -231,7 +231,7 @@ const Maintenance = () => {
                 </li>
                 <li className="flex items-start text-white/70 text-lg font-medium">
                   <div className="w-2.5 h-2.5 bg-[#FF7A00] rounded-full mr-4 mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(255,122,0,0.8)]"></div>
-                  <span>Same-day return guarantee</span>
+                  <span>Fast, often same-day return</span>
                 </li>
               </ul>
 

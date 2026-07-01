@@ -11,8 +11,38 @@ import QuickEnquiryForm from '../components/QuickEnquiryForm';
 import Reviews from '../components/Reviews';
 import { getReviews, ECU_COMPACT_REVIEW_IDS } from '../data/reviews';
 import { getLocationBySlug, REMAP_LOCATIONS } from '../data/remapping-locations';
+import { localBusinessSchema } from '../data/business';
+import { getVehicleBySlug } from '../data/vehicle-remapping';
 import { DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
 import { PRIORITY_SLUGS } from '../data/campaign';
+
+// Curated default set of high-interest vehicles to cross-link from location pages.
+const DEFAULT_POPULAR_VEHICLES = [
+  'bmw-320d-remap',
+  'vw-transporter-remap',
+  'ford-transit-custom-remap',
+  'ford-ranger-remap',
+  'audi-a3-remap',
+  'vw-golf-gtd-remap',
+];
+
+// Major towns that get a dedicated, richer "Popular vehicles we remap in {town}" section.
+const MAJOR_TOWN_SLUGS = new Set([
+  'ecu-remapping-torquay',
+  'ecu-remapping-exeter',
+  'ecu-remapping-newton-abbot',
+  'ecu-remapping-paignton',
+  'ecu-remapping-plymouth',
+  'ecu-remapping-totnes',
+  'ecu-remapping-barnstaple',
+]);
+
+// Cross-links to core remapping services shown on every location page.
+const RELATED_SERVICES = [
+  { to: '/ecu-remapping', label: 'ECU Remapping (main guide)' },
+  { to: '/mobile-ecu-remapping-devon', label: 'Mobile ECU Remapping in Devon' },
+  { to: '/stage-1-remaps-devon', label: 'Stage 1 Remaps in Devon' },
+];
 
 const SERVICES = [
   { icon: <Zap size={20} />, title: 'Stage 1 Remap', desc: 'Software-only tune for standard vehicles - the most popular upgrade. More power, better torque, sharper throttle.' },
@@ -20,7 +50,7 @@ const SERVICES = [
   { icon: <Fuel size={20} />, title: 'Economy Remap', desc: 'Diesel-focused tuning to reduce fuel consumption - popular with van drivers and high-mileage commuters.' },
   { icon: <Truck size={20} />, title: 'Van & Commercial', desc: 'Transit, Sprinter, Crafter, Trafic and more. Better pulling power and economy for working vehicles.' },
   { icon: <Settings2 size={20} />, title: 'Custom / Fleet Map', desc: 'Consistent mapping across multiple vehicles, tailored for fleet operators and commercial customers.' },
-  { icon: <Wrench size={20} />, title: 'DPF Clean + Remap Bundle', desc: 'Combined DPF clean and ECU remap - inc. labour to remove and refit. Best-value diesel health package.' },
+  { icon: <Wrench size={20} />, title: 'DPF Clean + Remap Bundle', desc: 'Combine a professional DPF clean with an ECU remap where suitable. Removal and refit can be arranged subject to availability, or trade customers can supply the filter off the vehicle.' },
 ];
 
 const TRUST = [
@@ -39,6 +69,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="w-full flex items-start justify-between gap-4 py-5 text-left group"
       >
         <span className="text-white font-semibold text-sm leading-snug group-hover:text-[#FF7A00] transition-colors">
@@ -49,9 +80,15 @@ function FaqItem({ q, a }: { q: string; a: string }) {
           className={`text-[#FF7A00] shrink-0 mt-0.5 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
         />
       </button>
-      {open && (
-        <p className="text-white/50 text-sm leading-relaxed pb-5 -mt-1">{a}</p>
-      )}
+      {/* Answer is always rendered in the DOM so it appears in the prerendered
+          HTML (indexable); it is only visually collapsed when the accordion is
+          closed, preserving the click-to-expand UX. */}
+      <p
+        className={`text-white/50 text-sm leading-relaxed pb-5 -mt-1${open ? '' : ' hidden'}`}
+        aria-hidden={!open}
+      >
+        {a}
+      </p>
     </div>
   );
 }
@@ -60,37 +97,44 @@ export default function RemappingLocation() {
   const { slug } = useParams<{ slug: string }>();
   const location = getLocationBySlug(slug ?? '');
 
-  if (!location) return <Navigate to="/remapping" replace />;
+  if (!location) return <Navigate to="/ecu-remapping" replace />;
 
   const relatedLocations = location.relatedSlugs
     .map((s) => REMAP_LOCATIONS.find((l) => l.slug === s))
     .filter(Boolean) as typeof REMAP_LOCATIONS;
 
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': ['AutomotiveService', 'LocalBusiness'],
-    name: 'AutoCleanse',
-    description: `ECU remapping service covering ${location.name} and ${location.region}. Stage 1, Stage 2, economy and mobile remapping for cars, vans and commercial vehicles.`,
-    url: `https://www.auto-cleanse.co.uk/${location.slug}`,
-    telephone: '01803269895',
-    email: 'info@auto-cleanse.co.uk',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'The Old Barn Industrial Estate, Webbers Yard',
-      addressLocality: 'Totnes',
-      addressRegion: 'Devon',
-      postalCode: 'TQ9 6JY',
-      addressCountry: 'GB',
-    },
-    geo: { '@type': 'GeoCoordinates', latitude: '50.4316', longitude: '-3.6844' },
+  const isMajorTown = MAJOR_TOWN_SLUGS.has(location.slug);
+  const popularVehicles = (location.popularVehicles ?? DEFAULT_POPULAR_VEHICLES)
+    .map((s) => getVehicleBySlug(s))
+    .filter(Boolean)
+    .slice(0, 6) as ReturnType<typeof getVehicleBySlug>[];
+  // Don't self-link (e.g. the mobile-ecu-remapping-devon page shouldn't link to itself).
+  const relatedServices = RELATED_SERVICES.filter((s) => s.to !== `/${location.slug}`);
+
+  const schema = localBusinessSchema({
+    description: `ECU remapping service covering ${location.name} and ${location.region}. Stage 1, Stage 2, economy and mobile remapping for cars, vans and commercial vehicles. DPF cleaning is carried out off the vehicle at our Totnes workshop, not at the roadside.`,
+    serviceType: 'ECU Remapping',
     areaServed: [
       { '@type': 'City', name: location.name },
       { '@type': 'AdministrativeArea', name: 'Devon' },
       ...location.nearbyAreas.map((a) => ({ '@type': 'City', name: a })),
     ],
-    serviceType: 'ECU Remapping',
-    priceRange: '££',
-  };
+  });
+
+  // FAQPage schema built from the same location.faqs data that renders on the
+  // page, so the structured data always matches the visible FAQ text exactly.
+  const faqSchema =
+    location.faqs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: location.faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.q,
+            acceptedAnswer: { '@type': 'Answer', text: f.a },
+          })),
+        }
+      : null;
 
   return (
     <div className="bg-[#0A0A0A] min-h-screen">
@@ -103,6 +147,12 @@ export default function RemappingLocation() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
       <section className="pt-32 pb-20 relative overflow-hidden">
@@ -166,6 +216,26 @@ export default function RemappingLocation() {
           </div>
         </div>
       </section>
+
+      {/* ── Page-specific content (unique, non-templated) ─────────────────── */}
+      {location.extraSections && location.extraSections.length > 0 && (
+        <section className="py-16 border-t border-white/5">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            {location.extraSections.map((sec) => (
+              <div key={sec.heading}>
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tighter text-white mb-5">
+                  {sec.heading}
+                </h2>
+                <div className="space-y-4">
+                  {sec.paragraphs.map((para, i) => (
+                    <p key={i} className="text-white/55 text-sm sm:text-base leading-relaxed">{para}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── Services ──────────────────────────────────────────────────────── */}
       <section className="py-16 border-t border-white/5">
@@ -299,6 +369,60 @@ export default function RemappingLocation() {
               >
                 {area}
               </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Popular vehicles we remap ─────────────────────────────────────── */}
+      {popularVehicles.length > 0 && (
+        <section className="py-16 border-t border-white/5">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-8">
+              <p className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest mb-3">Vehicles we tune</p>
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tighter text-white">
+                {isMajorTown
+                  ? `Popular Vehicles We Remap in ${location.name}`
+                  : 'Popular Vehicles We Remap'}
+              </h2>
+              <p className="text-white/40 text-sm mt-2">
+                {location.popularVehiclesIntro ?? 'See typical Stage 1 gains, engine options and FAQs for some of the models we remap most.'}
+              </p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+              {popularVehicles.map((veh) => (
+                <Link
+                  key={veh!.slug}
+                  to={`/${veh!.slug}`}
+                  className="rounded-2xl bg-[#1A1D22] border border-white/5 p-4 sm:p-5 hover:border-[#FF7A00]/30 transition-colors group"
+                >
+                  <p className="text-white font-bold text-sm group-hover:text-[#FF7A00] transition-colors">
+                    {veh!.fullName} Remap
+                  </p>
+                  <p className="text-white/30 text-xs mt-1 flex items-center gap-1">
+                    Gains & FAQs <ArrowRight size={11} />
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Related remapping services ─────────────────────────────────────── */}
+      <section className="py-14 border-t border-white/5">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest mb-6">Related services</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            {relatedServices.map((svc) => (
+              <Link
+                key={svc.to}
+                to={svc.to}
+                className="rounded-2xl bg-[#1A1D22] border border-white/5 p-5 hover:border-[#FF7A00]/30 transition-colors group flex items-center justify-between gap-3"
+              >
+                <span className="text-white font-bold text-sm group-hover:text-[#FF7A00] transition-colors">{svc.label}</span>
+                <ArrowRight size={14} className="text-[#FF7A00] shrink-0" />
+              </Link>
             ))}
           </div>
         </div>

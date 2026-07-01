@@ -1,4 +1,4 @@
-import { readFileSync, mkdirSync, writeFileSync } from 'fs';
+import { readFileSync, mkdirSync, writeFileSync, rmSync, readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -28,6 +28,51 @@ const template = rawTemplate
 
 // De-duplicate routes so a page (e.g. "/") is never rendered or listed twice.
 const uniqueRoutes = [...new Set(routes)];
+
+// ── Remove stale prerendered routes ────────────────────────────────────────
+// Any dist/<route>/index.html that this app previously prerendered but which is
+// no longer in `routes` is deleted, so retired pages never linger in the build
+// output (defensive — also protects standalone `npm run prerender` runs).
+// Only files that carry our SSR app-root marker are ever removed, so genuine
+// static assets are never touched.
+const SSR_MARKER = 'min-h-screen bg-[#0A0A0A]';
+const distDir = join(projectRoot, 'dist');
+const expectedRoutes = new Set(uniqueRoutes);
+
+function findPrerenderedRoutes(dir) {
+  const found = [];
+  let entries;
+  try {
+    entries = readdirSync(dir, { withFileTypes: true });
+  } catch {
+    return found;
+  }
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    if (['assets', 'data', 'blog-covers'].includes(entry.name)) continue;
+    const full = join(dir, entry.name);
+    const route = full.slice(distDir.length).replace(/\\/g, '/');
+    found.push(...findPrerenderedRoutes(full));
+    try {
+      const html = readFileSync(join(full, 'index.html'), 'utf-8');
+      if (html.includes(SSR_MARKER)) found.push(route);
+    } catch {
+      /* no index.html in this directory */
+    }
+  }
+  return found;
+}
+
+let removedStale = 0;
+for (const route of findPrerenderedRoutes(distDir)) {
+  if (expectedRoutes.has(route)) continue;
+  rmSync(join(distDir, route.slice(1)), { recursive: true, force: true });
+  console.log(`  ✗ removed stale route ${route}`);
+  removedStale++;
+}
+if (removedStale > 0) {
+  console.log(`Removed ${removedStale} stale prerendered route(s).`);
+}
 
 const total = uniqueRoutes.length;
 let rendered = 0;
@@ -83,7 +128,17 @@ console.log(`\n${rendered} pages rendered${errors > 0 ? `, ${errors} errors` : '
 
 // ── Generate sitemap.xml with tiered priorities ───────────────────────────
 const HOSTNAME = 'https://www.auto-cleanse.co.uk';
-const lastmod = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+const lastmod = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (build date)
+
+// Per-URL lastmod for blog posts: use the post's updated date, else its publish date.
+function normaliseDate(value) {
+  if (!value) return null;
+  const d = new Date(value);
+  return isNaN(+d) ? null : d.toISOString().slice(0, 10);
+}
+const blogLastmod = new Map(
+  (blogPosts ?? []).map((p) => [`/blog/${p.slug}`, normaliseDate(p.updated) || normaliseDate(p.date) || lastmod])
+);
 
 const CORE_HUBS = new Set([
   '/services',
@@ -116,7 +171,8 @@ const sitemapBody = uniqueRoutes
   .map((url) => {
     const { priority, changefreq } = rankFor(url);
     const loc = `${HOSTNAME}${url === '/' ? '/' : url}`;
-    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+    const urlLastmod = blogLastmod.get(url) || lastmod;
+    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${urlLastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
   })
   .join('\n');
 

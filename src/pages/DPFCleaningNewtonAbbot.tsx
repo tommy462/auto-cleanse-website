@@ -43,7 +43,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'What does DPF cleaning cost?',
-    a: 'Professional DPF cleaning starts from £210. The exact price depends on the filter and vehicle, so call us on 01803 269895 for a quick quote.',
+    a: 'Professional DPF cleaning starts from £210, with nationwide postal DPF cleaning from £230. Collection and return may vary depending on location and availability, so call us on 01803 269895 for a quick quote.',
   },
   {
     q: 'Do you remove and refit the DPF for me?',
@@ -94,19 +94,19 @@ const DPFCleaningNewtonAbbot = () => {
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title="DPF Cleaning Newton Abbot | Same-Day Turnaround | AutoCleanse"
+        title="DPF Cleaning Newton Abbot | Fast Turnaround | AutoCleanse"
         description="Professional DPF cleaning near Newton Abbot, just 8 miles from our Totnes workshop. We collect, clean to high flow efficiency and return, often same day. Cars, vans, HGVs and fleets."
         path="/dpf-cleaning-newton-abbot"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "AutoCleanse",
+        "name": "Auto-Cleanse",
         "description": "Professional DPF cleaning service collecting from Newton Abbot and South Devon. Based in Totnes, Devon, approximately 8 miles from Newton Abbot.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-newton-abbot",
-        "telephone": "01803 269895",
+        "telephone": "+441803269895",
         "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [{ "@type": "City", "name": "Newton Abbot" }, { "@type": "AdministrativeArea", "name": "Devon" }],
         "priceRange": "££",
@@ -166,7 +166,7 @@ const DPFCleaningNewtonAbbot = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                A replacement DPF for a Newton Abbot driver is commonly quoted at £800 to £2,500, and the part is often a non-OEM aftermarket unit. Professional cleaning with AutoCleanse starts from £210 and keeps your original, vehicle-matched filter, restored to factory performance and supplied with before-and-after flow and weight test data.
+                A replacement DPF for a Newton Abbot driver is commonly quoted at £800 to £2,500, and the part is often a non-OEM aftermarket unit. Professional DPF cleaning with AutoCleanse starts from £210, with nationwide postal DPF cleaning from £230, and keeps your original, vehicle-matched filter, restored to factory performance and supplied with before-and-after flow and weight test data. Collection and return may vary depending on location and availability.
               </p>
               <p>
                 For local garages and fleets, the saving across multiple vehicles quickly adds up. We offer trade accounts and can fit around your maintenance schedule to keep both cost and downtime to a minimum.

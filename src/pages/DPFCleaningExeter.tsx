@@ -47,12 +47,12 @@ const DPFCleaningExeter = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "AutoCleanse",
+        "name": "Auto-Cleanse",
         "description": "Professional DPF cleaning service collecting from Exeter and across Devon. Based in Totnes, Devon.",
         "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-exeter",
-        "telephone": "01803 269895",
+        "telephone": "+441803269895",
         "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard Estate", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
+        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [{ "@type": "City", "name": "Exeter" }, { "@type": "AdministrativeArea", "name": "Devon" }],
         "priceRange": "££",
@@ -107,7 +107,7 @@ const DPFCleaningExeter = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                A replacement DPF can cost Exeter drivers anywhere from £500 to over £2,000 fitted - and many aftermarket units don't match OEM performance. Professional cleaning by AutoCleanse typically costs £210–£230 and restores the original filter to factory specification, including full flow testing and a detailed report.
+                A replacement DPF can cost Exeter drivers anywhere from £500 to over £2,000 fitted - and many aftermarket units don't match OEM performance. Professional DPF cleaning by AutoCleanse starts from £210, with nationwide postal DPF cleaning from £230, and restores the original filter to factory specification, including full flow testing and a detailed report. Collection and return may vary depending on location and availability.
               </p>
               <p>
                 For Exeter garages managing customer vehicles, our trade-friendly process minimises downtime and provides a cost-effective, documented solution that keeps vehicles on the road and customers satisfied.
@@ -149,8 +149,27 @@ const DPFCleaningExeter = () => {
                 As well as Exeter itself, we regularly collect from Exmouth, Topsham, Crediton, Honiton, Sidmouth and the wider East Devon area. If you're not sure whether we cover your location, call us on 01803 269895 - we'll confirm quickly.
               </p>
               <p>
-                We also offer <Link to="/remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Exeter drivers looking to improve performance or fuel economy alongside their DPF service.
+                We also offer <Link to="/ecu-remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Exeter drivers looking to improve performance or fuel economy alongside their DPF service.
               </p>
+            </div>
+          </section>
+
+          {/* Exeter DPF FAQs */}
+          <section className="relative p-10 md:p-12 rounded-[2.5rem] bg-[#1A1D22] border border-white/5 reveal-item overflow-hidden shadow-xl shadow-black">
+            <h2 className="relative z-10 text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight">Exeter DPF Cleaning FAQs</h2>
+            <div className="relative z-10 space-y-6 text-white/60 text-lg font-medium leading-relaxed">
+              <div>
+                <p className="text-white font-bold mb-1">How does collection from Exeter work?</p>
+                <p>Exeter sits on our regular collection route. We arrange to collect your removed filter, deep clean it at our Totnes workshop and return it - often the same working day for filters received before 10am. Exmouth, Topsham, Crediton and the wider East Devon area are covered too.</p>
+              </div>
+              <div>
+                <p className="text-white font-bold mb-1">Can I just drop the filter off myself?</p>
+                <p>Yes. Our workshop at The Old Barn Industrial Estate, Totnes is a straightforward 30-35 minute drive from Exeter down the A38. Filters dropped before 10am are typically ready the same day.</p>
+              </div>
+              <div>
+                <p className="text-white font-bold mb-1">Do you diagnose why the DPF blocked?</p>
+                <p>We can. A blocked DPF is often a symptom of another fault, so where needed we recommend our DPF diagnostics before cleaning to make sure the problem does not simply return. Diagnostics are a paid service, not a free check.</p>
+              </div>
             </div>
           </section>
 
@@ -158,11 +177,13 @@ const DPFCleaningExeter = () => {
             <h3 className="relative z-10 text-2xl font-bold text-white mb-8 tracking-tight">Related Services</h3>
             <div className="relative z-10 space-y-4">
               {[
-                { to: '/services', label: 'Full range of filter cleaning services' },
+                { to: '/dpf-cleaning', label: 'DPF cleaning Devon - main hub' },
+                { to: '/dpf-diagnostics-devon', label: 'DPF diagnostics - find the cause first' },
+                { to: '/blocked-dpf-cleaning-devon', label: 'Blocked DPF? Warning light & limp mode help' },
                 { to: '/postal-dpf', label: 'Nationwide postal DPF cleaning' },
-                { to: '/remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
-                { to: '/dpf-cleaning-devon', label: 'DPF cleaning across Devon' },
-                { to: '/why-clean', label: 'Why cleaning beats replacement' },
+                { to: '/ecu-remapping', label: 'ECU remapping - Stage 1 & Stage 2' },
+                { to: '/pricing', label: 'DPF cleaning prices' },
+                { to: '/book', label: 'Book a DPF clean or collection' },
               ].map(({ to, label }) => (
                 <Link key={to} to={to} className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all group/link">
                   <ArrowRight size={20} className="text-[#FF7A00] mr-4 group-hover/link:translate-x-2 transition-transform" />

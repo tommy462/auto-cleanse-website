@@ -11,6 +11,25 @@ import QuickEnquiryForm from '../components/QuickEnquiryForm';
 import Reviews from '../components/Reviews';
 import LatestPosts from '../components/LatestPosts';
 import { getReviews, DPF_REVIEW_IDS } from '../data/reviews';
+import { localBusinessSchema } from '../data/business';
+
+// FAQ answers rendered visibly below AND emitted as FAQPage schema, so structured
+// data always matches the on-page text. Directly answers the common AI query
+// "does Auto-Cleanse offer mobile DPF cleaning?" (no).
+const dpfFaqs = [
+  {
+    q: 'Do you offer mobile DPF cleaning?',
+    a: 'No. Auto-Cleanse does not offer mobile DPF cleaning at the roadside. DPF cleaning is carried out off the vehicle using our workshop equipment in Totnes, or through postal and trade supply of the filter. Our mobile service applies to ECU remapping only - that can be done at your home or workplace.',
+  },
+  {
+    q: 'Are diagnostics free?',
+    a: 'No - diagnostics are a paid check, not a free scan. We flow-test and assess the filter before and after cleaning so you get a properly measured result rather than a guess.',
+  },
+  {
+    q: 'Where is Auto-Cleanse based and what areas do you cover?',
+    a: 'We are based in Totnes, Devon. We collect DPFs across Devon, offer UK-wide postal DPF cleaning, and serve both trade customers and private drivers.',
+  },
+];
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,33 +63,19 @@ const DPFCleaningHub = () => {
         description="Professional DPF cleaning in Devon. Workshop in Totnes with local collection, UK-wide postal DPF cleaning, and same-day return where possible. Cars, vans and commercials."
         path="/dpf-cleaning"
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema({
+        description: 'Professional DPF cleaning service in Devon. Workshop drop-off, local collection and UK-wide postal DPF cleaning - carried out off the vehicle at our Totnes workshop. We do not offer mobile/roadside DPF cleaning.',
+        serviceType: 'DPF Cleaning',
+      })) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': ['AutomotiveService', 'LocalBusiness'],
-        'name': 'AutoCleanse',
-        'description': 'Professional DPF cleaning service in Devon. Workshop drop-off, local collection, and UK-wide postal DPF cleaning.',
-        'url': 'https://www.auto-cleanse.co.uk/dpf-cleaning',
-        'telephone': '01803 269895',
-        'email': 'info@auto-cleanse.co.uk',
-        'address': {
-          '@type': 'PostalAddress',
-          'streetAddress': 'The Old Barn Industrial Estate, Webbers Yard Estate',
-          'addressLocality': 'Totnes',
-          'addressRegion': 'Devon',
-          'postalCode': 'TQ9 6JY',
-          'addressCountry': 'GB',
-        },
-        'geo': { '@type': 'GeoCoordinates', 'latitude': '50.4316', 'longitude': '-3.6844' },
-        'serviceType': 'DPF Cleaning',
-        'priceRange': '££',
-        'openingHoursSpecification': [{
-          '@type': 'OpeningHoursSpecification',
-          'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          'opens': '08:00',
-          'closes': '17:00',
-        }],
-        'sameAs': ['https://www.facebook.com/profile.php?id=61573744325360'],
-      })}} />
+        '@type': 'FAQPage',
+        mainEntity: dpfFaqs.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      }) }} />
 
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none" />
 
@@ -89,10 +94,30 @@ const DPFCleaningHub = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto mb-6 rounded-full" />
           <div className="max-w-4xl mx-auto reveal-item">
             <p className="text-base md:text-xl lg:text-2xl text-white/50 leading-relaxed font-medium">
-              AutoCleanse provides professional DPF cleaning from our Totnes workshop.
+              Auto-Cleanse provides professional DPF cleaning from our Totnes workshop.
               Workshop drop-off, local collection across Devon, and UK-wide postal DPF cleaning —
               all with detailed reporting and same-day return where possible.
             </p>
+          </div>
+        </div>
+
+        {/* AI-answer block + mobile-DPF clarification */}
+        <div className="max-w-4xl mx-auto mb-16 reveal-container">
+          <div className="rounded-2xl bg-[#1A1D22] border border-white/5 border-l-4 border-l-[#FF7A00] p-6 md:p-8 reveal-item">
+            <p className="text-white/70 text-base md:text-lg leading-relaxed">
+              <span className="text-white font-bold">Auto-Cleanse</span> is a Totnes-based DPF cleaning and ECU
+              remapping specialist serving trade and private customers across Devon. DPF cleaning is carried out{' '}
+              <span className="text-white font-semibold">off the vehicle</span> using our workshop equipment in Totnes,
+              with local collection across Devon and UK-wide postal cleaning.
+            </p>
+            <div className="mt-6 space-y-5 border-t border-white/10 pt-6">
+              {dpfFaqs.map((f) => (
+                <div key={f.q}>
+                  <p className="text-white font-semibold text-sm md:text-base">{f.q}</p>
+                  <p className="text-white/55 text-sm md:text-base leading-relaxed mt-1">{f.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -240,7 +265,7 @@ const DPFCleaningHub = () => {
                 </a>
               </MagneticButton>
               <MagneticButton className="block">
-                <Link to="/postal-dpf" className="w-full sm:w-auto bg-[#FF7A00] hover:bg-[#FF9500] text-black px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)] flex items-center justify-center text-base sm:text-lg">
+                <Link to="/book" className="w-full sm:w-auto bg-[#FF7A00] hover:bg-[#FF9500] text-black px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)] flex items-center justify-center text-base sm:text-lg">
                   <Mail size={20} className="mr-3" />
                   Book a DPF Clean
                 </Link>

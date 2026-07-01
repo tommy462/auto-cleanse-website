@@ -66,7 +66,7 @@ const HowItWorks = () => {
     {
       icon: Truck,
       title: 'Return & Refit',
-      description: 'Same-day return within 30 miles of Totnes.',
+      description: 'Fast turnaround - often same-day within 30 miles of Totnes.',
     },
   ];
 

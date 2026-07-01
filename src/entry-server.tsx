@@ -37,7 +37,6 @@ const STATIC_ROUTES = [
   '/contact',
   '/pricing',
   '/how-it-works',
-  '/fuel-savings-calculator',
   '/dpf-cleaning-devon',
   '/dpf-cleaning-totnes',
   '/dpf-cleaning-exeter',
@@ -68,6 +67,7 @@ export const blogPosts = PUBLISHED_POSTS.map((p) => ({
   title: p.title,
   slug: p.slug,
   date: p.date,
+  updated: p.updated,
   excerpt: p.excerpt,
   category: p.category,
 }));

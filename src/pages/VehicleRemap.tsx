@@ -11,6 +11,7 @@ import { VehicleRemapData, getVehicleBySlug } from '../data/vehicle-remapping';
 import { VEHICLE_REMAPS } from '../data/vehicle-remapping';
 import { DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
 import { PRIORITY_SLUGS } from '../data/campaign';
+import { localBusinessNode } from '../data/business';
 
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
@@ -45,19 +46,8 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: `${vehicle.fullName} ECU Remapping`,
-    provider: {
-      '@type': 'LocalBusiness',
-      name: 'AutoCleanse',
-      telephone: '01803269895',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'The Old Barn Industrial Estate, Webbers Yard',
-        addressLocality: 'Totnes',
-        addressRegion: 'Devon',
-        postalCode: 'TQ9 6JY',
-        addressCountry: 'GB',
-      }
-    },
+    provider: localBusinessNode(),
+    areaServed: { '@type': 'AdministrativeArea', name: 'Devon' },
     description: vehicle.metaDescription,
     url: `https://www.auto-cleanse.co.uk/${vehicle.slug}`,
     category: 'ECU Remapping',
@@ -90,8 +80,8 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <Breadcrumbs items={[
             { name: 'ECU Remapping', path: '/ecu-remapping' },
-            { name: 'Vehicles', path: '/vehicle-remapping' },
-            { name: vehicle.make, path: '/vehicle-remapping' },
+            { name: 'Vehicles', path: '/vehicle-performance-lookup' },
+            { name: vehicle.make, path: '/vehicle-performance-lookup' },
             { name: vehicle.model }
           ]} />
 
@@ -196,6 +186,26 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
         </div>
       </section>
 
+      {/* ── Vehicle-specific detail (unique, non-templated) ───────────────── */}
+      {vehicle.contentSections && vehicle.contentSections.length > 0 && (
+        <section className="py-16 border-t border-white/5">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            {vehicle.contentSections.map((sec) => (
+              <div key={sec.heading}>
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tighter text-white mb-5">
+                  {sec.heading}
+                </h2>
+                <div className="space-y-4">
+                  {sec.paragraphs.map((para, i) => (
+                    <p key={i} className="text-white/55 text-sm sm:text-base leading-relaxed">{para}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* ── What's Included ───────────────────────────────────────────────── */}
       <section className="py-16 border-t border-white/5">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -232,10 +242,10 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
                </p>
                <div className="space-y-3">
                  <Link
-                   to="/ecu-remapping-locations"
+                   to="/mobile-ecu-remapping-devon"
                    className="text-white/70 hover:text-white text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all"
                  >
-                   View mobile coverage areas <ArrowRight size={14} className="text-[#FF7A00]" />
+                   Mobile ECU remapping in Devon <ArrowRight size={14} className="text-[#FF7A00]" />
                  </Link>
                  <Link
                    to="/remapping-booking"
@@ -269,6 +279,31 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
           <div className="rounded-3xl bg-[#1A1D22] border border-white/5 px-6 sm:px-8">
             {vehicle.faqs.map((faq) => (
               <FaqItem key={faq.q} q={faq.q} a={faq.a} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Related remapping services ────────────────────────────────────── */}
+      <section className="py-14 border-t border-white/5">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest mb-6">Remapping services</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {[
+              { to: '/ecu-remapping', label: 'ECU Remapping (main guide)' },
+              { to: '/mobile-ecu-remapping-devon', label: 'Mobile ECU Remapping in Devon' },
+              { to: '/stage-1-remaps-devon', label: 'Stage 1 Remaps in Devon' },
+              { to: '/ecu-remapping-locations', label: 'Remapping Coverage Areas' },
+              { to: '/remapping-booking', label: 'Book Your Remap' },
+            ].map((svc) => (
+              <Link
+                key={svc.to}
+                to={svc.to}
+                className="rounded-2xl bg-[#1A1D22] border border-white/5 p-4 sm:p-5 hover:border-[#FF7A00]/30 transition-colors group flex items-center justify-between gap-3"
+              >
+                <span className="text-white font-bold text-sm group-hover:text-[#FF7A00] transition-colors">{svc.label}</span>
+                <ArrowRight size={14} className="text-[#FF7A00] shrink-0" />
+              </Link>
             ))}
           </div>
         </div>

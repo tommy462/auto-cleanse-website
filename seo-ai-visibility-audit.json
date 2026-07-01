@@ -1,0 +1,532 @@
+{
+  "meta": {
+    "generated": "2026-07-01",
+    "phase": "AI visibility / Answer Engine Optimisation (AEO) audit",
+    "scope": "Audit and report only — no code, schema, robots or content changes. Based on the current post-Phase-1/2A/2B/2C/2D build (134 pages).",
+    "method": "Static analysis of prerendered dist/ HTML + JSON-LD, robots.txt, vercel.json and source components. No external web browsing performed."
+  },
+  "scores": {
+    "overall": 68,
+    "crawlability_robots": 90,
+    "indexability_ssr": 90,
+    "entity_clarity_nap": 55,
+    "structured_data_schema": 62,
+    "answer_readiness": 66,
+    "query_coverage": 70,
+    "offsite_consistency": 45,
+    "note": "Technically excellent and content much improved after Phases 1-2D; held back by entity/About misalignment, schema inconsistency across templates, brand-name split, and unverified off-site presence."
+  },
+  "crawler_robots": {
+    "current": {
+      "robotsTxt": "User-agent: * / Allow: / + Sitemap: https://www.auto-cleanse.co.uk/sitemap.xml",
+      "effect": "All crawlers allowed via wildcard, including Googlebot, Bingbot, GPTBot, OAI-SearchBot, ChatGPT-User, PerplexityBot, CCBot.",
+      "metaRobots": "No noindex on any of 134 pages. No nosnippet / max-snippet:0 / max-image-preview restrictions. No X-Robots-Tag headers in vercel.json.",
+      "cssJsBlocking": "None (no Disallow on /assets). Google can render fully.",
+      "sitemapReferenced": true
+    },
+    "recommendation": {
+      "googlebot": "Allow (already allowed).",
+      "bingbot": "Allow (already allowed — also powers Copilot/ChatGPT partial).",
+      "OAI-SearchBot": "Allow explicitly (ChatGPT search citations).",
+      "ChatGPT-User": "Allow explicitly (ChatGPT live user-request fetches).",
+      "PerplexityBot": "Allow (Perplexity citations).",
+      "GPTBot": "OPTIONAL. GPTBot is primarily model-training crawl, not live search. Recommend ALLOW for maximum long-term brand presence in LLM knowledge, unless the owner wants to withhold content from training — blocking GPTBot does NOT reduce ChatGPT-search citations (those use OAI-SearchBot/ChatGPT-User). Owner decision.",
+      "cssJs": "Keep unblocked.",
+      "sitemap": "Keep referenced (add a second explicit Sitemap line only if a news/image sitemap is added later).",
+      "action": "The wildcard already allows everyone, so nothing is currently blocked. Add EXPLICIT named User-agent blocks so the policy is intentional and auditable, and make a conscious GPTBot decision."
+    }
+  },
+  "entity_nap": {
+    "businessName": {
+      "primaryVisible": "AutoCleanse",
+      "hyphenatedForm": "Auto-Cleanse (domain, email, ~596 uses)",
+      "counts": {
+        "AutoCleanse": 2076,
+        "Auto-Cleanse": 596
+      },
+      "issue": "Two brand spellings used interchangeably; schema name=\"AutoCleanse\" with alternateName [\"Auto Cleanse\",\"AutoCleanse DPF\",\"AutoCleanse Remapping\"] but NOT the hyphenated \"Auto-Cleanse\" that is the domain."
+    },
+    "phone": {
+      "formats": [
+        "01803 269895 (spaced, display)",
+        "01803269895 (unspaced, some tel:/schema)"
+      ],
+      "schemaInconsistency": "DPF hub telephone=\"01803 269895\", ECU Exeter telephone=\"01803269895\".",
+      "e164": "Not used anywhere; recommend +441803269895.",
+      "placeholderBug": "Form input placeholder \"07700 900000\" (Ofcom fictional range) renders on ~48 pages via QuickEnquiryForm; RemappingBooking uses \"07700 000000\". Not real data (placeholder attr) but AI/users could misread. Low risk."
+    },
+    "email": {
+      "value": "info@auto-cleanse.co.uk",
+      "consistent": true
+    },
+    "address": {
+      "value": "The Old Barn Industrial Estate, Webbers Yard, Totnes, Devon, TQ9 6JY",
+      "inconsistency": "streetAddress varies: \"Webbers Yard\" vs \"Webbers Yard Estate\" between templates."
+    },
+    "geo": {
+      "latitude": "50.4316",
+      "longitude": "-3.6844",
+      "present": "On home, DPF, ECU-location schema."
+    },
+    "openingHours": {
+      "value": "Mon-Fri 08:00-17:00 (per home + DPF schema)",
+      "gap": "Present on home + DPF core schema only; MISSING from ECU-location and vehicle page schema. Confirm Saturday hours."
+    },
+    "base": "Totnes, Devon — clearly stated on home, About, DPF and location pages. BUT the ECU hub /ecu-remapping does NOT mention Totnes or \"based in\".",
+    "realLocalBusiness": "Yes — consistent NAP, geo, opening hours, reviews, social links, owner LinkedIn (alex-rabone). Credible.",
+    "aboutPage": {
+      "words": 206,
+      "issue": "Frames business as trade-only DPF specialist (\"we work exclusively with trade professionals\", \"DPF refurbishment\"); DOES NOT mention ECU remapping at all and implies no private-customer service — contradicting the consumer-facing DPF + remapping positioning across the rest of the site. No owner/team name, no establishment year, thin first-hand trust."
+    },
+    "socialLinks": {
+      "facebook": "facebook.com/profile.php?id=61573744325360",
+      "instagram": "instagram.com/auto_cleansedpf",
+      "youtube": "youtube.com/@Auto-Cleanse",
+      "linkedin": "linkedin.com/in/alex-rabone-102786158 (personal profile, not company page)"
+    }
+  },
+  "schema_findings": {
+    "present": {
+      "home": "AutomotiveService+LocalBusiness (name, alternateName, telephone, email, image=og-image.jpg, address, geo, areaServed, openingHoursSpecification, paymentAccepted, currenciesAccepted, priceRange, sameAs x4, contactPoint, hasOfferingCatalog) + Service nodes + FAQPage + BreadcrumbList.",
+      "dpfCore": "AutomotiveService+LocalBusiness (address, geo, openingHours, priceRange, sameAs=[facebook only]) + BreadcrumbList.",
+      "ecuLocation": "AutomotiveService+LocalBusiness (address, geo, areaServed x10, priceRange; NO openingHours, NO sameAs, NO image, NO alternateName) + FAQPage + BreadcrumbList.",
+      "vehicle": "Service (name, url) + BreadcrumbList only — NO provider LocalBusiness, NO areaServed, NO image.",
+      "faqPage": "Added Phase 2D on 36 shared-template pages (+8 pre-existing) = 44 pages; matches visible FAQ text."
+    },
+    "bugs": [
+      "HOMEPAGE: property \"hasOfferingCatalog\" (invalid) instead of \"hasOfferCatalog\" — the entire offer catalog is attached via an invalid property and ignored by parsers. (Corresponding @type \"OfferingCatalog\" is also invalid vs \"OfferCatalog\".)",
+      "telephone not in E.164 and inconsistent between templates (01803 269895 vs 01803269895).",
+      "address streetAddress string differs between templates (\"Webbers Yard\" vs \"Webbers Yard Estate\")."
+    ],
+    "gaps": [
+      "No logo property on any LocalBusiness/Organization (image only = og-image.jpg; a dedicated logo autocleanse-text-logo.png should be referenced).",
+      "openingHoursSpecification missing on ECU-location and vehicle pages.",
+      "sameAs missing on ECU-location and vehicle pages; DPF core has only the Facebook link (missing instagram/youtube/linkedin).",
+      "alternateName present only on homepage and omits the hyphenated \"Auto-Cleanse\".",
+      "Vehicle Service schema has no provider (should reference the AutoCleanse LocalBusiness) and no areaServed.",
+      "No single @id-referenced canonical LocalBusiness entity — each page redeclares it inline (entity fragmentation).",
+      "AutoRepair type (a specific AutomotiveBusiness subtype) not used; AutomotiveService+LocalBusiness is acceptable but AutoRepair would sharpen the entity category."
+    ],
+    "conflicts": "No schema currently contradicts visible content (FAQPage matches; NAP matches). The About-page positioning conflict is a CONTENT issue, not a schema one.",
+    "validitySafety": "Valid apart from the hasOfferingCatalog typo; no misleading/fake markup. FAQPage safe (mirrors visible text)."
+  },
+  "answer_readiness": [
+    {
+      "url": "/",
+      "answerBlock": "partial",
+      "states": "off-vehicle DPF + Stage 1/2 + Devon + postal",
+      "faqs": true,
+      "aiQuotable": 70,
+      "fix": "Add a one-sentence entity summary near top: \"Auto-Cleanse is a Totnes-based DPF cleaning and ECU remapping specialist covering Devon (workshop + mobile remapping).\""
+    },
+    {
+      "url": "/about",
+      "answerBlock": "weak",
+      "states": "Totnes base but trade-only DPF; omits ECU remapping",
+      "faqs": false,
+      "aiQuotable": 40,
+      "fix": "Rewrite to cover BOTH DPF cleaning AND ECU remapping, trade AND private customers, name the owner/team, add experience/establishment. This is the primary entity source."
+    },
+    {
+      "url": "/contact",
+      "answerBlock": "weak",
+      "states": "phone present, thin",
+      "faqs": false,
+      "aiQuotable": 45,
+      "fix": "Add an explicit NAP block (name, full address, phone, email, opening hours) in HTML."
+    },
+    {
+      "url": "/dpf-cleaning",
+      "answerBlock": "partial",
+      "states": "workshop/drop-off implied; NOT explicitly \"no mobile DPF\"",
+      "faqs": true,
+      "aiQuotable": 68,
+      "fix": "Add an explicit line + FAQ: \"DPF cleaning is carried out off the vehicle at our Totnes workshop — we do not offer mobile/roadside DPF cleaning.\" State diagnostics are paid."
+    },
+    {
+      "url": "/dpf-cleaning-devon",
+      "answerBlock": "partial",
+      "states": "collection/trade Devon",
+      "faqs": true,
+      "aiQuotable": 70,
+      "fix": "Same explicit off-vehicle/not-mobile line."
+    },
+    {
+      "url": "/blocked-dpf-cleaning-devon",
+      "answerBlock": "good",
+      "states": "symptoms + Devon",
+      "faqs": true,
+      "aiQuotable": 74,
+      "fix": "Add explicit not-mobile line for consistency."
+    },
+    {
+      "url": "/dpf-diagnostics-devon",
+      "answerBlock": "good",
+      "states": "diagnostics + no illegal deletes",
+      "faqs": true,
+      "aiQuotable": 78,
+      "fix": "State diagnostics are paid explicitly."
+    },
+    {
+      "url": "/postal-dpf",
+      "answerBlock": "good",
+      "states": "off-vehicle postal service",
+      "faqs": false,
+      "aiQuotable": 72,
+      "fix": "Short; add a 2-line \"how postal works\" summary + price (£230)."
+    },
+    {
+      "url": "/ecu-remapping",
+      "answerBlock": "partial",
+      "states": "services yes; does NOT state Totnes/Devon base",
+      "faqs": false,
+      "aiQuotable": 65,
+      "fix": "Add entity/locality sentence (Totnes-based, covering Devon, workshop + mobile) + a short FAQ block."
+    },
+    {
+      "url": "/mobile-ecu-remapping-devon",
+      "answerBlock": "good",
+      "states": "mobile ECU only; DPF off-vehicle; Totnes; coverage",
+      "faqs": true,
+      "aiQuotable": 82,
+      "fix": "Already strong; ensure diagnostics-paid line stays."
+    },
+    {
+      "url": "/stage-1-remaps-devon",
+      "answerBlock": "excellent",
+      "states": "all facts (Totnes, mobile/workshop, paid diag, no deletes, coverage)",
+      "faqs": true,
+      "aiQuotable": 88,
+      "fix": "Model page — no change needed."
+    },
+    {
+      "url": "/petrol-remapping-devon",
+      "answerBlock": "partial",
+      "states": "petrol Stage 1/2; generic",
+      "faqs": true,
+      "aiQuotable": 58,
+      "fix": "Pending Phase-2B decision (rewrite vs 301). If kept, add paid-diag + no-delete lines."
+    },
+    {
+      "url": "/adblue-repair-devon",
+      "answerBlock": "good",
+      "states": "AdBlue repair + legality",
+      "faqs": true,
+      "aiQuotable": 78,
+      "fix": "Add explicit \"we repair, we do not delete AdBlue on road cars\"."
+    },
+    {
+      "url": "/ecu-remapping-exeter",
+      "answerBlock": "good",
+      "states": "local + service + coverage + paid diag",
+      "faqs": true,
+      "aiQuotable": 80,
+      "fix": "Add openingHours/sameAs to schema (template)."
+    },
+    {
+      "url": "/ecu-remapping-torquay",
+      "answerBlock": "good",
+      "states": "local + coverage + DPF off-vehicle",
+      "faqs": true,
+      "aiQuotable": 80,
+      "fix": "Schema openingHours/sameAs."
+    },
+    {
+      "url": "/ecu-remapping-plymouth",
+      "answerBlock": "good",
+      "states": "local + coverage + honest distance",
+      "faqs": true,
+      "aiQuotable": 79,
+      "fix": "Schema openingHours/sameAs."
+    },
+    {
+      "url": "/ecu-remapping-totnes",
+      "answerBlock": "good",
+      "states": "home workshop + coverage",
+      "faqs": true,
+      "aiQuotable": 80,
+      "fix": "Schema openingHours/sameAs."
+    },
+    {
+      "url": "/ecu-remapping-north-devon",
+      "answerBlock": "good",
+      "states": "regional hub + mobile-first",
+      "faqs": true,
+      "aiQuotable": 77,
+      "fix": "Schema openingHours/sameAs."
+    },
+    {
+      "url": "/bmw-320d-remap",
+      "answerBlock": "good",
+      "states": "model detail + paid diag + no delete",
+      "faqs": "client",
+      "aiQuotable": 74,
+      "fix": "Add provider LocalBusiness to Service schema; vehicle FAQs use different component — verify answers in HTML."
+    },
+    {
+      "url": "/vw-transporter-remap",
+      "answerBlock": "good",
+      "states": "model detail + paid diag + no delete",
+      "faqs": "client",
+      "aiQuotable": 73,
+      "fix": "Add provider to Service schema; verify vehicle FAQ answers in HTML."
+    }
+  ],
+  "query_simulation": [
+    {
+      "query": "Who offers DPF cleaning in Devon?",
+      "target": "/dpf-cleaning",
+      "strength": 78,
+      "missing": "Explicit entity one-liner",
+      "improvement": "Add TL;DR + not-mobile clarity."
+    },
+    {
+      "query": "Who offers DPF cleaning near Totnes?",
+      "target": "/dpf-cleaning-totnes",
+      "strength": 74,
+      "missing": "Nothing major",
+      "improvement": "Keep; ensure NAP/hours in schema."
+    },
+    {
+      "query": "Who offers DPF cleaning in Exeter?",
+      "target": "/dpf-cleaning-exeter",
+      "strength": 72,
+      "missing": "Answer block",
+      "improvement": "Add concise summary + off-vehicle line."
+    },
+    {
+      "query": "Does Auto-Cleanse clean DPFs?",
+      "target": "/dpf-cleaning",
+      "strength": 80,
+      "missing": "Entity sentence",
+      "improvement": "TL;DR summary near top."
+    },
+    {
+      "query": "Does Auto-Cleanse offer mobile DPF cleaning?",
+      "target": "/dpf-cleaning + /mobile-ecu-remapping-devon",
+      "strength": 55,
+      "missing": "Explicit NO on the DPF hub",
+      "improvement": "Add explicit \"DPF cleaning is workshop/off-vehicle; we do NOT offer mobile DPF\" statement + FAQ. Currently only implied — AI may wrongly infer yes from heavy mobile-ECU marketing."
+    },
+    {
+      "query": "Who offers mobile ECU remapping in Devon?",
+      "target": "/mobile-ecu-remapping-devon",
+      "strength": 85,
+      "missing": "Nothing major",
+      "improvement": "Strong; keep."
+    },
+    {
+      "query": "Who offers ECU remapping in Exeter?",
+      "target": "/ecu-remapping-exeter",
+      "strength": 82,
+      "missing": "Schema hours/sameAs",
+      "improvement": "Template schema enrich."
+    },
+    {
+      "query": "Who offers ECU remapping in Torquay?",
+      "target": "/ecu-remapping-torquay",
+      "strength": 82,
+      "missing": "Schema hours/sameAs",
+      "improvement": "Template schema enrich."
+    },
+    {
+      "query": "Who offers ECU remapping in Plymouth?",
+      "target": "/ecu-remapping-plymouth",
+      "strength": 80,
+      "missing": "Nothing major",
+      "improvement": "Keep."
+    },
+    {
+      "query": "Who offers Stage 1 remaps in Devon?",
+      "target": "/stage-1-remaps-devon",
+      "strength": 90,
+      "missing": "Nothing",
+      "improvement": "Model page."
+    },
+    {
+      "query": "Who offers petrol remapping in Devon?",
+      "target": "/petrol-remapping-devon",
+      "strength": 55,
+      "missing": "Depth/decision",
+      "improvement": "Resolve rewrite-vs-301 (Phase 2B item)."
+    },
+    {
+      "query": "Who offers AdBlue diagnostics in Devon?",
+      "target": "/adblue-repair-devon (+ /dpf-diagnostics-devon)",
+      "strength": 74,
+      "missing": "Explicit \"AdBlue diagnostics\" phrasing",
+      "improvement": "Add AdBlue diagnostics wording + paid-diag note."
+    },
+    {
+      "query": "Can Auto-Cleanse remap a BMW 320d?",
+      "target": "/bmw-320d-remap",
+      "strength": 80,
+      "missing": "provider schema",
+      "improvement": "Add provider LocalBusiness to Service."
+    },
+    {
+      "query": "Can Auto-Cleanse remap a VW Transporter?",
+      "target": "/vw-transporter-remap",
+      "strength": 79,
+      "missing": "provider schema",
+      "improvement": "Add provider LocalBusiness to Service."
+    }
+  ],
+  "offsite_checklist": {
+    "canonicalNAP": {
+      "name": "Auto-Cleanse (recommended canonical; alternateName AutoCleanse)",
+      "address": "The Old Barn Industrial Estate, Webbers Yard, Totnes, Devon, TQ9 6JY",
+      "phone": "+44 1803 269895",
+      "email": "info@auto-cleanse.co.uk",
+      "hours": "Mon-Fri 08:00-17:00 (confirm Saturday)",
+      "url": "https://www.auto-cleanse.co.uk"
+    },
+    "services": [
+      "DPF cleaning (workshop/off-vehicle)",
+      "Postal DPF cleaning",
+      "DPF diagnostics",
+      "Blocked DPF cleaning",
+      "ECU remapping (Stage 1 & 2)",
+      "Mobile ECU remapping",
+      "Economy/diesel/van/4x4/fleet remapping",
+      "AdBlue repair",
+      "ECU cloning"
+    ],
+    "serviceAreas": [
+      "Totnes & South Hams",
+      "Torbay (Torquay, Paignton, Brixham)",
+      "Exeter & East Devon",
+      "Plymouth & South West Devon",
+      "Newton Abbot & Teignbridge",
+      "North Devon (Barnstaple, Bideford)",
+      "Mid/West Devon",
+      "Nationwide (postal DPF)"
+    ],
+    "description": "Auto-Cleanse is a Totnes-based DPF cleaning and ECU remapping specialist serving trade and private customers across Devon. DPF cleaning is carried out off the vehicle at the workshop (plus nationwide postal); ECU remapping is available at the workshop or mobile across Devon. Diagnostics before and after every remap.",
+    "profiles": [
+      {
+        "name": "Google Business Profile",
+        "action": "Confirm/claim; align NAP exactly; categories: Auto repair shop / Car repair; add services, service areas, photos/video; enable messaging. HIGHEST off-site priority for local + AI local answers."
+      },
+      {
+        "name": "Bing Places",
+        "action": "Claim/align NAP (feeds Copilot/Bing)."
+      },
+      {
+        "name": "Apple Maps (Apple Business Connect)",
+        "action": "Claim/align NAP (feeds Siri/Apple local)."
+      },
+      {
+        "name": "Facebook",
+        "action": "Confirm page; align NAP; prefer a vanity URL over profile.php?id=."
+      },
+      {
+        "name": "Instagram",
+        "action": "instagram.com/auto_cleansedpf — align bio NAP + link."
+      },
+      {
+        "name": "YouTube",
+        "action": "youtube.com/@Auto-Cleanse — align about/links (real remap/DPF footage = strong proof)."
+      },
+      {
+        "name": "LinkedIn",
+        "action": "Consider a company page (current sameAs is a personal profile)."
+      },
+      {
+        "name": "Local/trade directories",
+        "action": "Yell, Thomson Local, FreeIndex, Cylex, Scoot — consistent NAP + category."
+      },
+      {
+        "name": "Review platforms",
+        "action": "Google reviews (primary), plus Trustpilot/Yell reviews; keep responding."
+      },
+      {
+        "name": "Trade/supplier partner pages",
+        "action": "DPF-equipment (e.g. cleaning-machine) and tuning-tool networks; any \"find an installer\" listings — align NAP."
+      }
+    ],
+    "sameAsToAdd": "Once each profile URL is confirmed, add all to LocalBusiness sameAs across templates: Facebook, Instagram, YouTube, LinkedIn (company), Google Business Profile URL."
+  },
+  "brand_recommendation": {
+    "decision": "Standardise on ONE canonical brand spelling. Recommended: \"Auto-Cleanse\" (matches the domain auto-cleanse.co.uk and email) as the canonical, with \"AutoCleanse\" as an accepted alternate.",
+    "lowRiskApproach": "Do NOT mass-rewrite 2000+ visible \"AutoCleanse\" instances now. Instead: (1) set schema name to the chosen canonical and add alternateName covering BOTH \"AutoCleanse\" and \"Auto-Cleanse\"; (2) add one sentence on /about: \"Auto-Cleanse (sometimes written AutoCleanse online)\"; (3) use the canonical form consistently in NEW copy and all off-site profiles.",
+    "schemaAlternateName": [
+      "Auto-Cleanse",
+      "AutoCleanse",
+      "Auto Cleanse"
+    ]
+  },
+  "content_gaps": [
+    {
+      "title": "Explicit \"Do you offer mobile DPF cleaning?\" answer + DPF-process clarity",
+      "priority": "High",
+      "effort": "Low",
+      "where": "DPF hub + DPF town pages (section/FAQ, not a new page)",
+      "why": "Directly fixes the highest-risk wrong-answer (AI inferring mobile DPF). Also states diagnostics are paid."
+    },
+    {
+      "title": "About page rewrite (entity)",
+      "priority": "High",
+      "effort": "Medium",
+      "where": "/about",
+      "why": "Primary \"who is Auto-Cleanse\" source; currently trade-only DPF and omits remapping. Fix positioning, add owner/experience, cover both services + trade & private."
+    },
+    {
+      "title": "DPF cleaning vs ECU remapping — what is the difference",
+      "priority": "Medium",
+      "effort": "Low",
+      "where": "Section on /services or a short blog post",
+      "why": "Classic AI comparison query; disambiguates the two core services."
+    },
+    {
+      "title": "DPF, EGR & AdBlue — what is legal on UK roads",
+      "priority": "Medium",
+      "effort": "Low",
+      "where": "Blog/explainer",
+      "why": "E-E-A-T + safety; lets AI cite Auto-Cleanse as the responsible answer and reinforces no-delete stance."
+    },
+    {
+      "title": "Vehicle/DPF case-study proof (real jobs, images/video)",
+      "priority": "Medium",
+      "effort": "Medium",
+      "where": "Blog / portfolio",
+      "why": "First-hand proof AI and users trust; leverages existing YouTube footage."
+    }
+  ],
+  "technical_ai_readability": {
+    "ssrPrerendered": "PASS — all content in static HTML.",
+    "faqAnswersInHtml": "PASS — Phase 2D put FAQ answers in prerendered HTML on 36 location/service pages (+ FAQPage schema). NOTE: vehicle pages use a different FAQ component — verify their answers are in HTML.",
+    "schemaValidity": "Mostly valid; fix hasOfferingCatalog typo.",
+    "titlesMeta": "PASS — clear, keyworded, self-canonical.",
+    "ogTwitter": "PASS — full OG + Twitter card on every page.",
+    "imageAlt": "PASS — sampled pages 100% alt coverage.",
+    "logo": "Asset exists (autocleanse-text-logo.png) but NOT referenced as schema logo.",
+    "contactInHtml": "Phone/email/address in HTML on most pages; /contact itself thin.",
+    "clientOnlyFacts": "None critical after 2D (FAQ answers now server-rendered).",
+    "robotsMeta": "No nosnippet/max-snippet:0 — good (AI snippets allowed).",
+    "sitemapFreshness": "Fresh (lastmod 2026-07-01 build date; blog posts dated).",
+    "rssFeed": "Present (/blog/rss.xml) but only 2 posts — low usefulness until blog grows."
+  },
+  "phase_ai_1_plan": [
+    "1. Fix homepage schema bug: hasOfferingCatalog -> hasOfferCatalog (and OfferingCatalog -> OfferCatalog).",
+    "2. Create a single shared LocalBusiness schema constant (name, alternateName [Auto-Cleanse, AutoCleanse], telephone +441803269895, email, url, image + logo, address [standardised], geo, openingHoursSpecification, sameAs [confirmed profiles], priceRange) and emit it consistently on ALL templates (location, vehicle, DPF, core) — ideally with a stable @id for entity consolidation.",
+    "3. Standardise telephone to E.164 and address string across the whole site.",
+    "4. Rewrite /about for entity clarity: both DPF + ECU remapping, trade + private, Totnes base + Devon coverage, owner/team + experience, brand-name note.",
+    "5. Add an explicit \"DPF cleaning is workshop/off-vehicle — we do not offer mobile DPF cleaning\" statement + FAQ on the DPF hub and DPF town pages; state diagnostics are paid.",
+    "6. Add concise TL;DR entity/answer blocks near the top of /, /ecu-remapping and /dpf-cleaning (and anchor the Totnes base on /ecu-remapping).",
+    "7. Strengthen /contact with an explicit NAP + hours block in HTML.",
+    "8. Add provider (LocalBusiness) to vehicle Service schema; verify vehicle FAQ answers render in HTML.",
+    "9. robots.txt: add explicit Allow blocks for Googlebot, Bingbot, OAI-SearchBot, ChatGPT-User, PerplexityBot; make a conscious GPTBot allow/deny decision; keep sitemap + CSS/JS open.",
+    "10. Off-site: confirm/claim Google Business Profile, Bing Places, Apple Maps; align NAP; then add confirmed profile URLs to schema sameAs."
+  ],
+  "risks_owner_review": [
+    "Confirm actual opening hours (incl. Saturday) before hard-coding openingHoursSpecification everywhere.",
+    "Confirm the business serves BOTH trade and private customers (the About page currently says \"exclusively trade\") — this drives the About rewrite and off-site descriptions.",
+    "Confirm owner/team name for the About page (LinkedIn suggests Alex Rabone).",
+    "Decide canonical brand spelling (recommended Auto-Cleanse) — affects schema name + off-site profiles.",
+    "Confirm each social/GBP/Bing/Apple profile URL before adding to sameAs (only add verified profiles).",
+    "Decide GPTBot allow vs disallow (visibility vs training-content control).",
+    "Confirm the placeholder phone \"07700 900000\" is only ever a form placeholder (it is) and consider a non-numeric placeholder.",
+    "Do not add FAQ/other schema that diverges from visible text (keep the Phase-2D discipline)."
+  ]
+}
