@@ -74,28 +74,31 @@ const Home = () => {
       { y: 0, opacity: 1, duration: 1, delay: 1.2, ease: 'power3.out' }
     );
 
-    // Parallax effect on scroll
-    gsap.to('.hero-bg', {
-      y: '30%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
+    // Parallax effect on scroll - desktop only; scrub parallax fights the
+    // mobile browser address bar resize and causes visible jank on touch.
+    if (window.matchMedia('(min-width: 1024px)').matches) {
+      gsap.to('.hero-bg', {
+        y: '30%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero-section',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
 
-    gsap.to('.hero-content', {
-      y: '40%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
+      gsap.to('.hero-content', {
+        y: '40%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero-section',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    }
 
   }, { scope: container });
 
@@ -454,7 +457,7 @@ const Home = () => {
         {/* Background Image - Parallax */}
         <div
           className="absolute inset-x-0 -top-[20%] h-[140%] bg-cover bg-center bg-no-repeat hero-bg"
-          style={{ backgroundImage: `url('/very-dark-grey-and-black-honeycomb-effect-backgrou.png')` }}
+          style={{ backgroundImage: `url('/honeycomb-bg.webp')` }}
         ></div>
 
         {/* Tint overlay */}
@@ -758,7 +761,7 @@ const Home = () => {
             <span className="text-white">Our </span>
             <span className="text-[#FF7A00]">Capabilities</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[220px] reveal-container">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:auto-rows-[220px] reveal-container">
             {services.map((service, index) => {
               // Determine if this is a large block or wide block to inject extra visuals
               const isLarge = index === 0; // 2x2
@@ -785,7 +788,7 @@ const Home = () => {
                     <>
                       <div
                         className="absolute inset-0 z-0 opacity-20 mix-blend-luminosity bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                        style={{ backgroundImage: 'url("/very-dark-grey-and-black-honeycomb-effect-backgrou.png")' }}
+                        style={{ backgroundImage: 'url("/honeycomb-bg.webp")' }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent z-0"></div>
                     </>
@@ -802,14 +805,14 @@ const Home = () => {
                     </h3>
 
                     {/* Description: Hides on hover for small cards to make vertical room for the 3 bullet points */}
-                    <p className={`text-white/60 font-medium leading-relaxed transition-all duration-300 origin-top ${isLarge ? 'text-lg max-w-sm' : 'text-sm group-hover:opacity-0 group-hover:max-h-0 group-hover:mb-0 group-hover:scale-95 max-h-20 mb-2'}`}>
+                    <p className={`text-white/60 font-medium leading-relaxed transition-all duration-300 origin-top ${isLarge ? 'text-lg max-w-sm' : 'text-sm max-h-20 mb-2 md:group-hover:opacity-0 md:group-hover:max-h-0 md:group-hover:mb-0 md:group-hover:scale-95'}`}>
                       {service.description}
                     </p>
 
                     {/* Feature List Content Revealed On Hover */}
-                    <ul className={`font-medium transition-all duration-500 flex flex-col items-center justify-center w-full ${isLarge ? 'mt-6 opacity-100 text-white/80 text-sm space-y-3' : 'max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mt-2 text-white/70 text-[13px] space-y-2'}`}>
+                    <ul className={`font-medium transition-all duration-500 flex flex-col items-center justify-center w-full ${isLarge ? 'mt-6 opacity-100 text-white/80 text-sm space-y-3' : 'mt-2 opacity-100 md:max-h-0 md:opacity-0 md:mt-0 md:group-hover:max-h-40 md:group-hover:opacity-100 md:group-hover:mt-2 text-white/70 text-[13px] space-y-2'}`}>
                       {service.features.map((feature, idx) => (
-                        <li key={idx} className={`flex items-center justify-center gap-2.5 transform translate-y-3 opacity-0 transition-all duration-300 ${isLarge ? 'translate-y-0 opacity-100' : 'group-hover:translate-y-0 group-hover:opacity-100'}`} style={{ transitionDelay: isLarge ? '0ms' : `${idx * 75}ms` }}>
+                        <li key={idx} className={`flex items-center justify-center gap-2.5 transform transition-all duration-300 ${isLarge ? 'translate-y-0 opacity-100' : 'translate-y-0 opacity-100 md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100'}`} style={{ transitionDelay: isLarge ? '0ms' : `${idx * 75}ms` }}>
                           <div className="w-1.5 h-1.5 rounded-full bg-[#FF7A00] flex-shrink-0 shadow-[0_0_8px_rgba(255,122,0,0.8)]"></div>
                           <span className="leading-snug">{feature}</span>
                         </li>

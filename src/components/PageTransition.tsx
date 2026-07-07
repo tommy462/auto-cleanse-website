@@ -36,6 +36,8 @@ import DiagnosticMatcher from '../pages/DiagnosticMatcher';
 import DVLADiagnostic from '../pages/DVLADiagnostic';
 import BookNow from '../pages/BookNow';
 import EcuCloning from '../pages/EcuCloning';
+import TradeFileService from '../pages/TradeFileService';
+import DPFCleaningNearMe from '../pages/DPFCleaningNearMe';
 import NotFound from '../pages/NotFound';
 
 export default function PageTransition() {
@@ -72,6 +74,7 @@ export default function PageTransition() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/postal-dpf" element={<PostalDPF />} />
                     <Route path="/dpf-cleaning" element={<DPFCleaningHub />} />
+                    <Route path="/dpf-cleaning-near-me" element={<DPFCleaningNearMe />} />
                     <Route path="/dpf-cleaning-totnes" element={<DPFCleaningTotnes />} />
                     <Route path="/dpf-cleaning-devon" element={<DPFCleaningDevon />} />
                     
@@ -89,7 +92,8 @@ export default function PageTransition() {
                     <Route path="/remapping-booking" element={<RemappingBooking />} />
                     <Route path="/book" element={<BookNow />} />
                     <Route path="/ecu-cloning" element={<EcuCloning />} />
-                    
+                    <Route path="/trade-file-service" element={<TradeFileService />} />
+
                     <Route path="/dpf-cleaning-exeter" element={<DPFCleaningExeter />} />
                     <Route path="/dpf-cleaning-plymouth" element={<DPFCleaningPlymouth />} />
                     <Route path="/dpf-cleaning-torquay" element={<DPFCleaningTorquay />} />

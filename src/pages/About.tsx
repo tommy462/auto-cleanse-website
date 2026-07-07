@@ -89,7 +89,7 @@ const About = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-24 reveal-container">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
             {splitText('About', 'text-white')}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
               <span className="inline-block word-reveal text-[#FF7A00] ml-3">Auto-Cleanse</span>
@@ -142,8 +142,10 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
               <div className="w-full h-[500px] bg-[#0A0A0A] rounded-[2rem] flex items-center justify-center overflow-hidden border border-[#FF7A00]/20">
                 <img
-                  src="/UniversalUpscaler_6337f695-e031-407a-b241-03edf41e6182.jpg"
+                  src="/about-workshop.webp"
                   alt="Professional AutoCleanse DPF cleaning workshop facility"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
               </div>

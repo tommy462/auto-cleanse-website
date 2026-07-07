@@ -16,11 +16,25 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close the mobile menu on navigation and keep the page from scrolling
+  // underneath it while it is open.
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
     { name: 'Postal DPF', path: '/postal-dpf' },
     { name: 'ECU Remapping', path: '/ecu-remapping' },
+    { name: 'Trade Files', path: '/trade-file-service' },
     { name: 'AdBlue', path: '/adblue-repair-devon' },
     { name: 'Our Process', path: '/how-it-works' },
     { name: 'Blog', path: '/blog' },
@@ -116,8 +130,9 @@ const Header = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-white hover:text-[#FF7A00] transition-colors"
+              className="lg:hidden text-white hover:text-[#FF7A00] transition-colors p-2 -m-2"
               aria-label="Toggle mobile menu"
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -126,24 +141,31 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className={`lg:hidden gradient-bg-secondary border-t border-[#1A1D22] absolute left-0 right-0 top-full mt-2 mx-4 rounded-2xl overflow-hidden glass-panel-heavy shadow-2xl`}>
-            <div className="px-4 py-4 space-y-4">
+          <>
+            {/* Backdrop - tap anywhere outside to close */}
+            <div
+              className="lg:hidden fixed inset-0 top-0 h-[100dvh] bg-black/60 backdrop-blur-sm -z-10"
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
+            <div className={`lg:hidden gradient-bg-secondary border-t border-[#1A1D22] absolute left-0 right-0 top-full mt-2 mx-4 rounded-2xl overflow-hidden glass-panel-heavy shadow-2xl max-h-[calc(100dvh-7.5rem)] overflow-y-auto`}>
+            <div className="px-4 py-3">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block text-sm font-medium transition-colors hover:text-[#FF7A00] ${location.pathname === item.path ? 'text-[#FF7A00]' : 'text-white'
+                  className={`flex items-center min-h-[44px] px-2 rounded-lg text-base font-medium transition-colors hover:text-[#FF7A00] active:bg-white/5 ${location.pathname === item.path ? 'text-[#FF7A00]' : 'text-white'
                     }`}
                 >
                   {item.name}
                 </Link>
               ))}
 
-              <div className="pt-4 border-t border-white/10 space-y-3">
+              <div className="mt-3 pt-4 border-t border-white/10 space-y-3">
                 <a
                   href="tel:01803269895"
-                  className="w-full px-6 py-2 rounded-lg font-bold text-sm text-white border border-[#FF7A00]/40 bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 transition-colors flex items-center justify-center gap-2"
+                  className="w-full px-6 py-3 rounded-lg font-bold text-base text-white border border-[#FF7A00]/40 bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 transition-colors flex items-center justify-center gap-2"
                   aria-label="Call AutoCleanse on 01803 269895"
                 >
                   <Phone size={16} className="text-[#FF7A00]" /> 01803 269895
@@ -151,20 +173,20 @@ const Header = () => {
                 <Link
                   to="/book"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full btn-shine px-6 py-2 rounded-lg font-medium text-sm text-white hover:text-white block text-center shadow-lg hover:shadow-[#FF7A00]/20"
+                  className="w-full btn-shine px-6 py-3 rounded-lg font-medium text-base text-white hover:text-white block text-center shadow-lg hover:shadow-[#FF7A00]/20"
                 >
                   Book Now
                 </Link>
 
                 {/* Mobile Social Icons */}
-                <div className="flex items-center space-x-4 pt-2 justify-center">
+                <div className="flex items-center space-x-2 pt-1 justify-center">
                   {socialIcons.map(({ Icon, href }, index) => (
                     <a
                       key={index}
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white/60 hover:text-[#FF7A00] transition-colors"
+                      className="text-white/60 hover:text-[#FF7A00] transition-colors p-3"
                       aria-label={`Follow us on ${Icon.name}`}
                     >
                       <Icon size={20} />
@@ -173,7 +195,8 @@ const Header = () => {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </>
         )}
       </header>
     </>

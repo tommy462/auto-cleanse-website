@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Star, Phone, ExternalLink } from 'lucide-react';
+import { Star, Phone, ExternalLink, ChevronDown } from 'lucide-react';
 import { GOOGLE_REVIEWS_URL, type Review } from '../data/reviews';
 
 interface ReviewsProps {
@@ -78,6 +79,11 @@ export default function Reviews({
   showContactCta = false,
   showInternalLinks = false,
 }: ReviewsProps) {
+  // On phones a long list of full reviews makes the page exhausting to
+  // scroll, so collapse to the first few with a toggle. sm+ always shows all.
+  const MOBILE_VISIBLE = 3;
+  const [showAllMobile, setShowAllMobile] = useState(false);
+
   if (!reviews.length) return null;
 
   const colClass =
@@ -91,10 +97,32 @@ export default function Reviews({
       </div>
 
       <div className={`${colClass} gap-x-6`}>
-        {reviews.map((review) => (
-          <ReviewCard key={review.id} review={review} />
+        {reviews.map((review, index) => (
+          <div
+            key={review.id}
+            className={`break-inside-avoid ${index >= MOBILE_VISIBLE && !showAllMobile ? 'hidden sm:block' : ''}`}
+          >
+            <ReviewCard review={review} />
+          </div>
         ))}
       </div>
+
+      {reviews.length > MOBILE_VISIBLE && (
+        <div className="sm:hidden text-center mt-2">
+          <button
+            type="button"
+            onClick={() => setShowAllMobile((v) => !v)}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors"
+            aria-expanded={showAllMobile}
+          >
+            {showAllMobile ? 'Show fewer reviews' : `Show all ${reviews.length} reviews`}
+            <ChevronDown
+              size={16}
+              className={`text-[#FF7A00] transition-transform duration-300 ${showAllMobile ? 'rotate-180' : ''}`}
+            />
+          </button>
+        </div>
+      )}
 
       {(showGoogleCta || showCallCta || showContactCta) && (
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">

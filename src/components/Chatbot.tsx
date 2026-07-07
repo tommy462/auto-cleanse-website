@@ -171,7 +171,7 @@ const Chatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-[500px] bg-[#0B0B0D] border border-[#1A1D22] rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+        <div className="fixed inset-x-3 bottom-[calc(4rem+env(safe-area-inset-bottom)+0.75rem)] h-[min(500px,calc(100dvh-10rem))] lg:inset-x-auto lg:right-6 lg:bottom-6 lg:w-96 lg:h-[500px] bg-[#0B0B0D] border border-[#1A1D22] rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
           {/* Header */}
           <div className="gradient-orange p-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -185,7 +185,7 @@ const Chatbot = () => {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white/80 hover:text-white transition-colors"
+              className="text-white/80 hover:text-white transition-colors p-2 -m-2"
               aria-label="Close chat"
             >
               <X size={20} />
@@ -254,7 +254,7 @@ const Chatbot = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask about our services..."
-                className="flex-1 bg-[#111317] border border-[#1A1D22] focus:border-[#FF7A00] rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#FF7A00]/20 transition-all"
+                className="flex-1 min-w-0 bg-[#111317] border border-[#1A1D22] focus:border-[#FF7A00] rounded-lg px-4 py-2 text-white text-base lg:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF7A00]/20 transition-all"
                 disabled={isTyping}
               />
               <button

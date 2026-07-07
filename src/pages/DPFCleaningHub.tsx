@@ -34,20 +34,29 @@ const dpfFaqs = [
 gsap.registerPlugin(ScrollTrigger);
 
 const locations = [
+  { name: 'Near Me', path: '/dpf-cleaning-near-me', note: 'Find your nearest option' },
   { name: 'Devon', path: '/dpf-cleaning-devon', note: 'Full county coverage' },
+  { name: 'Totnes', path: '/dpf-cleaning-totnes', note: 'Our workshop base' },
   { name: 'Exeter', path: '/dpf-cleaning-exeter', note: 'East Devon' },
   { name: 'Plymouth', path: '/dpf-cleaning-plymouth', note: 'South West Devon' },
   { name: 'Newton Abbot', path: '/dpf-cleaning-newton-abbot', note: 'South Devon' },
   { name: 'Torquay', path: '/dpf-cleaning-torquay', note: 'Torbay' },
   { name: 'Paignton', path: '/dpf-cleaning-paignton', note: 'Torbay' },
-  { name: 'Totnes', path: '/dpf-cleaning-totnes', note: 'Our workshop base' },
+  { name: 'Brixham', path: '/dpf-cleaning-brixham', note: 'Torbay' },
+  { name: 'Teignmouth', path: '/dpf-cleaning-teignmouth', note: 'Teign Estuary' },
+  { name: 'Dawlish', path: '/dpf-cleaning-dawlish', note: 'East Devon coast' },
+  { name: 'Exmouth', path: '/dpf-cleaning-exmouth', note: 'East Devon' },
+  { name: 'Dartmouth', path: '/dpf-cleaning-dartmouth', note: 'South Hams' },
+  { name: 'Kingsbridge', path: '/dpf-cleaning-kingsbridge', note: 'South Hams' },
+  { name: 'Ivybridge', path: '/dpf-cleaning-ivybridge', note: 'A38 corridor' },
+  { name: 'South Hams', path: '/dpf-cleaning-south-hams', note: 'Our home district' },
 ];
 
 const DPFCleaningHub = () => {
   const container = useRef(null);
 
   useGSAP(() => {
-    gsap.utils.toArray('.reveal-container').forEach((c: any) => {
+    gsap.utils.toArray<HTMLElement>('.reveal-container').forEach((c) => {
       const items = c.querySelectorAll('.reveal-item');
       gsap.fromTo(items, { y: 30, opacity: 0 }, {
         y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out',

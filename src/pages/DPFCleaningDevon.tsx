@@ -29,7 +29,7 @@ const DPFCleaningDevon = () => {
       { y: '0%', opacity: 1, duration: 1, stagger: 0.05, ease: 'power4.out', delay: 0.1 }
     );
 
-    gsap.utils.toArray('.reveal-container').forEach((container: any) => {
+    gsap.utils.toArray<HTMLElement>('.reveal-container').forEach((container) => {
       const items = container.querySelectorAll('.reveal-item');
       gsap.fromTo(items,
         { y: 30, opacity: 0 },
@@ -80,7 +80,7 @@ const DPFCleaningDevon = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-20 reveal-container">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
             {splitText('DPF Collection Across', 'text-white')}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
               <span className="inline-block word-reveal text-[#FF7A00] ml-3">Devon.</span>
@@ -228,6 +228,14 @@ const DPFCleaningDevon = () => {
                 { to: '/dpf-cleaning-paignton', label: 'Paignton' },
                 { to: '/dpf-cleaning-newton-abbot', label: 'Newton Abbot' },
                 { to: '/dpf-cleaning-totnes', label: 'Totnes (workshop)' },
+                { to: '/dpf-cleaning-brixham', label: 'Brixham' },
+                { to: '/dpf-cleaning-dartmouth', label: 'Dartmouth' },
+                { to: '/dpf-cleaning-kingsbridge', label: 'Kingsbridge' },
+                { to: '/dpf-cleaning-ivybridge', label: 'Ivybridge' },
+                { to: '/dpf-cleaning-teignmouth', label: 'Teignmouth' },
+                { to: '/dpf-cleaning-dawlish', label: 'Dawlish' },
+                { to: '/dpf-cleaning-exmouth', label: 'Exmouth' },
+                { to: '/dpf-cleaning-south-hams', label: 'South Hams' },
               ].map(({ to, label }) => (
                 <Link key={to} to={to} className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/80 hover:text-white transition-all group/link">
                   <span className="font-bold">{label}</span>

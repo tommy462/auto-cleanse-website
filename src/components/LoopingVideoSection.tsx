@@ -1,4 +1,4 @@
-﻿import React, { useRef } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 
 interface ProcessStep {
   title: string;
@@ -26,6 +26,27 @@ const LoopingVideoSection: React.FC<LoopingVideoSectionProps> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Defer fetching the video until the section is near the viewport, and
+  // pause it off-screen - matters on mobile data connections and battery.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="section-gradient-2 py-14 lg:py-24 relative overflow-hidden">
       {/* Ambient glow */}
@@ -48,10 +69,10 @@ const LoopingVideoSection: React.FC<LoopingVideoSectionProps> = ({
             <div className="glass-panel p-2 rounded-2xl shadow-2xl shadow-black/50">
               <video
                 ref={videoRef}
-                autoPlay
                 loop
                 muted
                 playsInline
+                preload="none"
                 className="w-full h-auto rounded-xl object-cover bg-black/40"
                 style={{ minHeight: '220px', maxHeight: '60vh' }}
               >

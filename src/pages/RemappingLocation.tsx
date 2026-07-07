@@ -9,8 +9,9 @@ import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
 import Reviews from '../components/Reviews';
-import { getReviews, ECU_COMPACT_REVIEW_IDS } from '../data/reviews';
+import { getReviews, ECU_REVIEW_IDS } from '../data/reviews';
 import { getLocationBySlug, REMAP_LOCATIONS } from '../data/remapping-locations';
+import { DPF_DIRECTORY } from '../data/dpf-locations';
 import { localBusinessSchema } from '../data/business';
 import { getVehicleBySlug } from '../data/vehicle-remapping';
 import { DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
@@ -45,12 +46,12 @@ const RELATED_SERVICES = [
 ];
 
 const SERVICES = [
-  { icon: <Zap size={20} />, title: 'Stage 1 Remap', desc: 'Software-only tune for standard vehicles - the most popular upgrade. More power, better torque, sharper throttle.' },
-  { icon: <BarChart3 size={20} />, title: 'Stage 2 Remap', desc: 'For vehicles with hardware upgrades. Optimised maps to match intercooler, exhaust or intake changes.' },
-  { icon: <Fuel size={20} />, title: 'Economy Remap', desc: 'Diesel-focused tuning to reduce fuel consumption - popular with van drivers and high-mileage commuters.' },
-  { icon: <Truck size={20} />, title: 'Van & Commercial', desc: 'Transit, Sprinter, Crafter, Trafic and more. Better pulling power and economy for working vehicles.' },
-  { icon: <Settings2 size={20} />, title: 'Custom / Fleet Map', desc: 'Consistent mapping across multiple vehicles, tailored for fleet operators and commercial customers.' },
-  { icon: <Wrench size={20} />, title: 'DPF Clean + Remap Bundle', desc: 'Combine a professional DPF clean with an ECU remap where suitable. Removal and refit can be arranged subject to availability, or trade customers can supply the filter off the vehicle.' },
+  { icon: <Zap size={20} />, title: 'Stage 1 Remap', desc: 'Software-only tune for standard vehicles.' },
+  { icon: <BarChart3 size={20} />, title: 'Stage 2 Remap', desc: 'Maps matched to hardware upgrades.' },
+  { icon: <Fuel size={20} />, title: 'Economy Remap', desc: 'Diesel tuning focused on fuel costs.' },
+  { icon: <Truck size={20} />, title: 'Van & Commercial', desc: 'Pulling power for working vans.' },
+  { icon: <Settings2 size={20} />, title: 'Custom / Fleet Map', desc: 'Consistent maps across fleets.' },
+  { icon: <Wrench size={20} />, title: 'DPF Clean + Remap Bundle', desc: 'Workshop DPF clean plus remap where suitable - removal/refit subject to availability.' },
 ];
 
 const TRUST = [
@@ -109,7 +110,20 @@ export default function RemappingLocation() {
     .filter(Boolean)
     .slice(0, 6) as ReturnType<typeof getVehicleBySlug>[];
   // Don't self-link (e.g. the mobile-ecu-remapping-devon page shouldn't link to itself).
-  const relatedServices = RELATED_SERVICES.filter((s) => s.to !== `/${location.slug}`);
+  const relatedServices = [...RELATED_SERVICES.filter((s) => s.to !== `/${location.slug}`)];
+
+  // Cross-link the matching DPF town page where one exists (e.g.
+  // ecu-remapping-brixham -> dpf-cleaning-brixham) so town pages interlink
+  // across both service clusters.
+  const dpfTownPath = `/dpf-cleaning-${location.slug.replace('ecu-remapping-', '')}`;
+  if (DPF_DIRECTORY.some((d) => d.path === dpfTownPath)) {
+    relatedServices.push({ to: dpfTownPath, label: `DPF Cleaning in ${location.name}` });
+  }
+
+  // Rotate which 3 of the ECU review pool each town shows, deterministically by
+  // slug, so location pages don't all carry an identical review block.
+  const reviewOffset = [...location.slug].reduce((a, c) => a + c.charCodeAt(0), 0) % ECU_REVIEW_IDS.length;
+  const rotatedReviewIds = Array.from({ length: 3 }, (_, i) => ECU_REVIEW_IDS[(reviewOffset + i) % ECU_REVIEW_IDS.length]);
 
   const schema = localBusinessSchema({
     description: `ECU remapping service covering ${location.name} and ${location.region}. Stage 1, Stage 2, economy and mobile remapping for cars, vans and commercial vehicles. DPF cleaning is carried out off the vehicle at our Totnes workshop, not at the roadside.`,
@@ -322,11 +336,9 @@ export default function RemappingLocation() {
               <h2 className="text-3xl font-black tracking-tighter text-white mb-6">
                 Professional ECU Tuning - Not Just a Flash and Go
               </h2>
-              <p className="text-white/50 text-sm leading-relaxed mb-6">
-                Every vehicle we remap gets a full diagnostic check before we touch the ECU - and another one after. We don't use generic off-the-shelf files or rush through jobs. Our remaps are applied carefully, tested properly, and backed by our real-world experience with hundreds of vehicles across Devon.
-              </p>
               <p className="text-white/50 text-sm leading-relaxed">
-                We're a genuine local Devon business, not a national franchise. When you call us, you speak to the people doing the work.
+                Diagnostic checks before and after every remap, no rushed generic flashes, and a genuine
+                local Devon business - you speak to the people doing the work.
               </p>
             </div>
             <div className="space-y-3">
@@ -477,7 +489,7 @@ export default function RemappingLocation() {
       <section className="py-16 border-t border-white/5">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reviews
-            reviews={getReviews(ECU_COMPACT_REVIEW_IDS)}
+            reviews={getReviews(rotatedReviewIds)}
             heading={<><span className="text-white">Remapping </span><span className="text-[#FF7A00]">Reviews</span></>}
             columns={3}
             showGoogleCta
@@ -492,7 +504,7 @@ export default function RemappingLocation() {
             Ready to book?
           </div>
           <h2 className="text-4xl font-black tracking-tighter text-white mb-4">
-            Get a Quote for ECU Remapping<br />
+            Get a Quote for ECU Remapping{' '}<br />
             <span className="text-[#FF7A00]">in {location.name}.</span>
           </h2>
           <p className="text-white/40 text-base mb-8 max-w-md mx-auto">

@@ -971,7 +971,7 @@ export default function VehiclePerformanceLookup() {
             <Search size={14} />
             Stage 1 Remap Data - 85 Manufacturers
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 sm:mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
+          <h1 className="text-4xl sm:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 sm:mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
             {splitText('Vehicle Performance', 'text-white')}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em] w-full sm:w-auto">
               <span className="inline-block word-reveal text-[#FF7A00] sm:ml-3">Lookup.</span>

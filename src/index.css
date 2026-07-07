@@ -469,12 +469,23 @@ button:disabled {
   display: inline-block;
   opacity: 0;
   transform: translateY(100%);
+  animation: reveal-fallback 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
 }
 
 .word-reveal {
   display: inline-block;
   opacity: 0;
   transform: translateY(100%);
+  animation: reveal-fallback 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
+}
+
+/* Safety net: if GSAP hasn't run yet (slow connection, blocked JS), reveal
+   the text via CSS so headlines are never left invisible. */
+@keyframes reveal-fallback {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
 }
 
 @keyframes marquee {

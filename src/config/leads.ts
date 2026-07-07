@@ -6,6 +6,11 @@
 export const LEADS_WEBHOOK_URL =
   'https://hook.eu2.make.com/nh3pvoagqc4y22cg5240jqwcjzjdrpa8';
 
+// Make.com webhook that receives Trade File Service access applications.
+// Write-only webhook, safe to call from the client; never rendered as page text.
+export const TRADE_LEADS_WEBHOOK_URL =
+  'https://hook.eu2.make.com/mlqcw93jdd50wcruo2st9v9yatxr25l3';
+
 // Services a visitor can select in the quick enquiry form.
 export const SERVICE_OPTIONS = [
   'DPF Cleaning',

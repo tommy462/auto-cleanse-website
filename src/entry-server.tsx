@@ -4,6 +4,7 @@ import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
 import App from './App';
 import { REMAP_LOCATIONS } from './data/remapping-locations';
 import { VEHICLE_REMAPS } from './data/vehicle-remapping';
+import { DPF_LOCATIONS } from './data/dpf-locations';
 import { PUBLISHED_POSTS } from './lib/blog';
 
 export interface RenderResult {
@@ -29,6 +30,7 @@ const STATIC_ROUTES = [
   '/',
   '/services',
   '/dpf-cleaning',
+  '/dpf-cleaning-near-me',
   '/postal-dpf',
   '/book',
   '/why-clean',
@@ -50,6 +52,7 @@ const STATIC_ROUTES = [
   '/ecu-remapping',
   '/ecu-remapping-locations',
   '/ecu-cloning',
+  '/trade-file-service',
   '/vehicle-performance-lookup',
   '/remapping-booking',
 ];
@@ -60,6 +63,7 @@ export const routes: string[] = [
   ...PUBLISHED_POSTS.map((p) => `/blog/${p.slug}`),
   ...REMAP_LOCATIONS.map((loc) => `/${loc.slug}`),
   ...VEHICLE_REMAPS.map((veh) => `/${veh.slug}`),
+  ...DPF_LOCATIONS.map((loc) => `/${loc.slug}`),
 ];
 
 // Lightweight metadata for the RSS feed generated in scripts/prerender.mjs.

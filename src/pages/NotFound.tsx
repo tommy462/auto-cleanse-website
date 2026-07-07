@@ -24,7 +24,7 @@ export default function NotFound() {
 
       <div className="relative z-10 max-w-2xl w-full text-center">
         <p className="text-[#FF7A00] font-mono font-bold tracking-widest text-sm mb-4">ERROR 404</p>
-        <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white tracking-tighter mb-6">
           Page not found
         </h1>
         <p className="text-white/60 text-lg max-w-lg mx-auto mb-10 leading-relaxed">
