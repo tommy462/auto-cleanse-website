@@ -36,9 +36,27 @@
       "source": "/performance-remapping-devon",
       "destination": "https://www.auto-cleanse.co.uk/stage-1-remaps-devon",
       "permanent": true
+    },
+    {
+      "source": "/vehicle-remapping",
+      "destination": "https://www.auto-cleanse.co.uk/vehicle-performance-lookup",
+      "permanent": true
+    },
+    {
+      "source": "/our-services",
+      "destination": "https://www.auto-cleanse.co.uk/services",
+      "permanent": true
+    },
+    {
+      "source": "/services-3",
+      "destination": "https://www.auto-cleanse.co.uk/services",
+      "permanent": true
     }
   ],
   "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/" }
+    { "source": "/booking-success", "destination": "/" },
+    { "source": "/booking-cancel", "destination": "/" },
+    { "source": "/diagnostic-matcher", "destination": "/" },
+    { "source": "/debug/dvla", "destination": "/" }
   ]
 }

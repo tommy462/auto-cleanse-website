@@ -126,6 +126,33 @@ for (const url of uniqueRoutes) {
 
 console.log(`\n${rendered} pages rendered${errors > 0 ? `, ${errors} errors` : ''}.`);
 
+// ── Prerender a real 404 page (dist/404.html) ──────────────────────────────
+// Vercel serves a root 404.html with an HTTP 404 status for any path that
+// matches no static file, redirect or rewrite. Rendering an unknown slug hits
+// the app's NotFound page, which carries noindex via <SEO noindex>.
+try {
+  const { html: appHtml, helmet } = render('/__404__');
+  const headTags = [
+    helmet.title?.toString() ?? '',
+    helmet.meta?.toString() ?? '',
+    helmet.link?.toString() ?? '',
+    helmet.script?.toString() ?? '',
+    helmet.style?.toString() ?? '',
+    helmet.noscript?.toString() ?? '',
+  ]
+    .filter(Boolean)
+    .join('\n    ');
+  const finalHtml = template
+    .replace('<title>__SSR_TITLE__</title>', headTags)
+    .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
+  writeFileSync(join(projectRoot, 'dist/404.html'), finalHtml, 'utf-8');
+  console.log('404 page written to dist/404.html');
+} catch (err) {
+  errors++;
+  process.stderr.write(`  ✗ 404.html: ${err.message}\n`);
+  if (process.env.PRERENDER_STRICT) process.exit(1);
+}
+
 // ── Generate sitemap.xml with tiered priorities ───────────────────────────
 const HOSTNAME = 'https://www.auto-cleanse.co.uk';
 const lastmod = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (build date)
