@@ -363,7 +363,12 @@ const PostalDPF = () => {
                 <p className="text-white/60 text-lg font-medium">Provide your details and we'll set up your postal cleaning job</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-8 relative z-10"
+                toolname="bookPostalDpfCleaning"
+                tooldescription="Submits a postal DPF cleaning booking to Auto-Cleanse. The customer sends their removed DPF filter by courier; Auto-Cleanse deep-cleans and flow-tests it and returns it. Collects the customer, address and vehicle details for the job."
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <label htmlFor="fullName" className="block text-white/80 font-bold mb-3">
@@ -378,6 +383,7 @@ const PostalDPF = () => {
                       required
                       className="w-full bg-[#0A0A0A] border z-20 border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg"
                       placeholder="Your full name"
+                      toolparamdescription="Full name of the person booking the postal DPF clean."
                     />
                   </div>
 
@@ -394,6 +400,7 @@ const PostalDPF = () => {
                       required
                       className="w-full bg-[#0A0A0A] border border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg"
                       placeholder="your.email@example.com"
+                      toolparamdescription="Email address for the booking confirmation and updates."
                     />
                   </div>
                 </div>
@@ -411,6 +418,7 @@ const PostalDPF = () => {
                     required
                     className="w-full bg-[#0A0A0A] border border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg"
                     placeholder="Your phone number"
+                    toolparamdescription="Contact phone number for the postal DPF booking."
                   />
                 </div>
 
@@ -426,8 +434,10 @@ const PostalDPF = () => {
                       value={formData.addressLine1}
                       onChange={handleInputChange}
                       required
+                      aria-label="Address line 1"
                       className="w-full bg-[#0A0A0A] border border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg"
                       placeholder="Address Line 1 *"
+                      toolparamdescription="First line of the collection/return address."
                     />
                     <input
                       type="text"
@@ -435,8 +445,10 @@ const PostalDPF = () => {
                       name="addressLine2"
                       value={formData.addressLine2}
                       onChange={handleInputChange}
+                      aria-label="Address line 2"
                       className="w-full bg-[#0A0A0A] border border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg"
                       placeholder="Address Line 2"
+                      toolparamdescription="Second line of the address (optional)."
                     />
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <input
@@ -446,8 +458,10 @@ const PostalDPF = () => {
                         value={formData.town}
                         onChange={handleInputChange}
                         required
+                        aria-label="Town or city"
                         className="w-full bg-[#0A0A0A] border border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg"
                         placeholder="Town/City *"
+                        toolparamdescription="Town or city of the address."
                       />
                       <input
                         type="text"
@@ -455,8 +469,10 @@ const PostalDPF = () => {
                         name="county"
                         value={formData.county}
                         onChange={handleInputChange}
+                        aria-label="County"
                         className="w-full bg-[#0A0A0A] border border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg"
                         placeholder="County"
+                        toolparamdescription="County (optional)."
                       />
                       <input
                         type="text"
@@ -465,8 +481,10 @@ const PostalDPF = () => {
                         value={formData.postcode}
                         onChange={handleInputChange}
                         required
+                        aria-label="Postcode"
                         className="w-full bg-[#0A0A0A] border border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg uppercase"
                         placeholder="Postcode *"
+                        toolparamdescription="Postcode of the address."
                       />
                     </div>
                   </div>
@@ -486,6 +504,7 @@ const PostalDPF = () => {
                       required
                       className="w-full bg-[#0A0A0A] border border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg uppercase font-mono"
                       placeholder="e.g. AB12 CDE"
+                      toolparamdescription="Registration number of the vehicle the DPF was removed from."
                     />
                   </div>
 
@@ -502,6 +521,7 @@ const PostalDPF = () => {
                       required
                       className="w-full bg-[#0A0A0A] border border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg"
                       placeholder="e.g. Ford Transit"
+                      toolparamdescription="Make and model of the vehicle, e.g. Ford Transit."
                     />
                   </div>
                 </div>
@@ -518,6 +538,7 @@ const PostalDPF = () => {
                     rows={4}
                     className="w-full bg-[#0A0A0A] border border-white/10 focus:border-[#FF7A00] rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-4 focus:ring-[#FF7A00]/20 transition-all text-lg resize-none"
                     placeholder="Any additional information about your DPF or special requirements"
+                    toolparamdescription="Any extra information about the DPF or special requirements (optional)."
                   />
                 </div>
 

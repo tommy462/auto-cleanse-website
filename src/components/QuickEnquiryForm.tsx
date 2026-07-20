@@ -86,8 +86,22 @@ export default function QuickEnquiryForm({
     'w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#FF7A00] focus:ring-1 focus:ring-[#FF7A00] transition-all';
   const labelClass = 'block text-white/60 text-sm font-medium mb-1.5';
 
+  // WebMCP tool metadata, derived from the enquiry context so an agent gets an
+  // accurate, service-specific tool without any change to form behaviour.
+  const tool =
+    defaultService === 'DPF Cleaning'
+      ? { name: 'requestDpfCleaningQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about DPF cleaning for a vehicle.' }
+      : defaultService === 'ECU Remapping'
+        ? { name: 'requestEcuRemappingQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about ECU remapping for a vehicle.' }
+        : { name: 'submitVehicleEnquiry', desc: 'Submits a vehicle enquiry to Auto-Cleanse requesting a callback about the selected service.' };
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4"
+      toolname={tool.name}
+      tooldescription={tool.desc}
+    >
       {(heading || subheading) && (
         <div className="mb-1">
           {heading && <h3 className="text-2xl font-bold text-white tracking-tight">{heading}</h3>}
@@ -99,12 +113,14 @@ export default function QuickEnquiryForm({
         <div>
           <label htmlFor="qe-name" className={labelClass}>Name *</label>
           <input id="qe-name" name="name" type="text" required autoComplete="name"
-            value={data.name} onChange={handleChange} placeholder="Your name" className={fieldClass} />
+            value={data.name} onChange={handleChange} placeholder="Your name" className={fieldClass}
+            toolparamdescription="Full name of the person to call back." />
         </div>
         <div>
           <label htmlFor="qe-phone" className={labelClass}>Phone *</label>
           <input id="qe-phone" name="phone" type="tel" required autoComplete="tel"
-            value={data.phone} onChange={handleChange} placeholder="Your phone number" className={fieldClass} />
+            value={data.phone} onChange={handleChange} placeholder="Your phone number" className={fieldClass}
+            toolparamdescription="Phone number Auto-Cleanse will use to call the customer back." />
         </div>
       </div>
 
@@ -113,12 +129,14 @@ export default function QuickEnquiryForm({
           <label htmlFor="qe-reg" className={labelClass}>Vehicle reg <span className="text-white/30">(optional)</span></label>
           <input id="qe-reg" name="registration" type="text" value={data.registration}
             onChange={handleChange} placeholder="AB12 CDE" maxLength={10}
-            className={`${fieldClass} uppercase tracking-wider`} />
+            className={`${fieldClass} uppercase tracking-wider`}
+            toolparamdescription="Vehicle registration number (optional), used to identify the vehicle." />
         </div>
         <div>
           <label htmlFor="qe-service" className={labelClass}>Service needed *</label>
           <select id="qe-service" name="service" required value={data.service}
-            onChange={handleChange} className={fieldClass}>
+            onChange={handleChange} className={fieldClass}
+            toolparamdescription="The service the enquiry is about, e.g. DPF Cleaning, ECU Remapping or Vehicle Diagnostics.">
             <option value="" disabled>Choose a service…</option>
             {SERVICE_OPTIONS.map((s) => (
               <option key={s} value={s} className="bg-[#1A1D22]">{s}</option>
@@ -131,7 +149,8 @@ export default function QuickEnquiryForm({
         <label htmlFor="qe-message" className={labelClass}>Message <span className="text-white/30">(optional)</span></label>
         <textarea id="qe-message" name="message" rows={3} value={data.message}
           onChange={handleChange} placeholder="Anything else we should know? (symptoms, warning lights, timescale…)"
-          className={`${fieldClass} resize-none`} />
+          className={`${fieldClass} resize-none`}
+          toolparamdescription="Any extra detail such as symptoms, warning lights or timescale (optional)." />
       </div>
 
       {/* Honeypot — visually hidden, ignored by humans, filled by bots. */}

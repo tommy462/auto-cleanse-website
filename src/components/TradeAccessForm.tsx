@@ -123,17 +123,24 @@ export default function TradeAccessForm() {
   const labelClass = 'block text-white/60 text-sm font-medium mb-1.5';
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-5"
+      toolname="applyForTradeEcuFiles"
+      tooldescription="Submits a trade-access application to Auto-Cleanse for its trade ECU/TCU file service (for garages and mobile tuners). Auto-Cleanse reviews the application and follows up about trade file access."
+    >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="tf-name" className={labelClass}>Name *</label>
           <input id="tf-name" name="name" type="text" required autoComplete="name"
-            value={data.name} onChange={handleChange} placeholder="Your name" className={fieldClass} />
+            value={data.name} onChange={handleChange} placeholder="Your name" className={fieldClass}
+            toolparamdescription="Full name of the person applying for trade access." />
         </div>
         <div>
           <label htmlFor="tf-business" className={labelClass}>Business name *</label>
           <input id="tf-business" name="businessName" type="text" required autoComplete="organization"
-            value={data.businessName} onChange={handleChange} placeholder="Business name" className={fieldClass} />
+            value={data.businessName} onChange={handleChange} placeholder="Business name" className={fieldClass}
+            toolparamdescription="Name of the applicant's garage or tuning business." />
         </div>
       </div>
 
@@ -141,12 +148,14 @@ export default function TradeAccessForm() {
         <div>
           <label htmlFor="tf-email" className={labelClass}>Email *</label>
           <input id="tf-email" name="email" type="email" required autoComplete="email"
-            value={data.email} onChange={handleChange} placeholder="you@business.co.uk" className={fieldClass} />
+            value={data.email} onChange={handleChange} placeholder="you@business.co.uk" className={fieldClass}
+            toolparamdescription="Business email address Auto-Cleanse will reply to." />
         </div>
         <div>
           <label htmlFor="tf-phone" className={labelClass}>Phone *</label>
           <input id="tf-phone" name="phone" type="tel" required autoComplete="tel"
-            value={data.phone} onChange={handleChange} placeholder="Your phone number" className={fieldClass} />
+            value={data.phone} onChange={handleChange} placeholder="Your phone number" className={fieldClass}
+            toolparamdescription="Contact phone number for the business." />
         </div>
       </div>
 
@@ -156,12 +165,14 @@ export default function TradeAccessForm() {
             Website or Facebook page <span className="text-white/30">(optional)</span>
           </label>
           <input id="tf-web" name="websiteOrSocial" type="text" autoComplete="url"
-            value={data.websiteOrSocial} onChange={handleChange} placeholder="Link to your site or page" className={fieldClass} />
+            value={data.websiteOrSocial} onChange={handleChange} placeholder="Link to your site or page" className={fieldClass}
+            toolparamdescription="Link to the business website or Facebook page (optional), used to verify the trade business." />
         </div>
         <div>
           <label htmlFor="tf-type" className={labelClass}>Business type *</label>
           <select id="tf-type" name="businessType" required value={data.businessType}
-            onChange={handleChange} className={fieldClass}>
+            onChange={handleChange} className={fieldClass}
+            toolparamdescription="The type of trade business, e.g. Garage, Mobile tuner, Mechanic, DPF specialist or Performance tuner.">
             <option value="" disabled>Choose business type&hellip;</option>
             {BUSINESS_TYPES.map((t) => (
               <option key={t} value={t} className="bg-[#1A1D22]">{t}</option>
@@ -191,6 +202,7 @@ export default function TradeAccessForm() {
                   checked={checked}
                   onChange={() => toggleService(service)}
                   className="h-4 w-4 accent-[#FF7A00] shrink-0"
+                  toolparamdescription="A file-service type the trade customer is interested in; select all that apply (Stage 1/2, TCU, DPF, EGR, AdBlue/SCR, DTC removal or Other)."
                 />
                 <span className="text-sm text-white/80">{service}</span>
               </label>
@@ -202,7 +214,8 @@ export default function TradeAccessForm() {
       <div>
         <label htmlFor="tf-volume" className={labelClass}>Approx. files per month *</label>
         <select id="tf-volume" name="filesPerMonth" required value={data.filesPerMonth}
-          onChange={handleChange} className={fieldClass}>
+          onChange={handleChange} className={fieldClass}
+          toolparamdescription="Approximate number of files the business expects to submit per month (1-5, 6-15, 16-30 or 30+).">
           <option value="" disabled>Choose a range&hellip;</option>
           {FILES_PER_MONTH.map((v) => (
             <option key={v} value={v} className="bg-[#1A1D22]">{v}</option>
@@ -216,7 +229,8 @@ export default function TradeAccessForm() {
         </label>
         <textarea id="tf-message" name="message" rows={3} value={data.message}
           onChange={handleChange} placeholder="Tell us about your business and what you need"
-          className={`${fieldClass} resize-none`} />
+          className={`${fieldClass} resize-none`}
+          toolparamdescription="Any extra detail about the business and what the trade customer needs (optional)." />
       </div>
 
       <label className="flex items-start gap-3 text-sm text-white/70 cursor-pointer">
@@ -227,6 +241,7 @@ export default function TradeAccessForm() {
           checked={data.consent}
           onChange={handleChange}
           className="h-4 w-4 accent-[#FF7A00] shrink-0 mt-0.5"
+          toolparamdescription="Required confirmation that the applicant is a trade customer and consents to being contacted about trade file access."
         />
         <span>
           I confirm I am applying as a trade customer and understand AutoCleanse may contact me about
