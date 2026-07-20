@@ -124,15 +124,15 @@ const PORTFOLIO_VEHICLES: PortfolioVehicle[] = [
 function StatBox({ label, unit, stock, tuned, gain }: { label: string; unit: string; stock: number; tuned: number; gain: number }) {
   return (
     <div className="flex-1 bg-black/50 border border-white/10 rounded-xl px-2.5 py-2 backdrop-blur-sm min-w-0">
-      <p className="text-[9px] font-bold uppercase tracking-widest text-white/40 mb-1.5">{label}</p>
+      <p className="text-[9px] font-bold uppercase tracking-widest text-white/60 mb-1.5">{label}</p>
       {/* Single line - whitespace-nowrap keeps stock → tuned +gain on one row always */}
       <div className="flex items-center gap-1 whitespace-nowrap">
-        <span className="text-white/50 font-bold text-[11px]">{stock}</span>
-        <ArrowRight size={7} className="text-[#FF7A00]/50 shrink-0" />
+        <span className="text-white/60 font-bold text-[11px]">{stock}</span>
+        <ArrowRight size={7} className="text-[#FF7A00] shrink-0" />
         <span className="text-white font-black text-[13px]">{tuned}</span>
         <span className="text-[#FF7A00] font-black text-[11px]">+{gain}</span>
       </div>
-      <p className="text-white/25 text-[9px] mt-0.5">{unit}</p>
+      <p className="text-white/60 text-[9px] mt-0.5">{unit}</p>
     </div>
   );
 }
@@ -211,9 +211,9 @@ function VehicleCard({ v }: { v: PortfolioVehicle }) {
 
         {/* Bottom: name + stats */}
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[#FF7A00]/80 mb-0.5">{v.make}</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[#FF7A00] mb-0.5">{v.make}</p>
           <h3 className="text-white font-black text-lg leading-tight tracking-tight mb-0.5">{v.model}</h3>
-          <p className="text-white/40 text-xs font-medium mb-3">{v.engine}</p>
+          <p className="text-white/60 text-xs font-medium mb-3">{v.engine}</p>
 
           {/* Desktop hover stats */}
           <div
@@ -260,7 +260,7 @@ export default function RemapPortfolio() {
               <p className="text-white/50 text-base md:text-lg font-medium max-w-xl leading-relaxed">
                 A growing portfolio of real vehicles tuned by Auto-Cleanse — from performance cars to commercial vans.
               </p>
-              <p className="text-white/30 text-sm font-medium mt-2 max-w-xl">
+              <p className="text-white/60 text-sm font-medium mt-2 max-w-xl">
                 Every vehicle is diagnosed, read, tuned and tested properly for safe, usable performance gains.
               </p>
             </div>
@@ -291,7 +291,7 @@ export default function RemapPortfolio() {
         </div>
 
         {/* Bottom note */}
-        <p className="text-center text-white/20 text-xs font-medium mt-8 px-4">
+        <p className="text-center text-white/60 text-xs font-medium mt-8 px-4">
           All figures shown are indicative Stage 1 gains. Actual results may vary by vehicle condition and specification.
         </p>
       </div>

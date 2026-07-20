@@ -46,7 +46,7 @@ function RemapCardItem({ card }: { card: RemapCard }) {
           {card.month}
         </span>
         {card.serviceType && (
-          <span className="text-xs font-medium text-white/35 bg-white/[0.04] px-3 py-1 rounded-full">
+          <span className="text-xs font-medium text-white/60 bg-white/[0.04] px-3 py-1 rounded-full">
             {card.serviceType}
           </span>
         )}
@@ -56,7 +56,7 @@ function RemapCardItem({ card }: { card: RemapCard }) {
         &ldquo;{card.ownerNote}&rdquo;
       </p>
       {card.customerQuote && (
-        <p className="mt-3 text-white/35 text-xs leading-relaxed border-t border-white/5 pt-3">
+        <p className="mt-3 text-white/60 text-xs leading-relaxed border-t border-white/5 pt-3">
           Customer: &ldquo;{card.customerQuote}&rdquo;
         </p>
       )}
@@ -78,7 +78,7 @@ export function RecentRemaps() {
             Recent Customer Remaps
           </h2>
           {RECENT_REMAPS_FRAMING && (
-            <p className="text-white/40 text-sm mt-2 max-w-xl leading-relaxed">
+            <p className="text-white/60 text-sm mt-2 max-w-xl leading-relaxed">
               {RECENT_REMAPS_FRAMING}
             </p>
           )}
