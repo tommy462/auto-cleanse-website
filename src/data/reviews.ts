@@ -14,6 +14,7 @@ export type ServiceCategory =
   | 'DPF Cleaning'
   | 'DPF Diagnostics'
   | 'ECU Remapping'
+  | 'AdBlue'
   | 'General';
 
 export interface Review {
@@ -150,22 +151,115 @@ export const REVIEWS: Review[] = [
     initials: 'DH',
     text: "Excellent service spoke to Alex who was really helpful. Collected the part from us and had it cleaned and returned all within a few hours definitely would use them again. 5 star service",
   },
+  {
+    id: 'tom-rabone',
+    name: 'Tom Rabone',
+    source: 'Google Review',
+    serviceCategory: 'ECU Remapping',
+    rating: 5,
+    initials: 'TR',
+    featured: true,
+    text: "Had my 2018 Audi S4 Stage 1 remapped by Auto-Cleanse and I'm genuinely impressed.\n\nI was a bit unsure at first because I wanted the extra power but didn't want to risk reliability. They explained everything properly, checked the car over first, and made sure I understood what the map would actually do.\n\nThe difference is massive. It pulls so much harder, especially through the mid-range, and overtaking feels effortless now. The car still drives smoothly day to day, just with a lot more power when you want it.\n\nReally professional service and you can tell they know what they're doing. If you're thinking about getting a Stage 1 but you're worried about safety or reliability, I'd definitely recommend Auto-Cleanse.",
+  },
+  {
+    id: 'egyptian-jeweller',
+    name: 'Egyptian_Jeweller',
+    source: 'Google Review',
+    serviceCategory: 'ECU Remapping',
+    rating: 5,
+    initials: 'EJ',
+    text: "Very happy with Auto-Cleanse service. After remap my car is noticeably more economic and pulls off quicker. Tom was very professional to deal with, and they seemed to have all the newest technology on hand to remap my car correctly.",
+  },
+  {
+    id: 'wayne',
+    name: 'Wayne',
+    source: 'Google Review',
+    serviceCategory: 'ECU Remapping',
+    rating: 5,
+    initials: 'W',
+    text: "Absolutely brilliant company. 100% professionals.i can't say anymore than fixed my problem and stage 1 remap done. Runs like a dream now. Came out the following day so very quick. Real lovely guys.would highly recommend.",
+  },
+  {
+    id: 'liz-macarthur',
+    name: 'Liz MacArthur',
+    source: 'Google Review',
+    serviceCategory: 'ECU Remapping',
+    rating: 5,
+    initials: 'LM',
+    text: "Google a I brought me to these guys after putting in van symptoms etc. put in a re map and a tune 1 on my VWT5 2.5 tdi 2008.\nDrove it away. Something not quite right with it and rang them the next day the guys came to me in Dartmouth. Changed over the re map. Very rare but there was an issue with the first one. Took it for a test drive and it's sorted my van problem.\nHighly recommend them.\nTrustworthy. Honest. Know their shit!",
+  },
+  {
+    id: 'sara-dixon',
+    name: 'sara dixon',
+    source: 'Google Review',
+    serviceCategory: 'AdBlue',
+    rating: 5,
+    initials: 'SD',
+    text: "Very impressed with the professional service offered. They diagnosed and sorted the adblue issues on my car, explained the process well and I believe the price was very reasonable. I would highly recommend them.",
+  },
+  {
+    id: 'john-thackray',
+    name: 'John Thackray',
+    company: 'JT Motors',
+    source: 'Google Review',
+    serviceCategory: 'General',
+    rating: 5,
+    initials: 'JT',
+    text: "I run a garage locally and use Auto-Cleanse, they are friendly, helpful and extremely efficient.\n\nThank you for your professional service.\n\nJohn @ Jt Motors.",
+  },
+  {
+    id: 'peter-anning',
+    name: 'Peter Anning',
+    source: 'Google Review',
+    serviceCategory: 'DPF Cleaning',
+    rating: 5,
+    initials: 'PA',
+    text: "Great service and highly recommended, collected and returned all within the same day. The DPF was completely clean.",
+  },
+  {
+    id: 'callum-woodman',
+    name: 'Callum Woodman',
+    source: 'Google Review',
+    serviceCategory: 'DPF Diagnostics',
+    rating: 5,
+    initials: 'CW',
+    text: "Very professional and incredibly helpful services from Tom at Auto-Cleanse, walked me through the findings on the diagnostic tool and thankfully didn't need a DPF clean! Excellent piece of mind and whilst I hope I don't need their services again (!) I will be recommending them to everyone!",
+  },
+  {
+    id: 'mervyn-yalland',
+    name: 'mervyn yalland',
+    source: 'Google Review',
+    serviceCategory: 'AdBlue',
+    rating: 5,
+    initials: 'MY',
+    text: "Thankyou Auto Cleanse\nWork you did deleting add.blue from my car very successful now i drive without stupid sensors bleeping at me",
+  },
 ];
 
 // Curated selections per context (balanced mix of DPF cleaning, DPF diagnostics,
 // ECU remapping and trade feedback).
 export const HOMEPAGE_REVIEW_IDS = [
-  'martin-amis', 'james-riggs', 'jamie-webb', 'antony-moore',
-  'reece-lloyd', 'otr-mobile', 'win-scutt', 'danny-hunt',
+  'tom-rabone', 'martin-amis', 'james-riggs', 'jamie-webb',
+  'callum-woodman', 'antony-moore', 'sara-dixon', 'reece-lloyd',
+  'john-thackray', 'peter-anning', 'egyptian-jeweller', 'otr-mobile',
 ];
 export const DPF_REVIEW_IDS = [
-  'james-riggs', 'martin-amis', 'antony-moore', 'otr-mobile', 'win-scutt', 'danny-hunt',
+  'james-riggs', 'antony-moore', 'peter-anning', 'martin-amis',
+  'callum-woodman', 'otr-mobile', 'win-scutt', 'danny-hunt',
 ];
-export const DPF_TOWN_REVIEW_IDS = ['james-riggs', 'martin-amis', 'antony-moore'];
-// Diagnostics page leads with Martin Amis (sensor fault found, no unnecessary work).
-export const DPF_DIAGNOSTICS_REVIEW_IDS = ['martin-amis', 'james-riggs', 'antony-moore'];
+export const DPF_TOWN_REVIEW_IDS = ['james-riggs', 'peter-anning', 'antony-moore'];
+// Diagnostics page leads with the two "diagnosed, no unnecessary work" reviews.
+export const DPF_DIAGNOSTICS_REVIEW_IDS = ['martin-amis', 'callum-woodman', 'james-riggs', 'antony-moore'];
 export const BLOCKED_DPF_REVIEW_IDS = ['james-riggs', 'martin-amis', 'danny-hunt'];
-export const ECU_REVIEW_IDS = ['jamie-webb', 'reece-lloyd', 'dave-lewis', 'luke-thomas'];
+// AdBlue repair/diagnostics page. Note: an AdBlue-delete review (mervyn-yalland)
+// is intentionally NOT listed here - deleting AdBlue is not road-legal, so it is
+// kept out of surfaced content to match the compliant "repair & diagnostics"
+// positioning.
+export const ADBLUE_REVIEW_IDS = ['sara-dixon', 'martin-amis', 'callum-woodman'];
+export const ECU_REVIEW_IDS = [
+  'tom-rabone', 'jamie-webb', 'reece-lloyd', 'egyptian-jeweller',
+  'wayne', 'liz-macarthur', 'dave-lewis', 'luke-thomas',
+];
 export const ECU_COMPACT_REVIEW_IDS = ['jamie-webb', 'reece-lloyd', 'dave-lewis'];
 
 const REVIEW_BY_ID = new Map(REVIEWS.map((r) => [r.id, r]));

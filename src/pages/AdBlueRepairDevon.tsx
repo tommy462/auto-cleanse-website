@@ -8,7 +8,7 @@ import FaqSection, { type Faq } from '../components/FaqSection';
 import Reviews from '../components/Reviews';
 import LatestPosts from '../components/LatestPosts';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
-import { getReviews, DPF_DIAGNOSTICS_REVIEW_IDS } from '../data/reviews';
+import { getReviews, ADBLUE_REVIEW_IDS } from '../data/reviews';
 
 const SYMPTOMS = [
   'A dashboard message such as "Refill AdBlue: starting prevented in 800 miles"',
@@ -253,9 +253,9 @@ export default function AdBlueRepairDevon() {
           {/* Reviews */}
           <section>
             <Reviews
-              reviews={getReviews(DPF_DIAGNOSTICS_REVIEW_IDS)}
+              reviews={getReviews(ADBLUE_REVIEW_IDS)}
               heading={<><span className="text-white">Honest Diagnostics, </span><span className="text-[#FF7A00]">Not Guesswork</span></>}
-              intro="Genuine feedback on our diagnostic work, including a customer whose limp mode turned out to be a faulty sensor rather than a costly repair."
+              intro="Genuine feedback on our AdBlue, SCR and diagnostic work - including a customer whose limp mode turned out to be a faulty sensor rather than a costly repair."
               columns={3}
               showGoogleCta
               showCallCta
