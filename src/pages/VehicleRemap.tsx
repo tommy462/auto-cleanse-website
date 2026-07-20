@@ -1,14 +1,13 @@
 ﻿import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  MapPin, Phone, Zap, ArrowRight, CheckCircle, ChevronDown,
-  Wrench, Activity, Shield, Info
+  Phone, Zap, ArrowRight, CheckCircle, ChevronDown,
+  Wrench, Activity, Shield
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { VehicleRemapData, getVehicleBySlug } from '../data/vehicle-remapping';
-import { VEHICLE_REMAPS } from '../data/vehicle-remapping';
 import { DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
 import { PRIORITY_SLUGS } from '../data/campaign';
 import { localBusinessNode } from '../data/business';
@@ -283,6 +282,29 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
           </div>
         </div>
       </section>
+
+      {/* ── Case study (recent work) ──────────────────────────────────────── */}
+      {vehicle.caseStudySlug && (
+        <section className="py-14 border-t border-white/5">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest mb-6">Recent work</p>
+            <Link
+              to={`/blog/${vehicle.caseStudySlug}`}
+              className="flex items-center justify-between gap-4 rounded-2xl bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-colors p-5 sm:p-6 group"
+            >
+              <span>
+                <span className="block text-white font-bold text-base group-hover:text-[#FF7A00] transition-colors">
+                  Read the {vehicle.fullName} case study
+                </span>
+                <span className="block text-white/45 text-sm mt-1">
+                  A real Stage 1 job on this exact model - the story and the results.
+                </span>
+              </span>
+              <ArrowRight size={16} className="text-[#FF7A00] shrink-0" />
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* ── Related remapping services ────────────────────────────────────── */}
       <section className="py-14 border-t border-white/5">

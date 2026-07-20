@@ -29,6 +29,9 @@ export interface VehicleRemapData {
   /** Optional long-form, vehicle-specific prose rendered below the engine table
    *  to add genuine depth on priority/rewritten pages. */
   contentSections?: VehicleContentSection[];
+  /** Optional slug of a related /blog/<slug> case study, surfaced as a
+   *  "recent work" link for social proof and reciprocal internal linking. */
+  caseStudySlug?: string;
 }
 
 export const VEHICLE_REMAPS: VehicleRemapData[] = [
@@ -363,6 +366,7 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
       { q: 'Do you remap M140is across Devon?', a: 'Yes - we remap M140is at our Totnes workshop and across Devon via mobile. Given the performance nature of the car, we recommend a workshop visit so we can carry out a thorough post-remap test drive on suitable roads.' },
     ],
     relatedSlugs: ['bmw-m340i-remap', 'audi-s3-remap', 'vw-golf-r-remap'],
+    caseStudySlug: 'bmw-m140i-stage-1-remap',
     category: 'performance', fuelType: 'petrol',
   },
 
