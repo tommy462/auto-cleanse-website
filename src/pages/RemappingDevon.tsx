@@ -59,7 +59,7 @@ const RemappingDevon = () => {
         ],
         "serviceType": "ECU Remapping",
         "priceRange": "££",
-        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" }],
+        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }],
         "sameAs": ["https://www.facebook.com/profile.php?id=61573744325360"]
       })}} />
 

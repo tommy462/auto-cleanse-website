@@ -219,7 +219,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     faqs: [
       {
         q: 'Can I drop my DPF off on the way to work?',
-        a: "Yes - we're open from 8am on weekdays at Webbers Yard, Totnes, an easy detour off the A38/A385. Filters dropped before 10am are often cleaned the same working day, so many commuters drop off in the morning and collect on the way home.",
+        a: "Yes - we're open from 9am on weekdays at Webbers Yard, Totnes, an easy detour off the A38/A385. Filters dropped off in the morning are often cleaned the same working day, so many commuters drop off on the way to work and collect on the way home.",
       },
       {
         q: 'Do you work with garages in Ivybridge?',

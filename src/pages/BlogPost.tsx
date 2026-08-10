@@ -29,6 +29,9 @@ const SERVICE_LABELS: Record<string, string> = {
   '/mobile-ecu-remapping-devon': 'Mobile ECU Remapping',
   '/bmw-m140i-remap': 'BMW M140i Remap',
   '/postal-dpf': 'Nationwide Postal DPF',
+  '/vehicle-performance-lookup': 'Vehicle Performance Lookup',
+  '/ecu-cloning': 'ECU Cloning',
+  '/trade-file-service': 'Trade File Service',
   '/pricing': 'Pricing',
   '/contact': 'Contact Us',
 };

@@ -56,7 +56,7 @@ const DPFCleaningPlymouth = () => {
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [{ "@type": "City", "name": "Plymouth" }, { "@type": "AdministrativeArea", "name": "Devon" }],
         "priceRange": "££",
-        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" }]
+        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }]
       })}} />
 
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>

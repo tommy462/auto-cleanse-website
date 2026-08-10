@@ -110,7 +110,7 @@ const DPFCleaningNewtonAbbot = () => {
         "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": [{ "@type": "City", "name": "Newton Abbot" }, { "@type": "AdministrativeArea", "name": "Devon" }],
         "priceRange": "££",
-        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" }]
+        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }]
       })}} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 

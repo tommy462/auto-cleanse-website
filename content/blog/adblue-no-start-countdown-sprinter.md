@@ -13,7 +13,7 @@ faultCodes: [P204F, P20E8]
 symptoms: "AdBlue warning, no-start countdown message, reduced power"
 fix: "Diagnosed dosing/metering fault, repaired and ran the correct drive cycle to clear and confirm"
 relatedServices: ["/adblue-repair-devon", "/dpf-diagnostics-devon"]
-draft: false
+draft: true
 ---
 
 There are few warnings more stressful for a Sprinter owner than "Refill AdBlue: starting prevented in 800 miles". It is a countdown, and once it reaches zero many vehicles simply will not restart until the underlying fault is fixed. The good news is that it almost always announces itself early, so there is time to act.

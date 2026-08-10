@@ -13,7 +13,7 @@ faultCodes: [P2002, P244B]
 symptoms: "Limp mode, DPF warning light, poor fuel economy"
 fix: "Off-car aqueous clean, flow and weight tested, forced regeneration to confirm"
 relatedServices: ["/blocked-dpf-cleaning-devon", "/dpf-cleaning-devon"]
-draft: false
+draft: true
 ---
 
 The Ford Transit Custom is one of the hardest-working vans on Devon's roads, and a blocked diesel particulate filter is one of the most common reasons one ends up off the road. A van stuck in limp mode with the DPF light on, doing short local drops all day, is a job we see most weeks.

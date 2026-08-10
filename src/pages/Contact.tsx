@@ -66,7 +66,7 @@ const Contact = () => {
           "telephone": "+441803269895",
           "email": "info@auto-cleanse.co.uk",
           "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
-          "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" }],
+          "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }],
           "contactPoint": { "@type": "ContactPoint", "telephone": "+441803269895", "contactType": "customer service", "areaServed": "GB", "availableLanguage": "English" }
         }
       })}} />
@@ -143,7 +143,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-white/40 font-mono text-sm uppercase tracking-wider mb-1">Opening Hours</p>
-                    <p className="text-lg font-bold text-white">Monday-Friday, 08:00-17:00</p>
+                    <p className="text-lg font-bold text-white">Monday-Friday, 09:00-17:00</p>
                     <p className="text-white/50 text-sm mt-1">Serving trade &amp; private customers across Devon. DPF cleaning is workshop/off-vehicle or postal; ECU remapping is workshop or mobile across Devon.</p>
                   </div>
                 </div>
