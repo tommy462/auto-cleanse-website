@@ -5,7 +5,7 @@ date: 2026-08-10
 category: DPF
 excerpt: "Filter light, engine-management light, flashing glow-plug light or limp mode - what each warning is telling you about a diesel particulate filter, and what to do next."
 coverImage: "/blog/dpf-warning-lights-explained/cover.jpg"
-coverAlt: "Auto-Cleanse three circular dashboard icons labelled DPF filter, engine management and glow plug with short cause notes, beside a soot-caked filter body"
+coverAlt: "Auto-Cleanse three circular dashboard warning icons labelled engine management, DPF filter and glow plug, each with a short explanation, below a soot-caked filter body"
 author: "Auto-Cleanse"
 relatedServices: ["/blocked-dpf-cleaning-devon", "/dpf-diagnostics-devon", "/dpf-cleaning-devon"]
 draft: false
