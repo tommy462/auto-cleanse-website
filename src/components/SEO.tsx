@@ -8,6 +8,13 @@ interface SEOProps {
   ogImage?: string;
   ogType?: string;
   noindex?: boolean;
+  /** Adds `nofollow` to the robots directive. Only meaningful with `noindex`. */
+  nofollow?: boolean;
+  /**
+   * Emits a self-referencing canonical even when the page is `noindex`.
+   * Used by the private campaign landing pages; public pages are unaffected.
+   */
+  selfCanonical?: boolean;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -16,7 +23,9 @@ const SEO: React.FC<SEOProps> = ({
   path = '',
   ogImage = 'https://www.auto-cleanse.co.uk/og-image.jpg',
   ogType = 'website',
-  noindex = false
+  noindex = false,
+  nofollow = false,
+  selfCanonical = false
 }) => {
   const siteName = 'AutoCleanse | DPF Cleaning & Remapping';
   // Title prop is already fully formed (includes brand suffix); do not append again
@@ -32,8 +41,11 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="description" content={description} />
       <meta name="theme-color" content="#FF9500" />
       {noindex
-        ? <meta name="robots" content="noindex, follow" />
-        : <link rel="canonical" href={fullUrl} />}
+        ? <meta name="robots" content={nofollow ? 'noindex, nofollow' : 'noindex, follow'} />
+        : null}
+      {!noindex || selfCanonical
+        ? <link rel="canonical" href={fullUrl} />
+        : null}
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />

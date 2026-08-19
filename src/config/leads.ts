@@ -11,6 +11,12 @@ export const LEADS_WEBHOOK_URL =
 export const TRADE_LEADS_WEBHOOK_URL =
   'https://hook.eu2.make.com/mlqcw93jdd50wcruo2st9v9yatxr25l3';
 
+// Make.com webhook that receives "free first trade DPF clean" claims from the
+// private /trade-invite/* regional campaign landing pages. Kept separate from
+// TRADE_LEADS_WEBHOOK_URL so campaign leads land in their own scenario.
+export const TRADE_INVITE_WEBHOOK_URL =
+  'https://hook.eu2.make.com/ixmeo8jdjg8oj4at58bnni04gr7xqfdm';
+
 // Services a visitor can select in the quick enquiry form.
 export const SERVICE_OPTIONS = [
   'DPF Cleaning',

@@ -38,6 +38,7 @@ import BookNow from '../pages/BookNow';
 import EcuCloning from '../pages/EcuCloning';
 import TradeFileService from '../pages/TradeFileService';
 import DPFCleaningNearMe from '../pages/DPFCleaningNearMe';
+import TradeInvite from '../pages/TradeInvite';
 import NotFound from '../pages/NotFound';
 
 export default function PageTransition() {
@@ -104,6 +105,11 @@ export default function PageTransition() {
                     <Route path="/adblue-repair-devon" element={<AdBlueRepairDevon />} />
                     <Route path="/blog" element={<BlogIndex />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
+
+                    {/* Private trade-outreach campaign landing pages (noindex,
+                        nofollow, excluded from the sitemap, never linked publicly).
+                        Unknown regional slugs render the 404 page. */}
+                    <Route path="/trade-invite/:region" element={<TradeInvite />} />
                     <Route path="/:slug" element={<DynamicPage />} />
                     <Route path="/booking-success" element={<BookingSuccess />} />
                     <Route path="/booking-cancel" element={<BookingCancel />} />

@@ -1,9 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Phone, Mail } from 'lucide-react';
 
 // Sticky bottom call/enquire bar shown on mobile only (hidden on lg+).
 // Gives phone-led visitors a one-tap way to call or enquire from any page.
 export default function MobileCallBar() {
+  const { pathname } = useLocation();
+
+  // The private trade-invite campaign pages render their own campaign-specific
+  // sticky CTA ("Claim Free DPF Clean"), so the site-wide bar is suppressed
+  // there — otherwise two sticky bars would stack on mobile.
+  if (pathname.startsWith('/trade-invite/')) return null;
+
   return (
     <>
       {/* Spacer keeps the fixed bar from covering page/footer content on mobile */}

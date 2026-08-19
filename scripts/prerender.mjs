@@ -6,7 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '..');
 
 // Load the SSR bundle produced by: vite build --ssr src/entry-server.tsx --outDir dist-server --mode ssr
-const { render, routes, blogPosts } = await import('../dist-server/entry-server.js');
+const { render, routes, blogPosts, privateRoutes } = await import('../dist-server/entry-server.js');
 
 // Read the client-side index.html template (produced by: vite build)
 const rawTemplate = readFileSync(join(projectRoot, 'dist/index.html'), 'utf-8');
@@ -194,7 +194,12 @@ function rankFor(url) {
   return { priority: '0.5', changefreq: 'monthly' };
 }
 
-const sitemapBody = uniqueRoutes
+// Private campaign landing pages (e.g. /trade-invite/*) are prerendered so the
+// printed QR codes resolve, but must never appear in the public XML sitemap.
+const privateRouteSet = new Set(privateRoutes ?? []);
+const sitemapRoutes = uniqueRoutes.filter((url) => !privateRouteSet.has(url));
+
+const sitemapBody = sitemapRoutes
   .map((url) => {
     const { priority, changefreq } = rankFor(url);
     const loc = `${HOSTNAME}${url === '/' ? '/' : url}`;
@@ -206,7 +211,10 @@ const sitemapBody = uniqueRoutes
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapBody}\n</urlset>\n`;
 
 writeFileSync(join(projectRoot, 'dist/sitemap.xml'), sitemapXml, 'utf-8');
-console.log(`Sitemap written with ${uniqueRoutes.length} URLs.`);
+console.log(
+  `Sitemap written with ${sitemapRoutes.length} URLs` +
+    (privateRouteSet.size > 0 ? ` (${privateRouteSet.size} private route(s) excluded).` : '.')
+);
 
 // ── RSS feed for the blog ──────────────────────────────────────────────────
 function escapeXml(s = '') {

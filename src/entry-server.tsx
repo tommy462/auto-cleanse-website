@@ -5,6 +5,7 @@ import App from './App';
 import { REMAP_LOCATIONS } from './data/remapping-locations';
 import { VEHICLE_REMAPS } from './data/vehicle-remapping';
 import { DPF_LOCATIONS } from './data/dpf-locations';
+import { TRADE_INVITE_ROUTES } from './data/trade-invite-regions';
 import { PUBLISHED_POSTS } from './lib/blog';
 
 export interface RenderResult {
@@ -57,6 +58,11 @@ const STATIC_ROUTES = [
   '/remapping-booking',
 ];
 
+// Private campaign landing pages. These ARE prerendered (so the printed QR codes
+// resolve to a real static page with a 200) but are deliberately excluded from
+// the XML sitemap - see scripts/prerender.mjs - and carry noindex/nofollow.
+export const privateRoutes: string[] = [...TRADE_INVITE_ROUTES];
+
 export const routes: string[] = [
   ...STATIC_ROUTES,
   '/blog',
@@ -64,6 +70,7 @@ export const routes: string[] = [
   ...REMAP_LOCATIONS.map((loc) => `/${loc.slug}`),
   ...VEHICLE_REMAPS.map((veh) => `/${veh.slug}`),
   ...DPF_LOCATIONS.map((loc) => `/${loc.slug}`),
+  ...privateRoutes,
 ];
 
 // Lightweight metadata for the RSS feed generated in scripts/prerender.mjs.
