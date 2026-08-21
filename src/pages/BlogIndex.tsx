@@ -23,7 +23,6 @@ export default function BlogIndex() {
     () => (filter === 'All' ? PUBLISHED_POSTS : PUBLISHED_POSTS.filter((p) => p.category === filter)),
     [filter]
   );
-  const shown = filtered.slice(0, visible);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -84,12 +83,20 @@ export default function BlogIndex() {
           })}
         </div>
 
-        {shown.length === 0 ? (
+        {filtered.length === 0 ? (
           <p className="text-white/50 text-lg">No posts in this category yet. Check back soon.</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {shown.map((post) => (
-              <BlogCard key={post.slug} post={post} />
+            {/*
+              Every post is rendered, so each post link is present in the prerendered
+              HTML and reachable by a crawler. "Load more" now reveals cards that are
+              already in the DOM rather than fetching them. The wrapper uses
+              `display: contents` when visible so BlogCard stays the grid item.
+            */}
+            {filtered.map((post, index) => (
+              <div key={post.slug} className={index < visible ? 'contents' : 'hidden'}>
+                <BlogCard post={post} />
+              </div>
             ))}
           </div>
         )}
