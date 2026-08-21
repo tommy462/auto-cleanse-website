@@ -916,6 +916,14 @@ export default function RemappingBooking() {
 
       <div className="max-w-lg mx-auto px-4 sm:px-6 relative z-10">
 
+        {/*
+          The booking wizard has no visible page title by design - the card
+          header carries the current step. This h1 gives the document a single
+          top-level heading so the step h2s sit under something, and so screen
+          readers announce what the page is.
+        */}
+        <h1 className="sr-only">Book an ECU remap with AutoCleanse</h1>
+
         {/* Back to remapping */}
         <Link to="/ecu-remapping"
           className="inline-flex items-center gap-2 text-white/30 hover:text-[#FF7A00] transition-colors text-sm font-medium mb-6">
