@@ -50,14 +50,9 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
     description: vehicle.metaDescription,
     url: `https://www.auto-cleanse.co.uk/${vehicle.slug}`,
     category: 'ECU Remapping',
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceSpecification: {
-        '@type': 'PriceSpecification',
-        priceCurrency: 'GBP',
-      }
-    }
+    // No `offers` node: these pages do not display a price, and an Offer whose
+    // priceSpecification carries only a currency is incomplete markup that
+    // search engines discard. Re-add it only if a price appears on the page.
   };
 
   return (

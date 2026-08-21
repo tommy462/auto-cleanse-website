@@ -949,15 +949,7 @@ export default function VehiclePerformanceLookup() {
           }
         },
         "description": "Look up Stage 1 remap performance gains for your vehicle. Select your make, model, year and engine to see BHP and torque improvements.",
-        "url": "https://www.auto-cleanse.co.uk/vehicle-performance-lookup",
-        "offers": {
-          "@type": "Offer",
-          "availability": "https://schema.org/InStock",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "priceCurrency": "GBP"
-          }
-        }
+        "url": "https://www.auto-cleanse.co.uk/vehicle-performance-lookup"
       })}} />
 
       <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-[#FF7A00]/5 blur-[150px] rounded-full pointer-events-none" />
