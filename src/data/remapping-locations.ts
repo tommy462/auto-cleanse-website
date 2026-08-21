@@ -2492,7 +2492,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "Stage 1 Remapping",
     metaTitle: "Stage 1 Remaps Devon | Safe ECU Remapping | AutoCleanse",
     metaDescription:
-      "Safe, software-only Stage 1 ECU remapping across Devon for petrol and diesel cars, vans and 4x4s. More power, torque and economy, with diagnostics before and after. Workshop in Totnes or mobile across Devon.",
+      "Software-only Stage 1 remapping across Devon for cars, vans and 4x4s. More torque and economy, with diagnostics before and after. Totnes workshop or mobile.",
     h1: "Stage 1 Remaps Across Devon",
     intro:
       "A Stage 1 remap is the most popular - and safest - way to get more out of a standard, unmodified vehicle, and it's the service AutoCleanse carries out most often across Devon. It's a software-only change: we read your engine control unit, apply a remap file matched to your exact make, model, engine and gearbox, and adjust the fuel, timing and boost settings within your engine's safe limits. No parts are changed and nothing is bolted on. Done properly, a Stage 1 remap gives a standard petrol or diesel car, van or 4x4 more power, stronger low-down torque, sharper throttle response and - on most diesels - better fuel economy. We remap at our Totnes workshop and, where practical, come to you anywhere in Devon.",

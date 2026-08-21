@@ -72,7 +72,7 @@ export default function EcuCloning() {
     <>
       <SEO
         title="ECU Cloning Devon | Faulty ECU Replacement | AutoCleanse"
-        description="Professional ECU cloning service in Devon. Faulty, water-damaged or incompatible replacement ECU? We clone your original data to a donor unit - VIN, immobiliser, tune and all. Workshop in Totnes, mobile across Devon."
+        description="Faulty, water-damaged or incompatible ECU? We clone your original data onto a donor unit - VIN, immobiliser and tune included. Totnes or mobile in Devon."
         path="/ecu-cloning"
       />
 

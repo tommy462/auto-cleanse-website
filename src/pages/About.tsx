@@ -64,7 +64,7 @@ const About = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="About Auto-Cleanse | DPF Cleaning & ECU Remapping Devon" description="Auto-Cleanse is a Totnes-based DPF cleaning and ECU remapping specialist serving trade and private customers across Devon. DPF cleaning is workshop/off-vehicle or postal; ECU remapping is workshop or mobile." path="/about" />
+      <SEO title="About Auto-Cleanse | DPF Cleaning & ECU Remapping Devon" description="Auto-Cleanse is a Totnes-based DPF cleaning and ECU remapping specialist working with trade and private customers across Devon. Workshop, mobile or postal." path="/about" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": ["LocalBusiness", "AutomotiveService"],

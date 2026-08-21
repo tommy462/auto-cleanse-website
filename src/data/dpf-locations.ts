@@ -372,7 +372,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     region: 'South Devon',
     metaTitle: 'DPF Cleaning South Hams | Local Workshop in Totnes | AutoCleanse',
     metaDescription:
-      'The South Hams DPF specialists - our cleaning workshop is in Totnes, at the heart of the district. Off-vehicle deep cleaning and flow testing for Kingsbridge, Dartmouth, Ivybridge, Salcombe and the villages.',
+      'South Hams DPF specialists, workshop in Totnes at the heart of the district. Off-vehicle cleaning and flow testing for Kingsbridge, Dartmouth and Salcombe.',
     h1Prefix: 'DPF Cleaning Across the',
     intro:
       'The South Hams is home ground - our DPF cleaning workshop is at Webbers Yard, Totnes, right in the middle of the district. From Ivybridge to Dartmouth and Salcombe to South Brent, we are the local option for off-vehicle DPF cleaning: no courier required, no long round trips, and collection available across the towns and villages.',

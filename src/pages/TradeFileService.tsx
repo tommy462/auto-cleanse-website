@@ -84,7 +84,7 @@ export default function TradeFileService() {
     <>
       <SEO
         title="Trade File Service | ECU & TCU Files for Trade | AutoCleanse"
-        description="A professional ECU & TCU trade file service for garages and mobile tuners. Upload original files, request Stage 1, Stage 2, TCU, DPF, EGR and AdBlue/SCR solutions, then track progress and download returned files."
+        description="An ECU and TCU file service for garages and mobile tuners. Upload the original, request the file you need, then track progress and download the result."
         path="/trade-file-service"
       />
 
