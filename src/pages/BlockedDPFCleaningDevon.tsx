@@ -86,7 +86,7 @@ export default function BlockedDPFCleaningDevon() {
   return (
     <div className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title="Blocked DPF Cleaning Devon | Warning Light & Limp Mode Help | Auto-Cleanse"
+        title="Blocked DPF Cleaning Devon | Limp Mode Help | Auto-Cleanse"
         description="Blocked DPF in Devon? Auto-Cleanse diagnoses and professionally cleans blocked diesel particulate filters - warning light, limp mode, failed regen and poor performance. Totnes-based, same-day local return."
         path="/blocked-dpf-cleaning-devon"
       />

@@ -136,7 +136,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     name: "Exeter",
     region: "East Devon",
     metaTitle:
-      "ECU Remapping Exeter | Stage 1 Tuning & Mobile Remapping | AutoCleanse",
+      "ECU Remapping Exeter | Stage 1 & Mobile Tuning | AutoCleanse",
     metaDescription:
       "ECU remapping in Exeter - Stage 1, Stage 2, economy remaps and mobile tuning. Cars, vans and diesels covered. AutoCleanse, based in Totnes, Devon.",
     h1: "ECU Remapping in Exeter",
@@ -1711,7 +1711,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     name: "Bideford",
     region: "North Devon",
     metaTitle:
-      "ECU Remapping Bideford | North Devon Stage 1 & Mobile Remap | AutoCleanse",
+      "ECU Remapping Bideford | North Devon Stage 1 | AutoCleanse",
     metaDescription:
       "ECU remapping in Bideford and North Devon - Stage 1, economy and mobile remapping for cars, vans and diesels. AutoCleanse Devon.",
     h1: "ECU Remapping in Bideford",
@@ -1788,7 +1788,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     name: "Tiverton",
     region: "Mid Devon",
     metaTitle:
-      "ECU Remapping Tiverton | Mid Devon Stage 1 & Mobile Remap | AutoCleanse",
+      "ECU Remapping Tiverton | Mid Devon Stage 1 | AutoCleanse",
     metaDescription:
       "ECU remapping in Tiverton and Mid Devon - Stage 1, economy and mobile remapping for cars, vans and diesels. AutoCleanse Devon.",
     h1: "ECU Remapping in Tiverton",
@@ -2156,7 +2156,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     name: "South Hams",
     region: "South Devon",
     metaTitle:
-      "ECU Remapping South Hams | Mobile Remap Across South Devon | AutoCleanse",
+      "ECU Remapping South Hams | Mobile Across Devon | AutoCleanse",
     metaDescription:
       "ECU remapping across South Hams - Kingsbridge, Totnes, Dartmouth, Salcombe, Ivybridge and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
     h1: "ECU Remapping Across the South Hams",
@@ -2327,7 +2327,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     name: "North Devon",
     region: "North Devon",
     metaTitle:
-      "ECU Remapping North Devon | Barnstaple, Bideford & Beyond | AutoCleanse",
+      "ECU Remapping North Devon | Barnstaple & Bideford | AutoCleanse",
     metaDescription:
       "ECU remapping across North Devon - covering Barnstaple, Bideford, Ilfracombe and surrounding areas. Mobile remapping available. AutoCleanse Devon.",
     h1: "ECU Remapping Across North Devon",
@@ -2611,7 +2611,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     name: "Devon",
     region: "Van Remapping",
     metaTitle:
-      "Van Remapping Devon | Transit, Sprinter, Crafter & More | AutoCleanse",
+      "Van Remapping Devon | Transit, Sprinter & More | AutoCleanse",
     metaDescription:
       "Van remapping across Devon - Ford Transit, Mercedes Sprinter, VW Crafter, Vauxhall Vivaro and more. Better economy and performance. AutoCleanse, Totnes.",
     h1: "Van Remapping Across Devon",
@@ -2719,7 +2719,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     name: "Devon",
     region: "Petrol Remapping",
     metaTitle:
-      "Petrol Remapping Devon | Stage 1 Tuning for Petrol Cars | AutoCleanse",
+      "Petrol Remapping Devon | Stage 1 Petrol Tuning | AutoCleanse",
     metaDescription:
       "Petrol ECU remapping across Devon - Stage 1 and Stage 2 tuning for turbocharged petrol cars and SUVs. More power, better response. AutoCleanse, Totnes.",
     h1: "Petrol Remapping Across Devon",
@@ -2770,7 +2770,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     name: "Devon",
     region: "4x4 Remapping",
     metaTitle:
-      "4x4 Remapping Devon | Land Rover, Hilux, Defender & More | AutoCleanse",
+      "4x4 Remapping Devon | Land Rover, Hilux & More | AutoCleanse",
     metaDescription:
       "4x4 ECU remapping across Devon - Land Rover, Toyota Hilux, Ford Ranger, Mitsubishi L200 and more. Better torque, towing and economy. AutoCleanse, Totnes.",
     h1: "4x4 Remapping Across Devon",
@@ -2821,7 +2821,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     name: "Devon",
     region: "Fleet Remapping",
     metaTitle:
-      "Fleet Vehicle Remapping Devon | Commercial & Van Fleets | AutoCleanse",
+      "Fleet Remapping Devon | Commercial & Van Fleets | AutoCleanse",
     metaDescription:
       "Fleet ECU remapping across Devon - consistent maps across multiple vans, cars and commercials. Improve economy and performance fleet-wide. AutoCleanse, Totnes.",
     h1: "Fleet Vehicle Remapping Across Devon",

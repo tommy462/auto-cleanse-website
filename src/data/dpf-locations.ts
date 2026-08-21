@@ -106,7 +106,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     slug: 'dpf-cleaning-dartmouth',
     name: 'Dartmouth',
     region: 'South Hams',
-    metaTitle: 'DPF Cleaning Dartmouth | Collection & Drop-Off, No Ferry | AutoCleanse',
+    metaTitle: 'DPF Cleaning Dartmouth | Collection, No Ferry | AutoCleanse',
     metaDescription:
       'Off-vehicle DPF cleaning for Dartmouth drivers and businesses. Collection available, or a 30-minute drop-off to our Totnes workshop with no ferry crossing required.',
     h1Prefix: 'DPF Cleaning in',

@@ -83,7 +83,7 @@ export default function DPFCleaningNearMe() {
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title="DPF Cleaning Near Me | Drop-Off, Devon Collection & UK Postal | AutoCleanse"
+        title="DPF Cleaning Near Me | Devon Collection or UK Post | AutoCleanse"
         description="Looking for DPF cleaning near you? AutoCleanse deep-cleans DPFs off the vehicle at our Totnes workshop - drop off, Devon-wide collection, or UK postal with next-working-day return. From £210."
         path="/dpf-cleaning-near-me"
       />
