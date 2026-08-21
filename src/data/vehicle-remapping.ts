@@ -507,9 +507,9 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vw-transporter-remap',
     make: 'Volkswagen', model: 'Transporter', fullName: 'VW Transporter',
-    metaTitle: 'VW Transporter Remap | Van Tuning Devon | AutoCleanse',
+    metaTitle: 'VW Transporter T5/T6 Remap | Van Tuning Devon | AutoCleanse',
     metaDescription: 'VW Transporter T5/T6 ECU remapping - improve power, torque and MPG. Commercial van remapping in Devon from AutoCleanse.',
-    h1: 'VW Transporter Remap',
+    h1: 'VW Transporter T5 & T6 Remap',
     intro: 'The VW Transporter is the premium choice for tradespeople and small fleet operators, and it responds very well to ECU remapping. Both T5 and T6 variants with the 2.0 TDI engine gain significant torque that transforms their pulling power under load - particularly important for those carrying heavy tool kits or towing. AutoCleanse remaps Transporters from our Totnes workshop and mobile across Devon.',
     engineOptions: [
       { name: '2.0 TDI 102 (T5/T6)', stockPower: '102bhp', remapPower: '140bhp', stockTorque: '250Nm', remapTorque: '310Nm', mpgGain: 'up to 18%' },
