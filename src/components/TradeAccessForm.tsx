@@ -106,7 +106,7 @@ export default function TradeAccessForm() {
         <CheckCircle className="mx-auto mb-4 text-[#FF7A00]" size={40} />
         <h3 className="text-xl font-bold text-white mb-2">Trade access request received</h3>
         <p className="text-white/60 text-sm mb-5">
-          Thanks &mdash; your trade access request has been received. We&rsquo;ll be in touch shortly.
+          Thanks - your trade access request has been received. We&rsquo;ll be in touch shortly.
         </p>
         <a
           href="tel:01803269895"
@@ -249,7 +249,7 @@ export default function TradeAccessForm() {
         </span>
       </label>
 
-      {/* Honeypot — visually hidden, ignored by humans, filled by bots. */}
+      {/* Honeypot - visually hidden, ignored by humans, filled by bots. */}
       <input type="text" name="company" tabIndex={-1} autoComplete="off" value={data.company}
         onChange={handleChange} className="hidden" aria-hidden="true" />
 

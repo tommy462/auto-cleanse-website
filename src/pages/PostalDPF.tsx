@@ -701,7 +701,7 @@ const PostalDPF = () => {
           </div>
         </section>
 
-        {/* FAQ — rendered visibly so it matches the FAQPage schema above */}
+        {/* FAQ - rendered visibly so it matches the FAQPage schema above */}
         <section className="mb-24 reveal-container">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-black text-white mb-8 tracking-tight text-center reveal-item">

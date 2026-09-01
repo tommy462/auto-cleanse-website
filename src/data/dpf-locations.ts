@@ -1,8 +1,8 @@
 // Data-driven DPF location pages.
 //
-// CONTENT RULES (learned from the SEO uniqueness audit — keep these):
+// CONTENT RULES (learned from the SEO uniqueness audit - keep these):
 // 1. Every entry MUST have a unique intro, TWO unique local sections and THREE
-//    unique FAQs written for that town. No copy-pasting between towns — each
+//    unique FAQs written for that town. No copy-pasting between towns - each
 //    page needs a genuinely different local angle or it becomes a doorway page.
 // 2. DPF cleaning is workshop-based / off-vehicle at Totnes. NEVER imply a
 //    mobile DPF service. Mobile visits are for ECU remapping only.
@@ -26,9 +26,9 @@ export interface DpfLocation {
   region: string;
   metaTitle: string;
   metaDescription: string;
-  h1Prefix: string; // e.g. "DPF Cleaning in" — town name is rendered in orange after it
+  h1Prefix: string; // e.g. "DPF Cleaning in" - town name is rendered in orange after it
   intro: string;
-  /** Two genuinely local sections — the unique core of the page. */
+  /** Two genuinely local sections - the unique core of the page. */
   sections: [DpfContentSection, DpfContentSection];
   /** Three town-specific FAQs. */
   faqs: [DpfFaq, DpfFaq, DpfFaq];
@@ -41,7 +41,7 @@ export interface DpfLocation {
  *  near-me directory. Distances are approximate road miles from the Totnes
  *  workshop, consistent with figures already published on each page. */
 export const DPF_DIRECTORY: { name: string; path: string; distance: string; note: string }[] = [
-  { name: 'Totnes', path: '/dpf-cleaning-totnes', distance: 'Workshop', note: 'Our home base — drop off in person' },
+  { name: 'Totnes', path: '/dpf-cleaning-totnes', distance: 'Workshop', note: 'Our home base - drop off in person' },
   { name: 'Newton Abbot', path: '/dpf-cleaning-newton-abbot', distance: '~8 miles', note: 'Collection & drop-off' },
   { name: 'Paignton', path: '/dpf-cleaning-paignton', distance: '~12 miles', note: 'Torbay collection' },
   { name: 'Torquay', path: '/dpf-cleaning-torquay', distance: '~12 miles', note: 'Torbay collection' },

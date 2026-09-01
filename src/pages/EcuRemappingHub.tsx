@@ -119,7 +119,7 @@ const EcuRemappingHub = () => {
           <Link to="/ecu-cloning" className="group p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-all duration-300 reveal-item">
             <Cpu className="text-[#FF7A00] mb-4 md:mb-6" size={28} />
             <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-[#FF7A00] transition-colors">ECU Cloning</h3>
-            <p className="text-white/60 text-sm md:text-base mb-4 md:mb-6">Faulty or incompatible donor ECU? We clone your original image — VIN, immobiliser and tune preserved.</p>
+            <p className="text-white/60 text-sm md:text-base mb-4 md:mb-6">Faulty or incompatible donor ECU? We clone your original image - VIN, immobiliser and tune preserved.</p>
             <div className="flex items-center text-[#FF7A00] font-medium group-hover:translate-x-2 transition-transform text-sm">
               Learn more <ArrowRight size={14} className="ml-2" />
             </div>

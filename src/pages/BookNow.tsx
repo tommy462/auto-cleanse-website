@@ -4,13 +4,13 @@ import SEO from '../components/SEO';
 
 const dpfFeatures = [
   { icon: Truck,   text: 'Free pickup & return within Devon' },
-  { icon: Package, text: 'Nationwide postal — tracked next-day' },
+  { icon: Package, text: 'Nationwide postal - tracked next-day' },
   { icon: Clock,   text: 'Same-day turnaround locally' },
   { icon: Shield,  text: '98% flow restoration guaranteed' },
 ];
 
 const remapFeatures = [
-  { icon: Zap,          text: 'Stage 1 from £220 — workshop' },
+  { icon: Zap,          text: 'Stage 1 from £220 - workshop' },
   { icon: CheckCircle2, text: 'Mobile or workshop appointment' },
   { icon: Shield,       text: 'Safe, road-legal calibration' },
   { icon: Clock,        text: '£50 deposit secures your slot' },
@@ -20,7 +20,7 @@ export default function BookNow() {
   return (
     <>
       <SEO
-        title="Book Now | AutoCleanse — DPF Cleaning & ECU Remapping Devon"
+        title="Book Now | AutoCleanse - DPF Cleaning & ECU Remapping Devon"
         description="Book a DPF clean or ECU remap with AutoCleanse. Same-day local DPF cleaning from £210, nationwide postal service, and Stage 1, Stage 2 and economy remapping available."
         path="/book"
       />
@@ -37,7 +37,7 @@ export default function BookNow() {
             <span className="text-[#FF7A00]">like to book?</span>
           </h1>
           <p className="text-white/50 text-base md:text-lg max-w-lg mx-auto leading-relaxed">
-            Choose your service below — we'll take you straight to booking.
+            Choose your service below - we'll take you straight to booking.
           </p>
         </section>
 
@@ -81,7 +81,7 @@ export default function BookNow() {
 
                 {/* Desc */}
                 <p className="text-white/55 text-sm leading-relaxed mb-6">
-                  Professional off-vehicle DPF cleaning — restore your filter to 98% of original flow.
+                  Professional off-vehicle DPF cleaning - restore your filter to 98% of original flow.
                   Same-day local service or tracked nationwide postal return.
                 </p>
 
@@ -112,7 +112,7 @@ export default function BookNow() {
               to="/remapping-booking"
               className="group relative flex flex-col rounded-[2rem] overflow-hidden border border-[#FF7A00]/20 bg-[#111315] hover:border-[#FF7A00]/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#FF7A00]/10"
             >
-              {/* Top colour band — orange */}
+              {/* Top colour band - orange */}
               <div className="h-1.5 w-full bg-gradient-to-r from-[#FF7A00]/40 via-[#FF7A00] to-[#FF7A00]/30 group-hover:from-[#FF7A00]/60 group-hover:via-[#FF7A00] group-hover:to-[#FF7A00]/50 transition-all duration-500" />
 
               {/* Background glow */}
@@ -145,7 +145,7 @@ export default function BookNow() {
                 {/* Desc */}
                 <p className="text-white/55 text-sm leading-relaxed mb-6">
                   Stage 1 & 2 ECU maps tailored to your vehicle. More power, better economy,
-                  sharper response — safely calibrated and road-legal.
+                  sharper response - safely calibrated and road-legal.
                 </p>
 
                 {/* Features */}

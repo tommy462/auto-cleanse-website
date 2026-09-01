@@ -25,7 +25,7 @@ export const BUSINESS = {
   longitude: '-3.6844',
   priceRange: '££',
   // Official profiles already used across the site. LinkedIn is the owner's
-  // personal profile (flagged for owner review — swap for a company page if made).
+  // personal profile (flagged for owner review - swap for a company page if made).
   sameAs: [
     'https://www.facebook.com/profile.php?id=61573744325360',
     'https://www.instagram.com/auto_cleansedpf/',
@@ -47,7 +47,7 @@ export const OPENING_HOURS = [
 // redefining the whole thing.
 export const businessRef = { '@id': BUSINESS_ID };
 
-// LocalBusiness/AutomotiveService node WITHOUT @context — for nesting (provider,
+// LocalBusiness/AutomotiveService node WITHOUT @context - for nesting (provider,
 // @graph, arrays). Pass per-page extras (description, serviceType, areaServed…).
 export function localBusinessNode(overrides: Record<string, unknown> = {}) {
   return {

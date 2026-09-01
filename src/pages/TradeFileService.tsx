@@ -209,7 +209,7 @@ export default function TradeFileService() {
               How It <span className="text-[#FF7A00]">Works</span>
             </h2>
             <p className="text-white/55 text-base md:text-lg max-w-2xl mb-10 leading-relaxed">
-              A simple, trade-focused workflow today &mdash; and the full AutoCleanse Trade Portal is
+              A simple, trade-focused workflow today - and the full AutoCleanse Trade Portal is
               currently being built to make it even easier.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">

@@ -258,7 +258,7 @@ export default function RemapPortfolio() {
                 Recent ECU <span className="text-[#FF7A00]">Remaps</span>
               </h2>
               <p className="text-white/50 text-base md:text-lg font-medium max-w-xl leading-relaxed">
-                A growing portfolio of real vehicles tuned by Auto-Cleanse — from performance cars to commercial vans.
+                A growing portfolio of real vehicles tuned by Auto-Cleanse - from performance cars to commercial vans.
               </p>
               <p className="text-white/60 text-sm font-medium mt-2 max-w-xl">
                 Every vehicle is diagnosed, read, tuned and tested properly for safe, usable performance gains.
@@ -280,7 +280,7 @@ export default function RemapPortfolio() {
           <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
 
-          {/* Duplicate items for seamless loop — same pattern as the reviews marquee */}
+          {/* Duplicate items for seamless loop - same pattern as the reviews marquee */}
           <div className="flex w-max animate-marquee py-4">
             {[...PORTFOLIO_VEHICLES, ...PORTFOLIO_VEHICLES].map((v, i) => (
               <div key={i} className="w-[280px] md:w-[320px] mx-3 flex-shrink-0">

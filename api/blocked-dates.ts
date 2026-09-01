@@ -2,7 +2,7 @@
 //
 // Returns upcoming blocked dates from the AutoCleanse dashboard Supabase instance.
 // Used by the booking form to warn customers before they reach the Calendly widget.
-// No auth required — this is public availability information.
+// No auth required - this is public availability information.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
@@ -22,7 +22,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const supabaseKey = process.env.DASHBOARD_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
-    // Silently return empty — don't break the booking form if not configured
+    // Silently return empty - don't break the booking form if not configured
     return res.status(200).json({ dates: [] });
   }
 

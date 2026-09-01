@@ -123,7 +123,7 @@ function caption(text) {
 
 // ── motifs ───────────────────────────────────────────────────────────────────
 const MOTIFS = {
-  // 1 — DPF honeycomb + regeneration loop
+  // 1 - DPF honeycomb + regeneration loop
   regenLoop() {
     const r = 20, dx = r * 1.5, dy = r * Math.sqrt(3);
     let cells = '';
@@ -143,7 +143,7 @@ const MOTIFS = {
       ${caption('REGENERATION &#8800; REPAIR')}`;
   },
 
-  // 2 — modelled vs pressure-derived soot (two dials)
+  // 2 - modelled vs pressure-derived soot (two dials)
   twoDials() {
     return `
       ${gauge(762, 372, 96, 0.42, 'MODELLED')}
@@ -152,7 +152,7 @@ const MOTIFS = {
       ${caption('TWO ESTIMATES, ONE UNKNOWN')}`;
   },
 
-  // 3 — five-step diagnostic sequence
+  // 3 - five-step diagnostic sequence
   checklist5() {
     const x = 648, y0 = 196, gap = 68, bw = 486;
     let rows = '';
@@ -168,7 +168,7 @@ const MOTIFS = {
     return `${rows}<text x="${x}" y="${y0 - 22}" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="2.4" fill="${MUTE}">DIAGNOSTIC SEQUENCE</text>`;
   },
 
-  // 4 — ECU chip coordinating control areas
+  // 4 - ECU chip coordinating control areas
   ecuChip() {
     const s = 116, x = CX - s / 2, y = CY - s / 2;
     let pins = '';
@@ -191,7 +191,7 @@ const MOTIFS = {
       ${caption('ONE COORDINATED CALIBRATION')}`;
   },
 
-  // 5 — off-vehicle clean: flow through a filter body
+  // 5 - off-vehicle clean: flow through a filter body
   filterFlow() {
     const x = 700, y = 250, w = 348, h = 200;
     const r = 17, dx = r * 1.5, dy = r * Math.sqrt(3);
@@ -216,7 +216,7 @@ const MOTIFS = {
       ${caption('DIAGNOSE, THEN CLEAN')}`;
   },
 
-  // 6 — pre-remap health check waveform
+  // 6 - pre-remap health check waveform
   healthWave() {
     const x0 = 636, x1 = 1128, y = 250, h = 200, mid = y + h / 2;
     const p = `M ${x0 + 20} ${mid} L ${x0 + 120} ${mid} L ${x0 + 150} ${mid - 20} L ${x0 + 185} ${mid + 66} L ${x0 + 225} ${mid - 88} L ${x0 + 262} ${mid} L ${x1 - 120} ${mid} L ${x1 - 92} ${mid - 22} L ${x1 - 60} ${mid + 20} L ${x1 - 20} ${mid}`;
@@ -228,7 +228,7 @@ const MOTIFS = {
       ${caption('HEALTH CHECK BEFORE TUNE')}`;
   },
 
-  // 7 — differential pressure across the filter
+  // 7 - differential pressure across the filter
   deltaP() {
     const x = 700, y = 320, w = 344, h = 96;
     let hatch = '';
@@ -248,7 +248,7 @@ const MOTIFS = {
       <text x="${CX}" y="500" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="${ORANGE}">&#916;P = P1 &#8722; P2</text>`;
   },
 
-  // 8 — torque curve clipped by the safe limit line
+  // 8 - torque curve clipped by the safe limit line
   torqueLimit() {
     const x0 = 640, y0 = 500, x1 = 1130, yTop = 190, limitY = 262;
     const curve = `M ${x0} ${y0 - 10} C ${x0 + 120} ${y0 - 20}, ${x0 + 180} ${limitY + 8}, ${x0 + 250} ${limitY + 4} L ${x1 - 10} ${limitY + 4}`;
@@ -261,7 +261,7 @@ const MOTIFS = {
       ${caption('CALIBRATED WITHIN THE LIMITS')}`;
   },
 
-  // 9 — passive / active / forced regeneration states
+  // 9 - passive / active / forced regeneration states
   threeStates() {
     const base = 500, x0 = 700, gap = 122, w = 72;
     const items = [['PASSIVE', 92, 0.34], ['ACTIVE', 168, 0.64], ['FORCED', 244, 0.96]];
@@ -276,7 +276,7 @@ const MOTIFS = {
     return `${bars}<text x="${x0}" y="${base - 274}" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="2" fill="${MUTE}">EXHAUST TEMPERATURE &#8594;</text>`;
   },
 
-  // 10 — peak power vs usable torque
+  // 10 - peak power vs usable torque
   powerTorque() {
     const x0 = 640, y0 = 500, x1 = 1130, yTop = 180;
     const power = `M ${x0} ${y0 - 8} C ${x0 + 180} ${y0 - 30}, ${x0 + 300} ${y0 - 180}, ${x1} ${yTop}`;
@@ -291,7 +291,7 @@ const MOTIFS = {
       </g>`;
   },
 
-  // 11 — exhaust temperature vs regeneration threshold (failed regen)
+  // 11 - exhaust temperature vs regeneration threshold (failed regen)
   tempThreshold() {
     const x0 = 640, y0 = 500, x1 = 1130, yTop = 190, thr = 268;
     const line = `M ${x0 + 10} ${y0 - 30} L ${x0 + 80} ${y0 - 70} L ${x0 + 150} ${thr + 40} L ${x0 + 220} ${y0 - 90} L ${x0 + 300} ${thr + 24} L ${x0 + 380} ${y0 - 60} L ${x1 - 20} ${thr + 54}`;
@@ -304,7 +304,7 @@ const MOTIFS = {
       ${caption('NEVER REACHES TEMPERATURE')}`;
   },
 
-  // 12 — economy: MPG gauge + fuel drop. The MPG label sits BELOW the pivot so
+  // 12 - economy: MPG gauge + fuel drop. The MPG label sits BELOW the pivot so
   // the needle never crosses it.
   mpgGauge() {
     const gy = 380;
@@ -317,7 +317,7 @@ const MOTIFS = {
       ${caption('DEPENDS ON MORE THAN THE MAP')}`;
   },
 
-  // 13 — soot / ash / contamination / physical damage
+  // 13 - soot / ash / contamination / physical damage
   fourQuadrant() {
     const cw = 236, ch = 150, gx = CX - cw - 8, gy = 200, gap = 16;
     const cell = (cx, cy, label, icon) => `

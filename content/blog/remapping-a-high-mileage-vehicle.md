@@ -13,7 +13,7 @@ draft: false
 
 One of the most common questions we are asked is whether a vehicle is "too far gone" for a remap. The odometer figure is usually what prompts it, and on its own it is a poor predictor. A well-maintained high-mileage motorway car can be in far better mechanical condition than a low-mileage one that has spent its life on short, cold, stop-start journeys.
 
-Every vehicle should have its condition established before calibration, whatever the mileage — we have covered that general baseline in [why vehicle condition matters before a remap](/blog/why-vehicle-condition-matters-before-a-remap). This post is about the narrower question: what specifically changes as a vehicle ages, and how that should shape the decision.
+Every vehicle should have its condition established before calibration, whatever the mileage - we have covered that general baseline in [why vehicle condition matters before a remap](/blog/why-vehicle-condition-matters-before-a-remap). This post is about the narrower question: what specifically changes as a vehicle ages, and how that should shape the decision.
 
 > Mileage measures opportunity for wear, not the wear itself.
 
@@ -29,7 +29,7 @@ Age does not degrade an engine uniformly. A few specific things drift, and they 
 
 ### Clutch friction material
 
-On manual vehicles this is the single most common post-remap complaint, and it is almost always pre-existing. A clutch approaching the end of its friction life can still hold standard torque perfectly well and then slip under a raised figure — typically in the higher gears, under load, on a gradient. Nothing was broken by the calibration; the margin it had been living on simply disappeared. It should be assessed and honestly declared beforehand, never diagnosed afterwards.
+On manual vehicles this is the single most common post-remap complaint, and it is almost always pre-existing. A clutch approaching the end of its friction life can still hold standard torque perfectly well and then slip under a raised figure - typically in the higher gears, under load, on a gradient. Nothing was broken by the calibration; the margin it had been living on simply disappeared. It should be assessed and honestly declared beforehand, never diagnosed afterwards.
 
 ### Turbocharger tolerances
 
@@ -41,19 +41,19 @@ Higher sustained loads mean more heat to reject at exactly the point in a vehicl
 
 ### Aftertreatment that is already working hard
 
-On an older diesel the filter has usually accumulated ash it will never regenerate away, so it is closer to its restriction limit than the soot figure alone suggests. That is a condition to establish with [proper DPF diagnostics](/dpf-diagnostics-devon) beforehand — and a remap is not a repair for a loaded filter and should never be sold as one. Emissions equipment stays fitted and working.
+On an older diesel the filter has usually accumulated ash it will never regenerate away, so it is closer to its restriction limit than the soot figure alone suggests. That is a condition to establish with [proper DPF diagnostics](/dpf-diagnostics-devon) beforehand - and a remap is not a repair for a loaded filter and should never be sold as one. Emissions equipment stays fitted and working.
 
 > **Common misdiagnosis:** "The clutch slipped straight after the remap, so the remap caused it." Raised torque brings forward the point at which an already worn clutch gives up; it does not wear out a sound one in a single drive. The likelier conclusion is that the clutch was near the end of its serviceable life and the assessment should have caught it.
 
 ## Setting honest expectations
 
-There is a commercial conversation here as well as a technical one. On an older vehicle the sensible order is often to spend first on what is worn and only then on calibration — a tired clutch or a marginal turbo will cost more to put right after a remap has found it than before.
+There is a commercial conversation here as well as a technical one. On an older vehicle the sensible order is often to spend first on what is worn and only then on calibration - a tired clutch or a marginal turbo will cost more to put right after a remap has found it than before.
 
 It is also worth being plain about the gain. A healthy older engine can respond well to [a Stage 1 calibration](/stage-1-remaps-devon), but wear costs efficiency, and a vehicle carrying a tired turbo, restricted aftertreatment or soft compression will not produce what a fresh example does. Quoting a number without seeing the vehicle is how customers end up disappointed.
 
 ## Being willing to say no
 
-The professional position is neither automatic refusal nor automatic acceptance. Where the assessment finds a marginal clutch, a tired turbo, a cooling fault or an unresolved emissions problem, the right answer is to recommend the repair first and revisit [the remap](/ecu-remapping) afterwards — or to decline the job outright if the vehicle is not fit for it.
+The professional position is neither automatic refusal nor automatic acceptance. Where the assessment finds a marginal clutch, a tired turbo, a cooling fault or an unresolved emissions problem, the right answer is to recommend the repair first and revisit [the remap](/ecu-remapping) afterwards - or to decline the job outright if the vehicle is not fit for it.
 
 That conversation is far easier to have before the work than after it. A workshop that never turns anything away is not applying a standard.
 

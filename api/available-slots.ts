@@ -9,7 +9,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 const SUPABASE_URL = process.env.AUTOCLEANSE_SUPABASE_URL!;
 const SUPABASE_KEY = process.env.AUTOCLEANSE_SUPABASE_SERVICE_KEY!;
 
-// Mirrors BOOKING_CONFIG in src/config/booking.ts — keep in sync
+// Mirrors BOOKING_CONFIG in src/config/booking.ts - keep in sync
 const BUSINESS_HOURS: Record<string, { open: string; close: string } | null> = {
   sunday:    { open: '09:00', close: '14:00' },
   monday:    { open: '09:00', close: '17:30' }, // last slot 16:30 + 60 min = 17:30
@@ -52,7 +52,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Invalid date. Use YYYY-MM-DD.' });
   }
 
-  // 1. Check blocked_dates — full-day blocks return immediately, partial blocks are applied later
+  // 1. Check blocked_dates - full-day blocks return immediately, partial blocks are applied later
   let partialBlocks: { start_time: string; end_time: string }[] = [];
   try {
     const blocked = await sbGet(`/blocked_dates?date=eq.${date}&select=date,reason,start_time,end_time`);
@@ -69,7 +69,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       );
     }
   } catch {
-    // Non-fatal — continue
+    // Non-fatal - continue
   }
 
   // 2. Get business hours for the day of week

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Zap, TrendingUp } from 'lucide-react';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Portfolio data — add new entries here as more remaps are completed.
+// Portfolio data - add new entries here as more remaps are completed.
 // Images go in /public/portfolio-*.jpg
 // ─────────────────────────────────────────────────────────────────────────────
 const portfolioItems = [
@@ -100,7 +100,7 @@ export default function RemapPortfolioCarousel() {
             <span className="text-[#FF7A00]">Real Cars.</span>
           </h2>
           <p className="text-white/50 text-base md:text-lg max-w-xl mx-auto mt-3 leading-relaxed">
-            Every figure is from a real customer vehicle — no estimates, no bench numbers.
+            Every figure is from a real customer vehicle - no estimates, no bench numbers.
           </p>
         </div>
 
@@ -113,7 +113,7 @@ export default function RemapPortfolioCarousel() {
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
           >
-            {/* Slides — fade transition */}
+            {/* Slides - fade transition */}
             {portfolioItems.map((p, i) => (
               <div
                 key={i}
@@ -134,18 +134,18 @@ export default function RemapPortfolioCarousel() {
               </div>
             ))}
 
-            {/* Service badge — top left */}
+            {/* Service badge - top left */}
             <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 bg-[#FF7A00] text-black text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg shadow-[#FF7A00]/30">
               <Zap size={9} fill="currentColor" />
               {item.service}
             </div>
 
-            {/* Slide counter — top right */}
+            {/* Slide counter - top right */}
             <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-sm text-white/60 text-xs font-bold px-3 py-1.5 rounded-full border border-white/10">
               {active + 1} / {total}
             </div>
 
-            {/* ── Stats overlay — bottom ── */}
+            {/* ── Stats overlay - bottom ── */}
             <div className="absolute bottom-0 left-0 right-0 z-20 p-5 sm:p-6 lg:p-7">
               {/* Vehicle name */}
               <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-black tracking-tight mb-3 drop-shadow-lg">

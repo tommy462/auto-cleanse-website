@@ -1,4 +1,4 @@
-# Auto-Cleanse — crawler policy
+# Auto-Cleanse - crawler policy
 # Search + AI answer-engine crawlers are explicitly welcome. CSS/JS/assets are
 # not blocked so pages can be fully rendered and understood.
 

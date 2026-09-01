@@ -13,7 +13,7 @@ const useCases = [
   {
     icon: Cpu,
     title: 'Second-Hand Replacement ECU',
-    desc: 'A donor ECU from a breaker carries different VIN and immobiliser data — it simply won\'t start your vehicle. Cloning transfers your original identity to the donor unit.',
+    desc: 'A donor ECU from a breaker carries different VIN and immobiliser data - it simply won\'t start your vehicle. Cloning transfers your original identity to the donor unit.',
   },
   {
     icon: Shield,
@@ -23,13 +23,13 @@ const useCases = [
   {
     icon: Zap,
     title: 'Motorsport & Track Use',
-    desc: 'Running a spare or backup ECU for competition? We clone your mapped ECU so you have an identical standby ready at all times — tune and all.',
+    desc: 'Running a spare or backup ECU for competition? We clone your mapped ECU so you have an identical standby ready at all times - tune and all.',
   },
 ];
 
 const steps = [
   { n: '01', title: 'Diagnosis', desc: 'We connect to your vehicle and read the existing ECU (or assess the faulty unit) to confirm what data can be extracted.' },
-  { n: '02', title: 'Read & Extract', desc: 'The full ECU content is read at chip or OBD level — including VIN, calibration, immobiliser tokens and mileage data.' },
+  { n: '02', title: 'Read & Extract', desc: 'The full ECU content is read at chip or OBD level - including VIN, calibration, immobiliser tokens and mileage data.' },
   { n: '03', title: 'Write to Donor', desc: 'The extracted data is written byte-for-byte to the replacement ECU, giving it an identical identity to the original.' },
   { n: '04', title: 'Verify & Test', desc: 'The vehicle is started, live data monitored, and all functions confirmed before the job is signed off.' },
 ];
@@ -41,15 +41,15 @@ const faqs = [
   },
   {
     q: 'Will my existing remap survive the clone?',
-    a: 'Yes — the entire ECU image is copied, including any existing tune. The donor unit will be identical to your original in every respect.',
+    a: 'Yes - the entire ECU image is copied, including any existing tune. The donor unit will be identical to your original in every respect.',
   },
   {
     q: 'What if my original ECU is completely dead?',
-    a: 'In many cases we can still perform a bench read directly from the ECU circuit board. This depends on the ECU type — contact us and we\'ll advise on feasibility before you commit.',
+    a: 'In many cases we can still perform a bench read directly from the ECU circuit board. This depends on the ECU type - contact us and we\'ll advise on feasibility before you commit.',
   },
   {
     q: 'How long does ECU cloning take?',
-    a: 'Most jobs are completed within a few hours on the day. If bench-level reading is required the ECU will need to be removed, which may extend the process — we\'ll always give you a clear timeframe upfront.',
+    a: 'Most jobs are completed within a few hours on the day. If bench-level reading is required the ECU will need to be removed, which may extend the process - we\'ll always give you a clear timeframe upfront.',
   },
   {
     q: 'Which vehicles do you support?',
@@ -57,7 +57,7 @@ const faqs = [
   },
   {
     q: 'Do you offer a mobile ECU cloning service?',
-    a: 'Yes — for OBD-accessible jobs we can come to you across Devon. Bench-read jobs require the ECU to be brought to our workshop in Totnes.',
+    a: 'Yes - for OBD-accessible jobs we can come to you across Devon. Bench-read jobs require the ECU to be brought to our workshop in Totnes.',
   },
 ];
 
@@ -72,7 +72,7 @@ export default function EcuCloning() {
     <>
       <SEO
         title="ECU Cloning Devon | Faulty ECU Replacement | AutoCleanse"
-        description="Professional ECU cloning service in Devon. Faulty, water-damaged or incompatible replacement ECU? We clone your original data to a donor unit — VIN, immobiliser, tune and all. Workshop in Totnes, mobile across Devon."
+        description="Professional ECU cloning service in Devon. Faulty, water-damaged or incompatible replacement ECU? We clone your original data to a donor unit - VIN, immobiliser, tune and all. Workshop in Totnes, mobile across Devon."
         path="/ecu-cloning"
       />
 
@@ -85,7 +85,7 @@ export default function EcuCloning() {
               '@context': 'https://schema.org',
               '@type': ['AutomotiveService', 'LocalBusiness'],
               name: 'Auto-Cleanse',
-              description: 'Professional ECU cloning service in Devon. Faulty or damaged ECU replacement via full image cloning — VIN, immobiliser, calibration and tune preserved.',
+              description: 'Professional ECU cloning service in Devon. Faulty or damaged ECU replacement via full image cloning - VIN, immobiliser, calibration and tune preserved.',
               url: 'https://www.auto-cleanse.co.uk/ecu-cloning',
               telephone: '+441803269895',
               email: 'info@auto-cleanse.co.uk',
@@ -161,8 +161,8 @@ export default function EcuCloning() {
               <span className="text-[#FF7A00]">Devon.</span>
             </h1>
             <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl mb-8">
-              Faulty ECU? Incompatible donor unit? We perform full ECU image cloning — preserving your
-              VIN, immobiliser data, calibration and any existing tune — so your vehicle runs exactly as it did before.
+              Faulty ECU? Incompatible donor unit? We perform full ECU image cloning - preserving your
+              VIN, immobiliser data, calibration and any existing tune - so your vehicle runs exactly as it did before.
             </p>
             <div className="flex flex-wrap gap-3">
               <MagneticButton>
@@ -194,13 +194,13 @@ export default function EcuCloning() {
                   <p>
                     Every ECU stores a unique set of data: the vehicle's VIN, immobiliser security tokens, mileage information
                     and the calibration map that controls how the engine runs. When an ECU fails, simply fitting a second-hand
-                    replacement won't work — the new unit carries a different identity and the vehicle's security system will
+                    replacement won't work - the new unit carries a different identity and the vehicle's security system will
                     prevent it from starting.
                   </p>
                   <p>
                     ECU cloning solves this by reading the <strong className="text-white font-semibold">complete memory image</strong> from
                     the original (or faulty) unit and writing it byte-for-byte onto the donor ECU. The result is a replacement
-                    that is electronically identical to the original — the car doesn't know anything has changed.
+                    that is electronically identical to the original - the car doesn't know anything has changed.
                   </p>
                   <p>
                     If your original ECU had a performance remap applied, that tune is part of the image and is preserved in full
@@ -271,7 +271,7 @@ export default function EcuCloning() {
               <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-3">Vehicle Coverage</div>
               <h2 className="text-2xl md:text-3xl font-black text-white mb-2">Supported Makes</h2>
               <p className="text-white/50 text-sm md:text-base mb-7 max-w-2xl">
-                We support the majority of mainstream manufacturers. If your make isn't listed, contact us — coverage is regularly expanding.
+                We support the majority of mainstream manufacturers. If your make isn't listed, contact us - coverage is regularly expanding.
               </p>
               <div className="flex flex-wrap gap-2">
                 {supported.map(make => (

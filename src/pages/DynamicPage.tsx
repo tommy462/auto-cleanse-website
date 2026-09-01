@@ -32,7 +32,7 @@ export default function DynamicPage() {
     return <DPFCleaningLocation location={dpfLocation} />;
   }
 
-  // Unknown slug — render a proper 404 (noindex) instead of redirecting to a
+  // Unknown slug - render a proper 404 (noindex) instead of redirecting to a
   // real page, which previously created a soft-404 redirect chain.
   return <NotFound />;
 }

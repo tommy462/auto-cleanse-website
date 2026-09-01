@@ -231,7 +231,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
         </div>
       </div>
 
-      {/* Input — stacked on mobile, inline on sm+ */}
+      {/* Input - stacked on mobile, inline on sm+ */}
       <div className="mb-4 z-10 relative">
         <div className="relative">
           <input

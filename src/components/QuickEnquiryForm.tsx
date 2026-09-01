@@ -68,7 +68,7 @@ export default function QuickEnquiryForm({
     return (
       <div className="rounded-2xl bg-[#1A1D22] border border-[#FF7A00]/20 p-8 text-center">
         <CheckCircle className="mx-auto mb-4 text-[#FF7A00]" size={40} />
-        <h3 className="text-xl font-bold text-white mb-2">Thanks — we&rsquo;ve got your details</h3>
+        <h3 className="text-xl font-bold text-white mb-2">Thanks - we&rsquo;ve got your details</h3>
         <p className="text-white/60 text-sm mb-5">
           We&rsquo;ll call you back as soon as we can. Need us sooner? Call us now.
         </p>
@@ -153,7 +153,7 @@ export default function QuickEnquiryForm({
           toolparamdescription="Any extra detail such as symptoms, warning lights or timescale (optional)." />
       </div>
 
-      {/* Honeypot — visually hidden, ignored by humans, filled by bots. */}
+      {/* Honeypot - visually hidden, ignored by humans, filled by bots. */}
       <input type="text" name="company" tabIndex={-1} autoComplete="off" value={data.company}
         onChange={handleChange} className="hidden" aria-hidden="true" />
 

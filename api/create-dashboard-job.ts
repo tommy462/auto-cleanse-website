@@ -119,7 +119,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           xeroContactId = xeroData?.xero_contact_id ?? null;
         }
       } catch {
-        // Non-fatal — we still create the customer without a Xero ID
+        // Non-fatal - we still create the customer without a Xero ID
       }
 
       const [newCustomer] = await sb('/customers', {

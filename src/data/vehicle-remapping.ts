@@ -261,21 +261,21 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
       {
         heading: 'Gearbox and economy: the ZF8 auto and real-world MPG',
         paragraphs: [
-          'Most 320ds sold in the last decade use the ZF 8-speed automatic, which comfortably handles Stage 1 torque levels — it is a strong, well-proven gearbox and our maps stay within its safe operating window. Manual cars are equally suitable at Stage 1, though as with any torque increase a very worn clutch may show its age sooner, so we will flag it if yours feels marginal.',
-          'On economy, drivers who keep to a steady right foot typically see a real-world 8–12% MPG improvement, mostly from motorway and dual-carriageway cruising where the engine works less hard. If you use the extra performance at every opportunity, expect economy to stay roughly the same — the gain is a choice, not automatic.',
+          'Most 320ds sold in the last decade use the ZF 8-speed automatic, which comfortably handles Stage 1 torque levels - it is a strong, well-proven gearbox and our maps stay within its safe operating window. Manual cars are equally suitable at Stage 1, though as with any torque increase a very worn clutch may show its age sooner, so we will flag it if yours feels marginal.',
+          'On economy, drivers who keep to a steady right foot typically see a real-world 8–12% MPG improvement, mostly from motorway and dual-carriageway cruising where the engine works less hard. If you use the extra performance at every opportunity, expect economy to stay roughly the same - the gain is a choice, not automatic.',
         ],
       },
       {
         heading: 'Is Stage 1 the right choice, and how we protect your engine',
         paragraphs: [
           'For the 320d we almost always recommend Stage 1. It needs no hardware changes, keeps the DPF and emissions equipment in place, and delivers the vast majority of the usable gain. Stage 2 offers limited additional benefit on this engine relative to the cost and supporting work involved, so it is rarely the sensible option for a road-going 320d.',
-          'Every remap starts with a paid diagnostic health check — we are upfront that this is not a free add-on. We read the ECU for stored and pending faults, check the DPF, EGR and boost readings, and only proceed if the engine is healthy. If we find an underlying problem, we tell you before any remap is applied. We keep a backup of your original file so the car can be returned to stock at any time.',
+          'Every remap starts with a paid diagnostic health check - we are upfront that this is not a free add-on. We read the ECU for stored and pending faults, check the DPF, EGR and boost readings, and only proceed if the engine is healthy. If we find an underlying problem, we tell you before any remap is applied. We keep a backup of your original file so the car can be returned to stock at any time.',
         ],
       },
       {
         heading: 'Insurance, warranty and the law',
         paragraphs: [
-          'A remap is a modification, and you must declare it to your insurer — many specialist and mainstream insurers cover remapped vehicles at a reasonable premium, but not declaring it can invalidate a claim. If your 320d is still within BMW warranty, be aware a remap may affect drivetrain cover, so it is worth checking your terms first. Stage 1 remapping keeps your DPF and emissions hardware intact and is legal for road use in the UK; we do not offer DPF or emissions-equipment removal for road cars.',
+          'A remap is a modification, and you must declare it to your insurer - many specialist and mainstream insurers cover remapped vehicles at a reasonable premium, but not declaring it can invalidate a claim. If your 320d is still within BMW warranty, be aware a remap may affect drivetrain cover, so it is worth checking your terms first. Stage 1 remapping keeps your DPF and emissions hardware intact and is legal for road use in the UK; we do not offer DPF or emissions-equipment removal for road cars.',
         ],
       },
     ],
@@ -528,34 +528,34 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
         heading: 'What to expect from a Transporter remap',
         paragraphs: [
           'For a working van, the point of a Transporter remap is loaded driveability rather than headline power. The extra torque arrives low in the rev range, so a fully laden T5 or T6 pulls away from junctions and climbs Devon hills without you having to work the gearbox or bury the throttle. If you carry a tool-heavy payload, tow a trailer or plant, or run motorway miles between jobs, that is exactly where the difference is felt every day.',
-          'The lower-powered 102 and 140 vans benefit the most in relative terms — they go from feeling underpowered when loaded to genuinely comfortable. The 150 and 204 vans gain strong, usable mid-range that makes long runs far less tiring.',
+          'The lower-powered 102 and 140 vans benefit the most in relative terms - they go from feeling underpowered when loaded to genuinely comfortable. The 150 and 204 vans gain strong, usable mid-range that makes long runs far less tiring.',
         ],
       },
       {
         heading: 'T5, T6 and T6.1: engine variants',
         paragraphs: [
-          'We remap the 2.0 TDI across the T5 (2009 on), T6 and T6.1. The single-turbo 102 and 150 and the twin-turbo 180/204 all respond well at Stage 1, but the safe, sensible gain differs by variant — a 102 will not reach 204 figures, and we would never claim it does. Tell us the exact model, year and power output when you book and we will confirm realistic numbers for your specific van.',
+          'We remap the 2.0 TDI across the T5 (2009 on), T6 and T6.1. The single-turbo 102 and 150 and the twin-turbo 180/204 all respond well at Stage 1, but the safe, sensible gain differs by variant - a 102 will not reach 204 figures, and we would never claim it does. Tell us the exact model, year and power output when you book and we will confirm realistic numbers for your specific van.',
           'Many Transporters are camper conversions. These remap just the same, and the added torque is particularly welcome when the van is loaded with a full interior, water and gear on hilly or coastal routes.',
         ],
       },
       {
         heading: 'Gearbox, economy and fleet considerations',
         paragraphs: [
-          'DSG-equipped Transporters are well suited to Stage 1 — our maps respect the gearbox\'s torque limits. On manual vans, a healthy clutch copes fine, but a clutch already worn from heavy loaded use may need attention sooner, and we will tell you honestly if yours feels close.',
-          'Economy is the number one reason operators remap their vans: a better torque curve means less throttle to maintain speed, and drivers commonly report 10–18% real-world MPG improvements depending on load and route. Over 30,000+ miles a year that adds up quickly. For fleets we can apply a consistent map across multiple vans and schedule them around your work — ask about fleet pricing.',
+          'DSG-equipped Transporters are well suited to Stage 1 - our maps respect the gearbox\'s torque limits. On manual vans, a healthy clutch copes fine, but a clutch already worn from heavy loaded use may need attention sooner, and we will tell you honestly if yours feels close.',
+          'Economy is the number one reason operators remap their vans: a better torque curve means less throttle to maintain speed, and drivers commonly report 10–18% real-world MPG improvements depending on load and route. Over 30,000+ miles a year that adds up quickly. For fleets we can apply a consistent map across multiple vans and schedule them around your work - ask about fleet pricing.',
         ],
       },
       {
         heading: 'Diagnostics first, and mobile visits to your yard',
         paragraphs: [
-          'Every van gets a paid diagnostic health check before we touch the ECU — this is not a free add-on. We scan for faults, check the DPF and EGR condition and confirm the van is healthy before the remap is applied, because remapping a van with an existing problem simply masks it. We keep your original file backed up so the van can be returned to standard whenever you need.',
-          'Because downtime costs you money, we offer mobile ECU remapping across Devon and can come to your depot, yard or home — the same equipment and process as our Totnes workshop, without taking the van off the road for a trip.',
+          'Every van gets a paid diagnostic health check before we touch the ECU - this is not a free add-on. We scan for faults, check the DPF and EGR condition and confirm the van is healthy before the remap is applied, because remapping a van with an existing problem simply masks it. We keep your original file backed up so the van can be returned to standard whenever you need.',
+          'Because downtime costs you money, we offer mobile ECU remapping across Devon and can come to your depot, yard or home - the same equipment and process as our Totnes workshop, without taking the van off the road for a trip.',
         ],
       },
       {
         heading: 'Insurance and the law',
         paragraphs: [
-          'A remap is a declarable modification. Make sure your commercial or fleet policy is informed — most insurers cover remapped vans, but an undeclared modification can invalidate a claim. Stage 1 remapping keeps your DPF and emissions equipment in place and is road-legal; we do not remove DPFs or emissions hardware on road-going vehicles.',
+          'A remap is a declarable modification. Make sure your commercial or fleet policy is informed - most insurers cover remapped vans, but an undeclared modification can invalidate a claim. Stage 1 remapping keeps your DPF and emissions equipment in place and is road-legal; we do not remove DPFs or emissions hardware on road-going vehicles.',
         ],
       },
     ],

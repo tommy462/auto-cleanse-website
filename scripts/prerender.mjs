@@ -18,7 +18,7 @@ const template = rawTemplate
   .replace(/<(?:meta|link)\s[^>]*data-rh="true"[^>]*\/?>/g, '')
   // Remove Helmet script blocks (JSON-LD etc.)
   .replace(/<script\s[^>]*data-rh="true"[^>]*>[\s\S]*?<\/script>/g, '')
-  // Remove any static <meta name="description"> — Helmet injects the correct one per page
+  // Remove any static <meta name="description"> - Helmet injects the correct one per page
   .replace(/<meta\s[^>]*name="description"[^>]*\/?>/g, '')
   // Normalise any existing <title> tag (with or without data-rh) to a plain placeholder
   .replace(/<title[^>]*>[\s\S]*?<\/title>/, '<title>__SSR_TITLE__</title>')
@@ -32,7 +32,7 @@ const uniqueRoutes = [...new Set(routes)];
 // ── Remove stale prerendered routes ────────────────────────────────────────
 // Any dist/<route>/index.html that this app previously prerendered but which is
 // no longer in `routes` is deleted, so retired pages never linger in the build
-// output (defensive — also protects standalone `npm run prerender` runs).
+// output (defensive - also protects standalone `npm run prerender` runs).
 // Only files that carry our SSR app-root marker are ever removed, so genuine
 // static assets are never touched.
 const SSR_MARKER = 'min-h-screen bg-[#0A0A0A]';

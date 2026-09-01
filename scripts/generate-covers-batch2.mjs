@@ -17,7 +17,7 @@ import {
 
 // ── motifs ───────────────────────────────────────────────────────────────────
 const M = {
-  // 1 — pressure sensor + its two pipes, one of them faulty
+  // 1 - pressure sensor + its two pipes, one of them faulty
   sensorPipes() {
     const sx = CX, sy = 236;                     // sensor body
     const fx = 742, gx = 1002, fy = 452;         // pipe take-off points
@@ -33,7 +33,7 @@ const M = {
       ${caption('CHECK THE MEASURING PATH', 566)}`;
   },
 
-  // 2 — Stage 1 (software) vs Stage 2 (software + hardware)
+  // 2 - Stage 1 (software) vs Stage 2 (software + hardware)
   stageCompare() {
     const bx = 654, by = 196, bw = 460, bh = 128, gap = 26;
     const chip = (x, y) => `<rect x="${x}" y="${y}" width="34" height="34" rx="7" fill="none" stroke="${ORANGE}" stroke-width="3"/><rect x="${x + 10}" y="${y + 10}" width="14" height="14" fill="${ORANGE}"/>`;
@@ -54,7 +54,7 @@ const M = {
       ${label(bx + 24, by + bh + gap + 136, 'Vehicle and use dependent', 14, MUTE, 'start', 600, 0)}`;
   },
 
-  // 3 — the off-vehicle cleaning process chain
+  // 3 - the off-vehicle cleaning process chain
   processChain() {
     const steps = ['REMOVE', 'MEASURE', 'CLEAN', 'DRY', 'FLOW TEST'];
     const x0 = 646, y = 300, step = 104;
@@ -70,7 +70,7 @@ const M = {
     return `${out}${caption('MEASURED BEFORE AND AFTER', 470)}`;
   },
 
-  // 4 — AdBlue / SCR schematic
+  // 4 - AdBlue / SCR schematic
   scrSchematic() {
     const y = 340;
     return `
@@ -92,7 +92,7 @@ const M = {
       ${caption('UREA DOSED, NOx REDUCED', 520)}`;
   },
 
-  // 5 — declaration document with shield tick
+  // 5 - declaration document with shield tick
   declareShield() {
     const dx = CX - 92, dy = 214, dw = 184, dh = 232;
     let lines = '';
@@ -105,7 +105,7 @@ const M = {
       ${caption('DECLARE THE MODIFICATION', 540)}`;
   },
 
-  // 6 — EGR recirculation loop feeding soot back
+  // 6 - EGR recirculation loop feeding soot back
   egrLoop() {
     const y = 356;
     return `
@@ -122,7 +122,7 @@ const M = {
       ${caption('A DPF SYMPTOM, AN EGR CAUSE', 552)}`;
   },
 
-  // 7 — NOx conversion efficiency across the catalyst
+  // 7 - NOx conversion efficiency across the catalyst
   noxEfficiency() {
     const y = 348;
     return `
@@ -140,7 +140,7 @@ const M = {
       ${caption('SENSOR OR DOSING? PROVE IT', 540)}`;
   },
 
-  // 8 — ECU original file backed up and restorable
+  // 8 - ECU original file backed up and restorable
   backupFile() {
     const ex = CX - 150, ey = CY - 56;
     return `
@@ -158,7 +158,7 @@ const M = {
       ${caption('ALWAYS RETURNABLE TO STANDARD', 552)}`;
   },
 
-  // 9 — short trips never reaching regeneration temperature
+  // 9 - short trips never reaching regeneration temperature
   shortTrips() {
     const x0 = 640, y0 = 500, x1 = 1130, yTop = 196, thr = 272;
     const trips = `M ${x0 + 10} ${y0 - 14} L ${x0 + 54} ${thr + 66} L ${x0 + 92} ${y0 - 14}
@@ -175,7 +175,7 @@ const M = {
       ${label(x0 + 396, y0 + 44, 'SUSTAINED RUN', 13, ORANGE)}`;
   },
 
-  // 10 — ash accumulating irreversibly over service life
+  // 10 - ash accumulating irreversibly over service life
   ashBuild() {
     const x0 = 646, y0 = 486, x1 = 1128, yTop = 200;
     let bars = '';
@@ -198,7 +198,7 @@ const M = {
       ${caption('ASH ONLY EVER GOES UP', 546)}`;
   },
 
-  // 11 — legality: cleaned filter passes, removed filter fails
+  // 11 - legality: cleaned filter passes, removed filter fails
   legalCheck() {
     const cw = 214, ch = 168, gapx = 30, gx = CX - cw - gapx / 2, gy = 244;
     let honeycomb = '';
@@ -215,7 +215,7 @@ const M = {
       ${label(gx + cw + gapx + cw / 2, gy + ch + 34, 'REMOVED - MOT FAIL', 15, RED)}`;
   },
 
-  // 12 — turbo compressor wheel + boost leak
+  // 12 - turbo compressor wheel + boost leak
   turboBoost() {
     const tx = 826, ty = CY;
     let blades = '';
@@ -233,7 +233,7 @@ const M = {
       ${caption('AIR-SIDE FAULTS MAKE SOOT', 528)}`;
   },
 
-  // 13 — diesel vs petrol calibration parameters
+  // 13 - diesel vs petrol calibration parameters
   dieselPetrol() {
     const cw = 216, gapx = 28, gx = CX - cw - gapx / 2, gy = 208, ch = 244;
     const rows = (items, x, colour) => items.map((t, i) =>
@@ -249,7 +249,7 @@ const M = {
       ${caption('DIFFERENT ROUTES, SAME RIGOUR', 512)}`;
   },
 
-  // 14 — injector spray: good atomisation vs poor
+  // 14 - injector spray: good atomisation vs poor
   injectorSpray() {
     const y = 250, h = 150;
     const nozzle = (x) => `<path d="M ${x - 13} ${y} l 26 0 l -5 34 l -16 0 z" fill="#1b2331" stroke="${GRID}" stroke-width="2"/><rect x="${x - 9}" y="${y - 40}" width="18" height="42" rx="4" fill="#101620" stroke="#33404f" stroke-width="2"/>`;
@@ -274,7 +274,7 @@ const M = {
       ${caption('FUELLING FAULTS LOAD THE FILTER', 546)}`;
   },
 
-  // 15 — urea crystal deposits around the dosing injector
+  // 15 - urea crystal deposits around the dosing injector
   crystals() {
     const ix = CX, iy = 300;
     const crystal = (x, y, r, c) => `<polygon points="${x},${y - r} ${x + r * 0.86},${y - r * 0.5} ${x + r * 0.86},${y + r * 0.5} ${x},${y + r} ${x - r * 0.86},${y + r * 0.5} ${x - r * 0.86},${y - r * 0.5}" fill="${c}" opacity="0.9"/>`;
@@ -290,7 +290,7 @@ const M = {
       ${caption('CRYSTALLISED UREA DEPOSITS', 546)}`;
   },
 
-  // 16 — odometer + pre-remap health checklist
+  // 16 - odometer + pre-remap health checklist
   highMileage() {
     const ox = CX, oy = 244;
     let digits = '';
@@ -309,7 +309,7 @@ const M = {
     return `${digits}${label(ox, oy - 52, 'MILES', 14, MUTE)}${list}`;
   },
 
-  // 17 — post-clean resets: counters returning to zero
+  // 17 - post-clean resets: counters returning to zero
   postCleanReset() {
     const bx = 646, by = 218, bw = 470, rowH = 62;
     const rows = [['SOOT VALUE', 'RESET'], ['ASH VALUE', 'RESET'], ['FAULT MEMORY', 'CLEAR'], ['DIFF. PRESSURE', 'VERIFY']];
@@ -324,7 +324,7 @@ const M = {
     return `${out}${caption('CLOSE THE JOB PROPERLY', 528)}`;
   },
 
-  // 18 — van torque for load and towing
+  // 18 - van torque for load and towing
   vanTorque() {
     const vx = 660, vy = 236, vw = 250, vh = 116;
     const van = `
@@ -342,7 +342,7 @@ const M = {
       ${label(x0, y0 + 22, 'LOW-DOWN TORQUE', 14, ORANGE, 'start')}`;
   },
 
-  // 19 — dashboard warning lights
+  // 19 - dashboard warning lights
   warningLights() {
     const y = 300, x0 = 700;
     const cell = (x, active, glyph, name) => `

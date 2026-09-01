@@ -1,7 +1,7 @@
 // POST /api/stripe-webhook
 //
 // Receives events from Stripe. On checkout.session.completed:
-//   1. Verifies the Stripe signature (requires raw body — stream-read, not parsed)
+//   1. Verifies the Stripe signature (requires raw body - stream-read, not parsed)
 //   2. Creates a Google Calendar event with full booking details
 //   3. Fires the Make.com webhook for email/SMS notifications
 //
@@ -52,14 +52,14 @@ async function createCalendarEvent(session: Stripe.Checkout.Session): Promise<vo
   const cal = getCalendarClient();
   const calendarId = process.env.GOOGLE_CALENDAR_ID;
   if (!cal || !calendarId) {
-    console.warn('[webhook] Google Calendar not configured — skipping event creation');
+    console.warn('[webhook] Google Calendar not configured - skipping event creation');
     return;
   }
 
   const m = session.metadata ?? {};
   const isMobile = m.booking_type === 'mobile';
 
-  const summary = `🔧 Remap — ${m.customer_name ?? 'Customer'} — ${m.vehicle_reg ?? ''}`;
+  const summary = `🔧 Remap - ${m.customer_name ?? 'Customer'} - ${m.vehicle_reg ?? ''}`;
 
   const description = [
     `━━━ BOOKING DETAILS ━━━`,
@@ -168,7 +168,7 @@ async function notifyMakeWebhook(session: Stripe.Checkout.Session): Promise<void
     console.log(`[webhook] Make.com notified for ${m.booking_ref}`);
   } catch (err) {
     console.error('[webhook] Make.com notification failed:', err);
-    // Non-fatal — don't fail the webhook response
+    // Non-fatal - don't fail the webhook response
   }
 }
 
@@ -220,7 +220,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         await notifyMakeWebhook(session);
       } catch (err) {
         console.error('[webhook] Post-payment processing error:', err);
-        // Still return 200 — Stripe should not retry for app errors
+        // Still return 200 - Stripe should not retry for app errors
       }
     }
   }

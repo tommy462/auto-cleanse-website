@@ -18,7 +18,7 @@ interface SourceResult {
   source: string;
 }
 
-// ─── Token cache (module-level — survives warm Vercel invocations) ─────────────
+// ─── Token cache (module-level - survives warm Vercel invocations) ─────────────
 
 let _dvsaToken: { value: string; expiry: number } | null = null;
 
@@ -116,7 +116,7 @@ function normaliseModel(model: string): string {
 }
 
 // ─── Source 1: DVSA MOT History API (OAuth2) ─────────────────────────────────
-// Official government API — always accessible from server IPs, returns full make+model
+// Official government API - always accessible from server IPs, returns full make+model
 
 async function fetchDvsaMot(plate: string): Promise<SourceResult | null> {
   const token = await getDvsaToken();
@@ -156,7 +156,7 @@ async function fetchDvsaMot(plate: string): Promise<SourceResult | null> {
 }
 
 // ─── Source 2: DVLA VES API ──────────────────────────────────────────────────
-// Gives: make, colour, fuel, year, engine CC, tax/MOT status — no model
+// Gives: make, colour, fuel, year, engine CC, tax/MOT status - no model
 
 async function fetchDvlaVes(plate: string): Promise<SourceResult | null> {
   const apiKey = process.env.DVLA_API_KEY ?? '4JQVcz4V9m9ymInn22ThJ42t3ePusqHh3PJ38z8i';
@@ -297,7 +297,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const plate = registration.trim().toUpperCase().replace(/\s+/g, '');
 
-    // Run all sources concurrently — DVSA is primary (OAuth2, always works from server)
+    // Run all sources concurrently - DVSA is primary (OAuth2, always works from server)
     const [dvsaResult, dvlaResult, carcheckResult] = await Promise.allSettled([
       fetchDvsaMot(plate),
       fetchDvlaVes(plate),

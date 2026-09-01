@@ -1,7 +1,7 @@
 // GET /api/booking-details?session_id=cs_xxx
 //
 // Called by the /booking-success page to display booking confirmation details.
-// Retrieves the Stripe session and returns safe metadata — never exposes raw keys.
+// Retrieves the Stripe session and returns safe metadata - never exposes raw keys.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Stripe from 'stripe';

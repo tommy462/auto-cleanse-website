@@ -50,7 +50,7 @@ function getCalendarClient() {
 async function isSlotStillAvailable(slotStart: Date, slotEnd: Date): Promise<boolean> {
   const cal = getCalendarClient();
   const calendarId = process.env.GOOGLE_CALENDAR_ID;
-  if (!cal || !calendarId) return true; // Cannot verify — allow and rely on manual management
+  if (!cal || !calendarId) return true; // Cannot verify - allow and rely on manual management
 
   try {
     const { data } = await cal.events.list({
@@ -61,7 +61,7 @@ async function isSlotStillAvailable(slotStart: Date, slotEnd: Date): Promise<boo
     });
     return (data.items ?? []).length === 0;
   } catch {
-    return true; // On error, allow the booking — don't block customers
+    return true; // On error, allow the booking - don't block customers
   }
 }
 
@@ -142,7 +142,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     .filter(Boolean)
     .join(', ');
 
-  // All booking data stored in Stripe metadata — no separate DB needed
+  // All booking data stored in Stripe metadata - no separate DB needed
   const metadata: Stripe.MetadataParam = {
     booking_ref: jobRef,
     service_type: body.serviceType,
@@ -172,11 +172,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         price_data: {
           currency: 'gbp',
           product_data: {
-            name: `ECU Remap Deposit — ${serviceLabel(body.serviceType)}`,
+            name: `ECU Remap Deposit - ${serviceLabel(body.serviceType)}`,
             description: [
               `Booking: ${slotDisplay}`,
               `Vehicle: ${body.vehicleMakeModel} (${body.vehicleRegistration.toUpperCase()})`,
-              body.bookingType === 'mobile' ? `Mobile — ${addressParts}` : 'Workshop visit',
+              body.bookingType === 'mobile' ? `Mobile - ${addressParts}` : 'Workshop visit',
               'Full balance due on the day.',
             ].join(' · '),
           },

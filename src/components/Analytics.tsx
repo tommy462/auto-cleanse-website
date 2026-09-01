@@ -5,7 +5,7 @@ import { GA4_MEASUREMENT_ID } from '../config/leads';
 const isValidGa4Id = (id: string) => /^G-[A-Z0-9]{4,}$/i.test(id);
 
 // Loads GA4 only when a valid measurement ID is provided via env. If the ID is
-// missing or a placeholder, this is a complete no-op — nothing is requested and
+// missing or a placeholder, this is a complete no-op - nothing is requested and
 // nothing breaks. Works independently of the Google Ads tag, so the site is not
 // dependent on Ads being active.
 export default function Analytics() {
