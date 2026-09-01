@@ -179,7 +179,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
       },
       {
         q: 'Should I clean my DPF or just replace it?',
-        a: 'Most blocked filters are clogged, not broken - cleaning restores the original OEM part to near-new flow for a fraction of the £500-£2,000+ a replacement typically costs. If we test a filter and find it genuinely damaged, we tell you before any work is done.',
+        a: 'Most blocked filters are clogged, not broken - cleaning restores flow to the original OEM part for a fraction of what a replacement typically costs, which runs from many hundreds to several thousand pounds depending on the vehicle. If we test a filter and find it genuinely damaged, we tell you before any work is done.',
       },
       {
         q: 'Do you cover Salcombe and the villages around Kingsbridge?',

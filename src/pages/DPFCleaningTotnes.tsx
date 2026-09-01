@@ -149,9 +149,9 @@ const DPFCleaningTotnes = () => {
               <p>
                 DPF cleaning at our Totnes workshop starts from £210, with UK-wide postal DPF cleaning
                 from £230 - transparent, fixed pricing and no hidden costs. Collection and return may vary
-                depending on location and availability. Compared with a replacement filter at £500-£2,000+ fitted,
-                a professional clean restores your existing DPF to optimal flow while preserving all original
-                calibrations and sensor compatibility.
+                depending on location and availability. Compared with a replacement filter, which runs from many
+                hundreds to several thousand pounds depending on the vehicle, a professional clean restores
+                flow to your existing DPF while preserving its original calibrations and sensor compatibility.
               </p>
             </div>
           </section>
