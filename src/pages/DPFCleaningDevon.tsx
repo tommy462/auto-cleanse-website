@@ -1,5 +1,7 @@
 ﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
+import Breadcrumbs from '../components/Breadcrumbs';
+import { localBusinessNode, BUSINESS_ID } from '../data/business';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Settings, Shield, Truck, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
@@ -50,34 +52,53 @@ const DPFCleaningDevon = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Collection & Trade Cleaning Across Devon | AutoCleanse" description="Devon-wide DPF collection and return for garages, fleets and trade customers - plus workshop drop-off and UK postal cleaning. Areas covered across Devon from our Totnes base." path="/dpf-cleaning-devon" />
+      <SEO title="DPF Collection & Trade Cleaning Across Devon | AutoCleanse" description="Devon-wide DPF collection and return for garages, fleets and trade customers, plus workshop drop-off and UK postal cleaning. From £210." path="/dpf-cleaning-devon" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "Auto-Cleanse",
-        "description": "Professional DPF cleaning across Devon - Exeter, Plymouth, Torquay, Paignton, Newton Abbot and all Devon towns. Same-day return available.",
-        "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-devon",
-        "telephone": "+441803269895",
-        "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
-        "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
-        "areaServed": [
-          { "@type": "City", "name": "Exeter" }, { "@type": "City", "name": "Plymouth" },
-          { "@type": "City", "name": "Torquay" }, { "@type": "City", "name": "Paignton" },
-          { "@type": "City", "name": "Newton Abbot" }, { "@type": "City", "name": "Totnes" },
-          { "@type": "City", "name": "Dartmouth" }, { "@type": "City", "name": "Kingsbridge" },
-          { "@type": "City", "name": "Tavistock" }, { "@type": "City", "name": "Ivybridge" },
-          { "@type": "AdministrativeArea", "name": "Devon" }
+        '@context': 'https://schema.org',
+        '@graph': [
+          localBusinessNode({
+            description: 'Professional off-vehicle DPF cleaning across Devon, carried out at the Auto-Cleanse workshop in Totnes with flow testing before and after. Collection across Devon, workshop drop-off or UK-wide postal cleaning. We do not offer mobile or roadside DPF cleaning.',
+            serviceType: 'DPF Cleaning',
+            areaServed: [
+              { '@type': 'City', name: 'Exeter' },
+              { '@type': 'City', name: 'Plymouth' },
+              { '@type': 'City', name: 'Torquay' },
+              { '@type': 'City', name: 'Paignton' },
+              { '@type': 'City', name: 'Newton Abbot' },
+              { '@type': 'City', name: 'Totnes' },
+              { '@type': 'AdministrativeArea', name: 'Devon' },
+            ],
+          }),
+          {
+            '@type': 'Service',
+            name: 'DPF Cleaning Devon',
+            serviceType: 'Diesel Particulate Filter Cleaning',
+            provider: { '@id': BUSINESS_ID },
+            areaServed: [
+              { '@type': 'City', name: 'Exeter' },
+              { '@type': 'City', name: 'Plymouth' },
+              { '@type': 'City', name: 'Torquay' },
+              { '@type': 'City', name: 'Paignton' },
+              { '@type': 'City', name: 'Newton Abbot' },
+              { '@type': 'City', name: 'Totnes' },
+              { '@type': 'AdministrativeArea', name: 'Devon' },
+            ],
+            url: 'https://www.auto-cleanse.co.uk/dpf-cleaning-devon',
+            description: 'Professional off-vehicle DPF cleaning across Devon, carried out at the Auto-Cleanse workshop in Totnes with flow testing before and after. Collection across Devon, workshop drop-off or UK-wide postal cleaning. We do not offer mobile or roadside DPF cleaning.',
+            offers: [
+              { '@type': 'Offer', name: 'DPF Cleaning - from', priceCurrency: 'GBP', price: '210.00', availability: 'https://schema.org/InStock' },
+              { '@type': 'Offer', name: 'DPF Cleaning - UK postal', priceCurrency: 'GBP', price: '230.00', availability: 'https://schema.org/InStock' },
+            ],
+          },
         ],
-        "priceRange": "££",
-        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }],
-        "sameAs": ["https://www.facebook.com/profile.php?id=61573744325360"]
-      })}} />
+      }) }} />
 
       {/* Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <Breadcrumbs items={[{ name: 'DPF Cleaning', path: '/dpf-cleaning' }, { name: 'Devon' }]} />
         {/* Header */}
         <div className="text-center mb-20 reveal-container">
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">

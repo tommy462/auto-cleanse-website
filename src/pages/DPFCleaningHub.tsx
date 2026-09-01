@@ -209,7 +209,7 @@ const DPFCleaningHub = () => {
     <div ref={container} className="pt-10 pb-16 md:pt-28 md:pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="DPF Cleaning Devon | Professional DPF Cleaning | Auto-Cleanse"
-        description="Professional DPF cleaning in Devon from Auto-Cleanse in Totnes. Off-vehicle machine cleaning, testing, local collection and UK postal service. From £210. Call 01803 269895."
+        description="Professional DPF cleaning in Devon from our Totnes workshop. Off-vehicle machine cleaning, testing, collection and UK postal. From £210. Call 01803 269895."
         path="/dpf-cleaning"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

@@ -7,6 +7,11 @@ import { trackEvent } from '../lib/tracking';
 // letting a paid-search landing page push its own conversion.
 const CTA_OVERRIDES: Record<string, { to: string; label: string }> = {
   '/dpf-cleaning': { to: '/book', label: 'Book DPF Clean' },
+  '/dpf-cleaning-exeter': { to: '/book', label: 'Book DPF Clean' },
+  '/dpf-cleaning-plymouth': { to: '/book', label: 'Book DPF Clean' },
+  '/dpf-cleaning-torquay': { to: '/book', label: 'Book DPF Clean' },
+  '/dpf-cleaning-newton-abbot': { to: '/book', label: 'Book DPF Clean' },
+  '/dpf-cleaning-paignton': { to: '/book', label: 'Book DPF Clean' },
 };
 
 // Sticky bottom call/enquire bar shown on mobile and tablet (hidden on lg+).

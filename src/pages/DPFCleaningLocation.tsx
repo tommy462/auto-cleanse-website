@@ -1,26 +1,19 @@
 import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Settings, Shield, Truck, ArrowRight, HelpCircle } from 'lucide-react';
+import { MapPin, Phone, Settings, Shield, Truck, ArrowRight, HelpCircle, CalendarClock } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import MagneticButton from '../components/MagneticButton';
+import Breadcrumbs from '../components/Breadcrumbs';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
 import Reviews from '../components/Reviews';
 import { getReviews, DPF_TOWN_REVIEW_IDS } from '../data/reviews';
 import { DpfLocation, DPF_DIRECTORY } from '../data/dpf-locations';
 import { getLocationBySlug } from '../data/remapping-locations';
+import { localBusinessNode, BUSINESS_ID } from '../data/business';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const splitText = (text: string, className: string = '') => {
-  return text.split(' ').map((word, index) => (
-    <span key={index} className="inline-block overflow-hidden pb-4 -mb-4 mr-[0.25em]">
-      <span className={`inline-block word-reveal ${className}`}>{word}</span>
-    </span>
-  ));
-};
 
 const sectionIcons = [Truck, Settings];
 
@@ -28,10 +21,6 @@ export default function DPFCleaningLocation({ location }: { location: DpfLocatio
   const container = useRef(null);
 
   useGSAP(() => {
-    gsap.fromTo('.word-reveal',
-      { y: '100%', opacity: 0 },
-      { y: '0%', opacity: 1, duration: 1, stagger: 0.05, ease: 'power4.out', delay: 0.1 }
-    );
     gsap.utils.toArray<HTMLElement>('.reveal-container').forEach((c) => {
       const items = c.querySelectorAll('.reveal-item');
       gsap.fromTo(items, { y: 30, opacity: 0 }, {
@@ -59,42 +48,61 @@ export default function DPFCleaningLocation({ location }: { location: DpfLocatio
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': ['AutomotiveService', 'LocalBusiness'],
-        name: 'AutoCleanse',
-        description: `Off-vehicle DPF cleaning service for ${location.name} and ${location.region}. Workshop-based deep cleaning and flow testing, based in Totnes, Devon.`,
-        url: `https://www.auto-cleanse.co.uk/${location.slug}`,
-        telephone: '01803 269895',
-        email: 'info@auto-cleanse.co.uk',
-        address: { '@type': 'PostalAddress', streetAddress: 'The Old Barn Industrial Estate, Webbers Yard Estate', addressLocality: 'Totnes', addressRegion: 'Devon', postalCode: 'TQ9 6JY', addressCountry: 'GB' },
-        geo: { '@type': 'GeoCoordinates', latitude: '50.4316', longitude: '-3.6844' },
-        areaServed: [
-          { '@type': 'City', name: location.name },
-          ...location.nearbyAreas.map((a) => ({ '@type': 'City', name: a })),
-          { '@type': 'AdministrativeArea', name: 'Devon' },
+        '@graph': [
+          localBusinessNode({
+            description: `Off-vehicle DPF cleaning service for ${location.name} and ${location.region}. Workshop-based deep cleaning and flow testing, based in Totnes, Devon. We do not offer mobile or roadside DPF cleaning.`,
+            serviceType: 'DPF Cleaning',
+            areaServed: [
+              { '@type': 'City', name: location.name },
+              ...location.nearbyAreas.map((a) => ({ '@type': 'City', name: a })),
+              { '@type': 'AdministrativeArea', name: 'Devon' },
+            ],
+          }),
+          {
+            '@type': 'Service',
+            name: `DPF Cleaning ${location.name}`,
+            serviceType: 'Diesel Particulate Filter Cleaning',
+            provider: { '@id': BUSINESS_ID },
+            areaServed: [
+              { '@type': 'City', name: location.name },
+              { '@type': 'AdministrativeArea', name: 'Devon' },
+            ],
+            url: `https://www.auto-cleanse.co.uk/${location.slug}`,
+            description: `Off-vehicle machine cleaning of diesel particulate filters for ${location.name}, with flow testing before and after cleaning.`,
+            offers: [
+              { '@type': 'Offer', name: 'DPF Cleaning - from', priceCurrency: 'GBP', price: '210.00', availability: 'https://schema.org/InStock' },
+              { '@type': 'Offer', name: 'DPF Cleaning - UK postal', priceCurrency: 'GBP', price: '230.00', availability: 'https://schema.org/InStock' },
+            ],
+          },
+          {
+            '@type': 'FAQPage',
+            mainEntity: location.faqs.map((f) => ({
+              '@type': 'Question',
+              name: f.q,
+              acceptedAnswer: { '@type': 'Answer', text: f.a },
+            })),
+          },
         ],
-        serviceType: 'DPF Cleaning',
-        priceRange: '££',
-        openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '09:00', closes: '17:00' }],
-      })}} />
+      }) }} />
 
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Hero */}
-        <div className="text-center mb-20 reveal-container">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
-            {splitText(location.h1Prefix, 'text-white')}
-            <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
-              <span className="inline-block word-reveal text-[#FF7A00] ml-3">{location.name}.</span>
-            </span>
+
+        <Breadcrumbs items={[{ name: 'DPF Cleaning', path: '/dpf-cleaning' }, { name: location.name }]} />
+
+        {/* Hero. Static rather than a GSAP word-reveal, which set the prerendered
+            H1 to opacity 0 until hydration and delayed LCP on mobile. */}
+        <header className="text-center mb-16 md:mb-20">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6 md:mb-8 leading-[1.05] drop-shadow-2xl">
+            <span className="text-white">{location.h1Prefix} </span>
+            <span className="text-[#FF7A00] font-mono">{location.name}.</span>
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto mb-8 rounded-full"></div>
-          <div className="max-w-4xl mx-auto reveal-item">
-            <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium">
-              {location.intro}
-            </p>
-          </div>
-        </div>
+          <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto mb-8 rounded-full" />
+          <p className="text-lg md:text-2xl text-white/55 leading-relaxed font-medium max-w-4xl mx-auto">
+            {location.intro}
+          </p>
+        </header>
 
         <div className="max-w-5xl mx-auto space-y-8 reveal-container">
 
@@ -137,8 +145,9 @@ export default function DPFCleaningLocation({ location }: { location: DpfLocatio
               </p>
               <p>
                 Cleaning starts from £210, with UK postal cleaning from £230 and HGV/plant filters quoted
-                individually - compared with £500-£2,000+ for a typical replacement. Filters with us before
-                10am are often returned the same working day.
+                individually - against a replacement filter that runs from many hundreds to several thousand
+                pounds depending on the vehicle. Filters with us before 10am are often returned the same
+                working day.
               </p>
             </div>
           </section>
@@ -187,6 +196,7 @@ export default function DPFCleaningLocation({ location }: { location: DpfLocatio
                 { to: '/dpf-diagnostics-devon', label: 'DPF diagnostics - find the cause first' },
                 { to: '/blocked-dpf-cleaning-devon', label: 'Blocked DPF? Warning light & limp mode help' },
                 { to: '/postal-dpf', label: 'Nationwide postal DPF cleaning' },
+                { to: '/dpf-cleaning-near-me', label: 'Find your nearest DPF cleaning option' },
                 { to: '/pricing', label: 'DPF cleaning prices' },
                 { to: '/book', label: 'Book a DPF clean or collection' },
                 ...(ecuTown ? [{ to: `/${ecuTownSlug}`, label: `ECU remapping in ${location.name}` }] : []),
@@ -234,17 +244,20 @@ export default function DPFCleaningLocation({ location }: { location: DpfLocatio
               <p className="relative z-10 text-white/60 text-lg md:text-xl font-medium mb-10 max-w-2xl mx-auto">
                 Call or send an enquiry to arrange a collection or drop-off from {location.name}. Trade accounts available.
               </p>
-              <div className="relative z-10 flex flex-col sm:flex-row gap-6 justify-center">
-                <MagneticButton className="block">
-                  <a href="tel:01803269895" className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center text-lg">
-                    <Phone size={24} className="mr-3 text-[#FF7A00]" /> 01803 269895
-                  </a>
-                </MagneticButton>
-                <MagneticButton className="block">
-                  <a href="mailto:info@auto-cleanse.co.uk" className="w-full sm:w-auto bg-[#FF7A00] hover:bg-[#FF9500] text-black px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)] flex items-center justify-center text-lg">
-                    <Mail size={24} className="mr-3" /> Send enquiry
-                  </a>
-                </MagneticButton>
+              <div className="relative z-10 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                <a
+                  href="tel:01803269895"
+                  className="btn-shine px-8 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-3 text-lg min-h-[52px]"
+                  aria-label="Call Auto-Cleanse on 01803 269895"
+                >
+                  <Phone size={22} aria-hidden="true" /> Call 01803 269895
+                </a>
+                <Link
+                  to="/book"
+                  className="px-8 py-4 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-3 text-lg min-h-[52px]"
+                >
+                  <CalendarClock size={22} className="text-[#FF7A00]" aria-hidden="true" /> Book DPF Cleaning
+                </Link>
               </div>
             </div>
           </section>

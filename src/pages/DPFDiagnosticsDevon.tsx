@@ -86,8 +86,8 @@ export default function DPFDiagnosticsDevon() {
   return (
     <div className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title="DPF Diagnostics Devon | Diagnose Before You Replace | Auto-Cleanse"
-        description="Professional DPF diagnostics in Devon. We find the real cause of a DPF warning light or limp mode before any cleaning or removal - honest, evidence-based diagnosis from our Totnes workshop."
+        title="DPF Diagnostics Devon | Diagnose Before You Replace"
+        description="Professional DPF diagnostics in Devon. We find the real cause of a DPF warning light or limp mode before any cleaning or removal. Call 01803 269895."
         path="/dpf-diagnostics-devon"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

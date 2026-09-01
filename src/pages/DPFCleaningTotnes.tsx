@@ -1,5 +1,7 @@
 ﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
+import Breadcrumbs from '../components/Breadcrumbs';
+import { localBusinessNode, BUSINESS_ID } from '../data/business';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Settings, Shield, Truck, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
@@ -29,7 +31,7 @@ const DPFCleaningTotnes = () => {
       { y: '0%', opacity: 1, duration: 1, stagger: 0.05, ease: 'power4.out', delay: 0.1 }
     );
 
-    gsap.utils.toArray('.reveal-container').forEach((container: any) => {
+    gsap.utils.toArray<HTMLElement>('.reveal-container').forEach((container) => {
       const items = container.querySelectorAll('.reveal-item');
       gsap.fromTo(items,
         { y: 30, opacity: 0 },
@@ -50,26 +52,37 @@ const DPFCleaningTotnes = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning Totnes | Fast Turnaround | AutoCleanse" description="AutoCleanse DPF cleaning workshop in Totnes, Devon. Fast turnaround, often same-day where possible when the filter is with us before 10am. Cars, vans, HGVs & plant. Trade accounts welcome." path="/dpf-cleaning-totnes" />
+      <SEO title="DPF Cleaning Totnes | Fast Turnaround | AutoCleanse" description="Our DPF cleaning workshop is in Totnes, Devon. Off-vehicle machine cleaning and flow testing, often same-day for filters with us before 10am. From £210." path="/dpf-cleaning-totnes" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "Auto-Cleanse",
-        "description": "DPF cleaning workshop in Totnes, Devon. Drop off your filter before 10am for same-day return. Serving South Devon and nationwide by post.",
-        "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-totnes",
-        "telephone": "+441803269895",
-        "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
-        "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
-        "areaServed": [{ "@type": "City", "name": "Totnes" }, { "@type": "AdministrativeArea", "name": "Devon" }],
-        "priceRange": "££",
-        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }]
-      })}} />
+        '@context': 'https://schema.org',
+        '@graph': [
+          localBusinessNode({
+            description: 'Professional off-vehicle DPF cleaning in Totnes, Devon - our home workshop. Filters are machine cleaned and flow tested before and after. Drop-off, local collection or UK-wide postal cleaning. We do not offer mobile or roadside DPF cleaning.',
+            serviceType: 'DPF Cleaning',
+            areaServed: [{ '@type': 'City', name: 'Totnes' }, { '@type': 'AdministrativeArea', name: 'Devon' }],
+          }),
+          {
+            '@type': 'Service',
+            name: 'DPF Cleaning Totnes',
+            serviceType: 'Diesel Particulate Filter Cleaning',
+            provider: { '@id': BUSINESS_ID },
+            areaServed: [{ '@type': 'City', name: 'Totnes' }, { '@type': 'AdministrativeArea', name: 'Devon' }],
+            url: 'https://www.auto-cleanse.co.uk/dpf-cleaning-totnes',
+            description: 'Professional off-vehicle DPF cleaning in Totnes, Devon - our home workshop. Filters are machine cleaned and flow tested before and after. Drop-off, local collection or UK-wide postal cleaning. We do not offer mobile or roadside DPF cleaning.',
+            offers: [
+              { '@type': 'Offer', name: 'DPF Cleaning - from', priceCurrency: 'GBP', price: '210.00', availability: 'https://schema.org/InStock' },
+              { '@type': 'Offer', name: 'DPF Cleaning - UK postal', priceCurrency: 'GBP', price: '230.00', availability: 'https://schema.org/InStock' },
+            ],
+          },
+        ],
+      }) }} />
 
       {/* Background ambient light */}
       <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <Breadcrumbs items={[{ name: 'DPF Cleaning', path: '/dpf-cleaning' }, { name: 'Totnes' }]} />
         {/* Header */}
         <div className="text-center mb-20 reveal-container">
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">

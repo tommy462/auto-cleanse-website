@@ -24,7 +24,7 @@ const HowItWorks = () => {
       { y: '0%', opacity: 1, duration: 1, stagger: 0.05, ease: 'power4.out', delay: 0.1 }
     );
 
-    gsap.utils.toArray('.reveal-container').forEach((container: any) => {
+    gsap.utils.toArray<HTMLElement>('.reveal-container').forEach((container) => {
       const items = container.querySelectorAll('.reveal-item');
       gsap.fromTo(items,
         { y: 30, opacity: 0 },
@@ -139,11 +139,16 @@ const HowItWorks = () => {
                 <div className="w-full mb-8 rounded-2xl overflow-hidden border border-white/10 group-hover:border-[#FF7A00]/50 transition-colors duration-500 relative">
                   <div className="absolute inset-0 bg-[#FF7A00]/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                   <img
-                    src="/image.png"
-                    alt="Map showing AutoCleanse's 30-mile service radius covering South Devon, starting from Totnes"
-                    className="w-full object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110"
+                    src="/dpf-cleaning-machine.webp"
+                    alt="The METclean XL MKII DPF cleaning machine used at the AutoCleanse workshop in Totnes, Devon"
+                    width={852}
+                    height={852}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-auto object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110"
                   />
                 </div>
+                <p className="text-white/35 text-xs -mt-6 mb-8">The METclean XL MKII we clean on.</p>
                 <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-[#FF7A00] transition-colors">30-mile radius from Totnes</h3>
                 <p className="text-white/50 leading-relaxed font-medium">
                   Our local service area covers most of South Devon, ensuring rapid collection and same-day return

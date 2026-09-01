@@ -1,34 +1,29 @@
 ﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Settings, Shield, Truck, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Settings, Shield, Truck, ArrowRight, CalendarClock } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import MagneticButton from '../components/MagneticButton';
+import Breadcrumbs from '../components/Breadcrumbs';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
 import Reviews from '../components/Reviews';
 import { getReviews, DPF_TOWN_REVIEW_IDS } from '../data/reviews';
+import { localBusinessNode, BUSINESS_ID } from '../data/business';
+import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const splitText = (text: string, className: string = '') => {
-  return text.split(' ').map((word, index) => (
-    <span key={index} className="inline-block overflow-hidden pb-4 -mb-4 mr-[0.25em]">
-      <span className={`inline-block word-reveal ${className}`}>{word}</span>
-    </span>
-  ));
-};
+// Matches the CTA event convention used on the other DPF location pages. Phone
+// links are already counted site-wide as `phone_click` by <LeadTracking>.
+const trackCta = (cta: string, type: 'phone' | 'booking') =>
+  trackEvent('dpf_cta_click', { cta_location: cta, cta_type: type, page_path: '/dpf-cleaning-paignton' });
 
 const DPFCleaningPaignton = () => {
   const container = useRef(null);
 
   useGSAP(() => {
-    gsap.fromTo('.word-reveal',
-      { y: '100%', opacity: 0 },
-      { y: '0%', opacity: 1, duration: 1, stagger: 0.05, ease: 'power4.out', delay: 0.1 }
-    );
-    gsap.utils.toArray('.reveal-container').forEach((container: any) => {
+    gsap.utils.toArray<HTMLElement>('.reveal-container').forEach((container) => {
       const items = container.querySelectorAll('.reveal-item');
       gsap.fromTo(items, { y: 30, opacity: 0 }, {
         y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out',
@@ -38,48 +33,93 @@ const DPFCleaningPaignton = () => {
   }, { scope: container });
 
   return (
-    <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
+    <div ref={container} className="pt-10 pb-16 md:pt-28 md:pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title="DPF Cleaning Paignton | AutoCleanse Devon"
-        description="Professional DPF cleaning in Paignton, Devon. AutoCleanse collects from Paignton and Torbay, cleans to 98% flow efficiency and returns same day."
+        title="DPF Cleaning Paignton | From £210 | Auto-Cleanse"
+        description="Professional off-vehicle DPF cleaning for Paignton from Auto-Cleanse. Machine cleaned and flow tested before and after, from £210. Call 01803 269895."
         path="/dpf-cleaning-paignton"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": ["AutomotiveService", "LocalBusiness"],
-        "name": "Auto-Cleanse",
-        "description": "Professional DPF cleaning service for Paignton and Torbay. Based in Totnes, Devon - 10 miles from Paignton.",
-        "url": "https://www.auto-cleanse.co.uk/dpf-cleaning-paignton",
-        "telephone": "+441803269895",
-        "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
-        "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
-        "areaServed": [
-          { "@type": "City", "name": "Paignton" }, { "@type": "City", "name": "Torquay" },
-          { "@type": "City", "name": "Brixham" }, { "@type": "AdministrativeArea", "name": "Devon" }
+        '@context': 'https://schema.org',
+        '@graph': [
+          localBusinessNode({
+            description:
+              'Professional off-vehicle DPF cleaning for Paignton and Torbay, carried out at the Auto-Cleanse workshop in Totnes, Devon, around 12 miles away. Filters are flow tested before and after cleaning. We do not offer mobile or roadside DPF cleaning.',
+            serviceType: 'DPF Cleaning',
+            areaServed: [
+              { '@type': 'City', name: 'Paignton' },
+              { '@type': 'City', name: 'Torquay' },
+              { '@type': 'City', name: 'Brixham' },
+              { '@type': 'AdministrativeArea', name: 'Devon' },
+            ],
+          }),
+          {
+            '@type': 'Service',
+            name: 'DPF Cleaning Paignton',
+            serviceType: 'Diesel Particulate Filter Cleaning',
+            provider: { '@id': BUSINESS_ID },
+            areaServed: [
+              { '@type': 'City', name: 'Paignton' },
+              { '@type': 'AdministrativeArea', name: 'Devon' },
+            ],
+            url: 'https://www.auto-cleanse.co.uk/dpf-cleaning-paignton',
+            description:
+              'Off-vehicle machine cleaning of diesel particulate filters for Paignton and Torbay, with flow testing before and after cleaning.',
+            offers: [
+              { '@type': 'Offer', name: 'DPF Cleaning - from', priceCurrency: 'GBP', price: '210.00', availability: 'https://schema.org/InStock' },
+              { '@type': 'Offer', name: 'DPF Cleaning - collection or UK postal', priceCurrency: 'GBP', price: '230.00', availability: 'https://schema.org/InStock' },
+            ],
+          },
         ],
-        "priceRange": "££",
-        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }]
-      })}} />
+      }) }} />
 
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20 reveal-container">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
-            {splitText('DPF Cleaning in', 'text-white')}
-            <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
-              <span className="inline-block word-reveal text-[#FF7A00] ml-3">Paignton.</span>
-            </span>
+
+        <Breadcrumbs items={[{ name: 'DPF Cleaning', path: '/dpf-cleaning' }, { name: 'Paignton' }]} />
+
+        {/* Hero. Deliberately outside the GSAP reveal system: the previous
+            word-reveal set the H1 to opacity 0 until hydration, which delayed the
+            prerendered LCP element. Layout and styling are otherwise unchanged. */}
+        <header className="text-center mb-16 md:mb-20">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6 md:mb-8 leading-[1.05] drop-shadow-2xl">
+            <span className="text-white">DPF Cleaning </span>
+            <span className="text-[#FF7A00] font-mono">Paignton.</span>
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto mb-8 rounded-full"></div>
-          <div className="max-w-4xl mx-auto reveal-item">
-            <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium">
-              AutoCleanse is just 10 miles from Paignton - making us the closest professional DPF cleaning workshop in the area.
-              Same-day return available for collections before 10am.
+          <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto mb-8 rounded-full" />
+
+          <p className="text-lg md:text-2xl text-white/60 leading-relaxed font-medium max-w-3xl mx-auto">
+            Professional off-vehicle DPF cleaning for Paignton and Torbay, machine cleaned at our
+            Totnes workshop and flow tested before and after.
+          </p>
+
+          <div className="mt-8 md:mt-10 flex flex-col items-center gap-5 sm:gap-6">
+            <p className="inline-flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 rounded-2xl border border-[#FF7A00]/30 bg-[#FF7A00]/10 px-5 py-3">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-white/60">From</span>
+              <span className="text-3xl md:text-4xl font-black text-[#FF7A00] font-mono tracking-tight">£210</span>
+              <span className="text-sm font-medium text-white/50">DPF machine clean</span>
             </p>
+
+            <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <a
+                href="tel:01803269895"
+                onClick={() => trackCta('hero', 'phone')}
+                className="btn-shine px-6 sm:px-7 py-4 rounded-xl font-bold text-white text-base sm:text-lg inline-flex items-center justify-center gap-2.5 min-h-[52px]"
+                aria-label="Call Auto-Cleanse on 01803 269895"
+              >
+                <Phone size={20} aria-hidden="true" /> Call 01803 269895
+              </a>
+              <Link
+                to="/book"
+                onClick={() => trackCta('hero', 'booking')}
+                className="px-6 sm:px-7 py-4 rounded-xl font-bold text-white text-base sm:text-lg border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2.5 min-h-[52px]"
+              >
+                Book DPF Cleaning <ArrowRight size={18} aria-hidden="true" />
+              </Link>
+            </div>
           </div>
-        </div>
+        </header>
 
         <div className="max-w-5xl mx-auto space-y-8 reveal-container">
           <section className="relative p-10 md:p-12 rounded-[2.5rem] bg-[#1A1D22] border border-white/5 reveal-item group hover:border-[#FF7A00]/20 transition-all duration-500 overflow-hidden shadow-xl shadow-black">
@@ -88,14 +128,14 @@ const DPFCleaningPaignton = () => {
               <div className="w-16 h-16 rounded-2xl bg-[#FF7A00]/10 border border-[#FF7A00]/30 flex items-center justify-center mr-6 group-hover:scale-110 group-hover:bg-[#FF7A00]/20 transition-all duration-500 shadow-[0_0_20px_rgba(255,122,0,0.2)]">
                 <Truck size={28} className="text-[#FF7A00]" />
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">Your Nearest Professional DPF Cleaner</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-[#FF7A00] transition-colors duration-300">Collection from Paignton, or drop it in</h2>
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Our Totnes workshop is just 10 miles from Paignton. DPF cleaning starts from £210, with nationwide postal DPF cleaning from £230. Filters from Paignton garages and private customers can be collected on our regular daily route, cleaned with our METclean XL process, and returned within the same working day for collections before 10am - collection and return may vary depending on location and availability.
+                Our Totnes workshop is around 12 miles from Paignton via the A385. DPF cleaning starts from £210, with collection and return or nationwide postal cleaning from £230. Filters from Paignton garages and private customers can be collected on our Torbay run alongside Torquay and Brixham, cleaned with our METclean XL process, and returned - often the same working day for filters with us before 10am. Collection depends on where we are running that week, so call to check rather than assume a slot.
               </p>
               <p>
-                Paignton has a high volume of tourist-season vehicle traffic alongside year-round commercial activity. AutoCleanse provides fast, professional DPF refurbishment to keep local fleets, taxis, and private vehicles running smoothly.
+                A lot of Paignton diesels do short, slow, stop-start miles that never let a regeneration finish, which is exactly how filters load up in the first place. Off-vehicle cleaning clears the soot a regen never burnt off along with the ash it never could, and the filter is flow tested before and after so the change is measured.
               </p>
             </div>
           </section>
@@ -110,10 +150,10 @@ const DPFCleaningPaignton = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                Paignton drivers and garages can save significant money by choosing professional DPF cleaning over replacement. DPF cleaning starts from £210, with nationwide postal DPF cleaning from £230, compared to £500–£2,000+ for a replacement DPF that may be aftermarket quality. Collection and return may vary depending on location and availability.
+                Professional cleaning can often restore a serviceable blocked filter for a fraction of replacement cost. Cleaning starts from £210, with collection and return or nationwide postal cleaning from £230, against a replacement filter that runs from many hundreds to several thousand pounds depending on the vehicle.
               </p>
               <p>
-                The original filter, properly cleaned, outperforms most aftermarket alternatives and keeps your vehicle fully MOT-compliant and emissions-legal.
+                Cleaning also keeps your original, vehicle-matched filter in place rather than swapping in an aftermarket part. It is not always possible - a cracked, melted or collapsed substrate may not be recoverable - which is why we inspect and test the filter before cleaning it rather than promising an outcome up front.
               </p>
             </div>
           </section>
@@ -199,19 +239,24 @@ const DPFCleaningPaignton = () => {
                 DPF Cleaning for <span className="text-[#FF7A00]">Paignton</span>
               </h3>
               <p className="relative z-10 text-white/60 text-lg md:text-xl font-medium mb-10 max-w-2xl mx-auto">
-                Book a DPF collection from Paignton - just 10 miles from our Totnes workshop. Trade accounts welcome.
+                Around 12 miles from our Totnes workshop, on the Torbay collection run. Trade and private work both welcome.
               </p>
-              <div className="relative z-10 flex flex-col sm:flex-row gap-6 justify-center">
-                <MagneticButton className="block">
-                  <a href="tel:01803269895" className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center text-lg">
-                    <Phone size={24} className="mr-3 text-[#FF7A00]" /> 01803 269895
-                  </a>
-                </MagneticButton>
-                <MagneticButton className="block">
-                  <a href="mailto:info@auto-cleanse.co.uk" className="w-full sm:w-auto bg-[#FF7A00] hover:bg-[#FF9500] text-black px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(255,122,0,0.3)] hover:shadow-[0_0_30px_rgba(255,122,0,0.5)] flex items-center justify-center text-lg">
-                    <Mail size={24} className="mr-3" /> Send enquiry
-                  </a>
-                </MagneticButton>
+              <div className="relative z-10 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                <a
+                  href="tel:01803269895"
+                  onClick={() => trackCta('final', 'phone')}
+                  className="btn-shine px-8 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-3 text-lg min-h-[52px]"
+                  aria-label="Call Auto-Cleanse on 01803 269895"
+                >
+                  <Phone size={22} aria-hidden="true" /> Call 01803 269895
+                </a>
+                <Link
+                  to="/book"
+                  onClick={() => trackCta('final', 'booking')}
+                  className="px-8 py-4 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-3 text-lg min-h-[52px]"
+                >
+                  <CalendarClock size={22} className="text-[#FF7A00]" aria-hidden="true" /> Book DPF Cleaning
+                </Link>
               </div>
             </div>
           </section>

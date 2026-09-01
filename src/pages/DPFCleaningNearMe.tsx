@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import SEO from '../components/SEO';
+import { localBusinessNode } from '../data/business';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Package, Truck, Warehouse, ArrowRight, HelpCircle, ShieldCheck } from 'lucide-react';
 import gsap from 'gsap';
@@ -87,24 +88,15 @@ export default function DPFCleaningNearMe() {
         path="/dpf-cleaning-near-me"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
-        {
+        localBusinessNode({
           '@context': 'https://schema.org',
-          '@type': ['AutomotiveService', 'LocalBusiness'],
-          name: 'AutoCleanse',
-          description: 'Off-vehicle DPF cleaning - workshop drop-off in Totnes, collection across Devon, and UK-wide postal cleaning with next-working-day return.',
-          url: 'https://www.auto-cleanse.co.uk/dpf-cleaning-near-me',
-          telephone: '01803 269895',
-          email: 'info@auto-cleanse.co.uk',
-          address: { '@type': 'PostalAddress', streetAddress: 'The Old Barn Industrial Estate, Webbers Yard Estate', addressLocality: 'Totnes', addressRegion: 'Devon', postalCode: 'TQ9 6JY', addressCountry: 'GB' },
-          geo: { '@type': 'GeoCoordinates', latitude: '50.4316', longitude: '-3.6844' },
+          description: 'Off-vehicle DPF cleaning - workshop drop-off in Totnes, collection across Devon, and UK-wide postal cleaning with next-working-day return. We do not offer mobile or roadside DPF cleaning.',
+          serviceType: 'DPF Cleaning',
           areaServed: [
             { '@type': 'AdministrativeArea', name: 'Devon' },
             { '@type': 'Country', name: 'United Kingdom' },
           ],
-          serviceType: 'DPF Cleaning',
-          priceRange: '££',
-          openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '09:00', closes: '17:00' }],
-        },
+        }),
         {
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
@@ -212,7 +204,7 @@ export default function DPFCleaningNearMe() {
               <p>
                 Because the filter has to come off the vehicle for a proper clean, distance barely matters:
                 collection, drop-off or a tracked courier all get the same result. Cleaning starts from
-                £210, against £500-£2,000+ for a typical replacement filter.
+                £210, against a replacement filter that runs from many hundreds to several thousand pounds.
               </p>
             </div>
           </section>

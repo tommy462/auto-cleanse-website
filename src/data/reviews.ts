@@ -248,6 +248,15 @@ export const DPF_REVIEW_IDS = [
   'callum-woodman', 'otr-mobile', 'win-scutt', 'danny-hunt',
 ];
 export const DPF_TOWN_REVIEW_IDS = ['james-riggs', 'peter-anning', 'antony-moore'];
+// Plymouth leads on the trade/fleet proposition, so its page surfaces the three
+// garage-and-trade reviews rather than the general town mix.
+export const DPF_TRADE_REVIEW_IDS = ['otr-mobile', 'antony-moore', 'danny-hunt'];
+// Torquay leads on "is the filter actually the problem?", so it surfaces the two
+// reviews where diagnosis avoided unnecessary work, plus one completed clean.
+export const DPF_ASSESSMENT_REVIEW_IDS = ['martin-amis', 'callum-woodman', 'james-riggs'];
+// Newton Abbot leads on turnaround and downtime, so it surfaces the three reviews
+// that specifically mention collection and same-day/few-hour return.
+export const DPF_TURNAROUND_REVIEW_IDS = ['peter-anning', 'danny-hunt', 'win-scutt'];
 // Diagnostics page leads with the two "diagnosed, no unnecessary work" reviews.
 export const DPF_DIAGNOSTICS_REVIEW_IDS = ['martin-amis', 'callum-woodman', 'james-riggs', 'antony-moore'];
 export const BLOCKED_DPF_REVIEW_IDS = ['james-riggs', 'martin-amis', 'danny-hunt'];
