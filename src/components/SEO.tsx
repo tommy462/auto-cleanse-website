@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { SITE_URL, canonicalUrl } from '../lib/site-url';
 
 interface SEOProps {
   title: string;
@@ -21,7 +22,7 @@ const SEO: React.FC<SEOProps> = ({
   title,
   description,
   path = '',
-  ogImage = 'https://www.auto-cleanse.co.uk/og-image.jpg',
+  ogImage = `${SITE_URL}/og-image.jpg`,
   ogType = 'website',
   noindex = false,
   nofollow = false,
@@ -30,8 +31,7 @@ const SEO: React.FC<SEOProps> = ({
   const siteName = 'AutoCleanse | DPF Cleaning & Remapping';
   // Title prop is already fully formed (includes brand suffix); do not append again
   const fullTitle = title;
-  const siteUrl = 'https://www.auto-cleanse.co.uk';
-  const fullUrl = `${siteUrl}${path}`;
+  const fullUrl = canonicalUrl(path);
 
   return (
     <Helmet>

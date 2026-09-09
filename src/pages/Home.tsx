@@ -281,7 +281,7 @@ const Home = () => {
                       "@type": "Service",
                       "name": "ECU Remapping",
                       "description": "Stage 1 and Stage 2 ECU remapping for cars, vans and HGVs in Devon. Improved power, torque and fuel economy. Safely calibrated.",
-                      "url": "https://www.auto-cleanse.co.uk/remapping"
+                      "url": "https://www.auto-cleanse.co.uk/ecu-remapping"
                     }
                   },
                   {
@@ -368,7 +368,7 @@ const Home = () => {
               "provider": { "@type": "LocalBusiness", "name": "Auto-Cleanse", "url": "https://www.auto-cleanse.co.uk" },
               "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
               "description": "Stage 1 and Stage 2 ECU remapping for cars, vans, HGVs and commercial vehicles in Devon. Improved power, torque and fuel economy. Custom fleet maps available.",
-              "url": "https://www.auto-cleanse.co.uk/remapping"
+              "url": "https://www.auto-cleanse.co.uk/ecu-remapping"
             },
             {
               "@context": "https://schema.org",

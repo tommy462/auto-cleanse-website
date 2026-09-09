@@ -6,7 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '..');
 
 // Load the SSR bundle produced by: vite build --ssr src/entry-server.tsx --outDir dist-server --mode ssr
-const { render, routes, blogPosts, privateRoutes } = await import('../dist-server/entry-server.js');
+const { render, routes, blogPosts, privateRoutes, utilityRoutes } = await import('../dist-server/entry-server.js');
 
 // Read the client-side index.html template (produced by: vite build)
 const rawTemplate = readFileSync(join(projectRoot, 'dist/index.html'), 'utf-8');
@@ -195,9 +195,11 @@ function rankFor(url) {
 }
 
 // Private campaign landing pages (e.g. /trade-invite/*) are prerendered so the
-// printed QR codes resolve, but must never appear in the public XML sitemap.
-const privateRouteSet = new Set(privateRoutes ?? []);
-const sitemapRoutes = uniqueRoutes.filter((url) => !privateRouteSet.has(url));
+// printed QR codes resolve, and utility pages (/booking-success, /debug/dvla…)
+// are prerendered so they serve their own noindex HTML rather than a copy of the
+// homepage - but neither may appear in the public XML sitemap.
+const excludedFromSitemap = new Set([...(privateRoutes ?? []), ...(utilityRoutes ?? [])]);
+const sitemapRoutes = uniqueRoutes.filter((url) => !excludedFromSitemap.has(url));
 
 const sitemapBody = sitemapRoutes
   .map((url) => {
@@ -213,8 +215,29 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http:
 writeFileSync(join(projectRoot, 'dist/sitemap.xml'), sitemapXml, 'utf-8');
 console.log(
   `Sitemap written with ${sitemapRoutes.length} URLs` +
-    (privateRouteSet.size > 0 ? ` (${privateRouteSet.size} private route(s) excluded).` : '.')
+    (excludedFromSitemap.size > 0
+      ? ` (${excludedFromSitemap.size} private/utility route(s) excluded).`
+      : '.')
 );
+
+// ── Guard: the sitemap must only ever contain canonical WWW URLs ───────────
+// Any non-WWW, trailing-slash (other than the root) or duplicate <loc> is a
+// build error rather than something to discover in Search Console later.
+const locs = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+const sitemapProblems = [];
+for (const loc of locs) {
+  if (!loc.startsWith(`${HOSTNAME}/`)) sitemapProblems.push(`not on ${HOSTNAME}: ${loc}`);
+  if (loc !== `${HOSTNAME}/` && loc.endsWith('/')) sitemapProblems.push(`trailing slash: ${loc}`);
+}
+const dupes = locs.filter((loc, i) => locs.indexOf(loc) !== i);
+for (const dupe of [...new Set(dupes)]) sitemapProblems.push(`duplicate: ${dupe}`);
+if (sitemapProblems.length > 0) {
+  for (const problem of sitemapProblems) process.stderr.write(`  ✗ sitemap ${problem}
+`);
+  errors += sitemapProblems.length;
+} else {
+  console.log(`Sitemap check passed: ${locs.length} unique canonical ${HOSTNAME} URLs.`);
+}
 
 // ── RSS feed for the blog ──────────────────────────────────────────────────
 function escapeXml(s = '') {

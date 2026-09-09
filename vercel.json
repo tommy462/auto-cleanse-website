@@ -1,62 +1,77 @@
 {
   "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "auto-cleanse.co.uk" }],
-      "destination": "https://www.auto-cleanse.co.uk/$1",
-      "permanent": true
-    },
     {
       "source": "/home",
       "destination": "https://www.auto-cleanse.co.uk/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/remapping",
       "destination": "https://www.auto-cleanse.co.uk/ecu-remapping",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/remapping-devon",
       "destination": "https://www.auto-cleanse.co.uk/ecu-remapping",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/fuel-savings-calculator",
       "destination": "https://www.auto-cleanse.co.uk/dpf-cleaning",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/ecu-tuning-devon",
       "destination": "https://www.auto-cleanse.co.uk/ecu-remapping",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/performance-remapping-devon",
       "destination": "https://www.auto-cleanse.co.uk/stage-1-remaps-devon",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/vehicle-remapping",
       "destination": "https://www.auto-cleanse.co.uk/vehicle-performance-lookup",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/our-services",
       "destination": "https://www.auto-cleanse.co.uk/services",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/services-3",
       "destination": "https://www.auto-cleanse.co.uk/services",
-      "permanent": true
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*/",
+      "has": [{ "type": "host", "value": "auto-cleanse.co.uk" }],
+      "destination": "https://www.auto-cleanse.co.uk/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "auto-cleanse.co.uk" }],
+      "destination": "https://www.auto-cleanse.co.uk/$1",
+      "statusCode": 301
     }
   ],
-  "rewrites": [
-    { "source": "/booking-success", "destination": "/" },
-    { "source": "/booking-cancel", "destination": "/" },
-    { "source": "/diagnostic-matcher", "destination": "/" },
-    { "source": "/debug/dvla", "destination": "/" }
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*).(webp|jpg|jpeg|png|gif|svg|ico|woff2)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }
+      ]
+    }
   ]
 }

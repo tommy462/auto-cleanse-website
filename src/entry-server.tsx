@@ -63,6 +63,19 @@ const STATIC_ROUTES = [
 // the XML sitemap - see scripts/prerender.mjs - and carry noindex/nofollow.
 export const privateRoutes: string[] = [...TRADE_INVITE_ROUTES];
 
+// Utility / post-transaction pages. These used to be SPA-rewritten to "/" in
+// vercel.json, which meant four different URLs all served the homepage's HTML
+// (and its canonical + title) - a duplicate-content trap, and their `noindex`
+// only appeared after hydration. Prerendering them instead gives each URL its
+// own static HTML with `noindex` in the raw markup. They are excluded from the
+// XML sitemap - see scripts/prerender.mjs.
+export const utilityRoutes: string[] = [
+  '/booking-success',
+  '/booking-cancel',
+  '/diagnostic-matcher',
+  '/debug/dvla',
+];
+
 export const routes: string[] = [
   ...STATIC_ROUTES,
   '/blog',
@@ -71,6 +84,7 @@ export const routes: string[] = [
   ...VEHICLE_REMAPS.map((veh) => `/${veh.slug}`),
   ...DPF_LOCATIONS.map((loc) => `/${loc.slug}`),
   ...privateRoutes,
+  ...utilityRoutes,
 ];
 
 // Lightweight metadata for the RSS feed generated in scripts/prerender.mjs.

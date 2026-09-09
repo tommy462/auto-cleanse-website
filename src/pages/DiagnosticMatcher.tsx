@@ -211,7 +211,7 @@ const DiagnosticMatcher = () => {
       <SEO
         title="Vehicle Remap Lookup | AutoCleanse Devon"
         description="Enter your reg to discover your vehicle's ECU remap potential."
-        path="/remap-lookup"
+        path="/diagnostic-matcher"
         noindex
       />
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none" />
@@ -444,7 +444,7 @@ const DiagnosticMatcher = () => {
                 <p className="text-white/40 mt-1 text-sm">Book your session and unlock your car's full potential.</p>
               </div>
               <a
-                href="/booking"
+                href="/book"
                 className="bg-[#FF7A00] hover:bg-[#FF9500] text-black font-black px-8 py-4 rounded-xl transition-all flex items-center gap-2 shrink-0"
               >
                 Book Now <ArrowRight size={18} />
