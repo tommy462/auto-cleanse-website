@@ -1,40 +1,16 @@
-﻿import { useState } from 'react';
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import {
-  Phone, Zap, ArrowRight, CheckCircle, ChevronDown,
+  Phone, Zap, ArrowRight, CheckCircle,
   Wrench, Activity, Shield
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
+import FaqSection from '../components/FaqSection';
 import { VehicleRemapData, getVehicleBySlug } from '../data/vehicle-remapping';
 import { DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
 import { PRIORITY_SLUGS } from '../data/campaign';
 import { localBusinessNode } from '../data/business';
-
-function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border-b border-white/5 last:border-0">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-start justify-between gap-4 py-5 text-left group"
-      >
-        <span className="text-white font-semibold text-sm leading-snug group-hover:text-[#FF7A00] transition-colors">
-          {q}
-        </span>
-        <ChevronDown
-          size={18}
-          className={`text-[#FF7A00] shrink-0 mt-0.5 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
-        />
-      </button>
-      {open && (
-        <p className="text-white/50 text-sm leading-relaxed pb-5 -mt-1">{a}</p>
-      )}
-    </div>
-  );
-}
 
 export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData }) {
   const relatedVehicles = vehicle.relatedSlugs
@@ -262,19 +238,24 @@ export default function VehicleRemap({ vehicle }: { vehicle: VehicleRemapData })
       )}
 
       {/* ── FAQ ───────────────────────────────────────────────────────────── */}
+      {/* Uses the shared FaqSection rather than a local accordion. The local one
+          rendered answers as {open && <p>}, so the answer text was absent from
+          the prerendered HTML entirely - roughly 300 words per page that no
+          crawler could ever see, on pages that are short to begin with.
+          FaqSection keeps every answer in the DOM and collapses it with CSS,
+          which also makes the FAQPage schema it emits legitimate. */}
       <section className="py-16 border-t border-white/5">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-10">
-            <p className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest mb-3">FAQ</p>
-            <h2 className="text-3xl font-black tracking-tighter text-white">
-              {vehicle.fullName} Remapping Questions
-            </h2>
-          </div>
-          <div className="rounded-3xl bg-[#1A1D22] border border-white/5 px-6 sm:px-8">
-            {vehicle.faqs.map((faq) => (
-              <FaqItem key={faq.q} q={faq.q} a={faq.a} />
-            ))}
-          </div>
+          <p className="text-[#FF7A00] text-xs font-bold uppercase tracking-widest mb-3">FAQ</p>
+          <FaqSection
+            faqs={vehicle.faqs}
+            heading={
+              <>
+                <span className="text-white">{vehicle.fullName} Remapping </span>
+                <span className="text-[#FF7A00]">Questions</span>
+              </>
+            }
+          />
         </div>
       </section>
 
