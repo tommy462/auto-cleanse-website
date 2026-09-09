@@ -1,6 +1,7 @@
 ﻿import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import MagneticButton from './MagneticButton';
+import TechnicalBulletinSignup from './TechnicalBulletinSignup';
 
 const Footer = () => {
   const socialLinks = [
@@ -56,6 +57,9 @@ const Footer = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-[#FF7A00]/5 to-transparent pointer-events-none"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Technical bulletin sign-up (hidden on the private trade-invite pages) */}
+        <TechnicalBulletinSignup />
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
 
           {/* Heavy CTA Column */}
@@ -188,10 +192,12 @@ const Footer = () => {
             <div className="w-8 h-8 gradient-orange rounded-md flex items-center justify-center text-white font-bold text-xs">AC</div>
             <p>© {new Date().getFullYear()} AutoCleanse. All rights reserved.</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-4 text-xs tracking-wider uppercase">
+          <div className="flex flex-wrap justify-center items-center gap-4 text-xs tracking-wider uppercase">
             <span>Guaranteed Quality</span>
             <span className="text-[#FF7A00]">•</span>
             <span>DPF Cleaning &amp; ECU Remapping</span>
+            <span className="text-[#FF7A00]">•</span>
+            <Link to="/privacy" className="hover:text-[#FF7A00] transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>

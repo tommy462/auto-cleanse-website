@@ -39,6 +39,7 @@ import EcuCloning from '../pages/EcuCloning';
 import TradeFileService from '../pages/TradeFileService';
 import DPFCleaningNearMe from '../pages/DPFCleaningNearMe';
 import TradeInvite from '../pages/TradeInvite';
+import Privacy from '../pages/Privacy';
 import NotFound from '../pages/NotFound';
 
 export default function PageTransition() {
@@ -105,6 +106,7 @@ export default function PageTransition() {
                     <Route path="/adblue-repair-devon" element={<AdBlueRepairDevon />} />
                     <Route path="/blog" element={<BlogIndex />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
+                    <Route path="/privacy" element={<Privacy />} />
 
                     {/* Private trade-outreach campaign landing pages (noindex,
                         nofollow, excluded from the sitemap, never linked publicly).

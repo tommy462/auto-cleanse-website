@@ -56,6 +56,7 @@ const STATIC_ROUTES = [
   '/trade-file-service',
   '/vehicle-performance-lookup',
   '/remapping-booking',
+  '/privacy',
 ];
 
 // Private campaign landing pages. These ARE prerendered (so the printed QR codes
