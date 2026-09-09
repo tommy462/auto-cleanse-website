@@ -97,38 +97,77 @@ const priceTiers = [
   { label: 'HGV & plant filters', note: 'Heavy vehicle and machinery DPFs', price: '£299' },
 ];
 
+// Long-form copy that is specific to Torquay and Torbay rather than to DPF
+// cleaning in general. The hub, the Devon page and the near-me page all make the
+// generic case already, so this page earns its place on the local detail: the
+// seafront stop-start pattern, the hills, and what a Torbay plate changes.
+const LOCAL_SECTIONS: { heading: string; paragraphs: string[] }[] = [
+  {
+    heading: "The regeneration starts, and then the seafront stops it",
+    paragraphs: [
+      "The regeneration that fails in Torquay has usually already begun. The ECU lifts the filter towards 600C on the run in, then the car joins the queue along Torbay Road with the seafront at walking pace, and the temperature falls away before the cycle is finished. A regeneration needs road speed to hold that heat, and sitting stationary in season traffic with the fans running is one of the more reliable ways to kill one mid cycle. The seafront, the harbour roads, Newton Road and the residential climbs are urban limits with junctions every few hundred yards. The A380 towards Newton Abbot is the nearest road we would send anyone to.",
+      "That is why a Torquay driver can do the twenty minutes everyone in the bay tells them to do and still arrive home with the light on. Caught early it often works. Caught late it cannot, because the ECU stops attempting a regeneration once soot loading is past the point it is prepared to burn, and from then on the A380 is irrelevant, you are driving a filter the car has already given up on. On a seafront or rank car that point arrives sooner than the owner expects, because the loading built up quietly across a season before the light ever appeared.",
+    ],
+  },
+  {
+    heading: "Care rounds, guest houses and the crawl up to Shiphay",
+    paragraphs: [
+      "The filters we see from Torquay arrive off a fairly predictable set of vehicles. Domiciliary care drivers working an older than average population do calls ten or fifteen minutes apart, so the engine is started cold, driven a mile or two and switched off again. Guest house and hotel cars do station runs and pick-ups of much the same length. Private hire takes short seafront and rank fares. Delivery vans crawl the terraces around St Marychurch and Babbacombe, and the approach to Torbay Hospital at Shiphay is stop-start for most of the working day. None of that gets a filter hot enough for long enough.",
+      "There is a side effect that most Torquay owners miss. Every active regeneration that starts and is then cut short by the driver arriving leaves unburnt diesel on the bores, and some of it washes down into the sump. Repeat that over a few weeks of short local journeys and the oil level can climb above the maximum on the dipstick while the oil itself thins. In our experience it is the Ford EcoBlue and the PSA HDi and BlueHDi families that owners notice it on. If your DPF light has been coming and going, check the oil level before you check anything else, because an overfilled sump is a problem in its own right.",
+    ],
+  },
+  {
+    heading: "Getting the filter off a car parked on a Torquay hill",
+    paragraphs: [
+      "Cleaning is done with the filter off the vehicle, and that removal is the part that decides your week rather than ours. In Torquay it is rarely a driveway job, because a large part of the town parks on a gradient on a terraced street with no off-street space, and dropping an underfloor exhaust section on a slope with the car on axle stands is not sensible work. It wants a ramp, and it wants patience. On cars that have spent their lives parked within sight of the water, around Ellacombe, the harbourside terraces and the roads off the seafront, we find exhaust studs and clamps in worse condition than the mileage suggests.",
+      "The 12 miles to Webbers Yard is not the variable, the calendar is. Out of season the A385 through Paignton is a 25 to 30 minute run, and Torquay sits on our Torbay collection run alongside Paignton and Brixham. In August, with the seafront and Preston backed up, the same journey through the bay is not worth attempting late in the day, which is why the collection van goes through Torbay early and why a filter that misses it waits for the next run rather than fighting its way out through Paignton at four in the afternoon. Ring with the day you can get it off the car and we will tell you which run it can make.",
+    ],
+  },
+  {
+    heading: "What a Torbay plate changes about the sums",
+    paragraphs: [
+      "Much of the trade work we see from Torquay is hackney and private hire licensed by Torbay Council, and a plated car earns most of its money after dark: the Strand and harbour ranks, the pub and restaurant trade, the runs back up to Babbacombe and St Marychurch. That makes the daytime hours the cheap ones to lose. A filter off at eight, out on the morning Torbay run, back mid-afternoon and refitted before the evening trade costs a driver their quiet hours rather than their earning ones, which is a very different calculation from a van that simply loses a whole working day.",
+      "Two things are worth knowing about the local vehicle mix. A lot of the Peugeot and Citroen diesels in Torbay private hire, and the PSA-derived 1.6 and 2.0 TDCi engines Ford fitted to the Focus, C-Max and Mondeo, run additive-based systems with an Eolys tank. The cerium additive leaves ash of its own, so those filters load faster on a short-fare duty cycle, and the additive level is worth checking while the filter is off. Not every car uses that system, so establish which one you have first. Cleaning also means the car keeps the exhaust section it was type approved with rather than an aftermarket substitute.",
+      "We do not remove DPFs or delete emissions equipment on road cars, licensed or otherwise. A filter cut out of a plated vehicle is an automatic MOT failure, because the tester checks the filter is physically there rather than relying on the smoke reading alone, and it is a conversation with the licensing office that nobody wants. A private car that fails an emissions test gets a retest and an inconvenient week. A licensed one stops earning while the argument is sorted out.",
+    ],
+  },
+  {
+    heading: "If it blocks again, the useful number is how long it lasted",
+    paragraphs: [
+      "A filter that loads up again on a Torquay duty cycle is not automatically a failed clean, and the honest test is the calendar. A car that only ever does the seafront, the school run and a care round will refill eventually, and that is the driving rather than the filter. Back inside a few months is different: something is putting soot or oil in faster than the duty cycle on its own explains, and a second clean only buys you the same few months again. That is the point to spend the money on a DPF diagnostic instead. We charge for that work, and on a second block it is still the cheaper of the two.",
+      "There are filters we cannot save, and the ones that come from Torbay tend to arrive at the same time of year. A car that was nursed through August with the light on, because the owner could not afford to lose it in season, has usually taken more forced regeneration attempts than the substrate will survive, and by October it is past the point of cleaning. Every filter is inspected and flow tested before it goes near the machine, so we find that on the bench rather than after an invoice. If the light appears in July, that is the argument for dealing with it in July.",
+    ],
+  },
+];
+
 const FAQS: Faq[] = [
   {
-    q: 'How much does DPF cleaning cost in Torquay?',
-    a: 'DPF machine cleaning starts from £210. Torquay is around 12 miles from our Totnes workshop, so cleaning with collection and return, or by post, is from £230. HGV and plant filters are from £299. Call 01803 269895 with your vehicle details and we will confirm the exact price before anything is booked.',
+    q: "Will a run out on the A380 clear my DPF light?",
+    a: "Only if it is still intermittent. The test is whether the light goes out on its own after a longer journey. If it does, the ECU is still willing to regenerate, and one deliberate run out on the A380 towards Newton Abbot and on to the A38 each month will usually keep you there. If it has gone solid, the ECU has already stopped trying and the drive achieves nothing but a tank of diesel. Ring 01803 269895 and tell us which of the two it is doing before you spend an afternoon finding out.",
   },
   {
-    q: 'How do I know my DPF actually needs cleaning?',
-    a: 'You often do not, until it is tested. A DPF warning light can be caused by a faulty differential pressure sensor, a split sensor pipe or an EGR fault rather than a loaded filter. We inspect and flow test the filter before cleaning it, and if the filter is healthy we will tell you so rather than clean it anyway.',
+    q: "My oil level has risen above maximum since the DPF light came on. Are the two connected?",
+    a: "Very likely. Regenerations that keep getting interrupted on short Torquay journeys push unburnt diesel past the bores and into the sump, which raises the level and thins the oil. We see it most often on Ford EcoBlue and on the PSA HDi and BlueHDi engines. Have the oil changed rather than drained down and topped up, and treat the level as evidence that regenerations are not completing rather than as a coincidence. Cleaning the filter on its own will not deal with the cause.",
   },
   {
-    q: 'Do you collect DPFs from Torquay?',
-    a: 'Yes. Torquay sits on our Torbay collection run alongside Paignton and Brixham, so collection of a removed filter can usually be arranged. Garages can put several filters on one collection. Availability depends on where we are running that week, so call to check rather than assume a slot.',
+    q: "Who takes the filter off the car in Torquay?",
+    a: "Your own garage, on a ramp. All our own DPF work happens at the Totnes workshop, never at the roadside or on a driveway, and a Torquay terrace on a slope is a poor place to attempt it anyway. If you have not got a garage, say so when you ring and we will point you towards Torbay yards that are set up for the removal and used to sending filters over on the run. It is a shorter conversation than phoning round the bay yourself.",
   },
   {
-    q: 'Do you offer mobile DPF cleaning in Torquay?',
-    a: 'No. Professional DPF cleaning is an off-vehicle workshop process using cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. From Torquay that means collection, a drop-off at Totnes, or tracked post. Our mobile service covers ECU remapping only.',
+    q: "How quickly can you turn a filter round for a Torbay-licensed taxi?",
+    a: "The constraint is usually the morning Torbay run rather than the workshop. If the filter is off the car and waiting when the van comes through, it can often be inspected, cleaned, dried, retested and back the same working day, which costs a plated car its daytime hours rather than its evening trade. Filters with us before 10am are the ones that make it. Miss the run and it waits for the next one, so the call worth making the night before is to your garage about ramp time. We will not promise a slot we cannot hold.",
   },
   {
-    q: 'Is this different from an additive or a forced regeneration?',
-    a: 'Yes. Additives and forced regens work by burning soot off, which can be enough on a lightly loaded filter once the underlying fault is fixed. Neither removes the ash that builds up over a filter’s life, because ash does not burn. Off-vehicle machine cleaning is aimed at both, and it is measurable.',
+    q: "Would deleting the DPF be cheaper on a private-hire car?",
+    a: "Not from us, and a plated car is the worst place to try it. Auto-Cleanse does not remove DPFs or delete emissions equipment on road cars. A missing filter is an automatic MOT failure on the visual check, it is a modification you have to declare to your insurer and it can invalidate cover, and on a Torbay-licensed vehicle it puts your plate in front of the licensing office. A private car that fails gets a retest. A licensed one stops earning. If the real aim is fuel cost, that is a remapping conversation and our Torquay ECU remapping page covers it.",
   },
   {
-    q: 'Can every blocked DPF be cleaned?',
-    a: 'No. Filters loaded with soot and ash usually respond well, but a cracked, melted or collapsed substrate may not be recoverable, and heavy oil contamination does not always come back. That is exactly why we test first: it is better to find out before you pay than after.',
+    q: "What does it cost from Torquay, and does collection change the price?",
+    a: "Cleaning starts from £210. Those 12 miles are what put Torquay just outside our 10 mile band, so collection and return, or tracked UK post, is from £230. HGV and plant filters are priced separately. Worth knowing if you are a garage: a filter you bring in to Webbers Yard yourself is not charged collection at all, and several sent together on one Torbay run are not charged as three separate visits, which for a yard clearing two or three plated cars in a week is the difference the price list does not show. Call 01803 269895 to confirm before anything is booked.",
   },
   {
-    q: 'Do you work with Torbay garages?',
-    a: 'Yes. Garages and mobile mechanics remove the filter, we clean and test it, and it comes back with documented before-and-after figures you can show the customer. Call 01803 269895 to talk through trade turnaround.',
-  },
-  {
-    q: 'How long does DPF cleaning take?',
-    a: 'The clean itself is a workshop process rather than an overnight soak, so filters that reach us early in the working day can often be cleaned, tested and ready the same day. We confirm timing when you book rather than promising a slot we cannot hold.',
+    q: "It blocked again three months after the last clean. What should I tell you?",
+    a: "Two numbers, and they decide the answer. The mileage since the clean, because a few hundred miles of two mile hops is a different story from six thousand miles of the same. And whether the light came back gradually or straight after something specific, a service, a replaced sensor, a tow. Three months is inside the window where we would stop cleaning and start measuring, so the next thing to spend money on is a DPF diagnostic rather than a repeat booking. That diagnostic is a paid job. Nobody gets useful numbers out of a free plug-in scan.",
   },
 ];
 
@@ -186,8 +225,8 @@ const DPFCleaningTorquay = () => {
   return (
     <div ref={container} className="pt-10 pb-16 md:pt-28 md:pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title="DPF Cleaning Torquay | Professional DPF Cleaning | Auto-Cleanse"
-        description="Professional DPF cleaning for Torquay and Torbay. Inspected and flow tested before and after an off-vehicle machine clean, from £210. Call 01803 269895."
+        title="DPF Cleaning Torquay | Torbay Collection | Auto-Cleanse"
+        description="Off-vehicle DPF cleaning for Torquay cars, vans and licensed taxis. Collected on our Torbay run or dropped at Totnes, 12 miles away. Cleaning from £210."
         path="/dpf-cleaning-torquay"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
@@ -560,6 +599,26 @@ const DPFCleaningTorquay = () => {
                 <ArrowRight size={16} className="text-[#FF7A00] shrink-0 group-hover:translate-x-1 transition-transform" />
                 <span className="font-medium text-sm md:text-[15px]">{label}</span>
               </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Torquay in detail ────────────────────────────────────────────── */}
+        <section className="mb-14 md:mb-20 reveal-container">
+          <div className="max-w-3xl space-y-10">
+            {LOCAL_SECTIONS.map((sec) => (
+              <div key={sec.heading} className="reveal-item">
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tighter text-white mb-4">
+                  {sec.heading}
+                </h2>
+                <div className="space-y-4">
+                  {sec.paragraphs.map((para, i) => (
+                    <p key={i} className="text-white/55 text-sm sm:text-base leading-relaxed">
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </section>

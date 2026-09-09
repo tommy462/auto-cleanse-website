@@ -136,10 +136,10 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'audi-q5-remap',
     make: 'Audi', model: 'Q5', fullName: 'Audi Q5',
-    metaTitle: 'Audi Q5 Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: "Audi Q5 ECU remapping - Stage 1 diesel and petrol remaps. Transform your Q5's performance and economy. Workshop or mobile across Devon.",
+    metaTitle: "Audi Q5 Remap | 8R & FY TDI Tuning Devon | AutoCleanse",
+    metaDescription: "Audi Q5 remap in Devon, 8R and FY, 2.0 and 3.0 TDI. Straight advice on towing weights, S tronic, quattro ultra and the DPF. Stage 1 from £220.",
     h1: 'Audi Q5 Remap',
-    intro: 'The Audi Q5 is a popular family SUV that benefits enormously from ECU remapping - particularly the diesel variants, which are used heavily for towing and motorway driving where improved torque makes a real difference. A Stage 1 remap transforms the Q5\'s character without any hardware changes. AutoCleanse remaps Q5s throughout Devon from our Totnes workshop and via mobile.',
+    intro: "Most of the Q5s we map have a towbar on the back, and that is the honest starting point for this page. It is a heavy SUV, almost all the ones sold here are diesel, and owners nearly all want the same thing: enough mid-range to hold a gear up Telegraph Hill with a caravan behind rather than shuffling through three of them. Two generations account for nearly every Q5 that comes to us, the 8R up to 2017 and the FY after it, and the four-cylinder and V6 cases are genuinely different jobs rather than one map with two labels. We map Q5s from the Totnes workshop and mobile across Devon, and for almost all of them Stage 1 is the right answer, from £220.",
     engineOptions: [
       { name: '2.0 TDI 150', stockPower: '150bhp', remapPower: '192bhp', stockTorque: '340Nm', remapTorque: '400Nm', mpgGain: 'up to 14%' },
       { name: '2.0 TDI 190', stockPower: '190bhp', remapPower: '235bhp', stockTorque: '400Nm', remapTorque: '460Nm', mpgGain: 'up to 12%' },
@@ -147,11 +147,78 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
       { name: '3.0 TDI 231', stockPower: '231bhp', remapPower: '285bhp', stockTorque: '500Nm', remapTorque: '620Nm', mpgGain: 'up to 10%' },
     ],
     faqs: [
-      { q: 'Does remapping a Q5 improve towing performance?', a: 'Yes - towing performance improves significantly, especially on diesel Q5s. The extra torque means less strain on the engine when pulling a trailer or caravan, and you won\'t need to drop so many gears on inclines. The Q5 becomes notably more composed under load.' },
-      { q: 'Is the Q5 quattro suitable for remapping?', a: 'Absolutely - all Q5 drivetrain variants can be remapped equally. The quattro system handles the additional power well, making it an excellent platform for Stage 1.' },
-      { q: 'Will the DSG gearbox handle the extra power?', a: 'Yes - Stage 1 power levels are within the safe operating limits of the Q5\'s DSG/S-tronic gearbox. We do not recommend going beyond Stage 1 on a standard gearbox without a gearbox remap alongside it.' },
-      { q: 'How does an A5 remap compare to a Q5 remap?', a: 'They share many of the same engines so gains are very similar. The Q5 is heavier, so you\'ll feel the performance improvement slightly differently - more in the mid-range pull than at the top end.' },
-      { q: 'What areas of Devon do you cover for Q5 remapping?', a: 'We cover all of Devon with our mobile service - Exeter, Plymouth, Torquay, Paignton, Totnes, Newton Abbot, Tiverton, and surrounding areas. Contact us to book a mobile slot.' },
+      {
+        "q": "My Q5 had the EA189 emissions recall done. Can it still be remapped?",
+        "a": "Yes, and it is one of the more common reasons 8R owners ring us. The recall software changed the EGR and injection strategy on the EA189 2.0 TDI, and plenty of owners felt the car went flatter and less willing to pull afterwards. A map is written over whatever software is currently in the ECU, so we read the car first to establish which version it is actually running, because a post-recall 8R and a pre-recall 8R do not want the same file even though the badge and the paperwork look identical. We keep your original either way, so it can go back to the post-recall calibration whenever you need it to be there."
+      },
+      {
+        "q": "Why does my Q5's plate show a lower towing weight than my neighbour's, when the cars look the same?",
+        "a": "Braked capacity on a Q5 varies by engine and by whether the car left the factory with the towing preparation pack, so an 8R 2.0 TDI and a 3.0 TDI quattro of the same year are not plated the same. It is also worth knowing that the detachable towbars retro-fitted to a lot of used Q5s do not change the plate, whatever the bar itself is rated to. Read your own VIN plate and V5C rather than a forum post about the same model year, and take the lower of the two figures where they disagree."
+      },
+      {
+        "q": "Does a remap change how often my FY Q5 engages the rear axle?",
+        "a": "No. On quattro with ultra technology the decision to clutch the rear axle in is made by its own controller from steering angle, throttle position, lateral load and wheel slip, and a Stage 1 engine map does not tell it what to do. What changes is how much torque is present at the moment it does engage, which is exactly why we ramp torque in rather than spiking it at the point boost arrives. On a wet Devon lane you should not notice drive arriving at the back any earlier or later than before, only that there is more of it once it is there. If you can feel a genuine hesitation in the handover, that is worth investigating at the rear clutch and its service history rather than blaming the file."
+      },
+      {
+        "q": "There is no dipstick on my Q5 and the MMI says the oil level is too high. What is going on?",
+        "a": "On an FY that message is usually diesel in the sump from regenerations that keep getting cut short, not somebody overfilling it at a service. We see it most on the EA288 2.0 TDI doing school-run mileage, and Audi's long-life servicing makes it worse because the diluted oil stays in the engine considerably longer than it would on a fixed annual interval. It is a filter and usage problem rather than a mapping one. Get the oil changed, change how the car is used if you can, and if the filter turns out to be genuinely loaded we clean it off the vehicle at our Totnes workshop. A map on a Q5 in that state only hides it for a few months."
+      },
+      {
+        "q": "Is the petrol Q5 worth remapping, given the oil consumption stories?",
+        "a": "It depends which EA888 you have, and the split is by engine generation rather than by bodyshell. The heavy oil consumption and chain tensioner reputation belongs to the Gen 2 unit in the first 8R petrol cars. Later 8Rs and the 252 in the FY are Gen 3 and do not carry the same history, and the 252 takes Stage 1 to around 300bhp and 440Nm comfortably. On any TFSI Q5 we check oil consumption and carry out the paid diagnostic before quoting for a map, because an engine already drinking oil is not a candidate for more boost."
+      },
+      {
+        "q": "I tow every week. Should I buy a mapped 2.0 TDI or find a 3.0 TDI?",
+        "a": "For a twin-axle caravan or a loaded horsebox most weekends, the V6 is the better car and a mapped one is better still, because 620Nm spread across a wide band is what keeps the box settled on a climb rather than shuffling. Be honest about the bills that come with it though: flap motors, oil cooler and thermostat housing seepage, and a chain drive at the back of the engine that is an engine-out job. For two or three trips a summer, a mapped 2.0 TDI 190 at around 235bhp and 460Nm does the work for far less money to run, and that is what we recommend to most people who ask."
+      },
+      {
+        "q": "Will a remap change how my Q5's S tronic behaves in traffic?",
+        "a": "Not on its own. The shift points and clutch strategy live in the transmission control unit, and a Stage 1 engine map does not write to it. The low-speed shunt or hesitation some owners blame on a map afterwards is almost always DL501 clutch adaptation, and it is nearly always present before anyone touches the ECU, which is one of the things we check on the diagnostic so there is no argument later. If you genuinely want the gearbox side altered, that is a separate TCU file, and we would only write one to a box with fresh fluid and filter and no stored adaptation faults."
+      }
+    ],
+    contentSections: [
+      {
+        "heading": "8R or FY: which Q5 is on your driveway?",
+        "paragraphs": [
+          "The Q5 changes over during 2017, so a 2017 plate could be either car. Before that it is the 8R, engine mounted longitudinally on the older MLB platform. From mid-2017 it is the FY on MLB Evo, facelifted again in 2020. A newer Q5 arrived on a different platform again and has been on UK sale since 2025, so ring us with the registration if that is what you have. Within the two we work on daily, what changed underneath matters far more than the badge. Early 8R diesels run the EA189 2.0 TDI, the engine caught up in the emissions recall. From roughly 2015 the EA288 took over, and every FY diesel is EA288 with SCR and AdBlue dosing. If your car wears 40 TDI or 45 TFSI rather than a plain 2.0 TDI badge, it is a later FY, because Audi moved to the numeric naming from the 2018 model year.",
+          "We read the ECU rather than ask what the badge says, and on a Q5 there is a specific reason for that. An 8R can be sitting on its original EA189 calibration, on the post-recall software, or on somebody else's map that never got mentioned when the car was sold. Those are three different starting points before anybody quotes a figure. The paid diagnostic we run before any Q5 map is where we settle it: which software version is actually in the ECU, what the filter's measured soot and ash loading is rather than what the dash says, and whether the S tronic has stored clutch adaptation faults. Those are three Q5 answers you cannot get by walking round the car."
+        ]
+      },
+      {
+        "heading": "2.0 TDI or 3.0 TDI: two genuinely different files",
+        "paragraphs": [
+          "The 2.0 TDI 150 goes to roughly 192bhp and 400Nm, the 190 to around 235bhp and 460Nm, and in a car this heavy the bhp figure is close to irrelevant. The useful comparison is an A4 of the same year with the same engine. Same block, same turbo, same software family, but the Q5 carries around 200kg more, sits taller, and has a four-wheel-drive system to turn as well as a body to push. That is why the standard car needs two gears to do what the A4 does in one, and why the extra 60Nm shows up as gears you stop having to take rather than as a number on a printout. Owners tend to describe the mapped car as feeling smaller rather than faster, which is the right description of what has actually changed.",
+          "The V6 is a different proposition. The 3.0 TDI carries 500Nm as standard and takes around 620Nm at Stage 1, a 120Nm swing that is by some margin the biggest gain available in this car. The torque is spread wide rather than piled into a band, so on a long climb the box stays where it is instead of hunting. The trade is running cost and it is a real one: intake manifold flap motors that fail, oil cooler and thermostat housing seepage, and timing chains driven from the back of the engine, which is an engine-out job if it ever comes to it. None of that is a reason to avoid the V6, but it is a reason to price the whole ownership rather than just the map."
+        ]
+      },
+      {
+        "heading": "quattro ultra, the DL501, and where the torque actually goes",
+        "paragraphs": [
+          "Not all Q5 quattro is the same system, which is where a lot of generic tuning advice falls over. The 8R uses a self-locking centre differential with a rear-biased default split, and it absorbs a Stage 1 torque increase without complaint. Most FY four-cylinder cars use quattro with ultra technology instead, which drives the front wheels for economy and clutches the rear axle back in when it predicts traction is about to be needed. It is a good system, but it is predictive, and torque dumped at it the instant boost arrives can catch it mid-handover, usually felt as a brief scrabble pulling out of a wet junction. That is calibration rather than hardware. We ramp torque in across the rev range instead of spiking it, which is why an FY four-cylinder file is not the 8R file with a different checksum on it.",
+          "The gearbox question splits along a similar line, and the interesting part is not that any one box is strong but that Audi gave the two engines different kinds of box. Most four-cylinder cars use the seven-speed S tronic dual clutch, the DL501, and a good number of 8Rs are six-speed manuals. From the 2012 facelift onward the V6 sits behind the eight-speed tiptronic torque converter, while earlier 8R V6s use the S tronic, which is one more reason we read the car before quoting. A dual-clutch file and a torque-converter file want different shapes, because the DL501 has less margin above standard torque and a well-documented mechatronic and clutch pack history on higher-mileage 8Rs. If your car has never had its S tronic fluid and filter done at the interval, that job comes before any map. A Q5 that is already slow to take up drive is one we will turn away until it is sorted."
+        ]
+      },
+      {
+        "heading": "Towing is why most Q5s end up on our ramp",
+        "paragraphs": [
+          "A Q5 is usually the household's only car, and that is what makes it hard on itself. The same vehicle drags a caravan to the north coast in August and then does four miles to school and back for the other eleven months, which is why the towing section and the filter section on this page are really one argument. The towing test owners describe to us never varies: Telegraph Hill on the A380, or the westbound climb over Haldon on the A38, in a standard 2.0 TDI, with the S tronic dropping two gears and the engine sat near 3,000rpm for the length of the hill. What changes after a map is specific rather than vague. The gear the box was giving up stays available on the gradient, the revs sit lower at the 60mph limit that applies to you on that dual carriageway anyway, and the transmission temperature that anyone who tows regularly keeps half an eye on stops climbing through a long pull.",
+          "What no map changes is what you are allowed to tow. Your gross train weight is set by Audi and stamped on the VIN plate, with the braked trailer limit following from it and shown on newer V5Cs. A Q5 kerbs at roughly 1,750 to 1,900kg depending on engine and spec, so the usual 85 per cent guidance for a comfortable outfit lands somewhere between about 1,490kg and 1,615kg, and that is guidance rather than law. Noseweight, payload and the towbar's own rating are all unaffected too, as is the trailer stabilisation function, which lives in the ESP software and is not touched by an engine ECU map. The remap makes a legal load easier to pull. It does not make an illegal one legal."
+        ]
+      },
+      {
+        "heading": "The school run is what kills Q5 filters",
+        "paragraphs": [
+          "Four miles into Totnes and back never gets the exhaust hot enough to burn soot off passively, so the ECU keeps falling back on active regenerations, injecting fuel late in the cycle to raise the temperature. On a Q5 you can usually tell when one is running before any light appears: the regen that starts as you turn into your road, the cooling fan still working hard after you have parked up, and on later cars the driver display asking you to keep driving above a set speed. Switching off at that point is what does the damage rather than the short journey itself. Do it often enough and two problems stack up together, a filter holding soot and ash it never clears, and unburnt diesel washing past the bores into the sump.",
+          "How you notice the second one depends on which Q5 you have. An 8R still has a dipstick, and the level creeps above the max mark on it. The FY has no dipstick at all, so the first sign is the oil level readout in the MMI or an oil level too high message, which is easy to leave alone for months on a car running Audi's variable long-life intervals rather than a fixed annual service. Telling a loaded filter apart from an AdBlue problem also matters more on an FY, because its filter is SCR-coated and dosed with AdBlue, so a soot loading fault and a NOx sensor or dosing fault can present on the dash looking much alike. That is what the diagnostic separates, and it is why nothing gets removed from the car before we have read it. If the filter is the problem we clean it off the vehicle at Totnes from £210, with Devon-wide collection and return, or UK-wide postal from £230. DPF cleaning is workshop-only here. The mobile service is remapping, never filters."
+        ]
+      },
+      {
+        "heading": "Stage 2 on a diesel Q5, and why Audi built the SQ5 instead",
+        "paragraphs": [
+          "We are asked about Stage 2 on diesel Q5s constantly and we talk most people out of it, and the clearest argument is what Audi itself did when it wanted meaningfully more than a mapped 3.0 TDI. It did not cut the exhaust about. It built the SQ5: sequential turbocharging on the 8R's 3.0 BiTDI, and on the later SQ5 TDI an electrically driven compressor working alongside the turbocharger, with the cooling and gearbox calibration to match. The single variable-geometry turbo on an ordinary Q5 TDI is already close to its flow ceiling at Stage 1 figures, so a mapped 231 lands around 285bhp, which is a genuinely quick Q5 and still short of a standard SQ5, and no file closes that gap. The only real routes above Stage 1 are hybrid turbo work or taking the emissions equipment out, and we do not remove DPFs, EGR or SCR hardware from road cars at any price.",
+          "The petrol case is narrower but honest. The 2.0 TFSI 252 in the FY goes to around 300bhp and 440Nm on Stage 1 and would want intercooler and exhaust work beyond that, which is rarely money well spent on a family SUV of this weight. Warranty is worth one phone call before you book, and on a Q5 it is often not Audi UK you need to ask: a lot of FYs change hands as Audi Approved Used, where the cover is the selling dealer's twelve-month warranty rather than the original factory term, and S tronic and quattro clutch components are precisely what a dealer looks at first. Most of our 8R work is on cars long out of any cover, and most of our FY work is not. Tell your insurer either way, and know that the original file is saved before anything is written, so the car goes back to exactly how Audi left it whenever you want it to."
+        ]
+      }
     ],
     relatedSlugs: ['audi-a6-remap', 'land-rover-discovery-remap', 'range-rover-sport-remap'],
     category: 'mixed', fuelType: 'both',
@@ -769,20 +836,88 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'mercedes-e220-remap',
     make: 'Mercedes', model: 'E220', fullName: 'Mercedes E220d',
-    metaTitle: 'Mercedes E220d Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'Mercedes E220d ECU remapping - Stage 1 diesel remap gains +45bhp and improved MPG. Workshop in Totnes or mobile across Devon.',
+    metaTitle: "Mercedes E220d Remap | OM654 & OM651 Stage 1 | AutoCleanse",
+    metaDescription: "Mercedes E220d remap in Devon. Stage 1 tuning for the OM651 (W212) and OM654 (W213) diesels, roughly +45bhp and +70Nm. Totnes workshop or mobile.",
     h1: 'Mercedes E220d Remap',
-    intro: 'The Mercedes E220d is the archetypal long-distance executive car - refined, comfortable, and efficient. A Stage 1 remap improves all three: more power reduces effort at motorway speeds, improved torque reduces gear changes, and better fuelling efficiency improves real-world MPG. AutoCleanse remaps E220ds from our Totnes workshop and mobile across Devon.',
+    intro: "Search for a Mercedes E220 remap and you almost certainly mean an E220d, and the first thing we ask is the registration year. W212 cars, 2009 to 2016, use the 2.1-litre OM651: cast-iron block, two timing chains running in series, badged E 220 CDI or E 220 BlueTEC. The W213 that replaced it in 2016 uses the OM654, a 1,950cc engine with an aluminium block, steel pistons and the DPF and SCR catalyst bolted close against the cylinder head. Both take Stage 1 well and both gain roughly 45bhp and 70Nm, but they get there differently and they age differently. We remap E220ds from our Totnes workshop and mobile across Devon.",
     engineOptions: [
       { name: '2.0d OM654 194 (W213)', stockPower: '194bhp', remapPower: '240bhp', stockTorque: '400Nm', remapTorque: '470Nm', mpgGain: 'up to 12%' },
       { name: '2.1d OM651 177 (W212)', stockPower: '177bhp', remapPower: '220bhp', stockTorque: '400Nm', remapTorque: '470Nm', mpgGain: 'up to 12%' },
     ],
     faqs: [
-      { q: 'Is the E220d a good car for economy remapping?', a: 'One of the best - the E-Class typically covers high mileage and is used predominantly on motorways and A-roads where the improved torque curve has maximum impact on economy. Business users regularly report significant annual fuel savings.' },
-      { q: 'Does the 9G-Tronic gearbox respond well after remapping?', a: 'Yes - the 9G-Tronic adapts to the improved power delivery and the overall driving experience becomes more fluid. The gearbox changes up earlier in normal driving, contributing to the MPG improvement.' },
-      { q: 'Is the E220d Estate remapped the same as the saloon?', a: 'Yes - the engine ECU is identical across saloon, estate, and coupé variants. All respond identically to remapping.' },
-      { q: 'How long does an E220d remap take?', a: 'Approximately 1.5–2 hours including our pre-remap diagnostic check and a verification drive. We carry out the whole process thoroughly - not a rushed job.' },
-      { q: 'Do you cover the E220d in all of Devon?', a: 'Yes - mobile remapping is available across Devon including Exeter, Plymouth, Torbay, and all surrounding areas. We also welcome workshop visits at our Totnes base.' },
+      {
+        "q": "Is remapping an OM654 E220d different to the older OM651?",
+        "a": "The end result is similar, the route there is not. The 2.0 OM654 in the W213 typically goes from 194bhp to around 240bhp. The W212's 2.1 OM651 was quoted at 170bhp on earlier cars and 177bhp on the later BlueTEC ones, and Stage 1 takes the 177bhp version to around 220bhp, with both engines picking up roughly 70Nm. The OM651 feels the bigger change because of the flat patch it has just off idle as standard. The OM654 leaves the factory far more tightly calibrated, so its gain shows up as a cleaner, less hesitant mid-range rather than a step change."
+      },
+      {
+        "q": "How do I tell whether my E220d is a W212 or a W213?",
+        "a": "Registration year first: the W212 ran from 2009 to roughly mid-2016, the W213 from 2016. Badging supports it, since W212s wear E 220 CDI or E 220 BlueTEC and the E 220 d name came in with the W213. You can confirm it yourself from the VIN, where the sixth and seventh digits give the body code, 212 or 213, and the estate reads S212 or S213. The engine number stamped on the block is the final word: an OM654 begins 654, an OM651 begins 651. Send us the registration if you would rather we just tell you."
+      },
+      {
+        "q": "Will a remap clear my E220d AdBlue warning or NOx sensor fault?",
+        "a": "No, and anyone telling you otherwise is not doing you a favour. AdBlue and SCR faults on the E220d, typically a failed NOx sensor or a crystallised metering valve, are a separate diagnosis and repair, and we do that work as its own paid job. We do not delete SCR or AdBlue systems on road cars. If your car is already counting down to a no-restart, the underlying fault gets dealt with first and the map comes afterwards, because a remap changes nothing about how the car doses urea."
+      },
+      {
+        "q": "Does the gearbox need anything doing before a Stage 1 map?",
+        "a": "On a healthy W213 with the 9G-Tronic, no. That box has considerably more torque capacity than an E220d ever asks of it. On a W212 we check which gearbox is actually fitted first, because later cars can have the nine-speed as well. If it is the 722.9 seven-speed and the car is high mileage, we are more cautious: a shudder on light-throttle upshifts, or an ATF service that has never been done at 120,000 miles, wants dealing with before the map. Adding torque to a marginal gearbox only brings the bill forward."
+      },
+      {
+        "q": "Why does an E220d gain less MPG than a mapped van?",
+        "a": "Because there is far less waste to recover. The OM654 comes with close-coupled aftertreatment, very high injection pressure and gearing long enough that ninth is a true overdrive, so the factory calibration is already near its efficiency ceiling. A loaded panel van is calibrated with much more thermal and emissions margin left on the table, which is why van figures look so much better on paper. On an E220d, expect the low-to-mid fifties a healthy standard car sees on a steady run to improve modestly rather than transform, and bear in mind 19-inch AMG Line wheels and 4MATIC both move that baseline down before the map is even considered."
+      },
+      {
+        "q": "Is the E-Class Estate or All-Terrain mapped the same as the saloon?",
+        "a": "It is the same file, but not the same car. The S213 All-Terrain is the heaviest E-Class body, sits higher on its air suspension and is 4MATIC only, so the extra low-down torque is more obvious there than in a rear-drive saloon. The estate's rear air suspension also means a loaded S213 keeps its ride height and puts the torque down, where a laden saloon squats and runs short of grip sooner. 4MATIC itself changes nothing about the map, it just deploys the torque more tidily on a wet Devon lane."
+      },
+      {
+        "q": "My E220d is an ex-lease car on 130,000 miles. Is it too far gone?",
+        "a": "At 130,000 the useful questions are which engine and what kind of miles. An ex-lease OM654 on motorway work is usually in better shape than a privately owned one at half that mileage doing short runs. Pull the Assyst Plus service record and look for two things: whether a NOx sensor has already been replaced, and whether AdBlue has been topped up outside of a service, which points at a dosing problem. Then we listen for chain rattle from cold on an OM651, or read DPF and SCR data on an OM654. If the car is healthy it maps fine. If it is not, we will say so first."
+      }
+    ],
+    contentSections: [
+      {
+        "heading": "OM651 or OM654: which E220d have you actually got?",
+        "paragraphs": [
+          "The split is 2016. A W212 saloon or S212 estate registered up to roughly mid-2016 has the OM651, the 2.1-litre four Mercedes put in almost everything from the C-Class to the Sprinter. From the W213 onwards it is the OM654, a genuinely new 1,950cc unit with an aluminium block, Nanoslide-coated bores and steel pistons, somewhere around 30kg lighter than the engine it replaced. The badge is a useful tell in itself, since pre-2016 cars wear E 220 CDI or E 220 BlueTEC and the E 220 d name arrived with the W213, but the registration year is what we work from. If you want to check it yourself, the sixth and seventh digits of the VIN give the body code, 212 or 213.",
+          "It matters more than a badge change suggests. The OM651 is a proven, torquey engine, but the earlier ones carry a documented history: two timing chains running in series that can stretch, wear at the chain sprockets and tensioner, and injector seals that can leak. A leaking seal on an OM651 normally announces itself as a diesel smell in the cabin and a rough thirty seconds from cold, leaving carbon build-up around the injector bores that makes removal a job in itself. If yours does that, the seals come first and the map comes later, because more cylinder pressure on a poor seal only accelerates it. Those are age and mileage faults in their own right, and adding torque to a tired OM651 is a waste of your money."
+        ]
+      },
+      {
+        "heading": "Why the OM654 responds differently to the old 2.1",
+        "paragraphs": [
+          "The OM654 is not a smaller OM651, it is a clean-sheet engine. It runs much higher injection pressure, a stepped-bowl piston crown Mercedes developed to speed combustion up, and thermal management aimed squarely at getting that close-coupled aftertreatment hot quickly. For tuning that means the factory calibration is already close to its efficiency ceiling, so the Stage 1 gain comes from boost and fuelling trims through the mid-range rather than from filling in an obvious hole. On the road it feels less dramatic than the headline figures imply, more like the engine has simply stopped pausing before it commits.",
+          "The 2.1 OM651 is the cruder engine and, as usually happens, that makes the change far more obvious from the driver's seat. In standard form it has a breathless patch just off idle, and a Stage 1 map largely removes it, so a W212 goes from wanting a run-up to pulling cleanly from around 1,600rpm. The W213 gains a similar set of numbers with far less theatre. Owners who have run both tend to say the newer car feels smoother but less urgent, and in our experience that is broadly true of the two maps as well."
+        ]
+      },
+      {
+        "heading": "7G-Tronic or 9G-Tronic: does the box cope with the torque?",
+        "paragraphs": [
+          "Almost every UK E220d is an automatic, and the gearbox does not split as neatly as the engine does. Most W212s use the 7G-Tronic 722.9, a seven-speed torque converter box that takes Stage 1 torque without complaint, though from around 2014 Mercedes began fitting the nine-speed to later W212s too, so we confirm the actual box from the registration rather than from the year alone. If yours is the 722.9, it has habits worth knowing: the conductor plate and its connector are a known leak point, and the ATF service almost nobody actually does gets expensive to ignore on a car that has covered 120,000 motorway miles. A W212 that already shudders on a light-throttle upshift wants that sorted before it gets another 70Nm.",
+          "The W213's 9G-Tronic was designed with far more torque headroom than an E220d ever asks of it, since the same basic gearbox sits behind six-cylinder Mercedes diesels making a great deal more, and it takes Stage 1 comfortably. What owners actually notice is behavioural. The nine-speed will not hold its tallest ratios once load rises, so on a long drag like Haldon on the A38 out of Exeter a standard car steps down a gear or two and sits there to the top. With more torque available at the engine speed it is already turning, it tends to hold on instead, and the difference shows up as refinement and quiet rather than as pace."
+        ]
+      },
+      {
+        "heading": "AdBlue, SCR and the DPF: what a remap will not fix",
+        "paragraphs": [
+          "Every W213 E220d runs AdBlue. Some later W212s do as well, depending on build date and emissions standard, but plenty of earlier E 220 CDIs have no SCR system at all, so we check from the registration rather than assume. In our experience the SCR side is the most common reason an E220d comes to us: a failed NOx sensor, a metering valve that has crystallised, and eventually the countdown message telling you how many miles remain before the car will not restart. We diagnose and repair AdBlue and SCR faults as a separate paid job, because that is genuinely what it is. A remap does not fix a NOx sensor and we will not sell you one as though it does.",
+          "The DPF picture on the W213 is different to the older car. Because the filter and SCR catalyst are close-coupled as one unit near the head, a genuine motorway E220d reaches regeneration temperature quickly and rarely blocks. Short-run cars are another matter, and the W213 gives the driver no dashboard notice that a regeneration is running, so the usual pattern is an owner shutting off mid-cycle without knowing, over and over. The tells are a hot smell, a raised idle and the fan running on after shutdown. Dosing only starts once the catalyst is hot, so those cars often arrive with a soot load and a NOx fault together. Our DPF cleaning is off-vehicle and workshop-only, from £210, with Devon collection and return or UK-wide postal from £230."
+        ]
+      },
+      {
+        "heading": "Real economy on a car that is already efficient",
+        "paragraphs": [
+          "The E220d is the car people buy to cover big motorway mileage, and most of the ones we see are ex-lease, private hire or long-commute examples on their second or third owner. The W213 in particular is slippery and very long-geared: ninth in the 9G-Tronic is a genuine overdrive, and in Eco mode the box will decouple and let the car coast on a trailing throttle. A healthy standard one will often see the low-to-mid fifties on a steady run, depending on wheel size, whether it is 4MATIC and what the route looks like. That already-good baseline is precisely what caps what a map can add on this car.",
+          "So we argue economy from the gearbox rather than from a percentage. More torque low down means the nine-speed stops dropping out of its top two ratios every time the road tilts, and the coasting function gets used more often rather than less, which is why the honest description is a car that holds a tall gear where it used to shuffle. At best, for a patient motorway driver, that is worth up to around 12 per cent. Most people see less. If your E220d only does local Devon miles, the A381 between Totnes and Newton Abbot, the A379 down to the coast, short hops in and out of Torbay, the box never gets near ninth in the first place, and driveability rather than payback is the honest reason to do it."
+        ]
+      },
+      {
+        "heading": "Stage 2, warranty and the checks we run first",
+        "paragraphs": [
+          "We do not recommend Stage 2 on an E220d, and the reason is the hardware rather than caution. Both engines use a single variable-geometry turbo sized for low-down response, behind a redline that arrives early, so there is no top end to chase and very little airflow left to buy: a Stage 2 spend on this car pays for capability the engine cannot use. What the £220 Stage 1 file actually targets is boost and fuelling between roughly 1,500 and 3,000rpm, which is where an E-Class spends effectively all of its life. On this engine that is the whole of the usable gain, and we would rather say so than sell you a second stage.",
+          "The pre-map check on an E220d is chargeable and engine-specific, and we would rather state that plainly than dress it up as a free health check. On an OM651 we listen for chain rattle in the first couple of seconds from a cold start and look for soot staining and oil weep around the injector bases. On an OM654 we read DPF differential pressure and soot loading, AdBlue dosing quantity and both NOx sensors, because those are the faults that actually turn up on this car. Anything we find, you hear about it before the ECU is touched.",
+          "Mercedes main dealers read the car through XENTRY at every service and a changed calibration is visible there, so if your E220d is inside a Mercedes-Benz Approved Used or extended warranty, read the terms before you book rather than afterwards. Your original file is always backed up, so the car can go back to the factory calibration if a drivetrain claim comes up. A remap is also a declarable modification for insurance. The map itself does not touch AdBlue dosing or the SCR model, so the car still meters urea exactly as Mercedes intended and still passes an MOT NOx check, which also means a remap is no route around the no-restart countdown."
+        ]
+      }
     ],
     relatedSlugs: ['mercedes-c220-remap', 'bmw-520d-remap', 'audi-a6-remap'],
     category: 'economy', fuelType: 'diesel',
@@ -1117,21 +1252,90 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vauxhall-astra-remap',
     make: 'Vauxhall', model: 'Astra', fullName: 'Vauxhall Astra',
-    metaTitle: 'Vauxhall Astra Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Vauxhall Astra ECU remapping - Stage 1 diesel and petrol remaps for improved performance and MPG. Devon tuning specialists.',
+    metaTitle: "Vauxhall Astra Remap Devon | 1.6 CDTi | AutoCleanse",
+    metaDescription: "Vauxhall Astra Stage 1 remaps in Devon. 1.6 CDTi Whisper diesel, 1.7 CDTi, 1.4T petrol, M32 gearbox advice and honest costings. Stage 1 from £220.",
     h1: 'Vauxhall Astra Remap',
-    intro: 'The Vauxhall Astra is a staple on British roads. Whether you drive the punchy 1.4 or 1.6 Turbo petrols, or the highly efficient 1.6 and 2.0 CDTi diesels, an ECU remap unlocks the true potential of the engine. A Stage 1 tune provides a sharper throttle, smoother power delivery, and better fuel economy for diesel models. AutoCleanse maps Astras across Devon.',
+    intro: "Most Astras we see are Mk6 (J) or Mk7 (K) cars on their second or third owner, and a large number began life as fleet or Motability vehicles. That matters more than the badge does. Whether a remap is worth it on an Astra turns on which engine is in front of you, whether the M32 gearbox is healthy, and how many miles a year you genuinely cover. The 1.6 CDTi Whisper Diesel, the older Isuzu-derived 1.7 CDTi and the 1.4 and 1.6 turbo petrols are four quite different propositions. We map Astras at our Totnes workshop or mobile across Devon, and we will say if yours is not a sensible candidate.",
     engineOptions: [
       { name: '1.6 CDTi 136', stockPower: '136bhp', remapPower: '165bhp', stockTorque: '320Nm', remapTorque: '380Nm', mpgGain: 'up to 15%' },
       { name: '2.0 CDTi 165', stockPower: '165bhp', remapPower: '200bhp', stockTorque: '350Nm', remapTorque: '420Nm', mpgGain: 'up to 12%' },
       { name: '1.4 Turbo 150', stockPower: '150bhp', remapPower: '175bhp', stockTorque: '245Nm', remapTorque: '290Nm' },
     ],
     faqs: [
-      { q: 'Is the Astra 1.6 CDTi a good car for an economy remap?', a: 'Yes, it\'s an excellent candidate. The 1.6 CDTi is already efficient, but a Stage 1 tune optimizes it further, often giving an extra 10-15% MPG on long runs.' },
-      { q: 'Will a remap make my 1.4 Turbo Astra faster?', a: 'Yes, the 1.4T engine gains a very noticeable bump in mid-range torque, making it feel much punchier when overtaking or joining motorways.' },
-      { q: 'Does remapping affect the MOT?', a: 'No, our Stage 1 remaps keep all emissions equipment fully intact and legal, meaning your Astra will pass an MOT as normal.' },
-      { q: 'Can you remap the Astra VXR?', a: 'Yes, the Astra VXR responds brilliantly to tuning, with Stage 1 taking the 2.0T engine to around 310bhp.' },
-      { q: 'Do you offer mobile remapping for the Astra?', a: 'Yes, we provide fully mobile remapping for all Astra models throughout Devon.' }
+      {
+        "q": "How do I tell whether my Astra has the 1.6 CDTi or the older 1.7?",
+        "a": "The engine code on the V5C is the quickest tell. A 1.7 CDTi carries an A17DT code, commonly A17DTJ, A17DTR or A17DTS. The Whisper Diesel is a B16, most often B16DTH in the 136bhp car and B16DTL in the 110. Plate year on its own is not enough, because a late Astra J can be either: the 1.6 arrived before the J went out of production. From outside the car the 1.7 is also noticeably gruffer at idle, which is usually enough to tell them apart in a car park."
+      },
+      {
+        "q": "My Astra is not worth a great deal. Is a remap a waste of money?",
+        "a": "It turns on which Astra and how far you drive it, not on what the car is worth. A 2.0 CDTi 165 or a 1.6 CDTi with a full history covering 20,000 miles a year is worth mapping. A 1.7 CDTi still on its original injectors at 140,000 miles usually is not. A 1.4 Turbo doing 7,000 town miles a year will not repay it in fuel, so you would be buying it purely for how the car feels. If the same money would do more good on a clutch, a service or a DPF clean, we will say so."
+      },
+      {
+        "q": "My Astra whines in fifth and sixth. Can you still remap it?",
+        "a": "We would rather not. That whine on the M32 six-speed is usually bearing wear, and adding torque to a box that is already complaining shortens whatever life is left in it. Get the gearbox sorted first and have the clutch done while it is out, then come back for the map. If the uprated bearing kit has already been fitted, mention it when you enquire, because that changes the answer entirely. We ask about the gearbox before we book an Astra in for exactly this reason."
+      },
+      {
+        "q": "The DPF light keeps coming on in my 1.6 CDTi. Will a remap sort it?",
+        "a": "No, and on an Astra K it is worth understanding why before spending anything. More often than not the car has been asking for a regeneration it never gets to finish, because the journeys are too short and the engine is switched off part way through the cycle. If the driver information centre has been prompting you and the prompt has been ignored, a 20 minute run at a steady 2,500rpm on the A38 will often clear a part-loaded filter. If it is genuinely blocked it comes off the car: from £210 at our Totnes workshop with Devon collection and return, or from £230 by post. A remap does not clear a loaded filter and will not stop a K asking for a regeneration it cannot complete."
+      },
+      {
+        "q": "Can you remap the 2022-on Astra L?",
+        "a": "Yes. The Stellantis-era Astra L uses the 1.2 PureTech petrol and the 1.5 diesel shared with the Peugeot 308, so it is a different job from mapping a Vauxhall-engined J or K. One caution: the earlier PureTech engines run a cambelt in oil, and belt condition and service history matter considerably more on those than on the older Vauxhall units. Later cars moved away from that design, so the first thing we establish is which version you have before adding torque to it."
+      },
+      {
+        "q": "What about the Astra VXR?",
+        "a": "The honest sequence differs between the two generations. On the Astra H VXR the clutch is frequently the practical ceiling rather than the engine, so on those we would want it checked, or budgeted for, before the map rather than after. The 280PS Astra J VXR does not have that problem in the same way, and Stage 1 typically takes its 2.0 turbo to around 310bhp. Either way the tyres and the front end work considerably harder afterwards, which matters more on a front-drive car than the power figure suggests."
+      },
+      {
+        "q": "Do I have to bring my Astra to Totnes?",
+        "a": "For most cars, no. An Astra K flashes through the OBD port on your driveway and the visit is usually well under an hour, so a K is a straightforward mobile job anywhere in Devon. Some of the older Astra J ECUs are the exception and need to come out of the car and go on the bench, which is a workshop appointment at Totnes rather than a driveway one. Send us the registration and we will tell you which side of that line yours falls before you book. DPF cleaning is always workshop-only: drop off, Devon collection, or post. There is no mobile DPF service."
+      }
+    ],
+    contentSections: [
+      {
+        "heading": "Astra J or Astra K? The split that decides what you gain",
+        "paragraphs": [
+          "Vauxhall replaced the Astra J with the K in 2015, and the two respond differently to the same work. The J, sold here from late 2009, carried the Isuzu-derived 1.7 CDTi, the 2.0 CDTi 165, the 1.4 Turbo and the 1.6 SIDI Turbo petrols and the 280PS VXR, and it picked up the 1.6 CDTi Whisper Diesel late in its own life as the 1.7's replacement. The K kept that 1.6 CDTi, added a 1.0 three-cylinder and a new 1.4 turbo four in place of the J's earlier one, and from around 2019 the facelift brought PSA-derived 1.2 petrol and 1.5 diesel units.",
+          "Plate years get you most of the way there. Broadly, a 59 to 15 plate is a J and a 65 to 71 plate a K, with one large exception: the Astra J GTC three-door carried on alongside the K until 2018, so a 16 or 17 plate GTC is still a J. A 22 plate onward is the Stellantis-based Astra L. The generation matters because Vauxhall claimed a saving of up to around 200kg on some K variants, so the same torque figure is moving less car. A 2015 registration is the awkward one, because build month decides it and the two take different files."
+        ]
+      },
+      {
+        "heading": "The 1.6 CDTi Whisper diesel against the older 1.7 CDTi",
+        "paragraphs": [
+          "The 1.7 CDTi is an Isuzu-derived unit that Vauxhall used for a long time, and it shows its age. It is coarser, it is unhappier on short journeys, and by now the EGR valve and cooler on most of them have carboned up at least once. We will still map a healthy 1.7, but we are deliberately cautious with it and would rather under-promise on a tired example than sell a headline number. If the injectors are still the originals at high mileage, that is the conversation to have first. Injector correction values read on a road test tell you more about whether £220 is well spent than any brochure figure does.",
+          "The 1.6 CDTi that replaced it, sold as the Whisper Diesel, is a genuinely better engine and the better candidate. The 136bhp version runs 320Nm as standard and takes 380Nm at Stage 1, and because that torque arrives low down it fills in exactly where an Astra is normally short, pulling from about 1,500 to 2,500rpm in fourth or fifth. Telegraph Hill northbound on the A380 is the local test: a standard 136 typically wants fourth about two thirds of the way up, and in our experience a Stage 1 car will hold fifth. It starts out quieter than the 1.7 and it stays that way afterwards."
+        ]
+      },
+      {
+        "heading": "The 1.4 Turbo in a J is not the 1.4 Turbo in a K",
+        "paragraphs": [
+          "The A14NET 1.4 Turbo in the Astra J and the 1.4 Turbo 150 in the K share a badge and not a great deal else. The K car runs 245Nm as standard and roughly 290Nm at Stage 1, and it is doing that in a noticeably lighter body, so the mid-range change between about 2,000 and 4,000rpm genuinely alters how the car drives. The J's A14NET starts from a lower base and gains proportionally more on paper while hauling more weight, so it ends up feeling livelier rather than quick. On an A14NET we also want the cam cover breather and the plastic coolant outlet looked at, because both are well-documented weak points and both spoil the idle quality of an otherwise good map.",
+          "Which of the two is worth £220 is a fair question, and the answer differs. A K 1.4 Turbo 150 that sees the A38 and A380 regularly is a sound spend. A J 1.4 Turbo doing school runs and town miles is not, because you will not see the fuel back and the car is not light enough to feel transformed by 45Nm. The 1.6 SIDI Turbo and the VXR are a different case again: they put respectable power through the front wheels, and worn front tyres on a wet Devon lane will find the traction limit long before the engine does."
+        ]
+      },
+      {
+        "heading": "The two Astras that come through the door, and why one is the problem",
+        "paragraphs": [
+          "Astras went to fleets and to Motability in enormous numbers, so the used population splits neatly in two. One is the ex-rep 2.0 CDTi with 140,000 motorway miles on it. The other is the ex-Motability car with 45,000 miles, a full main-dealer history and a life made up of three-mile journeys. Owners assume the first is the risk. In our experience it is usually the second, because it is the one whose DPF has spent years part-loaded and part-regenerated and whose EGR has never been hot enough for long enough to keep itself clean. On an Astra, journey length tells you far more than the odometer does.",
+          "That is why the diagnostic here is a paid service and not a free health check thrown in to win the job. On an Astra it earns its money: DPF differential pressure and the stored regeneration history on a K, injector correction values on a high-mileage 1.7, boost and EGR readings, and a road test with the window down listening for M32 bearing noise. If the real complaint is a limp mode, a warning light, or a regeneration the car never finishes, a remap will not fix it and can hide it for a while, which is worse than leaving it alone.",
+          "Where the filter itself is the problem, that is an off-vehicle job. DPF cleaning starts at £210 at our Totnes workshop, with Devon-wide collection and return, or from £230 by post if you are further afield. We clean filters off the car in the workshop only, so there is no mobile option for that part of the work. The remap is the part we can bring to you."
+        ]
+      },
+      {
+        "heading": "Will the M32 gearbox take another 60Nm?",
+        "paragraphs": [
+          "The M32 six-speed manual fitted behind a lot of the higher-torque Astras has a well-documented bearing weakness, and the test is not subtle once you know what to listen for. The whine changes pitch when you change gear at the same road speed, it is usually loudest in fifth and sixth, and it fades away when you coast in neutral. If yours does that, adding 60Nm is not the right next move, and we would rather send you to a gearbox specialist first than take the booking. A healthy M32 is not a fragile thing, and plenty of Astras have already had the uprated bearing kit fitted. If yours has, tell us, because it changes the answer.",
+          "The clutch is something to plan around rather than worry about separately, because on an Astra it comes out with the gearbox. If the M32 needs bearings, the clutch is very nearly free labour and should be done while the box is on the bench. The reverse is the expensive mistake: paying for a clutch on its own while the gearbox is already whining means paying that labour twice inside a year. On automatic cars, the six-speed torque converter Vauxhall fitted is not in the class of the eight-speeds used in larger rear-drive cars, so on a high-mileage auto we keep the torque request conservative rather than chase the headline figure, and we say so when we quote."
+        ]
+      },
+      {
+        "heading": "Is £220 sensible money on a car that is not worth much?",
+        "paragraphs": [
+          "This is the question people actually want answered, so here is the arithmetic rather than a slogan. A 1.6 CDTi covering 20,000 miles a year at roughly 55mpg gets through about 1,650 litres. Lift that to roughly 60mpg and it uses about 1,515, so the saving is in the region of 140 litres over the year, which depending on the pump price is broadly in the region of the £220. Do that sort of mileage and it should pay for itself inside the first year or so, assuming you get the gain and do not spend all of it on the throttle. The ecoFLEX cars are where the economy gain tends to be most real, because their taller gearing already has them lugging low down and the extra torque lands in that hole.",
+          "Cover 7,000 town miles a year in a 1.4 Turbo and it is not going to pay for itself in fuel, and we would not pretend otherwise. A remap also rarely adds anything to what an Astra is worth when you sell it, and some buyers will be put off by it. On a car with a slipping clutch, a loaded DPF or no service history, the same £220 does more good spent on the fault. Where it makes real sense is a sound, well-serviced diesel you intend to keep for another few years. Stage 1 starts at £220, and the original file is always backed up so the car can be returned to standard.",
+          "Insurance is the cost people forget, and on an Astra it swings hard depending on which one you own. A 1.6 CDTi sits in a modest group and a declared Stage 1 map is usually a small adjustment to the premium. The 1.6 SIDI Turbo, and the VXR in particular, are rated far higher before anyone mentions modifications, and that is where a declared map can change the number materially. Get a quote for the modified car before you book, not after. Our Stage 1 maps leave the DPF, EGR and emissions hardware in place so the car MOTs as normal, and we do not remove emissions equipment from road cars for anyone."
+        ]
+      }
     ],
     relatedSlugs: ['vauxhall-corsa-remap', 'ford-focus-st-remap', 'vw-golf-gtd-remap'],
     category: 'mixed', fuelType: 'both'
@@ -1140,21 +1344,88 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vauxhall-corsa-remap',
     make: 'Vauxhall', model: 'Corsa', fullName: 'Vauxhall Corsa',
-    metaTitle: 'Vauxhall Corsa Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Vauxhall Corsa ECU remapping - unleash more power from the VXR or 1.4T. Expert tuning in Devon by AutoCleanse.',
+    metaTitle: "Vauxhall Corsa Remap | 1.4T, 1.3 CDTi, VXR | AutoCleanse",
+    metaDescription: "Honest Corsa remap advice from our Totnes workshop: what the 1.4 Turbo, 1.3 CDTi and VXR gain, why non-turbo Corsas gain little, and the insurance catch.",
     h1: 'Vauxhall Corsa Remap',
-    intro: 'The Vauxhall Corsa, particularly the 1.4 Turbo and the high-performance VXR models, are fantastic platforms for tuning. A Stage 1 ECU remap transforms these lightweight cars, making them significantly faster and more responsive without the need for expensive hardware modifications. AutoCleanse offers Corsa tuning from our Totnes workshop and mobile across Devon.',
+    intro: "Most Corsas we are asked to map are small petrol cars, often a first or second car, and that changes the honest answer. If yours is turbocharged, the 1.4 Turbo, the Corsa E 1.0 Turbo, the Corsa F 1.2 PureTech Turbo or a VXR, there is real gain to be had at Stage 1. If it is a naturally aspirated 1.0, 1.2 or 1.4, there is very little, and we would rather say so before you book than after. Below is what each Corsa engine actually gains, what it costs against what the car is worth, and the insurance question that catches more Corsa owners out than owners of anything else we map.",
     engineOptions: [
       { name: '1.6T VXR 205 (Corsa E)', stockPower: '205bhp', remapPower: '235bhp', stockTorque: '280Nm', remapTorque: '340Nm' },
       { name: '1.4 Turbo 100', stockPower: '100bhp', remapPower: '140bhp', stockTorque: '200Nm', remapTorque: '260Nm', mpgGain: 'up to 5%' },
       { name: '1.3 CDTi 95', stockPower: '95bhp', remapPower: '120bhp', stockTorque: '210Nm', remapTorque: '260Nm', mpgGain: 'up to 15%' },
     ],
     faqs: [
-      { q: 'How much power does the Corsa VXR gain at Stage 1?', a: 'The Corsa E VXR typically gains around 30bhp and 60Nm of torque. Because the car is so light, this transforms the acceleration and makes it a serious hot hatch contender.' },
-      { q: 'Is the 1.4 Turbo engine worth remapping?', a: 'Absolutely. The 100bhp 1.4T is heavily restricted via software. A remap takes it to around 140bhp, which is a massive 40% power increase.' },
-      { q: 'Will remapping my Corsa affect my insurance?', a: 'Yes, you must inform your insurance company of any modifications. We recommend using specialist brokers who often offer good rates for Stage 1 tuned cars.' },
-      { q: 'Can you map the diesel Corsa?', a: 'Yes, the 1.3 CDTi responds very well, gaining around 25bhp and offering excellent fuel economy improvements.' },
-      { q: 'Can you remap the newer PSA-based Corsa F?', a: 'Yes, we cover the newer 1.2 Turbo engines as well, unlocking great performance gains.' }
+      {
+        "q": "Will a remap make my 1.2 Corsa faster?",
+        "a": "Four or five bhp, and you would struggle to feel it. For scale, the 1.4 Turbo that sat next to it in the same showroom left the factory with 100bhp and maps to around 140bhp. That is the car you are comparing yours to when the 1.2 feels slow, and no file gets an A12XER anywhere near it. The same applies to the 1.0 12v and the naturally aspirated 1.4 16v. Tyres and a service will change how a Corsa D drives more than a map will."
+      },
+      {
+        "q": "How do I tell whether my 1.4 Corsa is the turbo one?",
+        "a": "It matters, because the naturally aspirated 1.4 16v and the 1.4 Turbo are quoted at similar power on paper but are nothing alike in torque or in tuning potential. The V5C engine code is the only reliable test: the turbocharged Corsa E cars carry B14NET at 100PS or B14NEL at 150PS, while the naturally aspirated 1.4 16v carries A14XER or B14XER. Trim is not a test, because Vauxhall put SXi and Limited Edition badges on both. There are a few variant codes about, so send us the registration and we will confirm it in a minute."
+      },
+      {
+        "q": "My Corsa is on a black box policy. Can I still have it remapped?",
+        "a": "Ask your insurer before you ask us. Telematics policies aimed at drivers under 25 are the most restrictive on modifications we come across, and some will decline or cancel rather than re-rate, but it varies by insurer and the only answer that counts is your own provider's. If they will not cover it, that is the end of the conversation as far as we are concerned. Driving a mapped Corsa on a policy that does not cover it puts the whole claim at risk over a few bhp."
+      },
+      {
+        "q": "Will a remap hurt what my Corsa is worth when I sell it?",
+        "a": "It can, and more than it would on a performance car. At the two to four thousand pound end of the used market, private buyers are actively suspicious of a modified small hatchback, because that is the corner of the market where abused cars live, and a mapped 1.4 Turbo can sit for sale longer than a standard one. Your original file stays backed up on our system, so if you decide to advertise the car as standard we can flash it back to stock beforehand. Tell us when you book and we will make a note of it."
+      },
+      {
+        "q": "What does a Corsa VXR gain at Stage 1?",
+        "a": "The Corsa E VXR is a 205PS car as standard, and typically goes to around 235PS with torque rising from 280Nm to 340Nm. That is a lot of torque for a front-wheel-drive car of that weight, so traction becomes the limit rather than power. If yours has the Performance Pack with the limited-slip differential it will put it down far better; on a standard car expect more wheelspin in the wet, which on unsalted Devon lanes in winter is worth thinking about. We would usually rather do a VXR at the workshop than mobile so we can drive it before and after, and we will say so when you book."
+      },
+      {
+        "q": "Can I have the economy map and the extra 25bhp on the 1.3 CDTi at the same time?",
+        "a": "Not both at their best. On a 95PS MultiJet there is only so much fuel and boost to work with, so the file is biased one way or the other. The power-biased version gets you towards the 120bhp figure in the table, but you only see the fuel saving if you stay out of it, which most people do not. The economy bias gives up some of the top end and concentrates the torque lower down where a commute actually lives. Corsa owners doing real mileage almost always take the economy bias once the trade-off is explained, and on this engine that is usually the right call."
+      },
+      {
+        "q": "Can you remap the electric Corsa-e?",
+        "a": "No. Our remapping work covers petrol and diesel ECUs, so the Corsa-e and the Corsa Electric are not something we tune. We do cover the petrol and diesel Corsa F, including the 1.2 PureTech Turbo and the 1.5 BlueHDi. The Corsa-e is styled almost identically to the petrol Corsa F apart from the badging, which catches people out on used forecourts, so if you are not certain which one you are looking at, the fuel type on the V5C settles it."
+      }
+    ],
+    contentSections: [
+      {
+        "heading": "Turbo or not: the one question that decides everything",
+        "paragraphs": [
+          "The Corsa range splits cleanly in two, and which side yours falls on matters far more than the year on the plate. A naturally aspirated Corsa, the 1.0 12v and the A12XER 1.2 in the Corsa D, the A14XER or B14XER 1.4 16v, or the non-turbo 1.2 PureTech 75 in the Corsa F, has no boost pressure to raise, and boost is the single biggest lever a tuner has. On the A12XER and A14XER we would expect a low single-figure gain, four or five bhp, which is less than the spread you would see between two standard Corsas on the same rollers on the same afternoon. Vauxhall used the A14XER across the Corsa, the Adam and the Astra J, so there is not even a Corsa-specific factory calibration sitting there waiting to be sharpened.",
+          "We will say that plainly rather than take the booking and let you find out afterwards. If someone rings about a 1.2 Corsa D wanting it to feel quicker, the honest advice is usually a decent set of tyres and a proper service instead. Turbocharged Corsas are a different conversation: on the 1.4 Turbo 100 the figures above show 140bhp and 260Nm, and that is not fantasy territory, because Vauxhall themselves sold the same 1.4 turbo family at 150PS in the Corsa GSi. A mapped 100PS car is sitting near a state of tune the factory signed off and warranted. The table above covers the three engines we are asked about most; for the Corsa E 1.0 Turbo and the Corsa F PureTech, send us the registration and we will quote the figures for your exact car."
+        ]
+      },
+      {
+        "heading": "Corsa D, E or F: three different cars wearing the same badge",
+        "paragraphs": [
+          "The Corsa D ran from 2006 to 2014 on the old GM platform, with the F17 five-speed in most cars and the smaller F13 behind the 1.0, plus the 1.3 CDTi diesel and the 1.7 CDTi at 125 to 130PS in SRi and SXi trims through the earlier part of the D's life. The Corsa E, 2014 to 2019, brought the B-series petrols: the 1.0 Turbo three-cylinder ecoFLEX, the 1.4 Turbo, and the VXR the table above covers. The Corsa F, 2019 onwards, is not a Vauxhall design underneath at all. It sits on the PSA, now Stellantis, CMP platform shared with the Peugeot 208, running the EB2 1.2 PureTech and, on early UK cars, a 1.5 BlueHDi diesel.",
+          "That split matters more here than on most model ranges, because a Corsa D and a Corsa F do not share an ECU family at all. The GM-era cars run Delphi and Bosch units on Vauxhall's own calibration; the Corsa F runs the PSA Bosch MD1 generation, the same hardware and file structure as a 208. It is why a quoted price for 'a Corsa remap' with no generation attached tells you nothing. On Corsa F PureTech cars we will also ask about the wet timing belt, because the belt runs in the oil and can shed material into the oil pickup as it ages. If yours has not been looked at, that comes before any talk of tuning."
+        ]
+      },
+      {
+        "heading": "Insurance: the part Corsa owners get wrong",
+        "paragraphs": [
+          "On a diesel estate or a work van, insurance is a footnote. On a Corsa it is often the deciding factor. Declaring the map is not the hard part. The answer you get back is. A lot of Corsas are insured on telematics or black box policies for drivers under 25, and in our experience those are the policies most likely to refuse a modified car outright rather than simply re-rate it. On a first or second car the premium increase can also be larger in pounds than the remap itself, which is a sum that almost never arises on the vans and estates we normally map.",
+          "So ring your insurer or broker before you book. Ask specifically whether they will cover an ECU remap with the DPF and emissions equipment left in place, which is all we do on road cars. If the answer is no, or the extra premium costs more than the map, do not do it. On a telematics policy an undeclared map is as likely to get the policy cancelled as it is to get a claim refused, and a cancelled policy on your record at twenty follows you into every quote for years, which costs far more than the premium rise you were trying to avoid. If the Corsa is on PCP or a lease it is not yours to modify either, so check the agreement first. We keep a backup of your original file, so putting it back to stock for handback is straightforward."
+        ]
+      },
+      {
+        "heading": "Is it worth the money on a car worth two grand?",
+        "paragraphs": [
+          "Stage 1 remaps start from £220, and every car gets a paid diagnostic health check before we touch the ECU rather than a free scan. On a late Corsa F that is a normal accessory spend. On a 2011 Corsa D 1.2 worth a couple of thousand pounds, it is roughly a tenth of the car's value for four or five bhp. The Corsas where the money genuinely stacks up are the 1.4 Turbo, where the percentage gain is the largest in the range, the 1.3 CDTi on a long daily commute, and the VXR.",
+          "The Corsas where it does not are every naturally aspirated car, and any Corsa carrying an existing fault. A rough idle, a slipping clutch, a rattly chain or a DPF light means the money goes on fixing that first, and the paid health check exists to catch exactly that before a file goes anywhere near the ECU. One practical point specific to this model: a lot of Corsas are shared with a parent or a partner, or live at the far end of the county from us. Mobile remapping saves an owner in Plymouth or Barnstaple a round trip to the Totnes workshop, which on a car at this end of the market is a real fraction of a month's fuel budget rather than a rounding error."
+        ]
+      },
+      {
+        "heading": "Gearboxes, clutches and where the extra torque actually lands",
+        "paragraphs": [
+          "The F17 five-speed fitted to most 1.2 and 1.4 Corsas, and the smaller F13 behind the 1.0, is a light-duty box matched to light-duty torque. At Stage 1 levels on a 1.4 Turbo it copes, but a tired clutch will not hide. The extra 60Nm in the table above finds a worn friction plate quickly, and on a Corsa that has spent five years doing hill starts on the climb up Fore Street out of the bottom of Totnes, that clutch is often already halfway through its life. If yours judders or the bite point has crept up, deal with it before the map, not after. Corsa D VXR and 1.7 CDTi cars use the M32 six-speed instead, which has a well-documented bearing weakness, so listen for a whine on the overrun before you add torque to it.",
+          "The Corsa D Easytronic is the one to be careful with. It is a robotised single-clutch manual rather than a true automatic, its actuator and its clutch are both common failure points, and it does not enjoy being asked for more. At the other end of the range, the Corsa F 1.2 Turbo 130 came with the EAT8 eight-speed automatic, a proper torque converter box that is comfortable at Stage 1 and, in our experience, tends to hunt between gears less afterwards because there is more mid-range for it to work with."
+        ]
+      },
+      {
+        "heading": "The 1.3 CDTi: the Corsa where MPG, not power, is the reason to map it",
+        "paragraphs": [
+          "The 1.3 CDTi is the GM and Fiat small diesel, the MultiJet unit rather than a Vauxhall design, and at 95PS it is the Corsa where an economy-biased map earns its keep. The gain shows up as torque low down, which in Devon terms means fewer downshifts on the long climb up Telegraph Hill on the A380 and on the pull out of Totnes towards Buckfastleigh. Read the 'up to 15%' figure in the table for what it is, a best case on steady long-distance running. In our experience the typical real-world improvement is single figures rather than fifteen percent, and it depends far more on how the car is driven than on the file. A Corsa that only does short town trips will see none of it, because the engine never spends time in the conditions where the saving happens.",
+          "That same short-journey pattern is what blocks the filter on these cars. The 1.3's DPF is small and sits close to the engine, so it loads up faster on a school run than a bigger diesel's would, and a replacement costs a serious fraction of what a Corsa D is now worth. A map does nothing for a filter that is already full, so if your CDTi is in limp mode or showing a DPF warning, that is a cleaning job first. Cleaning is off-vehicle at our Totnes workshop from £210, never mobile and never on the car, and on a Corsa worth a couple of grand that price is the difference between keeping it and writing it off against the cost of a new filter. Get the filter sorted, confirm the car is healthy, then talk about a map."
+        ]
+      }
     ],
     relatedSlugs: ['vauxhall-astra-remap', 'ford-fiesta-st-remap', 'vw-golf-gti-remap'],
     category: 'mixed', fuelType: 'both'

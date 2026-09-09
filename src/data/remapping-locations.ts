@@ -1466,12 +1466,12 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     name: "Okehampton",
     region: "West Devon",
     metaTitle:
-      "ECU Remapping Okehampton | Stage 1 & Mobile Remap | AutoCleanse",
+      "ECU Remapping Okehampton | Mobile Remap Devon | AutoCleanse",
     metaDescription:
-      "ECU remapping in Okehampton and West Devon - Stage 1, economy and mobile remapping for cars, vans and 4x4s. AutoCleanse Devon.",
+      "Mobile ECU remapping in Okehampton and West Devon. Stage 1 torque and economy maps for farm pickups, working 4x4s, trailers and trade vans. From £220.",
     h1: "ECU Remapping in Okehampton",
     intro:
-      "Sitting right on the edge of Dartmoor, Okehampton demands vehicles that can handle steep gradients and heavy payloads. If your 4x4 feels sluggish towing up to the moor, or your trade van lacks the punch it needs when fully loaded, a professional ECU remap can help. We replace the conservative software the manufacturer installs with a remap file matched to your exact vehicle, calibrated to make the most of your engine's torque within safe limits. Best of all, our mobile unit brings the service straight to your door.",
+      "Okehampton sits on the A30 at the north-west edge of Dartmoor, and the vehicle mix here shows it: farm and estate pickups, working 4x4s, trade vans, and trailers and horseboxes heading out towards Hatherleigh, North Tawton and Holsworthy, alongside diesels covering the twenty-odd A30 miles into Exeter most days. Those are two different jobs for one engine, and a Stage 1 map can be set up for either, not for both at once. Our workshop is about 35 miles away in Totnes, so almost every Okehampton booking is a mobile visit. Stage 1 from £220, and the usual constraint is finding an hour when the vehicle is not out working, not finding a bay.",
     distanceNote: "approximately 35 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1485,12 +1485,40 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     ],
     extraSections: [
       {
-        heading: "A30 running and rural West Devon use",
-        paragraphs: [
-          "Okehampton sits on the A30 at the north-west edge of Dartmoor, so local vehicles mix fast trunk-road miles with steep, loaded rural and moor-edge lanes. On the A30 an economy-focused Stage 1 remap helps diesels hold a cruise with less effort, which often shows up as better real-world fuel use; off the main road, the extra low-down torque is what makes towing and climbing with a loaded pickup or 4x4 far less of a struggle.",
-          "This is working, rural country, and a lot of our Okehampton work is pickups, 4x4s and vans rather than performance cars. We're honest that the workshop is around 35 miles away in Totnes, so for most Okehampton customers a mobile ECU visit makes far more sense than the round trip - we come to you with the same equipment we use in the workshop. Every remap is matched to your exact vehicle with diagnostics before and after, and your original file is saved so it can be returned to standard.",
-        ],
+        "heading": "Why almost every Okehampton booking is a yard visit",
+        "paragraphs": [
+          "Okehampton to Totnes is about 35 miles, and the only quick part of it is the A30 as far as Whiddon Down. After that you are over the moor edge on single carriageway behind whatever you have caught up with, and the run home is the same in reverse. Call it the best part of two hours behind the wheel on top of the time you sit waiting while the work is done. For a Stage 1 map there is no reason for you to do any of that, so we run Okehampton as a mobile job and read and write the ECU at your gate. Mobile visits are for remapping only.",
+          "Most Stage 1 work goes in over OBD at the vehicle. A small number of ECUs need bench access, which is a workshop job at Totnes, and we tell you which yours is when you book rather than when we arrive. Battery condition moves more Okehampton appointments than anything else, because a flash wants a stable supply and a yard battery that has sat out a wet winter on five-minute runs often is not up to it. Your original file is saved before anything is written, so the vehicle can go back to standard. Allow around two hours, covering the paid diagnostic check first and the road test after."
+        ]
       },
+      {
+        "heading": "What the A30 gives a diesel, and what the lanes take back",
+        "paragraphs": [
+          "The A30 from Okehampton to Exeter is roughly twenty-five miles of dual carriageway, and a modern diesel spends nearly all of it in top gear at a small fraction of its load. That is the one condition an economy-biased Stage 1 map has anything to work with: more torque low down and through the mid-range means less pedal to hold the same seventy, and less pedal is less fuel. Rather than quote you a percentage, tell us on the phone what the tank currently does on the Exeter run and what it does on a week of lane and yard work. We will tell you before you book whether a map is likely to move either number, and on a lot of Okehampton pickups the honest answer is that the lane half will not shift at all.",
+          "The odd thing about Okehampton is that the road which would keep a diesel particulate filter clear runs right past the town, and plenty of local vehicles never actually use it. The week is short cold trips into town, five minutes to a yard and back, the A386 north to Hatherleigh or the B3215 across to North Tawton, gate to field and home again, and a regeneration that starts on one of those gets cut short every time. Living beside the A30 does nothing for a filter unless you stay on it. If yours is already blocked, that is an off-vehicle clean at Totnes from £210, with Devon-wide collection and return or postal from £230, and it is a separate job from the map: the filter comes off the vehicle and comes to us."
+        ]
+      },
+      {
+        "heading": "Towing off the moor: what the map changes and what it cannot",
+        "paragraphs": [
+          "The two pulls people ring about are the A386 off Sourton Cross, running south-west towards Lydford and Tavistock onto the western flank of the moor, and the A30 westbound out of Okehampton, which climbs steadily onto Sourton Down rather than hitting you with a wall. With a livestock trailer, a plant trailer or a horsebox behind you, a Stage 1 diesel map usually means holding the gear you used to drop out of before the top, and holding a steady speed without burying the pedal. On the drag back east towards Whiddon Down it shows up as less pedal to sit at sixty rather than as any extra speed.",
+          "What it does not change is a single number on your VIN plate. Gross vehicle weight and gross train weight are exactly what they were with the map in, so a remap does not make an overloaded outfit legal, and it does nothing for nose weight, trailer stability or brakes. On a long, heavily loaded climb heat can end up being the limit rather than power, and adding torque does not add cooling capacity. If your pickup is already at its plated limit and struggling, be honest with yourself about what you are asking of it: a map makes that job more pleasant, not more capable."
+        ]
+      },
+      {
+        "heading": "Farm, estate and trade vehicles, and where we draw the line",
+        "paragraphs": [
+          "Three different jobs turn up here. Estate and forestry vehicles that rarely see a main road at all: Defenders from Td5 and Puma TDCi through to the newer D200 and D250, and TDV6 and SDV6 Discoverys. Pickups doing stock and trailer runs out towards Hatherleigh, Highampton and Holsworthy: the 3.2 five-cylinder Duratorq Ranger and the later 2.0 EcoBlue, the Hilux 2.4 2GD-FTV and 2.8 1GD-FTV, the 4N15 L200, Navara YD25 and YS23, the Isuzu D-Max. And Transit Customs and Transporters that are really Exeter vehicles which happen to sleep in Okehampton, twenty A30 miles each way before the first job of the day. What we do not touch is anything without a number plate: tractors, telehandlers, plant and agricultural machinery are outside what we do.",
+          "We get asked to delete emissions hardware more often on farm vehicles than on anything else, and the answer is no on anything road-registered. If someone in the yard has told you that deleting is the fix for a recurring AdBlue light, it is not: that is a sensor, a dosing or an SCR repair, and the diagnostic tells us which. That check is a paid job, and on vehicles that live outdoors it earns its keep. A split boost hose in fifteen-year-old pipework, a sticking turbo actuator or a clutch already slipping on standard torque are all things you want found before the map rather than blamed on it afterwards."
+        ]
+      },
+      {
+        "heading": "Which vehicles round here we take the booking on, and which we talk out of it",
+        "paragraphs": [
+          "The ones that justify it are working every day: a diesel van covering fifteen to twenty-five thousand miles a year on a mix of A30 and lanes, a 4x4 that tows most weeks, a pickup that spends half its life loaded. On those the change is something you feel on every trailer pull and every loaded climb rather than once a month, and there are enough steady miles in the week for the fuel side to be worth measuring at all. Stage 1 leaves the DPF, EGR and SCR hardware exactly where the factory put it, which matters on a vehicle that still has to pass an MOT and still has to work on Monday morning.",
+          "Plenty are not worth it and we would rather say so on the phone than at the gate. The one we turn away most is the second vehicle that feeds stock and does the school run: a few thousand moor-edge miles a year will not pay back £220 however well it takes the map. A pickup that is going down the road in the spring is another, because the file stays with the vehicle, not with you. And Stage 2 is almost never right for a working Okehampton vehicle, because it means hardware, more cost and downtime, and a farm pickup or a trade van cannot sit off the road waiting on parts."
+        ]
+      }
     ],
     popularVehiclesIntro:
       "The pickups, 4x4s and vans we remap most around Okehampton and the A30, where towing torque and economy come first. Tap through for real Stage 1 gains and FAQs.",
@@ -1504,29 +1532,33 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     ],
     faqs: [
       {
-        q: "Do I have to drive to Totnes from Okehampton?",
-        a: "No - the workshop is about 35 miles away, so we run Okehampton as a mainly mobile service. Our unit comes to your home, yard or workplace with the same equipment as the workshop, and the result is identical.",
+        "q": "Does a remap increase how much my pickup can legally tow?",
+        "a": "No. Gross vehicle weight and gross train weight are stamped on the plate and a remap changes neither, so an outfit that is over its limit is still over its limit afterwards. What changes is how the towing you are already rated for feels. Dragging a loaded trailer up onto Sourton Down westbound, a standard map often has you out of top before the summit, and the point of the extra mid-range torque is that you stay in it. Licence entitlement is a separate question again, and worth checking on GOV.UK rather than taking anyone's word for it in a yard."
       },
       {
-        q: "What's the best remap for a pickup or 4x4 used around Okehampton?",
-        a: "For working pickups and 4x4s a Stage 1 diesel remap focused on low-down torque is usually right - it adds the pulling power that matters for towing and moor-edge climbs while staying within the engine's safe limits. We match the file to your exact vehicle.",
+        "q": "The DPF light clears on a long run but it is back within a week. Can more A30 miles fix it?",
+        "a": "That pattern is the useful test. A filter that clears on a good run at load and then stays clear is carrying soot, which is a driving-pattern problem, and sustained A30 running genuinely helps it. One that relights within a week of a proper run is ash-loaded, and ash will not burn out at any speed on any road. At that point the filter comes off the vehicle and comes to Totnes for an off-vehicle clean from £210, either by Devon-wide collection and return or postal from £230. There is no mobile DPF service, so that half is never done at your gate."
       },
       {
-        q: "Do I need to buy any new parts for a Stage 1 tune?",
-        a: "No, a Stage 1 remap is a purely software-based modification. It is specifically designed to get the most out of your existing, stock engine components without causing them undue stress.",
+        "q": "Can you do it at a field gate, or does it have to be the yard?",
+        "a": "A gate is often fine. The flash happens at the vehicle over a laptop rather than over the internet, so phone signal is irrelevant, which surprises people out towards Bratton Clovelly and Belstone. What matters is the ground. A cambered verge is a no, and we will not work on a vehicle parked on the A386 or on the old road through town. Level hard standing, room to open the driver's door and sit alongside it, some shelter if it is hammering down, and a battery that is not already on its way out."
       },
       {
-        q: "Will my 4x4 perform better off-road?",
-        a: "Yes, the huge increase in low-RPM torque is incredibly beneficial for off-roading, allowing you to crawl over obstacles with much less throttle input.",
+        "q": "You are coming out for the Ranger anyway. Can you look at the telehandler while you are here?",
+        "a": "No, and that is a firm line: tractors, telehandlers and plant are outside what we do, whatever else is in the yard when we arrive. What can go on the same visit is anything road-registered, so if the second pickup is in, or the Discovery, or the auto Ranger wants its TCU file looked at alongside the ECU, say so when you book and we will allow the time. One trip covering three yard vehicles is a far better use of a 35-mile run than three separate appointments."
       },
       {
-        q: "How long does it take?",
-        a: "Because we come to you in Okehampton, the entire process takes just under two hours, meaning you don't lose a day travelling to a workshop.",
+        "q": "Will the extra torque cook my 4x4 on a long loaded climb onto the moor?",
+        "a": "What makes working 4x4s round here run hot is usually not software, it is a radiator and intercooler stack packed solid with chaff, dust and hedge trimmings off a summer field. We check that, the thermostat and the condition of the coolant on anything that works off-road before we touch the software, because a map will expose all three. We calibrate Stage 1 to stay inside the standard cooling and exhaust temperature limits, so on a healthy vehicle we would not expect the map to be what tips it over, and on a really sustained loaded climb it can end up being heat rather than power that limits you either way."
       },
       {
-        q: "What happens if the dealer wipes my remap during a service?",
-        a: "If a main dealer overwrites your ECU during a software update, we keep a backup of your tuned file and can re-flash it back onto the vehicle - just get in touch and we'll sort it.",
+        "q": "My 3.2 Ranger and my old Td5 Defender have both done big mileage. Are they still worth mapping?",
+        "a": "Often yes, but it is a condition question rather than a mileage one, and the checks are not the same on each. On a Td5 we want to see the injector harness inside the rocker cover and how freely the actuator moves, and we confirm at booking whether that particular ECU is an OBD job or one of the few that needs bench access at the workshop. On a 3.2 Duratorq it is the dual-mass, the EGR cooler and boost pipework that has spent fifteen years living outdoors. On a 2.0 EcoBlue it is the oil and belt service history before we add any torque. If something is marginal we say so before the map, not after."
       },
+      {
+        "q": "Is it worth mapping just for the A30 run into Exeter?",
+        "a": "If commuting really is all you do, be honest about whether you need to drive it at all, because Okehampton has had a train service back to Exeter since the Dartmoor Line reopened and for a bare commute it is a fair alternative. The remap case here is for the people who cannot use it: tools and stock in the back, a trailer on the ball, or a start at a yard before the first service of the day. For those, twenty-odd miles of dual carriageway most days is exactly the profile where a torque-biased map means less pedal to hold a cruise, and it does the DPF a favour at the same time."
+      }
     ],
     relatedSlugs: [
       "ecu-remapping-tavistock",
