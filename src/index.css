@@ -115,6 +115,29 @@
     opacity: 0.1;
   }
 
+  /* On phones the three full-viewport 120px-blur blobs are the most expensive
+     thing the GPU composites, and they animate forever. Use a smaller blur and
+     drop the perpetual float so scrolling/interaction stays smooth. The subtle
+     ambient glow is preserved. */
+  @media (max-width: 767px) {
+
+    .ambient-background::before,
+    .ambient-background::after,
+    .ambient-blob {
+      filter: blur(70px);
+      animation: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .ambient-background::before,
+    .ambient-background::after,
+    .ambient-blob {
+      animation: none;
+    }
+  }
+
   /* Cinematic Noise Overlay */
   .noise-bg {
     position: fixed;
@@ -476,7 +499,10 @@ button:disabled {
   display: inline-block;
   opacity: 0;
   transform: translateY(100%);
-  animation: reveal-fallback 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
+  /* Reveal the hero words via pure CSS almost immediately. This element is the
+     mobile LCP element, so it must NOT wait for the JS bundle to hydrate. A tiny
+     delay keeps the "words slide up" entrance while letting LCP paint fast. */
+  animation: reveal-fallback 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.08s forwards;
 }
 
 /* Safety net: if GSAP hasn't run yet (slow connection, blocked JS), reveal
@@ -485,6 +511,51 @@ button:disabled {
   to {
     opacity: 1;
     transform: translateY(0) rotate(0);
+  }
+}
+
+/* Hero supporting text (badge, subtitle, buttons) - reveal via CSS so it is
+   never gated on hydration. Mirrors the previous GSAP timing subtly. */
+.hero-subtitle {
+  animation: hero-fade-in 0.7s ease-out 0.15s both;
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Client-navigation page entrance (initial load stays un-animated for fast LCP).
+   Transform/opacity only - no blur filter - so it is cheap to composite. */
+.page-enter {
+  animation: pageEnter 0.4s ease-out;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .word-reveal,
+  .hero-subtitle,
+  .page-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
 

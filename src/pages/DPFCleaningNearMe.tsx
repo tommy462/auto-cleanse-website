@@ -83,8 +83,8 @@ export default function DPFCleaningNearMe() {
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title="DPF Cleaning Near Me | Devon Collection or UK Post | AutoCleanse"
-        description="Looking for DPF cleaning near you? AutoCleanse deep-cleans DPFs off the vehicle at our Totnes workshop - drop off, Devon-wide collection, or UK postal with next-working-day return. From £210."
+        title="DPF Cleaning Near Me | Devon or UK Postal | Auto-Cleanse"
+        description="Looking for DPF cleaning near you? We clean DPFs off the vehicle at our Totnes workshop - drop off, Devon-wide collection or UK postal. From £210."
         path="/dpf-cleaning-near-me"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([

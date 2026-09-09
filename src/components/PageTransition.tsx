@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation, Routes, Route, Navigate } from 'react-router-dom';
-import { AnimatePresence, motion } from 'motion/react';
 
 // Import all pages here
 import Home from '../pages/Home';
@@ -44,28 +43,28 @@ import NotFound from '../pages/NotFound';
 
 export default function PageTransition() {
     const location = useLocation();
+    // The entrance animation must only run for client-side navigations, never on
+    // the first render. On initial load the prerendered content has to be visible
+    // immediately (no opacity/blur wrapper) so the largest hero text can paint
+    // without waiting for the JS bundle to hydrate - this is the main LCP fix.
+    // A ref (not state) avoids a re-render that would flash the animation on load.
+    const isFirstRender = useRef(true);
 
     useEffect(() => {
         // Top out scroll when route changes
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
+    useEffect(() => {
+        isFirstRender.current = false;
+    }, []);
+
     return (
-        <AnimatePresence mode="wait">
-            <motion.div
-                key={location.pathname}
-                initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-                animate={{
-                    opacity: 1,
-                    y: 0,
-                    filter: 'blur(0px)',
-                    transitionEnd: { filter: 'none', transform: 'none' }
-                }}
-                exit={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="w-full h-full"
-            >
-                <Routes location={location} key={location.pathname}>
+        <div
+            key={location.pathname}
+            className={`w-full h-full${isFirstRender.current ? '' : ' page-enter'}`}
+        >
+            <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<Home />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/pricing" element={<Pricing />} />
@@ -118,7 +117,6 @@ export default function PageTransition() {
                     <Route path="/debug/dvla" element={<DVLADiagnostic />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
-            </motion.div>
-        </AnimatePresence>
+        </div>
     );
 }

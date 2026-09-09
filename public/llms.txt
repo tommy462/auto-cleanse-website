@@ -21,6 +21,7 @@ Key facts:
 ## ECU remapping & tuning
 
 - [ECU remapping](https://www.auto-cleanse.co.uk/ecu-remapping): Stage 1 and Stage 2 tuning for cars, vans and 4x4s.
+- [Vehicle remap lookup (make & model)](https://www.auto-cleanse.co.uk/vehicle-performance-lookup): hub to check Stage 1 power and torque gains by vehicle make and model.
 - [Mobile ECU remapping in Devon](https://www.auto-cleanse.co.uk/mobile-ecu-remapping-devon): remapping at your home or workplace across Devon.
 - [Stage 1 remaps in Devon](https://www.auto-cleanse.co.uk/stage-1-remaps-devon): the most popular software-only upgrade.
 - [ECU cloning](https://www.auto-cleanse.co.uk/ecu-cloning): cloning a faulty or damaged ECU onto a replacement unit.

@@ -51,28 +51,9 @@ const Home = () => {
       );
     });
 
-    // Cinematic Hero Animation
-    gsap.fromTo('.hero-title .word-reveal',
-      {
-        y: 150,
-        opacity: 0,
-        rotate: 5
-      },
-      {
-        y: 0,
-        opacity: 1,
-        rotate: 0,
-        duration: 1.2,
-        stagger: 0.1,
-        ease: "power4.out",
-        delay: 0.2
-      }
-    );
-
-    gsap.fromTo('.hero-subtitle',
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, delay: 1.2, ease: 'power3.out' }
-    );
+    // Hero entrance (title words + supporting text) is handled by pure CSS in
+    // index.css (.word-reveal / .hero-subtitle) so the LCP text paints without
+    // waiting for GSAP to hydrate. GSAP only owns the scroll-driven effects below.
 
     // Parallax effect on scroll - desktop only; scrub parallax fights the
     // mobile browser address bar resize and causes visible jank on touch.

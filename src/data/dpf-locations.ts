@@ -62,9 +62,9 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     slug: 'dpf-cleaning-brixham',
     name: 'Brixham',
     region: 'Torbay',
-    metaTitle: 'DPF Cleaning Brixham | Torbay Collection & Return | AutoCleanse',
+    metaTitle: 'DPF Cleaning Brixham | Torbay Collection | AutoCleanse',
     metaDescription:
-      'Off-vehicle DPF cleaning for Brixham cars, vans and working diesels. Collection from Brixham often combined with our Torbay runs, or drop off at our Totnes workshop. From £210.',
+      'Off-vehicle DPF cleaning for Brixham cars, vans and working diesels. Collection on our Torbay runs, or drop off at our Totnes workshop. From £210.',
     h1Prefix: 'DPF Cleaning in',
     intro:
       "Brixham runs on working diesels - trades vans, harbour-side deliveries and the pickups that keep the town moving. Short, hilly, stop-start runs around town are exactly the driving pattern that stops a DPF regenerating, which is why blocked filters are so common here. AutoCleanse deep-cleans DPFs off the vehicle at our Totnes workshop, about 18 miles away, with collection from Brixham available or a straightforward drop-off via the A3022 and A385.",
@@ -108,7 +108,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     region: 'South Hams',
     metaTitle: 'DPF Cleaning Dartmouth | Collection, No Ferry | AutoCleanse',
     metaDescription:
-      'Off-vehicle DPF cleaning for Dartmouth drivers and businesses. Collection available, or a 30-minute drop-off to our Totnes workshop with no ferry crossing required.',
+      'Off-vehicle DPF cleaning for Dartmouth drivers and businesses. Collection available, or a 30-minute drop-off to Totnes with no ferry crossing.',
     h1Prefix: 'DPF Cleaning in',
     intro:
       "Dartmouth's beautiful but awkward geography is hard on diesels. Short trips around steep lanes, queuing for the ferries and slow seasonal traffic mean many local DPFs never get the sustained run they need to regenerate. AutoCleanse provides off-vehicle DPF cleaning for Dartmouth drivers, trades and hospitality businesses from our Totnes workshop - about 16 miles away, with no ferry required.",
@@ -150,9 +150,9 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     slug: 'dpf-cleaning-kingsbridge',
     name: 'Kingsbridge',
     region: 'South Hams',
-    metaTitle: 'DPF Cleaning Kingsbridge | South Hams DPF Specialists | AutoCleanse',
+    metaTitle: 'DPF Cleaning Kingsbridge | South Hams | AutoCleanse',
     metaDescription:
-      'Off-vehicle DPF cleaning for Kingsbridge and the South Hams. Rural short-trip diesels are prime DPF-blocking territory - we clean and flow-test filters 14 miles up the A381 in Totnes.',
+      'Off-vehicle DPF cleaning for Kingsbridge and the South Hams. We clean and flow-test filters 14 miles up the A381 at our Totnes workshop.',
     h1Prefix: 'DPF Cleaning in',
     intro:
       "Kingsbridge diesels live a rural life - lanes, school routes and journeys that rarely break 40mph. It's classic DPF-blocking territory, because filters need sustained speed and temperature to self-clean. AutoCleanse is the South Hams' local DPF specialist: our workshop is 14 miles up the A381 in Totnes, cleaning filters off the vehicle with documented before-and-after flow testing.",
@@ -196,7 +196,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     region: 'South Hams / A38 corridor',
     metaTitle: 'DPF Cleaning Ivybridge | A38 Drop-Off & Collection | AutoCleanse',
     metaDescription:
-      'Off-vehicle DPF cleaning for Ivybridge - 20 minutes up the A38 from our Totnes workshop. Drop-off before 10am is often cleaned the same working day. Collection available.',
+      'Off-vehicle DPF cleaning for Ivybridge - 20 minutes up the A38 from our Totnes workshop. Drop-off before 10am is often cleaned the same working day.',
     h1Prefix: 'DPF Cleaning in',
     intro:
       'Ivybridge sits right on the A38, which makes us unusually easy to reach - our Totnes workshop is about 15 miles away, junction to junction. Plenty of Ivybridge diesels still arrive with blocked DPFs though: the daily pattern of short hops around town and the school run never gets the filter hot enough for long enough, whatever the dual carriageway outside promises.',
@@ -240,7 +240,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     region: 'Teign Estuary',
     metaTitle: 'DPF Cleaning Teignmouth | Collection & Return | AutoCleanse',
     metaDescription:
-      'Off-vehicle DPF cleaning for Teignmouth, Shaldon and the Teign Estuary. Collection often combines with our Newton Abbot runs, or drop off at our Totnes workshop.',
+      'Off-vehicle DPF cleaning for Teignmouth, Shaldon and the Teign Estuary. Collection on our Newton Abbot runs, or drop off at our Totnes workshop.',
     h1Prefix: 'DPF Cleaning in',
     intro:
       'Between the sea and the Teign estuary, Teignmouth driving is a mix of tight town streets, the hill over to Shaldon and commuter runs to Newton Abbot and Exeter. For diesels that stay local, that is prime DPF-clogging mileage. AutoCleanse deep-cleans DPFs off the vehicle at our Totnes workshop - and collection from Teignmouth is straightforward because it slots into our regular Newton Abbot direction runs.',
@@ -284,7 +284,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     region: 'East Devon coast',
     metaTitle: 'DPF Cleaning Dawlish | Collection & Return | AutoCleanse',
     metaDescription:
-      'Off-vehicle DPF cleaning for Dawlish, Dawlish Warren and Starcross. Collection by arrangement or UK postal cleaning from £230. Workshop in Totnes, around 20 miles away.',
+      'Off-vehicle DPF cleaning for Dawlish, Dawlish Warren and Starcross. Collection by arrangement or UK postal cleaning from £230.',
     h1Prefix: 'DPF Cleaning in',
     intro:
       'Dawlish diesels split two ways: commuters running the A379 or A380 to Exeter, and local vehicles that rarely leave town. The second group is where blocked DPFs come from - short trips and summer holiday traffic never generate the sustained heat a filter needs to self-clean. AutoCleanse cleans DPFs off the vehicle at our Totnes workshop, about 20 miles away, with collection from Dawlish available.',
@@ -326,9 +326,9 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     slug: 'dpf-cleaning-exmouth',
     name: 'Exmouth',
     region: 'East Devon',
-    metaTitle: 'DPF Cleaning Exmouth | East Devon Collection & Postal | AutoCleanse',
+    metaTitle: 'DPF Cleaning Exmouth | Collection or UK Postal | AutoCleanse',
     metaDescription:
-      'DPF cleaning for Exmouth and East Devon - arranged collection or fast UK postal service with next-working-day return. Off-vehicle deep clean and flow testing at our Totnes workshop.',
+      'DPF cleaning for Exmouth and East Devon - arranged collection or fast UK postal return. Off-vehicle deep clean and flow testing at our Totnes workshop.',
     h1Prefix: 'DPF Cleaning in',
     intro:
       'Exmouth is one of the biggest towns in East Devon - and, at around 30 miles, one of the furthest we serve by road. Distance matters less than you might think for DPF cleaning though: the filter comes off the vehicle anyway, so most Exmouth customers either use our arranged collection or simply courier the filter to us for a next-working-day return.',

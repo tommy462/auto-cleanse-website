@@ -366,7 +366,7 @@ const PostalDPF = () => {
               <form
                 onSubmit={handleSubmit}
                 className="space-y-8 relative z-10"
-                toolname="bookPostalDpfCleaning"
+                toolname="requestPostalDpfCleaning"
                 tooldescription="Submits a postal DPF cleaning booking to Auto-Cleanse. The customer sends their removed DPF filter by courier; Auto-Cleanse deep-cleans and flow-tests it and returns it. Collects the customer, address and vehicle details for the job."
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -423,10 +423,11 @@ const PostalDPF = () => {
                 </div>
 
                 <div className="bg-[#0A0A0A]/50 p-6 rounded-2xl border border-white/5 space-y-6">
-                  <label className="block text-[#FF7A00] font-bold text-xl mb-2">
+                  <div className="block text-[#FF7A00] font-bold text-xl mb-2">
                     Collection Address
-                  </label>
+                  </div>
                   <div className="space-y-6">
+                    <label htmlFor="addressLine1" className="sr-only">Address line 1</label>
                     <input
                       type="text"
                       id="addressLine1"
@@ -439,6 +440,7 @@ const PostalDPF = () => {
                       placeholder="Address Line 1 *"
                       toolparamdescription="First line of the collection/return address."
                     />
+                    <label htmlFor="addressLine2" className="sr-only">Address line 2 (optional)</label>
                     <input
                       type="text"
                       id="addressLine2"
@@ -451,6 +453,7 @@ const PostalDPF = () => {
                       toolparamdescription="Second line of the address (optional)."
                     />
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <label htmlFor="town" className="sr-only">Town or city</label>
                       <input
                         type="text"
                         id="town"
@@ -463,6 +466,7 @@ const PostalDPF = () => {
                         placeholder="Town/City *"
                         toolparamdescription="Town or city of the address."
                       />
+                      <label htmlFor="county" className="sr-only">County (optional)</label>
                       <input
                         type="text"
                         id="county"
@@ -474,6 +478,7 @@ const PostalDPF = () => {
                         placeholder="County"
                         toolparamdescription="County (optional)."
                       />
+                      <label htmlFor="postcode" className="sr-only">Postcode</label>
                       <input
                         type="text"
                         id="postcode"

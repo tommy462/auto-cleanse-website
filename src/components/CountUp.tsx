@@ -1,5 +1,4 @@
-﻿import { useInView, useMotionValue, useSpring } from 'motion/react';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 interface CountUpProps {
     to: number;
@@ -14,6 +13,24 @@ interface CountUpProps {
     onEnd?: () => void;
 }
 
+const getDecimalPlaces = (num: number) => {
+    const str = num.toString();
+
+    if (str.includes('.')) {
+        const decimals = str.split('.')[1];
+
+        if (parseInt(decimals) !== 0) {
+            return decimals.length;
+        }
+    }
+
+    return 0;
+};
+
+// Lightweight count-up with no animation library. Uses IntersectionObserver to
+// start when scrolled into view and requestAnimationFrame with an ease-out curve
+// to mimic the previous spring settle. Removing framer-motion here lets it be
+// tree-shaken out of the bundle entirely.
 export default function CountUp({
     to,
     from = 0,
@@ -27,33 +44,15 @@ export default function CountUp({
     onEnd
 }: CountUpProps) {
     const ref = useRef<HTMLSpanElement>(null);
-    const motionValue = useMotionValue(direction === 'down' ? to : from);
+    const rafRef = useRef<number | null>(null);
 
-    const damping = 20 + 40 * (1 / Math.max(duration, 0.1));
-    const stiffness = 100 * (1 / Math.max(duration, 0.1));
+    const startValue = direction === 'down' ? to : from;
+    const endValue = direction === 'down' ? from : to;
 
-    const springValue = useSpring(motionValue, {
-        damping,
-        stiffness
-    });
-
-    const isInView = useInView(ref, { once: true, margin: '0px' });
-
-    const getDecimalPlaces = (num: number) => {
-        const str = num.toString();
-
-        if (str.includes('.')) {
-            const decimals = str.split('.')[1];
-
-            if (parseInt(decimals) !== 0) {
-                return decimals.length;
-            }
-        }
-
-        return 0;
-    };
-
-    const maxDecimals = Math.max(getDecimalPlaces(from), getDecimalPlaces(to));
+    const maxDecimals = useMemo(
+        () => Math.max(getDecimalPlaces(from), getDecimalPlaces(to)),
+        [from, to]
+    );
 
     const formatValue = useCallback(
         (latest: number) => {
@@ -73,42 +72,72 @@ export default function CountUp({
     );
 
     useEffect(() => {
-        if (ref.current) {
-            ref.current.textContent = formatValue(direction === 'down' ? to : from);
-        }
-    }, [from, to, direction, formatValue]);
+        const el = ref.current;
+        if (!el) return;
 
-    useEffect(() => {
-        if (isInView && startWhen) {
+        // Reset to the starting value whenever inputs change.
+        el.textContent = formatValue(startValue);
+
+        if (!startWhen) return;
+
+        let started = false;
+
+        const animate = () => {
+            if (started) return;
+            started = true;
+
             if (typeof onStart === 'function') onStart();
 
-            const timeoutId = setTimeout(() => {
-                motionValue.set(direction === 'down' ? from : to);
-            }, delay * 1000);
+            const beginAt = performance.now() + delay * 1000;
+            const totalMs = Math.max(duration * 1000, 1);
+            const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
-            const durationTimeoutId = setTimeout(
-                () => {
-                    if (typeof onEnd === 'function') onEnd();
-                },
-                delay * 1000 + duration * 1000
-            );
+            const tick = (now: number) => {
+                const elapsed = now - beginAt;
 
-            return () => {
-                clearTimeout(timeoutId);
-                clearTimeout(durationTimeoutId);
+                if (elapsed < 0) {
+                    rafRef.current = requestAnimationFrame(tick);
+                    return;
+                }
+
+                const progress = Math.min(elapsed / totalMs, 1);
+                const current = startValue + (endValue - startValue) * easeOut(progress);
+
+                if (ref.current) ref.current.textContent = formatValue(current);
+
+                if (progress < 1) {
+                    rafRef.current = requestAnimationFrame(tick);
+                } else if (typeof onEnd === 'function') {
+                    onEnd();
+                }
             };
-        }
-    }, [isInView, startWhen, motionValue, direction, from, to, delay, onStart, onEnd, duration]);
 
-    useEffect(() => {
-        const unsubscribe = springValue.on('change', latest => {
-            if (ref.current) {
-                ref.current.textContent = formatValue(latest);
-            }
-        });
+            rafRef.current = requestAnimationFrame(tick);
+        };
 
-        return () => unsubscribe();
-    }, [springValue, formatValue]);
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animate();
+                        observer.disconnect();
+                    }
+                });
+            },
+            { rootMargin: '0px' }
+        );
 
-    return <span className={className} ref={ref} />;
+        observer.observe(el);
+
+        return () => {
+            observer.disconnect();
+            if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+        };
+    }, [startWhen, delay, duration, startValue, endValue, formatValue, onStart, onEnd]);
+
+    return (
+        <span className={className} ref={ref}>
+            {formatValue(startValue)}
+        </span>
+    );
 }

@@ -2,14 +2,36 @@
 <html lang="en-GB">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17928380785"></script>
+  <!-- Google tag (gtag.js) - loaded lazily to keep it off the critical path.
+       dataLayer/config run immediately and queue; gtag.js is fetched on the
+       first user interaction (or when the page goes idle), so Google Ads
+       conversion tracking is unaffected while third-party JS no longer blocks
+       initial render. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'AW-17928380785');
+
+    (function () {
+      var loaded = false;
+      function loadGtag() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17928380785';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function (evt) {
+        window.addEventListener(evt, loadGtag, { once: true, passive: true });
+      });
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGtag, { timeout: 5000 });
+      } else {
+        window.addEventListener('load', function () { setTimeout(loadGtag, 4000); });
+      }
+    })();
   </script>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -18,11 +40,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>DPF Cleaning &amp; ECU Remapping Devon | AutoCleanse</title>
   <meta name="theme-color" content="#FF7A00" />
+  <!-- Preload the hero background so it can start downloading before CSS is
+       parsed; it is the largest paint in the above-the-fold hero. -->
+  <link rel="preload" as="image" href="/honeycomb-bg.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
+  <!-- Load the font stylesheet without blocking first render. display=swap means
+       text paints immediately in the fallback face and swaps to the web font when
+       it arrives, so typography is unchanged but FCP is not held up ~800ms. -->
+  <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-    rel="stylesheet">
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+  </noscript>
 </head>
 
 <body>

@@ -106,7 +106,7 @@ export default function TradeAccessForm() {
         <CheckCircle className="mx-auto mb-4 text-[#FF7A00]" size={40} />
         <h3 className="text-xl font-bold text-white mb-2">Trade access request received</h3>
         <p className="text-white/60 text-sm mb-5">
-          Thanks - your trade access request has been received. We&rsquo;ll be in touch shortly.
+          Thanks, your trade access request has been received. We&rsquo;ll be in touch shortly.
         </p>
         <a
           href="tel:01803269895"
@@ -181,7 +181,7 @@ export default function TradeAccessForm() {
         </div>
       </div>
 
-      <fieldset>
+      <fieldset toolparamdescription="File-service types the trade customer is interested in; select one or more of Stage 1/2, TCU/gearbox tuning, DPF solutions, EGR solutions, AdBlue/SCR solutions, DTC removal or Other.">
         <legend className={labelClass}>Services interested in</legend>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           {SERVICE_INTERESTS.map((service) => {
@@ -202,7 +202,6 @@ export default function TradeAccessForm() {
                   checked={checked}
                   onChange={() => toggleService(service)}
                   className="h-4 w-4 accent-[#FF7A00] shrink-0"
-                  toolparamdescription="A file-service type the trade customer is interested in; select all that apply (Stage 1/2, TCU, DPF, EGR, AdBlue/SCR, DTC removal or Other)."
                 />
                 <span className="text-sm text-white/80">{service}</span>
               </label>
@@ -249,9 +248,14 @@ export default function TradeAccessForm() {
         </span>
       </label>
 
-      {/* Honeypot - visually hidden, ignored by humans, filled by bots. */}
+      {/* Honeypot - visually hidden, ignored by humans, filled by bots. The
+          toolparamdescription is not "annotating" a real field: it exists only so
+          the generated WebMCP schema is valid and so well-behaved AI agents are
+          told to leave the anti-spam trap empty. Bots ignore it, so the honeypot
+          keeps working exactly as before. */}
       <input type="text" name="company" tabIndex={-1} autoComplete="off" value={data.company}
-        onChange={handleChange} className="hidden" aria-hidden="true" />
+        onChange={handleChange} className="hidden" aria-hidden="true"
+        toolparamdescription="Anti-spam field. Leave this empty - do not enter any value." />
 
       <button type="submit" disabled={status === 'submitting'}
         className="w-full btn-shine px-6 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">

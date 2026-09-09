@@ -62,14 +62,18 @@ const Header = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 sm:space-x-3 shrink-0">
               <img
-                src="/UniversalUpscaler_2dfd4994-6f3d-4696-9702-f0cd99f34a8c (1).png"
+                src="/logo-mark.webp"
                 alt="AutoCleanse DPF Specialists Logo"
+                width={96}
+                height={63}
                 className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
               />
               <img
-                src="/autocleanse-text-logo.png"
+                src="/logo-text.webp"
                 alt="AutoCleanse"
-                className="h-3 sm:h-4 lg:h-[18px] object-contain brightness-0 invert opacity-90"
+                width={432}
+                height={48}
+                className="h-3 sm:h-4 lg:h-[18px] object-contain brightness-0 invert opacity-90 w-auto"
               />
             </Link>
 

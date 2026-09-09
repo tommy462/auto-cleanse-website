@@ -86,14 +86,26 @@ export default function QuickEnquiryForm({
     'w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#FF7A00] focus:ring-1 focus:ring-[#FF7A00] transition-all';
   const labelClass = 'block text-white/60 text-sm font-medium mb-1.5';
 
-  // WebMCP tool metadata, derived from the enquiry context so an agent gets an
-  // accurate, service-specific tool without any change to form behaviour.
-  const tool =
-    defaultService === 'DPF Cleaning'
-      ? { name: 'requestDpfCleaningQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about DPF cleaning for a vehicle.' }
-      : defaultService === 'ECU Remapping'
-        ? { name: 'requestEcuRemappingQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about ECU remapping for a vehicle.' }
-        : { name: 'submitVehicleEnquiry', desc: 'Submits a vehicle enquiry to Auto-Cleanse requesting a callback about the selected service.' };
+  // WebMCP tool metadata, derived from the enquiry context (the typed
+  // `defaultService` prop) so this one shared form exposes an accurate,
+  // service-specific tool on every page that renders it, without any change to
+  // form behaviour or the submitted payload.
+  const tool = ((): { name: string; desc: string } => {
+    switch (defaultService) {
+      case 'DPF Cleaning':
+        return { name: 'requestDpfCleaningQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about DPF cleaning for a vehicle.' };
+      case 'DPF Diagnostics':
+        return { name: 'requestDpfCleaningQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about a DPF diagnostic for a vehicle.' };
+      case 'ECU Remapping':
+        return { name: 'requestEcuRemappingQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about ECU remapping for a vehicle.' };
+      case 'Mobile Remapping':
+        return { name: 'requestEcuRemappingQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about mobile ECU remapping for a vehicle.' };
+      case 'AdBlue / SCR Repair':
+        return { name: 'requestAdBlueDiagnosis', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about an AdBlue / SCR fault on a vehicle.' };
+      default:
+        return { name: 'submitVehicleEnquiry', desc: 'Submits a vehicle enquiry to Auto-Cleanse requesting a callback about the selected service.' };
+    }
+  })();
 
   return (
     <form
@@ -153,9 +165,13 @@ export default function QuickEnquiryForm({
           toolparamdescription="Any extra detail such as symptoms, warning lights or timescale (optional)." />
       </div>
 
-      {/* Honeypot - visually hidden, ignored by humans, filled by bots. */}
+      {/* Honeypot - visually hidden, ignored by humans, filled by bots. The
+          toolparamdescription only keeps the generated WebMCP schema valid and
+          tells well-behaved AI agents to leave the anti-spam trap empty; bots
+          ignore it, so the honeypot behaves exactly as before. */}
       <input type="text" name="company" tabIndex={-1} autoComplete="off" value={data.company}
-        onChange={handleChange} className="hidden" aria-hidden="true" />
+        onChange={handleChange} className="hidden" aria-hidden="true"
+        toolparamdescription="Anti-spam field. Leave this empty - do not enter any value." />
 
       <button type="submit" disabled={status === 'submitting'}
         className="w-full btn-shine px-6 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">
