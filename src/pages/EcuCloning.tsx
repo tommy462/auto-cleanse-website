@@ -157,7 +157,11 @@ export default function EcuCloning() {
           <div className="max-w-4xl mb-16 md:mb-24">
             <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-4">ECU Repair &amp; Programming</div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white leading-[1.05] mb-6">
-              ECU Cloning<br />
+              {/* The {' '} is what a crawler or screen reader reads as the gap: a
+                  <br> contributes nothing to textContent, so without it the h1
+                  reads "ECU CloningDevon.". Trailing space before a line break
+                  collapses, so nothing moves on screen. */}
+              ECU Cloning{' '}<br />
               <span className="text-[#FF7A00]">Devon.</span>
             </h1>
             <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl mb-8">

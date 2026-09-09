@@ -8,12 +8,19 @@ import MagneticButton from '../components/MagneticButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Each word gets its own span so it can be revealed individually. The spans must
+// be separated by a real whitespace text node, or the heading's textContent runs
+// the words together ("DPFCleaninginTotnes") for crawlers, screen readers and
+// anyone copying the text. The heading is a flex container and a whitespace-only
+// node between flex items is not rendered (CSS Flexbox spec), so the visual
+// layout is unchanged and the CSS margin still supplies the gap.
 const splitText = (text: string, className: string = '') => {
-  return text.split(' ').map((word, index) => (
+  return text.split(' ').flatMap((word, index) => [
+    index > 0 ? ' ' : null,
     <span key={index} className="inline-block overflow-hidden pb-4 -mb-4 mr-[0.25em]">
       <span className={`inline-block word-reveal ${className}`}>{word}</span>
-    </span>
-  ));
+    </span>,
+  ]);
 };
 
 const Maintenance = () => {
@@ -117,11 +124,11 @@ const Maintenance = () => {
         {/* Header */}
         <div className="text-center mb-20 reveal-container">
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
-            {splitText('Why Annual DPF', 'text-white')}
+            {splitText('Why Annual DPF', 'text-white')}{' '}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
               <span className="inline-block word-reveal text-[#FF7A00] ml-3">Maintenance</span>
             </span>
-            {splitText('Matters', 'text-white')}
+            {' '}{splitText('Matters', 'text-white')}
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto mb-8 rounded-full"></div>
           <div className="max-w-4xl mx-auto reveal-item">

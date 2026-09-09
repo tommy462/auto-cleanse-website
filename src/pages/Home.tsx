@@ -14,12 +14,18 @@ import Reviews from '../components/Reviews';
 import { getReviews, HOMEPAGE_REVIEW_IDS } from '../data/reviews';
 gsap.registerPlugin(ScrollTrigger);
 
+// Each word gets its own span so it can be revealed individually, separated by a
+// real whitespace text node so the h1's textContent reads "DPF Cleaning." rather
+// than "DPFCleaning.". This h1 is a plain block rather than a flex container, so
+// unlike the other pages the space IS rendered - the mr-[0.25em] that used to
+// fake the gap is therefore dropped, otherwise the words would be double-spaced.
 const splitText = (text: string, className: string = '') => {
-  return text.split(' ').map((word, index) => (
-    <span key={index} className="inline-block overflow-hidden pb-4 -mb-4 mr-[0.25em]">
+  return text.split(' ').flatMap((word, index) => [
+    index > 0 ? ' ' : null,
+    <span key={index} className="inline-block overflow-hidden pb-4 -mb-4">
       <span className={`inline-block word-reveal ${className}`}>{word}</span>
-    </span>
-  ));
+    </span>,
+  ]);
 };
 
 const Home = () => {
@@ -450,7 +456,7 @@ const Home = () => {
           <div className="flex-1 flex flex-col justify-center p-6 sm:p-8 lg:p-14 rounded-3xl bg-black/50 border border-white/10 backdrop-blur-sm">
             <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-4 hero-subtitle">Emission Control</div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-5 leading-[1.05] hero-title drop-shadow-2xl">
-              {splitText('DPF Cleaning.', 'text-white')}
+              {splitText('DPF Cleaning.', 'text-white')}{' '}
               <br />
               <span className="inline-block overflow-hidden pb-2 -mb-2">
                 <span className="inline-block word-reveal text-[#FF7A00]">Done right.</span>

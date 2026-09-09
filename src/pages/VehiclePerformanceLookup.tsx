@@ -644,12 +644,19 @@ function BrandLogo({ make, size = 28 }: { make: string; size?: number }) {
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
+// Each word gets its own span so it can be revealed individually. The spans must
+// be separated by a real whitespace text node, or the heading's textContent runs
+// the words together ("VehiclePerformanceLookup") for crawlers, screen readers
+// and anyone copying the text. The heading is a flex container and a
+// whitespace-only node between flex items is not rendered (CSS Flexbox spec), so
+// the visual layout is unchanged and the CSS margin still supplies the gap.
 const splitText = (text: string, className: string = '') =>
-  text.split(' ').map((word, i) => (
+  text.split(' ').flatMap((word, i) => [
+    i > 0 ? ' ' : null,
     <span key={i} className="inline-block overflow-hidden pb-4 -mb-4 mr-[0.25em]">
       <span className={`inline-block word-reveal ${className}`}>{word}</span>
-    </span>
-  ));
+    </span>,
+  ]);
 
 // ── Custom Dropdown ──────────────────────────────────────────────────────────
 
@@ -964,7 +971,7 @@ export default function VehiclePerformanceLookup() {
             Stage 1 Remap Data - 85 Manufacturers
           </div>
           <h1 className="text-4xl sm:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 sm:mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
-            {splitText('Vehicle Performance', 'text-white')}
+            {splitText('Vehicle Performance', 'text-white')}{' '}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em] w-full sm:w-auto">
               <span className="inline-block word-reveal text-[#FF7A00] sm:ml-3">Lookup.</span>
             </span>
