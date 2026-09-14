@@ -2,8 +2,9 @@
 //
 // Once a Stripe Checkout Session is paid, this:
 //   1. Creates the job in the AutoCleanse dashboard (Supabase) - idempotent
-//   2. Fires the Make.com webhook for email/SMS notifications
-//   3. Creates a Google Calendar event, if Google credentials are configured
+//   2. Emails the business (new-booking alert) and the customer (confirmation) via Resend
+//   3. Fires the Make.com webhook, if MAKE_WEBHOOK_URL is set
+//   4. Creates a Google Calendar event, if Google credentials are configured
 //
 // Called from /api/stripe-webhook (primary) and /api/booking-details (fallback,
 // in case the webhook is misconfigured or delayed). The dashboard job is the
@@ -14,9 +15,7 @@ import type Stripe from 'stripe';
 import { google } from 'googleapis';
 import { createDashboardJob, findJobByMarker } from './dashboardJob.js';
 import { isSupabaseConfigured } from './supabase.js';
-
-// Same Make.com scenario the site has always used for booking notifications.
-const DEFAULT_MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/uw0b9gab1m4qdj1zhs4m4mkkn9kt5fva';
+import { isEmailConfigured, sendBookingEmails } from './bookingEmails.js';
 
 /** Metadata keys written by /api/create-checkout and read back here. */
 export type BookingMetadata = {
@@ -139,51 +138,67 @@ export async function processPaidSession(
     errors.push('dashboard: Supabase not configured');
   }
 
-  // ── 2. Make.com notification ──────────────────────────────────────────────
-  const makeUrl = process.env.MAKE_WEBHOOK_URL ?? DEFAULT_MAKE_WEBHOOK_URL;
-  try {
-    const res = await fetch(makeUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'remap_booking_confirmed',
-        source,
-        timestamp: new Date().toISOString(),
-        bookingRef: m.booking_ref,
-        stripeSessionId: session.id,
-        paymentIntent,
-        depositPaid: true,
-        depositAmount: '£50',
-        dashboardJobId: jobId,
-        customerName: m.customer_name,
-        customerEmail: m.customer_email,
-        customerPhone: m.customer_phone,
-        serviceType: m.service_type,
-        serviceLabel: m.service_label,
-        bookingType: m.booking_type,
-        vehicleRegistration: m.vehicle_reg,
-        vehicleMakeModel: m.vehicle_make_model,
-        goals: m.goals,
-        notes: m.notes || null,
-        address: isMobile ? m.address || null : null,
-        postcode: isMobile ? m.postcode || null : null,
-        selectedOptions: splitOptions(m.selected_options),
-        quotedPrice: m.quoted_price ? Number(m.quoted_price) : null,
-        jobDate: m.job_date,
-        jobTime: m.job_time,
-        slotStart: m.slot_start,
-        slotDisplay: m.slot_display,
-      }),
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    console.log(`[booking] Make.com notified for ${m.booking_ref}`);
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
-    console.error('[booking] Make.com notification failed:', msg);
-    errors.push(`make: ${msg}`);
+  // ── 2. Emails (business alert + customer confirmation) ────────────────────
+  if (isEmailConfigured()) {
+    try {
+      const ids = await sendBookingEmails({ m, sessionId: session.id, paymentIntent, jobId });
+      console.log(`[booking] Emails sent for ${m.booking_ref} (business ${ids.business}, customer ${ids.customer})`);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error('[booking] Email sending failed:', msg);
+      errors.push(`email: ${msg}`);
+    }
+  } else {
+    errors.push('email: RESEND_API_KEY not configured');
   }
 
-  // ── 3. Google Calendar (optional) ─────────────────────────────────────────
+  // ── 3. Make.com notification (optional) ───────────────────────────────────
+  const makeUrl = process.env.MAKE_WEBHOOK_URL;
+  if (makeUrl) {
+    try {
+      const res = await fetch(makeUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'remap_booking_confirmed',
+          source,
+          timestamp: new Date().toISOString(),
+          bookingRef: m.booking_ref,
+          stripeSessionId: session.id,
+          paymentIntent,
+          depositPaid: true,
+          depositAmount: '£50',
+          dashboardJobId: jobId,
+          customerName: m.customer_name,
+          customerEmail: m.customer_email,
+          customerPhone: m.customer_phone,
+          serviceType: m.service_type,
+          serviceLabel: m.service_label,
+          bookingType: m.booking_type,
+          vehicleRegistration: m.vehicle_reg,
+          vehicleMakeModel: m.vehicle_make_model,
+          goals: m.goals,
+          notes: m.notes || null,
+          address: isMobile ? m.address || null : null,
+          postcode: isMobile ? m.postcode || null : null,
+          selectedOptions: splitOptions(m.selected_options),
+          quotedPrice: m.quoted_price ? Number(m.quoted_price) : null,
+          jobDate: m.job_date,
+          jobTime: m.job_time,
+          slotStart: m.slot_start,
+          slotDisplay: m.slot_display,
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      console.log(`[booking] Make.com notified for ${m.booking_ref}`);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error('[booking] Make.com notification failed:', msg);
+      errors.push(`make: ${msg}`);
+    }
+  }
+
+  // ── 4. Google Calendar (optional) ─────────────────────────────────────────
   try {
     await createCalendarEvent(session, m, paymentIntent);
   } catch (err) {
