@@ -81,6 +81,15 @@ export async function processPaidSession(
 ): Promise<ProcessResult> {
   const m = readBookingMetadata(session);
   const errors: string[] = [];
+
+  // Only sessions created by /api/create-checkout carry booking metadata.
+  // Anything else (old Buy Button / Payment Link sessions, manual invoices) is not
+  // a website booking and must not create a job or fire notifications.
+  if (!m.booking_ref || !m.job_date || !m.job_time || !m.customer_email) {
+    console.log(`[booking] ${session.id} has no booking metadata - not a website booking, ignoring`);
+    return { jobId: null, alreadyProcessed: false, errors: ['not a website booking session'] };
+  }
+
   const isMobile = m.booking_type === 'mobile';
   const paymentIntent = typeof session.payment_intent === 'string'
     ? session.payment_intent

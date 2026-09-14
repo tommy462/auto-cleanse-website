@@ -63,10 +63,10 @@ export async function createDashboardJob(input: DashboardJobInput): Promise<Dash
   if (existing && existing.length > 0) {
     customerId = existing[0].id;
   } else {
-    // Create in Xero first, then insert customer
-    let xeroContactId: string | null = null;
+    // Create the Xero contact via Make.com (non-fatal). The dashboard's customers
+    // table has no column to hold the Xero id, so the result is not stored.
     try {
-      const xeroRes = await fetch(XERO_CUSTOMER_WEBHOOK, {
+      await fetch(XERO_CUSTOMER_WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -78,12 +78,8 @@ export async function createDashboardJob(input: DashboardJobInput): Promise<Dash
           customer_type: 'Individual',
         }),
       });
-      if (xeroRes.ok) {
-        const xeroData = await xeroRes.json().catch(() => null);
-        xeroContactId = xeroData?.xero_contact_id ?? null;
-      }
     } catch {
-      // Non-fatal - we still create the customer without a Xero ID
+      // Non-fatal - we still create the customer
     }
 
     const [newCustomer] = await sb<{ id: string }[]>('/customers', {
@@ -95,7 +91,6 @@ export async function createDashboardJob(input: DashboardJobInput): Promise<Dash
         phone: customerPhone ?? null,
         postcode: postcode ?? null,
         address: address ?? null,
-        xero_contact_id: xeroContactId,
       }),
     });
     customerId = newCustomer.id;
