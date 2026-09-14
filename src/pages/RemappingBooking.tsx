@@ -1,26 +1,12 @@
-﻿import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  ArrowLeft, Car, MapPin, Wrench, CheckCircle,
+  ArrowLeft, MapPin, Wrench,
   Phone, Zap, Loader2, AlertTriangle, CalendarOff,
-  ChevronLeft, ChevronRight, Calendar, Clock, ArrowRight,
+  ChevronLeft, ChevronRight, Calendar, ArrowRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
-import MagneticButton from '../components/MagneticButton';
 import { BOOKING_CONFIG, REMAP_SERVICES, REMAP_OPTIONS, BASE_PRICES, type RemapServiceValue } from '../config/booking';
-
-const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/uw0b9gab1m4qdj1zhs4m4mkkn9kt5fva';
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'stripe-buy-button': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        'buy-button-id': string;
-        'publishable-key': string;
-      };
-    }
-  }
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Types
@@ -248,70 +234,6 @@ function DatePicker({ blockedDates, selected, onSelect }: {
 // Booking confirmed screen
 // ─────────────────────────────────────────────────────────────────────────────
 
-function BookingConfirmed({ booking }: { booking: PendingBooking }) {
-  return (
-    <div className="pt-28 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="Booking Confirmed | AutoCleanse Remapping" description="Your ECU remapping booking is confirmed." path="/remapping-booking" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] bg-[#FF7A00]/6 blur-[100px] rounded-[100%] pointer-events-none opacity-60" />
-      <div className="max-w-xl mx-auto px-4 sm:px-6 relative z-10 text-center pt-6">
-        <div className="w-20 h-20 rounded-full bg-[#FF7A00]/10 border border-[#FF7A00]/30 flex items-center justify-center mx-auto mb-6">
-          <CheckCircle size={40} className="text-[#FF7A00]" strokeWidth={1.5} />
-        </div>
-        <div className="text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-3">Booking confirmed</div>
-        <h1 className="text-4xl font-black tracking-tighter text-white mb-4">You're all booked in.</h1>
-        <p className="text-white/50 text-base leading-relaxed mb-8 max-w-sm mx-auto">
-          Your £50 deposit has been received. We'll be in touch before your appointment.
-        </p>
-        <div className="rounded-3xl bg-[#1A1D22] border border-white/5 p-6 text-left mb-8 max-w-sm mx-auto">
-          <p className="text-xs font-bold text-white/30 uppercase tracking-widest mb-4">Booking summary</p>
-          <dl className="space-y-0">
-            {[
-              { l: 'Name',    v: booking.fullName },
-              { l: 'Email',   v: booking.email },
-              { l: 'Phone',   v: booking.phone },
-              { l: 'Service', v: booking.serviceLabel },
-              { l: 'Date',    v: booking.slotDisplay },
-              { l: 'Type',    v: booking.bookingType === 'mobile' ? '🚗 Mobile' : '🏪 Workshop' },
-              { l: 'Vehicle', v: `${booking.vehicleMakeModel} (${booking.vehicleRegistration})` },
-              ...(booking.address ? [{ l: 'Address', v: booking.address }] : []),
-            ].map(({ l, v }) => (
-              <div key={l} className="flex gap-3 py-2.5 border-b border-white/5 last:border-0">
-                <dt className="text-white/30 text-[10px] font-bold uppercase tracking-widest w-14 shrink-0 pt-0.5">{l}</dt>
-                <dd className="text-white text-xs font-medium">{v}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-        <div className="rounded-3xl bg-[#1A1D22] border border-white/5 p-6 text-left mb-8 max-w-sm mx-auto">
-          <p className="text-xs font-bold text-white/30 uppercase tracking-widest mb-4">What happens next</p>
-          <ol className="space-y-3 text-sm text-white/50 leading-relaxed">
-            {["You'll receive a confirmation email shortly.",
-              "We may call to confirm your vehicle details and advise on preparation.",
-              booking.bookingType === 'mobile' ? "We'll arrive at your address at the booked time - please ensure the vehicle is accessible." : "Bring your vehicle to us at the booked time with a full tank of fuel.",
-              "Remaining balance is due on the day once the job is complete."
-            ].map((step, i) => (
-              <li key={i} className="flex gap-3">
-                <span className="w-5 h-5 rounded-full bg-[#FF7A00]/20 text-[#FF7A00] text-[10px] font-black flex items-center justify-center shrink-0 mt-0.5">{i+1}</span>
-                {step}
-              </li>
-            ))}
-          </ol>
-        </div>
-        <div className="flex flex-wrap gap-3 justify-center">
-          <MagneticButton>
-            <a href="tel:01803269895" className="btn-shine px-7 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-flex items-center gap-2">
-              <Phone size={15} /> Call Us
-            </a>
-          </MagneticButton>
-          <Link to="/" className="px-7 py-3 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors">
-            Back to Home
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // Card titles / step labels
 // ─────────────────────────────────────────────────────────────────────────────
@@ -357,12 +279,11 @@ export default function RemappingBooking() {
   // Blocked dates
   const [blockedDates, setBlockedDates] = useState<{ date: string; reason: string | null }[]>([]);
 
-  // Booking completion
-  const [bookingConfirmed, setBookingConfirmed] = useState(false);
-  const [confirmedBooking, setConfirmedBooking] = useState<PendingBooking | null>(null);
+  // Checkout
+  const [payLoading, setPayLoading] = useState(false);
+  const [payError, setPayError]     = useState<string | null>(null);
 
-  const topRef    = useRef<HTMLDivElement>(null);
-  const jobCreated = useRef(false);
+  const topRef = useRef<HTMLDivElement>(null);
 
   const update = (u: Partial<BookingForm>) => setForm(f => ({ ...f, ...u }));
 
@@ -425,16 +346,6 @@ export default function RemappingBooking() {
 
   // ── Effects ─────────────────────────────────────────────────────────────────
 
-  // Load Stripe script
-  useEffect(() => {
-    if (document.querySelector('script[data-stripe-buy-button]')) return;
-    const s = document.createElement('script');
-    s.src = 'https://js.stripe.com/v3/buy-button.js';
-    s.async = true;
-    s.setAttribute('data-stripe-buy-button', 'true');
-    document.head.appendChild(s);
-  }, []);
-
   // Fetch blocked dates
   useEffect(() => {
     fetch('/api/blocked-dates')
@@ -457,10 +368,16 @@ export default function RemappingBooking() {
       .finally(() => setSlotsLoading(false));
   }, [selectedDate]);
 
-  // Save to sessionStorage when reaching payment card
-  useEffect(() => {
-    if (currentCard !== 'payment' || !selectedDate || !selectedTime) return;
-    const pending: PendingBooking = {
+  // ── Checkout ────────────────────────────────────────────────────────────────
+  //
+  // Everything the customer entered is sent to /api/create-checkout, which stores
+  // it as metadata on the Stripe session/payment and redirects to Stripe Checkout.
+  // After payment, Stripe's webhook creates the dashboard job and sends the
+  // notifications, and /booking-success shows the details straight from Stripe.
+
+  function buildPendingBooking(): PendingBooking | null {
+    if (!selectedDate || !selectedTime) return null;
+    return {
       fullName: form.fullName, email: form.email, phone: form.phone,
       serviceType: form.serviceType, serviceLabel: getServiceLabel(form.serviceType),
       bookingType: form.bookingType,
@@ -473,42 +390,37 @@ export default function RemappingBooking() {
       jobDate: selectedDate, jobTime: selectedTime,
       slotDisplay: formatSlotDisplay(selectedDate, selectedTime),
     };
-    sessionStorage.setItem('pendingBooking', JSON.stringify(pending));
-  }, [currentCard, selectedDate, selectedTime]); // eslint-disable-line
+  }
 
-  // Stripe buy-button completion
-  useEffect(() => {
-    const handleComplete = async () => {
-      if (jobCreated.current) return;
-      jobCreated.current = true;
-      const raw = sessionStorage.getItem('pendingBooking');
-      if (!raw) return;
-      let pending: PendingBooking;
-      try { pending = JSON.parse(raw); } catch { return; }
-      setConfirmedBooking(pending);
-      setBookingConfirmed(true);
-      topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      const payload = {
-        type: 'remap_booking_confirmed', source: 'stripe-buy-button',
-        timestamp: new Date().toISOString(),
-        customerName: pending.fullName, customerEmail: pending.email, customerPhone: pending.phone,
-        serviceType: pending.serviceType, serviceLabel: pending.serviceLabel,
-        bookingType: pending.bookingType,
-        vehicleRegistration: pending.vehicleRegistration, vehicleMakeModel: pending.vehicleMakeModel,
-        goals: pending.goals, notes: pending.notes || null,
-        address: pending.address, postcode: pending.postcode,
-        selectedOptions: pending.selectedOptions, quotedPrice: pending.quotedPrice,
-        jobDate: pending.jobDate, jobTime: pending.jobTime,
-      };
-      await Promise.allSettled([
-        fetch('/api/create-dashboard-job', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }),
-        fetch(MAKE_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }),
-      ]);
-      sessionStorage.removeItem('pendingBooking');
-    };
-    window.addEventListener('stripe-buy-button:completed', handleComplete);
-    return () => window.removeEventListener('stripe-buy-button:completed', handleComplete);
-  }, []); // eslint-disable-line
+  async function startCheckout() {
+    const pending = buildPendingBooking();
+    if (!pending || payLoading) return;
+    setPayLoading(true);
+    setPayError(null);
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pending),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.status === 409) {
+        // Slot taken between choosing it and paying - refresh the slot list
+        setPayError(data.error ?? 'That time slot was just taken. Please choose another.');
+        setSelectedTime(null);
+        navigate('time', 'back');
+        return;
+      }
+      if (!res.ok || !data.url) {
+        throw new Error(data.error ?? 'Could not start payment.');
+      }
+      window.location.assign(data.url);
+    } catch (err) {
+      setPayError(err instanceof Error ? err.message : 'Could not start payment.');
+    } finally {
+      setPayLoading(false);
+    }
+  }
 
   // ── Per-card validation ──────────────────────────────────────────────────────
 
@@ -524,10 +436,6 @@ export default function RemappingBooking() {
     time:     selectedTime !== null,
     payment:  true,
   };
-
-  // ── Confirmation ─────────────────────────────────────────────────────────────
-
-  if (bookingConfirmed && confirmedBooking) return <BookingConfirmed booking={confirmedBooking} />;
 
   // ── Build sequence & progress ─────────────────────────────────────────────────
 
@@ -879,16 +787,31 @@ export default function RemappingBooking() {
               </p>
             </div>
 
-            {/* Stripe Buy Button */}
-            <div className="flex justify-center py-1">
-              <stripe-buy-button
-                buy-button-id="buy_btn_1TR7zyJ6Gx6wxrAfdXtmc06U"
-                publishable-key="pk_live_51TQkxIJ6Gx6wxrAfnYCzrPhXcDdwdizGyzZGK2b7WikhO7iJg9h1KL52F3wGi5uPtaH4oDx0LuZfOPWYbmlMB2A700Xoc41KIM"
-              />
-            </div>
+            {/* Pay deposit - creates a Stripe Checkout session and redirects */}
+            {payError && (
+              <div className="flex items-start gap-2.5 rounded-xl bg-red-500/10 border border-red-500/20 px-4 py-3 mb-4">
+                <AlertTriangle size={14} className="text-red-400 shrink-0 mt-0.5" />
+                <div className="text-xs leading-snug">
+                  <p className="text-red-300">{payError}</p>
+                  <p className="text-white/40 mt-1">
+                    Or call us on <a href="tel:01803269895" className="text-white/70 underline">01803 269895</a> and we'll book you in by phone.
+                  </p>
+                </div>
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={startCheckout}
+              disabled={payLoading}
+              className="btn-shine w-full py-4 rounded-xl font-bold text-sm text-white inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-wait"
+            >
+              {payLoading
+                ? <><Loader2 size={16} className="animate-spin" /> Taking you to secure payment…</>
+                : <><Zap size={16} /> Pay £50 deposit securely</>}
+            </button>
 
             <p className="text-white/20 text-[10px] text-center mt-3 leading-relaxed">
-              Secure payment via Stripe. Your slot is confirmed once payment is complete.
+              Secure payment via Stripe - Apple Pay, Google Pay and all major cards. Your slot is confirmed once payment is complete.
             </p>
           </div>
         );

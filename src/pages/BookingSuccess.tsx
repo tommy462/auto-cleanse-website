@@ -1,82 +1,71 @@
-﻿import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Calendar, Car, MapPin, Phone, Loader2, Zap } from 'lucide-react';
+import { CheckCircle, Calendar, Car, MapPin, Phone, Loader2, Zap, Hash } from 'lucide-react';
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
-import type { PendingBooking } from './RemappingBooking';
 
-// Make.com webhook - same as used in RemappingBooking
-const MAKE_WEBHOOK_URL = 'https://hook.eu2.make.com/uw0b9gab1m4qdj1zhs4m4mkkn9kt5fva';
+// Shape returned by /api/booking-details - read straight from the Stripe session,
+// so it works regardless of which tab/device the customer lands on.
+interface BookingDetails {
+  bookingRef: string;
+  serviceLabel: string;
+  bookingType: string;
+  customerName: string;
+  customerEmail: string;
+  vehicleRegistration: string;
+  vehicleMakeModel: string;
+  slotDisplay: string;
+  address: string | null;
+  processed: boolean;
+}
+
+const POLL_INTERVAL_MS = 3000;
+const POLL_MAX_MS = 45_000;
 
 export default function BookingSuccess() {
-  const [booking, setBooking]   = useState<PendingBooking | null>(null);
-  const [loading, setLoading]   = useState(true);
-  const jobCreated = useRef(false);
+  const [booking, setBooking] = useState<BookingDetails | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Read pending booking data saved to sessionStorage just before Stripe payment
-    const raw = typeof window !== 'undefined' ? sessionStorage.getItem('pendingBooking') : null;
+    const sessionId = typeof window !== 'undefined'
+      ? new URLSearchParams(window.location.search).get('session_id')
+      : null;
 
-    if (!raw) {
-      // No sessionStorage data - payment may have been processed via the inline event
-      // or the user navigated here directly. Show a generic success message.
+    if (!sessionId) {
       setLoading(false);
       return;
     }
 
-    let pending: PendingBooking;
-    try {
-      pending = JSON.parse(raw);
-    } catch {
-      setLoading(false);
-      return;
-    }
+    let cancelled = false;
+    const startedAt = Date.now();
 
-    setBooking(pending);
-    setLoading(false);
-
-    // Create dashboard job + notify Make.com - only once per page load
-    if (jobCreated.current) return;
-    jobCreated.current = true;
-
-    const payload = {
-      type:                'remap_booking_confirmed',
-      source:              'stripe-buy-button-redirect',
-      timestamp:           new Date().toISOString(),
-      customerName:        pending.fullName,
-      customerEmail:       pending.email,
-      customerPhone:       pending.phone,
-      serviceType:         pending.serviceType,
-      serviceLabel:        pending.serviceLabel,
-      bookingType:         pending.bookingType,
-      vehicleRegistration: pending.vehicleRegistration,
-      vehicleMakeModel:    pending.vehicleMakeModel,
-      goals:               pending.goals,
-      notes:               pending.notes || null,
-      address:             pending.address,
-      postcode:            pending.postcode,
-      selectedOptions:     pending.selectedOptions,
-      quotedPrice:         pending.quotedPrice,
-      jobDate:             pending.jobDate,
-      jobTime:             pending.jobTime,
+    // Poll until the booking has been written to the dashboard (`processed`),
+    // which normally happens via the Stripe webhook within a few seconds. The
+    // API itself falls back to processing the booking if the webhook hasn't.
+    const load = async () => {
+      try {
+        const res = await fetch(`/api/booking-details?session_id=${encodeURIComponent(sessionId)}`);
+        if (!res.ok) throw new Error(String(res.status));
+        const data: BookingDetails = await res.json();
+        if (cancelled) return;
+        setBooking(data);
+        setLoading(false);
+        if (!data.processed && Date.now() - startedAt < POLL_MAX_MS) {
+          setTimeout(load, POLL_INTERVAL_MS);
+        }
+      } catch {
+        if (cancelled) return;
+        // Transient error - retry a few times before giving up on the details
+        if (Date.now() - startedAt < POLL_MAX_MS) {
+          setTimeout(load, POLL_INTERVAL_MS);
+        } else {
+          setLoading(false);
+        }
+      }
     };
 
-    Promise.allSettled([
-      fetch('/api/create-dashboard-job', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      }),
-      fetch(MAKE_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      }),
-    ]).then(() => {
-      sessionStorage.removeItem('pendingBooking');
-    }).catch(() => {
-      sessionStorage.removeItem('pendingBooking');
-    });
+    load();
+    return () => { cancelled = true; };
   }, []);
 
   return (
@@ -94,7 +83,7 @@ export default function BookingSuccess() {
         {loading && (
           <div className="flex flex-col items-center justify-center py-20 gap-4">
             <Loader2 size={32} className="animate-spin text-[#FF7A00]" />
-            <p className="text-white/40 text-sm">Loading your booking…</p>
+            <p className="text-white/40 text-sm">Confirming your booking…</p>
           </div>
         )}
 
@@ -109,12 +98,12 @@ export default function BookingSuccess() {
                 Booking confirmed
               </div>
               <h1 className="text-4xl font-black tracking-tighter text-white mb-3">
-                Booking Confirmed.
+                You're all booked in.
               </h1>
               <p className="text-white/50 text-base leading-relaxed max-w-sm mx-auto">
-                Your {booking ? '£50 ' : ''}deposit has been received.
-                {booking && (
-                  <> We'll be in touch at <span className="text-white font-medium">{booking.email}</span>.</>
+                Your £50 deposit has been received.
+                {booking?.customerEmail && (
+                  <> We'll be in touch at <span className="text-white font-medium">{booking.customerEmail}</span>.</>
                 )}
               </p>
             </div>
@@ -125,6 +114,11 @@ export default function BookingSuccess() {
                 <div className="rounded-3xl bg-[#1A1D22] border border-white/5 p-6 sm:p-8 space-y-0 mb-6">
                   <h2 className="text-sm font-black text-white/60 uppercase tracking-widest mb-4">Your Appointment</h2>
                   {[
+                    {
+                      icon: <Hash size={16} className="text-[#FF7A00]" />,
+                      label: 'Booking reference',
+                      value: booking.bookingRef,
+                    },
                     {
                       icon: <Zap size={16} className="text-[#FF7A00]" />,
                       label: 'Service',
@@ -147,7 +141,7 @@ export default function BookingSuccess() {
                         ? `Mobile - ${booking.address ?? ''}`
                         : 'Workshop - bring your vehicle to us',
                     },
-                  ].map(({ icon, label, value }) => (
+                  ].filter(({ value }) => Boolean(value)).map(({ icon, label, value }) => (
                     <div key={label} className="flex gap-4 py-3 border-b border-white/5 last:border-0">
                       <div className="mt-0.5">{icon}</div>
                       <div>
@@ -182,7 +176,7 @@ export default function BookingSuccess() {
               </>
             )}
 
-            {/* Generic message shown when there's no sessionStorage data */}
+            {/* Generic message when details couldn't be loaded */}
             {!booking && (
               <div className="rounded-3xl bg-[#1A1D22] border border-white/5 p-8 text-center mb-8">
                 <p className="text-white/60 text-sm leading-relaxed mb-4">
