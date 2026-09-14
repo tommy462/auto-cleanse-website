@@ -59,8 +59,18 @@ function truncate(s: string | null | undefined, max = 490): string {
   return v.length > max ? v.substring(0, max) : v;
 }
 
+// Tolerate SITE_URL being pasted without a scheme, with quotes, or with a
+// trailing slash - Stripe rejects the whole session if the redirect URL is off.
 function siteUrlFor(req: VercelRequest): string {
-  if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/$/, '');
+  const raw = (process.env.SITE_URL ?? '').trim().replace(/^["']|["']$/g, '');
+  if (raw) {
+    const withScheme = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+    try {
+      return new URL(withScheme).origin;
+    } catch {
+      console.warn(`[create-checkout] SITE_URL "${raw}" is not a valid URL - falling back to request host`);
+    }
+  }
   const host = req.headers['x-forwarded-host'] ?? req.headers.host ?? 'www.auto-cleanse.co.uk';
   const proto = req.headers['x-forwarded-proto'] ?? 'https';
   return `${proto}://${host}`;
