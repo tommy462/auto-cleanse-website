@@ -302,21 +302,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const plate = registration.trim().toUpperCase().replace(/\s+/g, '');
 
-    // TEMP DIAGNOSTIC (remove): report exactly what carcheck returns to this server
-    if ((req.body as any).debug === 'carcheck') {
-      const t0 = Date.now();
-      try {
-        const r = await fetch(`https://www.carcheck.co.uk/numberplate/${plate}`, {
-          headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 'Accept': 'text/html', 'Accept-Language': 'en-GB,en;q=0.9' },
-          signal: AbortSignal.timeout(9000),
-        });
-        const body = await r.text();
-        return res.status(200).json({ status: r.status, ms: Date.now() - t0, len: body.length, server: r.headers.get('server'), hasPower: /BHP/i.test(body), head: body.slice(0, 300) });
-      } catch (e: any) {
-        return res.status(200).json({ error: String(e?.message ?? e), ms: Date.now() - t0 });
-      }
-    }
-
     // Run all sources concurrently - DVSA is primary (OAuth2, always works from server)
     const [dvsaResult, dvlaResult, carcheckResult] = await Promise.allSettled([
       fetchDvsaMot(plate),
