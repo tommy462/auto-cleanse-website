@@ -243,12 +243,46 @@ async function fetchCarcheck(plate: string): Promise<SourceResult | null> {
   }
 }
 
+// ─── Source 4: totalcarcheck.co.uk ────────────────────────────────────────────
+// Free check page with registered BHP (carcheck.co.uk is Cloudflare-blocked from Vercel).
+// Rows are <span class="cert-label">Label</span> ... <span class="cert-data-text">Value</span>
+
+async function fetchTotalCarCheck(plate: string): Promise<SourceResult | null> {
+  try {
+    const res = await fetch(`https://totalcarcheck.co.uk/FreeCheck?regno=${encodeURIComponent(plate)}`, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml',
+        'Accept-Language': 'en-GB,en;q=0.9',
+      },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return null;
+    const html = await res.text();
+    if (html.includes('Just a moment') || html.length < 500) return null;
+
+    const result: SourceResult = { source: 'totalcarcheck.co.uk' };
+    const rowRe = /<span class="cert-label">([\s\S]*?)<\/span>[\s\S]*?<span class="cert-data-text">([\s\S]*?)<\/span>/gi;
+    let m: RegExpExecArray | null;
+    while ((m = rowRe.exec(html)) !== null) {
+      const label = cleanText(m[1]).toLowerCase();
+      const value = cleanText(m[2]);
+      if (!value) continue;
+      if (label === 'bhp')             { const b = value.match(/(\d+)/); if (b) result.powerBhp = parseInt(b[1], 10); }
+      else if (label === 'body style') result.bodyType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+    }
+    return result.powerBhp || result.bodyType ? result : null;
+  } catch {
+    return null;
+  }
+}
+
 // ─── Merge ───────────────────────────────────────────────────────────────────
 // Priority: DVSA MOT (has real model) > DVLA VES (authoritative basic data) > carcheck (extra fields)
 
 function merge(results: (SourceResult | null)[]): SourceResult & { sources: string[]; confidence: string } {
   const valid = results.filter(Boolean) as SourceResult[];
-  const priority = ['DVSA MOT History API', 'DVLA VES API', 'carcheck.co.uk'];
+  const priority = ['DVSA MOT History API', 'DVLA VES API', 'carcheck.co.uk', 'totalcarcheck.co.uk'];
   const sorted = [...valid].sort((a, b) => {
     const ai = priority.findIndex(p => a.source.includes(p));
     const bi = priority.findIndex(p => b.source.includes(p));
@@ -303,16 +337,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const plate = registration.trim().toUpperCase().replace(/\s+/g, '');
 
     // Run all sources concurrently - DVSA is primary (OAuth2, always works from server)
-    const [dvsaResult, dvlaResult, carcheckResult] = await Promise.allSettled([
+    const [dvsaResult, dvlaResult, carcheckResult, totalResult] = await Promise.allSettled([
       fetchDvsaMot(plate),
       fetchDvlaVes(plate),
       fetchCarcheck(plate),
+      fetchTotalCarCheck(plate),
     ]);
 
     const results = [
       dvsaResult.status    === 'fulfilled' ? dvsaResult.value    : null,
       dvlaResult.status    === 'fulfilled' ? dvlaResult.value    : null,
       carcheckResult.status === 'fulfilled' ? carcheckResult.value : null,
+      totalResult.status    === 'fulfilled' ? totalResult.value    : null,
     ];
 
     const merged = merge(results);
