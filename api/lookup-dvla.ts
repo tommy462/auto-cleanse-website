@@ -15,6 +15,8 @@ interface SourceResult {
   taxStatus?: string;
   motStatus?: string;
   co2Emissions?: number;
+  powerBhp?: number;
+  torqueNm?: number;
   source: string;
 }
 
@@ -232,6 +234,8 @@ async function fetchCarcheck(plate: string): Promise<SourceResult | null> {
       else if (label === 'gearbox')                      { const tx = value.replace(/^[-–\s]+/, '').trim(); if (tx) result.transmission = tx.charAt(0).toUpperCase() + tx.slice(1).toLowerCase(); }
       else if (label === 'body type' || label === 'body style') result.bodyType = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
       else if (label === 'number of doors')              result.doors = value;
+      else if (label === 'power')                        { const b = value.match(/(\d+)\s*bhp/i); if (b) result.powerBhp = parseInt(b[1], 10); }
+      else if (label === 'max. torque' || label === 'max torque') { const n = value.match(/(\d+)\s*nm/i); if (n) result.torqueNm = parseInt(n[1], 10); }
     }
     return result.make ? result : null;
   } catch {
@@ -256,6 +260,7 @@ function merge(results: (SourceResult | null)[]): SourceResult & { sources: stri
     'make', 'model', 'colour', 'fuelType', 'year',
     'engineCapacity', 'transmission', 'bodyType', 'doors',
     'taxStatus', 'motStatus', 'co2Emissions',
+    'powerBhp', 'torqueNm',
   ];
   for (const field of fields) {
     for (const src of sorted) {
@@ -329,6 +334,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       transmission:     merged.transmission     ?? null,
       bodyType:         merged.bodyType         ?? null,
       doors:            merged.doors            ?? null,
+      powerBhp:         merged.powerBhp         ?? null,
+      torqueNm:         merged.torqueNm         ?? null,
       confidence:       merged.confidence,
       sources:          merged.sources,
     });

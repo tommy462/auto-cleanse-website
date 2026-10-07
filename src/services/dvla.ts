@@ -10,6 +10,8 @@
   transmission?: string;
   bodyType?: string;
   doors?: string;
+  powerBhp?: number | null; // registered stock power (carcheck.co.uk)
+  torqueNm?: number | null;
   taxStatus?: string;
   motStatus?: string;
   co2Emissions?: number;

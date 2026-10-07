@@ -55,6 +55,25 @@ const inferFuel = (text: string): 'petrol' | 'diesel' | '' => {
 };
 const parseOptions = (raw: string) =>
   raw ? raw.replace(/[\[\]'"]/g, '').split(',').map(s => s.trim()).filter(Boolean) : [];
+// Registered power can differ from the tuning-file figure by roughly +/-10 bhp (PS/kW rounding,
+// market variants), so a variant counts as a match anywhere inside this window.
+const BHP_TOLERANCE = 10;
+const sortByStockBhp = (engines: ScoredRow[]) => [...engines].sort((a, b) => parseInt(a.stock_bhp) - parseInt(b.stock_bhp));
+// Index (into the stock-BHP-ascending list the picker shows) of the variant closest to the
+// registered power. exact = exactly one distinct variant sits within the tolerance; if two
+// do (e.g. 140 and 150 for a car showing 145) we still pre-select the nearest but don't
+// claim a confident match.
+const closestPowerIdx = (engines: ScoredRow[], bhp?: number | null) => {
+  if (!bhp) return { idx: 0, exact: false };
+  const sorted = sortByStockBhp(engines);
+  let idx = 0, best = Infinity;
+  sorted.forEach((e, i) => {
+    const d = Math.abs(parseInt(e.stock_bhp) - bhp);
+    if (d < best) { best = d; idx = i; }
+  });
+  const inRange = new Set(sorted.filter(e => Math.abs(parseInt(e.stock_bhp) - bhp) <= BHP_TOLERANCE).map(e => e.stock_bhp));
+  return { idx, exact: best <= BHP_TOLERANCE && inRange.size === 1 };
+};
 const PERF_VARIANTS = ['s3','s4','s5','s6','s7','s8','sq5','sq7','sq8','rs3','rs4','rs5','rs6','rs7'];
 
 // ── Reg Lookup Section ────────────────────────────────────────────────────────
@@ -66,6 +85,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
   const [selectedGroup, setSelectedGroup] = useState<ModelGroup | null>(null);
   const [showAllEngines, setShowAllEngines] = useState(false);
   const [selectedEngineIdx, setSelectedEngineIdx] = useState(0);
+  const [powerMatched, setPowerMatched] = useState(false);
   const [step, setStep] = useState<'input' | 'models' | 'specs'>('input');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -77,6 +97,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
     setModelGroups([]);
     setSelectedGroup(null);
     setSelectedEngineIdx(0);
+    setPowerMatched(false);
 
     try {
       const dvla = await lookupVehicle(registration.trim().toUpperCase());
@@ -204,6 +225,9 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
       // Auto-select the top match - skip the model picker entirely
       if (groups.length > 0) {
         setSelectedGroup(groups[0]);
+        const pick = closestPowerIdx(groups[0].engines, dvla.powerBhp);
+        setSelectedEngineIdx(pick.idx);
+        setPowerMatched(pick.exact && new Set(groups[0].engines.map(e => e.stock_bhp)).size > 1);
         setShowAllEngines(false);
         setStep('specs');
       } else {
@@ -317,7 +341,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
                 {modelGroups.map((group, i) => (
                   <button
                     key={i}
-                    onClick={() => { setSelectedGroup(group); setSelectedEngineIdx(0); setStep('specs'); }}
+                    onClick={() => { const pick = closestPowerIdx(group.engines, dvlaData?.powerBhp); setSelectedGroup(group); setSelectedEngineIdx(pick.idx); setPowerMatched(pick.exact && new Set(group.engines.map(e => e.stock_bhp)).size > 1); setStep('specs'); }}
                     className="bg-[#0A0A0A] border border-white/5 rounded-xl p-4 hover:border-[#FF7A00]/40 transition-all group text-left w-full"
                   >
                     <div className="flex items-center gap-3">
@@ -374,9 +398,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
           </div>
           {(() => {
             // Sort engines by stock BHP ascending so picker shows 110 → 136 → 150 → 170
-            const enginesByBhp = [...selectedGroup.engines].sort(
-              (a, b) => parseInt(a.stock_bhp) - parseInt(b.stock_bhp)
-            );
+            const enginesByBhp = sortByStockBhp(selectedGroup.engines);
             const uniqueBhpValues = [...new Set(enginesByBhp.map(e => e.stock_bhp))];
             const hasMultiplePowerVariants = uniqueBhpValues.length > 1;
             const engine = enginesByBhp[selectedEngineIdx] ?? enginesByBhp[0];
@@ -389,12 +411,16 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
                     <p className="text-[10px] font-bold uppercase tracking-widest text-amber-400/70 mb-1">
                       Multiple power variants found
                     </p>
-                    <p className="text-white/40 text-xs mb-3">Select your stock BHP to see the correct figures:</p>
+                    <p className="text-white/40 text-xs mb-3">
+                      {powerMatched && dvlaData?.powerBhp
+                        ? `Your reg shows ${dvlaData.powerBhp} bhp, so we've picked the closest match. Change it if that's wrong:`
+                        : 'Select your stock BHP to see the correct figures:'}
+                    </p>
                     <div className="flex flex-wrap gap-2">
                       {enginesByBhp.map((eng, i) => (
                         <button
                           key={i}
-                          onClick={() => setSelectedEngineIdx(i)}
+                          onClick={() => { setSelectedEngineIdx(i); setPowerMatched(false); }}
                           className={`px-3 py-1.5 rounded-lg text-sm font-black transition-all ${
                             i === selectedEngineIdx
                               ? 'bg-[#FF7A00] text-black shadow-[0_0_12px_rgba(255,122,0,0.3)]'
