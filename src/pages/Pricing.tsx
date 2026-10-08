@@ -79,7 +79,7 @@ const Pricing = () => {
   const remapTiers = [
     {
       title: 'Stage 1 Remap',
-      price: 'From £220',
+      price: 'From £250',
       subtitle: 'Cars, vans & light commercials',
       note: 'No hardware changes required',
     },
@@ -108,7 +108,7 @@ const Pricing = () => {
     },
     {
       question: 'How much does ECU remapping cost?',
-      answer: 'Stage 1 remaps start from £220. Stage 2 and custom maps are quoted on enquiry as they depend on the vehicle make, model, engine and the work required. Contact us for a personalised quote, there is no obligation.',
+      answer: 'Stage 1 remaps start from £250. Stage 2 and custom maps are quoted on enquiry as they depend on the vehicle make, model, engine and the work required. Contact us for a personalised quote, there is no obligation.',
     },
     {
       question: 'Is ECU remapping included in the DPF prices shown?',
@@ -134,7 +134,7 @@ const Pricing = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning & Remap Prices | AutoCleanse Devon" description="Transparent pricing in Devon: DPF cleaning from £210 and Stage 1 ECU remaps from £220. Nationwide postal DPF available. No hidden fees, trade & fleet rates. Based in Totnes." path="/pricing" />
+      <SEO title="DPF Cleaning & Remap Prices | AutoCleanse Devon" description="Transparent pricing in Devon: DPF cleaning from £210 and Stage 1 ECU remaps from £250. Nationwide postal DPF available. No hidden fees, trade & fleet rates. Based in Totnes." path="/pricing" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
@@ -145,7 +145,7 @@ const Pricing = () => {
           { "@type": "Offer", "name": "DPF Cleaning - Within 10 Miles of Totnes", "priceCurrency": "GBP", "price": "210.00", "description": "Professional DPF cleaning with collection and same-day return within 10 miles of Totnes, Devon." },
           { "@type": "Offer", "name": "DPF Cleaning - Outside 10 Miles / Nationwide", "priceCurrency": "GBP", "price": "230.00", "description": "DPF cleaning for customers outside 10 miles of Totnes or nationwide postal service." },
           { "@type": "Offer", "name": "DPF Cleaning - HGV & Plant", "priceCurrency": "GBP", "price": "299.00", "description": "Professional DPF cleaning for HGVs, plant machinery and commercial vehicles." },
-          { "@type": "Offer", "name": "ECU Remapping - Stage 1", "priceCurrency": "GBP", "price": "220.00", "description": "Stage 1 ECU remapping in Devon from £220. Stage 2 and custom maps quoted on enquiry." }
+          { "@type": "Offer", "name": "ECU Remapping - Stage 1", "priceCurrency": "GBP", "price": "250.00", "description": "Stage 1 ECU remapping in Devon from £250. Stage 2 and custom maps quoted on enquiry." }
         ]
       })}} />
 
@@ -254,7 +254,7 @@ const Pricing = () => {
               ECU <span className="text-[#FF7A00]">Remapping</span>
             </h2>
             <p className="text-white/50 text-lg font-medium max-w-xl mx-auto">
-              Stage 1 remaps start from £220. Stage 2 and custom maps are quoted on enquiry, as every vehicle is different. Contact us for a fast, no-obligation quote.
+              Stage 1 remaps start from £250. Stage 2 and custom maps are quoted on enquiry, as every vehicle is different. Contact us for a fast, no-obligation quote.
             </p>
           </div>
 

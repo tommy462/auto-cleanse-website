@@ -145,9 +145,9 @@ export const REMAP_OPTIONS: RemapOption[] = [
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const BASE_PRICES: Record<RemapServiceValue, { workshop: number; mobile: number; fromPrice?: boolean }> = {
-  'stage-1':         { workshop: 220, mobile: 240 },
+  'stage-1':         { workshop: 250, mobile: 270 },
   'stage-2':         { workshop: 400, mobile: 420 },
-  'custom-fleet':    { workshop: 220, mobile: 240 },
+  'custom-fleet':    { workshop: 250, mobile: 270 },
   'dpf-remap-bundle':{ workshop: 850, mobile: 850, fromPrice: true },
   'not-sure':        { workshop: 0,   mobile: 0   },
 };

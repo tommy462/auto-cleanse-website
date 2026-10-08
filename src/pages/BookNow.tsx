@@ -10,7 +10,7 @@ const dpfFeatures = [
 ];
 
 const remapFeatures = [
-  { icon: Zap,          text: 'Stage 1 from £220 - workshop' },
+  { icon: Zap,          text: 'Stage 1 from £250 - workshop' },
   { icon: CheckCircle2, text: 'Mobile or workshop appointment' },
   { icon: Shield,       text: 'Safe, road-legal calibration' },
   { icon: Clock,        text: '£50 deposit secures your slot' },
@@ -139,7 +139,7 @@ export default function BookNow() {
                 {/* Price */}
                 <div className="flex items-baseline gap-2 mb-4">
                   <span className="text-white/40 text-sm font-medium">from</span>
-                  <span className="text-3xl font-black text-[#FF7A00]">£220</span>
+                  <span className="text-3xl font-black text-[#FF7A00]">£250</span>
                 </div>
 
                 {/* Desc */}

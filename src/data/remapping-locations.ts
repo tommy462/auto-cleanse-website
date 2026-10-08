@@ -1468,10 +1468,10 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     metaTitle:
       "ECU Remapping Okehampton | Mobile Remap Devon | AutoCleanse",
     metaDescription:
-      "Mobile ECU remapping in Okehampton and West Devon. Stage 1 torque and economy maps for farm pickups, working 4x4s, trailers and trade vans. From £220.",
+      "Mobile ECU remapping in Okehampton and West Devon. Stage 1 torque and economy maps for farm pickups, working 4x4s, trailers and trade vans. From £250.",
     h1: "ECU Remapping in Okehampton",
     intro:
-      "Okehampton sits on the A30 at the north-west edge of Dartmoor, and the vehicle mix here shows it: farm and estate pickups, working 4x4s, trade vans, and trailers and horseboxes heading out towards Hatherleigh, North Tawton and Holsworthy, alongside diesels covering the twenty-odd A30 miles into Exeter most days. Those are two different jobs for one engine, and a Stage 1 map can be set up for either, not for both at once. Our workshop is about 35 miles away in Totnes, so almost every Okehampton booking is a mobile visit. Stage 1 from £220, and the usual constraint is finding an hour when the vehicle is not out working, not finding a bay.",
+      "Okehampton sits on the A30 at the north-west edge of Dartmoor, and the vehicle mix here shows it: farm and estate pickups, working 4x4s, trade vans, and trailers and horseboxes heading out towards Hatherleigh, North Tawton and Holsworthy, alongside diesels covering the twenty-odd A30 miles into Exeter most days. Those are two different jobs for one engine, and a Stage 1 map can be set up for either, not for both at once. Our workshop is about 35 miles away in Totnes, so almost every Okehampton booking is a mobile visit. Stage 1 from £250, and the usual constraint is finding an hour when the vehicle is not out working, not finding a bay.",
     distanceNote: "approximately 35 miles from our Totnes workshop",
     mobileAvailable: true,
     nearbyAreas: [
@@ -1516,7 +1516,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
         "heading": "Which vehicles round here we take the booking on, and which we talk out of it",
         "paragraphs": [
           "The ones that justify it are working every day: a diesel van covering fifteen to twenty-five thousand miles a year on a mix of A30 and lanes, a 4x4 that tows most weeks, a pickup that spends half its life loaded. On those the change is something you feel on every trailer pull and every loaded climb rather than once a month, and there are enough steady miles in the week for the fuel side to be worth measuring at all. Stage 1 leaves the DPF, EGR and SCR hardware exactly where the factory put it, which matters on a vehicle that still has to pass an MOT and still has to work on Monday morning.",
-          "Plenty are not worth it and we would rather say so on the phone than at the gate. The one we turn away most is the second vehicle that feeds stock and does the school run: a few thousand moor-edge miles a year will not pay back £220 however well it takes the map. A pickup that is going down the road in the spring is another, because the file stays with the vehicle, not with you. And Stage 2 is almost never right for a working Okehampton vehicle, because it means hardware, more cost and downtime, and a farm pickup or a trade van cannot sit off the road waiting on parts."
+          "Plenty are not worth it and we would rather say so on the phone than at the gate. The one we turn away most is the second vehicle that feeds stock and does the school run: a few thousand moor-edge miles a year will not pay back £250 however well it takes the map. A pickup that is going down the road in the spring is another, because the file stays with the vehicle, not with you. And Stage 2 is almost never right for a working Okehampton vehicle, because it means hardware, more cost and downtime, and a farm pickup or a trade van cannot sit off the road waiting on parts."
         ]
       }
     ],
