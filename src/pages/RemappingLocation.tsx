@@ -212,10 +212,10 @@ export default function RemappingLocation() {
               </Link>
             </MagneticButton>
             <a
-              href="tel:01803269895"
+              href="tel:07823649190"
               className="px-7 py-3.5 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center gap-2"
             >
-              <Phone size={15} /> 01803 269895
+              <Phone size={15} /> 07823 649190
             </a>
           </div>
 
@@ -520,10 +520,10 @@ export default function RemappingLocation() {
               </Link>
             </MagneticButton>
             <a
-              href="tel:01803269895"
+              href="tel:07823649190"
               className="px-8 py-4 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center gap-2"
             >
-              <Phone size={15} /> 01803 269895
+              <Phone size={15} /> 07823 649190
             </a>
           </div>
           <p className="text-white/20 text-xs mt-6">

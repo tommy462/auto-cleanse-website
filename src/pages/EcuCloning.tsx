@@ -87,7 +87,7 @@ export default function EcuCloning() {
               name: 'Auto-Cleanse',
               description: 'Professional ECU cloning service in Devon. Faulty or damaged ECU replacement via full image cloning - VIN, immobiliser, calibration and tune preserved.',
               url: 'https://www.auto-cleanse.co.uk/ecu-cloning',
-              telephone: '+441803269895',
+              telephone: '+447823649190',
               email: 'info@auto-cleanse.co.uk',
               address: {
                 '@type': 'PostalAddress',
@@ -171,10 +171,10 @@ export default function EcuCloning() {
             <div className="flex flex-wrap gap-3">
               <MagneticButton>
                 <a
-                  href="tel:01803269895"
+                  href="tel:07823649190"
                   className="btn-shine px-7 py-3.5 rounded-xl font-bold text-sm text-white hover:text-white inline-flex items-center gap-2"
                 >
-                  <Phone size={15} /> 01803 269895
+                  <Phone size={15} /> 07823 649190
                 </a>
               </MagneticButton>
               <Link
@@ -354,10 +354,10 @@ export default function EcuCloning() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <MagneticButton>
                     <a
-                      href="tel:01803269895"
+                      href="tel:07823649190"
                       className="btn-shine px-8 py-4 rounded-xl font-bold text-base text-white hover:text-white inline-flex items-center gap-2"
                     >
-                      <Phone size={18} /> 01803 269895
+                      <Phone size={18} /> 07823 649190
                     </a>
                   </MagneticButton>
                   <MagneticButton>

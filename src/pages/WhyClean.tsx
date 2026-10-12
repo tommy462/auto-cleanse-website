@@ -380,10 +380,10 @@ const WhyClean = () => {
             <div className="relative z-10 flex flex-col sm:flex-row gap-6 justify-center">
               <MagneticButton>
                 <a
-                  href="tel:01803269895"
+                  href="tel:07823649190"
                   className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all text-center block text-lg"
                 >
-                  01803 269895
+                  07823 649190
                 </a>
               </MagneticButton>
               <MagneticButton>

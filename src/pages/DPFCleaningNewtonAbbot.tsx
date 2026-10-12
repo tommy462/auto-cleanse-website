@@ -19,8 +19,8 @@ import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PHONE_DISPLAY = '01803 269895';
-const PHONE_HREF = 'tel:01803269895';
+const PHONE_DISPLAY = '07823 649190';
+const PHONE_HREF = 'tel:07823649190';
 
 const trackCta = (cta: string, type: 'phone' | 'booking') =>
   trackEvent('dpf_cta_click', { cta_location: cta, cta_type: type, page_path: '/dpf-cleaning-newton-abbot' });
@@ -110,7 +110,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'What does DPF cleaning cost?',
-    a: 'DPF machine cleaning starts from £210, with collection and return or UK postal cleaning from £230, and HGV and plant filters from £299. Call 01803 269895 with your vehicle details and we will confirm the exact price before anything is booked.',
+    a: 'DPF machine cleaning starts from £210, with collection and return or UK postal cleaning from £230, and HGV and plant filters from £299. Call 07823 649190 with your vehicle details and we will confirm the exact price before anything is booked.',
   },
   {
     q: 'Can I drop the filter off myself instead of arranging collection?',
@@ -126,7 +126,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Do you remove and refit the DPF for me?',
-    a: 'Our standard service is cleaning the filter itself, with removal usually handled by your own garage. If you need help arranging removal or refitting, call 01803 269895 to discuss current availability and we will tell you honestly what we can do.',
+    a: 'Our standard service is cleaning the filter itself, with removal usually handled by your own garage. If you need help arranging removal or refitting, call 07823 649190 to discuss current availability and we will tell you honestly what we can do.',
   },
   {
     q: 'Do you offer mobile DPF cleaning in Newton Abbot?',
@@ -195,7 +195,7 @@ const DPFCleaningNewtonAbbot = () => {
     <div ref={container} className="pt-10 pb-16 md:pt-28 md:pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="DPF Cleaning Newton Abbot | Professional Clean | Auto-Cleanse"
-        description="Professional DPF cleaning for Newton Abbot, 8 miles from our Totnes workshop. Off-vehicle machine cleaning and testing, from £210. Call 01803 269895."
+        description="Professional DPF cleaning for Newton Abbot, 8 miles from our Totnes workshop. Off-vehicle machine cleaning and testing, from £210. Call 07823 649190."
         path="/dpf-cleaning-newton-abbot"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

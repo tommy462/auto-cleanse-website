@@ -101,7 +101,7 @@ export default function TradeFileService() {
                 '@type': 'LocalBusiness',
                 name: 'AutoCleanse',
                 url: 'https://www.auto-cleanse.co.uk',
-                telephone: '+441803269895',
+                telephone: '+447823649190',
                 address: {
                   '@type': 'PostalAddress',
                   streetAddress: 'The Old Barn Industrial Estate, Webbers Yard',
@@ -372,10 +372,10 @@ export default function TradeFileService() {
                   </MagneticButton>
                   <MagneticButton>
                     <a
-                      href="tel:01803269895"
+                      href="tel:07823649190"
                       className="px-8 py-4 rounded-xl font-bold text-base text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center gap-2"
                     >
-                      <Phone size={18} /> 01803 269895
+                      <Phone size={18} /> 07823 649190
                     </a>
                   </MagneticButton>
                 </div>

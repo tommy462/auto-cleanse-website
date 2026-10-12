@@ -39,7 +39,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Where are you based and do I need to bring the car to you?',
-    a: 'We are based at our workshop in Totnes, Devon. For diagnostics the vehicle normally needs to come to us so we can read live data and road test if required. Call us on 01803 269895 and we will arrange a convenient time.',
+    a: 'We are based at our workshop in Totnes, Devon. For diagnostics the vehicle normally needs to come to us so we can read live data and road test if required. Call us on 07823 649190 and we will arrange a convenient time.',
   },
   {
     q: 'What happens after the diagnosis?',
@@ -55,7 +55,7 @@ const schema = {
       '@id': 'https://www.auto-cleanse.co.uk/#business',
       name: 'Auto-Cleanse',
       url: 'https://www.auto-cleanse.co.uk/dpf-diagnostics-devon',
-      telephone: '+441803269895',
+      telephone: '+447823649190',
       email: 'info@auto-cleanse.co.uk',
       address: {
         '@type': 'PostalAddress',
@@ -87,7 +87,7 @@ export default function DPFDiagnosticsDevon() {
     <div className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="DPF Diagnostics Devon | Diagnose Before You Replace"
-        description="Professional DPF diagnostics in Devon. We find the real cause of a DPF warning light or limp mode before any cleaning or removal. Call 01803 269895."
+        description="Professional DPF diagnostics in Devon. We find the real cause of a DPF warning light or limp mode before any cleaning or removal. Call 07823 649190."
         path="/dpf-diagnostics-devon"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
@@ -110,10 +110,10 @@ export default function DPFDiagnosticsDevon() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <a
-              href="tel:01803269895"
+              href="tel:07823649190"
               className="btn-shine px-7 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2"
             >
-              <Phone size={18} /> 01803 269895
+              <Phone size={18} /> 07823 649190
             </a>
             <a
               href="#enquiry"
@@ -247,8 +247,8 @@ export default function DPFDiagnosticsDevon() {
               Evidence-based diagnosis before any cleaning or parts. Call us or request a callback.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:01803269895" className="btn-shine px-7 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2">
-                <Phone size={18} /> 01803 269895
+              <a href="tel:07823649190" className="btn-shine px-7 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2">
+                <Phone size={18} /> 07823 649190
               </a>
               <a href="#enquiry" className="px-7 py-4 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2">
                 Request a callback

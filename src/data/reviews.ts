@@ -152,16 +152,6 @@ export const REVIEWS: Review[] = [
     text: "Excellent service spoke to Alex who was really helpful. Collected the part from us and had it cleaned and returned all within a few hours definitely would use them again. 5 star service",
   },
   {
-    id: 'tom-rabone',
-    name: 'Tom Rabone',
-    source: 'Google Review',
-    serviceCategory: 'ECU Remapping',
-    rating: 5,
-    initials: 'TR',
-    featured: true,
-    text: "Had my 2018 Audi S4 Stage 1 remapped by Auto-Cleanse and I'm genuinely impressed.\n\nI was a bit unsure at first because I wanted the extra power but didn't want to risk reliability. They explained everything properly, checked the car over first, and made sure I understood what the map would actually do.\n\nThe difference is massive. It pulls so much harder, especially through the mid-range, and overtaking feels effortless now. The car still drives smoothly day to day, just with a lot more power when you want it.\n\nReally professional service and you can tell they know what they're doing. If you're thinking about getting a Stage 1 but you're worried about safety or reliability, I'd definitely recommend Auto-Cleanse.",
-  },
-  {
     id: 'egyptian-jeweller',
     name: 'Egyptian_Jeweller',
     source: 'Google Review',
@@ -239,7 +229,7 @@ export const REVIEWS: Review[] = [
 // Curated selections per context (balanced mix of DPF cleaning, DPF diagnostics,
 // ECU remapping and trade feedback).
 export const HOMEPAGE_REVIEW_IDS = [
-  'tom-rabone', 'martin-amis', 'james-riggs', 'jamie-webb',
+  'martin-amis', 'james-riggs', 'jamie-webb',
   'callum-woodman', 'antony-moore', 'sara-dixon', 'reece-lloyd',
   'john-thackray', 'peter-anning', 'egyptian-jeweller', 'otr-mobile',
 ];
@@ -266,7 +256,7 @@ export const BLOCKED_DPF_REVIEW_IDS = ['james-riggs', 'martin-amis', 'danny-hunt
 // positioning.
 export const ADBLUE_REVIEW_IDS = ['sara-dixon', 'martin-amis', 'callum-woodman'];
 export const ECU_REVIEW_IDS = [
-  'tom-rabone', 'jamie-webb', 'reece-lloyd', 'egyptian-jeweller',
+  'jamie-webb', 'reece-lloyd', 'egyptian-jeweller',
   'wayne', 'liz-macarthur', 'dave-lewis', 'luke-thomas',
 ];
 export const ECU_COMPACT_REVIEW_IDS = ['jamie-webb', 'reece-lloyd', 'dave-lewis'];

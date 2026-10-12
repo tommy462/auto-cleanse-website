@@ -43,8 +43,8 @@ export default function Privacy() {
               info@auto-cleanse.co.uk
             </a>{' '}
             &middot; Phone:{' '}
-            <a href="tel:01803269895" className="text-[#FF7A00] hover:underline">
-              01803 269895
+            <a href="tel:07823649190" className="text-[#FF7A00] hover:underline">
+              07823 649190
             </a>
           </p>
         </Section>

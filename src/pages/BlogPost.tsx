@@ -179,8 +179,8 @@ export default function BlogPost() {
                 <Link to={primaryService} className="btn-shine px-6 py-3 rounded-xl font-bold text-sm text-white inline-flex items-center justify-center gap-2">
                   {serviceLabel(primaryService)} <ArrowRight size={15} />
                 </Link>
-                <a href="tel:01803269895" className="px-6 py-3 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2">
-                  <Phone size={15} className="text-[#FF7A00]" /> 01803 269895
+                <a href="tel:07823649190" className="px-6 py-3 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2">
+                  <Phone size={15} className="text-[#FF7A00]" /> 07823 649190
                 </a>
               </div>
               {post.relatedServices && post.relatedServices.length > 1 && (

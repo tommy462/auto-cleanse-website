@@ -60,7 +60,7 @@ const Contact = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="Contact AutoCleanse | DPF Cleaning & Remapping" description="Contact AutoCleanse for DPF cleaning or ECU remapping in Devon. Call us on 01803 269895 or send an enquiry. Same-day response." path="/contact" />
+      <SEO title="Contact AutoCleanse | DPF Cleaning & Remapping" description="Contact AutoCleanse for DPF cleaning or ECU remapping in Devon. Call us on 07823 649190 or send an enquiry. Same-day response." path="/contact" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "ContactPage",
@@ -70,11 +70,11 @@ const Contact = () => {
         "mainEntity": {
           "@type": ["LocalBusiness", "AutomotiveService"],
           "name": "Auto-Cleanse",
-          "telephone": "+441803269895",
+          "telephone": "+447823649190",
           "email": "info@auto-cleanse.co.uk",
           "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
           "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }],
-          "contactPoint": { "@type": "ContactPoint", "telephone": "+441803269895", "contactType": "customer service", "areaServed": "GB", "availableLanguage": "English" }
+          "contactPoint": { "@type": "ContactPoint", "telephone": "+447823649190", "contactType": "customer service", "areaServed": "GB", "availableLanguage": "English" }
         }
       })}} />
 
@@ -113,8 +113,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-white/40 font-mono text-sm uppercase tracking-wider mb-1">Phone</p>
-                    <a href="tel:01803269895" className="text-2xl font-bold text-white hover:text-[#FF7A00] transition-colors">
-                      01803 269895
+                    <a href="tel:07823649190" className="text-2xl font-bold text-white hover:text-[#FF7A00] transition-colors">
+                      07823 649190
                     </a>
                   </div>
                 </div>

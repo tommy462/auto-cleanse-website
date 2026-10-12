@@ -192,7 +192,7 @@ export default function BookingSuccess() {
             <div className="flex flex-wrap gap-3 justify-center">
               <MagneticButton>
                 <a
-                  href="tel:01803269895"
+                  href="tel:07823649190"
                   className="btn-shine px-7 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-flex items-center gap-2"
                 >
                   <Phone size={16} /> Call Us

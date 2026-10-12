@@ -20,8 +20,8 @@ import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PHONE_DISPLAY = '01803 269895';
-const PHONE_HREF = 'tel:01803269895';
+const PHONE_DISPLAY = '07823 649190';
+const PHONE_HREF = 'tel:07823649190';
 
 // GA4 / Google Ads events for this landing page. Phone links are already counted
 // site-wide as `phone_click` by <LeadTracking>; this adds the CTA position so paid
@@ -103,7 +103,7 @@ const dpfFaqs: Faq[] = [
   },
   {
     q: 'Can you help with removing and refitting the DPF?',
-    a: 'Our standard DPF cleaning service is carried out with the filter already removed from the vehicle. If you need assistance arranging removal or refitting, call us on 01803 269895 to discuss current availability - we will tell you honestly what we can help with.',
+    a: 'Our standard DPF cleaning service is carried out with the filter already removed from the vehicle. If you need assistance arranging removal or refitting, call us on 07823 649190 to discuss current availability - we will tell you honestly what we can help with.',
   },
   {
     q: 'How much does DPF cleaning cost?',
@@ -135,7 +135,7 @@ const dpfFaqs: Faq[] = [
   },
   {
     q: 'Do you clean DPFs for garages?',
-    a: 'Yes. We work with garages, fleets and mobile mechanics across Devon and the South West, cleaning filters they have removed in their own workshop. Call us on 01803 269895 to discuss trade turnaround and rates.',
+    a: 'Yes. We work with garages, fleets and mobile mechanics across Devon and the South West, cleaning filters they have removed in their own workshop. Call us on 07823 649190 to discuss trade turnaround and rates.',
   },
   {
     q: 'Where is Auto-Cleanse based and what areas do you cover?',
@@ -209,7 +209,7 @@ const DPFCleaningHub = () => {
     <div ref={container} className="pt-10 pb-16 md:pt-28 md:pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="DPF Cleaning Devon | Professional DPF Cleaning | Auto-Cleanse"
-        description="Professional DPF cleaning in Devon from our Totnes workshop. Off-vehicle machine cleaning, testing, collection and UK postal. From £210. Call 01803 269895."
+        description="Professional DPF cleaning in Devon from our Totnes workshop. Off-vehicle machine cleaning, testing, collection and UK postal. From £210. Call 07823 649190."
         path="/dpf-cleaning"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

@@ -39,7 +39,7 @@ export default function MobileCallBar() {
 
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 flex items-stretch gap-px border-t border-white/10 bg-[#1A1D22] pb-[env(safe-area-inset-bottom)]">
         <a
-          href="tel:01803269895"
+          href="tel:07823649190"
           onClick={() =>
             override &&
             trackEvent('dpf_cta_click', {
@@ -49,7 +49,7 @@ export default function MobileCallBar() {
             })
           }
           className="flex-1 flex items-center justify-center gap-2 py-3.5 min-h-[56px] gradient-orange text-white font-bold text-sm"
-          aria-label="Call AutoCleanse on 01803 269895"
+          aria-label="Call AutoCleanse on 07823 649190"
         >
           <Phone size={18} /> Call Now
         </a>

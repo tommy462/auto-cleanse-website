@@ -246,11 +246,11 @@ export default function DPFCleaningLocation({ location }: { location: DpfLocatio
               </p>
               <div className="relative z-10 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                 <a
-                  href="tel:01803269895"
+                  href="tel:07823649190"
                   className="btn-shine px-8 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-3 text-lg min-h-[52px]"
-                  aria-label="Call Auto-Cleanse on 01803 269895"
+                  aria-label="Call Auto-Cleanse on 07823 649190"
                 >
-                  <Phone size={22} aria-hidden="true" /> Call 01803 269895
+                  <Phone size={22} aria-hidden="true" /> Call 07823 649190
                 </a>
                 <Link
                   to="/book"

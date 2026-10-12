@@ -629,7 +629,7 @@ export default function RemappingBooking() {
               <p className="text-amber-300 text-xs font-black uppercase tracking-widest">Off-road / Export Use Only</p>
             </div>
             <div className="text-white/60 text-xs leading-relaxed space-y-2 mb-5">
-              <p>In the UK, a <strong className="text-white/80">DPF filter, EGR valve, AdBlue/SCR system, and intake flaps</strong> must be fitted and functioning to comply with emissions regulations.</p>
+              <p>In the UK, a <strong className="text-white/80">DPF filter, EGR valve and intake flaps</strong> must be fitted and functioning to comply with emissions regulations.</p>
               <p>Software deletion of these systems means the vehicle will <strong className="text-white/80">no longer comply with UK road law</strong> and <strong className="text-amber-400">must not be driven on public roads</strong>. This service is only lawful for off-road, export, or competition/track use.</p>
               <p>By proceeding you confirm you understand and accept these legal responsibilities.</p>
             </div>
@@ -794,7 +794,7 @@ export default function RemappingBooking() {
                 <div className="text-xs leading-snug">
                   <p className="text-red-300">{payError}</p>
                   <p className="text-white/40 mt-1">
-                    Or call us on <a href="tel:01803269895" className="text-white/70 underline">01803 269895</a> and we'll book you in by phone.
+                    Or call us on <a href="tel:07823649190" className="text-white/70 underline">07823 649190</a> and we'll book you in by phone.
                   </p>
                 </div>
               </div>
@@ -938,8 +938,8 @@ export default function RemappingBooking() {
         {/* Alt contact */}
         <p className="text-center text-white/20 text-xs font-medium mt-6">
           Prefer to book by phone?{' '}
-          <a href="tel:01803269895" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors font-bold">
-            <Phone size={11} className="inline mb-0.5 mr-0.5" />01803 269895
+          <a href="tel:07823649190" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors font-bold">
+            <Phone size={11} className="inline mb-0.5 mr-0.5" />07823 649190
           </a>
         </p>
 

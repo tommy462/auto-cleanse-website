@@ -18,8 +18,8 @@ import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PHONE_DISPLAY = '01803 269895';
-const PHONE_HREF = 'tel:01803269895';
+const PHONE_DISPLAY = '07823 649190';
+const PHONE_HREF = 'tel:07823649190';
 
 // Reuses the site-wide gtag helper. Phone links are already counted as
 // `phone_click` by <LeadTracking>; this only records which section was clicked.
@@ -73,7 +73,7 @@ const priceTiers = [
 const FAQS: Faq[] = [
   {
     q: 'How much does DPF cleaning cost in Plymouth?',
-    a: 'DPF machine cleaning starts from £210. Plymouth is around 25 miles from the workshop, outside our 10-mile collection band, so cleaning with collection and return, or by post, is from £230. HGV and plant filters are from £299. Call 01803 269895 with your vehicle details and we will confirm the exact price.',
+    a: 'DPF machine cleaning starts from £210. Plymouth is around 25 miles from the workshop, outside our 10-mile collection band, so cleaning with collection and return, or by post, is from £230. HGV and plant filters are from £299. Call 07823 649190 with your vehicle details and we will confirm the exact price.',
   },
   {
     q: 'Do you collect DPFs from Plymouth?',
@@ -176,7 +176,7 @@ const DPFCleaningPlymouth = () => {
     <div ref={container} className="pt-10 pb-16 md:pt-28 md:pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="DPF Cleaning Plymouth | Professional DPF Cleaning | Auto-Cleanse"
-        description="Professional DPF cleaning for Plymouth garages, fleets and drivers. Off-vehicle machine cleaning, tested before and after, from £210. Call 01803 269895."
+        description="Professional DPF cleaning for Plymouth garages, fleets and drivers. Off-vehicle machine cleaning, tested before and after, from £210. Call 07823 649190."
         path="/dpf-cleaning-plymouth"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

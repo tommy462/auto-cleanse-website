@@ -72,8 +72,8 @@ const Footer = () => {
             </p>
             <div className="pt-2 flex flex-col sm:flex-row lg:flex-col gap-4">
               <MagneticButton className="inline-block">
-                <a href="tel:01803269895" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-block shadow-2xl shadow-[#FF7A00]/20 text-center w-full sm:w-auto lg:w-full">
-                  Call 01803 269895
+                <a href="tel:07823649190" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm text-white hover:text-white inline-block shadow-2xl shadow-[#FF7A00]/20 text-center w-full sm:w-auto lg:w-full">
+                  Call 07823 649190
                 </a>
               </MagneticButton>
               <MagneticButton className="inline-block">
@@ -91,7 +91,7 @@ const Footer = () => {
               </p>
               <p className="flex items-center gap-3">
                 <Phone size={16} className="text-[#FF7A00] shrink-0" />
-                <a href="tel:01803269895" className="hover:text-[#FF7A00] transition-colors">01803 269895</a>
+                <a href="tel:07823649190" className="hover:text-[#FF7A00] transition-colors">07823 649190</a>
               </p>
               <p className="flex items-center gap-3">
                 <Mail size={16} className="text-[#FF7A00] shrink-0" />
@@ -169,8 +169,8 @@ const Footer = () => {
                   </li>
                 ))}
                 <li>
-                  <a href="tel:01803269895" className="text-white/70 hover:text-[#FF7A00] transition-colors text-sm flex items-center group font-medium">
-                    <Phone size={16} className="text-white/40 group-hover:text-[#FF7A00] transition-colors mr-2" /> 01803 269895
+                  <a href="tel:07823649190" className="text-white/70 hover:text-[#FF7A00] transition-colors text-sm flex items-center group font-medium">
+                    <Phone size={16} className="text-white/40 group-hover:text-[#FF7A00] transition-colors mr-2" /> 07823 649190
                   </a>
                 </li>
               </ul>

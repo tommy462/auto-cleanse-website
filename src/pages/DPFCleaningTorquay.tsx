@@ -19,8 +19,8 @@ import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PHONE_DISPLAY = '01803 269895';
-const PHONE_HREF = 'tel:01803269895';
+const PHONE_DISPLAY = '07823 649190';
+const PHONE_HREF = 'tel:07823649190';
 
 const trackCta = (cta: string, type: 'phone' | 'booking') =>
   trackEvent('dpf_cta_click', { cta_location: cta, cta_type: type, page_path: '/dpf-cleaning-torquay' });
@@ -143,7 +143,7 @@ const LOCAL_SECTIONS: { heading: string; paragraphs: string[] }[] = [
 const FAQS: Faq[] = [
   {
     q: "Will a run out on the A380 clear my DPF light?",
-    a: "Only if it is still intermittent. The test is whether the light goes out on its own after a longer journey. If it does, the ECU is still willing to regenerate, and one deliberate run out on the A380 towards Newton Abbot and on to the A38 each month will usually keep you there. If it has gone solid, the ECU has already stopped trying and the drive achieves nothing but a tank of diesel. Ring 01803 269895 and tell us which of the two it is doing before you spend an afternoon finding out.",
+    a: "Only if it is still intermittent. The test is whether the light goes out on its own after a longer journey. If it does, the ECU is still willing to regenerate, and one deliberate run out on the A380 towards Newton Abbot and on to the A38 each month will usually keep you there. If it has gone solid, the ECU has already stopped trying and the drive achieves nothing but a tank of diesel. Ring 07823 649190 and tell us which of the two it is doing before you spend an afternoon finding out.",
   },
   {
     q: "My oil level has risen above maximum since the DPF light came on. Are the two connected?",
@@ -163,7 +163,7 @@ const FAQS: Faq[] = [
   },
   {
     q: "What does it cost from Torquay, and does collection change the price?",
-    a: "Cleaning starts from £210. Those 12 miles are what put Torquay just outside our 10 mile band, so collection and return, or tracked UK post, is from £230. HGV and plant filters are priced separately. Worth knowing if you are a garage: a filter you bring in to Webbers Yard yourself is not charged collection at all, and several sent together on one Torbay run are not charged as three separate visits, which for a yard clearing two or three plated cars in a week is the difference the price list does not show. Call 01803 269895 to confirm before anything is booked.",
+    a: "Cleaning starts from £210. Those 12 miles are what put Torquay just outside our 10 mile band, so collection and return, or tracked UK post, is from £230. HGV and plant filters are priced separately. Worth knowing if you are a garage: a filter you bring in to Webbers Yard yourself is not charged collection at all, and several sent together on one Torbay run are not charged as three separate visits, which for a yard clearing two or three plated cars in a week is the difference the price list does not show. Call 07823 649190 to confirm before anything is booked.",
   },
   {
     q: "It blocked again three months after the last clean. What should I tell you?",

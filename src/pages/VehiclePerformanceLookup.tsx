@@ -957,7 +957,7 @@ export default function VehiclePerformanceLookup() {
         "provider": {
           "@type": "LocalBusiness",
           "name": "Auto-Cleanse",
-          "telephone": "+441803269895",
+          "telephone": "+447823649190",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "The Old Barn Industrial Estate, Webbers Yard",
@@ -1161,8 +1161,8 @@ export default function VehiclePerformanceLookup() {
               </div>
               <div className="flex gap-3 flex-shrink-0">
                 <MagneticButton>
-                  <a href="tel:01803269895" className="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold transition-all text-sm">
-                    01803 269895
+                  <a href="tel:07823649190" className="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold transition-all text-sm">
+                    07823 649190
                   </a>
                 </MagneticButton>
                 <MagneticButton>

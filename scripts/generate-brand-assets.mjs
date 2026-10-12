@@ -41,7 +41,7 @@ async function buildOgImage() {
   const tagSvg = Buffer.from(
     `<svg width="${W}" height="140" xmlns="http://www.w3.org/2000/svg">
        <text x="${W / 2}" y="56" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="${ORANGE}" letter-spacing="1">DPF Cleaning &amp; ECU Remapping</text>
-       <text x="${W / 2}" y="112" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="500" fill="#FFFFFF" letter-spacing="6">DEVON &#160;&#183;&#160; 01803 269895</text>
+       <text x="${W / 2}" y="112" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="500" fill="#FFFFFF" letter-spacing="6">DEVON &#160;&#183;&#160; 07823 649190</text>
      </svg>`
   );
 

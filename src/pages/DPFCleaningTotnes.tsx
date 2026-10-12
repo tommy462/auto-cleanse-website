@@ -23,7 +23,7 @@ const LOCAL_SECTIONS: { heading: string; paragraphs: string[] }[] = [
     heading: "You are nearer the machine than most of the filters on it",
     paragraphs: [
       "Most of what goes through this workshop arrives on a courier or in the back of the van, from Exeter, Plymouth, Torbay and by tracked post from further afield. Those customers are in the from £230 band, because outside ten miles the price has to carry the distance. Totnes sits inside the ten-mile band, so cleaning starts from £210, and that figure already includes local collection and return. Being on the doorstep does not buy you a discount so much as a choice: wait for a collection slot like everyone else, or take the filter off, put it in the boot and hand it over yourself the same morning.",
-      "The second thing being local buys is one address instead of two. The remapping side and the DPF bench are in the same building at Webbers Yard, so a Totnes driver can bring the vehicle in for a paid diagnostic and leave a removed filter at the same counter on the same morning. From Exeter that is two separate journeys with a decision made over the phone in between. Ring 01803 269895 before anyone undoes a clamp. We cannot tell you what is actually wrong down a phone line, and confirming it is a paid DPF diagnostic rather than a free scan, but we can tell you whether the drop-off is worth making today.",
+      "The second thing being local buys is one address instead of two. The remapping side and the DPF bench are in the same building at Webbers Yard, so a Totnes driver can bring the vehicle in for a paid diagnostic and leave a removed filter at the same counter on the same morning. From Exeter that is two separate journeys with a decision made over the phone in between. Ring 07823 649190 before anyone undoes a clamp. We cannot tell you what is actually wrong down a phone line, and confirming it is a paid DPF diagnostic rather than a free scan, but we can tell you whether the drop-off is worth making today.",
     ],
   },
   {
@@ -43,7 +43,7 @@ const LOCAL_SECTIONS: { heading: string; paragraphs: string[] }[] = [
   {
     heading: "Dropping one in: hours, parking and ringing first",
     paragraphs: [
-      "The Old Barn Industrial Estate, Webbers Yard, Totnes TQ9 6JY, with parking on site, open Monday to Friday from 09:00 to 17:00. It is on the edge of town rather than in it, so do not aim for the town centre car parks. Ring 01803 269895 before you set off rather than after. The machine runs one filter at a time in cycles, so a call tells you whether the bench is free this morning or this afternoon, and it means we know what is coming and roughly what size it is. Filters with us before 10am are often cleaned, tested and ready the same working day. That is a where possible, not a promise.",
+      "The Old Barn Industrial Estate, Webbers Yard, Totnes TQ9 6JY, with parking on site, open Monday to Friday from 09:00 to 17:00. It is on the edge of town rather than in it, so do not aim for the town centre car parks. Ring 07823 649190 before you set off rather than after. The machine runs one filter at a time in cycles, so a call tells you whether the bench is free this morning or this afternoon, and it means we know what is coming and roughly what size it is. Filters with us before 10am are often cleaned, tested and ready the same working day. That is a where possible, not a promise.",
       "Bring the filter rather than the vehicle. The standard service is cleaning the part itself, with removal normally handled by your own garage. If you have nobody lined up to take it off, ring and we will tell you honestly what we can help with rather than leaving you guessing. And if you would rather not do the running about at all, local collection and return is included in the £210 band, so a Totnes filter can be collected exactly like an Exeter one. Most people here do not bother, because the drive is shorter than the wait for a slot, but the option is there and it costs the same either way.",
     ],
   },
@@ -57,11 +57,11 @@ const LOCAL_SECTIONS: { heading: string; paragraphs: string[] }[] = [
 ];
 
 const TOTNES_FAQS: Faq[] = [
-  { q: "Where exactly is the workshop, and do I need to ring first?", a: "The Old Barn Industrial Estate, Webbers Yard, Totnes TQ9 6JY, with parking on site, open Monday to Friday 09:00 to 17:00. It is on the edge of town rather than in the centre, so ignore the town centre signs when you get close. Ring 01803 269895 before you set out. It is not us being awkward: the cleaning machine runs one filter at a time in cycles, so a call tells you whether it is free this morning and saves you standing about holding a heavy box." },
+  { q: "Where exactly is the workshop, and do I need to ring first?", a: "The Old Barn Industrial Estate, Webbers Yard, Totnes TQ9 6JY, with parking on site, open Monday to Friday 09:00 to 17:00. It is on the edge of town rather than in the centre, so ignore the town centre signs when you get close. Ring 07823 649190 before you set out. It is not us being awkward: the cleaning machine runs one filter at a time in cycles, so a call tells you whether it is free this morning and saves you standing about holding a heavy box." },
   { q: "I only live in Totnes, so can you come and do it here?", a: "No, and living five minutes away makes that less likely rather than more. The machine is bolted to a floor with a water feed and a drain, and the filter has to be off the vehicle and flow tested either side of the clean. You would wait longer for a van to be loaded and driven to you than it takes to bring the filter over yourself. Mobile visits are for ECU remapping only, and that we genuinely will bring to you in Totnes, Dartington and the surrounding villages." },
   { q: "Is it cheaper because I am on your doorstep?", a: "It is the lower of the two bands, yes. Cleaning starts from £210 within ten miles of the workshop, which covers Totnes and the villages around it, and that price includes local collection and return. Outside ten miles, and for UK-wide postal filters, it is from £230. So driving it in yourself does not knock anything further off the bill, it just means you are not waiting on a collection slot. We confirm the exact price on the phone once we know the vehicle and the filter." },
   { q: "Can I wait while it is cleaned?", a: "No. It goes on the machine in turn, and after the aqueous cycle it needs a controlled hot-air dry before the second flow test means anything, so it is a workshop job rather than a while-you-wait one. Something handed over at ten to five is realistically a next-morning start, and the quickest returns are always the ones that arrive first thing. The advantage of being local is that you can drop it off and walk back into town rather than sitting in a doorway." },
-  { q: "Do I need to take the filter off first, or can I just bring the car?", a: "Bring the filter. The clean is carried out off the vehicle and removal is normally handled by your own garage. If you have nobody to do it, ring 01803 269895 and we will tell you honestly what we can help with. Where being local genuinely helps is earlier than that: if the vehicle still drives and you are ten minutes away, bringing it in for a paid diagnostic before anyone undoes a clamp is one short trip rather than a day off work. A split differential pressure pipe looks exactly like a blocked filter and is not one." },
+  { q: "Do I need to take the filter off first, or can I just bring the car?", a: "Bring the filter. The clean is carried out off the vehicle and removal is normally handled by your own garage. If you have nobody to do it, ring 07823 649190 and we will tell you honestly what we can help with. Where being local genuinely helps is earlier than that: if the vehicle still drives and you are ten minutes away, bringing it in for a paid diagnostic before anyone undoes a clamp is one short trip rather than a day off work. A split differential pressure pipe looks exactly like a blocked filter and is not one." },
   { q: "Mine has come off as one huge welded lump. Will you still take it?", a: "Yes. On a lot of Euro 6 vehicles the DPF, the oxidation catalyst and the SCR are a single assembly and they come off together, which is normal here. It is heavy, and on a van-sized unit expect a two-person lift at both ends. This is the job where being in Totnes is worth the most, because a postal customer has to box something that awkward securely and trust a courier with it, and you can simply carry it in. Bring a crate or a bag, and say what sensors are still attached." },
   { q: "It blocked again a few months after the last clean. Is another clean the answer?", a: "Probably not on its own. A cleaned filter behaves like a new one, so if it loads up again quickly the filter is the symptom rather than the fault, and a second clean buys you the same few months back. A paid DPF diagnostic looking at the differential pressure sensor and its pipework, the EGR, the injectors and the oil level is a better use of the money. Diagnostics are a paid check, not a free scan. Being local, you can leave the vehicle and the removed filter at the same address on the same morning, which nobody driving in from Exeter can do." },
 ];
@@ -112,7 +112,7 @@ const DPFCleaningTotnes = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning Totnes | Our Home Workshop | AutoCleanse" description="Our DPF cleaning workshop is in Totnes: Webbers Yard, TQ9 6JY. Off-vehicle machine clean and flow testing from £210 inside 10 miles. Call 01803 269895." path="/dpf-cleaning-totnes" />
+      <SEO title="DPF Cleaning Totnes | Our Home Workshop | AutoCleanse" description="Our DPF cleaning workshop is in Totnes: Webbers Yard, TQ9 6JY. Off-vehicle machine clean and flow testing from £210 inside 10 miles. Call 07823 649190." path="/dpf-cleaning-totnes" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
         '@graph': [
@@ -155,7 +155,7 @@ const DPFCleaningTotnes = () => {
 
           <div className="max-w-4xl mx-auto reveal-item">
             <p className="text-xl md:text-2xl text-white/50 leading-relaxed font-medium">
-              Totnes is not a service area on a map, it is the address the filters come to. Everything cleaned for Exeter, Plymouth, Torbay and the tracked-post customers from the rest of the UK is done on one bench at The Old Barn Industrial Estate, Webbers Yard, on the edge of town. If you live here, the workshop is a few minutes away rather than a courier job. Cleaning starts from £210 inside the ten-mile band, which already includes local collection and return, and the workshop is open Monday to Friday, 09:00 to 17:00. The number is 01803 269895.
+              Totnes is not a service area on a map, it is the address the filters come to. Everything cleaned for Exeter, Plymouth, Torbay and the tracked-post customers from the rest of the UK is done on one bench at The Old Barn Industrial Estate, Webbers Yard, on the edge of town. If you live here, the workshop is a few minutes away rather than a courier job. Cleaning starts from £210 inside the ten-mile band, which already includes local collection and return, and the workshop is open Monday to Friday, 09:00 to 17:00. The number is 07823 649190.
             </p>
           </div>
         </div>
@@ -354,11 +354,11 @@ const DPFCleaningTotnes = () => {
               <div className="relative z-10 flex flex-col sm:flex-row gap-6 justify-center">
                 <MagneticButton className="block">
                   <a
-                    href="tel:01803269895"
+                    href="tel:07823649190"
                     className="w-full sm:w-auto bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center text-lg"
                   >
                     <Phone size={24} className="mr-3 text-[#FF7A00]" />
-                    01803 269895
+                    07823 649190
                   </a>
                 </MagneticButton>
                 <MagneticButton className="block">

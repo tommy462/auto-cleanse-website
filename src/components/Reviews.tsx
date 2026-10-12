@@ -146,9 +146,9 @@ export default function Reviews({
           )}
           {showCallCta && (
             <a
-              href="tel:01803269895"
+              href="tel:07823649190"
               className="px-6 py-3 rounded-xl font-bold text-sm text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2"
-              aria-label="Call Auto-Cleanse on 01803 269895"
+              aria-label="Call Auto-Cleanse on 07823 649190"
             >
               <Phone size={15} className="text-[#FF7A00]" /> Call Auto-Cleanse
             </a>

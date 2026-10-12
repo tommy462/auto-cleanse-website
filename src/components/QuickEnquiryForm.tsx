@@ -73,10 +73,10 @@ export default function QuickEnquiryForm({
           We&rsquo;ll call you back as soon as we can. Need us sooner? Call us now.
         </p>
         <a
-          href="tel:01803269895"
+          href="tel:07823649190"
           className="inline-flex items-center gap-2 btn-shine px-6 py-3 rounded-xl font-bold text-sm text-white"
         >
-          <Phone size={16} /> 01803 269895
+          <Phone size={16} /> 07823 649190
         </a>
       </div>
     );
@@ -182,12 +182,12 @@ export default function QuickEnquiryForm({
 
       <p className="text-center text-white/30 text-xs">
         Prefer to talk now? Call{' '}
-        <a href="tel:01803269895" className="text-[#FF7A00] font-semibold">01803 269895</a>
+        <a href="tel:07823649190" className="text-[#FF7A00] font-semibold">07823 649190</a>
       </p>
 
       {status === 'error' && (
         <p className="text-red-400 text-sm text-center">
-          Something went wrong. Please try again or call us on 01803 269895.
+          Something went wrong. Please try again or call us on 07823 649190.
         </p>
       )}
     </form>

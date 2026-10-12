@@ -206,7 +206,7 @@ const Home = () => {
               "alternateName": ["AutoCleanse", "Auto Cleanse", "AutoCleanse DPF", "AutoCleanse Remapping"],
               "description": "Professional DPF cleaning and ECU remapping services based in Totnes, Devon. Specialists in off-vehicle DPF cleaning, Stage 1 & 2 ECU remapping, SCR, DOC and GPF cleaning for cars, vans, HGVs and commercial fleets across Devon and the UK.",
               "url": "https://www.auto-cleanse.co.uk",
-              "telephone": "+441803269895",
+              "telephone": "+447823649190",
               "email": "info@auto-cleanse.co.uk",
               "image": "https://www.auto-cleanse.co.uk/og-image.jpg",
               "logo": "https://www.auto-cleanse.co.uk/autocleanse-text-logo.png",
@@ -324,7 +324,7 @@ const Home = () => {
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+441803269895",
+                "telephone": "+447823649190",
                 "contactType": "customer service",
                 "availableLanguage": "English",
                 "areaServed": "GB"
@@ -902,11 +902,11 @@ const Home = () => {
             </MagneticButton>
 
             <a
-              href="tel:01803269895"
+              href="tel:07823649190"
               className="btn-secondary text-white hover:text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center"
             >
               <Phone size={20} className="mr-2" />
-              01803 269895
+              07823 649190
             </a>
           </div>
         </div>

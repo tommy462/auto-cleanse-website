@@ -114,12 +114,12 @@ const Header = () => {
 
               {/* Click-to-call */}
               <a
-                href="tel:01803269895"
+                href="tel:07823649190"
                 className="flex items-center gap-2 text-white hover:text-[#FF7A00] transition-colors font-bold text-sm whitespace-nowrap"
-                aria-label="Call AutoCleanse on 01803 269895"
+                aria-label="Call AutoCleanse on 07823 649190"
               >
                 <Phone size={16} className="text-[#FF7A00]" />
-                <span>01803 269895</span>
+                <span>07823 649190</span>
               </a>
 
               {/* Book Now Button */}
@@ -168,11 +168,11 @@ const Header = () => {
 
               <div className="mt-3 pt-4 border-t border-white/10 space-y-3">
                 <a
-                  href="tel:01803269895"
+                  href="tel:07823649190"
                   className="w-full px-6 py-3 rounded-lg font-bold text-base text-white border border-[#FF7A00]/40 bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 transition-colors flex items-center justify-center gap-2"
-                  aria-label="Call AutoCleanse on 01803 269895"
+                  aria-label="Call AutoCleanse on 07823 649190"
                 >
-                  <Phone size={16} className="text-[#FF7A00]" /> 01803 269895
+                  <Phone size={16} className="text-[#FF7A00]" /> 07823 649190
                 </a>
                 <Link
                   to="/book"

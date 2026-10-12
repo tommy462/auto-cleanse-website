@@ -96,7 +96,7 @@ export async function sendBookingEmails(ctx: BookingEmailContext): Promise<{ bus
   const custSubject = `Booking confirmed - ${service} on ${m.slot_display}`;
   const firstName = m.customer_name.split(/\s+/)[0] || 'there';
   const intro = `Hi ${firstName},\n\nThanks for booking with AutoCleanse - your £50 deposit has been received and your slot is confirmed.`;
-  const outro = `We may call before the appointment to confirm vehicle details and any preparation needed.\n\nNeed to change anything? Reply to this email or call us on 01803 269895.\n\nAutoCleanse\nwww.auto-cleanse.co.uk`;
+  const outro = `We may call before the appointment to confirm vehicle details and any preparation needed.\n\nNeed to change anything? Reply to this email or call us on 07823 649190.\n\nAutoCleanse\nwww.auto-cleanse.co.uk`;
 
   const custRes = await resend.emails.send({
     from,

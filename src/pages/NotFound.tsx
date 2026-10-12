@@ -16,7 +16,7 @@ export default function NotFound() {
     <div className="min-h-[70vh] flex items-center justify-center px-4 py-24 bg-[#0A0A0A] relative overflow-hidden">
       <SEO
         title="Page Not Found | AutoCleanse"
-        description="Sorry, the page you were looking for could not be found. Explore our DPF cleaning and ECU remapping services or call AutoCleanse on 01803 269895."
+        description="Sorry, the page you were looking for could not be found. Explore our DPF cleaning and ECU remapping services or call AutoCleanse on 07823 649190."
         noindex
       />
 
@@ -40,11 +40,11 @@ export default function NotFound() {
             <HomeIcon size={16} /> Back to Home
           </Link>
           <a
-            href="tel:01803269895"
+            href="tel:07823649190"
             className="px-6 py-3 rounded-xl font-bold text-sm text-white border border-white/20 hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2"
-            aria-label="Call AutoCleanse on 01803 269895"
+            aria-label="Call AutoCleanse on 07823 649190"
           >
-            <Phone size={16} className="text-[#FF7A00]" /> 01803 269895
+            <Phone size={16} className="text-[#FF7A00]" /> 07823 649190
           </a>
         </div>
 

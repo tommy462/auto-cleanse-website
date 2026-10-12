@@ -10,8 +10,8 @@ export const BUSINESS_ID = 'https://www.auto-cleanse.co.uk/#business';
 export const BUSINESS = {
   name: 'Auto-Cleanse',
   alternateName: ['AutoCleanse', 'Auto Cleanse'],
-  telephone: '+441803269895', // E.164 for schema / tel: hrefs
-  phoneDisplay: '01803 269895',
+  telephone: '+447823649190', // E.164 for schema / tel: hrefs
+  phoneDisplay: '07823 649190',
   email: 'info@auto-cleanse.co.uk',
   url: 'https://www.auto-cleanse.co.uk',
   logo: 'https://www.auto-cleanse.co.uk/autocleanse-text-logo.png',

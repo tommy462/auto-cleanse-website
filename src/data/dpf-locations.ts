@@ -87,7 +87,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     faqs: [
       {
         q: 'Do you collect DPFs from Brixham?',
-        a: 'Yes - collection from Brixham is available and can often be combined with our Torbay runs covering Torquay and Paignton. Call 01803 269895 to arrange a slot; trade garages can batch several filters into one collection.',
+        a: 'Yes - collection from Brixham is available and can often be combined with our Torbay runs covering Torquay and Paignton. Call 07823 649190 to arrange a slot; trade garages can batch several filters into one collection.',
       },
       {
         q: 'How long will my van be off the road?',
@@ -135,7 +135,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
       },
       {
         q: 'Can you collect from a garage in Dartmouth?',
-        a: 'Yes - collection from Dartmouth and Kingswear is available by arrangement, and trade garages can batch several filters into one collection. Call 01803 269895 to book a slot.',
+        a: 'Yes - collection from Dartmouth and Kingswear is available by arrangement, and trade garages can batch several filters into one collection. Call 07823 649190 to book a slot.',
       },
       {
         q: 'My car only does short local trips - will the DPF just block again?',
@@ -307,7 +307,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     faqs: [
       {
         q: 'Do you collect from Dawlish Warren and Starcross?',
-        a: 'Yes - collections along the Exe estuary side including Dawlish Warren, Starcross and Kenton can be arranged, often alongside our Exeter runs. Call 01803 269895 to book.',
+        a: 'Yes - collections along the Exe estuary side including Dawlish Warren, Starcross and Kenton can be arranged, often alongside our Exeter runs. Call 07823 649190 to book.',
       },
       {
         q: 'Is posting the filter an option instead?',
@@ -395,7 +395,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
     faqs: [
       {
         q: 'Where exactly is the workshop?',
-        a: 'The Old Barn Industrial Estate, Webbers Yard, Totnes TQ9 - easy to find with parking on site. Call 01803 269895 before setting out so we can be ready for your filter.',
+        a: 'The Old Barn Industrial Estate, Webbers Yard, Totnes TQ9 - easy to find with parking on site. Call 07823 649190 before setting out so we can be ready for your filter.',
       },
       {
         q: 'Do you collect from the villages?',

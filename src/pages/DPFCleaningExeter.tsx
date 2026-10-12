@@ -19,8 +19,8 @@ import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PHONE_DISPLAY = '01803 269895';
-const PHONE_HREF = 'tel:01803269895';
+const PHONE_DISPLAY = '07823 649190';
+const PHONE_HREF = 'tel:07823649190';
 
 // Reuses the site-wide gtag helper. Phone links are already counted as
 // `phone_click` by <LeadTracking>; this only adds which section was clicked.
@@ -97,7 +97,7 @@ const included = [
 const FAQS: Faq[] = [
   {
     q: 'How much does DPF cleaning cost in Exeter?',
-    a: 'DPF machine cleaning starts from £210. Exeter sits outside our 10-mile collection band, so cleaning with collection and return, or by post, is from £230, and HGV and plant filters are from £299. We confirm the exact price when you call on 01803 269895 with your vehicle details.',
+    a: 'DPF machine cleaning starts from £210. Exeter sits outside our 10-mile collection band, so cleaning with collection and return, or by post, is from £230, and HGV and plant filters are from £299. We confirm the exact price when you call on 07823 649190 with your vehicle details.',
   },
   {
     q: 'Do you collect DPFs from Exeter?',
@@ -117,7 +117,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Do you clean DPFs for Exeter garages?',
-    a: 'Yes. We work with garages, fleets and mobile mechanics across Devon, cleaning filters they have removed themselves. Call 01803 269895 to talk through trade turnaround and rates.',
+    a: 'Yes. We work with garages, fleets and mobile mechanics across Devon, cleaning filters they have removed themselves. Call 07823 649190 to talk through trade turnaround and rates.',
   },
   {
     q: 'Can I post my DPF to you from Exeter?',
@@ -200,7 +200,7 @@ const DPFCleaningExeter = () => {
     <div ref={container} className="pt-10 pb-16 md:pt-28 md:pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="DPF Cleaning Exeter | Professional DPF Cleaning | Auto-Cleanse"
-        description="Professional DPF cleaning for Exeter drivers and garages. Off-vehicle machine cleaning, tested before and after, from £210. Call Auto-Cleanse on 01803 269895."
+        description="Professional DPF cleaning for Exeter drivers and garages. Off-vehicle machine cleaning, tested before and after, from £210. Call Auto-Cleanse on 07823 649190."
         path="/dpf-cleaning-exeter"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />

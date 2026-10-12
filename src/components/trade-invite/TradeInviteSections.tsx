@@ -248,28 +248,14 @@ export function DirectContact({ region, campaign }: RegionSectionProps) {
       <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white mb-6">
         Speak to Auto-Cleanse Directly
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <a
-          href={TRADE_CONTACT.phoneHref}
+          href={TRADE_CONTACT.mobileHref}
           onClick={() => trackTradeEvent('trade_phone_click', region, campaign, { cta_location: 'contact_section' })}
           className="rounded-2xl bg-[#1A1D22] border border-white/5 p-5 hover:border-[#FF7A00]/40 transition-colors min-h-[96px] flex flex-col justify-center"
         >
           <span className="text-white/50 text-[11px] font-bold uppercase tracking-widest mb-1">
-            Workshop
-          </span>
-          <span className="text-white font-bold text-lg inline-flex items-center gap-2">
-            <Phone size={18} className="text-[#FF7A00]" aria-hidden="true" />
-            {TRADE_CONTACT.phoneDisplay}
-          </span>
-        </a>
-
-        <a
-          href={TRADE_CONTACT.mobileHref}
-          onClick={() => trackTradeEvent('trade_phone_click', region, campaign, { cta_location: 'contact_section_mobile' })}
-          className="rounded-2xl bg-[#1A1D22] border border-white/5 p-5 hover:border-[#FF7A00]/40 transition-colors min-h-[96px] flex flex-col justify-center"
-        >
-          <span className="text-white/50 text-[11px] font-bold uppercase tracking-widest mb-1">
-            Mobile
+            Call
           </span>
           <span className="text-white font-bold text-lg inline-flex items-center gap-2">
             <Phone size={18} className="text-[#FF7A00]" aria-hidden="true" />

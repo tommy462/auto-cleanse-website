@@ -9,7 +9,7 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Stripe from 'stripe';
-import { BOOKING_CONFIG, REMAP_SERVICES } from '../src/config/booking.js';
+import { BOOKING_CONFIG, REMAP_OPTIONS, REMAP_SERVICES } from '../src/config/booking.js';
 import { APPOINTMENT_DURATION_MIN, isSlotAvailable, isValidDateString, londonToIso } from '../src/server/availability.js';
 import type { BookingMetadata } from '../src/server/bookingProcessing.js';
 
@@ -103,6 +103,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
   if (!isValidDateString(body.jobDate) || !/^\d{2}:\d{2}$/.test(body.jobTime)) {
     return res.status(400).json({ error: 'Invalid slot' });
+  }
+  // Only add-ons still on offer can be booked, so a cached page or a hand-made
+  // request can't buy a withdrawn option (e.g. the removed SCR/AdBlue delete).
+  const offeredOptions = new Set(REMAP_OPTIONS.map((o) => o.value));
+  const unknownOption = (body.selectedOptions ?? []).find((v) => !offeredOptions.has(v));
+  if (unknownOption) {
+    return res.status(400).json({ error: 'One of the selected add-ons is no longer available. Please go back and reselect.' });
   }
 
   // Final availability check against the dashboard to prevent double-booking

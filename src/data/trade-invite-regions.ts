@@ -187,8 +187,8 @@ export const FINAL_CTA = {
 // ── Contact details (existing Auto-Cleanse numbers) ─────────────────────────
 
 export const TRADE_CONTACT = {
-  phoneDisplay: '01803 269895',
-  phoneHref: 'tel:01803269895',
+  phoneDisplay: '07823 649190',
+  phoneHref: 'tel:07823649190',
   mobileDisplay: '07823 649190',
   mobileHref: 'tel:07823649190',
   whatsappNumber: '447823649190',

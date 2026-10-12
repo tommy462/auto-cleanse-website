@@ -36,7 +36,7 @@ const DPFCleaningPaignton = () => {
     <div ref={container} className="pt-10 pb-16 md:pt-28 md:pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="DPF Cleaning Paignton | From £210 | Auto-Cleanse"
-        description="Professional off-vehicle DPF cleaning for Paignton from Auto-Cleanse. Machine cleaned and flow tested before and after, from £210. Call 01803 269895."
+        description="Professional off-vehicle DPF cleaning for Paignton from Auto-Cleanse. Machine cleaned and flow tested before and after, from £210. Call 07823 649190."
         path="/dpf-cleaning-paignton"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -103,12 +103,12 @@ const DPFCleaningPaignton = () => {
 
             <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <a
-                href="tel:01803269895"
+                href="tel:07823649190"
                 onClick={() => trackCta('hero', 'phone')}
                 className="btn-shine px-6 sm:px-7 py-4 rounded-xl font-bold text-white text-base sm:text-lg inline-flex items-center justify-center gap-2.5 min-h-[52px]"
-                aria-label="Call Auto-Cleanse on 01803 269895"
+                aria-label="Call Auto-Cleanse on 07823 649190"
               >
-                <Phone size={20} aria-hidden="true" /> Call 01803 269895
+                <Phone size={20} aria-hidden="true" /> Call 07823 649190
               </a>
               <Link
                 to="/book"
@@ -243,12 +243,12 @@ const DPFCleaningPaignton = () => {
               </p>
               <div className="relative z-10 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
                 <a
-                  href="tel:01803269895"
+                  href="tel:07823649190"
                   onClick={() => trackCta('final', 'phone')}
                   className="btn-shine px-8 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-3 text-lg min-h-[52px]"
-                  aria-label="Call Auto-Cleanse on 01803 269895"
+                  aria-label="Call Auto-Cleanse on 07823 649190"
                 >
-                  <Phone size={22} aria-hidden="true" /> Call 01803 269895
+                  <Phone size={22} aria-hidden="true" /> Call 07823 649190
                 </a>
                 <Link
                   to="/book"

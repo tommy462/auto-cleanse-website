@@ -129,7 +129,6 @@ export const REMAP_OPTIONS: RemapOption[] = [
   { value: 'dtc-disable',          label: 'DTC Disable',                         extraCost: 20 },
   { value: 'lambda-o2-delete',     label: 'Lambda/O2 Delete',                    extraCost: 20 },
   { value: 'flaps',                label: 'Flap Removal',                        extraCost: 20, offRoadOnly: true  },
-  { value: 'scr-adblue-delete',    label: 'SCR/AdBlue Delete',                   extraCost: 20, offRoadOnly: true  },
   { value: 'additive-pats-eolys',  label: 'Additive/PATS/Eolys',                extraCost: 20 },
   { value: 'possibly-is-tuned',    label: 'Possibly/Is Tuned',                   extraCost: 20 },
   { value: 'cold-start-remove',    label: 'Cold Start Remove',                   extraCost: 20 },
