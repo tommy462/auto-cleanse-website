@@ -41,6 +41,8 @@ import TradeInvite from '../pages/TradeInvite';
 import Privacy from '../pages/Privacy';
 import NotFound from '../pages/NotFound';
 import AdBlueGuide from '../pages/AdBlueGuide';
+import AdBlueTown from '../pages/AdBlueTown';
+import AdBlueAreas from '../pages/AdBlueAreas';
 import { ADBLUE_GUIDES } from '../data/adblue-guides';
 
 export default function PageTransition() {
@@ -109,6 +111,9 @@ export default function PageTransition() {
                     {ADBLUE_GUIDES.map((g) => (
                         <Route key={g.path} path={g.path} element={<AdBlueGuide guide={g} />} />
                     ))}
+                    {/* AdBlue town pages: data is injected per page at prerender (see entry-server) */}
+                    <Route path="/adblue-repair/areas" element={<AdBlueAreas />} />
+                    <Route path="/adblue-repair/:town" element={<AdBlueTown />} />
                     <Route path="/blog" element={<BlogIndex />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
                     <Route path="/privacy" element={<Privacy />} />

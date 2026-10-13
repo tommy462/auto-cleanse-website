@@ -8,6 +8,39 @@ import { DPF_LOCATIONS } from './data/dpf-locations';
 import { TRADE_INVITE_ROUTES } from './data/trade-invite-regions';
 import { PUBLISHED_POSTS } from './lib/blog';
 import { ADBLUE_GUIDES } from './data/adblue-guides';
+import townsData from './data/adblue-towns/towns.json';
+import { TownDataContext, TOWNS_PATH, townPath, type TownData, type TownStore } from './lib/town-data';
+
+// AdBlue town pages go live in waves. Raise this to publish the next wave.
+const PUBLISHED_TOWN_WAVE = 1;
+
+type TownRecord = Omit<TownData, 'nearby'> & { lat: number; lng: number; wave: number };
+const publishedTowns = (townsData as TownRecord[]).filter((t) => t.wave <= PUBLISHED_TOWN_WAVE);
+
+function distanceKm(a: TownRecord, b: TownRecord) {
+  const rad = Math.PI / 180;
+  const dLat = (b.lat - a.lat) * rad;
+  const dLng = (b.lng - a.lng) * rad;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) ** 2;
+  return 6371 * 2 * Math.asin(Math.sqrt(h));
+}
+
+// Nearby links only point at published towns, so they never lead to a 404.
+const TOWN_STORE: TownStore = {
+  towns: Object.fromEntries(
+    publishedTowns.map((t) => {
+      const { lat: _lat, lng: _lng, wave: _wave, ...rest } = t;
+      const nearby = publishedTowns
+        .filter((o) => o.slug !== t.slug)
+        .map((o) => ({ slug: o.slug, name: o.name, km: Math.round(distanceKm(t, o) * 10) / 10 }))
+        .filter((o) => o.km <= 60)
+        .sort((a, b) => a.km - b.km)
+        .slice(0, 6);
+      return [t.slug, { ...rest, nearby }];
+    }),
+  ),
+  index: publishedTowns.map((t) => ({ slug: t.slug, name: t.name, region: t.region, county: t.county })),
+};
 
 export interface RenderResult {
   html: string;
@@ -20,7 +53,9 @@ export function render(url: string): RenderResult {
   const html = renderToString(
     <HelmetProvider context={helmetContext}>
       <StaticRouter location={url}>
-        <App />
+        <TownDataContext.Provider value={TOWN_STORE}>
+          <App />
+        </TownDataContext.Provider>
       </StaticRouter>
     </HelmetProvider>
   );
@@ -81,6 +116,8 @@ export const utilityRoutes: string[] = [
 export const routes: string[] = [
   ...STATIC_ROUTES,
   ...ADBLUE_GUIDES.map((g) => g.path),
+  TOWNS_PATH,
+  ...publishedTowns.map((t) => townPath(t.slug)),
   '/blog',
   ...PUBLISHED_POSTS.map((p) => `/blog/${p.slug}`),
   ...REMAP_LOCATIONS.map((loc) => `/${loc.slug}`),

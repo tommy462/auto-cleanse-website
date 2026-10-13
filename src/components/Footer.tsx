@@ -13,7 +13,9 @@ const Footer = () => {
   const quickLinks = [
     { name: 'DPF Cleaning', path: '/dpf-cleaning' },
     { name: 'ECU Remapping', path: '/ecu-remapping' },
-    { name: 'AdBlue Repair', path: '/adblue-repair-devon' },
+    { name: 'AdBlue Repair Devon', path: '/adblue-repair-devon' },
+    { name: 'AdBlue Repair UK', path: '/adblue-repair' },
+    { name: 'AdBlue Repair Areas', path: '/adblue-repair/areas' },
     { name: 'Blog', path: '/blog' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'Maintenance', path: '/maintenance' },

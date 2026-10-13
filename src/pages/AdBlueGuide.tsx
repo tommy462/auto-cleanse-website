@@ -154,6 +154,16 @@ export default function AdBlueGuide({ guide }: { guide: Guide }) {
 
           {guide.sections.map((s) => <Section key={s.heading} section={s} />)}
 
+          {isHub && (
+            <a href="/adblue-repair/areas" className="flex items-center justify-between gap-4 p-6 md:p-8 rounded-[2rem] bg-[#FF7A00]/[0.08] border border-[#FF7A00]/30 hover:bg-[#FF7A00]/[0.12] transition-colors">
+              <span>
+                <span className="block text-white font-bold text-lg md:text-xl">Find AdBlue repair in your town</span>
+                <span className="block text-white/60 text-sm md:text-base mt-1">Local roads, nearby service areas, AdBlue at the pump, and who would come out.</span>
+              </span>
+              <MapPin size={28} className="text-[#FF7A00] shrink-0" />
+            </a>
+          )}
+
           {isHub && childGuides.length > 0 && (
             <section className={CARD}>
               <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight mb-6">AdBlue guides</h2>
@@ -194,8 +204,8 @@ export default function AdBlueGuide({ guide }: { guide: Guide }) {
                   <h2 className="text-lg md:text-xl font-bold text-white tracking-tight">Who comes out</h2>
                 </div>
                 <div className="text-white/60 text-sm md:text-base leading-relaxed space-y-3">
-                  <p>In Devon, our own technicians from the Totnes workshop. Outside Devon, we book a vetted independent technician near you where we have one.</p>
-                  <p>Either way you deal with us: we quote, take payment and look after anything afterwards. Call and we'll tell you straight away whether we can get someone to you.</p>
+                  <p>In Devon, our own technicians from the Totnes workshop. Outside Devon, we book an independent mobile technician from our national network.</p>
+                  <p>Either way you deal with us: we quote, take payment and look after anything afterwards. Call with your postcode and we'll tell you straight away who can get to you.</p>
                 </div>
               </section>
               {guide.kind !== 'legal' && (
