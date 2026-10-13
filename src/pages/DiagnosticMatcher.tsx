@@ -64,7 +64,8 @@ const PERF_VARIANTS = ['s3', 's4', 's5', 's6', 's7', 's8', 'sq5', 'sq7', 'sq8', 
 
 const parseOptions = (raw: string): string[] => {
   if (!raw || raw.trim() === '') return [];
-  return raw.replace(/[\[\]'"]/g, '').split(',').map(s => s.trim()).filter(Boolean);
+  // AdBlue/SCR software options are not offered: we repair AdBlue systems only.
+  return raw.replace(/[\[\]'"]/g, '').split(',').map(s => s.trim()).filter(Boolean).filter(o => !/adblue|\bscr\b/i.test(o));
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

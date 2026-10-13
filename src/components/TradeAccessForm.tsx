@@ -17,7 +17,6 @@ const SERVICE_INTERESTS = [
   'TCU / gearbox tuning',
   'DPF solutions',
   'EGR solutions',
-  'AdBlue / SCR solutions',
   'DTC removal',
   'Other',
 ] as const;
@@ -181,7 +180,7 @@ export default function TradeAccessForm() {
         </div>
       </div>
 
-      <fieldset toolparamdescription="File-service types the trade customer is interested in; select one or more of Stage 1/2, TCU/gearbox tuning, DPF solutions, EGR solutions, AdBlue/SCR solutions, DTC removal or Other.">
+      <fieldset toolparamdescription="File-service types the trade customer is interested in; select one or more of Stage 1/2, TCU/gearbox tuning, DPF solutions, EGR solutions, DTC removal or Other.">
         <legend className={labelClass}>Services interested in</legend>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           {SERVICE_INTERESTS.map((service) => {

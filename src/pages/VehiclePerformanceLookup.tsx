@@ -53,8 +53,10 @@ const inferFuel = (text: string): 'petrol' | 'diesel' | '' => {
   if (/\b\d+\.\d+t\b/i.test(t)) return 'petrol';
   return '';
 };
+// AdBlue/SCR software options are not offered: we repair AdBlue systems only.
+const isOfferedOption = (opt: string) => !/adblue|\bscr\b/i.test(opt);
 const parseOptions = (raw: string) =>
-  raw ? raw.replace(/[\[\]'"]/g, '').split(',').map(s => s.trim()).filter(Boolean) : [];
+  raw ? raw.replace(/[\[\]'"]/g, '').split(',').map(s => s.trim()).filter(Boolean).filter(isOfferedOption) : [];
 const sortByStockBhp = (engines: ScoredRow[]) => [...engines].sort((a, b) => parseInt(a.stock_bhp) - parseInt(b.stock_bhp));
 // Index (into the stock-BHP-ascending list) of the variant closest to the registered power from the
 // reg lookup. Registered power can differ from the tuning-file figure by +/-10 bhp, so we always take
@@ -1136,14 +1138,14 @@ export default function VehiclePerformanceLookup() {
                 ))}
               </div>
 
-              {result.options.length > 0 && (
+              {result.options.filter(isOfferedOption).length > 0 && (
                 <div className="pt-8 border-t border-white/5">
                   <div className="flex items-center gap-3 mb-5">
                     <Settings size={16} className="text-[#FF7A00]" />
                     <p className="text-sm font-bold uppercase tracking-widest text-white/40">Available Options</p>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {result.options.map(opt => (
+                    {result.options.filter(isOfferedOption).map(opt => (
                       <span key={opt} className="px-3 py-1.5 rounded-lg bg-[#FF7A00]/8 border border-[#FF7A00]/20 text-[#FF9A33] text-sm font-medium">
                         {opt}
                       </span>
