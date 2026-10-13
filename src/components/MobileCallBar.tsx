@@ -1,6 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Mail, CalendarClock } from 'lucide-react';
+import { Phone, Mail, CalendarClock, MessageCircle } from 'lucide-react';
 import { trackEvent } from '../lib/tracking';
+
+// Pre-filled so the first message already carries what we need to quote.
+const WHATSAPP_HREF = `https://wa.me/447823649190?text=${encodeURIComponent('Hi Auto-Cleanse, I need a quote. Reg: . Postcode: . What\'s the problem: ')}`;
 
 // Pages that get a service-specific second action instead of the generic
 // "Enquire" link. Keeps a single sticky bar site-wide (no stacking) while
@@ -69,13 +72,24 @@ export default function MobileCallBar() {
             <CalendarClock size={18} className="text-[#FF7A00]" /> {override.label}
           </Link>
         ) : (
-          <Link
-            to="/contact"
-            className="flex-1 flex items-center justify-center gap-2 py-3.5 min-h-[56px] bg-[#0A0A0A] text-white font-bold text-sm hover:text-[#FF7A00] transition-colors"
-            aria-label="Send an enquiry to AutoCleanse"
-          >
-            <Mail size={18} className="text-[#FF7A00]" /> Enquire
-          </Link>
+          <>
+            <a
+              href={WHATSAPP_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-2 py-3.5 min-h-[56px] bg-[#0A0A0A] text-white font-bold text-sm hover:text-[#FF7A00] transition-colors"
+              aria-label="Message AutoCleanse on WhatsApp"
+            >
+              <MessageCircle size={18} className="text-[#25D366]" /> WhatsApp
+            </a>
+            <Link
+              to="/contact"
+              className="flex-1 flex items-center justify-center gap-2 py-3.5 min-h-[56px] bg-[#0A0A0A] text-white font-bold text-sm hover:text-[#FF7A00] transition-colors"
+              aria-label="Send an enquiry to AutoCleanse"
+            >
+              <Mail size={18} className="text-[#FF7A00]" /> Enquire
+            </Link>
+          </>
         )}
       </div>
     </>
