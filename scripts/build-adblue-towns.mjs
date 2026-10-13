@@ -57,7 +57,9 @@ for (const t of base) {
     lng: t.lng,
     pop: Math.round(t.pop / 100) * 100,
     kmFromTotnes: t.kmFromTotnes,
-    wave: t.wave,
+    // The South West is home turf (our own technicians in Devon), so every
+    // South West town goes out in the first wave whatever its size.
+    wave: t.region === 'South West' ? 1 : t.wave,
     inHouse: IN_HOUSE_COUNTIES.has(t.county),
     districts,
     roads: (o.roads ?? []).slice(0, 8),
