@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Phone, MessageCircle, MessageSquare, ArrowRight, Check, MapPin, ShieldCheck, Route as RouteIcon } from 'lucide-react';
+import { Phone, MessageCircle, MessageSquare, ArrowRight, MapPin, ShieldCheck, Route as RouteIcon } from 'lucide-react';
 import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
 import FaqSection, { type Faq } from '../components/FaqSection';
@@ -86,7 +86,6 @@ export default function AdBlueTown() {
   const faqs: Faq[] = [
     { q: `Do you cover ${districts.length ? listText(districts.slice(0, 4)) : name}?`, a: coverage },
     { q: `Where can I buy AdBlue near ${name}?`, a: pumpText },
-    { q: `Can an AdBlue fault in ${name} be fixed where the vehicle is?`, a: 'Often, yes. Many AdBlue faults can be diagnosed and repaired on site, but some jobs need a workshop. We will tell you which on the call once we know the reg and the fault.' },
     { q: `How much does AdBlue repair cost in ${name}?`, a: 'It depends on the fault, the vehicle and whether parts are needed, so we do not publish prices. Call with your reg and the warning message and we will quote for your vehicle.' },
   ];
 
@@ -126,7 +125,11 @@ export default function AdBlueTown() {
               <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">Who comes out in {name}</h2>
             </div>
             <p className="text-white/65 text-base md:text-lg leading-relaxed">{coverage}</p>
-            <p className="text-white/50 text-sm leading-relaxed mt-3">You deal with us throughout: we quote, take payment and look after anything afterwards.</p>
+            <p className="text-white/50 text-sm leading-relaxed mt-3">
+              <ShieldCheck size={15} className="inline mb-0.5 mr-1 text-[#FF7A00]" />
+              You deal with us throughout. We repair, never delete, and give prices on the phone.{' '}
+              <a href="/how-we-quote" className={LINK}>How we quote</a>
+            </p>
           </section>
 
           <section className="relative p-7 md:p-10 rounded-[2rem] bg-[#FF7A00]/[0.06] border border-[#FF7A00]/25">
@@ -164,10 +167,9 @@ export default function AdBlueTown() {
           <section className={CARD}>
             <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight mb-5">AdBlue warning near {name}? Start here</h2>
             <ol className="space-y-3 text-white/65 text-sm md:text-base leading-relaxed list-decimal pl-5">
-              <li>If you're on a live road, get somewhere safe first.</li>
-              <li>Note the exact dash message and any miles left on a countdown, and don't keep clearing codes.</li>
-              <li>If the tank is genuinely low, top up with good-quality AdBlue. If the warning stays after a short drive, it's a fault.</li>
-              <li>Call or message us with your reg, postcode and the message. We'll tell you what it's likely to be and who would come out.</li>
+              <li>Get somewhere safe first if you're on a live road.</li>
+              <li>Note the dash message and any countdown miles. If the tank is low, top up; if the warning stays, it's a fault.</li>
+              <li>Call or message us with your reg and postcode.</li>
             </ol>
             <div className="grid gap-3 sm:grid-cols-2 mt-6">
               {GUIDES.map((g) => (
@@ -177,21 +179,6 @@ export default function AdBlueTown() {
                 </a>
               ))}
             </div>
-          </section>
-
-          <section className={CARD}>
-            <div className="flex items-center gap-4 mb-4">
-              <ShieldCheck size={22} className="text-[#FF7A00] shrink-0" />
-              <h2 className="text-lg md:text-xl font-bold text-white tracking-tight">We repair. We don't delete.</h2>
-            </div>
-            <ul className="space-y-2">
-              {['We find the actual fault and fix it, so the vehicle stays road-legal and passes its MOT.', 'We don’t remove, disable or emulate AdBlue systems.', 'Prices are given on the phone, for your vehicle and fault.'].map((t) => (
-                <li key={t} className="flex items-start gap-3 text-white/65 text-sm md:text-base leading-relaxed">
-                  <Check size={18} className="text-[#FF7A00] shrink-0 mt-0.5" /><span>{t}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-sm mt-4"><a href="/adblue-delete-law" className={LINK}>Why an AdBlue delete isn't the answer</a> · <a href="/how-we-quote" className={LINK}>How we quote</a></p>
           </section>
 
           <section>
