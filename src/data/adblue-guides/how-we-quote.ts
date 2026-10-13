@@ -22,7 +22,7 @@ const guide: AdBlueGuide = {
     },
     {
       label: 'Who attends',
-      text: 'Our own technician in Devon. Elsewhere, a vetted independent technician near you where we have one. We\'ll tell you on the call.',
+      text: 'Our own technician in Devon. Elsewhere, an independent mobile technician from our national network. We\'ll tell you who on the call.',
     },
     {
       label: 'Who you deal with',
@@ -60,7 +60,7 @@ const guide: AdBlueGuide = {
       steps: [
         {
           title: 'We tell you who would attend',
-          body: 'In Devon, that\'s our own technician. Outside Devon, we book a vetted independent technician near you where we have one. If we can\'t get someone to you, we say so on the call.',
+          body: 'In Devon, that\'s our own technician. Outside Devon, we book an independent mobile technician from our national network and tell you who is coming. If we can\'t get someone to you, we say so on the call.',
         },
         {
           title: 'You know first if a diagnostic visit is needed',
@@ -114,7 +114,7 @@ const guide: AdBlueGuide = {
     },
     {
       q: 'Who will actually come out?',
-      a: 'In Devon, our own technician. Outside Devon, we book a vetted independent technician near you where we have one. Call and we\'ll tell you straight away whether we can get someone to you.',
+      a: 'In Devon, our own technician. Outside Devon, an independent mobile technician from our national network, booked and managed by us. Call and we\'ll tell you straight away who can get to you.',
     },
     {
       q: 'If an independent technician does the work, who do I pay?',

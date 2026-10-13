@@ -18,7 +18,7 @@ const guide: AdBlueGuide = {
     },
     {
       label: 'Who comes out',
-      text: 'Our own technicians in Devon. Elsewhere, a vetted independent technician near you where we have one.',
+      text: 'Our own technicians in Devon. Elsewhere, an independent mobile technician from our national network, booked through us.',
     },
     {
       label: 'Cost',
@@ -80,7 +80,7 @@ const guide: AdBlueGuide = {
         },
         {
           title: 'We tell you who attends',
-          body: 'In Devon, one of our own technicians. Elsewhere, a vetted independent technician if we have one near you. If we can\'t cover your area, we say so on the call.',
+          body: 'In Devon, one of our own technicians. Elsewhere, an independent mobile technician from our national network. We tell you who on the call, and if we can\'t cover your area we say so.',
         },
         {
           title: 'Price agreed before any repair',
@@ -100,7 +100,7 @@ const guide: AdBlueGuide = {
       heading: 'Coverage: Devon and beyond',
       paragraphs: [
         'In Devon, our own technicians attend from our Totnes workshop. Some repairs are done where the vehicle is and some need a workshop, depending on the fault and where the part sits. We tell you which before anyone sets off.',
-        'Outside Devon, we book a vetted independent technician near you where we have one. We are still building that network. Call and we\'ll tell you straight away whether we can get someone to you.',
+        'Outside Devon, we book an independent mobile technician from our national network of agents and manage the job for you. Call with your postcode and we\'ll tell you straight away who can get to you.',
       ],
     },
     {
@@ -138,7 +138,7 @@ const guide: AdBlueGuide = {
   faqs: [
     {
       q: 'Do you do mobile AdBlue repair?',
-      a: 'In Devon, yes, where the fault allows; some repairs need our Totnes workshop. Outside Devon it depends on whether we have a vetted independent technician near you, so call and we\'ll tell you straight away.',
+      a: 'In Devon, yes, where the fault allows; some repairs need our Totnes workshop. Outside Devon, an independent mobile technician from our national network comes to you; call with your postcode and we\'ll tell you who.',
     },
     {
       q: 'Can I keep driving with an AdBlue countdown?',
@@ -185,7 +185,7 @@ const guide: AdBlueGuide = {
     'A scan-tool screenshot from a real van job showing the stored AdBlue codes and live NOx readings before and after the repair, with VIN and reg masked.',
     'A photo of a real dash countdown message from a customer vehicle, with the miles showing, to sit near the top of the page.',
     'One short real job write-up per common fault (make, model, codes, what was found, what was replaced, how the fix was confirmed), with the customer\'s permission.',
-    'The areas covered by vetted independent technicians outside Devon once agreed, so the coverage section can name real areas.',
+    'Which network agents take AdBlue work (and for which makes), so the coverage section can be specific.',
     'A photo of a crystallised dosing injector or other failed part removed on a real job.',
   ],
 };
