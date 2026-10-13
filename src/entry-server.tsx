@@ -7,6 +7,7 @@ import { VEHICLE_REMAPS } from './data/vehicle-remapping';
 import { DPF_LOCATIONS } from './data/dpf-locations';
 import { TRADE_INVITE_ROUTES } from './data/trade-invite-regions';
 import { PUBLISHED_POSTS } from './lib/blog';
+import { ADBLUE_GUIDES } from './data/adblue-guides';
 
 export interface RenderResult {
   html: string;
@@ -79,6 +80,7 @@ export const utilityRoutes: string[] = [
 
 export const routes: string[] = [
   ...STATIC_ROUTES,
+  ...ADBLUE_GUIDES.map((g) => g.path),
   '/blog',
   ...PUBLISHED_POSTS.map((p) => `/blog/${p.slug}`),
   ...REMAP_LOCATIONS.map((loc) => `/${loc.slug}`),

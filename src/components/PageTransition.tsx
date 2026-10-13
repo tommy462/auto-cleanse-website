@@ -40,6 +40,8 @@ import DPFCleaningNearMe from '../pages/DPFCleaningNearMe';
 import TradeInvite from '../pages/TradeInvite';
 import Privacy from '../pages/Privacy';
 import NotFound from '../pages/NotFound';
+import AdBlueGuide from '../pages/AdBlueGuide';
+import { ADBLUE_GUIDES } from '../data/adblue-guides';
 
 export default function PageTransition() {
     const location = useLocation();
@@ -103,6 +105,10 @@ export default function PageTransition() {
                     <Route path="/dpf-diagnostics-devon" element={<DPFDiagnosticsDevon />} />
                     <Route path="/blocked-dpf-cleaning-devon" element={<BlockedDPFCleaningDevon />} />
                     <Route path="/adblue-repair-devon" element={<AdBlueRepairDevon />} />
+                    {/* National AdBlue guides (data in src/data/adblue-guides) */}
+                    {ADBLUE_GUIDES.map((g) => (
+                        <Route key={g.path} path={g.path} element={<AdBlueGuide guide={g} />} />
+                    ))}
                     <Route path="/blog" element={<BlogIndex />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
                     <Route path="/privacy" element={<Privacy />} />

@@ -60,7 +60,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Is an "AdBlue delete" legal?',
-    a: 'No. Disabling the AdBlue system is illegal on any vehicle used on UK roads, fails the MOT and can void your insurance. That is why we repair the fault properly instead.',
+    a: 'Not as a fix for a road vehicle. A missing or obviously modified system is a major MOT defect, using a vehicle altered that way can be an offence depending on the vehicle, and it can affect your insurance. The government has also proposed covering all road vehicles from 2001 onwards. That is why we repair the fault properly instead.',
   },
   {
     q: 'How long does it take?',
@@ -285,6 +285,8 @@ export default function AdBlueRepairDevon() {
             <h2 className="text-xl font-bold text-white mb-6 tracking-tight">Related services</h2>
             <div className="space-y-3">
               {[
+                { to: '/adblue-repair', label: 'AdBlue repair outside Devon, and our AdBlue fault guides' },
+                { to: '/adblue-countdown-no-start', label: 'AdBlue countdown or no-start: what to do now' },
                 { to: '/dpf-diagnostics-devon', label: 'DPF fault diagnostics' },
                 { to: '/dpf-cleaning-devon', label: 'DPF cleaning across Devon' },
                 { to: '/ecu-remapping', label: 'ECU remapping' },
