@@ -40,4 +40,5 @@ export const GOOGLE_ADS_ID = 'AW-17928380785';
 // when set, the tracking helper will also fire a Google Ads conversion hit.
 // Format is just the label part, e.g. "abcDEFghIJ".
 export const LEAD_CONVERSION_LABEL = '';
-export const CALL_CONVERSION_LABEL = '';
+// "Click to call" (Phone call lead): fires when a visitor taps any tel: link.
+export const CALL_CONVERSION_LABEL = 'iARjCKf42ZwdEPHC9eRC';
