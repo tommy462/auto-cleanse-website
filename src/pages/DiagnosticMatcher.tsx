@@ -64,8 +64,9 @@ const PERF_VARIANTS = ['s3', 's4', 's5', 's6', 's7', 's8', 'sq5', 'sq7', 'sq8', 
 
 const parseOptions = (raw: string): string[] => {
   if (!raw || raw.trim() === '') return [];
-  // AdBlue/SCR software options are not offered: we repair AdBlue systems only.
-  return raw.replace(/[\[\]'"]/g, '').split(',').map(s => s.trim()).filter(Boolean).filter(o => !/adblue|\bscr\b/i.test(o));
+  // Emissions equipment removals (AdBlue/SCR, DPF/OPF, EGR, flaps, decat) are not
+  // offered: we repair these systems, we don't delete them.
+  return raw.replace(/[\[\]'"]/g, '').split(',').map(s => s.trim()).filter(Boolean).filter(o => !/adblue|\bscr\b|dpf|opf|gpf|egr|flap|decat|lambda/i.test(o));
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

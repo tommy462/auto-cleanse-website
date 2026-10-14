@@ -111,30 +111,23 @@ export type RemapServiceValue = typeof REMAP_SERVICES[number]['value'];
 // ─────────────────────────────────────────────────────────────────────────────
 // Add-on options (shown as checkboxes on the booking form)
 // extraCost is the additional charge in pounds (0 = included free)
-// offRoadOnly: true means the option is for off-road/export vehicles only and
-//   is not road-legal in the UK - a legal disclaimer must be shown and accepted
+// Emissions equipment removals (DPF/GPF/OPF, EGR, flaps, lambda/decat, cold
+// start, Eolys additive, crackles that need the CAT off) are not offered: they
+// leave a road vehicle illegal to drive, and we repair these systems instead.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface RemapOption {
   value: string;
   label: string;
   extraCost: number;
-  offRoadOnly?: boolean;
 }
 
 export const REMAP_OPTIONS: RemapOption[] = [
-  { value: 'dpf-gpf-opf-disable',  label: 'DPF/GPF/OPF Disable',               extraCost: 20, offRoadOnly: true  },
-  { value: 'egr-disable',          label: 'EGR Delete',                          extraCost: 20, offRoadOnly: true  },
   { value: 'speed-limiter-disable',label: 'Speed Limiter Disable',               extraCost: 20 },
   { value: 'dtc-disable',          label: 'DTC Disable',                         extraCost: 20 },
-  { value: 'lambda-o2-delete',     label: 'Lambda/O2 Delete',                    extraCost: 20 },
-  { value: 'flaps',                label: 'Flap Removal',                        extraCost: 20, offRoadOnly: true  },
-  { value: 'additive-pats-eolys',  label: 'Additive/PATS/Eolys',                extraCost: 20 },
   { value: 'possibly-is-tuned',    label: 'Possibly/Is Tuned',                   extraCost: 20 },
-  { value: 'cold-start-remove',    label: 'Cold Start Remove',                   extraCost: 20 },
   { value: 'hard-cut-diesel',      label: 'Hard Cut Diesel',                     extraCost: 36 },
   { value: 'immo-off',             label: 'IMMO Off',                            extraCost: 36 },
-  { value: 'crackles-petrol',      label: 'Crackles Petrol (only with CAT off)', extraCost: 36 },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

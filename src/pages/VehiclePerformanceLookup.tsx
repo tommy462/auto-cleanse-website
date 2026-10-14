@@ -53,8 +53,9 @@ const inferFuel = (text: string): 'petrol' | 'diesel' | '' => {
   if (/\b\d+\.\d+t\b/i.test(t)) return 'petrol';
   return '';
 };
-// AdBlue/SCR software options are not offered: we repair AdBlue systems only.
-const isOfferedOption = (opt: string) => !/adblue|\bscr\b/i.test(opt);
+// Emissions equipment removals (AdBlue/SCR, DPF/OPF, EGR, flaps, decat) are not
+// offered: we repair these systems, we don't delete them.
+const isOfferedOption = (opt: string) => !/adblue|\bscr\b|dpf|opf|gpf|egr|flap|decat|lambda/i.test(opt);
 const parseOptions = (raw: string) =>
   raw ? raw.replace(/[\[\]'"]/g, '').split(',').map(s => s.trim()).filter(Boolean).filter(isOfferedOption) : [];
 const sortByStockBhp = (engines: ScoredRow[]) => [...engines].sort((a, b) => parseInt(a.stock_bhp) - parseInt(b.stock_bhp));

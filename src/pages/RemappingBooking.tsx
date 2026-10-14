@@ -16,7 +16,6 @@ interface BookingForm {
   serviceType: RemapServiceValue | '';
   bookingType: 'workshop' | 'mobile' | '';
   selectedOptions: string[];
-  legalAcknowledged: boolean;
   fullName: string;
   email: string;
   phone: string;
@@ -57,14 +56,13 @@ type CardId =
   | 'contact'
   | 'vehicle'
   | 'addons'
-  | 'legal'
   | 'date'
   | 'time'
   | 'payment';
 
 const EMPTY: BookingForm = {
   serviceType: '', bookingType: '',
-  selectedOptions: [], legalAcknowledged: false,
+  selectedOptions: [],
   fullName: '', email: '', phone: '',
   vehicleRegistration: '', vehicleMakeModel: '', goals: '', notes: '',
   addressLine1: '', addressLine2: '', townCity: '', postcode: '',
@@ -245,7 +243,6 @@ const CARD_META: Record<CardId, { title: string; subtitle?: string }> = {
   contact:  { title: 'Your contact details', subtitle: "So we can confirm your booking" },
   vehicle:  { title: 'Your vehicle', subtitle: 'Tell us about the car we\'ll be working on' },
   addons:   { title: 'Add-on options', subtitle: 'First add-on is FREE - extras from +£20' },
-  legal:    { title: 'Legal notice', subtitle: 'Please read and confirm before continuing' },
   date:     { title: 'Choose a date', subtitle: 'Select an available day' },
   time:     { title: 'Choose a time', subtitle: 'Pick an available slot' },
   payment:  { title: 'Secure your slot', subtitle: 'Pay the £50 deposit to confirm' },
@@ -287,8 +284,6 @@ export default function RemappingBooking() {
 
   const update = (u: Partial<BookingForm>) => setForm(f => ({ ...f, ...u }));
 
-  const hasOffRoadOptions = form.selectedOptions.some(v => REMAP_OPTIONS.find(o => o.value === v)?.offRoadOnly);
-
   // ── Sequence ────────────────────────────────────────────────────────────────
 
   function getSequence(): CardId[] {
@@ -296,14 +291,13 @@ export default function RemappingBooking() {
     if (form.bookingType === 'mobile') cards.push('address');
     cards.push('contact', 'vehicle');
     if (form.serviceType && form.serviceType !== 'not-sure') cards.push('addons');
-    if (hasOffRoadOptions) cards.push('legal');
     cards.push('date', 'time', 'payment');
     return cards;
   }
 
   // Fixed ordering - used to find the nearest preceding card when the current
   // card is removed from the sequence (e.g. switching mobile → workshop removes 'address')
-  const FULL_ORDER: CardId[] = ['service', 'location', 'address', 'contact', 'vehicle', 'addons', 'legal', 'date', 'time', 'payment'];
+  const FULL_ORDER: CardId[] = ['service', 'location', 'address', 'contact', 'vehicle', 'addons', 'date', 'time', 'payment'];
 
   // If form changes make current card invalid, fall back to the nearest preceding valid card
   useEffect(() => {
@@ -316,7 +310,7 @@ export default function RemappingBooking() {
       setAnimKey(k => k + 1);
       setAnimDir('back');
     }
-  }, [form.serviceType, form.bookingType, hasOffRoadOptions]); // eslint-disable-line
+  }, [form.serviceType, form.bookingType]); // eslint-disable-line
 
   // ── Navigation ──────────────────────────────────────────────────────────────
 
@@ -431,7 +425,6 @@ export default function RemappingBooking() {
     contact:  form.fullName.trim() !== '' && form.email.trim() !== '' && form.phone.trim() !== '',
     vehicle:  form.vehicleRegistration.trim() !== '' && form.vehicleMakeModel.trim() !== '',
     addons:   true,
-    legal:    form.legalAcknowledged,
     date:     selectedDate !== null && !slotsLoading,
     time:     selectedTime !== null,
     payment:  true,
@@ -589,24 +582,22 @@ export default function RemappingBooking() {
                   <button key={opt.value} type="button"
                     onClick={() => {
                       const next = checked ? form.selectedOptions.filter(v => v !== opt.value) : [...form.selectedOptions, opt.value];
-                      update({ selectedOptions: next, legalAcknowledged: false });
+                      update({ selectedOptions: next });
                     }}
                     className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-left transition-all ${
                       checked
                         ? isFree ? 'bg-green-500/10 border-green-500/50'
-                          : opt.offRoadOnly ? 'bg-amber-500/10 border-amber-500/50'
                           : 'bg-[#FF7A00]/10 border-[#FF7A00]/50'
                         : 'bg-black/20 border-white/[0.07] hover:border-white/20'
                     }`}>
                     <span className={`w-4 h-4 rounded flex-shrink-0 border flex items-center justify-center ${
                       checked
-                        ? isFree ? 'bg-green-500 border-green-500' : opt.offRoadOnly ? 'bg-amber-500 border-amber-500' : 'bg-[#FF7A00] border-[#FF7A00]'
+                        ? isFree ? 'bg-green-500 border-green-500' : 'bg-[#FF7A00] border-[#FF7A00]'
                         : 'border-white/20'
                     }`}>
                       {checked && <span className="text-black text-[9px] font-black leading-none">✓</span>}
                     </span>
                     <span className={`text-xs font-medium flex-1 leading-snug ${checked ? 'text-white' : 'text-white/60'}`}>{opt.label}</span>
-                    {opt.offRoadOnly && <AlertTriangle size={10} className="text-amber-400 shrink-0" />}
                     {isFree
                       ? <span className="text-[9px] font-black text-green-400 bg-green-500/15 border border-green-500/30 px-1.5 py-0.5 rounded shrink-0">FREE</span>
                       : opt.extraCost > 0
@@ -619,35 +610,6 @@ export default function RemappingBooking() {
           </div>
         );
       }
-
-      /* ── Legal ────────────────────────────────────────────────────────────── */
-      case 'legal':
-        return (
-          <div>
-            <div className="flex gap-2.5 mb-3">
-              <AlertTriangle size={16} className="text-amber-400 shrink-0 mt-0.5" />
-              <p className="text-amber-300 text-xs font-black uppercase tracking-widest">Off-road / Export Use Only</p>
-            </div>
-            <div className="text-white/60 text-xs leading-relaxed space-y-2 mb-5">
-              <p>In the UK, a <strong className="text-white/80">DPF filter, EGR valve and intake flaps</strong> must be fitted and functioning to comply with emissions regulations.</p>
-              <p>Software deletion of these systems means the vehicle will <strong className="text-white/80">no longer comply with UK road law</strong> and <strong className="text-amber-400">must not be driven on public roads</strong>. This service is only lawful for off-road, export, or competition/track use.</p>
-              <p>By proceeding you confirm you understand and accept these legal responsibilities.</p>
-            </div>
-            <button type="button" onClick={() => update({ legalAcknowledged: !form.legalAcknowledged })}
-              className={`w-full flex items-start gap-3 p-4 rounded-2xl border text-left transition-all ${
-                form.legalAcknowledged ? 'bg-amber-500/10 border-amber-500/50' : 'bg-black/30 border-white/[0.08] hover:border-amber-500/30'
-              }`}>
-              <span className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
-                form.legalAcknowledged ? 'bg-amber-500 border-amber-500' : 'border-amber-500/40'
-              }`}>
-                {form.legalAcknowledged && <span className="text-black text-[10px] font-black leading-none">✓</span>}
-              </span>
-              <span className="text-white/70 text-xs leading-relaxed">
-                I confirm the vehicle is for <strong className="text-white/90">off-road, export, or competition use only</strong> and I accept full legal responsibility.
-              </span>
-            </button>
-          </div>
-        );
 
       /* ── Date picker ──────────────────────────────────────────────────────── */
       case 'date':
