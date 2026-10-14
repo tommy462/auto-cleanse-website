@@ -591,7 +591,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     region: "South Devon",
     metaTitle: "ECU Remapping Totnes | Local Workshop | AutoCleanse",
     metaDescription:
-      "ECU remapping in Totnes - AutoCleanse is based here. Stage 1, Stage 2, economy remaps and DPF solutions. Local workshop, professional service.",
+      "ECU remapping in Totnes - AutoCleanse is based here. Stage 1, Stage 2, economy remaps and DPF cleaning. Local workshop, professional service.",
     h1: "ECU Remapping in Totnes",
     intro:
       "AutoCleanse is based right here in Totnes - so if you're looking for ECU remapping locally, you've found us. Our workshop on the edge of Totnes handles everything from Stage 1 performance remaps to economy diesel tunes, DPF software solutions and full Stage 2 custom maps. As a Totnes-based business, we serve the surrounding South Hams area daily - from Dartington and Buckfastleigh to Newton Abbot and Kingsbridge. Local, professional and with genuine expertise in modern ECU tuning.",

@@ -43,7 +43,7 @@ Key facts:
 
 ## Trade
 
-- [Trade ECU & TCU file service](https://www.auto-cleanse.co.uk/trade-file-service): a file service for garages and mobile tuners (Stage 1/2, TCU, DPF, EGR and custom requests).
+- [Trade ECU & TCU file service](https://www.auto-cleanse.co.uk/trade-file-service): a file service for garages and mobile tuners (Stage 1/2, TCU, economy and custom requests; no DPF, EGR or AdBlue delete files).
 
 ## Service areas
 

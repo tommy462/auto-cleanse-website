@@ -5,6 +5,7 @@ import PageTransition from './components/PageTransition';
 import MobileCallBar from './components/MobileCallBar';
 import LeadTracking from './components/LeadTracking';
 import Analytics from './components/Analytics';
+import CookieBanner from './components/CookieBanner';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <MobileCallBar />
       <LeadTracking />
       <Analytics />
+      <CookieBanner />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 // analytics). It is a solid starting point - Auto-Cleanse should review it and,
 // if in doubt, have it checked, then keep the "last updated" date current.
 
-const LAST_UPDATED = '24 July 2026';
+const LAST_UPDATED = '14 October 2026';
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -111,10 +111,17 @@ export default function Privacy() {
 
         <Section title="Cookies and analytics">
           <p>
-            We use Google Analytics and Google Ads to understand how the site is used and to measure
-            our advertising. These set cookies or similar identifiers. You can control cookies through
-            your browser settings, and you can opt out of Google Analytics using Google&rsquo;s
-            browser add-on.
+            We use Google Ads (and Google Analytics, where enabled) to understand how the site is used
+            and which of our adverts bring in enquiries. These only set cookies if you choose
+            &ldquo;Accept&rdquo; in the cookie banner. Until then, or if you choose &ldquo;Reject&rdquo;,
+            Google&rsquo;s tag stores no cookies and sends Google only basic signals without cookies
+            (for example, that a page was viewed or a call button was tapped), which Google uses for
+            overall, anonymised reporting.
+          </p>
+          <p>
+            We remember your choice in your browser&rsquo;s storage so we don&rsquo;t ask on every
+            page. You can change it at any time with &ldquo;Cookie Settings&rdquo; at the bottom of
+            every page, or clear it through your browser settings.
           </p>
         </Section>
 

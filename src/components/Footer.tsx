@@ -2,6 +2,7 @@
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import MagneticButton from './MagneticButton';
 import TechnicalBulletinSignup from './TechnicalBulletinSignup';
+import { openCookieSettings } from '../lib/consent';
 
 const Footer = () => {
   const socialLinks = [
@@ -200,6 +201,8 @@ const Footer = () => {
             <span>DPF Cleaning &amp; ECU Remapping</span>
             <span className="text-[#FF7A00]">•</span>
             <Link to="/privacy" className="hover:text-[#FF7A00] transition-colors">Privacy Policy</Link>
+            <span className="text-[#FF7A00]">•</span>
+            <button type="button" onClick={openCookieSettings} className="uppercase tracking-wider hover:text-[#FF7A00] transition-colors">Cookie Settings</button>
           </div>
         </div>
       </div>

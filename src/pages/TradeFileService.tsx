@@ -12,7 +12,7 @@ import TradeAccessForm from '../components/TradeAccessForm';
 const trustPoints = [
   'ECU & TCU files',
   'Stage 1 & Stage 2',
-  'DPF / EGR solutions',
+  'Economy & fleet tuning',
   'Trade support',
   'Portal access coming soon',
 ];
@@ -43,7 +43,7 @@ const whyCards = [
 const steps = [
   { n: '01', icon: LogIn, title: 'Apply for trade access', desc: 'Send us your business details and we set you up as a trade customer.' },
   { n: '02', icon: UploadCloud, title: 'Upload your original file', desc: 'Read your ECU or TCU and send us the original, unmodified file for the vehicle.' },
-  { n: '03', icon: Cog, title: 'Select the required service', desc: 'Choose the solution you need - Stage 1/2, TCU, DPF, EGR, DTC or a custom request.' },
+  { n: '03', icon: Cog, title: 'Select the required service', desc: 'Choose the solution you need - Stage 1/2, TCU, DTC or a custom request.' },
   { n: '04', icon: FileCheck, title: 'Track progress & download', desc: 'We process the file and return it to you, ready to write back to the vehicle.' },
 ];
 
@@ -56,8 +56,6 @@ const performanceServices = [
 ];
 
 const solutionServices = [
-  { icon: Wrench, label: 'DPF solutions', desc: 'Software solutions to support diesel particulate filter work.' },
-  { icon: Cog, label: 'EGR solutions', desc: 'EGR-related calibration options.' },
   { icon: Cpu, label: 'DTC removal', desc: 'Targeted diagnostic trouble code handling.' },
   { icon: FileCheck, label: 'Custom requests', desc: 'Non-standard or combined requirements - just ask.' },
 ];
@@ -113,7 +111,7 @@ export default function TradeFileService() {
               areaServed: { '@type': 'Country', name: 'United Kingdom' },
               audience: { '@type': 'BusinessAudience', audienceType: 'Automotive trade, garages and mobile tuners' },
               description:
-                'A professional ECU and TCU trade file service for garages, mobile tuners and automotive trade customers. Upload original files, request Stage 1, Stage 2, TCU, DPF and EGR solutions, then track progress and download returned files.',
+                'A professional ECU and TCU trade file service for garages, mobile tuners and automotive trade customers. Upload original files, request Stage 1, Stage 2, TCU and economy files, then track progress and download returned files.',
               url: 'https://www.auto-cleanse.co.uk/trade-file-service',
             },
             {
@@ -283,8 +281,9 @@ export default function TradeFileService() {
             <div className="mt-5 flex items-start gap-3 rounded-2xl border border-[#FF7A00]/20 bg-[#FF7A00]/[0.06] px-5 py-4">
               <ShieldCheck size={18} className="text-[#FF7A00] shrink-0 mt-0.5" />
               <p className="text-white/60 text-sm leading-relaxed">
-                Some services may be for off-road, export or competition use only. Trade customers are
-                responsible for ensuring legal compliance for the vehicle&rsquo;s intended use.
+                We don&rsquo;t supply DPF, EGR or AdBlue/SCR delete files. Some services, such as speed
+                limiter changes, are only legal on certain vehicles, and trade customers are responsible
+                for ensuring legal compliance for the vehicle&rsquo;s intended use.
               </p>
             </div>
           </section>

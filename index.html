@@ -10,6 +10,18 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    // Consent Mode: no cookies until the visitor accepts in the cookie banner
+    // (src/components/CookieBanner.tsx). A saved choice is applied here, before
+    // the tag is configured, so returning visitors are never asked twice.
+    var acConsent = 'denied';
+    try { if (localStorage.getItem('ac-cookie-consent') === 'granted') acConsent = 'granted'; } catch (e) {}
+    gtag('consent', 'default', {
+      ad_storage: acConsent,
+      ad_user_data: acConsent,
+      ad_personalization: acConsent,
+      analytics_storage: acConsent
+    });
+    gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());
     gtag('config', 'AW-17928380785');
 
