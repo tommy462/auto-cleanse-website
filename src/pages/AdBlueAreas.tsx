@@ -54,7 +54,7 @@ export default function AdBlueAreas() {
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-3xl leading-relaxed font-medium">
             Pick your town for local roads, nearby service areas, places listed as selling AdBlue at the pump, and who would come out.
-            In Devon that's our own technicians. Elsewhere we book an independent mobile technician from our national network and manage the job for you. Call and we'll tell you straight away who can get to you.
+            In Devon that's our own technicians. Elsewhere we book an independent mobile technician from our national network and manage the job for you. Call and we'll check who can get to you, then ring you back with who's coming and the price.
           </p>
           <a href={`tel:${BUSINESS.telephone}`} className="btn-shine mt-8 px-7 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2">
             <Phone size={18} /> Call {BUSINESS.phoneDisplay}

@@ -52,21 +52,21 @@ export default function PageTransition() {
     // immediately (no opacity/blur wrapper) so the largest hero text can paint
     // without waiting for the JS bundle to hydrate - this is the main LCP fix.
     // A ref (not state) avoids a re-render that would flash the animation on load.
-    const isFirstRender = useRef(true);
+    // It keys off the pathname, so an in-page jump such as #enquiry (which
+    // changes the location but not the page) doesn't replay the animation.
+    const initialPath = useRef(location.pathname);
+    const hasNavigated = useRef(false);
+    if (location.pathname !== initialPath.current) hasNavigated.current = true;
 
     useEffect(() => {
         // Top out scroll when route changes
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
-    useEffect(() => {
-        isFirstRender.current = false;
-    }, []);
-
     return (
         <div
             key={location.pathname}
-            className={`w-full h-full${isFirstRender.current ? '' : ' page-enter'}`}
+            className={`w-full h-full${hasNavigated.current ? ' page-enter' : ''}`}
         >
             <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<Home />} />

@@ -75,7 +75,7 @@ export default function AdBlueTown() {
   const districts = town.districts.slice(0, 6);
   const coverage = town.inHouse
     ? `Our own technicians cover ${name} from our Totnes workshop, about ${town.kmFromTotnes} km away.`
-    : `Outside Devon, we book an independent mobile technician from our national network to come to you in ${name}, and manage the job for you. Call with your postcode and we'll tell you straight away who can get to you.`;
+    : `Outside Devon, we book an independent mobile technician from our national network to come to you in ${name}, and manage the job for you. Call with your postcode and we'll check who can get to you, then ring you back with who's coming and the price.`;
 
   const description = `AdBlue warning, countdown or no-start in ${name}? Repair-only AdBlue diagnosis and repair${districts.length ? ` around ${listText(districts.slice(0, 3))}` : ''}. Call or WhatsApp ${BUSINESS.phoneDisplay}.`;
 
@@ -104,9 +104,10 @@ export default function AdBlueTown() {
             <span className="text-white">AdBlue repair in </span>
             <span className="text-[#FF7A00]">{name}</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/60 max-w-3xl leading-relaxed font-medium">{town.intro}</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8 max-w-2xl">
-            <a href={telHref} className="btn-shine px-6 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2">
+          {/* Contact buttons sit straight under the H1 so they are on the first
+              screen on a phone; the local intro follows. */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8 max-w-2xl">
+            <a href={telHref} className="col-span-2 sm:col-span-1 btn-shine px-6 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2">
               <Phone size={18} /> Call {BUSINESS.phoneDisplay}
             </a>
             <a href={waHref} target="_blank" rel="noopener noreferrer" className="px-6 py-4 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2">
@@ -116,6 +117,7 @@ export default function AdBlueTown() {
               <MessageSquare size={18} /> Text us
             </a>
           </div>
+          <p className="text-lg md:text-xl text-white/60 max-w-3xl leading-relaxed font-medium">{town.intro}</p>
         </header>
 
         <div className="space-y-8">
@@ -148,7 +150,7 @@ export default function AdBlueTown() {
                 <div><dt className="text-white font-bold">AdBlue at the pump nearby</dt><dd className="text-white/65 mt-1">{town.pumps.map((p) => `${p.name}, ${p.km} km`).join('; ')}</dd></div>
               )}
               {town.vans && (
-                <div><dt className="text-white font-bold">Vans registered locally</dt><dd className="text-white/65 mt-1">About {fmtNum(town.vans.count)} in these postcode districts ({town.vans.quarter})</dd></div>
+                <div><dt className="text-white font-bold">Privately kept vans in {town.vans.area}</dt><dd className="text-white/65 mt-1">{fmtNum(town.vans.count)}, {town.vans.dieselPct}% of them diesel (council area, {town.vans.quarter})</dd></div>
               )}
               <div><dt className="text-white font-bold">Population</dt><dd className="text-white/65 mt-1">About {fmtNum(town.pop)} ({town.county || town.region})</dd></div>
             </dl>
@@ -216,7 +218,10 @@ export default function AdBlueTown() {
             <p>
               Local data: road and fuel-station details © OpenStreetMap contributors (ODbL); postcode districts from postcodes.io (ONS);
               population from ONS Census 2021, NRS (Scotland) and NISRA (Northern Ireland) figures
-              {town.vans ? '; van numbers from DfT vehicle licensing statistics' : ''}. Last updated {formatDate(town.updated)}.
+              {town.vans ? '; van numbers from DfT vehicle licensing statistics (table VEH0105)' : ''}. Contains public sector information
+              licensed under the{' '}
+              <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" className="underline underline-offset-2 hover:text-white/60">Open Government Licence v3.0</a>.
+              Last updated {formatDate(town.updated)}.
             </p>
           </section>
         </div>

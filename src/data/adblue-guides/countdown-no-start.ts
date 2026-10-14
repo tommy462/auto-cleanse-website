@@ -87,7 +87,7 @@ const guide: AdBlueGuide = {
       paragraphs: [
         'Where the system blocks restarts, it does not stop an engine that is already running. The block applies the next time you switch off.',
         'If the tank ran dry, add at least the quantity your handbook gives. The rules let the system stay locked until a set minimum has gone in, and that minimum differs between makes. Park level if you can and follow the handbook\'s restart steps, as some vehicles need the ignition on for a short time before they read the new level.',
-        'If a fault caused it, fluid will not help, and repeated attempts to start can flatten the battery. The fault has to be repaired where the vehicle is, or the vehicle moved to a workshop. In Devon, our own technicians attend. Outside Devon, we book an independent mobile technician from our national network, and we\'ll tell you on the call who can get to you.',
+        'If a fault caused it, fluid will not help, and repeated attempts to start can flatten the battery. The fault has to be repaired where the vehicle is, or the vehicle moved to a workshop. In Devon, our own technicians attend. Outside Devon, we book an independent mobile technician from our national network, and we\'ll check who can get to you, then ring you back with who\'s coming and the price.',
       ],
     },
     {

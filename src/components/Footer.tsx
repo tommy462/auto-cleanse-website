@@ -3,8 +3,10 @@ import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, Clock } from 'lucide
 import MagneticButton from './MagneticButton';
 import TechnicalBulletinSignup from './TechnicalBulletinSignup';
 import { openCookieSettings } from '../lib/consent';
+import { useAdBluePage } from '../lib/use-adblue-page';
 
 const Footer = () => {
+  const { isAdBlue } = useAdBluePage();
   const socialLinks = [
     { Icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61573744325360', name: 'Facebook' },
     { Icon: Instagram, href: 'https://www.instagram.com/auto_cleansedpf/', name: 'Instagram' },
@@ -71,7 +73,9 @@ const Footer = () => {
               Ready to restore<br /><span className="text-[#FF7A00] italic font-medium">expertly?</span>
             </h2>
             <p className="text-sm text-white/60 max-w-sm font-medium leading-relaxed">
-              Professional DPF cleaning &amp; ECU remapping services. Fast turnaround, often same-day within 30 miles of Totnes. Trade-friendly pricing.
+              {isAdBlue
+                ? 'Repair-only AdBlue diagnosis and repair, DPF cleaning and ECU remapping. Based in Totnes, Devon.'
+                : 'Professional DPF cleaning & ECU remapping services. Fast turnaround, often same-day within 30 miles of Totnes. Trade-friendly pricing.'}
             </p>
             <div className="pt-2 flex flex-col sm:flex-row lg:flex-col gap-4">
               <MagneticButton className="inline-block">
@@ -196,7 +200,7 @@ const Footer = () => {
             <p>© {new Date().getFullYear()} AutoCleanse. All rights reserved.</p>
           </div>
           <div className="flex flex-wrap justify-center items-center gap-4 text-xs tracking-wider uppercase">
-            <span>Guaranteed Quality</span>
+            <span>{isAdBlue ? 'Repair, never delete' : 'Guaranteed Quality'}</span>
             <span className="text-[#FF7A00]">•</span>
             <span>DPF Cleaning &amp; ECU Remapping</span>
             <span className="text-[#FF7A00]">•</span>

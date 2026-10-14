@@ -205,7 +205,7 @@ export default function AdBlueGuide({ guide }: { guide: Guide }) {
                 </div>
                 <div className="text-white/60 text-sm md:text-base leading-relaxed space-y-3">
                   <p>In Devon, our own technicians from the Totnes workshop. Outside Devon, we book an independent mobile technician from our national network.</p>
-                  <p>Either way you deal with us: we quote, take payment and look after anything afterwards. Call with your postcode and we'll tell you straight away who can get to you.</p>
+                  <p>Either way you deal with us: we quote, take payment and look after anything afterwards. Call with your postcode and we'll check who can get to you, then ring you back with who's coming and the price.</p>
                 </div>
               </section>
               {guide.kind !== 'legal' && (

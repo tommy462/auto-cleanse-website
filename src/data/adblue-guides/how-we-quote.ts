@@ -22,7 +22,7 @@ const guide: AdBlueGuide = {
     },
     {
       label: 'Who attends',
-      text: 'Our own technician in Devon. Elsewhere, an independent mobile technician from our national network. We\'ll tell you who on the call.',
+      text: 'Our own technician in Devon. Elsewhere, an independent mobile technician from our national network. We check who can get to you and ring you back with who\'s coming.',
     },
     {
       label: 'Who you deal with',
@@ -59,8 +59,8 @@ const guide: AdBlueGuide = {
       paragraphs: ['This is the order things happen in.'],
       steps: [
         {
-          title: 'We tell you who would attend',
-          body: 'In Devon, that\'s our own technician. Outside Devon, we book an independent mobile technician from our national network and tell you who is coming. If we can\'t get someone to you, we say so on the call.',
+          title: 'We find who can attend',
+          body: 'In Devon, that\'s our own technician. Outside Devon, we check which independent mobile technician from our national network can get to you, then ring you back with who\'s coming and the price. If we can\'t get someone to you, we say so.',
         },
         {
           title: 'You know first if a diagnostic visit is needed',
@@ -114,7 +114,7 @@ const guide: AdBlueGuide = {
     },
     {
       q: 'Who will actually come out?',
-      a: 'In Devon, our own technician. Outside Devon, an independent mobile technician from our national network, booked and managed by us. Call and we\'ll tell you straight away who can get to you.',
+      a: 'In Devon, our own technician. Outside Devon, an independent mobile technician from our national network, booked and managed by us. Call and we\'ll check who can get to you, then ring you back with who\'s coming and the price.',
     },
     {
       q: 'If an independent technician does the work, who do I pay?',

@@ -113,11 +113,15 @@ export const utilityRoutes: string[] = [
   '/debug/dvla',
 ];
 
+// Published AdBlue town pages. Also written to their own sitemap
+// (sitemap-adblue-towns.xml) so Search Console can report how many are indexed.
+export const townRoutes: string[] = publishedTowns.map((t) => townPath(t.slug));
+
 export const routes: string[] = [
   ...STATIC_ROUTES,
   ...ADBLUE_GUIDES.map((g) => g.path),
   TOWNS_PATH,
-  ...publishedTowns.map((t) => townPath(t.slug)),
+  ...townRoutes,
   '/blog',
   ...PUBLISHED_POSTS.map((p) => `/blog/${p.slug}`),
   ...REMAP_LOCATIONS.map((loc) => `/${loc.slug}`),

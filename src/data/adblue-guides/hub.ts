@@ -80,7 +80,7 @@ const guide: AdBlueGuide = {
         },
         {
           title: 'We tell you who attends',
-          body: 'In Devon, one of our own technicians. Elsewhere, an independent mobile technician from our national network. We tell you who on the call, and if we can\'t cover your area we say so.',
+          body: 'In Devon, one of our own technicians. Elsewhere, an independent mobile technician from our national network. We ring you back with who\'s coming and the price, and if we can\'t cover your area we say so.',
         },
         {
           title: 'Price agreed before any repair',
@@ -100,7 +100,7 @@ const guide: AdBlueGuide = {
       heading: 'Coverage: Devon and beyond',
       paragraphs: [
         'In Devon, our own technicians attend from our Totnes workshop. Some repairs are done where the vehicle is and some need a workshop, depending on the fault and where the part sits. We tell you which before anyone sets off.',
-        'Outside Devon, we book an independent mobile technician from our national network of agents and manage the job for you. Call with your postcode and we\'ll tell you straight away who can get to you.',
+        'Outside Devon, we book an independent mobile technician from our national network of agents and manage the job for you. Call with your postcode and we\'ll check who can get to you, then ring you back with who\'s coming and the price.',
       ],
     },
     {
@@ -138,7 +138,7 @@ const guide: AdBlueGuide = {
   faqs: [
     {
       q: 'Do you do mobile AdBlue repair?',
-      a: 'In Devon, yes, where the fault allows; some repairs need our Totnes workshop. Outside Devon, an independent mobile technician from our national network comes to you; call with your postcode and we\'ll tell you who.',
+      a: 'In Devon, yes, where the fault allows; some repairs need our Totnes workshop. Outside Devon, an independent mobile technician from our national network comes to you; call with your postcode and we\'ll ring you back with who\'s coming.',
     },
     {
       q: 'Can I keep driving with an AdBlue countdown?',

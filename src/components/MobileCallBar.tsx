@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Mail, CalendarClock, MessageCircle } from 'lucide-react';
 import { trackEvent } from '../lib/tracking';
+import { useAdBluePage } from '../lib/use-adblue-page';
 
 // Pre-filled so the first message already carries what we need to quote.
 const WHATSAPP_HREF = `https://wa.me/447823649190?text=${encodeURIComponent('Hi Auto-Cleanse, I need a quote. Reg: . Postcode: . What\'s the problem: ')}`;
@@ -21,6 +22,7 @@ const CTA_OVERRIDES: Record<string, { to: string; label: string }> = {
 // Gives phone-led visitors a one-tap way to call or book from any page.
 export default function MobileCallBar() {
   const { pathname } = useLocation();
+  const { hasEnquiryForm } = useAdBluePage();
 
   // The private trade-invite campaign pages render their own campaign-specific
   // sticky CTA ("Claim Free DPF Clean"), so the site-wide bar is suppressed
@@ -82,13 +84,25 @@ export default function MobileCallBar() {
             >
               <MessageCircle size={18} className="text-[#25D366]" /> WhatsApp
             </a>
-            <Link
-              to="/contact"
-              className="flex-1 flex items-center justify-center gap-2 py-3.5 min-h-[56px] bg-[#0A0A0A] text-white font-bold text-sm hover:text-[#FF7A00] transition-colors"
-              aria-label="Send an enquiry to AutoCleanse"
-            >
-              <Mail size={18} className="text-[#FF7A00]" /> Enquire
-            </Link>
+            {/* AdBlue pages have their own enquiry form, which tags the town or
+                topic, so Enquire jumps to it instead of the generic contact page. */}
+            {hasEnquiryForm ? (
+              <a
+                href="#enquiry"
+                className="flex-1 flex items-center justify-center gap-2 py-3.5 min-h-[56px] bg-[#0A0A0A] text-white font-bold text-sm hover:text-[#FF7A00] transition-colors"
+                aria-label="Send an enquiry to AutoCleanse"
+              >
+                <Mail size={18} className="text-[#FF7A00]" /> Enquire
+              </a>
+            ) : (
+              <Link
+                to="/contact"
+                className="flex-1 flex items-center justify-center gap-2 py-3.5 min-h-[56px] bg-[#0A0A0A] text-white font-bold text-sm hover:text-[#FF7A00] transition-colors"
+                aria-label="Send an enquiry to AutoCleanse"
+              >
+                <Mail size={18} className="text-[#FF7A00]" /> Enquire
+              </Link>
+            )}
           </>
         )}
       </div>

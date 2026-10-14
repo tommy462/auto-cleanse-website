@@ -32,6 +32,15 @@ const EXCLUDE = new Set(['lisburn-belfast']);
 const IN_HOUSE_COUNTIES = new Set(['Devon', 'Plymouth', 'Torbay']);
 const BANNED = /(£\s?\d|24\/7|same[- ]day|\bfree\b|guarantee|nationwide|adblue\.repair|\bdelete|nestled|bustling|vibrant|hidden gem|whether you're|!|—)/i;
 const UPDATED = new Date().toISOString().slice(0, 10);
+// "2026 Q2 (vehicles licensed at end of June 2026; ...)" -> "June 2026".
+const VANS_QUARTER = (vans.meta?.quarter ?? '').match(/end of (\w+ \d{4})/)?.[1] ?? vans.meta?.quarter ?? '';
+// Corrections to vans.json townLocalAuthority, found by checking every town's
+// coordinates against postcodes.io (14 Oct 2026): Glasgow was mapped to
+// Renfrewshire. The other differences were renamed ONS codes or border towns
+// where the mapping is right.
+const LA_OVERRIDES = { glasgow: 'S12000049' };
+// DfT names some councils "Bristol, City of"; show them as "City of Bristol".
+const councilName = (name) => name.replace(/^(.+), (City|County) of$/, '$2 of $1');
 
 const dropped = { excluded: 0, noCopy: [], banned: [] };
 const towns = [];
@@ -42,11 +51,14 @@ for (const t of base) {
   if (BANNED.test(c.intro) || BANNED.test(c.roads || '')) { dropped.banned.push(t.slug); continue; }
   const districts = postcodes[t.slug]?.districts ?? [];
   const o = osm[t.slug] ?? {};
-  let vansRec = null;
-  if (vans.districts && districts.length) {
-    const counts = districts.map((d) => vans.districts[d]).filter((v) => typeof v === 'number');
-    if (counts.length) vansRec = { count: Math.round(counts.reduce((a, b) => a + b, 0) / 10) * 10, quarter: vans.meta?.quarter ?? '' };
-  }
+  // DfT publishes vans by council area (VEH0105), not by postcode district, so
+  // the page states the council-area figure as exactly that. Privately kept
+  // vans only: company vans are counted at the keeper's address, so leasing
+  // head offices inflate places like Chesterfield and Rushmoor tenfold.
+  const la = vans.localAuthorities?.[LA_OVERRIDES[t.slug] ?? vans.townLocalAuthority?.[t.slug]];
+  const vansRec = la?.lgvPrivate
+    ? { area: councilName(la.name), count: la.lgvPrivate, dieselPct: Math.round((la.lgvDieselPrivate / la.lgvPrivate) * 100), quarter: VANS_QUARTER }
+    : null;
   towns.push({
     slug: t.slug,
     name: t.display,

@@ -1,5 +1,6 @@
 ﻿import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
+import { useAdBluePage } from '../lib/use-adblue-page';
 
 interface Message {
   id: string;
@@ -9,6 +10,7 @@ interface Message {
 }
 
 const Chatbot = () => {
+  const { isAdBlue } = useAdBluePage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -150,6 +152,10 @@ const Chatbot = () => {
       handleSendMessage();
     }
   };
+
+  // The assistant is set up for DPF questions and isn't held to the AdBlue
+  // pages' no-prices rule, so those pages leave the contact to Call/WhatsApp.
+  if (isAdBlue) return null;
 
   return (
     <>

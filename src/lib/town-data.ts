@@ -26,7 +26,8 @@ export interface TownData {
   roads: string[];
   services: { name: string; road?: string; km: number }[];
   pumps: { name: string; km: number; town?: string }[];
-  vans?: { count: number; quarter: string } | null;
+  /** Privately kept licensed vans in the town's council area (DfT VEH0105). */
+  vans?: { area: string; count: number; dieselPct: number; quarter: string } | null;
   nearby: TownPlace[];
   intro: string;
   roadsText: string;
