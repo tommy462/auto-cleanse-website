@@ -1,41 +1,35 @@
 import { useEffect } from 'react';
-import { GA4_MEASUREMENT_ID } from '../config/leads';
+import { loadGoogleTag, readConsent } from '../lib/consent';
 
-// A real GA4 measurement ID looks like "G-XXXXXXXXXX".
-const isValidGa4Id = (id: string) => /^G-[A-Z0-9]{4,}$/i.test(id);
-
-// Loads GA4 only when a valid measurement ID is provided via env. If the ID is
-// missing or a placeholder, this is a complete no-op - nothing is requested and
-// nothing breaks. Works independently of the Google Ads tag, so the site is not
-// dependent on Ads being active.
+// Returning visitors who accepted cookies on an earlier visit get the Google
+// tag (Ads + GA4, see src/lib/consent.ts) without being asked again. It is
+// fetched on the first interaction or when the page goes idle, so third-party
+// JS stays off the critical path. Everyone else gets nothing from Google until
+// they accept in the cookie banner.
 export default function Analytics() {
   useEffect(() => {
-    const id = GA4_MEASUREMENT_ID;
-    if (!isValidGa4Id(id)) return;
+    if (readConsent() !== 'granted') return;
 
-    const w = window as unknown as {
-      dataLayer?: unknown[];
-      gtag?: (...args: unknown[]) => void;
+    const events = ['pointerdown', 'touchstart', 'keydown', 'scroll'] as const;
+    const load = () => {
+      events.forEach((evt) => window.removeEventListener(evt, load));
+      loadGoogleTag();
     };
+    events.forEach((evt) => window.addEventListener(evt, load, { once: true, passive: true }));
 
-    w.dataLayer = w.dataLayer || [];
-    if (typeof w.gtag !== 'function') {
-      w.gtag = (...args: unknown[]) => {
-        w.dataLayer!.push(args);
-      };
+    let idle: number | undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    if ('requestIdleCallback' in window) {
+      idle = window.requestIdleCallback(load, { timeout: 5000 });
+    } else {
+      timer = setTimeout(load, 4000);
     }
 
-    // Inject the GA4 library once (it may already be present from the Ads tag).
-    const libSrc = `https://www.googletagmanager.com/gtag/js?id=${id}`;
-    if (!document.querySelector(`script[src="${libSrc}"]`)) {
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = libSrc;
-      document.head.appendChild(script);
-    }
-
-    w.gtag('js', new Date());
-    w.gtag('config', id);
+    return () => {
+      events.forEach((evt) => window.removeEventListener(evt, load));
+      if (idle !== undefined) window.cancelIdleCallback(idle);
+      if (timer !== undefined) clearTimeout(timer);
+    };
   }, []);
 
   return null;

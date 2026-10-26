@@ -4,14 +4,17 @@
 //   /trade-invite/exeter?utm_source=postal-letter&utm_medium=qr
 //     &utm_campaign=trade-outreach-exeter&utm_content=batch-01
 //
-// They are captured on first render and mirrored into sessionStorage so they
-// survive a reload or an in-page navigation and are still available when the
-// claim form is submitted.
+// They are captured on first render and, if the visitor has accepted cookies,
+// mirrored into sessionStorage so they survive a reload or an in-page
+// navigation and are still available when the claim form is submitted. Without
+// consent nothing is stored: the values come from the URL only (campaign
+// measurement isn't covered by the PECR consent exemptions).
 //
 // Analytics reuses the site's existing GA4/gtag setup via trackEvent, so no second
 // analytics script is loaded.
 import { useEffect, useState } from 'react';
 import { trackEvent } from './tracking';
+import { readConsent } from './consent';
 import type { TradeInviteRegion } from '../data/trade-invite-regions';
 
 export interface CampaignParams {
@@ -69,10 +72,12 @@ export function captureCampaignParams(region: TradeInviteRegion): CampaignParams
     landingUrl: stored.landingUrl || window.location.href,
   };
 
-  try {
-    window.sessionStorage.setItem(storageKey(region.slug), JSON.stringify(merged));
-  } catch {
-    /* ignore write failures */
+  if (readConsent() === 'granted') {
+    try {
+      window.sessionStorage.setItem(storageKey(region.slug), JSON.stringify(merged));
+    } catch {
+      /* ignore write failures */
+    }
   }
 
   return merged;
