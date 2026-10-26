@@ -34,6 +34,20 @@ export const BUSINESS = {
   ] as string[],
 };
 
+// The legal entity behind the brand, as registered at Companies House. The
+// trading disclosure rules require these on the website (footer + legal pages).
+// The registered office is not the workshop; customers never go there.
+export const COMPANY = {
+  legalName: 'Auto Cleanse Services Ltd',
+  companyNumber: '13213320',
+  registeredIn: 'England and Wales',
+  registeredOffice: '14 & 15 Southernhay West, Exeter, England, EX1 1PL',
+  vatRegistered: false,
+};
+
+// Workshop (trading) address in one line, for legal pages and emails.
+export const WORKSHOP_ADDRESS_LINE = `${BUSINESS.streetAddress}, ${BUSINESS.addressLocality}, ${BUSINESS.addressRegion}, ${BUSINESS.postalCode}`;
+
 export const OPENING_HOURS = [
   {
     '@type': 'OpeningHoursSpecification',
@@ -54,6 +68,7 @@ export function localBusinessNode(overrides: Record<string, unknown> = {}) {
     '@type': ['AutomotiveService', 'LocalBusiness'],
     '@id': BUSINESS_ID,
     name: BUSINESS.name,
+    legalName: COMPANY.legalName,
     alternateName: BUSINESS.alternateName,
     telephone: BUSINESS.telephone,
     email: BUSINESS.email,

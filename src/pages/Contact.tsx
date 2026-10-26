@@ -1,4 +1,5 @@
 ﻿import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
 import gsap from 'gsap';
@@ -6,6 +7,8 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
+import Reviews from '../components/Reviews';
+import { getReviews, ECU_COMPACT_REVIEW_IDS, DPF_TOWN_REVIEW_IDS } from '../data/reviews';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -192,6 +195,20 @@ const Contact = () => {
               <QuickEnquiryForm source="contact_page" />
             </div>
           </div>
+        </div>
+
+        {/* Reviews */}
+        <div className="mt-24">
+          <Reviews
+            reviews={getReviews(ECU_COMPACT_REVIEW_IDS.concat(DPF_TOWN_REVIEW_IDS))}
+            intro="Real feedback from customers and garages who have used us."
+            columns={3}
+            showGoogleCta
+            showCallCta={false}
+          />
+          <p className="text-center mt-6">
+            <Link to="/reviews" className="text-[#FF7A00] text-sm font-bold underline underline-offset-2">See all reviews</Link>
+          </p>
         </div>
       </div>
     </div>

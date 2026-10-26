@@ -39,6 +39,10 @@ import TradeFileService from '../pages/TradeFileService';
 import DPFCleaningNearMe from '../pages/DPFCleaningNearMe';
 import TradeInvite from '../pages/TradeInvite';
 import Privacy from '../pages/Privacy';
+import CookiePolicy from '../pages/CookiePolicy';
+import Terms from '../pages/Terms';
+import RefundPolicy from '../pages/RefundPolicy';
+import ReviewsPage from '../pages/ReviewsPage';
 import NotFound from '../pages/NotFound';
 import AdBlueGuide from '../pages/AdBlueGuide';
 import AdBlueTown from '../pages/AdBlueTown';
@@ -117,6 +121,10 @@ export default function PageTransition() {
                     <Route path="/blog" element={<BlogIndex />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
                     <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/cookie-policy" element={<CookiePolicy />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/refund-policy" element={<RefundPolicy />} />
+                    <Route path="/reviews" element={<ReviewsPage />} />
 
                     {/* Private trade-outreach campaign landing pages (noindex,
                         nofollow, excluded from the sitemap, never linked publicly).

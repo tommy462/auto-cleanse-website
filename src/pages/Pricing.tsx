@@ -1,6 +1,8 @@
 ﻿import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Reviews from '../components/Reviews';
+import { getReviews, HOMEPAGE_REVIEW_IDS } from '../data/reviews';
 import { Check, ChevronDown, Zap, Package } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -281,6 +283,20 @@ const Pricing = () => {
               Learn About Remapping
             </Link>
           </div>
+        </div>
+
+        {/* Reviews */}
+        <div className="mb-24">
+          <Reviews
+            reviews={getReviews(HOMEPAGE_REVIEW_IDS)}
+            intro="What customers and garages say about our DPF cleaning and ECU remapping."
+            columns={3}
+            showGoogleCta
+            showCallCta={false}
+          />
+          <p className="text-center mt-6">
+            <Link to="/reviews" className="text-[#FF7A00] text-sm font-bold underline underline-offset-2">See all reviews</Link>
+          </p>
         </div>
 
         {/* FAQ Section */}

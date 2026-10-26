@@ -4,6 +4,8 @@ import MagneticButton from './MagneticButton';
 import TechnicalBulletinSignup from './TechnicalBulletinSignup';
 import { openCookieSettings } from '../lib/consent';
 import { useAdBluePage } from '../lib/use-adblue-page';
+import { COMPANY } from '../data/business';
+import { LEGAL_PAGES } from '../data/legal';
 
 const Footer = () => {
   const { isAdBlue } = useAdBluePage();
@@ -20,6 +22,7 @@ const Footer = () => {
     { name: 'AdBlue Repair UK', path: '/adblue-repair' },
     { name: 'AdBlue Repair Areas', path: '/adblue-repair/areas' },
     { name: 'Blog', path: '/blog' },
+    { name: 'Reviews', path: '/reviews' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'Maintenance', path: '/maintenance' },
     { name: 'About', path: '/about' },
@@ -106,7 +109,7 @@ const Footer = () => {
               </p>
               <p className="flex items-center gap-3">
                 <Clock size={16} className="text-[#FF7A00] shrink-0" />
-                <span>Mon–Fri: 9:00am – 5:00pm</span>
+                <span>Mon to Fri: 9:00am to 5:00pm</span>
               </p>
             </address>
           </div>
@@ -197,18 +200,26 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-white/40 text-sm mt-4 pt-8 border-t border-white/5 font-medium">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 gradient-orange rounded-md flex items-center justify-center text-white font-bold text-xs">AC</div>
-            <p>© {new Date().getFullYear()} AutoCleanse. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} {COMPANY.legalName}. All rights reserved.</p>
           </div>
           <div className="flex flex-wrap justify-center items-center gap-4 text-xs tracking-wider uppercase">
-            <span>{isAdBlue ? 'Repair, never delete' : 'Guaranteed Quality'}</span>
+            <span>Repair, never delete</span>
             <span className="text-[#FF7A00]">•</span>
             <span>DPF Cleaning &amp; ECU Remapping</span>
-            <span className="text-[#FF7A00]">•</span>
-            <Link to="/privacy" className="hover:text-[#FF7A00] transition-colors">Privacy Policy</Link>
-            <span className="text-[#FF7A00]">•</span>
-            <button type="button" onClick={openCookieSettings} className="uppercase tracking-wider hover:text-[#FF7A00] transition-colors">Cookie Settings</button>
           </div>
         </div>
+
+        {/* Legal links + the trading disclosures the law requires on the website */}
+        <nav aria-label="Legal" className="mt-6 flex flex-wrap justify-center md:justify-start gap-x-5 gap-y-3 text-xs text-white/50 font-medium">
+          {LEGAL_PAGES.map((p) => (
+            <Link key={p.path} to={p.path} className="hover:text-[#FF7A00] transition-colors py-1">{p.name}</Link>
+          ))}
+          <button type="button" onClick={openCookieSettings} className="hover:text-[#FF7A00] transition-colors py-1">Cookie Settings</button>
+        </nav>
+        <p className="mt-4 text-center md:text-left text-[11px] leading-relaxed text-white/35">
+          Auto-Cleanse is a trading name of {COMPANY.legalName}, registered in {COMPANY.registeredIn},
+          company no. {COMPANY.companyNumber}. Registered office: {COMPANY.registeredOffice}.
+        </p>
       </div>
     </footer>
   );

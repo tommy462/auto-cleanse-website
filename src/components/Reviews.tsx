@@ -13,6 +13,8 @@ interface ReviewsProps {
   showCallCta?: boolean;
   showContactCta?: boolean;
   showInternalLinks?: boolean;
+  /** Phones show the first few with a "Show all" toggle. Off on /reviews. */
+  collapseOnMobile?: boolean;
 }
 
 function Stars({ rating }: { rating: number }) {
@@ -78,10 +80,11 @@ export default function Reviews({
   showCallCta = true,
   showContactCta = false,
   showInternalLinks = false,
+  collapseOnMobile = true,
 }: ReviewsProps) {
   // On phones a long list of full reviews makes the page exhausting to
   // scroll, so collapse to the first few with a toggle. sm+ always shows all.
-  const MOBILE_VISIBLE = 3;
+  const MOBILE_VISIBLE = collapseOnMobile ? 3 : Infinity;
   const [showAllMobile, setShowAllMobile] = useState(false);
 
   if (!reviews.length) return null;
