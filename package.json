@@ -11,7 +11,10 @@
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-server --mode ssr",
     "prerender": "node scripts/prerender.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "blog:status": "node scripts/blog-schedule.mjs",
+    "blog:covers": "node scripts/install-blog-covers.mjs && node scripts/wire-blog-covers.mjs",
+    "blog:ship": "node scripts/blog-ship.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

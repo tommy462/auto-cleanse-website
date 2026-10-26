@@ -1,0 +1,113 @@
+# Publishes the blog's scheduled posts every Monday morning.
+#
+# Posts are committed ahead of time with a future `date`; the build leaves them
+# out until it runs on or after that date (src/lib/blog.ts). This job checks the
+# live site for any post whose date has arrived but which is not live yet, and
+# if there is one it asks Vercel for a fresh production build through a deploy
+# hook, waits for the post to appear, then pings IndexNow.
+#
+# Needs one repository secret: VERCEL_DEPLOY_HOOK_URL (a Vercel deploy hook for
+# the main branch). Run it by hand from the Actions tab with "Run workflow".
+name: Weekly blog publish
+
+on:
+  schedule:
+    # Mondays 06:05 UTC: 06:05 UK time in winter, 07:05 in summer.
+    - cron: '5 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Rebuild the live site even if no post is waiting
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: weekly-blog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Find posts that are due but not live
+        id: due
+        run: |
+          due=$(node scripts/blog-schedule.mjs due)
+          echo "Due but not live: $due"
+          echo "json=$due" >> "$GITHUB_OUTPUT"
+          echo "count=$(echo "$due" | jq length)" >> "$GITHUB_OUTPUT"
+
+      - name: Ask Vercel for a production build
+        if: steps.due.outputs.count != '0' || inputs.force == true
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::error::The VERCEL_DEPLOY_HOOK_URL secret is not set, so nothing can be published. See content/blog/README.md."
+            exit 1
+          fi
+          curl -fsS -X POST "$HOOK" > /dev/null
+          echo "Build requested."
+
+      - name: Wait for the posts to go live
+        if: steps.due.outputs.count != '0'
+        run: |
+          for i in $(seq 1 40); do
+            sleep 30
+            left=$(node scripts/blog-schedule.mjs due | jq length)
+            if [ "$left" = "0" ]; then echo "All due posts are live."; exit 0; fi
+            echo "Waiting on $left post(s)..."
+          done
+          echo "::error::The posts were still not live after 20 minutes. Check the latest deployment in Vercel."
+          exit 1
+
+      - name: Tell IndexNow about the new posts
+        if: steps.due.outputs.count != '0'
+        env:
+          DUE: ${{ steps.due.outputs.json }}
+        run: |
+          paths=$(echo "$DUE" | jq -r '.[] | "/blog/" + .slug')
+          node scripts/indexnow-submit.mjs /blog $paths || echo "::warning::IndexNow submission failed. Not critical."
+
+      - name: Summary
+        if: always()
+        env:
+          DUE: ${{ steps.due.outputs.json }}
+        run: |
+          left=$(node scripts/blog-schedule.mjs queue)
+          {
+            echo "### Weekly blog publish"
+            if [ "$(echo "${DUE:-[]}" | jq length)" = "0" ]; then
+              echo "Nothing was waiting to go live."
+            else
+              echo "Published:"
+              echo "${DUE}" | jq -r '.[] | "- " + .date + " " + .title'
+            fi
+            echo ""
+            echo "$left post(s) still scheduled."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open an issue when the queue is running low
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          left=$(node scripts/blog-schedule.mjs queue)
+          title="Blog queue running low"
+          existing=$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number // empty')
+          if [ "$left" -le 2 ]; then
+            body="Only $left scheduled blog post(s) left after today. Add more to content/blog (future-dated Mondays) to keep the weekly series going. Run \`npm run blog:status\` locally to see the queue."
+            if [ -z "$existing" ]; then gh issue create --title "$title" --body "$body"; else gh issue comment "$existing" --body "$body"; fi
+          elif [ -n "$existing" ]; then
+            gh issue close "$existing" --comment "Queue topped up: $left posts scheduled."
+          fi

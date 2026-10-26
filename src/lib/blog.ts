@@ -57,6 +57,12 @@ function splitFrontmatter(raw: string): { data: Record<string, unknown>; body: s
   return { data, body: match[2] };
 }
 
+// Frontmatter dates as YYYY-MM-DD, whether YAML handed back a string or a Date.
+function isoDay(value: unknown): string {
+  if (value instanceof Date) return isNaN(+value) ? '' : value.toISOString().slice(0, 10);
+  return value ? String(value).trim().slice(0, 10) : '';
+}
+
 function asStringArray(value: unknown): string[] | undefined {
   if (!Array.isArray(value)) return undefined;
   const arr = value.map((v) => String(v)).filter(Boolean);
@@ -73,8 +79,8 @@ function buildPost(path: string, raw: string): BlogPost {
   return {
     title,
     slug,
-    date: String(data.date ?? ''),
-    updated: data.updated ? String(data.updated) : undefined,
+    date: isoDay(data.date),
+    updated: data.updated ? isoDay(data.updated) : undefined,
     category: (['DPF', 'ECU', 'AdBlue'].includes(String(data.category)) ? data.category : 'DPF') as BlogCategory,
     excerpt: String(data.excerpt ?? ''),
     coverImage: data.coverImage ? String(data.coverImage) : undefined,
@@ -100,7 +106,19 @@ const ALL_POSTS: BlogPost[] = Object.entries(rawModules)
   .map(([path, raw]) => buildPost(path, raw))
   .sort((a, b) => +new Date(b.date) - +new Date(a.date));
 
-export const PUBLISHED_POSTS: BlogPost[] = ALL_POSTS.filter((p) => !p.draft);
+// A post is live once it is not a draft and its date has arrived. Posts dated
+// after the build date are scheduled: the weekly build that runs on their date
+// publishes them (.github/workflows/weekly-blog.yml). The date is baked in at
+// build time so the prerendered HTML and the client bundle always agree.
+export const BLOG_BUILD_DATE: string = __BLOG_BUILD_DATE__;
+
+export function isScheduled(post: BlogPost): boolean {
+  return !post.draft && post.date > BLOG_BUILD_DATE;
+}
+
+export const PUBLISHED_POSTS: BlogPost[] = ALL_POSTS.filter(
+  (p) => !p.draft && (__BLOG_SHOW_SCHEDULED__ || !isScheduled(p))
+);
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return PUBLISHED_POSTS.find((p) => p.slug === slug);
