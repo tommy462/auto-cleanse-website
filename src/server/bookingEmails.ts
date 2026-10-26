@@ -8,6 +8,9 @@
 
 import { Resend } from 'resend';
 import type { BookingMetadata } from './bookingProcessing.js';
+import { COMPANY } from '../data/business.js';
+import { DEPOSIT_NOTICE_HOURS } from '../data/legal.js';
+import { SITE_URL } from '../lib/site-url.js';
 
 const DEFAULT_NOTIFY = 'info@auto-cleanse.co.uk';
 const DEFAULT_FROM = 'AutoCleanse <bookings@auto-cleanse.co.uk>';
@@ -98,15 +101,28 @@ export async function sendBookingEmails(ctx: BookingEmailContext): Promise<{ bus
   const intro = `Hi ${firstName},\n\nThanks for booking with AutoCleanse - your £50 deposit has been received and your slot is confirmed.`;
   const outro = `We may call before the appointment to confirm vehicle details and any preparation needed.\n\nNeed to change anything? Reply to this email or call us on 07823 649190.\n\nAutoCleanse\nwww.auto-cleanse.co.uk`;
 
+  // Cancellation terms on a durable medium, as the Consumer Contracts
+  // Regulations 2013 require for bookings made online. Mirrors /refund-policy.
+  const terms = [
+    `Cancelling or moving: give us at least ${DEPOSIT_NOTICE_HOURS} hours' notice before your appointment and we'll refund your £50 deposit in full, or move your booking for free. With less notice, or if you don't turn up, we keep the deposit.`,
+    `Your right to cancel: if you booked as a private customer, you can also cancel within 14 days of booking and get everything back, as long as the work hasn't been done. To cancel, reply to this email or call us.`,
+    m.terms_accepted
+      ? `When you booked, you agreed to our terms, asked us to do the work on your booked date and confirmed that once the work is done you can no longer cancel.`
+      : '',
+    `Terms & Conditions: ${SITE_URL}/terms\nCancellation & Refund Policy: ${SITE_URL}/refund-policy`,
+    `AutoCleanse is a trading name of ${COMPANY.legalName}, registered in ${COMPANY.registeredIn}, company no. ${COMPANY.companyNumber}. Registered office: ${COMPANY.registeredOffice}.`,
+  ].filter(Boolean).join('\n\n');
+
   const custRes = await resend.emails.send({
     from,
     to: [m.customer_email],
     replyTo: notify,
     subject: custSubject,
-    text: `${intro}\n\n${cust.text}\n\n${outro}\n`,
+    text: `${intro}\n\n${cust.text}\n\n${outro}\n\n${terms}\n`,
     html:
       `<div style="font:14px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;color:#111;max-width:560px">` +
-      `<p>${esc(intro).replace(/\n\n/g, '</p><p>')}</p>${cust.html}<p>${esc(outro).replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p></div>`,
+      `<p>${esc(intro).replace(/\n\n/g, '</p><p>')}</p>${cust.html}<p>${esc(outro).replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>` +
+      `<div style="margin-top:20px;padding-top:12px;border-top:1px solid #ddd;font-size:12px;color:#555"><p>${esc(terms).replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p></div></div>`,
   });
   if (custRes.error) throw new Error(`customer email: ${custRes.error.message}`);
 

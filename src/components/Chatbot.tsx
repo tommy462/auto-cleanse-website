@@ -1,5 +1,6 @@
 ﻿import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useAdBluePage } from '../lib/use-adblue-page';
 
 interface Message {
@@ -31,54 +32,6 @@ const Chatbot = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
-  const faqResponses: Record<string, string> = {
-    'pricing': 'Our pricing is straightforward: £210 within 30 miles of Totnes, £230 outside 30 miles, and £320 for HGV/Plant vehicles. Labour costs for replacements start at £150+.',
-    'turnaround': 'We offer same-day return within 30 miles of Totnes when your filter is ready for collection before 10am on weekdays. Outside this area, typical turnaround is 24-48 hours.',
-    'area': 'We cover a 30-mile radius from Totnes, Devon, which includes most of South Devon and parts of Cornwall. We also provide nationwide coverage with courier services.',
-    'services': 'We clean DPF, SCR, DOC, GPF, OPF, EGR systems, intercoolers, radiators, and catalytic converters. All services include comprehensive testing and detailed reporting.',
-    'testing': 'We conduct comprehensive flow and back-pressure testing before and after cleaning. All results are documented in detailed reports for your records.',
-    'trade': 'Yes, we offer trade accounts with preferential terms for regular customers. We work exclusively with trade professionals including garages, fleet operators, and plant machinery businesses.',
-    'collection': 'We offer free pickup and delivery within our service area. Courier collection is also available - contact us for options and pricing.',
-    'process': 'Our 6-step process includes: enquiry & collection, inspection & pre-test, professional cleaning, hot air drying, flow testing & reporting, and same-day return.',
-  };
-
-  const getAIResponse = (userMessage: string): string => {
-    const message = userMessage.toLowerCase();
-    
-    if (message.includes('price') || message.includes('cost') || message.includes('£')) {
-      return faqResponses.pricing;
-    }
-    if (message.includes('time') || message.includes('quick') || message.includes('fast') || message.includes('same day')) {
-      return faqResponses.turnaround;
-    }
-    if (message.includes('area') || message.includes('location') || message.includes('totnes') || message.includes('devon')) {
-      return faqResponses.area;
-    }
-    if (message.includes('service') || message.includes('dpf') || message.includes('clean')) {
-      return faqResponses.services;
-    }
-    if (message.includes('test') || message.includes('report') || message.includes('flow')) {
-      return faqResponses.testing;
-    }
-    if (message.includes('trade') || message.includes('account') || message.includes('garage')) {
-      return faqResponses.trade;
-    }
-    if (message.includes('collect') || message.includes('pickup') || message.includes('delivery')) {
-      return faqResponses.collection;
-    }
-    if (message.includes('process') || message.includes('how') || message.includes('work')) {
-      return faqResponses.process;
-    }
-    if (message.includes('hello') || message.includes('hi') || message.includes('help')) {
-      return "Hello! I'm here to help with any questions about our DPF cleaning services. You can ask me about pricing, turnaround times, service areas, or our cleaning process.";
-    }
-    if (message.includes('contact') || message.includes('phone') || message.includes('email')) {
-      return "You can contact us by phone or email. Visit our Contact page for full details, or use the call buttons throughout the site to get in touch directly.";
-    }
-    
-    return "I'd be happy to help! You can ask me about our pricing, turnaround times, service areas, cleaning process, or any other questions about our DPF refurbishment services.";
-  };
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -272,6 +225,11 @@ const Chatbot = () => {
                 <Send size={16} className="text-white" />
               </button>
             </div>
+            <p className="mt-2 text-[11px] leading-snug text-white/40">
+              Automated answers, so they can be wrong: prices and bookings are only confirmed by us.
+              Please don't share personal or payment details here.{' '}
+              <Link to="/privacy" className="underline underline-offset-2 hover:text-[#FF7A00]">Privacy</Link>
+            </p>
           </div>
         </div>
       )}

@@ -39,12 +39,14 @@ export type BookingMetadata = {
   slot_start: string;           // ISO
   slot_end: string;             // ISO
   slot_display: string;         // human readable
+  terms_accepted: string;       // "<terms version> at <ISO time>", '' on bookings made before Oct 2026
 };
 
 const METADATA_KEYS: Array<keyof BookingMetadata> = [
   'booking_ref', 'service_type', 'service_label', 'booking_type', 'customer_name', 'customer_email',
   'customer_phone', 'vehicle_reg', 'vehicle_make_model', 'goals', 'notes', 'address', 'postcode',
   'selected_options', 'quoted_price', 'job_date', 'job_time', 'slot_start', 'slot_end', 'slot_display',
+  'terms_accepted',
 ];
 
 export function readBookingMetadata(session: Stripe.Checkout.Session): BookingMetadata {

@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { BOOKING_CONFIG, REMAP_SERVICES, REMAP_OPTIONS, BASE_PRICES, type RemapServiceValue } from '../config/booking';
+import { DEPOSIT_NOTICE_HOURS, TERMS_VERSION } from '../data/legal';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Types
@@ -47,6 +48,9 @@ export interface PendingBooking {
   jobDate: string;
   jobTime: string;
   slotDisplay: string;
+  /** Ticked "I agree to the terms" box, which is also the request to do the work inside the 14-day cancellation period. */
+  termsAccepted: boolean;
+  termsVersion: string;
 }
 
 type CardId =
@@ -279,6 +283,7 @@ export default function RemappingBooking() {
   // Checkout
   const [payLoading, setPayLoading] = useState(false);
   const [payError, setPayError]     = useState<string | null>(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const topRef = useRef<HTMLDivElement>(null);
 
@@ -383,12 +388,13 @@ export default function RemappingBooking() {
       quotedPrice: calcQuotedPrice(form.serviceType, form.bookingType, form.selectedOptions, selectedDate),
       jobDate: selectedDate, jobTime: selectedTime,
       slotDisplay: formatSlotDisplay(selectedDate, selectedTime),
+      termsAccepted, termsVersion: TERMS_VERSION,
     };
   }
 
   async function startCheckout() {
     const pending = buildPendingBooking();
-    if (!pending || payLoading) return;
+    if (!pending || payLoading || !termsAccepted) return;
     setPayLoading(true);
     setPayError(null);
     try {
@@ -746,8 +752,28 @@ export default function RemappingBooking() {
               <Zap size={14} className="text-[#FF7A00] shrink-0" />
               <p className="text-white/60 text-xs leading-snug">
                 <span className="text-white font-bold">£50 deposit</span> secures your slot. Remaining balance due on the day.
+                {' '}Cancel or move with {DEPOSIT_NOTICE_HOURS} hours' notice for a full refund.
               </p>
             </div>
+
+            {/* Terms: also the express request to do the work inside the 14-day
+                cancellation period (Consumer Contracts Regulations 2013, reg 36) */}
+            <label className="flex items-start gap-3 rounded-xl border border-white/10 bg-black/20 px-4 py-3 mb-5 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={termsAccepted}
+                onChange={e => setTermsAccepted(e.target.checked)}
+                className="h-5 w-5 accent-[#FF7A00] shrink-0 mt-0.5"
+              />
+              <span className="text-white/70 text-xs leading-relaxed">
+                I agree to the{' '}
+                <Link to="/terms" target="_blank" className="text-[#FF7A00] underline underline-offset-2">Terms &amp; Conditions</Link>{' '}
+                and the{' '}
+                <Link to="/refund-policy" target="_blank" className="text-[#FF7A00] underline underline-offset-2">Cancellation &amp; Refund Policy</Link>.
+                I ask you to do the work on the date I've booked, even if that's within 14 days, and I
+                understand that once the work is done I can no longer cancel.
+              </span>
+            </label>
 
             {/* Pay deposit - creates a Stripe Checkout session and redirects */}
             {payError && (
@@ -764,8 +790,8 @@ export default function RemappingBooking() {
             <button
               type="button"
               onClick={startCheckout}
-              disabled={payLoading}
-              className="btn-shine w-full py-4 rounded-xl font-bold text-sm text-white inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-wait"
+              disabled={payLoading || !termsAccepted}
+              className={`btn-shine w-full py-4 rounded-xl font-bold text-sm text-white inline-flex items-center justify-center gap-2 disabled:opacity-60 ${payLoading ? 'disabled:cursor-wait' : 'disabled:cursor-not-allowed'}`}
             >
               {payLoading
                 ? <><Loader2 size={16} className="animate-spin" /> Taking you to secure payment…</>

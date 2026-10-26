@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Loader2, CheckCircle, Phone } from 'lucide-react';
 import { TRADE_INVITE_WEBHOOK_URL } from '../../config/leads';
+import FormPrivacyNote from '../FormPrivacyNote';
 import { trackLead } from '../../lib/tracking';
 import { trackTradeEvent } from '../../lib/trade-campaign';
 import {
@@ -388,6 +389,8 @@ export default function FreeDpfClaimForm({ region, campaign }: RegionSectionProp
             <>Claim My Free DPF Clean</>
           )}
         </button>
+
+        <FormPrivacyNote purpose="to deal with your claim and arrange the collection" className="text-center" />
 
         {status === 'error' && (
           <p className="text-red-400 text-sm text-center" role="alert">

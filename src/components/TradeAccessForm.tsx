@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Loader2, CheckCircle, Phone } from 'lucide-react';
 import { TRADE_LEADS_WEBHOOK_URL } from '../config/leads';
+import FormPrivacyNote from './FormPrivacyNote';
 import { trackLead } from '../lib/tracking';
 
 const BUSINESS_TYPES = [
@@ -260,6 +261,8 @@ export default function TradeAccessForm() {
           ? (<><Loader2 size={16} className="animate-spin" /> Sending&hellip;</>)
           : (<>Apply for Trade Access</>)}
       </button>
+
+      <FormPrivacyNote purpose="to deal with your trade application" className="text-center" />
 
       {status === 'error' && (
         <p className="text-red-400 text-sm text-center" role="alert">

@@ -41,6 +41,8 @@ interface BookingPayload {
   jobDate: string;      // YYYY-MM-DD
   jobTime: string;      // HH:MM
   slotDisplay?: string;
+  termsAccepted?: boolean;
+  termsVersion?: string;
 }
 
 function generateBookingRef(): string {
@@ -98,6 +100,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   for (const field of required) {
     if (!body[field]) return res.status(400).json({ error: `${field} is required` });
   }
+  // The terms box doubles as the customer's request to have the work done
+  // inside the 14-day cancellation period, so no tick, no booking.
+  if (body.termsAccepted !== true) {
+    return res.status(400).json({ error: 'Please tick the box to accept the booking terms.' });
+  }
   if (body.bookingType === 'mobile' && !body.postcode) {
     return res.status(400).json({ error: 'postcode is required for mobile bookings' });
   }
@@ -152,6 +159,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     slot_start: slotStart,
     slot_end: slotEnd,
     slot_display: truncate(slotDisplay),
+    terms_accepted: truncate(`${body.termsVersion || 'unknown'} at ${new Date().toISOString()}`),
   };
 
   const stripe = new Stripe(stripeKey, { apiVersion: '2024-12-18.acacia' as never });

@@ -5,6 +5,9 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
+import { Link } from 'react-router-dom';
+import FormPrivacyNote from '../components/FormPrivacyNote';
+import { TERMS_VERSION } from '../data/legal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -98,6 +101,7 @@ const PostalDPF = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [jobDetails, setJobDetails] = useState<JobResponse | null>(null);
   const [showStep2, setShowStep2] = useState(false);
@@ -115,6 +119,7 @@ const PostalDPF = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!termsAccepted) return;
     setIsSubmitting(true);
 
     // Generate unique job reference using timestamp + random component
@@ -128,6 +133,10 @@ const PostalDPF = () => {
       jobReference: jobReference,
       uuid: uuid,
       ...formData,
+      // Express request to start work inside the 14-day cancellation period,
+      // and which version of the terms was accepted (see /terms, /refund-policy).
+      termsAccepted: true,
+      termsVersion: TERMS_VERSION,
       timestamp: new Date().toISOString(),
     };
 
@@ -270,7 +279,7 @@ const PostalDPF = () => {
         {/* Hero Section */}
         <div className="text-center mb-20 reveal-container">
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
-            {splitText('Postal DPF Cleaning –', 'text-white')}{' '}
+            {splitText('Postal DPF Cleaning:', 'text-white')}{' '}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
               <span className="inline-block word-reveal text-[#FF7A00] ml-3">Nationwide</span>
             </span>
@@ -554,6 +563,24 @@ const PostalDPF = () => {
                   />
                 </div>
 
+                <label className="flex items-start gap-3 text-white/75 text-sm sm:text-base leading-relaxed cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="termsAccepted"
+                    required
+                    checked={termsAccepted}
+                    onChange={(e) => setTermsAccepted(e.target.checked)}
+                    className="h-5 w-5 accent-[#FF7A00] shrink-0 mt-0.5"
+                    toolparamdescription="Required: the customer accepts the Auto-Cleanse terms and asks for the clean to start as soon as the DPF arrives."
+                  />
+                  <span>
+                    I agree to the{' '}
+                    <Link to="/terms" className="text-[#FF7A00] underline underline-offset-2">Terms &amp; Conditions</Link>{' '}
+                    and ask you to start work as soon as my DPF arrives. I understand that once the clean
+                    is done, I can no longer cancel.
+                  </span>
+                </label>
+
                 <MagneticButton className="block w-full">
                   <button
                     type="submit"
@@ -563,6 +590,8 @@ const PostalDPF = () => {
                     {isSubmitting ? 'Processing...' : 'Continue to Courier Booking'}
                   </button>
                 </MagneticButton>
+
+                <FormPrivacyNote purpose="to log your filter in, clean it and send it back" className="text-center text-sm" />
               </form>
 
               {/* Success/Error Messages */}

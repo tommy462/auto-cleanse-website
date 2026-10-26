@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Phone, Loader2, CheckCircle } from 'lucide-react';
 import { LEADS_WEBHOOK_URL, SERVICE_OPTIONS } from '../config/leads';
 import { trackLead } from '../lib/tracking';
+import FormPrivacyNote from './FormPrivacyNote';
 
 interface QuickEnquiryFormProps {
   /** Pre-selects the service dropdown, e.g. "ECU Remapping". */
@@ -179,6 +180,8 @@ export default function QuickEnquiryForm({
           ? (<><Loader2 size={16} className="animate-spin" /> Sending…</>)
           : (<>Request a Callback</>)}
       </button>
+
+      <FormPrivacyNote purpose="to call you back about your enquiry" className="text-center" />
 
       <p className="text-center text-white/30 text-xs">
         Prefer to talk now? Call{' '}
