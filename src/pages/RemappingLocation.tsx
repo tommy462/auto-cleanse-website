@@ -16,6 +16,7 @@ import { localBusinessSchema } from '../data/business';
 import { getVehicleBySlug } from '../data/vehicle-remapping';
 import { DpfTrustSignal, RecentRemaps } from '../components/CampaignSections';
 import { PRIORITY_SLUGS } from '../data/campaign';
+import { BASE_PRICES, BOOKING_CONFIG } from '../config/booking';
 
 // Curated default set of high-interest vehicles to cross-link from location pages.
 const DEFAULT_POPULAR_VEHICLES = [
@@ -269,6 +270,21 @@ export default function RemappingLocation() {
                 <p className="text-white/40 text-xs leading-relaxed">{s.desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* Prices come from config/booking.ts, so they always match the booking form. */}
+          <div className="mt-6 rounded-2xl bg-[#1A1D22] border border-[#FF7A00]/20 p-5 sm:p-6">
+            <h3 className="text-white font-bold text-lg mb-2">What a remap costs in {location.name}</h3>
+            <p className="text-white/60 text-sm leading-relaxed">
+              Stage 1 is <span className="text-white font-bold">£{BASE_PRICES['stage-1'].workshop}</span> at our Totnes workshop
+              {location.mobileAvailable && (
+                <>
+                  {' '}or <span className="text-white font-bold">£{BASE_PRICES['stage-1'].mobile}</span> mobile at your home or work in {location.name}
+                </>
+              )}
+              , with a health check and diagnostics before and after. A {BOOKING_CONFIG.depositAmountDisplay} deposit secures your
+              slot and the balance is due on the day. Stage 2 and custom maps are quoted once we know the vehicle.
+            </p>
           </div>
         </div>
       </section>
