@@ -12,7 +12,7 @@ import townsData from './data/adblue-towns/towns.json';
 import { TownDataContext, TOWNS_PATH, townPath, type TownData, type TownStore } from './lib/town-data';
 
 // AdBlue town pages go live in waves. Raise this to publish the next wave.
-const PUBLISHED_TOWN_WAVE = 1;
+const PUBLISHED_TOWN_WAVE = 2;
 
 type TownRecord = Omit<TownData, 'nearby'> & { lat: number; lng: number; wave: number };
 const publishedTowns = (townsData as TownRecord[]).filter((t) => t.wave <= PUBLISHED_TOWN_WAVE);
