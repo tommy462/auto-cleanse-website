@@ -1,5 +1,6 @@
 ---
 title: "DPF Pressure Sensor and Pipe Faults"
+seoTitle: "DPF Pressure Pipe Blocked or Sensor Faulty? How to Test"
 slug: "dpf-pressure-sensor-and-pipe-faults"
 date: 2026-04-06
 category: DPF

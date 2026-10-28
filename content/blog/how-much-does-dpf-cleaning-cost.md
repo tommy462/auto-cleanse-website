@@ -1,5 +1,6 @@
 ---
 title: "How Much Does DPF Cleaning Cost? From £210 and What It Covers"
+seoTitle: "How Much Does DPF Cleaning Cost? From £210"
 slug: "how-much-does-dpf-cleaning-cost"
 date: 2026-08-17
 category: DPF

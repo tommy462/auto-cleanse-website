@@ -1,5 +1,6 @@
 ---
 title: "Postal DPF Cleaning: How to Remove, Pack and Send a Filter"
+seoTitle: "Postal DPF Cleaning: How to Pack and Send a Filter"
 slug: "postal-dpf-cleaning-how-to-send-a-filter"
 date: 2026-10-26
 category: DPF

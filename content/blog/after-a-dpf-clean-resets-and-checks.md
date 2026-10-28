@@ -1,5 +1,6 @@
 ---
 title: "After a DPF Clean: Resets, Relearns and What to Verify"
+seoTitle: "After a DPF Clean: Resets, Relearns and Checks"
 slug: "after-a-dpf-clean-resets-and-checks"
 date: 2026-07-27
 category: DPF

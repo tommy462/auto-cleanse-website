@@ -1,5 +1,6 @@
 ---
 title: "Temperature Data and Failed DPF Regeneration"
+seoTitle: "DPF Regen Failing? Check the Temperature Sensor Data"
 slug: "temperature-data-and-failed-dpf-regeneration"
 date: 2026-03-16
 category: DPF

@@ -1,5 +1,6 @@
 ---
 title: "What Happens During a Professional Off-Vehicle DPF Clean"
+seoTitle: "What Happens During an Off-Vehicle DPF Clean"
 slug: "what-happens-during-off-vehicle-dpf-cleaning"
 date: 2026-04-20
 category: DPF

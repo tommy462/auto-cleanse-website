@@ -1,6 +1,7 @@
 ---
 # ── Required ─────────────────────────────────────────────────────────────────
 title: "Your post title here"              # shown as the H1 and the SEO <title>
+# seoTitle: "Shorter search title"        # optional: replaces title in the SEO <title> only (keep under ~50 chars)
 slug: "your-url-slug-here"                 # the /blog/<slug> URL. lowercase-hyphenated, no spaces
 date: 2026-06-30                           # publish date (YYYY-MM-DD). Newest posts appear first
 category: DPF                              # one of: DPF | ECU | AdBlue

@@ -1,5 +1,6 @@
 ---
 title: "Peak Power vs Usable Torque: What a Remap Should Deliver"
+seoTitle: "Peak Power vs Usable Torque After a Remap"
 slug: "peak-power-versus-usable-torque"
 date: 2026-03-09
 category: ECU

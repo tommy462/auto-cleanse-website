@@ -3,7 +3,7 @@ import type { AdBlueGuide } from './types';
 const guide: AdBlueGuide = {
   path: '/adblue-fault-codes/p20ee',
   kind: 'fault-code',
-  seoTitle: 'P20EE Fault Code: Real Causes and Test Order | Auto-Cleanse',
+  seoTitle: 'P20EE: SCR NOx Catalyst Efficiency Below Threshold | Auto-Cleanse',
   metaDescription:
     'P20EE means the SCR catalyst is removing too little NOx. It is a result, not a part. The checks to make before buying a catalyst, and how we repair it.',
   breadcrumb: 'Fault code P20EE',

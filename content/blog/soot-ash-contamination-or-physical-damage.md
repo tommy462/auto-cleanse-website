@@ -1,5 +1,6 @@
 ---
 title: "Soot, Ash, Contamination or Physical Damage? Diagnosing a Restricted DPF"
+seoTitle: "Soot, Ash or Damage? Diagnosing a Restricted DPF"
 slug: "soot-ash-contamination-or-physical-damage"
 date: 2026-03-30
 category: DPF

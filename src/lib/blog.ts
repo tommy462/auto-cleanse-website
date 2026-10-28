@@ -15,6 +15,7 @@ export type BlogCategory = 'DPF' | 'ECU' | 'AdBlue';
 
 export interface BlogPost {
   title: string;
+  seoTitle?: string;
   slug: string;
   date: string;
   updated?: string;
@@ -78,6 +79,7 @@ function buildPost(path: string, raw: string): BlogPost {
 
   return {
     title,
+    seoTitle: data.seoTitle ? String(data.seoTitle) : undefined,
     slug,
     date: isoDay(data.date),
     updated: data.updated ? isoDay(data.updated) : undefined,

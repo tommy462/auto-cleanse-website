@@ -3,7 +3,7 @@ import type { AdBlueGuide } from './types';
 const guide: AdBlueGuide = {
   path: '/adblue-countdown-no-start',
   kind: 'symptom',
-  seoTitle: 'AdBlue No-Start Countdown: What to Do Now | Auto-Cleanse',
+  seoTitle: 'AdBlue "No Start in X Miles" Warning: What to Do Now | Auto-Cleanse',
   metaDescription:
     '"Starting impossible in X miles" or "No start in X miles"? Why the AdBlue countdown starts, what to do before it hits zero, and why a reset is not a fix.',
   breadcrumb: 'AdBlue countdown and no start',

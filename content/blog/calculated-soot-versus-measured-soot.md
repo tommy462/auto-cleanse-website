@@ -1,5 +1,6 @@
 ---
 title: "Calculated Soot vs Measured Soot: What DPF Scan-Tool Values Really Mean"
+seoTitle: "DPF Soot Mass: Calculated vs Measured Values Explained"
 slug: "calculated-soot-versus-measured-soot"
 date: 2026-01-12
 category: DPF

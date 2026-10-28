@@ -110,7 +110,7 @@ export default function BlogPost() {
   return (
     <div className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
-        title={`${post.title} | Auto-Cleanse`}
+        title={`${post.seoTitle ?? post.title} | Auto-Cleanse`}
         description={post.excerpt}
         path={`/blog/${post.slug}`}
         ogImage={coverAbs}

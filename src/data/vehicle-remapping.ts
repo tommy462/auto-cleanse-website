@@ -41,8 +41,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'audi-a3-remap',
     make: 'Audi', model: 'A3', fullName: 'Audi A3',
-    metaTitle: 'Audi A3 Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'Audi A3 ECU remapping in Devon - diesel and petrol Stage 1 remaps from our Totnes workshop or mobile. Up to +40bhp and 15% MPG gain.',
+    metaTitle: 'Audi A3 Remap: up to +45bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Audi A3 Stage 1 remap: 150bhp to 190bhp on the 2.0 TDI 150. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Audi A3 Remap',
     intro: 'The Audi A3 is one of the most remapped cars in the UK, and for good reason - Audi tune these engines conservatively from the factory, leaving substantial power and economy on the table. Whether you drive the 2.0 TDI diesel or the 1.4/2.0 TFSI petrol, a Stage 1 remap delivers meaningful gains with no hardware changes required. AutoCleanse remaps Audi A3s from our Totnes workshop or mobile across Devon.',
     engineOptions: [
@@ -65,8 +65,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'audi-a4-remap',
     make: 'Audi', model: 'A4', fullName: 'Audi A4',
-    metaTitle: 'Audi A4 Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'Audi A4 ECU remapping - Stage 1 diesel and petrol remaps from Totnes or mobile across Devon. Gain up to +45bhp and improved real-world MPG.',
+    metaTitle: 'Audi A4 Remap: up to +58bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Audi A4 Stage 1 remap: 150bhp to 195bhp on the 2.0 TDI 150. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Audi A4 Remap',
     intro: 'The Audi A4 is a firm favourite with company car drivers, commuters, and enthusiasts alike - and it responds brilliantly to ECU remapping. The 2.0 TDI variants in particular are heavily restricted from the factory, making them ideal candidates for a Stage 1 remap that transforms both performance and economy. AutoCleanse has remapped numerous A4s across Devon from our workshop in Totnes and via mobile visit.',
     engineOptions: [
@@ -89,8 +89,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'audi-a5-remap',
     make: 'Audi', model: 'A5', fullName: 'Audi A5',
-    metaTitle: 'Audi A5 Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'Audi A5 ECU remapping in Devon - Stage 1 diesel and petrol remaps. Gain up to +45bhp and improved torque from our Totnes workshop or mobile.',
+    metaTitle: 'Audi A5 Remap: up to +52bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Audi A5 Stage 1 remap: 150bhp to 192bhp on the 2.0 TDI 150. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Audi A5 Remap',
     intro: 'The Audi A5 coupe and Sportback offer one of the best combinations of style and everyday performance in the segment, and a Stage 1 remap sharpens that further. Both the TDI diesel and TFSI petrol engines respond well, with diesel variants in particular gaining significant torque that transforms the A5\'s in-gear pull. AutoCleanse remaps A5s from our Totnes base and via mobile service throughout Devon.',
     engineOptions: [
@@ -113,8 +113,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'audi-a6-remap',
     make: 'Audi', model: 'A6', fullName: 'Audi A6',
-    metaTitle: 'Audi A6 Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'Audi A6 ECU remapping - gain up to +60bhp and 100Nm on the 3.0 TDI. Stage 1 remaps from our Totnes workshop or mobile across Devon.',
+    metaTitle: 'Audi A6 Remap: up to +63bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Audi A6 Stage 1 remap: 204bhp to 250bhp on the 2.0 TDI 204. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Audi A6 Remap',
     intro: 'The Audi A6 is a premium executive car that frequently covers high mileages, making economy remapping particularly attractive for its diesel variants. The 3.0 TDI is especially rewarding to remap - the gains in torque are substantial and translate directly into more relaxed, effortless motorway cruising. AutoCleanse provides A6 remapping from our Totnes workshop and mobile across Devon.',
     engineOptions: [
@@ -227,8 +227,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'audi-s3-remap',
     make: 'Audi', model: 'S3', fullName: 'Audi S3',
-    metaTitle: 'Audi S3 Remap | Stage 1 Performance Tuning Devon | AutoCleanse',
-    metaDescription: 'Audi S3 Stage 1 remap - unlock up to +60bhp from the 2.0 TFSI. Performance ECU tuning from our Totnes workshop or mobile across Devon.',
+    metaTitle: 'Audi S3 Remap: up to +60bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Audi S3 Stage 1 remap: 300bhp to 360bhp on the 2.0 TFSI 300 (8V). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Audi S3 Remap',
     intro: 'The Audi S3 is one of the most exciting performance hatchbacks to remap - the 2.0 TFSI engine has proven hardware capable of handling significant power increases beyond the factory 310bhp. A Stage 1 remap takes the S3 to around 370bhp with no hardware changes, transforming it into a genuinely rapid car that rivals much more expensive machinery. AutoCleanse provides S3 remapping from our Totnes workshop and across Devon.',
     engineOptions: [
@@ -249,8 +249,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'audi-s4-remap',
     make: 'Audi', model: 'S4', fullName: 'Audi S4',
-    metaTitle: 'Audi S4 Remap | Stage 1 Performance Tuning Devon | AutoCleanse',
-    metaDescription: 'Audi S4 Stage 1 remap - up to +70bhp from the 3.0 TFSI supercharged or turbocharged engine. Performance ECU tuning in Devon by AutoCleanse.',
+    metaTitle: 'Audi S4 Remap: up to +66bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Audi S4 Stage 1 remap: 333bhp to 395bhp on the 3.0 TFSI 333 (B8, supercharged). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Audi S4 Remap',
     intro: 'The Audi S4 is a car we know intimately - it\'s in our own fleet. Whether you\'re running the supercharged V6 3.0 TFSI of the B8 generation or the turbocharged 3.0 TFSI in the B9, both respond brilliantly to ECU remapping. The S4 is already a fast car; remapped, it becomes genuinely rapid while retaining all the everyday refinement that makes it such a compelling all-rounder. AutoCleanse remaps S4s in Devon from our Totnes workshop.',
     engineOptions: [
@@ -271,8 +271,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'audi-rs3-remap',
     make: 'Audi', model: 'RS3', fullName: 'Audi RS3',
-    metaTitle: 'Audi RS3 Remap | Stage 1 Performance Tuning Devon | AutoCleanse',
-    metaDescription: 'Audi RS3 Stage 1 remap - unlock beyond 460bhp from the 2.5 TFSI five-cylinder. Expert performance ECU tuning in Devon by AutoCleanse.',
+    metaTitle: 'Audi RS3 Remap: up to +65bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Audi RS3 Stage 1 remap: 400bhp to 460bhp on the 2.5 TFSI 400 (8V). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Audi RS3 Remap',
     intro: 'The Audi RS3\'s 2.5 TFSI five-cylinder is one of the finest performance engines ever fitted to a hot hatchback - and it responds to remapping in exceptional fashion. Even at Stage 1, the RS3 moves well beyond 460bhp, making it genuinely supercar-fast in real-world driving. AutoCleanse provides RS3 remapping from our Totnes workshop for enthusiasts across Devon and the South West.',
     engineOptions: [
@@ -295,8 +295,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'bmw-320d-remap',
     make: 'BMW', model: '320d', fullName: 'BMW 320d',
-    metaTitle: 'BMW 320d Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'BMW 320d ECU remapping - Stage 1 diesel remap gains up to +45bhp and improved MPG. Workshop in Totnes or mobile across Devon.',
+    metaTitle: 'BMW 320d Remap: up to +45bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'BMW 320d Stage 1 remap: 190bhp to 235bhp on the 2.0d B47 190 (F30/G20). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'BMW 320d Remap',
     intro: 'The BMW 320d is one of the most popular diesel saloons in the UK and responds excellently to ECU remapping. The B47 engine used in the F30/G20 generations is factory-restricted to differentiate it from more expensive 330d and 340d models - a Stage 1 remap unlocks the headroom that BMW deliberately leave available. AutoCleanse remaps 320ds from our Totnes workshop and mobile across Devon.',
     engineOptions: [
@@ -353,8 +353,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'bmw-330d-remap',
     make: 'BMW', model: '330d', fullName: 'BMW 330d',
-    metaTitle: 'BMW 330d Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'BMW 330d ECU remapping - gain up to +60bhp and 100Nm from the B57 engine. Stage 1 diesel remap in Devon from AutoCleanse.',
+    metaTitle: 'BMW 330d Remap: up to +60bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'BMW 330d Stage 1 remap: 265bhp to 325bhp on the 3.0d B57 265 (G20/G21). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'BMW 330d Remap',
     intro: 'The BMW 330d with its B57 straight-six diesel is one of the most rewarding cars to remap in the BMW range - the engine has significant headroom and the gains from Stage 1 are substantial. Moving from 265bhp to around 325bhp with torque jumping to over 680Nm, the 330d becomes an exceptionally fast diesel with genuine sports car pace. AutoCleanse remaps 330ds in Devon from our Totnes workshop.',
     engineOptions: [
@@ -375,8 +375,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'bmw-118d-remap',
     make: 'BMW', model: '118d', fullName: 'BMW 118d',
-    metaTitle: 'BMW 118d Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'BMW 118d ECU remapping - gain up to +40bhp from the B37/B47 diesel engine. Improve MPG and performance. Workshop or mobile across Devon.',
+    metaTitle: 'BMW 118d Remap: up to +42bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'BMW 118d Stage 1 remap: 116bhp to 155bhp on the 1.5d B37 116 (F20/F40). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'BMW 118d Remap',
     intro: 'The BMW 118d is an ideal candidate for ECU remapping - it\'s often driven by owners who want economy and refinement, and a Stage 1 remap delivers improved MPG alongside a useful power boost that makes the 1 Series genuinely responsive on A-roads and motorways. The gains are proportionally significant on this smaller engine. AutoCleanse remaps 118ds across Devon from our Totnes workshop and via mobile.',
     engineOptions: [
@@ -397,8 +397,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'bmw-120d-remap',
     make: 'BMW', model: '120d', fullName: 'BMW 120d',
-    metaTitle: 'BMW 120d Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'BMW 120d ECU remapping in Devon - Stage 1 diesel remap gains up to +45bhp and 60Nm. Workshop in Totnes or mobile across Devon.',
+    metaTitle: 'BMW 120d Remap: up to +45bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'BMW 120d Stage 1 remap: 190bhp to 235bhp on the 2.0d B47 190 (F20/F40). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'BMW 120d Remap',
     intro: 'The BMW 120d with the B47 2.0d engine is one of the most popular 1 Series variants and responds particularly well to ECU remapping. Starting at 190bhp, Stage 1 takes it to around 235bhp with a significant torque increase that transforms the car\'s character on the road. AutoCleanse remaps 120ds from our Totnes workshop and via mobile across Devon.',
     engineOptions: [
@@ -418,8 +418,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'bmw-m140i-remap',
     make: 'BMW', model: 'M140i', fullName: 'BMW M140i',
-    metaTitle: 'BMW M140i Remap | Stage 1 Performance Tuning Devon | AutoCleanse',
-    metaDescription: 'BMW M140i Stage 1 remap - unlock up to 400bhp from the B58 straight-six. Expert performance ECU tuning in Devon by AutoCleanse.',
+    metaTitle: 'BMW M140i Remap: up to +60bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'BMW M140i Stage 1 remap: 340bhp to 400bhp on the 3.0T B58 340 (F20). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'BMW M140i Remap',
     intro: 'The BMW M140i is a cult performance car with a deeply capable B58 straight-six under the bonnet - and it\'s one of the finest remapping platforms in the hot hatch segment. Stage 1 takes the M140i from 340bhp to well over 400bhp with no hardware changes, making it a genuinely supercar-baiting sleeper. AutoCleanse provides M140i remapping from our Totnes workshop for enthusiasts across Devon and the South West.',
     engineOptions: [
@@ -440,8 +440,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'bmw-m340i-remap',
     make: 'BMW', model: 'M340i', fullName: 'BMW M340i',
-    metaTitle: 'BMW M340i Remap | Stage 1 Performance Tuning Devon | AutoCleanse',
-    metaDescription: 'BMW M340i Stage 1 remap - take the B58 beyond 440bhp. Expert performance ECU tuning in Devon by AutoCleanse.',
+    metaTitle: 'BMW M340i Remap: up to +71bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'BMW M340i Stage 1 remap: 374bhp to 445bhp on the 3.0T B58 374 (G20/G21). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'BMW M340i Remap',
     intro: 'The BMW M340i is a brilliant all-rounder - fast, refined, and practical - and the B58 straight-six responds to ECU remapping in impressive fashion. A Stage 1 remap takes the M340i from 374bhp to beyond 440bhp, adding significantly to the already impressive performance without changing the everyday character of the car. AutoCleanse provides M340i remapping in Devon from our Totnes workshop.',
     engineOptions: [
@@ -461,8 +461,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'bmw-x5-remap',
     make: 'BMW', model: 'X5', fullName: 'BMW X5',
-    metaTitle: 'BMW X5 Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'BMW X5 ECU remapping - gain up to +65bhp and 100Nm from the B57 diesel. Stage 1 remapping from our Totnes workshop or mobile across Devon.',
+    metaTitle: 'BMW X5 Remap: up to +65bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'BMW X5 Stage 1 remap: 265bhp to 330bhp on the xDrive30d B57 265 (G05). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'BMW X5 Remap',
     intro: 'The BMW X5 is a large luxury SUV that benefits significantly from ECU remapping, particularly for towing and long-distance motorway use. The B57 three-litre diesel is one of the finest engines in its class and has substantial headroom at Stage 1. AutoCleanse remaps X5s throughout Devon from our Totnes workshop and via mobile service.',
     engineOptions: [
@@ -484,8 +484,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'bmw-520d-remap',
     make: 'BMW', model: '520d', fullName: 'BMW 520d',
-    metaTitle: 'BMW 520d Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'BMW 520d ECU remapping - Stage 1 diesel remap gains +45bhp and improved MPG. Workshop in Totnes or mobile across Devon.',
+    metaTitle: 'BMW 520d Remap: up to +45bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'BMW 520d Stage 1 remap: 190bhp to 235bhp on the 2.0d B47 190 (G30/G31). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'BMW 520d Remap',
     intro: 'The BMW 520d is the classic high-mileage executive car - frequently covering 30,000–50,000 miles per year in the hands of sales reps and business users. A Stage 1 remap significantly improves both economy and performance, making it an outstanding value upgrade for anyone covering significant annual mileage. AutoCleanse remaps 520ds from our Totnes workshop and mobile across Devon.',
     engineOptions: [
@@ -508,8 +508,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vw-golf-gti-remap',
     make: 'Volkswagen', model: 'Golf GTI', fullName: 'VW Golf GTI',
-    metaTitle: 'VW Golf GTI Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'VW Golf GTI ECU remapping - Stage 1 gains up to +60bhp from the EA888. Performance tuning in Devon from our Totnes workshop or mobile.',
+    metaTitle: 'VW Golf GTI Remap: up to +60bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'VW Golf GTI Stage 1 remap: 245bhp to 305bhp on the 2.0 TSI EA888 245 (Mk7/7.5). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'VW Golf GTI Remap',
     intro: 'The VW Golf GTI is the benchmark hot hatch, and the EA888 2.0 TSI engine is one of the most extensively tuned platforms in the world. A Stage 1 remap takes the GTI from 245bhp to around 305bhp with no hardware changes, transforming it into a genuinely rapid machine. AutoCleanse provides Golf GTI remapping from our Totnes workshop and mobile across Devon.',
     engineOptions: [
@@ -530,8 +530,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vw-golf-r-remap',
     make: 'Volkswagen', model: 'Golf R', fullName: 'VW Golf R',
-    metaTitle: 'VW Golf R Remap | Stage 1 Performance Tuning Devon | AutoCleanse',
-    metaDescription: 'VW Golf R ECU remapping - Stage 1 takes the EA888 beyond 380bhp. Expert performance tuning in Devon by AutoCleanse.',
+    metaTitle: 'VW Golf R Remap: up to +65bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'VW Golf R Stage 1 remap: 310bhp to 375bhp on the 2.0 TSI EA888 310 (Mk7 R). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'VW Golf R Remap',
     intro: 'The VW Golf R is the flagship performance Golf - 4Motion AWD, 320bhp from the factory, and one of the finest all-round performance cars available. Stage 1 remapping takes the Golf R beyond 380bhp, further into genuine supercar territory for a fraction of the cost. AutoCleanse provides Golf R remapping from our Totnes workshop for enthusiasts across Devon.',
     engineOptions: [
@@ -552,8 +552,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vw-golf-gtd-remap',
     make: 'Volkswagen', model: 'Golf GTD', fullName: 'VW Golf GTD',
-    metaTitle: 'VW Golf GTD Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'VW Golf GTD ECU remapping - gain up to +50bhp and improved MPG from the 2.0 TDI. Stage 1 diesel tuning in Devon by AutoCleanse.',
+    metaTitle: 'VW Golf GTD Remap: up to +55bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'VW Golf GTD Stage 1 remap: 184bhp to 235bhp on the 2.0 TDI 184 (Mk7/7.5 GTD). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'VW Golf GTD Remap',
     intro: 'The VW Golf GTD is the diesel performance Golf - offering the GTI look and feel with diesel economy. Its 2.0 TDI engine responds brilliantly to ECU remapping, gaining around 50bhp and significant torque at Stage 1 while also improving real-world MPG. AutoCleanse remaps Golf GTDs in Devon from our Totnes workshop and mobile.',
     engineOptions: [
@@ -574,8 +574,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vw-transporter-remap',
     make: 'Volkswagen', model: 'Transporter', fullName: 'VW Transporter',
-    metaTitle: 'VW Transporter T5/T6 Remap | Van Tuning Devon | AutoCleanse',
-    metaDescription: 'VW Transporter T5/T6 ECU remapping - improve power, torque and MPG. Commercial van remapping in Devon from AutoCleanse.',
+    metaTitle: 'VW Transporter T5/T6 Remap: up to +46bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'VW Transporter Stage 1 remap: 102bhp to 140bhp on the 2.0 TDI 102 (T5/T6). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'VW Transporter T5 & T6 Remap',
     intro: 'The VW Transporter is the premium choice for tradespeople and small fleet operators, and it responds very well to ECU remapping. Both T5 and T6 variants with the 2.0 TDI engine gain significant torque that transforms their pulling power under load - particularly important for those carrying heavy tool kits or towing. AutoCleanse remaps Transporters from our Totnes workshop and mobile across Devon.',
     engineOptions: [
@@ -633,8 +633,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vw-amarok-remap',
     make: 'Volkswagen', model: 'Amarok', fullName: 'VW Amarok',
-    metaTitle: 'VW Amarok Remap | Stage 1 Diesel Tuning Devon | AutoCleanse',
-    metaDescription: 'VW Amarok ECU remapping - Stage 1 gains up to +80bhp from the V6 TDI. Towing and performance remapping in Devon by AutoCleanse.',
+    metaTitle: 'VW Amarok Remap: up to +62bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'VW Amarok Stage 1 remap: 163bhp to 205bhp on the 2.0 TDI 163 (2H). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'VW Amarok Remap',
     intro: 'The VW Amarok is the premium pick-up truck choice, and the V6 TDI in particular is one of the finest engines fitted to any commercial vehicle. Stage 1 remapping adds dramatic torque to the Amarok, transforming its towing capability and on-road performance. AutoCleanse remaps Amaroks from our Totnes workshop and mobile across Devon.',
     engineOptions: [
@@ -656,8 +656,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vw-passat-remap',
     make: 'Volkswagen', model: 'Passat', fullName: 'VW Passat',
-    metaTitle: 'VW Passat Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'VW Passat ECU remapping - Stage 1 diesel and petrol remaps. Gain up to +45bhp and improved MPG. Workshop or mobile across Devon.',
+    metaTitle: 'VW Passat Remap: up to +55bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'VW Passat Stage 1 remap: 150bhp to 192bhp on the 2.0 TDI 150 (B8). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'VW Passat Remap',
     intro: 'The VW Passat is one of the most popular executive-class family cars in the UK - a high-mileage workhorse that responds very well to ECU remapping. The 2.0 TDI diesel in particular offers significant headroom from the factory, making Stage 1 remapping an outstanding value upgrade for Passat drivers covering substantial annual mileage. AutoCleanse remaps Passats from our Totnes workshop and mobile across Devon.',
     engineOptions: [
@@ -679,8 +679,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vw-tiguan-remap',
     make: 'Volkswagen', model: 'Tiguan', fullName: 'VW Tiguan',
-    metaTitle: 'VW Tiguan Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'VW Tiguan ECU remapping - Stage 1 diesel and petrol remaps. Gain up to +45bhp and improved MPG. Workshop or mobile across Devon.',
+    metaTitle: 'VW Tiguan Remap: up to +45bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'VW Tiguan Stage 1 remap: 150bhp to 192bhp on the 2.0 TDI 150 (AD1). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'VW Tiguan Remap',
     intro: 'The VW Tiguan is a hugely popular family SUV across Devon and the wider South West, and it responds very well to ECU remapping - particularly the diesel variants used for family motoring and occasional towing. Stage 1 remapping improves both performance and real-world economy without any hardware changes. AutoCleanse remaps Tiguans from our Totnes workshop and mobile across Devon.',
     engineOptions: [
@@ -704,8 +704,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'mercedes-a35-remap',
     make: 'Mercedes', model: 'A35', fullName: 'Mercedes A35 AMG',
-    metaTitle: 'Mercedes A35 AMG Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Mercedes A35 AMG ECU remapping - Stage 1 remap gains up to +60bhp from the 2.0T engine. Expert performance tuning in Devon by AutoCleanse.',
+    metaTitle: 'Mercedes A35 AMG Remap: up to +59bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Mercedes A35 AMG Stage 1 remap: 306bhp to 365bhp on the 2.0T M260 306 (W177). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Mercedes A35 AMG Remap',
     intro: 'The Mercedes A35 AMG is a serious performance hatchback that responds very well to ECU remapping - the 2.0T turbocharged engine shares architecture with the A45 and has headroom for meaningful Stage 1 gains without hardware changes. Taking the A35 from 306bhp to around 365bhp transforms it into a substantially quicker car. AutoCleanse provides A35 remapping in Devon from our Totnes workshop.',
     engineOptions: [
@@ -725,8 +725,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'mercedes-a45-remap',
     make: 'Mercedes', model: 'A45', fullName: 'Mercedes A45 AMG',
-    metaTitle: 'Mercedes A45 AMG Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Mercedes A45 AMG S ECU remapping - Stage 1 gains beyond 480bhp from the 2.0T. Expert performance tuning in Devon by AutoCleanse.',
+    metaTitle: 'Mercedes A45 AMG Remap: up to +64bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Mercedes A45 AMG Stage 1 remap: 387bhp to 450bhp on the 2.0T M139 387 (A45, W177). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Mercedes A45 AMG Remap',
     intro: 'The Mercedes A45 AMG S produces a factory 421bhp from a 2.0-litre engine - the highest specific output of any production four-cylinder engine. Even at this level, ECU remapping still unlocks further performance: a Stage 1 remap takes the A45 S beyond 480bhp, making it one of the fastest front-biased hot hatches on the road. AutoCleanse provides A45 AMG remapping in Devon from our Totnes workshop.',
     engineOptions: [
@@ -747,8 +747,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'mercedes-c220-remap',
     make: 'Mercedes', model: 'C220', fullName: 'Mercedes C220d',
-    metaTitle: 'Mercedes C220d Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'Mercedes C220d ECU remapping - Stage 1 diesel remap gains +45bhp and improved MPG. Workshop in Totnes or mobile across Devon.',
+    metaTitle: 'Mercedes C220d Remap: up to +46bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Mercedes C220d Stage 1 remap: 194bhp to 240bhp on the 2.0d OM654 194 (W205/W206). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Mercedes C220d Remap',
     intro: 'The Mercedes C220d is a popular executive saloon for company car users and high-mileage private drivers, and the OM654 diesel engine responds very well to ECU remapping. A Stage 1 remap improves both economy and performance, making the C220d a more capable and rewarding daily driver. AutoCleanse remaps C220ds from our Totnes workshop and via mobile across Devon.',
     engineOptions: [
@@ -769,8 +769,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'mercedes-c63-remap',
     make: 'Mercedes', model: 'C63', fullName: 'Mercedes C63 AMG',
-    metaTitle: 'Mercedes C63 AMG Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Mercedes C63 AMG ECU remapping - gain up to +65bhp from the 4.0T V8 biturbo. Expert performance tuning in Devon by AutoCleanse.',
+    metaTitle: 'Mercedes C63 AMG Remap: up to +66bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Mercedes C63 AMG Stage 1 remap: 476bhp to 542bhp on the 4.0T M177 476 (C63, W205/W206). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Mercedes C63 AMG Remap',
     intro: 'The Mercedes C63 AMG with its 4.0-litre twin-turbocharged V8 is one of the most sonorous and thrilling performance saloons available - and remapping takes its already exceptional performance to another level. A Stage 1 remap adds around 65bhp and significant torque to the M177 engine, producing a car that\'s genuinely extraordinary on the road. AutoCleanse provides C63 remapping in Devon from our Totnes workshop.',
     engineOptions: [
@@ -791,8 +791,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'mercedes-glc63-remap',
     make: 'Mercedes', model: 'GLC63', fullName: 'Mercedes GLC63 AMG',
-    metaTitle: 'Mercedes GLC63 AMG Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Mercedes GLC63 AMG ECU remapping - gain beyond 580bhp from the 4.0T V8. Expert performance tuning in Devon by AutoCleanse.',
+    metaTitle: 'Mercedes GLC63 AMG Remap: up to +72bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Mercedes GLC63 AMG Stage 1 remap: 476bhp to 542bhp on the 4.0T M177 476 (GLC63, X253). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Mercedes GLC63 AMG Remap',
     intro: 'The Mercedes GLC63 AMG is a car we know personally - it\'s part of our own fleet. The M177 4.0-litre twin-turbo V8 in this performance SUV responds brilliantly to remapping: Stage 1 takes the GLC63 S from 510bhp to beyond 580bhp, transforming an already exceptional vehicle into something genuinely extraordinary. AutoCleanse provides GLC63 remapping in Devon from our Totnes workshop.',
     engineOptions: [
@@ -813,8 +813,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'mercedes-sprinter-remap',
     make: 'Mercedes', model: 'Sprinter', fullName: 'Mercedes Sprinter',
-    metaTitle: 'Mercedes Sprinter Remap | Commercial Van Tuning Devon | AutoCleanse',
-    metaDescription: 'Mercedes Sprinter ECU remapping - improve power, torque and MPG for your Sprinter van. Commercial remapping in Devon by AutoCleanse.',
+    metaTitle: 'Mercedes Sprinter Remap: up to +50bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Mercedes Sprinter Stage 1 remap: 143bhp to 185bhp on the 2.0d OM654 143 (VS30). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Mercedes Sprinter Remap',
     intro: 'The Mercedes Sprinter is the workhorse of choice for trades businesses, courier companies, and fleet operators across Devon - and ECU remapping transforms its performance and economy for everyday commercial use. Whether you\'re running a 2.0d 143 or the more powerful 190, a Stage 1 remap adds meaningful torque and can improve MPG by up to 18%, making a significant difference to running costs over time. AutoCleanse offers Sprinter remapping from our Totnes workshop and via mobile across Devon.',
     engineOptions: [
@@ -928,8 +928,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'ford-transit-remap',
     make: 'Ford', model: 'Transit', fullName: 'Ford Transit',
-    metaTitle: 'Ford Transit Remap | Commercial Van Tuning Devon | AutoCleanse',
-    metaDescription: 'Ford Transit ECU remapping - improve power, torque and MPG for your Transit van. Commercial remapping in Devon by AutoCleanse.',
+    metaTitle: 'Ford Transit Remap: up to +50bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Ford Transit Stage 1 remap: 130bhp to 180bhp on the 2.0 EcoBlue 130. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Ford Transit Remap',
     intro: 'The Ford Transit is the backbone of British trade, and the 2.0 EcoBlue and older 2.2 TDCi engines respond brilliantly to ECU remapping. A Stage 1 remap adds significant torque, making the Transit much more capable when fully loaded, while also improving real-world MPG by up to 15%. AutoCleanse offers Transit remapping from our Totnes workshop and via mobile across Devon.',
     engineOptions: [
@@ -951,8 +951,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'ford-transit-custom-remap',
     make: 'Ford', model: 'Transit Custom', fullName: 'Ford Transit Custom',
-    metaTitle: 'Ford Transit Custom Remap | Van Tuning Devon | AutoCleanse',
-    metaDescription: 'Ford Transit Custom ECU remapping - boost power, torque and MPG. Expert van tuning in Devon by AutoCleanse.',
+    metaTitle: 'Ford Transit Custom Remap: up to +75bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Ford Transit Custom Stage 1 remap: 105bhp to 180bhp on the 2.0 EcoBlue 105. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Ford Transit Custom Remap',
     intro: 'The Ford Transit Custom is the UK\'s best-selling commercial vehicle. The 2.0 EcoBlue engines are heavily restricted from the factory to create different power outputs. This means the lower output models (like the 105bhp and 130bhp) have massive headroom and can see transformative gains from a Stage 1 remap. AutoCleanse provides Transit Custom remapping across Devon.',
     engineOptions: [
@@ -974,8 +974,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'ford-ranger-remap',
     make: 'Ford', model: 'Ranger', fullName: 'Ford Ranger',
-    metaTitle: 'Ford Ranger Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Ford Ranger ECU remapping - gain up to +50bhp and improved torque for towing. 4x4 tuning in Devon from our Totnes workshop or mobile.',
+    metaTitle: 'Ford Ranger Remap: up to +40bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Ford Ranger Stage 1 remap: 213bhp to 250bhp on the 2.0 EcoBlue 213 (Bi-Turbo). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Ford Ranger Remap',
     intro: 'The Ford Ranger is Europe\'s most popular pickup truck. Whether you have the 2.2 TDCi, the 3.2 TDCi five-cylinder, or the newer 2.0 EcoBlue, a Stage 1 remap dramatically improves towing performance and overall drivability. The extra torque transforms how the Ranger handles heavy loads and inclines. AutoCleanse remaps Rangers across Devon.',
     engineOptions: [
@@ -997,8 +997,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'ford-fiesta-st-remap',
     make: 'Ford', model: 'Fiesta ST', fullName: 'Ford Fiesta ST',
-    metaTitle: 'Ford Fiesta ST Remap | Stage 1 Performance Tuning Devon',
-    metaDescription: 'Ford Fiesta ST ECU remapping - unlock more power from the 1.5T or 1.6T EcoBoost. Expert performance tuning in Devon by AutoCleanse.',
+    metaTitle: 'Ford Fiesta ST Remap: up to +35bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Ford Fiesta ST Stage 1 remap: 200bhp to 235bhp on the 1.5T EcoBoost 200 (Mk8). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Ford Fiesta ST Remap',
     intro: 'The Ford Fiesta ST is widely regarded as one of the best handling hot hatches of all time. Whether you have the Mk7 1.6 EcoBoost or the Mk8 1.5 EcoBoost 3-cylinder, a Stage 1 remap elevates the performance to match the chassis, making the ST an absolute giant-killer on twisty roads. AutoCleanse offers Fiesta ST remapping in Devon.',
     engineOptions: [
@@ -1019,8 +1019,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'ford-focus-st-remap',
     make: 'Ford', model: 'Focus ST', fullName: 'Ford Focus ST',
-    metaTitle: 'Ford Focus ST Remap | Stage 1 Performance Tuning Devon',
-    metaDescription: 'Ford Focus ST ECU remapping - gain up to +50bhp from the 2.3 EcoBoost or 2.0 EcoBoost. Expert performance tuning in Devon.',
+    metaTitle: 'Ford Focus ST Remap: up to +50bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Ford Focus ST Stage 1 remap: 280bhp to 330bhp on the 2.3 EcoBoost 280 (Mk4). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Ford Focus ST Remap',
     intro: 'The Ford Focus ST offers fantastic performance and practicality. The Mk4\'s 2.3 EcoBoost (shared with the Mustang and Focus RS) has massive tuning potential, and the Mk3\'s 2.0 EcoBoost responds excellently too. A Stage 1 remap unleashes the true potential of the engine, delivering relentless acceleration. AutoCleanse provides Focus ST tuning in Devon.',
     engineOptions: [
@@ -1042,8 +1042,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'ford-kuga-remap',
     make: 'Ford', model: 'Kuga', fullName: 'Ford Kuga',
-    metaTitle: 'Ford Kuga Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'Ford Kuga ECU remapping - Stage 1 diesel remaps for improved towing, torque and MPG. Workshop in Totnes or mobile across Devon.',
+    metaTitle: 'Ford Kuga Remap: up to +40bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Ford Kuga Stage 1 remap: 150bhp to 190bhp on the 2.0 TDCi 150. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Ford Kuga Remap',
     intro: 'The Ford Kuga is a popular family SUV that benefits greatly from ECU remapping, especially the TDCi and EcoBlue diesel models which are frequently used for towing caravans or long journeys. A Stage 1 remap improves power, sharpens responsiveness, and reduces fuel consumption. AutoCleanse offers Kuga remapping in Devon.',
     engineOptions: [
@@ -1065,8 +1065,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'ford-mondeo-remap',
     make: 'Ford', model: 'Mondeo', fullName: 'Ford Mondeo',
-    metaTitle: 'Ford Mondeo Remap | Stage 1 ECU Tuning Devon | AutoCleanse',
-    metaDescription: 'Ford Mondeo ECU remapping - Stage 1 diesel remap for more power and better MPG. Workshop in Totnes or mobile across Devon.',
+    metaTitle: 'Ford Mondeo Remap: up to +40bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Ford Mondeo Stage 1 remap: 150bhp to 190bhp on the 2.0 TDCi 150. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Ford Mondeo Remap',
     intro: 'The Ford Mondeo has long been the vehicle of choice for high-mileage drivers and families. The 2.0 TDCi engines are reliable and respond very well to ECU remapping. A Stage 1 tune provides a stronger surge of mid-range torque, making motorway overtakes effortless while simultaneously improving fuel economy. AutoCleanse remaps Mondeos across Devon.',
     engineOptions: [
@@ -1090,8 +1090,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'range-rover-sport-remap',
     make: 'Land Rover', model: 'Range Rover Sport', fullName: 'Range Rover Sport',
-    metaTitle: 'Range Rover Sport Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Range Rover Sport ECU remapping - unlock massive torque and better MPG from the TDV6/SDV6. Expert 4x4 tuning in Devon.',
+    metaTitle: 'Range Rover Sport Remap: up to +51bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Range Rover Sport Stage 1 remap: 292bhp to 330bhp on the 3.0 SDV6 292. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Range Rover Sport Remap',
     intro: 'The Range Rover Sport combines luxury with serious capability. Its heavy chassis means the factory engines, especially the 3.0 SDV6, can feel a little restricted. A Stage 1 remap liberates a huge amount of mid-range torque, transforming how it accelerates, overtakes, and tows, while also improving fuel economy on long journeys. AutoCleanse offers mobile and workshop remapping in Devon.',
     engineOptions: [
@@ -1113,8 +1113,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'range-rover-evoque-remap',
     make: 'Land Rover', model: 'Range Rover Evoque', fullName: 'Range Rover Evoque',
-    metaTitle: 'Range Rover Evoque Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Range Rover Evoque ECU remapping - more power, sharper response, and better MPG for the 2.0 TD4 and 2.2 SD4. Devon tuning specialists.',
+    metaTitle: 'Range Rover Evoque Remap: up to +40bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Range Rover Evoque Stage 1 remap: 150bhp to 190bhp on the 2.0 TD4/eD4 150 (Ingenium). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Range Rover Evoque Remap',
     intro: 'The Range Rover Evoque is stylish and capable, but the heavy body can make the 2.0 and 2.2 diesel engines feel sluggish. A Stage 1 ECU remap from AutoCleanse transforms the Evoque, delivering a surge of low-down torque that makes the car feel much lighter, sharper, and more effortless to drive, while improving MPG.',
     engineOptions: [
@@ -1136,8 +1136,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'range-rover-velar-remap',
     make: 'Land Rover', model: 'Range Rover Velar', fullName: 'Range Rover Velar',
-    metaTitle: 'Range Rover Velar Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Range Rover Velar ECU remapping - unleash the true performance of the 2.0 or 3.0 diesel engines. Workshop or mobile tuning in Devon.',
+    metaTitle: 'Range Rover Velar Remap: up to +45bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Range Rover Velar Stage 1 remap: 180bhp to 215bhp on the 2.0 D180. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Range Rover Velar Remap',
     intro: 'The Range Rover Velar is one of the most stunning SUVs on the road, but the factory engine mapping is heavily tuned for emissions over drivability. A Stage 1 ECU remap removes the frustrating turbo lag and sluggishness, replacing it with smooth, relentless torque that matches the Velar\'s premium feel. AutoCleanse maps Velars across Devon.',
     engineOptions: [
@@ -1159,8 +1159,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'land-rover-discovery-remap',
     make: 'Land Rover', model: 'Discovery', fullName: 'Land Rover Discovery',
-    metaTitle: 'Land Rover Discovery Remap | 4x4 Tuning Devon | AutoCleanse',
-    metaDescription: 'Land Rover Discovery ECU remapping - gain huge torque for towing and better MPG on the Discovery 4 and 5. Devon 4x4 tuning.',
+    metaTitle: 'Land Rover Discovery Remap: up to +45bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Land Rover Discovery Stage 1 remap: 255bhp to 300bhp on the 3.0 SDV6 255 (Discovery 4). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Land Rover Discovery Remap',
     intro: 'The Land Rover Discovery (both 4 and 5) is the ultimate family workhorse and tow vehicle. However, weighing nearly 2.5 tonnes, the SDV6 and TDV6 engines need all the help they can get. A Stage 1 ECU remap delivers exactly what the Discovery needs: massive low-down torque. This transforms towing, improves MPG, and makes overtaking much safer.',
     engineOptions: [
@@ -1182,8 +1182,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'land-rover-defender-remap',
     make: 'Land Rover', model: 'Defender', fullName: 'Land Rover Defender',
-    metaTitle: 'Land Rover Defender Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Land Rover Defender ECU remapping - classic Puma and new generation Defender tuning. Improve torque and towing. Devon tuning specialists.',
+    metaTitle: 'Land Rover Defender Remap: up to +60bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Land Rover Defender Stage 1 remap: 122bhp to 160bhp on the 2.4/2.2 TDCi Puma (Classic). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Land Rover Defender Remap',
     intro: 'Whether you drive a classic Defender TDCi (Puma) or the brand new L663 generation, ECU remapping completely changes the driving dynamic. For classic models, it removes the dreadful sluggishness and makes modern traffic manageable. For the new generation, it unlocks serious performance and towing capability that rivals the very best SUVs. AutoCleanse provides Defender mapping in Devon.',
     engineOptions: [
@@ -1205,8 +1205,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'range-rover-vogue-remap',
     make: 'Land Rover', model: 'Range Rover Vogue', fullName: 'Range Rover Vogue',
-    metaTitle: 'Range Rover Vogue Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Range Rover Vogue ECU remapping - unlock more power and better MPG from the SDV8 and SDV6. Luxury 4x4 tuning in Devon.',
+    metaTitle: 'Range Rover Vogue Remap: up to +52bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Range Rover Vogue Stage 1 remap: 258bhp to 310bhp on the 3.0 TDV6/SDV6 258. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Range Rover Vogue Remap',
     intro: 'The full-size Range Rover (Vogue/Autobiography) is the pinnacle of luxury, but dragging over 2.5 tonnes around takes its toll on fuel economy and responsiveness. A Stage 1 ECU remap enhances the effortless nature of the car. By boosting torque by up to 100Nm, the engine doesn\'t have to work as hard, resulting in a smoother drive, faster overtakes, and better MPG. AutoCleanse offers mobile mapping across Devon.',
     engineOptions: [
@@ -1229,8 +1229,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'vauxhall-vivaro-remap',
     make: 'Vauxhall', model: 'Vivaro', fullName: 'Vauxhall Vivaro',
-    metaTitle: 'Vauxhall Vivaro Remap | Van Tuning Devon | AutoCleanse',
-    metaDescription: 'Vauxhall Vivaro ECU remapping - gain power, torque and MPG. Commercial van tuning in Devon from AutoCleanse.',
+    metaTitle: 'Vauxhall Vivaro Remap: up to +50bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Vauxhall Vivaro Stage 1 remap: 120bhp to 160bhp on the 1.6 CDTi 120 (BiTurbo). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Vauxhall Vivaro Remap',
     intro: 'The Vauxhall Vivaro (and its Renault Trafic / Nissan Primastar siblings) is a ubiquitous site on UK roads. The 1.6 and 2.0 CDTi / BiTurbo engines respond incredibly well to a Stage 1 remap. By unlocking restricted software, the Vivaro gains the torque needed to easily carry heavy loads or tow, while simultaneously returning better MPG. AutoCleanse offers Vivaro remapping in Devon.',
     engineOptions: [
@@ -1434,8 +1434,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'nissan-navara-remap',
     make: 'Nissan', model: 'Navara', fullName: 'Nissan Navara',
-    metaTitle: 'Nissan Navara Remap | 4x4 Tuning Devon | AutoCleanse',
-    metaDescription: 'Nissan Navara ECU remapping - gain torque, improve towing, and increase MPG. Devon 4x4 tuning specialists.',
+    metaTitle: 'Nissan Navara Remap: up to +40bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Nissan Navara Stage 1 remap: 190bhp to 230bhp on the 2.3 dCi 190 (NP300 Bi-Turbo). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Nissan Navara Remap',
     intro: 'The Nissan Navara is a rugged and dependable pickup, but like many commercial 4x4s, the factory tune is conservative. A Stage 1 remap on the 2.3 dCi or the older 2.5 dCi engine unleashes substantial low-end torque. This makes pulling heavy trailers or navigating off-road terrain effortless, while also providing better fuel economy on the road. AutoCleanse tunes Navaras in Devon.',
     engineOptions: [
@@ -1457,8 +1457,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'toyota-hilux-remap',
     make: 'Toyota', model: 'Hilux', fullName: 'Toyota Hilux',
-    metaTitle: 'Toyota Hilux Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Toyota Hilux ECU remapping - unlock more power and torque for the legendary 2.4 and 2.8 D-4D engines. Devon 4x4 tuning.',
+    metaTitle: 'Toyota Hilux Remap: up to +40bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Toyota Hilux Stage 1 remap: 204bhp to 240bhp on the 2.8 D-4D 204 (8th Gen). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Toyota Hilux Remap',
     intro: 'The Toyota Hilux is legendary for its indestructibility, but the 2.4 and 2.8 D-4D engines are tuned very conservatively from the factory. A Stage 1 ECU remap wakes the Hilux up, delivering a huge surge of torque that transforms its towing capabilities and makes it far more responsive on the road. AutoCleanse offers Hilux remapping across Devon.',
     engineOptions: [
@@ -1480,8 +1480,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'peugeot-boxer-remap',
     make: 'Peugeot', model: 'Boxer', fullName: 'Peugeot Boxer',
-    metaTitle: 'Peugeot Boxer Remap | Motorhome & Van Tuning Devon',
-    metaDescription: 'Peugeot Boxer ECU remapping - gain torque and MPG. Perfect for vans and motorhomes. Expert tuning in Devon by AutoCleanse.',
+    metaTitle: 'Peugeot Boxer Remap: up to +40bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Peugeot Boxer Stage 1 remap: 130bhp to 170bhp on the 2.0 BlueHDi 130. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Peugeot Boxer Remap',
     intro: 'The Peugeot Boxer (along with its Fiat Ducato and Citroen Relay siblings) is a staple for both tradespeople and the motorhome industry. The 2.0 and 2.2 BlueHDi engines are reliable but often struggle when heavily loaded or built into a large motorhome. A Stage 1 ECU remap delivers the low-end torque needed to pull effortlessly, while also improving fuel economy. AutoCleanse tunes Boxers across Devon.',
     engineOptions: [
@@ -1503,8 +1503,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'renault-trafic-remap',
     make: 'Renault', model: 'Trafic', fullName: 'Renault Trafic',
-    metaTitle: 'Renault Trafic Remap | Van Tuning Devon | AutoCleanse',
-    metaDescription: 'Renault Trafic ECU remapping - gain power, torque and MPG. Commercial van tuning in Devon from AutoCleanse.',
+    metaTitle: 'Renault Trafic Remap: up to +50bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Renault Trafic Stage 1 remap: 120bhp to 160bhp on the 1.6 dCi 120 (BiTurbo). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Renault Trafic Remap',
     intro: 'The Renault Trafic is a brilliant mid-sized van, sharing its platform with the Vauxhall Vivaro. The 1.6 and 2.0 dCi engines are highly capable, and a Stage 1 ECU remap unlocks their true potential. Delivering up to 40% more power on restricted models, a remap transforms the Trafic into a punchy, effortless workhorse while simultaneously improving MPG. AutoCleanse maps Trafics across Devon.',
     engineOptions: [
@@ -1528,8 +1528,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'seat-leon-remap',
     make: 'Seat', model: 'Leon', fullName: 'Seat Leon',
-    metaTitle: 'Seat Leon Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Seat Leon ECU remapping - unlock massive gains on the Cupra 2.0 TSI or better MPG on the 2.0 TDI. Expert VAG tuning in Devon.',
+    metaTitle: 'Seat Leon Remap: up to +70bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Seat Leon Stage 1 remap: 290bhp to 360bhp on the 2.0 TSI Cupra 290. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Seat Leon Remap',
     intro: 'Sharing its platform with the VW Golf, the Seat Leon is a fantastic car to tune. Whether you have the ultra-efficient 2.0 TDI, the punchy 1.4 TSI, or the high-performance Leon Cupra 2.0 TSI, a Stage 1 ECU remap safely unlocks the restricted power within the factory software. AutoCleanse offers Seat Leon remapping across Devon.',
     engineOptions: [
@@ -1551,8 +1551,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'seat-ibiza-remap',
     make: 'Seat', model: 'Ibiza', fullName: 'Seat Ibiza',
-    metaTitle: 'Seat Ibiza Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Seat Ibiza ECU remapping - gain power and torque on the 1.0 TSI, 1.2 TSI and Cupra models. Expert tuning in Devon.',
+    metaTitle: 'Seat Ibiza Remap: up to +48bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Seat Ibiza Stage 1 remap: 192bhp to 240bhp on the 1.8 TSI Cupra 192. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Seat Ibiza Remap',
     intro: 'The Seat Ibiza is light, agile, and an excellent candidate for tuning. The popular 1.0 TSI and 1.2 TSI engines are heavily restricted from the factory and transform with a Stage 1 remap. The high-performance Ibiza Cupra 1.8 TSI also sees massive gains, turning it into a true pocket rocket. AutoCleanse maps Ibizas across Devon.',
     engineOptions: [
@@ -1574,8 +1574,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'skoda-octavia-remap',
     make: 'Skoda', model: 'Octavia', fullName: 'Skoda Octavia',
-    metaTitle: 'Skoda Octavia Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Skoda Octavia ECU remapping - VAG tuning specialists in Devon. Huge gains for the Octavia vRS and better MPG for the TDI.',
+    metaTitle: 'Skoda Octavia Remap: up to +65bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Skoda Octavia Stage 1 remap: 245bhp to 310bhp on the 2.0 TSI vRS 245. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Skoda Octavia Remap',
     intro: 'The Skoda Octavia is renowned for its practicality, but its VAG-group engines mean it also has incredible tuning potential. A Stage 1 ECU remap turns the Octavia vRS into a serious performance car, while tuning the 2.0 TDI models provides effortless towing ability and substantial fuel savings on long journeys. AutoCleanse offers Octavia tuning across Devon.',
     engineOptions: [
@@ -1597,8 +1597,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'skoda-superb-remap',
     make: 'Skoda', model: 'Superb', fullName: 'Skoda Superb',
-    metaTitle: 'Skoda Superb Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Skoda Superb ECU remapping - VAG tuning specialists in Devon. Improve MPG on the 2.0 TDI or unleash the 280 TSI.',
+    metaTitle: 'Skoda Superb Remap: up to +80bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Skoda Superb Stage 1 remap: 280bhp to 360bhp on the 2.0 TSI 280 (4x4). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Skoda Superb Remap',
     intro: 'The Skoda Superb is a premium executive car with the engines to match. Whether you are doing high mileage in the 2.0 TDI and looking for maximum MPG, or you own the sleeper 2.0 TSI 280 (which shares the Golf R engine), a Stage 1 ECU remap from AutoCleanse will completely transform the driving experience.',
     engineOptions: [
@@ -1622,8 +1622,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'porsche-macan-remap',
     make: 'Porsche', model: 'Macan', fullName: 'Porsche Macan',
-    metaTitle: 'Porsche Macan Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Porsche Macan ECU remapping - unlock massive performance gains from the 2.0T, 3.0T, and 3.0 SD V6 engines in Devon.',
+    metaTitle: 'Porsche Macan Remap: up to +60bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Porsche Macan Stage 1 remap: 340bhp to 400bhp on the 3.0T V6 S (Petrol). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Porsche Macan Remap',
     intro: 'The Porsche Macan is the best-handling SUV on the market, but the factory engine mapping can leave it feeling a little restrained. A Stage 1 ECU remap unlocks serious performance. Whether you have the VAG-derived 2.0T, the punchy 3.0T V6, or the high-torque 3.0 SD diesel, remapping transforms the Macan into a true sports car. AutoCleanse offers Macan tuning in Devon.',
     engineOptions: [
@@ -1645,8 +1645,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'volvo-xc60-remap',
     make: 'Volvo', model: 'XC60', fullName: 'Volvo XC60',
-    metaTitle: 'Volvo XC60 Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Volvo XC60 ECU remapping - improve performance, torque, and MPG on the D4 and D5 diesel engines. Volvo tuning specialists in Devon.',
+    metaTitle: 'Volvo XC60 Remap: up to +45bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Volvo XC60 Stage 1 remap: 190bhp to 235bhp on the 2.0 D4 190 (SPA Gen). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Volvo XC60 Remap',
     intro: 'The Volvo XC60 is incredibly safe and comfortable, but the heavy body means the D4 and D5 diesel engines have to work hard. A Stage 1 ECU remap adds significant mid-range torque, making the XC60 much more responsive, easier to overtake with, and better at towing, while also improving fuel economy on long runs. AutoCleanse maps Volvos across Devon.',
     engineOptions: [
@@ -1668,8 +1668,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'volvo-xc90-remap',
     make: 'Volvo', model: 'XC90', fullName: 'Volvo XC90',
-    metaTitle: 'Volvo XC90 Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Volvo XC90 ECU remapping - gain huge torque and better MPG for the D5 and B5 engines. Expert SUV tuning in Devon.',
+    metaTitle: 'Volvo XC90 Remap: up to +45bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Volvo XC90 Stage 1 remap: 235bhp to 280bhp on the 2.0 D5 235 (PowerPulse). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Volvo XC90 Remap',
     intro: 'The Volvo XC90 is the ultimate family SUV, but its large size means the 2.0-litre D5 engine works extremely hard. A Stage 1 ECU remap delivers a massive boost in torque, which completely transforms the driving dynamics. The car feels lighter, accelerates more smoothly, and returns better fuel economy on motorways. AutoCleanse provides XC90 tuning in Devon.',
     engineOptions: [
@@ -1693,8 +1693,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'peugeot-208-remap',
     make: 'Peugeot', model: '208', fullName: 'Peugeot 208',
-    metaTitle: 'Peugeot 208 Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Peugeot 208 ECU remapping - gain power on the 1.2 PureTech and 1.6 BlueHDi. Mobile remapping across Devon.',
+    metaTitle: 'Peugeot 208 Remap: up to +30bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Peugeot 208 Stage 1 remap: 110bhp to 140bhp on the 1.2 PureTech 110. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Peugeot 208 Remap',
     intro: 'The Peugeot 208 is a stylish and popular hatchback. The 1.2 PureTech petrol engines and the highly efficient 1.6 BlueHDi diesels are fantastic tuning platforms. A Stage 1 ECU remap safely unlocks more power, providing a punchier drive and even better fuel economy on diesel models. AutoCleanse offers Peugeot 208 tuning in Devon.',
     engineOptions: [
@@ -1716,8 +1716,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'peugeot-3008-remap',
     make: 'Peugeot', model: '3008', fullName: 'Peugeot 3008',
-    metaTitle: 'Peugeot 3008 Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Peugeot 3008 ECU remapping - improve performance and MPG on the 1.5 and 2.0 BlueHDi engines. SUV tuning in Devon.',
+    metaTitle: 'Peugeot 3008 Remap: up to +40bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Peugeot 3008 Stage 1 remap: 150bhp to 190bhp on the 2.0 BlueHDi 150. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Peugeot 3008 Remap',
     intro: 'The Peugeot 3008 is a superb family SUV, but the 1.5 and 2.0 BlueHDi engines can feel a little breathless when fully loaded. A Stage 1 ECU remap delivers a substantial increase in mid-range torque, transforming how the car overtakes and climbs hills, while also providing excellent fuel savings. AutoCleanse maps 3008s across Devon.',
     engineOptions: [
@@ -1739,8 +1739,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'renault-clio-remap',
     make: 'Renault', model: 'Clio', fullName: 'Renault Clio',
-    metaTitle: 'Renault Clio Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Renault Clio ECU remapping - unleash the Clio RS or improve the 0.9 and 1.5 dCi engines. Expert tuning in Devon.',
+    metaTitle: 'Renault Clio Remap: up to +30bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Renault Clio Stage 1 remap: 200bhp to 230bhp on the 1.6T RS 200 (Mk4). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Renault Clio Remap',
     intro: 'The Renault Clio is agile and fun, particularly the Renaultsport (RS) models. Whether you are looking to squeeze maximum performance from the 1.6T RS, or you want better drivability and economy from the 1.5 dCi or 0.9 TCe, a Stage 1 ECU remap unlocks the car\'s true potential. AutoCleanse offers Clio remapping across Devon.',
     engineOptions: [
@@ -1762,8 +1762,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'renault-megane-remap',
     make: 'Renault', model: 'Megane', fullName: 'Renault Megane',
-    metaTitle: 'Renault Megane Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Renault Megane ECU remapping - massive gains for the RS 280/300 and excellent economy for the 1.5 dCi. Devon tuning experts.',
+    metaTitle: 'Renault Megane Remap: up to +50bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Renault Megane Stage 1 remap: 280bhp to 320bhp on the 1.8T RS 280 (Mk4). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Renault Megane Remap',
     intro: 'The Renault Megane RS is one of the greatest hot hatches on the market, and the standard models are fantastic cruisers. A Stage 1 ECU remap turns the Megane RS into a supercar-slayer, while tuning the 1.5 and 1.6 dCi diesels delivers massive improvements in MPG and overtaking ability. AutoCleanse maps Meganes across Devon.',
     engineOptions: [
@@ -1785,8 +1785,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'citroen-berlingo-remap',
     make: 'Citroen', model: 'Berlingo', fullName: 'Citroen Berlingo',
-    metaTitle: 'Citroen Berlingo Remap | Van Tuning Devon | AutoCleanse',
-    metaDescription: 'Citroen Berlingo ECU remapping - gain power, torque and MPG. Commercial van and MPV tuning in Devon.',
+    metaTitle: 'Citroen Berlingo Remap: up to +35bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Citroen Berlingo Stage 1 remap: 100bhp to 130bhp on the 1.6 BlueHDi 100. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Citroen Berlingo Remap',
     intro: 'The Citroen Berlingo (and its Peugeot Partner sibling) is the ultimate compact van and family MPV. However, when fully loaded with tools or passengers, the 1.6 HDi and 1.5 BlueHDi engines can struggle. A Stage 1 ECU remap delivers essential mid-range torque, making the Berlingo feel effortless to drive while improving MPG. AutoCleanse tunes Berlingos across Devon.',
     engineOptions: [
@@ -1808,8 +1808,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'dacia-duster-remap',
     make: 'Dacia', model: 'Duster', fullName: 'Dacia Duster',
-    metaTitle: 'Dacia Duster Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Dacia Duster ECU remapping - gain more power and better fuel economy from the 1.5 dCi engine. Expert tuning in Devon.',
+    metaTitle: 'Dacia Duster Remap: up to +30bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Dacia Duster Stage 1 remap: 110bhp to 140bhp on the 1.5 dCi 110/115. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Dacia Duster Remap',
     intro: 'The Dacia Duster is fantastic value for money, but the Renault-sourced 1.5 dCi engines are tuned very conservatively. A Stage 1 ECU remap wakes the Duster up, delivering a strong surge of torque that transforms how it drives on the road and off it, while providing excellent MPG gains. AutoCleanse offers Duster remapping in Devon.',
     engineOptions: [
@@ -1833,8 +1833,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'fiat-500-remap',
     make: 'Fiat', model: '500', fullName: 'Fiat 500 / Abarth',
-    metaTitle: 'Fiat 500 & Abarth Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Fiat 500 & Abarth 595 ECU remapping - unlock massive performance gains on the 1.4 T-Jet engines. Expert tuning in Devon.',
+    metaTitle: 'Fiat 500 & Abarth Remap: up to +30bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Fiat 500 / Abarth Stage 1 remap: 145bhp to 175bhp on the 1.4 T-Jet 145/160 (Abarth 595). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Fiat 500 & Abarth Remap',
     intro: 'The Fiat 500 and particularly the Abarth 595/695 models are some of the most characterful hot hatches on the road. The 1.4 T-Jet turbocharged engines are highly tuneable, and a Stage 1 ECU remap delivers explosive mid-range punch and sharpens the throttle response, making the car incredibly fun to drive. AutoCleanse offers Abarth tuning across Devon.',
     engineOptions: [
@@ -1856,8 +1856,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'fiat-ducato-remap',
     make: 'Fiat', model: 'Ducato', fullName: 'Fiat Ducato',
-    metaTitle: 'Fiat Ducato Remap | Motorhome & Van Tuning Devon',
-    metaDescription: 'Fiat Ducato ECU remapping - gain torque and MPG. Perfect for vans and motorhomes. Expert tuning in Devon by AutoCleanse.',
+    metaTitle: 'Fiat Ducato Remap: up to +35bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Fiat Ducato Stage 1 remap: 130bhp to 165bhp on the 2.3 MultiJet 130. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Fiat Ducato Remap',
     intro: 'The Fiat Ducato is the undisputed king of the motorhome chassis, as well as a popular commercial van. Because motorhomes carry maximum payload permanently, the 2.3 MultiJet engines often feel underpowered on inclines. A Stage 1 ECU remap delivers the exact low-end torque needed to pull effortlessly, drastically improving the driving experience and MPG. AutoCleanse tunes Ducatos across Devon.',
     engineOptions: [
@@ -1881,8 +1881,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'mazda-cx-5-remap',
     make: 'Mazda', model: 'CX-5', fullName: 'Mazda CX-5',
-    metaTitle: 'Mazda CX-5 Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Mazda CX-5 ECU remapping - gain power and huge torque on the 2.2 SkyActiv-D engine. Expert Mazda tuning in Devon.',
+    metaTitle: 'Mazda CX-5 Remap: up to +60bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Mazda CX-5 Stage 1 remap: 150bhp to 210bhp on the 2.2 SkyActiv-D 150. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Mazda CX-5 Remap',
     intro: 'The Mazda CX-5 is an excellent handling SUV, but the 2.2 SkyActiv-D engine, particularly the 150bhp version, is heavily restricted. A Stage 1 ECU remap safely unlocks an enormous amount of power and torque, making the CX-5 significantly faster, more responsive, and better at towing, while improving fuel economy. AutoCleanse offers Mazda tuning in Devon.',
     engineOptions: [
@@ -1904,8 +1904,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'nissan-qashqai-remap',
     make: 'Nissan', model: 'Qashqai', fullName: 'Nissan Qashqai',
-    metaTitle: 'Nissan Qashqai Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Nissan Qashqai ECU remapping - improve performance and MPG on the 1.5 dCi and 1.6 dCi engines. Expert tuning in Devon.',
+    metaTitle: 'Nissan Qashqai Remap: up to +30bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Nissan Qashqai Stage 1 remap: 110bhp to 140bhp on the 1.5 dCi 110. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Nissan Qashqai Remap',
     intro: 'The Nissan Qashqai is the UK\'s definitive family crossover, but the 1.5 dCi and 1.6 dCi engines can feel a bit flat on the motorway or when fully loaded. A Stage 1 ECU remap safely increases power and mid-range torque, providing a much smoother, effortless drive and improving long-distance fuel economy. AutoCleanse offers Qashqai tuning in Devon.',
     engineOptions: [
@@ -1927,8 +1927,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'nissan-juke-remap',
     make: 'Nissan', model: 'Juke', fullName: 'Nissan Juke',
-    metaTitle: 'Nissan Juke Remap | Stage 1 Tuning Devon | AutoCleanse',
-    metaDescription: 'Nissan Juke ECU remapping - gain power and better MPG from the 1.5 dCi, 1.2 DIG-T, and 1.6 Nismo models. Expert tuning in Devon.',
+    metaTitle: 'Nissan Juke Remap: up to +30bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Nissan Juke Stage 1 remap: 214bhp to 240bhp on the 1.6 DIG-T Nismo RS 214. £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Nissan Juke Remap',
     intro: 'The Nissan Juke is a quirky and popular crossover. Whether you have the punchy 1.6T Nismo, the economical 1.5 dCi, or the 1.2 DIG-T, a Stage 1 ECU remap makes a world of difference. It sharpens the throttle, boosts mid-range torque, and transforms the driving experience from sluggish to genuinely fun. AutoCleanse maps Nissan Jukes across Devon.',
     engineOptions: [
@@ -1950,8 +1950,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
   {
     slug: 'toyota-land-cruiser-remap',
     make: 'Toyota', model: 'Land Cruiser', fullName: 'Toyota Land Cruiser',
-    metaTitle: 'Toyota Land Cruiser Remap | 4x4 Tuning Devon | AutoCleanse',
-    metaDescription: 'Toyota Land Cruiser ECU remapping - unlock massive torque and towing ability from the 2.8 and 3.0 D-4D engines. Devon tuning experts.',
+    metaTitle: 'Toyota Land Cruiser Remap: up to +54bhp, from £250 | Auto-Cleanse Devon',
+    metaDescription: 'Toyota Land Cruiser Stage 1 remap: 177bhp to 215bhp on the 2.8 D-4D 177 (150 Series). £250 at our Totnes workshop or £270 mobile in Devon, health check included.',
     h1: 'Toyota Land Cruiser Remap',
     intro: 'The Toyota Land Cruiser is arguably the toughest 4x4 in the world, but Toyota tunes the 3.0 and 2.8 D-4D engines very conservatively for global fuel variations. A Stage 1 ECU remap wakes the Land Cruiser up, providing a massive surge of torque that completely transforms its towing capabilities and on-road drivability. AutoCleanse offers Land Cruiser tuning across Devon.',
     engineOptions: [
