@@ -48,6 +48,51 @@
       "statusCode": 301
     },
     {
+      "source": "/blog/bmw-m140i-stage-1-remap",
+      "destination": "https://www.auto-cleanse.co.uk/bmw-m140i-remap",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/adblue-no-start-countdown-sprinter",
+      "destination": "https://www.auto-cleanse.co.uk/adblue-countdown-no-start",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/blocked-dpf-ford-transit-custom",
+      "destination": "https://www.auto-cleanse.co.uk/blocked-dpf-cleaning-devon",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/five-checks-before-you-condemn-a-dpf",
+      "destination": "https://www.auto-cleanse.co.uk/blog/five-checks-before-condemning-a-dpf",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/dpf-pressure-sensor-pipe-faults",
+      "destination": "https://www.auto-cleanse.co.uk/blog/dpf-pressure-sensor-and-pipe-faults",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/injector-and-fuelling-faults-excess-soot",
+      "destination": "https://www.auto-cleanse.co.uk/blog/injector-and-fuelling-faults-behind-excess-soot",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/turbo-and-boost-faults-behind-dpr-problems",
+      "destination": "https://www.auto-cleanse.co.uk/blog/turbo-and-boost-faults-behind-dpf-problems",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/why-does-a-dpf-block-again-after-regeneration",
+      "destination": "https://www.auto-cleanse.co.uk/blog/why-dpf-blocks-again-after-regeneration",
+      "statusCode": 301
+    },
+    {
+      "source": "/adblue-warning-light-on",
+      "destination": "https://www.auto-cleanse.co.uk/adblue-warning-light",
+      "statusCode": 301
+    },
+    {
       "source": "/:path*/",
       "has": [{ "type": "host", "value": "auto-cleanse.co.uk" }],
       "destination": "https://www.auto-cleanse.co.uk/:path*",
