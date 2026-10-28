@@ -584,7 +584,8 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
       { name: '2.0 TDI 204 (T6.1)', stockPower: '204bhp', remapPower: '250bhp', stockTorque: '450Nm', remapTorque: '520Nm', mpgGain: 'up to 10%' },
     ],
     faqs: [
-      { q: 'Does remapping a VW Transporter improve fuel economy?', a: 'Yes - this is often the primary reason commercial operators remap their Transporters. MPG improvements of 12–18% are common depending on load profile and driving style. For a vehicle covering 30,000+ miles per year, the savings are substantial.' },
+      { q: 'How much does a VW T5 or T6 remap cost?', a: 'Stage 1 is £250 at our Totnes workshop or £270 mobile at your home, yard or depot in Devon. The diagnostic health check and a backup of your original ECU file are included, and a £50 deposit secures the booking online.' },
+      { q: 'Does remapping a VW Transporter improve fuel economy?', a: 'Yes - this is often the primary reason commercial operators remap their Transporters. MPG improvements of 12 to 18% are common depending on load profile and driving style. For a vehicle covering 30,000+ miles per year, the savings are substantial.' },
       { q: 'Will the Transporter pull better after remapping?', a: 'Significantly - the extra torque makes carrying heavy loads or towing much less stressful. Hills that previously required significant downshifting become easier, and the engine runs more comfortably at sustained higher speeds when loaded.' },
       { q: 'Can you remap a T5 Transporter as well as a T6?', a: 'Yes - we remap both T5 and T6 Transporters. The 2.0 TDI engine used in the T5 from 2009 onwards responds well to remapping, as does the T6 and T6.1.' },
       { q: 'Do you offer fleet pricing for multiple Transporters?', a: 'Yes - contact us to discuss fleet pricing and scheduling. We can accommodate multiple vehicles and come to your premises.' },
@@ -599,6 +600,13 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
         ],
       },
       {
+        heading: 'How much does a VW T5 or T6 remap cost?',
+        paragraphs: [
+          'A Stage 1 remap on a T5, T6 or T6.1 Transporter is £250 at our Totnes workshop, or £270 if we come to your home, yard or depot anywhere in Devon. That covers the diagnostic health check before anything is changed, the remap matched to your van\'s engine and gearbox, a backup of the original ECU file, and checks after the remap is applied.',
+          'A £50 deposit secures your slot online and the balance is due on the day. Camper conversions are priced the same as panel vans. If you run several Transporters, call us about fleet pricing and we can work through them at your premises.',
+        ],
+      },
+      {
         heading: 'T5, T6 and T6.1: engine variants',
         paragraphs: [
           'We remap the 2.0 TDI across the T5 (2009 on), T6 and T6.1. The single-turbo 102 and 150 and the twin-turbo 180/204 all respond well at Stage 1, but the safe, sensible gain differs by variant - a 102 will not reach 204 figures, and we would never claim it does. Tell us the exact model, year and power output when you book and we will confirm realistic numbers for your specific van.',
@@ -609,13 +617,13 @@ export const VEHICLE_REMAPS: VehicleRemapData[] = [
         heading: 'Gearbox, economy and fleet considerations',
         paragraphs: [
           'DSG-equipped Transporters are well suited to Stage 1 - our maps respect the gearbox\'s torque limits. On manual vans, a healthy clutch copes fine, but a clutch already worn from heavy loaded use may need attention sooner, and we will tell you honestly if yours feels close.',
-          'Economy is the number one reason operators remap their vans: a better torque curve means less throttle to maintain speed, and drivers commonly report 10–18% real-world MPG improvements depending on load and route. Over 30,000+ miles a year that adds up quickly. For fleets we can apply a consistent map across multiple vans and schedule them around your work - ask about fleet pricing.',
+          'Economy is the number one reason operators remap their vans: a better torque curve means less throttle to maintain speed, and drivers commonly report 10 to 18% real-world MPG improvements depending on load and route. Over 30,000+ miles a year that adds up quickly. For fleets we can apply a consistent map across multiple vans and schedule them around your work - ask about fleet pricing.',
         ],
       },
       {
         heading: 'Diagnostics first, and mobile visits to your yard',
         paragraphs: [
-          'Every van gets a paid diagnostic health check before we touch the ECU - this is not a free add-on. We scan for faults, check the DPF and EGR condition and confirm the van is healthy before the remap is applied, because remapping a van with an existing problem simply masks it. We keep your original file backed up so the van can be returned to standard whenever you need.',
+          'Every van gets a diagnostic health check before we touch the ECU, included in the Stage 1 price. We scan for faults, check the DPF and EGR condition and confirm the van is healthy before the remap is applied, because remapping a van with an existing problem simply masks it. We keep your original file backed up so the van can be returned to standard whenever you need.',
           'Because downtime costs you money, we offer mobile ECU remapping across Devon and can come to your depot, yard or home - the same equipment and process as our Totnes workshop, without taking the van off the road for a trip.',
         ],
       },
