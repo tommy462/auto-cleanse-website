@@ -58,7 +58,7 @@ const HowItWorks = () => {
     {
       icon: Settings,
       title: 'Cleaning Process',
-      description: 'Professional deep-cleaning using the METclean XL with high-pressure water to remove all accumulated soot, ash, and particulates, restoring optimal flow.',
+      description: 'Professional deep-cleaning using the METclean XL: a water-only reverse flush with high-pressure bursts and micro-cavitation to remove accumulated soot, ash, and particulates, restoring flow.',
     },
     {
       icon: Wind,
@@ -79,7 +79,7 @@ const HowItWorks = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="How DPF Cleaning Works | AutoCleanse Process" description="Our 5-step professional DPF cleaning process - aqueous treatment, high-pressure flush, flow testing and same-day return across Devon." path="/how-it-works" />
+      <SEO title="How DPF Cleaning Works | AutoCleanse Process" description="Our 5-step professional DPF cleaning process - aqueous treatment, high-pressure flush, flow testing and same-day return across Devon where possible." path="/how-it-works" />
 
       {/* Background ambient light */}
       <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-[#FF7A00]/5 blur-[120px] rounded-[100%] pointer-events-none"></div>
@@ -158,7 +158,7 @@ const HowItWorks = () => {
                 <p className="text-white/35 text-xs -mt-6 mb-8">The METclean XL MKII we clean on.</p>
                 <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-[#FF7A00] transition-colors">30-mile radius from Totnes</h3>
                 <p className="text-white/50 leading-relaxed font-medium">
-                  Our local service area covers most of South Devon, ensuring rapid collection and same-day return
+                  Our local service area covers most of South Devon, with rapid collection and same-day return where possible
                   for filters ready before 10am on weekdays.
                 </p>
               </div>

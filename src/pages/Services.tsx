@@ -59,7 +59,7 @@ const Services = () => {
       icon: Settings,
       title: 'DPF Cleaning',
       description: 'Professional deep clean',
-      fullDescription: 'Professional deep-clean, flow-test, and certification for optimal performance and emissions compliance.',
+      fullDescription: 'Professional off-vehicle water-only clean, flow tested before and after, with a report on the result for your records.',
       highlights: ['Safe for modern systems', 'Proven results', 'Rapid turnaround'],
       showLabourNote: true,
     },
@@ -131,7 +131,7 @@ const Services = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning & ECU Remapping Services | AutoCleanse" description="Professional DPF, SCR, DOC and filter cleaning services plus ECU remapping. Mobile, HQ drop-off, and nationwide postal options." path="/services" />
+      <SEO title="DPF Cleaning & ECU Remapping Services | AutoCleanse" description="Professional DPF, SCR, DOC and filter cleaning services plus ECU remapping. Workshop drop-off and nationwide postal filter cleaning, with mobile remapping in Devon." path="/services" />
 
       {/* Background ambient light */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[500px] bg-[#FF7A00]/10 blur-[120px] rounded-[100%] pointer-events-none opacity-50"></div>
@@ -148,7 +148,7 @@ const Services = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto mb-8 rounded-full"></div>
           <p className="text-xl md:text-2xl text-white/60 max-w-4xl mx-auto leading-relaxed font-medium reveal-item">
             From collection to return, we handle every aspect of your filter refurbishment with precision and care.
-            Our process guarantees optimal flow and emissions compliance.
+            Every filter is flow tested before and after cleaning.
           </p>
         </div>
 

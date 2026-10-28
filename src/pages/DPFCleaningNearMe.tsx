@@ -43,7 +43,7 @@ const faqs = [
   },
   {
     q: 'Do you come to my house and clean the DPF on the vehicle?',
-    a: 'No - and be wary of anyone who says they can. Proper DPF cleaning is an off-vehicle workshop process using aqueous cleaning, pneumatic flushing and back-pressure flow testing. We collect and return, or you can drop off or post the filter. Our mobile visits are for ECU remapping only.',
+    a: 'No - and be wary of anyone who says they can. Proper DPF cleaning is an off-vehicle workshop process using high-pressure aqueous and micro-cavitation cleaning, hot-air drying and back-pressure flow testing. We collect and return, or you can drop off or post the filter. Our mobile visits are for ECU remapping only.',
   },
   {
     q: "What if I'm not sure the DPF is the problem?",
@@ -205,7 +205,7 @@ export default function DPFCleaningNearMe() {
               <p>
                 Additive flushes and forced regenerations - the typical "DPF clean" offered locally - only
                 deal with soot the engine could mostly burn off anyway, and do nothing about the ash that
-                permanently builds up in the filter. Off-vehicle cleaning removes both, restores near-new
+                permanently builds up in the filter. Off-vehicle cleaning removes both, restores
                 flow, and is verified with a before-and-after back-pressure test you can see in numbers.
               </p>
               <p>

@@ -94,7 +94,7 @@ const Home = () => {
       icon: Settings,
       title: 'DPF Cleaning',
       description: 'Professional deep clean',
-      features: ['Water-Only Off-Vehicle Clean', 'Advanced Flow Testing', 'Restores Original Performance']
+      features: ['Water-Only Off-Vehicle Clean', 'Advanced Flow Testing', 'Reverse Flush With Micro-Cavitation']
     },
     {
       icon: Wrench,
@@ -142,7 +142,7 @@ const Home = () => {
       icon: Zap,
       title: 'Catalytic Converters',
       description: 'Emission control cleaning',
-      features: ['Precious metal safe formulation', 'Unblocks exhaust flow', 'Clears engine lights']
+      features: ['Water-only aqueous clean', 'Improves exhaust flow', 'Off-vehicle machine clean']
     },
   ];
 
@@ -160,7 +160,7 @@ const Home = () => {
     {
       icon: Clock,
       title: 'Local Same-Day Service',
-      description: 'Fastest turnaround guaranteed',
+      description: 'Same-day turnaround where possible',
     },
     {
       icon: Shield,
@@ -189,7 +189,7 @@ const Home = () => {
     <main ref={container} className="block">
       <SEO
         title="DPF Cleaning & ECU Remapping Devon | AutoCleanse"
-        description="Professional DPF cleaning and ECU remapping services. Same-day filter return within Devon, nationwide postal service, and Stage 1 & 2 remap tuning available."
+        description="Professional DPF cleaning and ECU remapping services. Same-day filter return within Devon where possible, nationwide postal service, and Stage 1 & 2 remap tuning available."
         path="/"
       />
       <VehicleSchema />
@@ -339,7 +339,7 @@ const Home = () => {
                 { "@type": "AdministrativeArea", "name": "Devon" },
                 { "@type": "Country", "name": "United Kingdom" }
               ],
-              "description": "Professional off-vehicle Diesel Particulate Filter (DPF) cleaning using water and high-pressure air. Same-day return locally in Devon where possible, next-day return nationwide.",
+              "description": "Professional off-vehicle Diesel Particulate Filter (DPF) cleaning using high-pressure water bursts and micro-cavitation, water only. Same-day return locally in Devon where possible, next-day return nationwide.",
               "offers": {
                 "@type": "AggregateOffer",
                 "priceCurrency": "GBP",
@@ -366,7 +366,7 @@ const Home = () => {
                   "name": "Can you clean a completely blocked DPF?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes. Our METclean XL process uses water and high-pressure air to clear even heavily blocked DPFs, and every filter is flow tested before and after."
+                    "text": "Yes. Our METclean XL process uses high-pressure water bursts and micro-cavitation, water only, to clear even heavily blocked DPFs, and every filter is flow tested before and after."
                   }
                 },
                 {
@@ -374,7 +374,7 @@ const Home = () => {
                   "name": "How long does DPF cleaning take?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Locally in Devon, we offer same-day service for collections before 10am. For our nationwide postal service, turnaround is 24-48 hours from collection to return delivery."
+                    "text": "Locally in Devon, we offer same-day service where possible for collections before 10am. For our nationwide postal service, turnaround is 24-48 hours from collection to return delivery."
                   }
                 },
                 {
@@ -463,7 +463,7 @@ const Home = () => {
               </span>
             </h1>
             <p className="text-white/70 text-base sm:text-lg md:text-xl font-medium mb-6 max-w-md leading-relaxed hero-subtitle">
-              Professional off-vehicle filter cleaning with same-day return within Devon. Nationwide postal service available.
+              Professional off-vehicle filter cleaning with same-day return within Devon where possible. Nationwide postal service available.
             </p>
             <div className="flex flex-wrap gap-3 hero-subtitle">
               <Link to="/postal-dpf" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white hover:text-white inline-block">
@@ -527,8 +527,8 @@ const Home = () => {
         variant="steps"
         textBlocks={[
           { title: "Arrival & Inspection", desc: "Every filter is carefully logged and endoscoped before cleaning begins." },
-          { title: "Aqueous Cleaning Stage", desc: "Water and high-pressure air work compacted soot and ash out of the channels." },
-          { title: "High-Pressure Flushing", desc: "A reverse flush ensures zero particulate blockage remains deep within the honeycomb." },
+          { title: "Aqueous Cleaning Stage", desc: "Heated water and micro-cavitation loosen compacted soot and ash inside the channels." },
+          { title: "High-Pressure Flushing", desc: "Short high-pressure water bursts, run as a reverse flush, drive soot and ash out from deep within the honeycomb." },
           { title: "Drying & Final Test", desc: "Every filter is dried, then back-pressure tested again before it leaves us." }
         ]}
       />
@@ -549,7 +549,7 @@ const Home = () => {
                   <span className="text-[#FF7A00]">?</span>
                 </h2>
                 <p className="text-white/60 text-base md:text-lg font-medium max-w-sm hidden lg:block leading-relaxed mt-4">
-                  We don't just clean filters. We engineer complete flow restorations using state-of-the-art diagnostic and fluid dynamics technology.
+                  We don't just clean filters. We flow test every one before and after, using state-of-the-art diagnostic and cleaning equipment.
                 </p>
 
                 {/* DPFs Cleaned Counter */}
@@ -658,13 +658,13 @@ const Home = () => {
               <div className="text-white/80 leading-relaxed space-y-4 mb-8">
                 <p>
                   AutoCleanse provides two core services: professional off-vehicle DPF cleaning and ECU remapping.
-                  Operating from Totnes, Devon, we deliver same-day local filter cleaning within a 30-mile radius
+                  Operating from Totnes, Devon, we deliver same-day local filter cleaning where possible within a 30-mile radius
                   alongside tailored Stage 1 &amp; 2 remap tuning for cars, vans, HGVs, and plant machinery.
                 </p>
 
                 <p>
                   For customers beyond our local area, we offer nationwide postal DPF cleaning with tracked
-                  next-day return. Whether you need a blocked filter restored to OEM performance or an ECU
+                  next-day return. Whether you need a blocked filter cleaned and flow tested or an ECU
                   map that unlocks more power and better economy, AutoCleanse has you covered.
                 </p>
               </div>
@@ -721,8 +721,8 @@ const Home = () => {
         variant="editorial"
         textBlocks={[
           { title: "Blockage Removal", desc: "Targeted elimination of deep-seated particulate matter." },
-          { title: "Performance Uplift", desc: "Airflow restored to factory spec - guaranteed." },
-          { title: "Longevity Ensured", desc: "A clean core prevents recurring warning lights." }
+          { title: "Performance Uplift", desc: "Flow tested before and after, with back-pressure measured in mbar." },
+          { title: "Longevity", desc: "A clean core helps reduce the risk of recurring warning lights." }
         ]}
       />
 

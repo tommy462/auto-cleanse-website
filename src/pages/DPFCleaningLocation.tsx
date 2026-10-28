@@ -139,7 +139,7 @@ export default function DPFCleaningLocation({ location }: { location: DpfLocatio
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
                 Every filter goes through the same documented workshop process: inspection, aqueous deep
-                clean, high-pressure pneumatic flush, drying and a back-pressure flow test before and after -
+                clean with high-pressure water bursts and micro-cavitation, hot-air drying and a back-pressure flow test before and after -
                 so you get proof of the result, not just a promise. DPF cleaning is a workshop-based,
                 off-vehicle service; it is not something we do at the roadside.
               </p>

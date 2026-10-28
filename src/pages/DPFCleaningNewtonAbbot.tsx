@@ -275,7 +275,7 @@ const DPFCleaningNewtonAbbot = () => {
               ))}
             </div>
             <p className="text-white font-bold text-[15px] sm:text-base leading-snug">
-              Collected, cleaned and back the same day
+              Collected, cleaned and back the same day where possible
             </p>
           </div>
 

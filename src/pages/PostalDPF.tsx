@@ -321,7 +321,7 @@ const PostalDPF = () => {
                 </p>
 
                 <p>
-                  Using our METclean XL system, we restore filters to optimal performance, ensuring
+                  Using our METclean XL system, we restore flow through your original filter, helping to make sure
                   MOT compliance and emissions standards are met. Each filter undergoes comprehensive
                   flow testing before and after cleaning, with detailed reporting provided for your records.
                 </p>

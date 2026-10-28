@@ -59,7 +59,7 @@ const WhyClean = () => {
     },
     {
       icon: Zap,
-      title: 'Cleaning Restores Original Flow Efficiency',
+      title: 'Cleaning Restores Flow Through the Filter',
       description: 'Every filter is flow tested before and after cleaning, with no change to fit, calibration or emissions compliance.',
     },
     {
@@ -75,7 +75,7 @@ const WhyClean = () => {
     {
       icon: Leaf,
       title: 'Environmentally Responsible',
-      description: 'Cleaning avoids unnecessary manufacturing waste and reduces the need for shipping new components, lowering your carbon footprint. Our process uses only high-pressure water with no harmful chemicals.',
+      description: 'Cleaning avoids unnecessary manufacturing waste and reduces the need for shipping new components, lowering your carbon footprint. Our process uses only high-pressure water, with no chemicals or detergents.',
     },
     {
       icon: DollarSign,
@@ -95,7 +95,7 @@ const WhyClean = () => {
     {
       icon: Shield,
       title: 'OEM Filters Are Built to Last - They Just Need Cleaning',
-      description: 'Factory-fitted DPFs are designed for the lifespan of the vehicle, they fail due to blockage, not structural wear. Cleaning brings them back to spec.',
+      description: 'Factory-fitted DPFs are designed for the lifespan of the vehicle, they fail due to blockage, not structural wear. Cleaning removes the soot and ash that block them.',
     },
   ];
 
@@ -127,7 +127,7 @@ const WhyClean = () => {
                 "name": "Will a cleaned DPF pass an MOT?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "A properly cleaned OEM DPF will pass MOT emissions tests as it retains all original specifications and performance characteristics."
+                  "text": "A properly cleaned OEM DPF should pass MOT emissions tests, as the original filter and its specifications are kept."
                 }
               },
               {
@@ -143,7 +143,7 @@ const WhyClean = () => {
                 "name": "How long does a professionally cleaned DPF last?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "A professionally cleaned OEM DPF can last as long as the original, often requiring cleaning only every 80,000-120,000 miles depending on driving conditions."
+                  "text": "A professionally cleaned OEM DPF can carry on working as designed. How long before it needs cleaning again depends on driving conditions."
                 }
               }
             ]
@@ -240,7 +240,7 @@ const WhyClean = () => {
                 </li>
                 <li className="flex items-start text-white/70 font-medium text-lg">
                   <div className="w-2.5 h-2.5 bg-green-500 rounded-full mr-4 mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
-                  <span>Same-day turnaround available</span>
+                  <span>Same-day turnaround where possible</span>
                 </li>
                 <li className="flex items-start text-white/70 font-medium text-lg">
                   <div className="w-2.5 h-2.5 bg-green-500 rounded-full mr-4 mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
@@ -348,7 +348,7 @@ const WhyClean = () => {
 
                   <div className="group">
                     <h4 className="text-white font-bold mb-3 group-hover:text-[#FF7A00] transition-colors">Will a cleaned DPF pass an MOT?</h4>
-                    <p className="text-white/50 leading-relaxed">A properly cleaned OEM DPF will pass MOT emissions tests as it retains all original specifications and performance characteristics.</p>
+                    <p className="text-white/50 leading-relaxed">A properly cleaned OEM DPF should pass MOT emissions tests, as the original filter and its specifications are kept.</p>
                   </div>
 
                   <div className="group">
@@ -358,7 +358,7 @@ const WhyClean = () => {
 
                   <div className="group">
                     <h4 className="text-white font-bold mb-3 group-hover:text-[#FF7A00] transition-colors">How long does a professionally cleaned DPF last?</h4>
-                    <p className="text-white/50 leading-relaxed">A professionally cleaned OEM DPF can last as long as the original, often requiring cleaning only every 80,000-120,000 miles depending on driving conditions.</p>
+                    <p className="text-white/50 leading-relaxed">A professionally cleaned OEM DPF can carry on working as designed. How long before it needs cleaning again depends on driving conditions.</p>
                   </div>
                 </div>
               </div>
@@ -372,7 +372,7 @@ const WhyClean = () => {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,122,0,0.1)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none"></div>
 
             <h3 className="relative z-10 text-3xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
-              Ready to restore your DPF to <span className="text-[#FF7A00]">like-new performance?</span>
+              Ready to get your DPF <span className="text-[#FF7A00]">flowing again?</span>
             </h3>
             <p className="relative z-10 text-white/60 text-lg md:text-xl font-medium mb-10 max-w-2xl mx-auto">
               Contact us today to discuss your requirements and arrange collection.

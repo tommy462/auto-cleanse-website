@@ -117,7 +117,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
         heading: 'Short trips, steep lanes and blocked filters',
         paragraphs: [
           'A diesel particulate filter needs regular sustained-temperature driving to burn off soot. Around Dartmouth that rarely happens: runs to the shops, school or the boat are short, the hills demand low gears, and summer traffic crawls. The filter loads up gradually until the warning light - and eventually limp mode - appears.',
-          'Rather than gamble £1,000+ on a replacement, an off-vehicle deep clean restores your original filter to near-new flow, with before-and-after test figures to prove it.',
+          'Rather than gamble £1,000+ on a replacement, an off-vehicle deep clean restores flow through your original filter, with before-and-after test figures to prove it.',
         ],
       },
       {
@@ -139,7 +139,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
       },
       {
         q: 'My car only does short local trips - will the DPF just block again?',
-        a: "A cleaned filter behaves like a new one, so with the same short-trip driving it will load again over time - an occasional sustained 20-minute run helps a lot. If a filter keeps blocking quickly, there's usually an underlying fault, and our paid DPF diagnostics can find the cause before you spend money cleaning twice.",
+        a: "A clean clears the built-up soot and ash, but with the same short-trip driving the filter will load again over time - an occasional sustained 20-minute run helps a lot. If a filter keeps blocking quickly, there's usually an underlying fault, and our paid DPF diagnostics can find the cause before you spend money cleaning twice.",
       },
     ],
     nearbyAreas: ['Kingswear', 'Stoke Fleming', 'Strete', 'Dittisham', 'Torcross', 'Halwell'],
@@ -161,7 +161,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
         heading: "Rural driving and DPFs don't mix",
         paragraphs: [
           'Farm pickups, trades vans and family diesels around Kingsbridge spend their lives on short, low-speed journeys down high-hedged lanes - exactly the pattern that stops passive regeneration ever completing. Soot accumulates, active regens abort mid-cycle on short trips, and the filter gradually chokes.',
-          'An off-vehicle deep clean clears both the soot and the incombustible ash that driving can never remove - typically restoring flow to near-new at a fraction of the cost of a replacement filter.',
+          'An off-vehicle deep clean clears both the soot and the incombustible ash that driving can never remove - typically restoring flow at a fraction of the cost of a replacement filter.',
         ],
       },
       {
@@ -293,7 +293,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
         heading: 'Holiday-town traffic is hard on filters',
         paragraphs: [
           'In season, Dawlish traffic crawls - and a diesel crawling behind beach traffic is a diesel whose DPF is loading, not regenerating. Add short school-run and shopping trips through the rest of the year and the filter gradually blocks: rising back-pressure, worse MPG, then the warning light.',
-          'A proper off-vehicle clean strips soot and ash back to near-new flow rates - far more thorough than additives or a forced regen, and documented with before-and-after figures.',
+          'A proper off-vehicle clean strips out soot and ash to restore flow - far more thorough than additives or a forced regen, and documented with before-and-after figures.',
         ],
       },
       {
@@ -337,7 +337,7 @@ export const DPF_LOCATIONS: DpfLocation[] = [
         heading: 'Estuary-town miles and blocked filters',
         paragraphs: [
           "Exmouth's driving mix - seafront stop-start, the A376 crawl to Exeter in rush hour, marina and trade work at low speed - keeps a lot of local diesels below regeneration temperature for weeks at a time. When soot builds beyond what active regens can clear, power drops, MPG worsens and the DPF light arrives.",
-          'Off-vehicle cleaning at our workshop restores original flow, verified by before-and-after testing - at a fraction of the £1,000+ a replacement filter typically costs.',
+          'Off-vehicle cleaning at our workshop restores flow, verified by before-and-after testing - at a fraction of the £1,000+ a replacement filter typically costs.',
         ],
       },
       {

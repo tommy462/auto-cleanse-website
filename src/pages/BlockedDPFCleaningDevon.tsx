@@ -170,7 +170,7 @@ export default function BlockedDPFCleaningDevon() {
               weight testing so you can see the result.
             </p>
             <p>
-              We also advise on how to reduce the chance of it happening again. Same-day return is
+              We also advise on how to reduce the chance of it happening again. Same-day return, where possible, is
               available locally in Devon, and{' '}
               <Link to="/postal-dpf" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">nationwide postal DPF cleaning</Link>{' '}
               is available if you can remove the filter yourself.

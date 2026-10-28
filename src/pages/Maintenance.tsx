@@ -38,7 +38,7 @@ const Maintenance = () => {
     {
       icon: Fuel,
       title: 'Reduce Fuel Consumption',
-      description: 'Engines with partially blocked filters burn more fuel to compensate. A clean DPF can restore 3–10% fuel efficiency instantly.',
+      description: 'Engines with partially blocked filters burn more fuel to compensate. A clean DPF lowers back-pressure, which can help fuel economy.',
     },
     {
       icon: AlertTriangle,
@@ -67,22 +67,22 @@ const Maintenance = () => {
       icon: Clock,
       title: 'Scheduled Maintenance',
       description: 'Plan ahead with annual cleaning',
-      stat: '100%',
-      statLabel: 'Uptime maintained',
+      stat: 'Annual',
+      statLabel: 'Planned cleaning',
     },
     {
       icon: DollarSign,
       title: 'Cost Savings',
       description: 'Prevent expensive replacements',
-      stat: '70%',
-      statLabel: 'Less than replacement',
+      stat: '£210',
+      statLabel: 'Local DPF clean from',
     },
     {
       icon: Fuel,
       title: 'Fuel Efficiency',
       description: 'Restore optimal performance',
-      stat: '3-10%',
-      statLabel: 'Efficiency improvement',
+      stat: 'Flow',
+      statLabel: 'Tested before and after',
     },
   ];
 

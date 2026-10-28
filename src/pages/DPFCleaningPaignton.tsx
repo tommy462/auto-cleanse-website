@@ -168,7 +168,7 @@ const DPFCleaningPaignton = () => {
             </div>
             <div className="text-white/60 leading-relaxed space-y-6 text-lg md:text-xl font-medium relative z-10">
               <p>
-                We clean DPFs from cars, vans, taxis, HGVs, and plant machinery - covering the full range of vehicles operating in Paignton and the Torbay area. Our process includes full inspection, aqueous cleaning, high-pressure pneumatic flush, and back-pressure flow testing before and after.
+                We clean DPFs from cars, vans, taxis, HGVs, and plant machinery - covering the full range of vehicles operating in Paignton and the Torbay area. Our process includes full inspection, high-pressure aqueous and micro-cavitation cleaning with water only, hot-air drying, and back-pressure flow testing before and after.
               </p>
               <p>
                 We also offer <Link to="/ecu-remapping" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">ECU remapping</Link> for Paignton vehicles - Stage 1 maps are particularly popular with van and taxi operators looking to improve fuel economy.

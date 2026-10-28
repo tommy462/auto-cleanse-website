@@ -126,7 +126,7 @@ const Pricing = () => {
     },
     {
       question: 'What are your turnaround times?',
-      answer: 'Same-day return within 10 miles of Totnes when collected before 10am on weekdays. Outside this area, typical turnaround is 24-48 hours subject to logistics.',
+      answer: 'Same-day return where possible within 10 miles of Totnes when collected before 10am on weekdays. Outside this area, typical turnaround is 24-48 hours subject to logistics.',
     },
   ];
 
@@ -144,7 +144,7 @@ const Pricing = () => {
         "provider": { "@type": "LocalBusiness", "name": "Auto-Cleanse", "url": "https://www.auto-cleanse.co.uk" },
         "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
         "offers": [
-          { "@type": "Offer", "name": "DPF Cleaning - Within 10 Miles of Totnes", "priceCurrency": "GBP", "price": "210.00", "description": "Professional DPF cleaning with collection and same-day return within 10 miles of Totnes, Devon." },
+          { "@type": "Offer", "name": "DPF Cleaning - Within 10 Miles of Totnes", "priceCurrency": "GBP", "price": "210.00", "description": "Professional DPF cleaning with collection and same-day return where possible within 10 miles of Totnes, Devon." },
           { "@type": "Offer", "name": "DPF Cleaning - Outside 10 Miles / Nationwide", "priceCurrency": "GBP", "price": "230.00", "description": "DPF cleaning for customers outside 10 miles of Totnes or nationwide postal service." },
           { "@type": "Offer", "name": "DPF Cleaning - HGV & Plant", "priceCurrency": "GBP", "price": "299.00", "description": "Professional DPF cleaning for HGVs, plant machinery and commercial vehicles." },
           { "@type": "Offer", "name": "ECU Remapping - Stage 1", "priceCurrency": "GBP", "price": "250.00", "description": "Stage 1 ECU remapping in Devon from £250. Stage 2 and custom maps quoted on enquiry." }
