@@ -41,7 +41,7 @@ const CLEAN_STEPS: { phase: Phase; title: string; body: string }[] = [
   {
     phase: 'flushing',
     title: 'Reverse flush on the METclean XL',
-    body: 'The filter goes on the machine the opposite way round, so heated water flows from the outlet side back to the inlet. A short high-pressure burst every 30 to 60 seconds breaks up the packed ash and carries it out of the face it went in by.',
+    body: 'Water only, no chemicals. The filter goes on the machine the opposite way round, so heated water flows from the outlet side back to the inlet at 1 to 2 bar, set to suit the filter. High-pressure micro-cavitation bursts break up the packed ash and carry it out of the face it went in by.',
   },
   {
     phase: 'drying',
@@ -281,7 +281,7 @@ export default function DpfCutaway() {
               </g>
             )}
 
-            {/* Reverse flush: heated water from the outlet side with high-pressure bursts, ash carried out of the inlet face */}
+            {/* Reverse flush: heated water at 1 to 2 bar from the outlet side with high-pressure micro-cavitation bursts, ash carried out of the inlet face */}
             {phase === 'flushing' && (
               <g>
                 <g stroke="#5cc8ff" strokeWidth="2.5" strokeLinecap="round">
@@ -443,7 +443,7 @@ export default function DpfCutaway() {
               <td className="py-3">Stays in, can add a little</td>
             </tr>
             <tr className="border-t border-white/5">
-              <th scope="row" className="py-3 pr-4 font-bold text-[#FF9A33]">Off-vehicle clean</th>
+              <th scope="row" className="py-3 pr-4 font-bold text-[#FF9A33]">Off-vehicle clean (water only)</th>
               <td className="py-3 pr-4">Removed</td>
               <td className="py-3">Removed</td>
             </tr>
