@@ -15,8 +15,10 @@ export default function LatestPosts({ category, heading, max = 3 }: LatestPostsP
   const posts = getRecentByCategory(category, max);
   if (!posts.length) return null;
 
+  // data-lastmod-skip: a new post appearing here is not a change to the page
+  // itself, so scripts/prerender.mjs leaves it out of the page's lastmod check.
   return (
-    <div>
+    <div data-lastmod-skip="true">
       <div className="flex items-end justify-between gap-4 mb-6">
         <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
           {heading ?? (

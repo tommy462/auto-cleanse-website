@@ -200,9 +200,9 @@ export default function BlogPost() {
           )}
         </article>
 
-        {/* Related posts */}
+        {/* Related posts (left out of the sitemap lastmod check, see prerender.mjs) */}
         {related.length > 0 && (
-          <section className="mt-16">
+          <section className="mt-16" data-lastmod-skip="true">
             <h2 className="text-2xl font-bold text-white mb-6 tracking-tight">More on {CATEGORY_LABELS[post.category]}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map((p) => (

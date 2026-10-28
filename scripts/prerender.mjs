@@ -1,6 +1,8 @@
 import { readFileSync, mkdirSync, writeFileSync, rmSync, readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { createHash } from 'crypto';
+import { execSync } from 'child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '..');
@@ -74,6 +76,44 @@ if (removedStale > 0) {
   console.log(`Removed ${removedStale} stale prerendered route(s).`);
 }
 
+// ── Page fingerprints for honest sitemap <lastmod> dates ──────────────────
+// Google only trusts <lastmod> when it moves with the page, so a page keeps its
+// date until its text changes. The fingerprint covers the title, description
+// and <main> text, minus blocks marked data-lastmod-skip (post lists that change
+// whenever a new blog post goes out).
+function stripSkippedBlocks(html) {
+  const open = /<([a-z][a-z0-9]*)\b[^>]*\sdata-lastmod-skip[^>]*>/i;
+  let m;
+  while ((m = open.exec(html))) {
+    const tags = new RegExp(`<${m[1]}\b[^>]*>|</${m[1]}>`, 'gi');
+    tags.lastIndex = m.index + m[0].length;
+    let depth = 1;
+    let end = html.length;
+    let t;
+    while (depth > 0 && (t = tags.exec(html))) {
+      depth += t[0][1] === '/' ? -1 : 1;
+      if (depth === 0) end = tags.lastIndex;
+    }
+    html = html.slice(0, m.index) + html.slice(end);
+  }
+  return html;
+}
+
+function pageFingerprint(appHtml, headTags) {
+  const title = headTags.match(/<title[^>]*>([\s\S]*?)<\/title>/)?.[1] ?? '';
+  const description = headTags.match(/<meta[^>]*name="description"[^>]*content="([^"]*)"/)?.[1] ?? '';
+  const start = appHtml.indexOf('<main');
+  const end = appHtml.lastIndexOf('</main>');
+  const main = start >= 0 && end > start ? appHtml.slice(start, end) : appHtml;
+  const text = stripSkippedBlocks(main)
+    .replace(/<(script|style)[\s\S]*?<\/\1>/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return createHash('sha1').update(`${title}\n${description}\n${text}`).digest('hex').slice(0, 12);
+}
+
+const fingerprints = new Map();
 const total = uniqueRoutes.length;
 let rendered = 0;
 let errors = 0;
@@ -112,6 +152,7 @@ for (const url of uniqueRoutes) {
     const outputDir = dirname(outputPath);
     mkdirSync(outputDir, { recursive: true });
     writeFileSync(outputPath, finalHtml, 'utf-8');
+    fingerprints.set(url, pageFingerprint(appHtml, headTags));
 
     rendered++;
     process.stdout.write(`  ✓ ${url}\n`);
@@ -157,7 +198,7 @@ try {
 const HOSTNAME = 'https://www.auto-cleanse.co.uk';
 const lastmod = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (build date)
 
-// Per-URL lastmod for blog posts: use the post's updated date, else its publish date.
+// Blog posts are never dated before their own updated/publish date.
 function normaliseDate(value) {
   if (!value) return null;
   const d = new Date(value);
@@ -166,6 +207,9 @@ function normaliseDate(value) {
 const blogLastmod = new Map(
   (blogPosts ?? []).map((p) => [`/blog/${p.slug}`, normaliseDate(p.updated) || normaliseDate(p.date) || lastmod])
 );
+// The blog index moves with its newest post.
+const newestPost = [...blogLastmod.values()].sort().at(-1);
+if (newestPost) blogLastmod.set('/blog', newestPost);
 
 const CORE_HUBS = new Set([
   '/services',
@@ -201,11 +245,55 @@ function rankFor(url) {
 const excludedFromSitemap = new Set([...(privateRoutes ?? []), ...(utilityRoutes ?? [])]);
 const sitemapRoutes = uniqueRoutes.filter((url) => !excludedFromSitemap.has(url));
 
+// ── Per-page lastmod ───────────────────────────────────────────────────────
+// scripts/page-lastmod.json holds [date, fingerprint] for every sitemap URL.
+// A page whose fingerprint changed is dated today on a local build, which then
+// rewrites the file: commit it with the change. On Vercel the file is only
+// read, and a changed page gets the deployed commit's date, so the weekly blog
+// rebuilds (same commit) never re-date pages that did not change.
+const LASTMOD_FILE = join(__dirname, 'page-lastmod.json');
+let savedLastmod = {};
+try {
+  savedLastmod = JSON.parse(readFileSync(LASTMOD_FILE, 'utf-8'));
+} catch {
+  /* first run: every page is dated today */
+}
+let changedOn = lastmod;
+if (process.env.VERCEL) {
+  try {
+    changedOn = execSync('git log -1 --format=%cs', { encoding: 'utf-8' }).trim() || lastmod;
+  } catch {
+    /* no git metadata: fall back to the build date */
+  }
+}
+const pageLastmod = new Map();
+const changedPages = [];
+for (const url of sitemapRoutes) {
+  const hash = fingerprints.get(url);
+  const saved = savedLastmod[url];
+  const unchanged = saved && hash && saved[1] === hash;
+  if (!unchanged) changedPages.push(url);
+  const date = [unchanged ? saved[0] : changedOn, blogLastmod.get(url)].filter(Boolean).sort().at(-1);
+  pageLastmod.set(url, date);
+}
+if (!process.env.VERCEL) {
+  const lines = [...pageLastmod.keys()]
+    .sort()
+    .map((url) => `  ${JSON.stringify(url)}: ${JSON.stringify([pageLastmod.get(url), fingerprints.get(url) ?? ''])}`);
+  writeFileSync(LASTMOD_FILE, `{\n${lines.join(',\n')}\n}\n`, 'utf-8');
+}
+console.log(
+  changedPages.length === 0
+    ? 'lastmod: no page text changed.'
+    : `lastmod: ${changedPages.length} page(s) changed, dated ${changedOn}` +
+        (process.env.VERCEL ? ' (page-lastmod.json was not committed with them).' : '. Commit scripts/page-lastmod.json.')
+);
+
 const sitemapBody = sitemapRoutes
   .map((url) => {
     const { priority, changefreq } = rankFor(url);
     const loc = `${HOSTNAME}${url === '/' ? '/' : url}`;
-    const urlLastmod = blogLastmod.get(url) || lastmod;
+    const urlLastmod = pageLastmod.get(url) || lastmod;
     return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${urlLastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
   })
   .join('\n');
@@ -246,7 +334,7 @@ if (sitemapProblems.length > 0) {
 const townSet = new Set(townRoutes ?? []);
 const townLocs = sitemapRoutes.filter((url) => townSet.has(url)).map((url) => `${HOSTNAME}${url}`);
 const townSitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${townLocs
-  .map((loc) => `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`)
+  .map((loc) => `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${pageLastmod.get(loc.slice(HOSTNAME.length)) || lastmod}</lastmod>\n  </url>`)
   .join('\n')}\n</urlset>\n`;
 writeFileSync(join(projectRoot, 'dist/sitemap-adblue-towns.xml'), townSitemapXml, 'utf-8');
 console.log(`Town sitemap written with ${townLocs.length} URLs.`);
