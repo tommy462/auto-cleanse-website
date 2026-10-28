@@ -60,7 +60,7 @@ const WhyClean = () => {
     {
       icon: Zap,
       title: 'Cleaning Restores Original Flow Efficiency',
-      description: 'Our process restores flow rates to over 98% of original performance - without compromise to fit, calibration, or emissions compliance.',
+      description: 'Every filter is flow tested before and after cleaning, with no change to fit, calibration or emissions compliance.',
     },
     {
       icon: Clock,
@@ -101,7 +101,7 @@ const WhyClean = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning vs Replacement | AutoCleanse Devon" description="Professional DPF cleaning costs a fraction of a new filter. Restore 98% efficiency, pass your MOT, and avoid £1,000+ replacement bills. Devon & UK." path="/why-clean" />
+      <SEO title="DPF Cleaning vs Replacement | AutoCleanse Devon" description="Professional DPF cleaning costs a fraction of a new filter: flow tested before and after, from £210 in Devon or £230 by post, against £1,000+ for a replacement." path="/why-clean" />
 
       {/* Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
@@ -177,7 +177,7 @@ const WhyClean = () => {
               </h2>
               <p className="text-xl md:text-2xl text-white/70 mb-0 leading-relaxed font-medium">
                 <span className="text-[#FF7A00] font-bold">Don't.</span> Factory filters are built to last.
-                Our cleaning process restores over <span className="text-[#FF7A00] font-black underline decoration-[#FF7A00]/30 underline-offset-4">98% flow performance </span>
+                Our cleaning process restores <span className="text-[#FF7A00] font-black underline decoration-[#FF7A00]/30 underline-offset-4">flow through the filter </span>
                 for less than half the cost of a replacement.
               </p>
             </div>
@@ -232,7 +232,7 @@ const WhyClean = () => {
               <ul className="space-y-4 relative z-10">
                 <li className="flex items-start text-white/70 font-medium text-lg">
                   <div className="w-2.5 h-2.5 bg-green-500 rounded-full mr-4 mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
-                  <span>98%+ flow performance restoration</span>
+                  <span>Flow tested before and after cleaning</span>
                 </li>
                 <li className="flex items-start text-white/70 font-medium text-lg">
                   <div className="w-2.5 h-2.5 bg-green-500 rounded-full mr-4 mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
@@ -330,8 +330,8 @@ const WhyClean = () => {
 
                 <p>
                   Understanding this distinction is crucial for vehicle operators. A blocked DPF can often
-                  be <span className="text-[#FF7A00] font-bold">restored to over 98%</span> of its original flow capacity through professional cleaning,
-                  maintaining all original calibrations and sensor compatibility that aftermarket parts
+                  be <span className="text-[#FF7A00] font-bold">cleaned and refitted</span> instead of replaced,
+                  keeping all original calibrations and sensor compatibility that aftermarket parts
                   may not provide.
                 </p>
               </div>

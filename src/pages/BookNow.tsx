@@ -5,8 +5,8 @@ import SEO from '../components/SEO';
 const dpfFeatures = [
   { icon: Truck,   text: 'Free pickup & return within Devon' },
   { icon: Package, text: 'Nationwide postal - tracked next-day' },
-  { icon: Clock,   text: 'Same-day turnaround locally' },
-  { icon: Shield,  text: '98% flow restoration guaranteed' },
+  { icon: Clock,   text: 'Same-day turnaround where possible' },
+  { icon: Shield,  text: 'Flow tested before and after' },
 ];
 
 const remapFeatures = [
@@ -81,8 +81,8 @@ export default function BookNow() {
 
                 {/* Desc */}
                 <p className="text-white/55 text-sm leading-relaxed mb-6">
-                  Professional off-vehicle DPF cleaning - restore your filter to 98% of original flow.
-                  Same-day local service or tracked nationwide postal return.
+                  Professional off-vehicle DPF cleaning, flow tested before and after.
+                  Same-day local service where possible, or tracked postal return.
                 </p>
 
                 {/* Features */}

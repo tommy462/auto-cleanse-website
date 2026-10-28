@@ -94,7 +94,7 @@ const Home = () => {
       icon: Settings,
       title: 'DPF Cleaning',
       description: 'Professional deep clean',
-      features: ['98% Ash & Soot Removal', 'Advanced Flow Testing', 'Restores Original Performance']
+      features: ['Water-Only Off-Vehicle Clean', 'Advanced Flow Testing', 'Restores Original Performance']
     },
     {
       icon: Wrench,
@@ -258,7 +258,7 @@ const Home = () => {
                     "itemOffered": {
                       "@type": "Service",
                       "name": "DPF Cleaning",
-                      "description": "Professional off-vehicle DPF cleaning restoring filters to 98% of original flow capacity. Same-day return locally in Devon.",
+                      "description": "Professional off-vehicle DPF cleaning, flow tested before and after. Same-day return locally in Devon where possible.",
                       "url": "https://www.auto-cleanse.co.uk/services"
                     }
                   },
@@ -339,7 +339,7 @@ const Home = () => {
                 { "@type": "AdministrativeArea", "name": "Devon" },
                 { "@type": "Country", "name": "United Kingdom" }
               ],
-              "description": "Professional off-vehicle Diesel Particulate Filter (DPF) cleaning using aqueous and pneumatic systems. Same-day return locally in Devon, next-day return nationwide.",
+              "description": "Professional off-vehicle Diesel Particulate Filter (DPF) cleaning using water and high-pressure air. Same-day return locally in Devon where possible, next-day return nationwide.",
               "offers": {
                 "@type": "AggregateOffer",
                 "priceCurrency": "GBP",
@@ -366,7 +366,7 @@ const Home = () => {
                   "name": "Can you clean a completely blocked DPF?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes. Our METclean XL process uses a combination of aqueous solutions and high-pressure pneumatics to clear even 100% blocked DPFs, returning them to 98% of their original flow capacity."
+                    "text": "Yes. Our METclean XL process uses water and high-pressure air to clear even heavily blocked DPFs, and every filter is flow tested before and after."
                   }
                 },
                 {
@@ -527,9 +527,9 @@ const Home = () => {
         variant="steps"
         textBlocks={[
           { title: "Arrival & Inspection", desc: "Every filter is carefully logged and endoscoped before cleaning begins." },
-          { title: "Aqueous Cleaning Stage", desc: "Eco-safe solutions break down compacted soot, ash, and oil." },
+          { title: "Aqueous Cleaning Stage", desc: "Water and high-pressure air work compacted soot and ash out of the channels." },
           { title: "High-Pressure Flushing", desc: "A reverse flush ensures zero particulate blockage remains deep within the honeycomb." },
-          { title: "Drying & Final Test", desc: "Every filter back-pressure tested before it leaves us - restored to 98% of new." }
+          { title: "Drying & Final Test", desc: "Every filter is dried, then back-pressure tested again before it leaves us." }
         ]}
       />
 
