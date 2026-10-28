@@ -14,6 +14,7 @@ import Reviews from '../components/Reviews';
 import LatestPosts from '../components/LatestPosts';
 import FaqSection, { type Faq } from '../components/FaqSection';
 import DpfResults from '../components/DpfResults';
+import DpfCutaway from '../components/DpfCutaway';
 import { getReviews, DPF_REVIEW_IDS } from '../data/reviews';
 import { localBusinessNode, BUSINESS_ID } from '../data/business';
 import { trackEvent } from '../lib/tracking';
@@ -361,6 +362,25 @@ const DPFCleaningHub = () => {
           </div>
         </section>
 
+        {/* ── 3b. Inside a DPF (interactive) ─────────────────────────────── */}
+        {/* Not a reveal-container: GSAP must not hide an element people interact with. */}
+        <section className="mb-14 md:mb-24" aria-labelledby="inside-dpf">
+          <div className="max-w-3xl mb-6 md:mb-10">
+            <p className="text-[11px] sm:text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-3">
+              Inside your DPF
+            </p>
+            <h2 id="inside-dpf" className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-4 leading-tight">
+              See what a regen can&rsquo;t shift
+            </h2>
+            <p className="text-white/55 text-[15px] sm:text-base md:text-lg leading-relaxed">
+              A DPF is a ceramic honeycomb. Every other channel is plugged at the far end, so the
+              exhaust has to push through the porous walls to get out, and the soot is left behind
+              on them. Try each option and see what it really removes.
+            </p>
+          </div>
+          <DpfCutaway />
+        </section>
+
         {/* ── 4. How it works ─────────────────────────────────────────────── */}
         <section className="mb-14 md:mb-24 reveal-container">
           <div className="max-w-3xl mb-8 md:mb-12">
@@ -376,26 +396,33 @@ const DPFCleaningHub = () => {
             </p>
           </div>
 
-          <ol className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+          <ol className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
             {/* Connecting rule, desktop only */}
             <div
               className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#FF7A00]/40 via-white/10 to-transparent"
               aria-hidden="true"
             />
+            {/* Vertical rail linking the steps, phones only */}
+            <div
+              className="sm:hidden absolute left-[21.5px] top-4 bottom-4 w-px bg-gradient-to-b from-[#FF7A00]/50 via-white/10 to-transparent"
+              aria-hidden="true"
+            />
             {processSteps.map((step, i) => (
-              <li key={step.title} className="relative reveal-item">
-                <div className="flex items-center gap-4 mb-4 md:mb-5">
-                  <div className="w-14 h-14 rounded-2xl bg-[#111317] border border-white/10 flex items-center justify-center shrink-0 relative z-10">
-                    <step.icon size={22} className="text-[#FF7A00]" aria-hidden="true" />
+              <li key={step.title} className="relative reveal-item flex items-start gap-4 sm:block">
+                <div className="flex items-center gap-4 sm:mb-5 shrink-0">
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[#111317] border border-white/10 flex items-center justify-center shrink-0 relative z-10">
+                    <step.icon size={20} className="text-[#FF7A00]" aria-hidden="true" />
                   </div>
-                  <span className="font-mono font-black text-3xl md:text-4xl text-white/10 tabular-nums leading-none">
+                  <span className="hidden sm:inline font-mono font-black text-3xl md:text-4xl text-white/10 tabular-nums leading-none" aria-hidden="true">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-2 tracking-tight">
-                  {step.title}
-                </h3>
-                <p className="text-white/55 text-sm md:text-[15px] leading-relaxed">{step.body}</p>
+                <div className="min-w-0 pt-1 sm:pt-0">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-1 sm:mb-2 tracking-tight">
+                    {step.title}
+                  </h3>
+                  <p className="text-white/55 text-sm md:text-[15px] leading-relaxed">{step.body}</p>
+                </div>
               </li>
             ))}
           </ol>

@@ -674,3 +674,39 @@ button:disabled {
 .blog-prose h3:first-child {
   margin-top: 0;
 }
+/* ── DPF cutaway explainer (src/components/DpfCutaway.tsx) ───────────────── */
+.dpfx-scale {
+  transform-box: fill-box;
+  transition: transform 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dpfx-flow { stroke-dasharray: 6 10; animation: dpfx-dash 0.9s linear infinite; }
+.dpfx-flow-rev { stroke-dasharray: 6 10; animation: dpfx-dash-rev 0.55s linear infinite; }
+@keyframes dpfx-dash { to { stroke-dashoffset: -32; } }
+@keyframes dpfx-dash-rev { to { stroke-dashoffset: 32; } }
+.dpfx-particle { opacity: 0; animation: dpfx-travel 1.3s cubic-bezier(0.2, 0.7, 0.3, 1) forwards; }
+@keyframes dpfx-travel {
+  0% { transform: translateX(0); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translateX(var(--dx)); opacity: 1; }
+}
+.dpfx-out { opacity: 0; animation: dpfx-out 1.3s ease-in infinite; }
+@keyframes dpfx-out {
+  0% { transform: translateX(0); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateX(var(--dx)); opacity: 0; }
+}
+.dpfx-burst { transform-box: fill-box; transform-origin: center; animation: dpfx-burst 0.8s ease-out infinite; }
+@keyframes dpfx-burst {
+  0% { transform: scale(0.2); opacity: 0.9; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+.dpfx-flicker { animation: dpfx-flicker 0.35s ease-in-out infinite alternate; }
+@keyframes dpfx-flicker { from { opacity: 0.7; } to { opacity: 1; } }
+.dpfx-shimmer { animation: dpfx-shimmer 0.9s ease-in-out infinite alternate; }
+@keyframes dpfx-shimmer { from { opacity: 0.05; } to { opacity: 0.22; } }
+@media (prefers-reduced-motion: reduce) {
+  .dpfx-flow, .dpfx-flow-rev, .dpfx-out, .dpfx-burst, .dpfx-flicker, .dpfx-shimmer { animation: none; }
+  .dpfx-particle { animation: none; opacity: 1; transform: translateX(var(--dx)); }
+  .dpfx-out, .dpfx-burst { opacity: 0; }
+  .dpfx-scale { transition-duration: 0.01s; }
+}
