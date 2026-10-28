@@ -75,7 +75,7 @@ export function RecentRemaps() {
             Recent Remaps
           </p>
           <h2 className="text-2xl font-black tracking-tighter text-white">
-            Recent Customer Remaps
+            Recent Remaps From Our Workshop
           </h2>
           {RECENT_REMAPS_FRAMING && (
             <p className="text-white/60 text-sm mt-2 max-w-xl leading-relaxed">

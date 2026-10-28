@@ -8,7 +8,7 @@
 // "we're new to remapping" context line.
 
 export const RECENT_REMAPS_FRAMING =
-  "We launched remapping services in early 2026. The entries below are our first completed customer remaps - more are added as jobs complete.";
+  "We launched remapping services in early 2026. These first two are our own cars; customer remaps are added here as jobs complete.";
 // To remove the framing text: set the above to ''
 
 export interface RemapCard {
@@ -30,7 +30,7 @@ export const RECENT_REMAPS: RemapCard[] = [
     month: 'April 2026',
     vehicle: 'Mercedes GLC63s',
     ownerNote:
-      'Stronger torque delivery without compromising emissions hardware. Customer reports better drivability.',
+      'Stronger torque delivery without compromising emissions hardware.',
   },
 ];
 
