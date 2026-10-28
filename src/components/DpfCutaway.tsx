@@ -76,6 +76,7 @@ const MESSAGES: Record<string, string> = {
 
 // Air flow pre-test bands from the METclean XL manual.
 const band = (r: number) => (r < 30 ? 'OK (5 to 15 mbar)' : r < 60 ? 'Medium (15 to 30 mbar)' : 'Blocked (over 30 mbar)');
+const stepMessage = (i: number) => `Step ${i + 1} of ${CLEAN_STEPS.length}: ${CLEAN_STEPS[i].title}.`;
 const level = (v: number) => (v < 15 ? 'Low' : v < 40 ? 'Moderate' : v < 70 ? 'High' : 'Very high');
 const clamp = (v: number) => Math.max(0, Math.min(100, v));
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -130,10 +131,10 @@ export default function DpfCutaway() {
   const clean = () => {
     trackEvent('dpf_explainer', { action: 'off_vehicle_clean' });
     run([
-      ['removed', 1300, () => { setTest({ before: band(restriction) }); setMessage(CLEAN_STEPS[0].body); }],
-      ['flushing', 3200, () => { setSoot(0); setAsh(3); setMessage(CLEAN_STEPS[1].body); }],
-      ['drying', 1600, () => setMessage(CLEAN_STEPS[2].body)],
-      ['testing', 1500, () => { setTest((t) => t && { ...t, after: band(clamp(Math.round(3 * 0.8))) }); setMessage(CLEAN_STEPS[3].body); }],
+      ['removed', 1300, () => { setTest({ before: band(restriction) }); setMessage(stepMessage(0)); }],
+      ['flushing', 3200, () => { setSoot(0); setAsh(3); setMessage(stepMessage(1)); }],
+      ['drying', 1600, () => setMessage(stepMessage(2))],
+      ['testing', 1500, () => { setTest((t) => t && { ...t, after: band(clamp(Math.round(3 * 0.8))) }); setMessage(stepMessage(3)); }],
       ['idle', 0, () => setMessage(MESSAGES.cleaned)],
     ]);
   };
@@ -389,7 +390,10 @@ export default function DpfCutaway() {
                 <span className={`font-mono text-xs font-bold mt-0.5 ${phase === s.phase ? 'text-[#FF7A00]' : 'text-white/55'}`}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <span className={`text-sm font-semibold ${phase === s.phase ? 'text-white' : 'text-white/55'}`}>{s.title}</span>
+                <span>
+                  <span className={`block text-sm font-semibold ${phase === s.phase ? 'text-white' : 'text-white/70'}`}>{s.title}</span>
+                  <span className="block mt-0.5 text-xs leading-relaxed text-white/60">{s.body}</span>
+                </span>
               </li>
             ))}
           </ol>
