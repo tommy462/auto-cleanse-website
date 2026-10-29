@@ -467,9 +467,11 @@ const Home = () => {
               Professional off-vehicle filter cleaning with same-day return within Devon where possible. Nationwide postal service available.
             </p>
             <div className="flex flex-wrap gap-3 hero-subtitle">
-              <Link to="/postal-dpf" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white hover:text-white inline-block">
-                Book DPF Clean
-              </Link>
+              {/* Calls, not postal bookings: Tom gets DPF work by phone. LeadTracking records the tap. */}
+              <a href="tel:07823649190" className="btn-shine px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white hover:text-white inline-flex items-center gap-2">
+                <Phone size={18} aria-hidden="true" />
+                Call to Book
+              </a>
               <Link to="/services" className="px-6 py-3 rounded-xl font-bold text-sm sm:text-base text-white border border-white/20 hover:bg-white/10 transition-colors inline-block">
                 Our Process
               </Link>
@@ -911,12 +913,13 @@ const Home = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <MagneticButton>
-              <Link
-                to="/postal-dpf"
-                className="btn-shine px-8 py-4 rounded-xl font-semibold text-lg text-white hover:text-white inline-block"
+              <a
+                href="tel:07823649190"
+                className="btn-shine px-8 py-4 rounded-xl font-semibold text-lg text-white hover:text-white inline-flex items-center"
               >
-                Book DPF Clean
-              </Link>
+                <Phone size={20} className="mr-2" aria-hidden="true" />
+                Call 07823 649190
+              </a>
             </MagneticButton>
 
             <MagneticButton>
@@ -928,13 +931,6 @@ const Home = () => {
               </Link>
             </MagneticButton>
 
-            <a
-              href="tel:07823649190"
-              className="btn-secondary text-white hover:text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center"
-            >
-              <Phone size={20} className="mr-2" />
-              07823 649190
-            </a>
           </div>
         </div>
       </section>
