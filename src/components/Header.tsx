@@ -53,14 +53,14 @@ const Header = () => {
       {/* Main Header */}
       <header
         className={`transition-all duration-700 ease-in-out ${isScrolled
-          ? 'mt-2 mx-2 md:mx-auto max-w-[98%] lg:max-w-7xl rounded-2xl md:rounded-[2rem] glass-panel-heavy border border-white/10 shadow-2xl shadow-black/80 py-1'
+          ? 'mt-2 mx-2 md:mx-auto max-w-[98%] lg:max-w-7xl 2xl:max-w-[1440px] rounded-2xl md:rounded-[2rem] glass-panel-heavy border border-white/10 shadow-2xl shadow-black/80 py-1'
           : 'mt-0 mx-0 max-w-full gradient-bg-primary border-b border-[#1A1D22] py-2'
           }`}
       >
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className={`flex items-center justify-between transition-all duration-700 ${isScrolled ? 'h-16' : 'h-20'}`}>
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+            <Link to="/" className="flex items-center space-x-2 sm:space-x-3 shrink-0" aria-label="Auto-Cleanse home">
               <img
                 src="/logo-mark.webp"
                 alt="AutoCleanse DPF Specialists Logo"
@@ -77,13 +77,15 @@ const Header = () => {
               />
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center flex-1 justify-center space-x-3 xl:space-x-5 mx-4 overflow-hidden">
+            {/* Desktop Navigation: the ten links only fit on one row from xl (1280px), and only
+                without Home (the logo links home) and at 13px until 2xl. Below xl the menu
+                button takes over. */}
+            <nav className="hidden xl:flex items-center flex-1 justify-center gap-x-3 2xl:gap-x-5 mx-3 2xl:mx-4 overflow-hidden">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`text-sm font-medium transition-colors hover:text-[#FF7A00] relative ${location.pathname === item.path ? 'text-[#FF7A00]' : 'text-white'
+                  className={`${item.path === '/' ? 'hidden 2xl:block ' : ''}whitespace-nowrap text-[13px] 2xl:text-sm font-medium transition-colors hover:text-[#FF7A00] relative ${location.pathname === item.path ? 'text-[#FF7A00]' : 'text-white'
                     }`}
                 >
                   {item.name}
@@ -95,9 +97,9 @@ const Header = () => {
             </nav>
 
             {/* Desktop CTAs and Social */}
-            <div className="hidden lg:flex items-center space-x-4 shrink-0">
+            <div className="hidden lg:flex items-center space-x-4 shrink-0 ml-auto xl:ml-0">
               {/* Social Icons - hidden once scrolled so the compact panel keeps room for the full nav */}
-              <div className={`${isScrolled ? 'hidden' : 'hidden xl:flex'} items-center space-x-2 mr-2`}>
+              <div className={`${isScrolled ? 'hidden' : 'hidden 2xl:flex'} items-center space-x-2 mr-2`}>
                 {socialIcons.map(({ Icon, href }, index) => (
                   <a
                     key={index}
@@ -134,7 +136,7 @@ const Header = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-white hover:text-[#FF7A00] transition-colors p-2 -m-2"
+              className="xl:hidden text-white hover:text-[#FF7A00] transition-colors p-2 -m-2 lg:ml-4"
               aria-label="Toggle mobile menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -148,11 +150,11 @@ const Header = () => {
           <>
             {/* Backdrop - tap anywhere outside to close */}
             <div
-              className="lg:hidden fixed inset-0 top-0 h-[100dvh] bg-black/60 backdrop-blur-sm -z-10"
+              className="xl:hidden fixed inset-0 top-0 h-[100dvh] bg-black/60 backdrop-blur-sm -z-10"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-hidden="true"
             />
-            <div className={`lg:hidden gradient-bg-secondary border-t border-[#1A1D22] absolute left-0 right-0 top-full mt-2 mx-4 rounded-2xl overflow-hidden glass-panel-heavy shadow-2xl max-h-[calc(100dvh-7.5rem)] overflow-y-auto`}>
+            <div className={`xl:hidden gradient-bg-secondary border-t border-[#1A1D22] absolute left-0 right-0 lg:left-auto lg:w-[22rem] top-full mt-2 mx-4 rounded-2xl overflow-hidden glass-panel-heavy shadow-2xl max-h-[calc(100dvh-7.5rem)] overflow-y-auto`}>
             <div className="px-4 py-3">
               {navItems.map((item) => (
                 <Link
