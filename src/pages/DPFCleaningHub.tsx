@@ -365,7 +365,7 @@ const DPFCleaningHub = () => {
 
         {/* ── 3b. Inside a DPF (interactive) ─────────────────────────────── */}
         {/* Not a reveal-container: GSAP must not hide an element people interact with. */}
-        <section className="mb-14 md:mb-24" aria-labelledby="inside-dpf">
+        <section id="dpf-simulator" className="mb-14 md:mb-24 scroll-mt-24" aria-labelledby="inside-dpf">
           <div className="max-w-3xl mb-6 md:mb-10">
             <p className="text-[11px] sm:text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-3">
               Inside your DPF

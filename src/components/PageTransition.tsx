@@ -63,8 +63,12 @@ export default function PageTransition() {
     if (location.pathname !== initialPath.current) hasNavigated.current = true;
 
     useEffect(() => {
-        // Top out scroll when route changes
-        window.scrollTo(0, 0);
+        // Top out scroll when route changes, unless the link targets a section on the new
+        // page (e.g. the home page's link to /dpf-cleaning#dpf-simulator).
+        const target = location.hash ? document.getElementById(location.hash.slice(1)) : null;
+        if (target) target.scrollIntoView({ behavior: 'instant' as ScrollBehavior });
+        else window.scrollTo(0, 0);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname]);
 
     return (

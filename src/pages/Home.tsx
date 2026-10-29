@@ -1,6 +1,6 @@
 ﻿import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Truck, Clock, Shield, Settings, Wrench, Zap, ArrowRight } from 'lucide-react';
+import { Phone, Truck, Clock, Shield, Settings, Wrench, Zap, ArrowRight, Microscope } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,6 +11,7 @@ import MagneticButton from '../components/MagneticButton';
 import CountUp from '../components/CountUp';
 import RemapPortfolio from '../components/RemapPortfolio';
 import Reviews from '../components/Reviews';
+import DpfCutaway from '../components/DpfCutaway';
 import { getReviews, HOMEPAGE_REVIEW_IDS } from '../data/reviews';
 gsap.registerPlugin(ScrollTrigger);
 
@@ -473,6 +474,11 @@ const Home = () => {
                 Our Process
               </Link>
             </div>
+            <a href="#dpf-simulator" className="hero-subtitle group mt-5 inline-flex min-h-[44px] items-center gap-2 self-start text-sm sm:text-base font-semibold text-[#FF9A33] hover:text-[#FFB366] transition-colors">
+              <Microscope size={18} aria-hidden="true" />
+              Try the DPF simulator
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </a>
           </div>
 
           {/* Right Panel - ECU Remapping */}
@@ -514,6 +520,27 @@ const Home = () => {
               our Totnes workshop or mobile across Devon. Diagnostics are a paid check before and after every remap.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* DPF simulator: the interactive cutaway as the home page's transparency feature.
+          Not a reveal-container: GSAP must not hide an element people interact with. */}
+      <section id="dpf-simulator" className="relative py-14 lg:py-24 scroll-mt-20" aria-labelledby="dpf-simulator-h">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mb-6 md:mb-10">
+            <p className="text-[11px] sm:text-xs font-mono text-[#FF7A00] tracking-widest uppercase mb-3">
+              DPF simulator
+            </p>
+            <h2 id="dpf-simulator-h" className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mb-4 leading-tight">
+              See inside a DPF, then see how we clean it
+            </h2>
+            <p className="text-white/60 text-[15px] sm:text-base md:text-lg leading-relaxed">
+              Nothing hidden. Load the filter with soot, try a regen or an additive, then run our
+              off-vehicle clean and see what each one really removes. It follows the same steps as
+              the water-only clean we run at our Totnes workshop.
+            </p>
+          </div>
+          <DpfCutaway compact />
         </div>
       </section>
 

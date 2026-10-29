@@ -2,6 +2,7 @@ import {
   memo, useCallback, useEffect, useReducer, useRef, useState,
   type CSSProperties, type MutableRefObject, type RefObject,
 } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import {
@@ -2118,6 +2119,25 @@ function CyclesChart() {
   );
 }
 
+// Compact mode (home page): a link to the full explanation on /dpf-cleaning instead of the
+// steps, compare table and chart, so that text lives on one page only.
+function FullStoryLink() {
+  return (
+    <Link
+      to="/dpf-cleaning#dpf-simulator"
+      className="group flex flex-col justify-center rounded-xl bg-[#1A1D22] p-4 ring-1 ring-inset ring-white/10 transition-colors hover:ring-[#FF7A00]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7A00]"
+    >
+      <span className="flex items-center gap-2 text-[15px] font-bold text-white">
+        Every step of our clean
+        <ArrowRight size={16} className="text-[#FF9A33] transition-transform group-hover:translate-x-1" aria-hidden="true" />
+      </span>
+      <span className="mt-1 text-[14px] leading-6 text-white/70">
+        What each step does, what removes what, and why ash builds up even when every regen finishes.
+      </span>
+    </Link>
+  );
+}
+
 function EndLine() {
   return (
     <div className="rounded-xl bg-[#1A1D22] p-4 ring-1 ring-inset ring-[#FF7A00]/30">
@@ -2180,7 +2200,7 @@ const invOut = (f: number) => 1 - Math.sqrt(1 - f);
 
 type Build = (tl: gsap.core.Timeline, o: number, E: Els, eng: Particles | null) => void;
 
-export default function DpfCutaway() {
+export default function DpfCutaway({ compact = false }: { compact?: boolean }) {
   const [s, dispatch] = useReducer(reducer, INIT);
   const [rm, setRm] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -2975,16 +2995,25 @@ export default function DpfCutaway() {
 
       <div className="mt-3 px-3 pb-5 sm:mt-6 sm:px-0 sm:pb-0 lg:mt-8">
         <Legend />
-        <Steps active={activeStep} done={doneSteps} />
-        <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-7">
-            <Compare />
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 md:items-start lg:col-span-5 lg:grid-cols-1">
-            <CyclesChart />
+        {compact ? (
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:mt-8">
+            <FullStoryLink />
             <EndLine />
           </div>
-        </div>
+        ) : (
+          <>
+            <Steps active={activeStep} done={doneSteps} />
+            <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-12 lg:gap-8">
+              <div className="lg:col-span-7">
+                <Compare />
+              </div>
+              <div className="grid gap-4 md:grid-cols-2 md:items-start lg:col-span-5 lg:grid-cols-1">
+                <CyclesChart />
+                <EndLine />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
