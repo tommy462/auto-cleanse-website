@@ -3,12 +3,12 @@ import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, Clock } from 'lucide
 import MagneticButton from './MagneticButton';
 import TechnicalBulletinSignup from './TechnicalBulletinSignup';
 import { openCookieSettings } from '../lib/consent';
-import { useAdBluePage } from '../lib/use-adblue-page';
+import { useNationalPage } from '../lib/use-national-page';
 import { COMPANY } from '../data/business';
 import { LEGAL_PAGES } from '../data/legal';
 
 const Footer = () => {
-  const { isAdBlue } = useAdBluePage();
+  const { isNational } = useNationalPage();
   const socialLinks = [
     { Icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61573744325360', name: 'Facebook' },
     { Icon: Instagram, href: 'https://www.instagram.com/auto_cleansedpf/', name: 'Instagram' },
@@ -76,7 +76,7 @@ const Footer = () => {
               Ready to restore<br /><span className="text-[#FF7A00] italic font-medium">expertly?</span>
             </h2>
             <p className="text-sm text-white/60 max-w-sm font-medium leading-relaxed">
-              {isAdBlue
+              {isNational
                 ? 'Repair-only AdBlue diagnosis and repair, DPF cleaning and ECU remapping. Based in Totnes, Devon.'
                 : 'Professional DPF cleaning & ECU remapping services. Fast turnaround, often same-day within 30 miles of Totnes. Trade-friendly pricing.'}
             </p>

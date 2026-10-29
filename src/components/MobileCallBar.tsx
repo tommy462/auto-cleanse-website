@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Mail, CalendarClock, MessageCircle } from 'lucide-react';
 import { trackEvent } from '../lib/tracking';
-import { useAdBluePage } from '../lib/use-adblue-page';
+import { useNationalPage } from '../lib/use-national-page';
 
 // Pre-filled so the first message already carries what we need to quote.
 const WHATSAPP_HREF = `https://wa.me/447823649190?text=${encodeURIComponent('Hi Auto-Cleanse, I need a quote. Reg: . Postcode: . What\'s the problem: ')}`;
@@ -22,7 +22,7 @@ const CTA_OVERRIDES: Record<string, { to: string; label: string }> = {
 // Gives phone-led visitors a one-tap way to call or book from any page.
 export default function MobileCallBar() {
   const { pathname } = useLocation();
-  const { hasEnquiryForm } = useAdBluePage();
+  const { hasEnquiryForm } = useNationalPage();
 
   // The private trade-invite campaign pages render their own campaign-specific
   // sticky CTA ("Claim Free DPF Clean"), so the site-wide bar is suppressed

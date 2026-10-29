@@ -25,3 +25,4 @@ Allow: /
 
 Sitemap: https://www.auto-cleanse.co.uk/sitemap.xml
 Sitemap: https://www.auto-cleanse.co.uk/sitemap-adblue-towns.xml
+Sitemap: https://www.auto-cleanse.co.uk/sitemap-remap-towns.xml

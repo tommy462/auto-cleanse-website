@@ -47,6 +47,8 @@ import NotFound from '../pages/NotFound';
 import AdBlueGuide from '../pages/AdBlueGuide';
 import AdBlueTown from '../pages/AdBlueTown';
 import AdBlueAreas from '../pages/AdBlueAreas';
+import RemapTown from '../pages/RemapTown';
+import RemapAreas from '../pages/RemapAreas';
 import { ADBLUE_GUIDES } from '../data/adblue-guides';
 
 export default function PageTransition() {
@@ -122,6 +124,9 @@ export default function PageTransition() {
                     {/* AdBlue town pages: data is injected per page at prerender (see entry-server) */}
                     <Route path="/adblue-repair/areas" element={<AdBlueAreas />} />
                     <Route path="/adblue-repair/:town" element={<AdBlueTown />} />
+                    {/* National Stage 1 remap town pages, built the same way */}
+                    <Route path="/ecu-remapping/areas" element={<RemapAreas />} />
+                    <Route path="/ecu-remapping/:town" element={<RemapTown />} />
                     <Route path="/blog" element={<BlogIndex />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
                     <Route path="/privacy" element={<Privacy />} />

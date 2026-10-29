@@ -10,6 +10,8 @@ import { PUBLISHED_POSTS } from './lib/blog';
 import { ADBLUE_GUIDES } from './data/adblue-guides';
 import townsData from './data/adblue-towns/towns.json';
 import { TownDataContext, TOWNS_PATH, townPath, type TownData, type TownStore } from './lib/town-data';
+import remapTownsData from './data/remap-towns/towns.json';
+import { RemapTownDataContext, REMAP_TOWNS_PATH, remapTownPath, type RemapTownData, type RemapTownStore } from './lib/remap-town-data';
 
 // AdBlue town pages go live in waves. Raise this to publish the next wave.
 const PUBLISHED_TOWN_WAVE = 2;
@@ -17,7 +19,7 @@ const PUBLISHED_TOWN_WAVE = 2;
 type TownRecord = Omit<TownData, 'nearby'> & { lat: number; lng: number; wave: number };
 const publishedTowns = (townsData as TownRecord[]).filter((t) => t.wave <= PUBLISHED_TOWN_WAVE);
 
-function distanceKm(a: TownRecord, b: TownRecord) {
+function distanceKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
   const rad = Math.PI / 180;
   const dLat = (b.lat - a.lat) * rad;
   const dLng = (b.lng - a.lng) * rad;
@@ -42,6 +44,30 @@ const TOWN_STORE: TownStore = {
   index: publishedTowns.map((t) => ({ slug: t.slug, name: t.name, region: t.region, county: t.county })),
 };
 
+// National Stage 1 remap town pages, also published in waves. Each page links
+// to the same town's AdBlue page when that town is published.
+const PUBLISHED_REMAP_WAVE = 1;
+
+type RemapTownRecord = Omit<RemapTownData, 'nearby' | 'adblueSlug'> & { lat: number; lng: number; wave: number };
+const publishedRemapTowns = (remapTownsData as RemapTownRecord[]).filter((t) => t.wave <= PUBLISHED_REMAP_WAVE);
+
+const REMAP_TOWN_STORE: RemapTownStore = {
+  towns: Object.fromEntries(
+    publishedRemapTowns.map((t) => {
+      const { lat: _lat, lng: _lng, wave: _wave, ...rest } = t;
+      const nearby = publishedRemapTowns
+        .filter((o) => o.slug !== t.slug)
+        .map((o) => ({ slug: o.slug, name: o.name, km: Math.round(distanceKm(t, o) * 10) / 10 }))
+        .filter((o) => o.km <= 80)
+        .sort((a, b) => a.km - b.km)
+        .slice(0, 6);
+      const adblueSlug = TOWN_STORE.towns[t.slug] ? t.slug : undefined;
+      return [t.slug, { ...rest, nearby, ...(adblueSlug ? { adblueSlug } : {}) }];
+    }),
+  ),
+  index: publishedRemapTowns.map((t) => ({ slug: t.slug, name: t.name, region: t.region })),
+};
+
 export interface RenderResult {
   html: string;
   helmet: HelmetServerState;
@@ -54,7 +80,9 @@ export function render(url: string): RenderResult {
     <HelmetProvider context={helmetContext}>
       <StaticRouter location={url}>
         <TownDataContext.Provider value={TOWN_STORE}>
-          <App />
+          <RemapTownDataContext.Provider value={REMAP_TOWN_STORE}>
+            <App />
+          </RemapTownDataContext.Provider>
         </TownDataContext.Provider>
       </StaticRouter>
     </HelmetProvider>
@@ -121,11 +149,16 @@ export const utilityRoutes: string[] = [
 // (sitemap-adblue-towns.xml) so Search Console can report how many are indexed.
 export const townRoutes: string[] = publishedTowns.map((t) => townPath(t.slug));
 
+// Published remap town pages, with their own sitemap (sitemap-remap-towns.xml).
+export const remapTownRoutes: string[] = publishedRemapTowns.map((t) => remapTownPath(t.slug));
+
 export const routes: string[] = [
   ...STATIC_ROUTES,
   ...ADBLUE_GUIDES.map((g) => g.path),
   TOWNS_PATH,
   ...townRoutes,
+  REMAP_TOWNS_PATH,
+  ...remapTownRoutes,
   '/blog',
   ...PUBLISHED_POSTS.map((p) => `/blog/${p.slug}`),
   ...REMAP_LOCATIONS.map((loc) => `/${loc.slug}`),

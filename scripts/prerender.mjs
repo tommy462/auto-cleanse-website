@@ -8,7 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '..');
 
 // Load the SSR bundle produced by: vite build --ssr src/entry-server.tsx --outDir dist-server --mode ssr
-const { render, routes, blogPosts, privateRoutes, utilityRoutes, townRoutes } = await import('../dist-server/entry-server.js');
+const { render, routes, blogPosts, privateRoutes, utilityRoutes, townRoutes, remapTownRoutes } = await import('../dist-server/entry-server.js');
 
 // Read the client-side index.html template (produced by: vite build)
 const rawTemplate = readFileSync(join(projectRoot, 'dist/index.html'), 'utf-8');
@@ -327,21 +327,25 @@ if (sitemapProblems.length > 0) {
   console.log(`Sitemap check passed: ${locs.length} unique canonical ${HOSTNAME} URLs.`);
 }
 
-// ── AdBlue town sitemap ────────────────────────────────────────────────────
+// ── Town sitemaps (AdBlue and remap) ───────────────────────────────────────
 // The town pages are also listed on their own (they stay in sitemap.xml too),
 // so Search Console's page-indexing report can be filtered to just the towns.
 // That count decides when the next wave of towns is published.
-const townSet = new Set(townRoutes ?? []);
-const townLocs = sitemapRoutes.filter((url) => townSet.has(url)).map((url) => `${HOSTNAME}${url}`);
-const townSitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${townLocs
-  .map((loc) => `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${pageLastmod.get(loc.slice(HOSTNAME.length)) || lastmod}</lastmod>\n  </url>`)
-  .join('\n')}\n</urlset>\n`;
-writeFileSync(join(projectRoot, 'dist/sitemap-adblue-towns.xml'), townSitemapXml, 'utf-8');
-console.log(`Town sitemap written with ${townLocs.length} URLs.`);
-if (townLocs.length !== townSet.size) {
-  process.stderr.write(`  ✗ town sitemap has ${townLocs.length} URLs but ${townSet.size} towns are published\n`);
-  errors++;
+function writeTownSitemap(file, label, routesForTowns) {
+  const set = new Set(routesForTowns ?? []);
+  const locs = sitemapRoutes.filter((url) => set.has(url)).map((url) => `${HOSTNAME}${url}`);
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${locs
+    .map((loc) => `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${pageLastmod.get(loc.slice(HOSTNAME.length)) || lastmod}</lastmod>\n  </url>`)
+    .join('\n')}\n</urlset>\n`;
+  writeFileSync(join(projectRoot, 'dist', file), xml, 'utf-8');
+  console.log(`${label} sitemap written with ${locs.length} URLs.`);
+  if (locs.length !== set.size) {
+    process.stderr.write(`  ✗ ${file} has ${locs.length} URLs but ${set.size} towns are published\n`);
+    errors++;
+  }
 }
+writeTownSitemap('sitemap-adblue-towns.xml', 'AdBlue town', townRoutes);
+writeTownSitemap('sitemap-remap-towns.xml', 'Remap town', remapTownRoutes);
 
 // ── RSS feed for the blog ──────────────────────────────────────────────────
 function escapeXml(s = '') {
