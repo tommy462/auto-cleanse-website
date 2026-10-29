@@ -199,6 +199,7 @@ const DPFCleaningHub = () => {
     // to opacity 0 on hydration and delay the prerendered LCP element on mobile.
     gsap.utils.toArray<HTMLElement>('.reveal-container').forEach((c) => {
       const items = c.querySelectorAll('.reveal-item');
+      if (!items.length) return;
       gsap.fromTo(items, { y: 30, opacity: 0 }, {
         y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out',
         scrollTrigger: { trigger: c, start: 'top 85%' },

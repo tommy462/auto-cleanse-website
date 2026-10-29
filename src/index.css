@@ -674,39 +674,75 @@ button:disabled {
 .blog-prose h3:first-child {
   margin-top: 0;
 }
-/* ── DPF cutaway explainer (src/components/DpfCutaway.tsx) ───────────────── */
-.dpfx-scale {
-  transform-box: fill-box;
-  transition: transform 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+/* ── DPF cutaway explainer v2 (src/components/DpfCutaway.tsx) ───────────────── */
+.dpfx-tile { position: relative; display: flex; flex-direction: column; justify-content: center; min-height: 56px; padding: 8px; border-radius: 12px; text-align: left; background: #1A1D22; border: 1px solid rgba(255, 255, 255, 0.1); transition: background-color 0.15s, border-color 0.15s, transform 0.1s, opacity 0.2s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+@media (hover: hover) and (pointer: fine) {
+  .dpfx-tile:not([aria-disabled="true"]):hover { background: #20242A; border-color: rgba(255, 122, 0, 0.6); }
+  .dpfx-tile:not([aria-disabled="true"]):hover .dpfx-tile-icon { transform: translateX(2px); }
 }
-.dpfx-flow { stroke-dasharray: 6 10; animation: dpfx-dash 0.9s linear infinite; }
-.dpfx-flow-rev { stroke-dasharray: 6 10; animation: dpfx-dash-rev 0.55s linear infinite; }
-@keyframes dpfx-dash { to { stroke-dashoffset: -32; } }
-@keyframes dpfx-dash-rev { to { stroke-dashoffset: 32; } }
-.dpfx-particle { opacity: 0; animation: dpfx-travel 1.3s cubic-bezier(0.2, 0.7, 0.3, 1) forwards; }
-@keyframes dpfx-travel {
-  0% { transform: translateX(0); opacity: 0; }
-  12% { opacity: 1; }
-  100% { transform: translateX(var(--dx)); opacity: 1; }
+.dpfx-tile-icon { transition: transform 0.15s; }
+.dpfx-tile:active:not([aria-disabled="true"]) { transform: scale(0.98); }
+.dpfx-tile:focus { outline: none; }
+.dpfx-tile:focus-visible { outline: 2px solid #FF9A33; outline-offset: 2px; }
+.dpfx-tile[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
+.dpfx-tile[data-running="true"] { border-color: #FF7A00; opacity: 1; }
+.dpfx-tile[data-locked="true"] { border: 1.5px dashed rgba(255, 176, 32, 0.6); }
+.dpfx-tile--clean { min-height: 60px; flex-direction: row; align-items: center; gap: 12px; padding: 8px 12px; border: 1.5px solid #FF7A00; background: linear-gradient(90deg, rgba(255, 122, 0, 0.1), rgba(255, 122, 0, 0.03)), #1A1D22; }
+@media (min-width: 640px) {
+  .dpfx-tile { min-height: 64px; padding: 8px 10px; }
+  .dpfx-tile--clean { min-height: 64px; padding: 8px 14px; }
 }
-.dpfx-out { opacity: 0; animation: dpfx-out 1.3s ease-in infinite; }
-@keyframes dpfx-out {
-  0% { transform: translateX(0); opacity: 0; }
-  15% { opacity: 1; }
-  100% { transform: translateX(var(--dx)); opacity: 0; }
+@media (min-width: 768px) {
+  .dpfx-tile { min-height: 72px; padding: 10px 12px; }
+  .dpfx-tile--clean { min-height: 72px; gap: 14px; padding: 10px 16px; }
 }
-.dpfx-burst { transform-box: fill-box; transform-origin: center; animation: dpfx-burst 0.8s ease-out infinite; }
-@keyframes dpfx-burst {
-  0% { transform: scale(0.2); opacity: 0.9; }
-  100% { transform: scale(1.7); opacity: 0; }
+@media (min-width: 1024px) {
+  .dpfx-tile { min-height: 76px; padding: 10px 12px; }
+  .dpfx-tile--clean { min-height: 80px; gap: 14px; padding: 10px 16px; }
+  .dpfx-meter { height: 6px; }
 }
-.dpfx-flicker { animation: dpfx-flicker 0.35s ease-in-out infinite alternate; }
-@keyframes dpfx-flicker { from { opacity: 0.7; } to { opacity: 1; } }
-.dpfx-shimmer { animation: dpfx-shimmer 0.9s ease-in-out infinite alternate; }
-@keyframes dpfx-shimmer { from { opacity: 0.05; } to { opacity: 0.22; } }
+.dpfx-prog { position: absolute; left: 8px; right: 8px; bottom: 4px; height: 3px; border-radius: 9999px; background: #FF9A33; transform-origin: left; transform: scaleX(0); pointer-events: none; }
+.dpfx-sbar { display: block; height: 100%; transform-origin: left; transform: scaleX(0); }
+.dpfx-ring { position: absolute; inset: -1.5px; border-radius: 12px; pointer-events: none; animation: dpfx-ring 0.9s ease-out 2; }
+@keyframes dpfx-ring { from { box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.45); } to { box-shadow: 0 0 0 10px rgba(255, 122, 0, 0); } }
+.dpfx-dot { animation: dpfx-pulse 1.4s ease-in-out infinite; }
+@keyframes dpfx-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.6); opacity: 0.45; } }
+.dpfx:not(.is-visible) .dpfx-dot { animation-play-state: paused; }
+/* Coach dot on Regen: stays solid and bright, a ring pings out from it. */
+.dpfx-coach { position: absolute; right: 8px; top: 8px; width: 8px; height: 8px; border-radius: 9999px; background: #FF9A33; box-shadow: 0 0 0 2px rgba(255, 154, 51, 0.22); pointer-events: none; }
+.dpfx-coach::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 1.5px solid #FF9A33; animation: dpfx-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite; }
+@keyframes dpfx-ping { 0% { transform: scale(1); opacity: 0.9; } 80%, 100% { transform: scale(2.8); opacity: 0; } }
+.dpfx:not(.is-visible) .dpfx-coach::after { animation-play-state: paused; }
+.dpfx-fade { animation: dpfx-fade 0.2s ease-out; }
+@keyframes dpfx-fade { from { opacity: 0; transform: translateY(-2px); } to { opacity: 1; transform: none; } }
+.dpfx-labels > span { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
+/* Close-up: gas streams along both channels, short arrows cross the wall at many points (they
+   rest, visible, mid-wall without motion) and soot specks ride down onto the cake (motion only). */
+.dpfx-culane { stroke-dasharray: 7 11; }
+.dpfx-cuspeck { opacity: 0; }
+.dpfx.is-visible .dpfx-close[data-on="true"] .dpfx-culane { animation: dpfx-lane 1.1s linear infinite; }
+.dpfx.is-visible .dpfx-close[data-on="true"] .dpfx-cuarrow { animation: dpfx-cross 1.5s linear infinite; }
+.dpfx.is-visible .dpfx-close[data-on="true"] .dpfx-cuspeck { animation: dpfx-speck 3.2s ease-in infinite; }
+@keyframes dpfx-lane { to { stroke-dashoffset: -36; } }
+@keyframes dpfx-cross { 0% { transform: translateY(var(--y0)); opacity: 0; } 20%, 75% { opacity: 1; } 100% { transform: translateY(var(--y1)); opacity: 0; } }
+@keyframes dpfx-speck { 0% { transform: translate(var(--dx), -26px); opacity: 0; } 10% { opacity: 1; } 55% { transform: none; opacity: 1; } 85% { opacity: 1; } 100% { transform: none; opacity: 0; } }
+@media (max-width: 639px) { .dpfx-cu-wide { display: none; } }
+.dpfx-meter { position: relative; height: 5px; }
+.dpfx-meter > i { position: absolute; inset: 0; display: block; -webkit-mask: repeating-linear-gradient(90deg, #000 0 calc(10% - 2px), transparent calc(10% - 2px) 10%); mask: repeating-linear-gradient(90deg, #000 0 calc(10% - 2px), transparent calc(10% - 2px) 10%); }
+.dpfx-meter > i:first-child { background: rgba(255, 255, 255, 0.18); }
+.dpfx-meter > i + i { clip-path: inset(0 calc(100% - var(--v, 0%)) 0 0); transition: clip-path var(--dpfx-t, 0.6s) cubic-bezier(0.4, 0, 0.2, 1); }
+.dpfx-band { display: block; height: 6px; border-radius: 2px; }
+.dpfx-band--ok { background: rgba(255, 255, 255, 0.7); }
+.dpfx-band--med { background: radial-gradient(circle, #FFB020 0.9px, transparent 1.1px) 0 0 / 4px 4px, rgba(255, 176, 32, 0.28); }
+.dpfx-band--blk { background: repeating-linear-gradient(45deg, #FF7A00 0 2px, rgba(255, 122, 0, 0.3) 2px 4px); }
+/* Flow-test cursor: outlines the band it points at, on the bar itself, never over the word. */
+.dpfx-cur { position: absolute; top: -2px; height: 10px; width: calc((100% - 4px) / 3 + 4px); border-radius: 4px; pointer-events: none; transition: left 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.dpfx-cur--now { border: 2px solid #FFF; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55); }
+.dpfx-cur--was { border: 1.5px dashed rgba(255, 255, 255, 0.6); }
+.dpfx-lamp { transition: color 0.3s, filter 0.3s; }
+.dpfx-lamp[data-on="true"] { color: #FFB020; filter: drop-shadow(0 0 5px rgba(255, 176, 32, 0.6)); }
 @media (prefers-reduced-motion: reduce) {
-  .dpfx-flow, .dpfx-flow-rev, .dpfx-out, .dpfx-burst, .dpfx-flicker, .dpfx-shimmer { animation: none; }
-  .dpfx-particle { animation: none; opacity: 1; transform: translateX(var(--dx)); }
-  .dpfx-out, .dpfx-burst { opacity: 0; }
-  .dpfx-scale { transition-duration: 0.01s; }
+  .dpfx-ring, .dpfx-dot, .dpfx-fade, .dpfx-culane, .dpfx-cuarrow, .dpfx-cuspeck { animation: none !important; }
+  .dpfx-coach::after { animation: none !important; opacity: 0; }
+  .dpfx-meter > i, .dpfx-cur, .dpfx-tile, .dpfx-lamp { transition-duration: 0.01s !important; }
 }
