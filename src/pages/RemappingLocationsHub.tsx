@@ -60,6 +60,14 @@ const RemappingLocationsHub = () => {
           </p>
         </div>
 
+        <a href="/ecu-remapping/areas" className="mb-12 flex items-center justify-between gap-4 p-6 md:p-8 rounded-[2rem] bg-[#FF7A00]/[0.08] border border-[#FF7A00]/30 hover:bg-[#FF7A00]/[0.12] transition-colors">
+          <span>
+            <span className="block text-white font-bold text-lg md:text-xl">Looking for remapping outside Devon?</span>
+            <span className="block text-white/60 text-sm md:text-base mt-1">Browse all UK remapping areas, then call with your postcode to confirm coverage.</span>
+          </span>
+          <ArrowRight size={24} className="text-[#FF7A00] shrink-0" />
+        </a>
+
         <div className="space-y-16 reveal-container">
           {Object.entries(locationsByRegion).map(([region, locations]) => (
             <div key={region} className="reveal-item">

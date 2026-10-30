@@ -88,6 +88,14 @@ const EcuRemappingHub = () => {
           </div>
         </div>
 
+        <a href="/ecu-remapping/areas" className="max-w-4xl mx-auto mb-8 md:mb-12 flex items-center justify-between gap-4 p-6 md:p-8 rounded-[2rem] bg-[#FF7A00]/[0.08] border border-[#FF7A00]/30 hover:bg-[#FF7A00]/[0.12] transition-colors">
+          <span>
+            <span className="block text-white font-bold text-lg md:text-xl">Find remapping in your town</span>
+            <span className="block text-white/60 text-sm md:text-base mt-1">Browse UK Stage 1 remapping areas. Outside Devon, call with your postcode to confirm mobile technician coverage.</span>
+          </span>
+          <MapPin size={28} className="text-[#FF7A00] shrink-0" />
+        </a>
+
         {/* AI-answer block */}
         <div className="max-w-4xl mx-auto mb-12 md:mb-16 reveal-container">
           <div className="rounded-2xl bg-[#1A1D22] border border-white/5 border-l-4 border-l-[#FF7A00] p-6 md:p-8 reveal-item">
@@ -150,11 +158,11 @@ const EcuRemappingHub = () => {
           <Link to="/ecu-remapping-locations" className="group md:col-span-2 lg:col-span-3 p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] bg-[#1A1D22] border border-white/5 hover:border-[#FF7A00]/30 transition-all duration-300 reveal-item flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6">
             <div>
               <MapPin className="text-[#FF7A00] mb-3 md:mb-4" size={28} />
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-[#FF7A00] transition-colors">Mobile Remapping Locations</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-[#FF7A00] transition-colors">Devon Mobile Remapping Locations</h3>
               <p className="text-white/60 text-sm md:text-base max-w-2xl">We offer a fully mobile remapping service across Devon. Find your nearest town or city to see our local coverage and services.</p>
             </div>
             <div className="flex items-center text-[#FF7A00] font-medium group-hover:translate-x-2 transition-transform shrink-0 text-sm">
-              View All Locations <ArrowRight size={14} className="ml-2" />
+              View Devon Locations <ArrowRight size={14} className="ml-2" />
             </div>
           </Link>
         </div>

@@ -18,6 +18,7 @@ const Footer = () => {
   const quickLinks = [
     { name: 'DPF Cleaning', path: '/dpf-cleaning' },
     { name: 'ECU Remapping', path: '/ecu-remapping' },
+    { name: 'ECU Remapping Areas', path: '/ecu-remapping/areas' },
     { name: 'AdBlue Repair Devon', path: '/adblue-repair-devon' },
     { name: 'AdBlue Repair UK', path: '/adblue-repair' },
     { name: 'AdBlue Repair Areas', path: '/adblue-repair/areas' },
@@ -46,7 +47,8 @@ const Footer = () => {
     { name: 'Torquay', path: '/ecu-remapping-torquay' },
     { name: 'Newton Abbot', path: '/ecu-remapping-newton-abbot' },
     { name: 'Totnes', path: '/ecu-remapping-totnes' },
-    { name: 'View All', path: '/ecu-remapping-locations' },
+    { name: 'Devon Locations', path: '/ecu-remapping-locations' },
+    { name: 'All UK Remapping Areas', path: '/ecu-remapping/areas' },
   ];
 
   const popularVehicles = [
@@ -121,7 +123,7 @@ const Footer = () => {
               <ul className="space-y-4">
                 {quickLinks.map((link) => (
                   <li key={link.path}>
-                    <Link to={link.path} className="text-white/70 hover:text-[#FF7A00] transition-colors text-sm relative group inline-block font-medium">
+                    <Link to={link.path} reloadDocument={link.path === '/ecu-remapping/areas'} className="text-white/70 hover:text-[#FF7A00] transition-colors text-sm relative group inline-block font-medium">
                       <span className="relative z-10">{link.name}</span>
                     </Link>
                   </li>
@@ -160,7 +162,7 @@ const Footer = () => {
               <ul className="space-y-4">
                 {popularLocations.map((link) => (
                   <li key={link.path}>
-                    <Link to={link.path} className="text-white/70 hover:text-[#FF7A00] transition-colors text-sm relative group inline-block font-medium">
+                    <Link to={link.path} reloadDocument={link.path === '/ecu-remapping/areas'} className="text-white/70 hover:text-[#FF7A00] transition-colors text-sm relative group inline-block font-medium">
                       <span className="relative z-10">{link.name}</span>
                     </Link>
                   </li>
