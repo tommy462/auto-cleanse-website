@@ -29,14 +29,18 @@ export interface RemapCouncilVehicles {
 export interface RemapCensus {
   area: string;
   census: string;
+  /** Source limitations for approximated Northern Ireland settlement figures. */
+  note?: string;
   driveToWorkPct: number;
   homeWorkPct?: number;
   km10plusPct?: number;
   km30plusPct?: number;
   noCarPct?: number;
   twoPlusCarsPct?: number;
-  /** Same measures for England and Wales, for comparison. */
+  /** Same measures for the country, for comparison. */
   national?: Partial<Record<'driveToWorkPct' | 'homeWorkPct' | 'km10plusPct' | 'km30plusPct' | 'noCarPct' | 'twoPlusCarsPct', number>>;
+  /** Where `national` is from, when not England and Wales (Scotland, Northern Ireland). */
+  nationalLabel?: string;
 }
 
 export interface RemapCleanAirZone {

@@ -80,6 +80,7 @@ export default function RemapTown() {
   const districts = town.districts.slice(0, 6);
   const { vehicles, census, caz } = town;
   const censusYear = census?.census.match(/20\d\d/)?.[0] ?? '';
+  const comparedWith = census?.nationalLabel ?? 'England and Wales';
   const coverage = `An independent mobile technician from our national network does the remap at your home or workplace, booked and managed by us. Call with your reg and postcode and we'll tell you straight whether we can cover ${name}.`;
   const guides = [GUIDE_BASICS, localGuide(town)];
 
@@ -141,13 +142,13 @@ export default function RemapTown() {
                 <div><dt className="text-white font-bold">Privately kept vans in {vehicles.area}</dt><dd className="text-white/65 mt-1">{fmtNum(vehicles.vans)}, {vehicles.vansDieselPct}% of them diesel</dd></div>
               )}
               {census && (
-                <div><dt className="text-white font-bold">Drive to work ({censusYear})</dt><dd className="text-white/65 mt-1">{census.driveToWorkPct}% of working residents drive a car or van to work{census.national?.driveToWorkPct !== undefined ? ` (England and Wales: ${census.national.driveToWorkPct}%)` : ''}</dd></div>
+                <div><dt className="text-white font-bold">Drive to work ({censusYear})</dt><dd className="text-white/65 mt-1">{census.driveToWorkPct}% of working residents drive a car or van to work{census.national?.driveToWorkPct !== undefined ? ` (${comparedWith}: ${census.national.driveToWorkPct}%)` : ''}</dd></div>
               )}
               {census?.km30plusPct !== undefined && (
-                <div><dt className="text-white font-bold">Long commutes ({censusYear})</dt><dd className="text-white/65 mt-1">{census.km30plusPct}% travel 30 km or more to work{census.national?.km30plusPct !== undefined ? ` (England and Wales: ${census.national.km30plusPct}%)` : ''}</dd></div>
+                <div><dt className="text-white font-bold">Long commutes ({censusYear})</dt><dd className="text-white/65 mt-1">{census.km30plusPct}% travel 30 km or more to work{census.national?.km30plusPct !== undefined ? ` (${comparedWith}: ${census.national.km30plusPct}%)` : ''}</dd></div>
               )}
               {census?.twoPlusCarsPct !== undefined && (
-                <div><dt className="text-white font-bold">Households with two or more cars or vans ({censusYear})</dt><dd className="text-white/65 mt-1">{census.twoPlusCarsPct}%{census.national?.twoPlusCarsPct !== undefined ? ` (England and Wales: ${census.national.twoPlusCarsPct}%)` : ''}</dd></div>
+                <div><dt className="text-white font-bold">Households with two or more cars or vans ({censusYear})</dt><dd className="text-white/65 mt-1">{census.twoPlusCarsPct}%{census.national?.twoPlusCarsPct !== undefined ? ` (${comparedWith}: ${census.national.twoPlusCarsPct}%)` : ''}</dd></div>
               )}
               {caz && (
                 <div><dt className="text-white font-bold">Clean air zone</dt><dd className="text-white/65 mt-1">{caz.name}</dd></div>
@@ -235,7 +236,8 @@ export default function RemapTown() {
 
           {town.nearby.length > 0 && (
             <section className={CARD}>
-              <h2 className="text-xl font-bold text-white mb-6 tracking-tight">Stage 1 remapping near {name}</h2>
+              <h2 className="text-xl font-bold text-white mb-3 tracking-tight">Stage 1 remapping near {name}</h2>
+              <p className="text-sm text-white/50 mb-6">Distances below are in a straight line.</p>
               <div className="grid gap-3 sm:grid-cols-2">
                 {town.nearby.map((n) => (
                   <a key={n.slug} href={remapTownPath(n.slug)} className="flex items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#FF7A00]/50 hover:bg-[#FF7A00]/5 text-white/70 hover:text-white transition-all">
@@ -255,7 +257,8 @@ export default function RemapTown() {
               {town.modelsArea ? `, DVSA MOT results ${town.modelsArea.year} (diesels, by test station postcode area)` : ''}
               {caz ? ', the zone operator' : ''}, OpenStreetMap (ODbL) and postcodes.io. Public sector information under the{' '}
               <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" className="underline underline-offset-2 hover:text-white/60">Open Government Licence v3.0</a>.
-              Updated {formatDate(town.updated)}.
+              {census?.note?.includes('NISRA') ? " Northern Ireland settlement figures are approximated from small areas; workers exclude full-time students and distance bands count work within Northern Ireland only." : ''}
+              {' '}Updated {formatDate(town.updated)}.
             </p>
           </section>
         </div>

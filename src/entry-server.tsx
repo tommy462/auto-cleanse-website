@@ -46,7 +46,7 @@ const TOWN_STORE: TownStore = {
 
 // National Stage 1 remap town pages, also published in waves. Each page links
 // to the same town's AdBlue page when that town is published.
-const PUBLISHED_REMAP_WAVE = 1;
+const PUBLISHED_REMAP_WAVE = 2;
 
 type RemapTownRecord = Omit<RemapTownData, 'nearby' | 'adblueSlug'> & { lat: number; lng: number; wave: number };
 const publishedRemapTowns = (remapTownsData as RemapTownRecord[]).filter((t) => t.wave <= PUBLISHED_REMAP_WAVE);

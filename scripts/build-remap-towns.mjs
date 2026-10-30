@@ -1,30 +1,54 @@
 // Builds src/data/remap-towns/towns.json for the national Stage 1 remap town
 // pages. Run when the source data or copy changes:
-//   node scripts/build-remap-towns.mjs <input dir>
-// The input dir holds sheets/all.json (one fact sheet per town: DfT VEH0105 and
+//   node scripts/build-remap-towns.mjs <wave 1 dir> [<wave 2 dir> ...]
+// Each input dir holds sheets/all.json (one fact sheet per town: DfT VEH0105 and
 // VEH0142 council figures, Census travel to work, clean air zone, MOT models)
-// and content/*.json (the written intro and driving copy). Base fields come
-// from the AdBlue towns.json. Towns without copy, or with banned wording, are
-// left out and listed.
+// and content/*.json (the written intro and driving copy); its towns get the
+// wave number of its position. Base fields come from the AdBlue towns.json.
+// Invalid or incomplete input fails before replacing the published dataset.
 import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const input = process.argv[2];
-if (!input) {
-  console.error('Usage: node scripts/build-remap-towns.mjs <input dir>');
+const inputs = process.argv.slice(2);
+if (!inputs.length) {
+  console.error('Usage: node scripts/build-remap-towns.mjs <wave 1 dir> [<wave 2 dir> ...]');
   process.exit(1);
 }
 
-const sheets = JSON.parse(readFileSync(join(input, 'sheets', 'all.json'), 'utf8'));
-const adblue = Object.fromEntries(JSON.parse(readFileSync(join(root, 'src/data/adblue-towns/towns.json'), 'utf8')).map((t) => [t.slug, t]));
+const sheets = [];
 const content = {};
-const contentDir = join(input, 'content');
-if (existsSync(contentDir)) {
-  for (const f of readdirSync(contentDir).filter((n) => n.endsWith('.json'))) {
-    for (const row of JSON.parse(readFileSync(join(contentDir, f), 'utf8'))) content[row.slug] = row;
+inputs.forEach((input, i) => {
+  for (const s of JSON.parse(readFileSync(join(input, 'sheets', 'all.json'), 'utf8'))) sheets.push({ ...s, wave: i + 1 });
+  const contentDir = join(input, 'content');
+  if (existsSync(contentDir)) {
+    for (const f of readdirSync(contentDir).filter((n) => /^batch-\d+\.json$/.test(n))) {
+      for (const row of JSON.parse(readFileSync(join(contentDir, f), 'utf8'))) {
+        if (content[row.slug]) throw new Error(`Duplicate copy for town: ${row.slug}`);
+        content[row.slug] = row;
+      }
+    }
   }
+});
+const dupes = sheets.filter((s, i) => sheets.findIndex((o) => o.slug === s.slug) !== i).map((s) => s.slug);
+if (dupes.length) throw new Error(`Towns in more than one wave: ${dupes.join(', ')}`);
+if (!sheets.length) throw new Error('No town fact sheets supplied');
+const unknownCopy = Object.keys(content).filter((slug) => !sheets.some((s) => s.slug === slug));
+if (unknownCopy.length) throw new Error(`Copy without a fact sheet: ${unknownCopy.join(', ')}`);
+const adblue = Object.fromEntries(JSON.parse(readFileSync(join(root, 'src/data/adblue-towns/towns.json'), 'utf8')).map((t) => [t.slug, t]));
+const outputFile = join(root, 'src/data/remap-towns/towns.json');
+const previous = existsSync(outputFile)
+  ? Object.fromEntries(JSON.parse(readFileSync(outputFile, 'utf8')).map((t) => [t.slug, t]))
+  : {};
+
+// Census figures are compared with the country they come from.
+const NATIONAL = [['englandAndWales', null], ['scotland', 'Scotland'], ['northernIreland', 'Northern Ireland']];
+function nationalOf(census) {
+  for (const [key, label] of NATIONAL) {
+    if (census[key]) return { national: census[key], ...(label ? { nationalLabel: label } : {}) };
+  }
+  return {};
 }
 
 // Our vehicle remap pages for the generic models MOT data names (DfT generic
@@ -84,6 +108,7 @@ for (const s of sheets) {
   if (!c?.intro || !c?.driving) { dropped.noCopy.push(s.slug); continue; }
   if (BANNED.test(c.intro) || BANNED.test(c.driving)) { dropped.banned.push(s.slug); continue; }
   const base = adblue[s.slug];
+  if (!base || !Number.isFinite(base.lat) || !Number.isFinite(base.lng)) throw new Error(`Missing town coordinates: ${s.slug}`);
   const v = s.council;
   const census = s.census;
   let caz = null;
@@ -99,7 +124,7 @@ for (const s of sheets) {
     const page = MODEL_PAGES[m.model];
     if (page && !models.some((x) => x.slug === page[0])) models.push({ slug: page[0], name: page[1] });
   }
-  towns.push({
+  const town = {
     slug: s.slug,
     name: s.name,
     county: s.county ?? '',
@@ -108,7 +133,7 @@ for (const s of sheets) {
     lat: base.lat,
     lng: base.lng,
     pop: s.population,
-    wave: 1,
+    wave: s.wave,
     districts: s.postcodeDistricts,
     roads: s.mainRoadsOSM.slice(0, 8),
     vehicles: {
@@ -127,7 +152,8 @@ for (const s of sheets) {
           driveToWorkPct: census.driveToWorkPct,
           ...(census.km30plusPct !== undefined ? { km30plusPct: census.km30plusPct } : {}),
           ...(census.twoPlusCarsPct !== undefined ? { twoPlusCarsPct: census.twoPlusCarsPct } : {}),
-          ...(census.englandAndWales ? { national: census.englandAndWales } : {}),
+          ...nationalOf(census),
+          ...(census.census.includes('NISRA') ? { note: census.note } : {}),
         }
       : null,
     caz,
@@ -136,14 +162,22 @@ for (const s of sheets) {
     intro: c.intro.trim(),
     driving: c.driving.trim(),
     updated: UPDATED,
-  });
+  };
+  // Rebuilding a later wave must not re-date unchanged pages from earlier waves.
+  const { updated: previousDate, ...previousData } = previous[s.slug] ?? {};
+  const { updated: _updated, ...currentData } = town;
+  if (previousDate && JSON.stringify(previousData) === JSON.stringify(currentData)) town.updated = previousDate;
+  towns.push(town);
 }
 towns.sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
 
+if (dropped.noCopy.length || dropped.banned.length || dropped.noCaz.length) {
+  throw new Error(`Incomplete town data. Missing copy: ${dropped.noCopy.join(', ') || 'none'}; banned wording: ${dropped.banned.join(', ') || 'none'}; unknown clean air zone: ${dropped.noCaz.join(', ') || 'none'}`);
+}
 const out = join(root, 'src', 'data', 'remap-towns');
 mkdirSync(out, { recursive: true });
 writeFileSync(join(out, 'towns.json'), JSON.stringify(towns));
-console.log(`towns.json: ${towns.length} remap towns`);
+console.log(`towns.json: ${towns.length} remap towns (${inputs.map((_, i) => `wave ${i + 1}: ${towns.filter((t) => t.wave === i + 1).length}`).join(', ')})`);
 console.log(`dropped: no copy ${dropped.noCopy.length}, banned wording ${dropped.banned.length}`);
 if (dropped.noCopy.length) console.log('  no copy:', dropped.noCopy.join(', '));
 if (dropped.banned.length) console.log('  banned:', dropped.banned.join(', '));
