@@ -109,7 +109,7 @@ export default function QuickEnquiryForm({
   })();
 
   return (
-    <form
+    <form data-clarity-mask="true"
       onSubmit={handleSubmit}
       className="space-y-4"
       toolname={tool.name}

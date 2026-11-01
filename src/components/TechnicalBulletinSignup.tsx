@@ -83,7 +83,7 @@ export default function TechnicalBulletinSignup() {
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-2.5" noValidate>
+            <form data-clarity-mask="true" onSubmit={handleSubmit} className="space-y-2.5" noValidate>
               <label htmlFor="bulletin-email" className="sr-only">
                 Your email address
               </label>

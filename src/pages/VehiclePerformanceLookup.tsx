@@ -234,7 +234,7 @@ function RegLookupSection({ csvData, csvReady }: { csvData: RemapRow[]; csvReady
   };
 
   return (
-    <div className="relative p-4 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] bg-[#111111] border border-white/5 shadow-2xl shadow-black mb-6 overflow-visible reveal-container">
+    <div data-clarity-mask="true" className="relative p-4 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] bg-[#111111] border border-white/5 shadow-2xl shadow-black mb-6 overflow-visible reveal-container">
       <div className="absolute inset-0 rounded-[2rem] sm:rounded-[2.5rem] bg-gradient-to-br from-[#FF7A00]/5 to-transparent pointer-events-none" />
 
       {/* Header */}

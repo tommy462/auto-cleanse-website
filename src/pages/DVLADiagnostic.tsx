@@ -81,7 +81,7 @@ export default function DVLADiagnostic() {
         </div>
 
         <div className="bg-[#111111] border border-white/5 rounded-[2rem] p-8 mb-10 shadow-2xl reveal-item">
-          <form onSubmit={handleLookup} className="flex flex-col md:flex-row gap-4">
+          <form data-clarity-mask="true" onSubmit={handleLookup} className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <label htmlFor="diagnostic-reg" className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-2.5 ml-1">
                 Vehicle Registration

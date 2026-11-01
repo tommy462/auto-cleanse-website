@@ -33,6 +33,12 @@ export const SERVICE_OPTIONS = [
 export const GA4_MEASUREMENT_ID =
   (import.meta.env.VITE_GA4_MEASUREMENT_ID as string | undefined)?.trim() || '';
 
+// Microsoft Clarity project ID (Clarity > Settings > Overview), e.g. "abcd1234ef".
+// Supplied via VITE_CLARITY_PROJECT_ID; it is public by design (it appears in the
+// script URL). Left blank -> Clarity never loads and the banner does not mention it.
+export const CLARITY_PROJECT_ID =
+  (import.meta.env.VITE_CLARITY_PROJECT_ID as string | undefined)?.trim() || '';
+
 // Google Ads (gtag) account already loaded in index.html.
 export const GOOGLE_ADS_ID = 'AW-17928380785';
 

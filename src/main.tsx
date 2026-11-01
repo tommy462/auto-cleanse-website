@@ -4,6 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.tsx';
 import './index.css';
+import { captureAttribution } from './lib/attribution';
+
+// Where this visit came from, kept in memory only (src/lib/attribution.ts).
+captureAttribution();
 
 const rootElement = document.getElementById('root')!;
 const app = (

@@ -69,7 +69,7 @@ export default function BookingSuccess() {
   }, []);
 
   return (
-    <div className="pt-28 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
+    <div data-clarity-mask="true" className="pt-28 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="Booking Confirmed | AutoCleanse Remapping"
         description="Your ECU remapping booking has been confirmed. £50 deposit received."

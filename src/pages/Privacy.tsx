@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import LegalPage, { LegalSection, ContactLines, legalLinkClass } from '../components/LegalLayout';
 import { BUSINESS, COMPANY } from '../data/business';
+import { CLARITY_PROJECT_ID } from '../config/leads';
 
 // Privacy notice. Every form, service and provider listed here was checked
 // against the code (forms, /api, src/server, index.html) in October 2026. If a
@@ -92,8 +93,25 @@ export default function Privacy() {
             pages you visit, your device and browser type, roughly where you are (town level), how
             you found us (for example from one of our ads) and whether you tapped a call or WhatsApp
             button or sent a form. They do not receive what you type into our forms (your consent).
-            See our{' '}
+            {CLARITY_PROJECT_ID && (
+              <>
+                {' '}With the same Accept, Microsoft Clarity records how pages are used (scrolling,
+                taps and clicks) as anonymous replays and heatmaps, so we can find parts of the site
+                that confuse people. Anything typed into a form, the booking pages, the chat and
+                lookup results are hidden from the recordings (your consent).
+              </>
+            )}
+            {' '}See our{' '}
             <Link to="/cookie-policy" className={legalLinkClass}>Cookie Policy</Link>.
+          </li>
+          <li>
+            <strong>Counting enquiries.</strong> When you send an enquiry or booking form, our own
+            server counts it, with the page and form it came from, the service you chose and, unless
+            you chose &ldquo;Reject&rdquo; in our cookie banner, how you found the site (for example
+            a Google search or one of our ads) and your device type. This uses no cookies, stores
+            nothing on your device and does not include your name or contact details. We use it only
+            to see which pages bring in work and to improve the site (our legitimate interest). To
+            object, choose &ldquo;Reject&rdquo; in the cookie banner or contact us.
           </li>
           <li>
             <strong>Running the website.</strong> Like any website, our hosting provider logs your IP
@@ -130,6 +148,7 @@ export default function Privacy() {
           <li><strong>Stripe</strong> takes deposit payments.</li>
           <li><strong>Resend</strong> sends booking confirmation emails and the technical bulletin.</li>
           <li><strong>Google</strong> provides our appointment calendar, our website fonts and, only if you accept cookies, Google Analytics and Google Ads.</li>
+          {CLARITY_PROJECT_ID && <li><strong>Microsoft</strong> provides Clarity, only if you accept cookies.</li>}
           <li><strong>DVLA, DVSA and totalcarcheck.co.uk</strong> receive a registration number when you use our vehicle lookup.</li>
           <li><strong>Independent technicians in our national network.</strong> For AdBlue work outside Devon, the technician who attends gets your name, phone number, vehicle details and where the vehicle is.</li>
           <li><strong>Couriers.</strong> If you book a courier through Parcel2Go to send us a DPF, you deal with them directly and their own privacy policy applies.</li>
@@ -153,7 +172,8 @@ export default function Privacy() {
           <li><strong>Bookings, job records and invoices:</strong> 6 years after the job, because tax and accounting law requires it.</li>
           <li><strong>Technical bulletin:</strong> until you unsubscribe. After that we keep only a note that you unsubscribed, so you aren't added again by mistake.</li>
           <li><strong>Chat messages:</strong> we don't keep them as customer records. They may stay in our providers' logs for a limited time.</li>
-          <li><strong>Analytics:</strong> for the period set in our Google Analytics account, no longer than 14 months.</li>
+          <li><strong>Analytics:</strong> for the period set in our Google Analytics account, no longer than 14 months.{CLARITY_PROJECT_ID && ' Clarity recordings are kept for 30 days, with a small sample kept longer under Microsoft\'s standard settings.'}</li>
+          <li><strong>Enquiry counts:</strong> 25 months, so one year can be compared with the next. They contain no personal details.</li>
           <li><strong>Hosting logs:</strong> a short period set by our hosting provider.</li>
         </ul>
       </LegalSection>

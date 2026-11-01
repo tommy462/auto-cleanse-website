@@ -8,6 +8,8 @@ import {
 import SEO from '../components/SEO';
 import { BOOKING_CONFIG, REMAP_SERVICES, REMAP_OPTIONS, BASE_PRICES, type RemapServiceValue } from '../config/booking';
 import { DEPOSIT_NOTICE_HOURS, TERMS_VERSION } from '../data/legal';
+import { attributionFields } from '../lib/attribution';
+import { trackEvent } from '../lib/tracking';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Types
@@ -398,10 +400,16 @@ export default function RemappingBooking() {
     setPayLoading(true);
     setPayError(null);
     try {
+      // Which page and traffic source led to this booking (no personal data; empty if cookies were rejected).
+      const a = attributionFields();
+      trackEvent('begin_checkout', { currency: 'GBP', value: BOOKING_CONFIG.depositAmountPence / 100, service: pending.serviceType });
       const res = await fetch('/api/create-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(pending),
+        body: JSON.stringify({
+          ...pending,
+          attribution: { landing: a.landing, channel: a.channel, referrer: a.referrerHost, utmSource: a.utmSource, utmMedium: a.utmMedium, utmCampaign: a.utmCampaign, device: a.device, consent: a.consent },
+        }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.status === 409) {
@@ -812,7 +820,7 @@ export default function RemappingBooking() {
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
-    <div ref={topRef} className="pt-24 pb-16 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
+    <div ref={topRef} data-clarity-mask="true" className="pt-24 pb-16 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="Book a Remap | ECU Remapping Booking - AutoCleanse"
         description="Book your ECU remapping appointment online. Choose your service, pick a slot, and pay the £50 deposit to confirm. Devon and surrounding areas."

@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import LegalPage, { LegalSection, legalLinkClass } from '../components/LegalLayout';
 import { openCookieSettings } from '../lib/consent';
+import { CLARITY_PROJECT_ID } from '../config/leads';
 
 // Cookie policy. Lists every cookie and browser-storage item the site uses.
-// Nothing from Google loads until the visitor accepts (src/lib/consent.ts), so
-// the "only if you accept" list must stay in step with that file.
+// Nothing from Google or Microsoft loads until the visitor accepts
+// (src/lib/consent.ts), so the "only if you accept" list must stay in step with
+// that file. Clarity entries appear only when a Clarity project is configured.
 
 interface Item {
   name: string;
@@ -15,9 +17,9 @@ interface Item {
 
 const ESSENTIAL: Item[] = [
   {
-    name: 'ac-cookie-consent',
+    name: 'ac-cookie-consent and ac-cookie-consent-v',
     setBy: 'This website (browser storage)',
-    purpose: 'Remembers whether you chose Accept or Reject, so we don\'t ask on every page.',
+    purpose: 'Remembers whether you chose Accept or Reject, and which version of the question you answered, so we don\'t ask on every page.',
     lasts: 'Until you change your choice or clear your browser data',
   },
 ];
@@ -41,6 +43,22 @@ const WITH_CONSENT: Item[] = [
     purpose: 'Links a call tap or enquiry back to the ad that brought you here, so we know which ads work.',
     lasts: '90 days',
   },
+  ...(CLARITY_PROJECT_ID
+    ? [
+        {
+          name: '_clck',
+          setBy: 'Microsoft Clarity',
+          purpose: 'Recognises repeat visits with a random ID, so Clarity can count visitors.',
+          lasts: '1 year',
+        },
+        {
+          name: '_clsk',
+          setBy: 'Microsoft Clarity',
+          purpose: 'Joins the pages of one visit into a single recording.',
+          lasts: '1 day',
+        },
+      ]
+    : []),
   {
     name: 'ac_trade_campaign_ followed by the area',
     setBy: 'This website (browser storage), trade invitation pages only',
@@ -83,8 +101,8 @@ export default function CookiePolicy() {
         <p>
           Cookies are small files a website stores in your browser. Similar technology, such as
           browser storage and tracking scripts, is covered by the same rules, so this page lists all
-          of it. In short: Google Analytics and Google Ads don't load until you choose
-          &ldquo;Accept&rdquo;, and the website works the same whichever you choose.
+          of it. In short: Google Analytics and Google Ads{CLARITY_PROJECT_ID ? ' and Microsoft Clarity' : ''} don't
+          load until you choose &ldquo;Accept&rdquo;, and the website works the same whichever you choose.
         </p>
       }
     >
@@ -108,13 +126,33 @@ export default function CookiePolicy() {
           its own websites (such as google.com) to measure adverts. Google explains how it uses this
           information at policies.google.com/technologies/cookies.
         </p>
+        {CLARITY_PROJECT_ID && (
+          <p>
+            Microsoft Clarity shows us anonymous replays and heatmaps of how pages are used, so we can
+            fix things that confuse people. Anything you type, the booking pages, the chat and lookup
+            results are hidden from it. Microsoft may also set its own cookies (such as MUID) on its
+            own domains. Microsoft explains Clarity at learn.microsoft.com/clarity.
+          </p>
+        )}
+      </LegalSection>
+
+      <LegalSection title="Counting enquiries without cookies">
+        <p>
+          When you send an enquiry or booking form, our own server counts it, with the page and form
+          it came from and the service you chose. Unless you chose &ldquo;Reject&rdquo;, it also notes
+          how you found the site (for example a Google search, an ad or a link) and whether you are on
+          a phone, tablet or computer. This uses no cookies, stores nothing on your device, is never
+          linked to your name or contact details, and is used only to see which pages bring in work so
+          we can improve the site. Choosing &ldquo;Reject&rdquo; stops the &ldquo;how you found
+          us&rdquo; part.
+        </p>
       </LegalSection>
 
       <LegalSection title="Changing your mind">
         <p>
           You can change your choice at any time. If you switch from Accept to Reject, we remove the
-          Google cookies stored for our website and reload the page, so Google Analytics and Google
-          Ads stop from that point.
+          Google{CLARITY_PROJECT_ID ? ' and Clarity' : ''} cookies stored for our website and reload the page, so Google
+          Analytics and Google Ads{CLARITY_PROJECT_ID ? ' and Microsoft Clarity' : ''} stop from that point.
         </p>
         <p>
           <button

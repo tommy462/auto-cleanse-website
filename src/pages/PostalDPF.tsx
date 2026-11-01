@@ -8,6 +8,7 @@ import MagneticButton from '../components/MagneticButton';
 import { Link } from 'react-router-dom';
 import FormPrivacyNote from '../components/FormPrivacyNote';
 import { TERMS_VERSION } from '../data/legal';
+import { trackLead } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -186,6 +187,7 @@ const PostalDPF = () => {
 
         setJobDetails({ jobReference: finalJobReference, uuid: finalUuid });
         setSubmitStatus('success');
+        trackLead({ service: 'Postal DPF Cleaning', source: 'postal_dpf', page_path: window.location.pathname });
         setShowStep2(true);
 
         // Smooth scroll to step 2
@@ -379,7 +381,7 @@ const PostalDPF = () => {
                 <p className="text-white/60 text-lg font-medium">Provide your details and we'll set up your postal cleaning job</p>
               </div>
 
-              <form
+              <form data-clarity-mask="true"
                 onSubmit={handleSubmit}
                 className="space-y-8 relative z-10"
                 toolname="requestPostalDpfCleaning"

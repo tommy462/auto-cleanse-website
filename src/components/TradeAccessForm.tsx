@@ -121,7 +121,7 @@ export default function TradeAccessForm() {
   const labelClass = 'block text-white/60 text-sm font-medium mb-1.5';
 
   return (
-    <form
+    <form data-clarity-mask="true"
       onSubmit={handleSubmit}
       className="space-y-5"
       toolname="applyForTradeEcuFiles"

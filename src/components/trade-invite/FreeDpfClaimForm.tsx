@@ -202,7 +202,7 @@ export default function FreeDpfClaimForm({ region, campaign }: RegionSectionProp
         {region.regionName} &middot; offer expires {offerExpiryFor(region)}
       </p>
 
-      <form
+      <form data-clarity-mask="true"
         ref={formRef}
         onSubmit={handleSubmit}
         noValidate

@@ -130,7 +130,7 @@ const Chatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed inset-x-3 bottom-[calc(4rem+env(safe-area-inset-bottom)+0.75rem)] h-[min(500px,calc(100dvh-10rem))] lg:inset-x-auto lg:right-6 lg:bottom-6 lg:w-96 lg:h-[500px] bg-[#0B0B0D] border border-[#1A1D22] rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
+        <div data-clarity-mask="true" className="fixed inset-x-3 bottom-[calc(4rem+env(safe-area-inset-bottom)+0.75rem)] h-[min(500px,calc(100dvh-10rem))] lg:inset-x-auto lg:right-6 lg:bottom-6 lg:w-96 lg:h-[500px] bg-[#0B0B0D] border border-[#1A1D22] rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden">
           {/* Header */}
           <div className="gradient-orange p-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">

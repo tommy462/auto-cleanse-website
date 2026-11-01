@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { loadGoogleTag, readConsent } from '../lib/consent';
+import { loadMeasurement, readConsent } from '../lib/consent';
 
 // Returning visitors who accepted cookies on an earlier visit get the Google
-// tag (Ads + GA4, see src/lib/consent.ts) without being asked again. It is
+// tag (Ads + GA4) and, if that Accept covered it, Clarity (see src/lib/consent.ts)
+// without being asked again. It is
 // fetched on the first interaction or when the page goes idle, so third-party
 // JS stays off the critical path. Everyone else gets nothing from Google until
 // they accept in the cookie banner.
@@ -13,7 +14,7 @@ export default function Analytics() {
     const events = ['pointerdown', 'touchstart', 'keydown', 'scroll'] as const;
     const load = () => {
       events.forEach((evt) => window.removeEventListener(evt, load));
-      loadGoogleTag();
+      loadMeasurement();
     };
     events.forEach((evt) => window.addEventListener(evt, load, { once: true, passive: true }));
 

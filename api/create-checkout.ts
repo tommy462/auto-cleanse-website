@@ -17,6 +17,24 @@ import type { BookingMetadata } from '../src/server/bookingProcessing.js';
 // Override with STRIPE_DEPOSIT_PRODUCT_ID when using a test-mode key.
 const DEFAULT_DEPOSIT_PRODUCT_ID = 'prod_UPxucEIgvPDc6J';
 
+// Only short, plain values are accepted; anything else is dropped.
+function attributionMetadata(a: unknown): Record<string, string> {
+  if (!a || typeof a !== 'object') return {};
+  const v = a as Record<string, unknown>;
+  const pick = (x: unknown, re: RegExp, max = 100) => (typeof x === 'string' && re.test(x) ? x.slice(0, max) : '');
+  const out: Record<string, string> = {
+    attr_landing: pick(v.landing, /^\/[a-z0-9\-/._~%]*$/i, 300),
+    attr_channel: pick(v.channel, /^[a-z_]{3,20}$/),
+    attr_ref: pick(v.referrer, /^[a-z0-9.-]{3,100}$/i),
+    attr_utm_source: pick(v.utmSource, /^[\w .\-+]{1,100}$/),
+    attr_utm_medium: pick(v.utmMedium, /^[\w .\-+]{1,100}$/),
+    attr_utm_campaign: pick(v.utmCampaign, /^[\w .\-+]{1,100}$/),
+    attr_device: pick(v.device, /^(mobile|tablet|desktop)$/),
+    attr_consent: pick(v.consent, /^(granted|denied|unknown)$/),
+  };
+  return Object.fromEntries(Object.entries(out).filter(([, x]) => x));
+}
+
 function corsHeaders(res: VercelResponse) {
   res.setHeader('Access-Control-Allow-Origin', process.env.SITE_URL ?? '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -38,6 +56,8 @@ interface BookingPayload {
   postcode?: string | null;
   selectedOptions?: string[];
   quotedPrice?: number;
+  /** Page and traffic source that led to the booking (src/lib/attribution.ts); no personal data. */
+  attribution?: Record<string, unknown>;
   jobDate: string;      // YYYY-MM-DD
   jobTime: string;      // HH:MM
   slotDisplay?: string;
@@ -160,6 +180,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     slot_end: slotEnd,
     slot_display: truncate(slotDisplay),
     terms_accepted: truncate(`${body.termsVersion || 'unknown'} at ${new Date().toISOString()}`),
+    // Read back by the insights engine to credit bookings to pages and traffic sources.
+    ...attributionMetadata(body.attribution),
   };
 
   const stripe = new Stripe(stripeKey, { apiVersion: '2024-12-18.acacia' as never });
