@@ -203,7 +203,12 @@ export async function buildSiteDaily(config: SiteConfig, from: string, to: strin
   }
   for (const b of biz) { add(b.date, 'jobs_created', N(b.jobs_created)); add(b.date, 'jobs_revenue', N(b.revenue_done)); }
   for (const c of clar) if (c.sessions != null) add(c.captured_on, 'clarity_sessions', N(c.sessions));
-  const rows = [...days.values()].map((r) => ({ ...r, updated_at: new Date().toISOString() }));
+  // PostgREST needs every row in a batch to carry the same columns: missing = null (no data that day).
+  const COLS = ['gsc_clicks', 'gsc_impressions', 'gsc_position', 'gsc_final', 'ga4_sessions', 'ga4_engaged_sessions', 'ga4_users',
+    'ga4_engagement_s', 'ga4_leads', 'ga4_phone_clicks', 'ga4_whatsapp_clicks', 'ga4_booking_starts', 'site_leads',
+    'checkouts_started', 'deposits_paid', 'deposit_value', 'jobs_created', 'jobs_revenue', 'clarity_sessions'];
+  const now = new Date().toISOString();
+  const rows = [...days.values()].map((r) => ({ ...Object.fromEntries(COLS.map((c) => [c, r[c] ?? null])), site_id: site, date: r.date, updated_at: now }));
   await upsert('web_site_daily', rows, 'site_id,date');
   return rows.length;
 }

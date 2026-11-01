@@ -155,6 +155,9 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
   await step(steps, 'marts', async () => {
     const n = await buildSiteDaily(config, addDays(today, -40), today);
     loaded = await loadPageWindows(config, win);
+    // No search or visitor data for the window (e.g. before the APIs are connected): writing a
+    // snapshot of zeros would hide an imported Search Console export in the dashboard.
+    if (!loaded.sources.gsc && !loaded.sources.ga4) return { rows: n, note: 'no page data for the window; snapshots left as they were' };
     const s = await writeSnapshots(config, win, loaded.pages, 'api');
     return { rows: n + s };
   });

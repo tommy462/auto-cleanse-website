@@ -16,6 +16,9 @@
  *   npx tsx --env-file=<env> scripts/insights.ts backfill --from 2025-07-01 --to 2026-10-31 [--sources gsc,ga4]
  *       Fills history from the APIs (Search Console keeps 16 months).
  *
+ *   npx tsx --env-file=<env> scripts/insights.ts business --from 2026-07-27 [--to 2026-11-01]
+ *       Jobs per day and service (no customer details) for the overview.
+ *
  *   npx tsx --env-file=<env> scripts/insights.ts seed-experiments
  *       Records the changes already made on 28 Oct 2026 as running experiments.
  *
@@ -153,6 +156,20 @@ async function main() {
       console.log(await backfill({ from, to, sources }));
       break;
     }
+    case 'business': {
+      // Jobs per day and service (counts and quoted value only) into web_business_daily, then the overview series.
+      const { businessDaily } = await import('../src/server/insights/business.js');
+      const { upsert } = await import('../src/server/insights/store.js');
+      const { buildSiteDaily } = await import('../src/server/insights/data.js');
+      const from = flag('from');
+      if (!from) throw new Error('--from is required (YYYY-MM-DD)');
+      const to = flag('to') ?? new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/London' }).format(new Date());
+      const rows = await businessDaily(from, to);
+      await upsert('web_business_daily', rows.map((r) => ({ site_id: AUTO_CLEANSE.id, ...r })), 'site_id,date,service_category');
+      const days = await buildSiteDaily(AUTO_CLEANSE, from, to);
+      console.log(`${rows.length} job rows (day x service), ${days} overview days rebuilt.`);
+      break;
+    }
     case 'seed-experiments': {
       const { insertIgnore, selectAll } = await import('../src/server/insights/store.js');
       const existing = new Set((await selectAll<{ title: string }>(`/web_experiments?site_id=eq.${AUTO_CLEANSE.id}&select=title&order=title`)).map((e) => e.title));
@@ -162,7 +179,7 @@ async function main() {
       break;
     }
     default:
-      console.log('Commands: analyse-export <folder> | import-export <folder> | daily [--force] [--weekly] | backfill --from --to [--sources] | seed-experiments');
+      console.log('Commands: analyse-export <folder> | import-export <folder> | daily [--force] [--weekly] | backfill --from --to [--sources] | business --from [--to] | seed-experiments');
       process.exit(cmd ? 1 : 0);
   }
 }
