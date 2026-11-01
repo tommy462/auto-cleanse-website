@@ -1,6 +1,13 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "functions": {
+    "api/insights.ts": { "maxDuration": 300 }
+  },
+  "crons": [
+    { "path": "/api/insights", "schedule": "0 6 * * *" },
+    { "path": "/api/insights", "schedule": "0 7 * * *" }
+  ],
   "redirects": [
     {
       "source": "/home",
