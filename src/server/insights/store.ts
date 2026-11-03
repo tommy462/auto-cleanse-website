@@ -32,6 +32,22 @@ export async function rpc<T>(fn: string, args: Record<string, unknown>): Promise
   return sb<T>(`/rpc/${fn}`, { method: 'POST', body: JSON.stringify(args) });
 }
 
+/**
+ * Every row of a set-returning function, 1,000 at a time. PostgREST caps each
+ * response at 1,000 rows without saying so; since the AdBlue and remap towns
+ * went live more than 1,000 pages get impressions, so a plain rpc() would
+ * silently lose pages. `order` must name columns that make the order stable.
+ */
+export async function rpcAll<T>(fn: string, args: Record<string, unknown>, order: string): Promise<T[]> {
+  const out: T[] = [];
+  for (let from = 0; from < 500_000; from += 1000) {
+    const rows = await sb<T[]>(`/rpc/${fn}?order=${order}&limit=1000&offset=${from}`, { method: 'POST', body: JSON.stringify(args) });
+    out.push(...(rows ?? []));
+    if (!rows || rows.length < 1000) break;
+  }
+  return out;
+}
+
 /** Reads every row of a query, 1,000 at a time (PostgREST's cap). `path` must include an order. */
 export async function selectAll<T>(path: string): Promise<T[]> {
   const out: T[] = [];

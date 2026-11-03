@@ -9,7 +9,7 @@
 
 import { addDays, rangeLabel, ukNow } from './dates.js';
 import { AUTO_CLEANSE, type SiteConfig } from './site-config.js';
-import { claimRun, finishRun, insertIgnore, patch, rpc, selectAll, skip, step, upsert } from './store.js';
+import { claimRun, finishRun, insertIgnore, patch, rpc, rpcAll, selectAll, skip, step, upsert } from './store.js';
 import { loadSitemaps, checkStatuses } from './sitemap.js';
 import { ga4Events, ga4Landing, ga4Pages, googleConfigured, gscPagesDaily, gscQueries, gscSiteDaily } from './google.js';
 import { clarityConfigured, clarityExport, flattenClarity } from './clarity.js';
@@ -186,7 +186,7 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
       const outside = loaded.pages.filter((p) => !p.inSitemap && p.impressions >= 30).map((p) => p.path);
       const urlStatus = outside.length ? await checkStatuses(config.baseUrl, [...new Set([...outside, ...urlsOutside])]) : {};
       const longFrom = addDays(win.to, -89);
-      const long = await rpc<{ path: string; impressions: number }[]>('web_gsc_page_window', { p_site: config.id, p_from: longFrom, p_to: win.to });
+      const long = await rpcAll<{ path: string; impressions: number }>('web_gsc_page_window', { p_site: config.id, p_from: longFrom, p_to: win.to }, 'path');
       const result = analyse({
         config, window: win, pages: loaded.pages, queries, prevQueries: [], experiments, dataSource: 'api',
         sources: { ...loaded.sources, queryPages: queries.some((q) => q.path) }, urlStatus,
@@ -246,8 +246,8 @@ async function evaluateExperiments(config: SiteConfig, experiments: Experiment[]
     if (!w || today < w.measureFrom) continue;
     const args = (from: string, to: string) => ({ p_site: config.id, p_from: from, p_to: to });
     const [before, after] = await Promise.all([
-      rpc<{ path: string; clicks: number; impressions: number; avg_position: number | null }[]>('web_gsc_page_window', args(w.baselineFrom, w.baselineTo)),
-      rpc<{ path: string; clicks: number; impressions: number; avg_position: number | null }[]>('web_gsc_page_window', args(w.measureFrom, w.measureTo)),
+      rpcAll<{ path: string; clicks: number; impressions: number; avg_position: number | null }>('web_gsc_page_window', args(w.baselineFrom, w.baselineTo), 'path'),
+      rpcAll<{ path: string; clicks: number; impressions: number; avg_position: number | null }>('web_gsc_page_window', args(w.measureFrom, w.measureTo), 'path'),
     ]);
     const reg = await selectAll<{ path: string; page_group: string }>(`/web_pages?site_id=eq.${config.id}&select=path,page_group&order=path`);
     const groupOf = new Map(reg.map((r) => [r.path, r.page_group]));

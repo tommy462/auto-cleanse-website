@@ -26,8 +26,12 @@ api/insights.ts  --- writes (secret key) --->  Supabase  web_* tables
 - **Each source is a separate step.** A failing source is logged in `web_runs.steps` and the rest carry
   on (status `partial`). Transient API errors are retried with backoff (`http.ts`).
 - **Search Console** is re-read for the last 10 days every run (late revisions land; days before
-  `firstIncompleteDate` are marked final). Page x device x day, property totals per day (these include
-  anonymised queries), and on Mondays a query x page snapshot for 28 days.
+  `firstIncompleteDate` are marked final). Page x day totals (stored as device `ALL`), property totals per
+  day (these include anonymised queries), and on Mondays a query x page snapshot for 28 days. Page x
+  device x day is fetched too but only for the phone share: adding the device dimension makes Google drop
+  most rows (found 3 Nov 2026, about 80% of impressions), so it must never be used for page totals.
+- **PostgREST returns at most 1,000 rows per request**, including from functions. More than 1,000 pages get
+  impressions, so every window-function read goes through `rpcAll` (paged, stable order).
 - **GA4** is re-read for the last 4 days: landing page x channel x device, page views, and the conversion
   events listed in `site-config.ts` (`generate_lead`, `phone_click`, `contact_click`, `booking_click`,
   `begin_checkout`, `dpf_cta_click`). GA4 only sees visitors who pressed Accept.

@@ -5,7 +5,7 @@
 import { classifyPath } from './classify.js';
 import { addDays, daysBetween, eachDay, rangeLabel } from './dates.js';
 import type { SiteConfig } from './site-config.js';
-import { rpc, selectAll, upsert } from './store.js';
+import { rpcAll, selectAll, upsert } from './store.js';
 import type { AnalysisWindow, ClarityPageStats, PageWindow } from './types.js';
 import { round } from './stats.js';
 
@@ -27,12 +27,12 @@ export async function loadPageWindows(config: SiteConfig, w: AnalysisWindow): Pr
   const args = (from: string, to: string) => ({ p_site: site, p_from: from, p_to: to });
   const [reg, gsc, prev, land, ev, pv, clar, conv] = await Promise.all([
     selectAll<PageReg>(`/web_pages?site_id=eq.${site}&select=path,page_group,in_sitemap,content_changed_on&order=path`),
-    rpc<GscWin[]>('web_gsc_page_window', args(w.from, w.to)),
-    rpc<GscWin[]>('web_gsc_page_window', args(w.prevFrom, w.prevTo)),
-    rpc<LandWin[]>('web_ga4_landing_window', args(w.from, w.to)),
-    rpc<EvWin[]>('web_ga4_event_window', args(w.from, w.to)),
-    rpc<PageWin[]>('web_ga4_page_window', args(w.from, w.to)),
-    rpc<ClarWin[]>('web_clarity_url_window', args(w.from, w.to)),
+    rpcAll<GscWin>('web_gsc_page_window', args(w.from, w.to), 'path'),
+    rpcAll<GscWin>('web_gsc_page_window', args(w.prevFrom, w.prevTo), 'path'),
+    rpcAll<LandWin>('web_ga4_landing_window', args(w.from, w.to), 'landing_path,device'),
+    rpcAll<EvWin>('web_ga4_event_window', args(w.from, w.to), 'page_path,event_name'),
+    rpcAll<PageWin>('web_ga4_page_window', args(w.from, w.to), 'page_path'),
+    rpcAll<ClarWin>('web_clarity_url_window', args(w.from, w.to), 'url,device'),
     selectAll<ConvRow>(`/web_conversions?site_id=eq.${site}&occurred_at=gte.${w.from}T00:00:00Z&occurred_at=lt.${addDays(w.to, 1)}T12:00:00Z&select=occurred_at,event,page_path&order=id`),
   ]);
 
