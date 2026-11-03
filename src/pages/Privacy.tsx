@@ -110,8 +110,9 @@ export default function Privacy() {
             you chose &ldquo;Reject&rdquo; in our cookie banner, how you found the site (for example
             a Google search or one of our ads) and your device type. This uses no cookies, stores
             nothing on your device and does not include your name or contact details. We use it only
-            to see which pages bring in work and to improve the site (our legitimate interest). To
-            object, choose &ldquo;Reject&rdquo; in the cookie banner or contact us.
+            to see which pages bring in work and to improve the site (our legitimate interest). For a
+            remap booking, the same details are kept with the deposit record at Stripe. To object,
+            choose &ldquo;Reject&rdquo; in the cookie banner or contact us.
           </li>
           <li>
             <strong>Running the website.</strong> Like any website, our hosting provider logs your IP

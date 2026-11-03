@@ -3,7 +3,7 @@
 
 // Shown as "Last updated" on every legal page. Change it whenever a policy's
 // wording changes, and bump TERMS_VERSION when the terms or refund policy do.
-export const LEGAL_LAST_UPDATED = '26 October 2026';
+export const LEGAL_LAST_UPDATED = '3 November 2026';
 
 // Recorded on each online booking (Stripe metadata) so we can show which
 // version of the terms a customer agreed to.
