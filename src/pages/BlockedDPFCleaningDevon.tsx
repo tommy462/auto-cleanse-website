@@ -34,6 +34,14 @@ const FAQS: Faq[] = [
     a: 'Repeated blocking usually points to an underlying cause - a faulty pressure sensor, an EGR issue, injector problems, or a driving pattern of mostly short journeys that never allow a full regeneration. We diagnose the cause so the clean lasts, rather than just treating the symptom.',
   },
   {
+    q: 'How much does it cost to clean a blocked DPF?',
+    a: 'DPF machine cleaning starts at £210 within 10 miles of our Totnes workshop, £230 outside 10 miles including UK-wide postal cleaning, and £299 for HGV and plant filters. Prices are confirmed when you contact us with your vehicle details. Cleaning is off-vehicle only. Need help with removal and refitting? Call us to discuss current availability.',
+  },
+  {
+    q: 'How is a blocked DPF cleaned?',
+    a: 'It is water only, with no chemicals. An air flow test first records the filter\'s back-pressure in mbar. On our METclean XL the filter is then reverse flushed, from the outlet back to the inlet, with heated water at 1 to 2 bar, dried right through with hot air, and flow tested again. On that machine 5 to 15 mbar is OK, 15 to 30 is medium and over 30 is blocked, and you get both figures with the filter.',
+  },
+  {
     q: 'Will a blocked DPF fail my MOT?',
     a: 'It can. A heavily blocked or warning-lit DPF can cause excessive smoke and an emissions failure, and a missing or tampered DPF is an automatic MOT failure. Cleaning the filter and resolving the fault is the legal, road-safe route.',
   },
