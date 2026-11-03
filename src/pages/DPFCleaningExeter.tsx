@@ -112,6 +112,14 @@ const FAQS: Faq[] = [
     a: 'No. Professional DPF cleaning is carried out off the vehicle using workshop cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. For Exeter customers that means collection, workshop drop-off or post. Our mobile service covers ECU remapping only.',
   },
   {
+    q: 'What actually happens to my DPF during the clean?',
+    a: 'It is water only, with no chemicals. On our METclean XL the filter is reverse flushed, from the outlet back to the inlet, with heated water at 1 to 2 bar set to suit the filter. The cycle runs a pre-wash and a wash, then high-pressure impact with short micro-cavitation bursts, which are water, not air. The filter is then dried right through with hot air at up to 100°C.',
+  },
+  {
+    q: 'What do the before and after flow test figures mean?',
+    a: 'Before cleaning, an air flow test records the filter\'s back-pressure in mbar. After the clean and dry, the same test is run again, so the drop is measured rather than assumed. On the METclean XL, 5 to 15 mbar is OK, 15 to 30 is medium and over 30 is blocked. You get both figures with the filter.',
+  },
+  {
     q: 'Can every DPF be cleaned?',
     a: 'No. Filters loaded with soot and ash usually respond well to off-vehicle machine cleaning, but a cracked, melted or collapsed substrate may not be recoverable. We inspect and flow test the filter first and tell you honestly if replacement is the more sensible option.',
   },
