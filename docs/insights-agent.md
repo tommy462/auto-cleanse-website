@@ -46,8 +46,9 @@ that Tom asked to undo; `reason` says which).
    `busy_groups`). If none, stop.
 4. Decide whether it is a change you are allowed to make (next section). If it is not (Google
    Business Profile work, reviews, photos, Search Console checks, anything off the website, or a
-   change on the forbidden list): `POST manual` with 2-5 plain, numbered steps Tom can do himself,
-   and stop. Do not claim it.
+   change on the forbidden list): `POST manual` with 2-5 plain, numbered steps Tom can do himself
+   (do not claim it), then go back to step 3 with the next item. A hand-back is not a change: hand
+   back at most 5 per run, then stop.
 5. `POST claim`.
 6. `git checkout -b claude/insights-<short-slug>` from the latest `main`.
 7. Make the change (rules below). Keep it to this one recommendation.
@@ -71,7 +72,7 @@ that Tom asked to undo; `reason` says which).
     - `rollback_ref`: "Do not merge; once merged, revert the merge commit."
 11. Finish with a short summary: what changed, on which pages, and the branch name.
 
-One recommendation per run. Never start a second.
+One change per run (hand-backs aside). Never start a second change.
 
 ## What you may change
 
