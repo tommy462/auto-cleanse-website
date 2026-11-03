@@ -13,8 +13,14 @@
 //        Counts a successful enquiry-form submission. No cookies, nothing
 //        stored on the visitor's device, no IP address or personal details
 //        stored: only the page, form, service and traffic source.
+//   GET/POST ?agent=queue|claim|record|manual|fail|revert
+//        (Authorization: Bearer INSIGHTS_AGENT_KEY) The implementation agent
+//        (docs/insights-agent.md): approved recommendations in, pull requests
+//        recorded as planned experiments out. Nothing else is reachable with
+//        that key.
 //
 // Env: CRON_SECRET (Vercel generates the Authorization header from it),
+// INSIGHTS_AGENT_KEY (the implementation agent's own key),
 // AUTOCLEANSE_SUPABASE_URL / _SERVICE_KEY, and the INSIGHTS_* variables
 // documented in docs/website-insights.md.
 
@@ -24,18 +30,40 @@ import { runDaily } from '../src/server/insights/pipeline.js';
 import { ukNow } from '../src/server/insights/dates.js';
 import { insertIgnore } from '../src/server/insights/store.js';
 import { sb } from '../src/server/supabase.js';
+import { AgentError, agentClaim, agentFail, agentManual, agentQueue, agentRecord, agentRevert } from '../src/server/insights/agent.js';
 
 const SITE = 'auto-cleanse';
 const ALLOWED_ORIGINS = ['https://www.auto-cleanse.co.uk', 'https://auto-cleanse.co.uk'];
 const DAILY_LEAD_CAP = 300;
 
-function authorised(req: VercelRequest): boolean {
-  const secret = process.env.CRON_SECRET;
+function bearerMatches(req: VercelRequest, secret: string | undefined): boolean {
   const header = req.headers.authorization ?? '';
   if (!secret || secret.length < 16) return false;
   const a = Buffer.from(header);
   const b = Buffer.from(`Bearer ${secret}`);
   return a.length === b.length && timingSafeEqual(a, b);
+}
+const authorised = (req: VercelRequest) => bearerMatches(req, process.env.CRON_SECRET);
+
+async function agentRoute(req: VercelRequest, res: VercelResponse) {
+  if (!bearerMatches(req, process.env.INSIGHTS_AGENT_KEY)) return res.status(401).json({ error: 'Unauthorised' });
+  const action = String(req.query.agent);
+  let body: Record<string, unknown> = {};
+  try {
+    body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body ?? {});
+  } catch {
+    return res.status(400).json({ error: 'Body must be JSON' });
+  }
+  try {
+    if (action === 'queue' && req.method === 'GET') return res.status(200).json(await agentQueue());
+    if (req.method !== 'POST') return res.status(405).json({ error: 'Use POST' });
+    const fn = { claim: agentClaim, record: agentRecord, manual: agentManual, fail: agentFail, revert: agentRevert }[action];
+    if (!fn) return res.status(400).json({ error: 'Unknown agent action' });
+    return res.status(200).json(await fn(body));
+  } catch (e) {
+    if (e instanceof AgentError) return res.status(e.status).json({ error: e.message });
+    throw e;
+  }
 }
 
 /* ── Lead counter ─────────────────────────────────────────────────────────── */
@@ -107,6 +135,7 @@ async function recordLead(req: VercelRequest, res: VercelResponse) {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Cache-Control', 'no-store');
   try {
+    if (req.query.agent) return await agentRoute(req, res);
     if (req.method === 'GET') {
       if (!authorised(req)) return res.status(401).json({ error: 'Unauthorised' });
       const uk = ukNow();

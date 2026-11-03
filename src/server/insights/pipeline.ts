@@ -20,6 +20,7 @@ import { dailyAlerts, type SiteDay } from './alerts.js';
 import { mergeFindings, type ExistingRec } from './recommend.js';
 import { emptyTotals, evaluate, experimentWindows, type Totals } from './experiments.js';
 import { writeUp } from './ai.js';
+import { syncPulls } from './agent.js';
 import type { Experiment, Finding, QueryRow, RunStep } from './types.js';
 
 export interface RunOptions {
@@ -213,8 +214,14 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
     });
   } else skip(steps, 'recommendations', 'observe mode');
 
-  // 9. Experiments
-  await step(steps, 'experiments', async () => evaluateExperiments(config, experiments, today, gscEnd));
+  // 9. Experiments: first follow the agent's pull requests (merged = live, measurement starts;
+  //    closed = not shipped), then measure whatever is running.
+  await step(steps, 'pull_requests', async () => {
+    const r = await syncPulls();
+    return { rows: r.checked, note: `${r.shipped} shipped, ${r.closed} closed unmerged, ${r.reverted} reverted` };
+  });
+  const liveExperiments = await selectAll<Experiment>(`/web_experiments?site_id=eq.${config.id}&select=id,title,pages,page_groups,control_pages,method,primary_metric,implemented_on,measure_from,measure_to,baseline_from,baseline_to,outcome,recommendation_id&order=created_at`).catch(() => experiments);
+  await step(steps, 'experiments', async () => evaluateExperiments(config, liveExperiments, today, gscEnd));
 
   // 10. Weekly AI write-up
   if (weekly) {
