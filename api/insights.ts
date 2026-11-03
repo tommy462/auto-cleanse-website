@@ -15,9 +15,10 @@
 //        stored: only the page, form, service and traffic source.
 //   GET/POST ?agent=queue|claim|record|manual|fail|revert
 //        (Authorization: Bearer INSIGHTS_AGENT_KEY) The implementation agent
-//        (docs/insights-agent.md): approved recommendations in, pull requests
-//        recorded as planned experiments out. Nothing else is reachable with
-//        that key.
+//        (docs/insights-agent.md): approved recommendations in (in automatic
+//        mode, every new one), pull requests recorded as planned experiments
+//        out. Nothing else is reachable with that key; merging is done by
+//        .github/workflows/agent-ship.yml, never by the agent.
 //
 // Env: CRON_SECRET (Vercel generates the Authorization header from it),
 // INSIGHTS_AGENT_KEY (the implementation agent's own key),

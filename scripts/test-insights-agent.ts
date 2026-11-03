@@ -14,7 +14,8 @@ process.env.INSIGHTS_AGENT_KEY = 'a'.repeat(40);
 process.env.CRON_SECRET = 'c'.repeat(40);
 
 type Row = Record<string, unknown>;
-const db: Record<string, Row[]> = { web_recommendations: [], web_experiments: [] };
+const db: Record<string, Row[]> = { web_recommendations: [], web_experiments: [], web_sites: [{ id: 'auto-cleanse', autonomy_mode: 'recommend' }] };
+const setMode = (m: string) => { db.web_sites[0].autonomy_mode = m; };
 let nextId = 1;
 const uuid = () => `00000000-0000-4000-8000-${String(nextId++).padStart(12, '0')}`;
 
@@ -145,6 +146,70 @@ await test('daily sync: merged ships, closed is not shipped, merged revert rever
 await test('revert is only for changes that made things worse', async () => {
   const e = exp({ outcome: 'running' });
   await rejects(agentRevert({ experiment_id: e.id, branch: 'claude/undo-x' }), /made things worse/);
+});
+
+await test('automatic mode: new recommendations are queued, claimed and shipped without approval', async () => {
+  db.web_recommendations.length = 0; db.web_experiments.length = 0;
+  setMode('auto');
+  const a = rec({ status: 'new' }); const b = rec(); const c = rec({ status: 'investigating' }); const d = rec({ status: 'dismissed' });
+  let synced = 0;
+  const q = await agentQueue(new Date(), async () => { synced++; });
+  const ids = q.items.map((i: { id: string }) => i.id);
+  assert.equal(q.mode, 'auto');
+  assert.equal(synced, 1, 'merges are picked up before choosing work');
+  assert.ok(ids.includes(a.id as string) && ids.includes(b.id as string));
+  assert.ok(!ids.includes(c.id as string) && !ids.includes(d.id as string), 'held-back and dismissed ones stay out');
+  await agentClaim({ id: a.id });
+  assert.equal(a.status, 'approved');
+  await agentRecord({ id: a.id, pr_url: 'https://github.com/tommy462/auto-cleanse-website/pull/31', title: 't', hypothesis: 'h', change_summary: 'c', pages: ['/x'], original_snapshot: 'old text' });
+  assert.match(String(a.status_note), /^Changed automatically/);
+  assert.match(String(a.status_note), /pull\/31/);
+  await rejects(agentClaim({ id: d.id }), /new or approved/);
+  setMode('recommend');
+  await rejects(agentClaim({ id: rec({ status: 'new' }).id }), /only approved/);
+});
+
+await test('observe mode pauses the agent', async () => {
+  setMode('observe');
+  const r = rec();
+  const q = await agentQueue(new Date(), async () => { throw new Error('should not sync'); });
+  assert.equal(q.can_start, false);
+  assert.equal(q.items.length, 0);
+  await rejects(agentClaim({ id: r.id }), /paused/);
+  setMode('recommend');
+});
+
+await test('undo: Tom asks, the agent reverts, the merge marks it undone', async () => {
+  db.web_recommendations.length = 0; db.web_experiments.length = 0;
+  setMode('auto');
+  const r = rec({ status: 'monitoring' });
+  const e = exp({ recommendation_id: r.id, outcome: 'running', implementation_ref: 'https://github.com/tommy462/auto-cleanse-website/pull/31', undo_requested_at: '2026-11-10T09:00:00Z' });
+  const kept = exp({ outcome: 'running', implementation_ref: 'https://github.com/tommy462/auto-cleanse-website/pull/32' });
+  const q = await agentQueue(new Date(), async () => undefined);
+  assert.deepEqual(q.reverts.map((x: { experiment_id: string }) => x.experiment_id), [e.id]);
+  assert.match(q.reverts[0].reason, /asked/);
+  await rejects(agentRevert({ experiment_id: kept.id, branch: 'claude/undo-y' }), /asked to undo/);
+  await agentRevert({ experiment_id: e.id, pr_url: 'https://github.com/tommy462/auto-cleanse-website/pull/33' });
+  assert.match(String(r.status_note), /being undone automatically/);
+  assert.equal((await agentQueue(new Date(), async () => undefined)).reverts.length, 0, 'not started twice');
+  const out = await syncPulls(async (ref: string) => (ref.endsWith('/33') ? { state: 'closed', merged_at: '2026-11-10T10:00:00Z', number: 33, html_url: ref } : null) as never);
+  assert.equal(out.reverted, 1);
+  assert.equal(e.outcome, 'reverted');
+  assert.match(String(e.conclusion), /at Tom's request/);
+  assert.equal(r.status, 'reverted');
+  setMode('recommend');
+});
+
+await test('an undo stopped by the checks is not retried on its own', async () => {
+  db.web_recommendations.length = 0; db.web_experiments.length = 0;
+  const r = rec({ status: 'monitoring' });
+  const e = exp({ recommendation_id: r.id, outcome: 'unsuccessful', implementation_ref: 'https://github.com/tommy462/auto-cleanse-website/pull/40', result: { revert_pr: 'branch:claude/undo-z' } });
+  const out = await syncPulls(async () => ({ state: 'closed', merged_at: null, number: 41, html_url: 'https://github.com/tommy462/auto-cleanse-website/pull/41' }) as never);
+  assert.equal(out.closed, 1);
+  assert.equal(e.outcome, 'unsuccessful');
+  assert.equal((e.result as Row).revert_pr, null);
+  assert.match(String(r.status_note), /still live/);
+  assert.equal((await agentQueue()).reverts.length, 0);
 });
 
 // Route: its own key; the cron secret does not open it and the agent key does not run the cron.

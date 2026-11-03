@@ -2,8 +2,12 @@
 // routine, see docs/insights-agent.md) uses. It never gets the database key:
 // with INSIGHTS_AGENT_KEY it can only read approved recommendations, claim one,
 // record the pull request it opened (as a planned experiment), report that a
-// job needs a person, or report a failure. Shipping is a person merging the
-// pull request; the daily run notices the merge and starts the measurement.
+// job needs a person, or report a failure. The site's autonomy_mode decides
+// who ships: in 'recommend' a person approves and merges; in 'auto' new
+// recommendations count as approved and the agent's pull requests are merged by
+// .github/workflows/agent-ship.yml once checks the agent cannot change pass;
+// 'observe' pauses the agent. Either way the daily run (or the next queue call
+// in 'auto') notices the merge and starts the measurement.
 
 import { insertIgnore, patch, selectAll } from './store.js';
 
@@ -45,7 +49,23 @@ interface RecRow {
   title: string; problem: string; facts: string[]; hypotheses: string[]; proposal: string; benefit: string | null;
   measurement_days: number; success_metric: string; ai: Record<string, unknown> | null; status: string; status_note: string | null; updated_at: string;
 }
-interface ExpRow { id: string; recommendation_id: string | null; outcome: string; implementation_ref: string | null; title: string; rollback_ref: string | null; pages: string[]; page_groups: string[]; result: Record<string, unknown> | null }
+interface ExpRow {
+  id: string; recommendation_id: string | null; outcome: string; implementation_ref: string | null; title: string; rollback_ref: string | null;
+  pages: string[]; page_groups: string[]; result: Record<string, unknown> | null; undo_requested_at?: string | null;
+}
+// select=* so the agent keeps working whether or not the undo column has been added yet.
+const EXP_SELECT = 'select=*';
+/** Experiments still affecting the site, which a revert can apply to. */
+const LIVE_OUTCOMES = ['running', 'successful', 'inconclusive'];
+
+export type Mode = 'observe' | 'recommend' | 'auto';
+export async function siteMode(): Promise<Mode> {
+  const [s] = await selectAll<{ autonomy_mode: string }>(`/web_sites?id=eq.${SITE}&select=autonomy_mode&order=id`);
+  return s?.autonomy_mode === 'auto' || s?.autonomy_mode === 'observe' ? s.autonomy_mode : 'recommend';
+}
+/** A change to undo: it measurably made things worse, or Tom pressed Undo, and no undo has been started. */
+const wantsRevert = (e: ExpRow) => !e.result?.revert_pr && !e.result?.revert_closed
+  && (e.outcome === 'unsuccessful' || (Boolean(e.undo_requested_at) && LIVE_OUTCOMES.includes(e.outcome)));
 
 const str = (v: unknown, max: number, field: string, required = true): string | null => {
   if (v == null || v === '') {
@@ -74,17 +94,26 @@ async function rec(id: unknown): Promise<RecRow> {
   return r;
 }
 
-export async function agentQueue(now = new Date()) {
+export async function agentQueue(now = new Date(), sync: () => Promise<unknown> = () => syncPulls()) {
+  const mode = await siteMode();
+  if (mode === 'observe') {
+    return { mode, can_start: false, open_changes: [], busy_pages: [] as string[], busy_groups: [] as string[], items: [], reverts: [] };
+  }
+  // Automatic changes go live minutes after the last run: learn about merges now, not at the next daily run.
+  if (mode === 'auto') await sync().catch(() => undefined);
+  // In automatic mode Tom has approved every opportunity in advance; he can still dismiss one in the dashboard.
+  const statuses = mode === 'auto' ? 'in.(new,approved)' : 'eq.approved';
   const [recs, exps] = await Promise.all([
-    selectAll<RecRow>(`/web_recommendations?site_id=eq.${SITE}&status=eq.approved&kind=eq.opportunity&select=id,rule,kind,category,scope_type,scope_key,pages,page_count,title,problem,facts,hypotheses,proposal,benefit,measurement_days,success_metric,ai,status,status_note,updated_at&order=priority_score.desc`),
-    selectAll<ExpRow>(`/web_experiments?site_id=eq.${SITE}&outcome=in.(planned,running,unsuccessful)&select=id,recommendation_id,outcome,implementation_ref,title,rollback_ref,pages,page_groups,result&order=id`),
+    selectAll<RecRow>(`/web_recommendations?site_id=eq.${SITE}&status=${statuses}&kind=eq.opportunity&select=id,rule,kind,category,scope_type,scope_key,pages,page_count,title,problem,facts,hypotheses,proposal,benefit,measurement_days,success_metric,ai,status,status_note,updated_at&order=priority_score.desc`),
+    selectAll<ExpRow>(`/web_experiments?site_id=eq.${SITE}&outcome=in.(planned,running,successful,inconclusive,unsuccessful)&${EXP_SELECT}&order=id`),
   ]);
   const busy = new Set(exps.filter((e) => ['planned', 'running'].includes(e.outcome)).map((e) => e.recommendation_id));
   const claimCutoff = new Date(now.getTime() - CLAIM_HOURS * 3_600_000).toISOString();
   const items = recs.filter((r) => !busy.has(r.id) && !(r.status_note?.startsWith(CLAIM_PREFIX) && r.updated_at > claimCutoff));
   const waiting = exps.filter((e) => e.outcome === 'planned' && isRef(e.implementation_ref));
-  const reverts = exps.filter((e) => e.outcome === 'unsuccessful' && !e.result?.revert_pr);
+  const reverts = exps.filter(wantsRevert);
   return {
+    mode,
     can_start: waiting.length < MAX_OPEN,
     open_changes: waiting.map((e) => ({ title: e.title, ref: e.implementation_ref })),
     // Pages already being changed or measured: never touch them again before their verdict.
@@ -95,14 +124,21 @@ export async function agentQueue(now = new Date()) {
       page_count: r.page_count, title: r.title, problem: r.problem, facts: r.facts, hypotheses: r.hypotheses,
       proposal: r.proposal, benefit: r.benefit, measurement_days: r.measurement_days, success_metric: r.success_metric, ai: r.ai,
     })),
-    reverts: reverts.map((e) => ({ experiment_id: e.id, title: e.title, ref: e.implementation_ref, rollback: e.rollback_ref })),
+    reverts: reverts.map((e) => ({
+      experiment_id: e.id, title: e.title, ref: e.implementation_ref, rollback: e.rollback_ref,
+      reason: e.outcome === 'unsuccessful' ? 'made things worse' : 'Tom asked for it to be undone',
+    })),
   };
 }
 
 export async function agentClaim(body: Record<string, unknown>) {
   const r = await rec(body.id);
-  if (r.status !== 'approved') throw new AgentError('only approved recommendations can be claimed', 409);
-  await patch('web_recommendations', `id=eq.${r.id}`, { status_note: `${CLAIM_PREFIX} (started ${new Date().toISOString().slice(0, 16)}Z).` });
+  const mode = await siteMode();
+  if (mode === 'observe') throw new AgentError('changes are paused (observe mode)', 409);
+  if (r.status !== 'approved' && !(mode === 'auto' && r.status === 'new')) {
+    throw new AgentError(mode === 'auto' ? 'only new or approved recommendations can be claimed' : 'only approved recommendations can be claimed', 409);
+  }
+  await patch('web_recommendations', `id=eq.${r.id}`, { status: 'approved', status_note: `${CLAIM_PREFIX} (started ${new Date().toISOString().slice(0, 16)}Z).` });
   return { ok: true };
 }
 
@@ -135,7 +171,12 @@ export async function agentRecord(body: Record<string, unknown>) {
     rollback_ref: str(body.rollback_ref, 500, 'rollback_ref', false) ?? 'Do not merge it; once merged, revert its merge commit.',
     outcome: 'planned',
   }], 'id');
-  await patch('web_recommendations', `id=eq.${r.id}`, { status_note: `Ready to ship: review the change and merge it at ${shipUrl(ref)} . Measurement starts a week after it goes live.` });
+  const auto = (await siteMode()) === 'auto' && PR_URL.test(ref);
+  await patch('web_recommendations', `id=eq.${r.id}`, {
+    status_note: auto
+      ? `Changed automatically: it goes live by itself once the safety checks pass, usually within 10 minutes. The change: ${ref} . Measurement starts a week after it goes live.`
+      : `Ready to ship: review the change and merge it at ${shipUrl(ref)} . Measurement starts a week after it goes live.`,
+  });
   return { ok: true };
 }
 
@@ -156,12 +197,16 @@ export async function agentFail(body: Record<string, unknown>) {
 export async function agentRevert(body: Record<string, unknown>) {
   if (!isUuid(body.experiment_id)) throw new AgentError('experiment_id must be an experiment id');
   const ref = refFrom(body, 'pr_url', 'branch');
-  const [e] = await selectAll<ExpRow>(`/web_experiments?site_id=eq.${SITE}&id=eq.${body.experiment_id}&select=id,recommendation_id,outcome,implementation_ref,title,rollback_ref,pages,page_groups,result&order=id`);
+  const [e] = await selectAll<ExpRow>(`/web_experiments?site_id=eq.${SITE}&id=eq.${body.experiment_id}&${EXP_SELECT}&order=id`);
   if (!e) throw new AgentError('experiment not found', 404);
-  if (e.outcome !== 'unsuccessful') throw new AgentError('only changes that made things worse are reverted', 409);
+  if (!wantsRevert(e)) throw new AgentError('only changes that made things worse, or that Tom asked to undo, are reverted', 409);
   await patch('web_experiments', `id=eq.${e.id}`, { result: { ...(e.result ?? {}), revert_pr: ref } });
   if (e.recommendation_id) {
-    await patch('web_recommendations', `id=eq.${e.recommendation_id}`, { status_note: `It made things worse: merge the undo at ${shipUrl(ref)} .` });
+    const why = e.outcome === 'unsuccessful' ? 'It made things worse' : 'You asked for it to be undone';
+    const auto = (await siteMode()) === 'auto' && PR_URL.test(ref);
+    await patch('web_recommendations', `id=eq.${e.recommendation_id}`, {
+      status_note: auto ? `${why}: it is being undone automatically (${ref} ).` : `${why}: merge the undo at ${shipUrl(ref)} .`,
+    });
   }
   return { ok: true };
 }
@@ -188,9 +233,10 @@ const ukDay = (iso: string) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Eur
 
 /** Marks merged changes as live (measurement starts), closed ones as not shipped, merged reverts as reverted. */
 export async function syncPulls(fetchPull: (url: string) => Promise<Pull | null> = pull): Promise<{ checked: number; shipped: number; closed: number; reverted: number }> {
-  const exps = await selectAll<ExpRow>(`/web_experiments?site_id=eq.${SITE}&outcome=in.(planned,unsuccessful)&select=id,recommendation_id,outcome,implementation_ref,title,rollback_ref,pages,page_groups,result&order=id`);
+  const exps = await selectAll<ExpRow>(`/web_experiments?site_id=eq.${SITE}&outcome=in.(planned,running,successful,inconclusive,unsuccessful)&${EXP_SELECT}&order=id`);
   const out = { checked: 0, shipped: 0, closed: 0, reverted: 0 };
   for (const e of exps) {
+    // Planned: follow the change itself. Anything else: follow its undo, if one was started.
     const ref = e.outcome === 'planned' ? e.implementation_ref : (e.result?.revert_pr as string | undefined) ?? null;
     if (!isRef(ref)) continue;
     const p = await fetchPull(ref);
@@ -210,15 +256,26 @@ export async function syncPulls(fetchPull: (url: string) => Promise<Pull | null>
     } else if (e.outcome === 'planned' && p.state === 'closed') {
       await patch('web_experiments', `id=eq.${e.id}`, { outcome: 'reverted', conclusion: 'Not shipped: the pull request was closed without merging.', decided_at: new Date().toISOString() });
       if (e.recommendation_id) {
-        await patch('web_recommendations', `id=eq.${e.recommendation_id}&status=eq.approved`, { status: 'investigating', status_note: `Pull request #${p.number} was closed without merging. Approve it again to have another go.` });
+        await patch('web_recommendations', `id=eq.${e.recommendation_id}&status=eq.approved`, { status: 'investigating', status_note: `Pull request #${p.number} was closed without merging (when the automatic checks close one, its comment says why). Approve or reopen it to have another go.` });
       }
       out.closed++;
-    } else if (e.outcome === 'unsuccessful' && p.merged_at) {
-      await patch('web_experiments', `id=eq.${e.id}`, { outcome: 'reverted', decided_at: new Date().toISOString() });
+    } else if (e.outcome !== 'planned' && p.merged_at) {
+      const asked = e.outcome !== 'unsuccessful';
+      await patch('web_experiments', `id=eq.${e.id}`, {
+        outcome: 'reverted', decided_at: new Date().toISOString(),
+        ...(asked ? { conclusion: `Undone on ${ukDay(p.merged_at)} at Tom's request (pull request #${p.number}), before or regardless of the measured result.` } : {}),
+      });
       if (e.recommendation_id) {
         await patch('web_recommendations', `id=eq.${e.recommendation_id}`, { status: 'reverted', status_note: `Undone on ${ukDay(p.merged_at)} (pull request #${p.number}).` });
       }
       out.reverted++;
+    } else if (e.outcome !== 'planned' && p.state === 'closed') {
+      // The undo was stopped (by the checks or by hand): never retry it on its own; a person decides.
+      await patch('web_experiments', `id=eq.${e.id}`, { result: { ...(e.result ?? {}), revert_pr: null, revert_closed: p.html_url } });
+      if (e.recommendation_id) {
+        await patch('web_recommendations', `id=eq.${e.recommendation_id}`, { status_note: `The undo (pull request #${p.number}) was closed without merging, so the change is still live. Revert it on GitHub if it should go.` });
+      }
+      out.closed++;
     }
   }
   return out;

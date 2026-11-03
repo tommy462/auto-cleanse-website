@@ -1,0 +1,118 @@
+# Publishes the website improvement agent's changes (docs/insights-agent.md)
+# with no person in the loop, behind checks the agent cannot change:
+#
+#   - pull_request_target runs THIS file and scripts/agent-guard.mjs from main,
+#     never the copies in the pull request;
+#   - only pull requests opened by tommy462 (the agent works as Tom) from this
+#     repository's own claude/insights-* or claude/undo-* branches are handled;
+#     anything else, including forks, is ignored;
+#   - the guard allows content edits only and checks Tom's copy rules; an undo
+#     must be an exact revert;
+#   - the whole site is built from the pull request with a read-only token;
+#   - only then a separate job merges it and asks Vercel for a production build.
+#
+# A change that fails is closed with a comment saying why; the next queue call
+# or daily insights run then records it as not shipped. Needs the existing
+# VERCEL_DEPLOY_HOOK_URL secret (also used by weekly-blog.yml).
+name: Website agent ship
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+    branches: [main]
+
+permissions: {}
+
+concurrency:
+  group: agent-ship-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.user.login == 'tommy462' &&
+      (startsWith(github.event.pull_request.head.ref, 'claude/insights-') ||
+       startsWith(github.event.pull_request.head.ref, 'claude/undo-'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - name: Trusted copy of main (the guard comes from here)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: trusted
+          persist-credentials: false
+
+      - name: The change
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: change
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Guard (content files and copy rules only)
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: node trusted/scripts/agent-guard.mjs --repo change --base "$BASE" --head "$HEAD" --branch "$BRANCH"
+
+      - name: Build every page
+        working-directory: change
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+          for r in bristol cornwall dorset exeter gloucestershire north-devon plymouth somerset torbay wiltshire; do
+            test -f "dist/trade-invite/$r/index.html" || { echo "::error::dist/trade-invite/$r is missing"; exit 1; }
+          done
+
+  ship:
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --merge --match-head-commit "$HEAD"
+
+      # Vercel builds pushes to main itself; this makes sure a merge made by the
+      # Actions bot still reaches production.
+      - name: Production build
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::warning::VERCEL_DEPLOY_HOOK_URL is not set; relying on Vercel's Git integration."
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK" > /dev/null
+
+  reject:
+    needs: check
+    if: failure() && needs.check.result == 'failure'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Close with the reason
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh pr close "$PR" --repo "$GITHUB_REPOSITORY" --comment "The automatic checks stopped this change, so it was not published. The reason is in the check log: $RUN"
