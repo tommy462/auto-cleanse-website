@@ -2,10 +2,11 @@
 // plan allows 12 functions, so the three jobs share one file):
 //
 //   GET  (Vercel Cron, Authorization: Bearer CRON_SECRET)
-//        The daily run. vercel.json fires it at 06:00 and 07:00 UTC; it only
-//        works once the UK clock reads 7am or later, so it runs at ~7am UK in
-//        both GMT and BST, and the database claim stops the second trigger
-//        repeating the day.
+//        The daily run. vercel.json fires it at 07:00 UTC (Hobby: some time in
+//        that hour): 7-8am UK in winter, 8-9am in summer. Vercel keeps one
+//        schedule per path, so a second, earlier trigger is not possible here.
+//        It never works before 7am UK, and the database claim stops a repeat
+//        trigger from processing the same day twice.
 //   POST (Authorization: Bearer CRON_SECRET) {"task": "daily" | "weekly", "force"?: true}
 //        Manual run from a terminal.
 //   POST (no auth, from the site's own pages) {"e":"lead_submitted", ...}

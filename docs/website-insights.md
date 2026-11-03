@@ -7,7 +7,7 @@ website. This file has no analytics figures in it on purpose: this repository is
 ## How it fits together
 
 ```
-Vercel Cron (06:00 + 07:00 UTC)        dashboard (JUSTLOGPLATFORM, masters only)
+Vercel Cron (07:00 UTC)                dashboard (JUSTLOGPLATFORM, masters only)
         |                                        ^
         v                                        | reads with the signed-in user's session
 api/insights.ts  --- writes (secret key) --->  Supabase  web_* tables
@@ -20,9 +20,10 @@ api/insights.ts  --- writes (secret key) --->  Supabase  web_* tables
 - **One function, three jobs** (`api/insights.ts`): the cron run (GET, `Authorization: Bearer CRON_SECRET`),
   manual runs (POST with the same header), and the cookieless enquiry counter (POST from the site's own
   forms). Hobby allows 12 functions; this is the 10th (11th once `/partners` ships).
-- **The run waits for 7am UK.** Vercel Cron is UTC and fires within the hour, so two schedules exist and
-  the handler skips until the UK clock reads 7. `web_claim_run` makes sure only one run per day does the
-  work; a failed day can be retried (up to 4 attempts), a run stuck for 20 minutes is released.
+- **One run a day at 07:00 UTC** (Hobby fires some time in that hour): 7-8am UK in winter, 8-9am in
+  summer. Vercel keeps one schedule per path, so an earlier summer trigger is not possible without a
+  second path. The handler never runs before 7am UK. `web_claim_run` makes sure only one run per day does
+  the work; a failed day can be retried (up to 4 attempts), a run stuck for 20 minutes is released.
 - **Each source is a separate step.** A failing source is logged in `web_runs.steps` and the rest carry
   on (status `partial`). Transient API errors are retried with backoff (`http.ts`).
 - **Search Console** is re-read for the last 10 days every run (late revisions land; days before
