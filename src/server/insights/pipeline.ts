@@ -7,7 +7,7 @@
 //         marts -> alerts + refresh open recommendations -> experiments -> retention
 // Weekly: query snapshot -> new opportunities -> AI write-up of the best few
 
-import { addDays, ukNow } from './dates.js';
+import { addDays, rangeLabel, ukNow } from './dates.js';
 import { AUTO_CLEANSE, type SiteConfig } from './site-config.js';
 import { claimRun, finishRun, insertIgnore, patch, rpc, selectAll, skip, step, upsert } from './store.js';
 import { loadSitemaps, checkStatuses } from './sitemap.js';
@@ -185,9 +185,12 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
       }
       const outside = loaded.pages.filter((p) => !p.inSitemap && p.impressions >= 30).map((p) => p.path);
       const urlStatus = outside.length ? await checkStatuses(config.baseUrl, [...new Set([...outside, ...urlsOutside])]) : {};
+      const longFrom = addDays(win.to, -89);
+      const long = await rpc<{ path: string; impressions: number }[]>('web_gsc_page_window', { p_site: config.id, p_from: longFrom, p_to: win.to });
       const result = analyse({
         config, window: win, pages: loaded.pages, queries, prevQueries: [], experiments, dataSource: 'api',
         sources: { ...loaded.sources, queryPages: queries.some((q) => q.path) }, urlStatus,
+        longWindow: { from: longFrom, to: win.to, days: 90, label: rangeLabel(longFrom, win.to), impressions: new Map(long.map((r) => [r.path, Number(r.impressions)])) },
       });
       findings.push(...result.findings);
       for (const f of result.findings) rulesRun.add(f.rule);
@@ -203,8 +206,8 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
   // 8. Recommendations (observe mode collects and analyses but changes nothing here)
   if (site?.autonomy_mode !== 'observe') {
     await step(steps, 'recommendations', async () => {
-      const existing = await selectAll<ExistingRec>(`/web_recommendations?site_id=eq.${config.id}&select=id,dedupe_key,kind,rule,status,snoozed_until,last_detected_at,updated_at,detections&order=id`);
-      const plan = mergeFindings({ siteId: config.id, existing, findings, mode: weekly ? 'weekly' : 'daily', rulesRun, now: new Date().toISOString(), runId });
+      const existing = await selectAll<ExistingRec>(`/web_recommendations?site_id=eq.${config.id}&select=id,dedupe_key,kind,rule,status,snoozed_until,last_detected_at,updated_at,detections,data_source&order=id`);
+      const plan = mergeFindings({ siteId: config.id, existing, findings, mode: weekly ? 'weekly' : 'daily', rulesRun, now: new Date().toISOString(), runId, apiRun: Boolean(loaded?.sources.gsc) });
       await applyPlan(plan);
       return { rows: plan.inserts.length + plan.updates.length + plan.closes.length, note: `${plan.inserts.length} new, ${plan.updates.length} refreshed, ${plan.closes.length} closed` };
     });

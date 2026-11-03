@@ -28,6 +28,12 @@ export interface AnalysisInput {
   sources: { gsc: boolean; prevGsc: boolean; queryPages: boolean; ga4: boolean; clarity: boolean; conversions: boolean };
   /** HTTP status of URLs outside the sitemap, when the collector checked them */
   urlStatus?: Record<string, number>;
+  /**
+   * Impressions per page over a longer window (90 days). Whether a page is shown
+   * in Google at all is judged on this: a page seen a few times a quarter is not
+   * "never shown" just because one 28-day window missed it.
+   */
+  longWindow?: { from: string; to: string; days: number; label: string; impressions: Map<string, number> };
 }
 
 /** Scales a 28-day threshold to the window length. */
@@ -386,7 +392,10 @@ function ruleDrops(input: AnalysisInput, holdSet: Holds): Finding[] {
 }
 
 function ruleNoImpressions(input: AnalysisInput): Finding[] {
-  const { window: w, config } = input;
+  const { config } = input;
+  const long = input.longWindow;
+  const w = long ? { ...input.window, from: long.from, to: long.to, days: long.days, label: long.label } : input.window;
+  const impressionsOf = (p: PageWindow) => (long ? long.impressions.get(p.path) ?? 0 : p.impressions);
   if (w.days < 28) return [];
   const byGroup = new Map<string, { zero: PageWindow[]; eligible: number; tooNew: number }>();
   for (const p of input.pages) {
@@ -399,7 +408,7 @@ function ruleNoImpressions(input: AnalysisInput): Finding[] {
     const launched = config.launchDatedGroups.includes(p.group) || /\/areas$/.test(p.path) ? p.contentChangedOn : null;
     if (launched && launched > w.from) { g.tooNew++; byGroup.set(p.group, g); continue; }
     g.eligible++;
-    if (p.impressions === 0) g.zero.push(p);
+    if (impressionsOf(p) === 0) g.zero.push(p);
     byGroup.set(p.group, g);
   }
   const out: Finding[] = [];
@@ -529,6 +538,8 @@ function ruleCannibalisation(input: AnalysisInput, holdSet: Holds): Finding[] {
     if (strong.length < 2) continue;
     const [a, b] = strong;
     if (holds.has(a.path) && holds.has(b.path)) continue;
+    // The home page ranks for broad searches by design; sharing one with a service page is not a problem to fix.
+    if (BRAND_PAGES.has(a.path) || BRAND_PAGES.has(b.path)) continue;
     const key = [a.path, b.path].sort().join('|');
     const pr = pairs.get(key) ?? { a: a.path, b: b.path, queries: [], impr: 0 };
     pr.queries.push({ q: query, a, b });
@@ -536,7 +547,7 @@ function ruleCannibalisation(input: AnalysisInput, holdSet: Holds): Finding[] {
     pairs.set(key, pr);
   }
   return [...pairs.values()]
-    .filter((p) => p.queries.length >= 2 || p.impr >= scale(200, w.days))
+    .filter((p) => p.queries.length >= 2 || p.impr >= scale(400, w.days))
     .sort((x, y) => y.impr - x.impr)
     .slice(0, 5)
     .map((pr) => {

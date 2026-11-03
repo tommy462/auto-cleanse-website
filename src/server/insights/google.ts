@@ -72,22 +72,33 @@ async function gscQuery(property: string, body: Record<string, unknown>): Promis
   return { rows, firstIncomplete };
 }
 
-export interface GscPageDay { date: string; path: string; host: string; device: 'MOBILE' | 'DESKTOP' | 'TABLET'; clicks: number; impressions: number; position: number; final: boolean }
+export interface GscPageDay { date: string; path: string; host: string; device: 'ALL' | 'MOBILE' | 'DESKTOP' | 'TABLET'; clicks: number; impressions: number; position: number; final: boolean }
 export interface GscSiteDay { date: string; clicks: number; impressions: number; position: number; final: boolean }
 export interface GscQueryRow { query: string; path: string; clicks: number; impressions: number; position: number }
 
 /**
- * Page x device x day, with fresh (not yet final) days included and flagged.
- * Rows from several URLs that normalise to the same path and host are summed.
+ * Page x day totals (device 'ALL') plus page x device x day rows, with fresh
+ * (not yet final) days included and flagged. Two requests because adding the
+ * device dimension makes Google drop most rows (checked 3 Nov 2026: 17,297 of
+ * 88,097 impressions came back for 27 Jul - 26 Oct), while page x day is
+ * complete. The 'ALL' rows are the page totals; the device rows are only used
+ * for the phone share. Rows from URLs that normalise to the same path and host
+ * are summed.
  */
 export async function gscPagesDaily(property: string, canonicalHost: string, from: string, to: string): Promise<GscPageDay[]> {
-  const { rows, firstIncomplete } = await gscQuery(property, {
-    startDate: from, endDate: to, dimensions: ['date', 'page', 'device'], type: 'web', dataState: 'all', aggregationType: 'byPage',
-  });
+  const [all, byDevice] = await Promise.all([
+    gscQuery(property, { startDate: from, endDate: to, dimensions: ['date', 'page'], type: 'web', dataState: 'all', aggregationType: 'byPage' }),
+    gscQuery(property, { startDate: from, endDate: to, dimensions: ['date', 'page', 'device'], type: 'web', dataState: 'all', aggregationType: 'byPage' }),
+  ]);
+  const firstIncomplete = all.firstIncomplete ?? byDevice.firstIncomplete;
+  const rows = [
+    ...all.rows.map((r) => ({ ...r, keys: [...(r.keys ?? []).slice(0, 2), 'ALL'] })),
+    ...byDevice.rows,
+  ];
   const map = new Map<string, GscPageDay & { posW: number }>();
   for (const r of rows) {
     const [date, page, device] = r.keys ?? [];
-    if (!isValidDay(date) || !['MOBILE', 'DESKTOP', 'TABLET'].includes(device)) continue;
+    if (!isValidDay(date) || !['ALL', 'MOBILE', 'DESKTOP', 'TABLET'].includes(device)) continue;
     const n = normaliseUrl(page, canonicalHost);
     if (!n) continue;
     const impressions = num(r.impressions, 'impressions');

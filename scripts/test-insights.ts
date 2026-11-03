@@ -298,5 +298,41 @@ test('Search Console export: www and apex rows merge with weighted position', ()
   assert.equal(d.window.days, 2);
 });
 
+/* ── 3 Nov fixes ── */
+test('cannibalisation ignores the home page and needs real overlap', () => {
+  const q = (query: string, path: string, impressions: number, position: number) => ({ query, path, clicks: 1, impressions, position });
+  const r = analyse({
+    config: AUTO_CLEANSE, window: W, pages: baseline, prevQueries: [], experiments: [], dataSource: 'api',
+    sources: { ...SOURCES, queryPages: true },
+    queries: [
+      q('dpf cleaning plymouth', '/', 300, 9), q('dpf cleaning plymouth', '/dpf-cleaning-plymouth', 250, 11),
+      q('dpf clean exeter', '/dpf-cleaning-exeter', 200, 12), q('dpf clean exeter', '/dpf-cleaning', 150, 14),
+      q('exeter dpf', '/dpf-cleaning-exeter', 120, 12), q('exeter dpf', '/dpf-cleaning', 90, 15),
+    ],
+  });
+  const f = r.findings.filter((x) => x.rule === 'cannibalisation');
+  assert.equal(f.length, 1);
+  assert.deepEqual([...f[0].pages].sort(), ['/dpf-cleaning', '/dpf-cleaning-exeter']);
+});
+test('no_impressions is judged on the 90-day window when there is one', () => {
+  const vehicles = ['a', 'b', 'c', 'd'].map((x) => page(`/${x}-remap`));
+  const long = new Map([['/a-remap', 12], ['/b-remap', 3]]);
+  const r = analyse({
+    config: AUTO_CLEANSE, window: W, pages: [...baseline, ...vehicles], queries: [], prevQueries: [], experiments: [], dataSource: 'api', sources: SOURCES,
+    longWindow: { from: '2026-07-01', to: '2026-09-28', days: 90, label: '1 Jul - 28 Sept 2026', impressions: long },
+  });
+  assert.equal(r.findings.filter((x) => x.rule === 'no_impressions').length, 0, 'only 2 zero pages over 90 days: below the 3-page bar');
+  const r2 = analyse({ config: AUTO_CLEANSE, window: W, pages: [...baseline, ...vehicles], queries: [], prevQueries: [], experiments: [], dataSource: 'api', sources: SOURCES });
+  assert.equal(r2.findings.filter((x) => x.rule === 'no_impressions').length, 1, 'without the long window all 4 count as zero');
+});
+test('merge: export findings not found again by a live run are replaced', () => {
+  const plan = mergeFindings({
+    siteId: 's', existing: [rec('page_two:a', 'new', { data_source: 'export', last_detected_at: NOW }), rec('page_two:b', 'new', { data_source: 'export', last_detected_at: NOW }), rec('page_two:c', 'investigating', { data_source: 'export' })],
+    findings: [finding('page_two:b')], mode: 'weekly', rulesRun: new Set(), now: NOW, runId: 1, apiRun: true,
+  });
+  assert.deepEqual(plan.closes.map((c) => c.id), ['page_two:a']);
+  assert.ok(plan.updates.some((u) => u.id === 'page_two:b'));
+});
+
 console.log(`\n${passed} passed, ${failures.length} failed${failures.length ? `: ${failures.join('; ')}` : ''}`);
 process.exit(failures.length ? 1 : 0);

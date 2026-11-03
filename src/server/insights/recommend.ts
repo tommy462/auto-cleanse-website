@@ -20,6 +20,7 @@ export interface ExistingRec {
   last_detected_at: string;
   updated_at: string;
   detections: number;
+  data_source?: 'api' | 'export' | 'mixed';
 }
 
 export interface MergePlan {
@@ -65,8 +66,10 @@ export function mergeFindings(opts: {
   rulesRun: Set<string>;
   now: string; // ISO timestamp
   runId: number | null;
+  /** this run analysed live API data: open findings that came only from an export and were not found again are superseded */
+  apiRun?: boolean;
 }): MergePlan {
-  const { existing, findings, mode, rulesRun, now, runId, siteId } = opts;
+  const { existing, findings, mode, rulesRun, now, runId, siteId, apiRun } = opts;
   const today = now.slice(0, 10);
   const byKey = new Map(existing.map((e) => [e.dedupe_key, e]));
   const seen = new Set<string>();
@@ -104,7 +107,12 @@ export function mergeFindings(opts: {
 
   // Close what is no longer detected.
   for (const ex of existing) {
-    if (seen.has(ex.dedupe_key) || ex.status !== 'new' || !rulesRun.has(ex.rule)) continue;
+    if (seen.has(ex.dedupe_key) || ex.status !== 'new') continue;
+    if (apiRun && mode === 'weekly' && ex.data_source === 'export') {
+      plan.closes.push({ id: ex.id, status: 'resolved', note: `Replaced by live Search Console data on ${today}: not found in the live analysis.` });
+      continue;
+    }
+    if (!rulesRun.has(ex.rule)) continue;
     if (ex.kind === 'opportunity' && mode !== 'weekly') continue;
     const graceDays = ex.kind === 'alert' ? 2 : 14;
     if (ex.last_detected_at.slice(0, 10) <= addDays(today, -graceDays)) {
