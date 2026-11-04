@@ -72,7 +72,7 @@ A sensor fault produces the same headline symptom from the opposite direction. D
 
 ## The takeaway
 
-A NOx sensor fault and an AdBlue dosing fault present almost identically, so the sensor should be judged rather than assumed. Test the measurement chain and the dosing side before any part is replaced - it is the only way to know whether a new sensor is the repair or just an expensive way of ruling one thing out.
+A NOx sensor fault and an AdBlue dosing fault present almost identically, so the sensor should be judged rather than assumed. Test the measurement chain and the dosing side before any part is replaced - it is the only way to know whether a new sensor is the repair or just an expensive way of ruling one thing out. If your vehicle is outside Devon, our [AdBlue repair hub](/adblue-repair) explains how we triage NOx and dosing faults by phone and agree the price before any repair.
 
 ## Sources
 

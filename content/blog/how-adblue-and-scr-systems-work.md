@@ -83,7 +83,7 @@ The sequence gives plenty of notice while making it impractical to ignore an emi
 
 ## What this means in practice
 
-Treat an AdBlue warning like any other emissions fault: read the stored codes and live data, establish whether the complaint is level, quality, delivery or conversion, then repair the cause. Clearing the light without fixing the fault only buys time. The same discipline that applies to a [blocked DPF](/blocked-dpf-cleaning-devon) applies here.
+Treat an AdBlue warning like any other emissions fault: read the stored codes and live data, establish whether the complaint is level, quality, delivery or conversion, then repair the cause. Clearing the light without fixing the fault only buys time. The same discipline that applies to a [blocked DPF](/blocked-dpf-cleaning-devon) applies here. Outside Devon, our [AdBlue repair hub](/adblue-repair) explains how a repair is booked through our national network, with guides to the common AdBlue fault codes and dash messages.
 
 ## The takeaway
 
