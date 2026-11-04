@@ -13,6 +13,7 @@ import { addDays, rangeLabel, ukNow, fromGa4Date } from '../src/server/insights/
 import { binomialLowerP, didRatio, poissonCdf, rateRatio, robustZ, twoProportion } from '../src/server/insights/stats.js';
 import { analyse, buildCtrCurve, priorityOf } from '../src/server/insights/rules.js';
 import { priorityMultiplier, trackRecord } from '../src/server/insights/learning.js';
+import { pickControls, queryPeriods, queryShifts, targetQueries } from '../src/server/insights/controls.js';
 import { dailyAlerts, type SiteDay } from '../src/server/insights/alerts.js';
 import { mergeFindings, type ExistingRec } from '../src/server/insights/recommend.js';
 import { evaluate, experimentWindows, emptyTotals } from '../src/server/insights/experiments.js';
@@ -357,6 +358,43 @@ test('learning: record by kind of change, stop after three non-wins, prefer what
   assert.deepEqual(later.avoid, [], 'a win resets the streak');
   assert.equal(later.by_type.faq.streak, 0);
   assert.equal(trackRecord([e('inconclusive', 'magic', '2026-12-01')]).by_type.magic, undefined, 'unknown kinds are ignored');
+});
+test('controls: similar unchanged pages from the same group, closest in impressions, at least three', () => {
+  const c = (path: string, group: string, impressions: number, contentChangedOn: string | null = null) => ({ path, group, impressions, position: 10, contentChangedOn });
+  const cands = [
+    c('/dpf-cleaning-exeter', 'dpf-town', 300), c('/dpf-cleaning-torquay', 'dpf-town', 280), c('/dpf-cleaning-plymouth', 'dpf-town', 900),
+    c('/dpf-cleaning-paignton', 'dpf-town', 120), c('/dpf-cleaning-totnes', 'dpf-town', 40), c('/dpf-cleaning-brixham', 'dpf-town', 260, '2026-10-25'),
+    c('/dpf-cleaning-dartmouth', 'dpf-town', 0), c('/ecu-remapping-exeter', 'ecu-devon-town', 300),
+  ];
+  const r = pickControls(['/dpf-cleaning-exeter'], cands, new Set(['/dpf-cleaning-totnes']), '2026-11-04', (g) => (g === 'dpf-town' ? 'DPF town' : g));
+  assert.deepEqual(r.controls, ['/dpf-cleaning-torquay', '/dpf-cleaning-paignton', '/dpf-cleaning-plymouth'], 'busy, recently changed, zero-impression and other-group pages are left out');
+  assert.match(r.note, /3 similar DPF town pages/);
+  assert.deepEqual(pickControls(['/dpf-cleaning-exeter'], cands.slice(0, 3), new Set(), '2026-11-04').controls, [], 'fewer than three: no comparison');
+  assert.match(pickControls(['/dpf-cleaning-exeter'], cands.slice(0, 3), new Set(), '2026-11-04').note, /judged before against after/);
+  assert.deepEqual(pickControls(['/none'], cands, new Set(), '2026-11-04').controls, []);
+});
+test('target searches: the top non-brand searches, their movement, and which periods count', () => {
+  const q = (query: string, path: string, impressions: number, position: number) => ({ query, path, clicks: 0, impressions, position });
+  const before = [q('dpf cleaning exeter', '/a', 100, 14), q('auto-cleanse exeter', '/a', 500, 1), q('dpf clean devon', '/a', 30, 22), q('other', '/z', 999, 1), q('dpf exeter', '/a', 20, 18)];
+  assert.deepEqual(targetQueries(before, ['/a']), ['dpf cleaning exeter', 'dpf clean devon', 'dpf exeter']);
+  const s = queryShifts(['dpf cleaning exeter', 'dpf clean devon'], ['/a'], before, [q('dpf cleaning exeter', '/a', 120, 9)]);
+  assert.deepEqual(s.map((x) => [x.query, x.before, x.after, x.moved]), [['dpf cleaning exeter', 14, 9, -5], ['dpf clean devon', 22, null, null]]);
+  const w = { baselineTo: '2026-11-02', measureFrom: '2026-11-10', measureTo: '2026-12-07' };
+  assert.deepEqual(queryPeriods(['2026-10-26', '2026-11-02', '2026-11-23', '2026-11-30', '2026-12-07', '2026-12-21'], w), { before: '2026-11-02', after: '2026-12-07' });
+  assert.deepEqual(queryPeriods(['2026-10-26', '2026-11-16'], w), { before: '2026-10-26', after: null }, 'a period mostly before the change does not count as after');
+});
+test('evaluate: the main searches are reported beside the verdict, never instead of it', () => {
+  const w = experimentWindows({ implemented_on: '2026-11-03', baseline_from: null, baseline_to: null, measure_from: null, measure_to: null })!;
+  const t = (clicks: number, impressions: number, pos: number) => ({ ...emptyTotals(28), clicks, impressions, positionWeight: pos * impressions });
+  const row = (position: number, impressions: number) => [{ query: 'dpf cleaning exeter', path: '/a', clicks: 2, impressions, position }];
+  const shifts = queryShifts(['dpf cleaning exeter'], ['/a'], row(14.2, 100), row(9.1, 120));
+  const ev = evaluate({ method: 'before_after', primary_metric: 'clicks', title: 't' }, w, { before: t(10, 1000, 14), after: t(40, 1100, 9) }, null, '2026-12-20', '2026-12-19', shifts);
+  assert.equal(ev.outcome, 'successful');
+  assert.match(ev.summary, /climbed from 14.2 to 9.1/);
+  assert.equal(ev.queries.length, 1);
+  const early = evaluate({ method: 'before_after', primary_metric: 'clicks', title: 't' }, w, { before: t(10, 1000, 14), after: t(12, 1000, 14) }, null, '2026-11-20', '2026-11-19', queryShifts(['x'], ['/a'], [], []));
+  assert.ok(early.limitations.some((l) => /full 28-day search period/.test(l)));
+  assert.doesNotMatch(early.summary, /main search/);
 });
 test('learning: priorityOf keeps the scaled score analyse() gave a finding', () => {
   assert.equal(priorityOf({ valueScore: 10, confidenceScore: 0.5, effort: 'small', priorityScore: 3.75 } as never), 3.75);

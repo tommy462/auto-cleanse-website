@@ -86,6 +86,25 @@ starts 7 days after it. Before/after, or difference-in-differences when control 
 "successful" / "unsuccessful" only when the whole 95% interval is on one side of no change; otherwise
 "inconclusive".
 
+## Measuring changes (`experiments.ts`, `controls.ts`, `learning.ts`)
+
+Every change is an experiment: a baseline window before it, a measurement window from a week
+after it (Google re-crawls), and a verdict only when the 95% range sits wholly on one side of
+"no change". Two things sharpen that for a change to one page or a few:
+
+- **Comparison pages** (`controls.ts`, daily `controls` step): before measuring starts, the run
+  picks up to 8 unchanged pages from the same page group, closest in Google impressions over the
+  baseline window and not under another test, and switches the method to `diff_in_diff`. Fewer
+  than 3 candidates means an honest before/after instead. The choice is recorded in
+  `control_note`; comparison pages are held from other changes until the verdict.
+- **Target searches** (`target_queries`): the page's top three non-brand searches from the last
+  stored 28-day search period before the change. The verdict reports how each moved (the search
+  period that sits mostly inside the measured window against the one before the change). They
+  inform the verdict; the primary metric's test decides it.
+
+`learning.ts` tallies verdicts by kind of change and by rule on each kind of page: priority is
+scaled by that record, and the agent is told what to prefer and what to stop.
+
 ## AI (`ai.ts`)
 
 Weekly, the top 12 open opportunities (compact JSON, never raw tables) go to `claude-opus-5-5`

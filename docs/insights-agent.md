@@ -82,7 +82,9 @@ Every change has one kind, which you record as `change_type`: `title`, `descript
     `original_snapshot` is one plain-text string, not an object. `change_type` is one of `title`,
     `description`, `faq`, `content`, `links`, `mixed` (see "Choosing the kind of change").
     - `pages`: every page you changed. `control_pages` + `"method": "diff_in_diff"` for group
-      changes (below); otherwise `"method": "before_after"` and no control pages.
+      changes (below). For a change to one page or a few, send `"method": "before_after"` and no
+      control pages: the daily run picks similar unchanged pages as the comparison and the main
+      searches the change is judged on, before measuring starts.
     - `primary_metric`: `ctr` for titles/descriptions, `position` or `clicks` for content depth
       and internal links.
     - `original_snapshot`: the exact old text you replaced (title, description, paragraph), page

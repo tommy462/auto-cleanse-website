@@ -114,6 +114,8 @@ function holdsFor(input: AnalysisInput): Holds {
     const due = e.measure_to ?? (e.implemented_on ? addDays(e.implemented_on, 42) : null);
     const reason = `part of the experiment "${e.title}"${due ? `, results due ${due}` : ''}`;
     for (const p of e.pages) experiment.set(p, { path: p, reason });
+    // Comparison pages must stay as they are, or the comparison is worthless.
+    for (const p of e.control_pages ?? []) experiment.set(p, { path: p, reason: `a comparison page for the experiment "${e.title}"${due ? `, results due ${due}` : ''}` });
     if (e.page_groups.length) {
       for (const pg of input.pages) if (e.page_groups.includes(pg.group)) experiment.set(pg.path, { path: pg.path, reason });
     }

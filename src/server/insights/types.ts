@@ -138,6 +138,10 @@ export interface Experiment {
   created_at?: string | null;
   /** the rule of the recommendation it came from, filled in by the pipeline */
   rule?: string | null;
+  /** the searches the change is judged on (controls.ts); absent until the 4 Nov 2026 migration */
+  target_queries?: string[] | null;
+  /** how the comparison pages were chosen, or why there are none */
+  control_note?: string | null;
 }
 
 export interface RunStep {

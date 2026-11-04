@@ -8,7 +8,7 @@
 // Weekly: query snapshot -> new opportunities -> AI write-up of the best few
 
 import { addDays, rangeLabel, ukNow } from './dates.js';
-import { AUTO_CLEANSE, type SiteConfig } from './site-config.js';
+import { AUTO_CLEANSE, groupDef, type SiteConfig } from './site-config.js';
 import { claimRun, finishRun, insertIgnore, patch, rpc, rpcAll, selectAll, skip, step, upsert } from './store.js';
 import { loadSitemaps, checkStatuses } from './sitemap.js';
 import { ga4Events, ga4Landing, ga4Pages, googleConfigured, gscPagesDaily, gscQueries, gscSiteDaily } from './google.js';
@@ -19,6 +19,7 @@ import { analyse } from './rules.js';
 import { dailyAlerts, type SiteDay } from './alerts.js';
 import { mergeFindings, type ExistingRec } from './recommend.js';
 import { emptyTotals, evaluate, experimentWindows, type Totals } from './experiments.js';
+import { pickControls, queryPeriods, queryShifts, targetQueries, type Candidate, type QueryShift } from './controls.js';
 import { writeUp } from './ai.js';
 import { syncPulls } from './agent.js';
 import type { Experiment, Finding, QueryRow, RunStep } from './types.js';
@@ -221,7 +222,10 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
     const r = await syncPulls();
     return { rows: r.checked, note: `${r.shipped} shipped, ${r.closed} closed unmerged, ${r.reverted} reverted` };
   });
-  const liveExperiments = await loadExperiments(config).catch(() => experiments);
+  let liveExperiments = await loadExperiments(config).catch(() => experiments);
+  // Changes to one page or a few get similar unchanged pages to compare against, and their main searches, before measuring starts.
+  await step(steps, 'controls', async () => assignControls(config, liveExperiments, today));
+  liveExperiments = await loadExperiments(config).catch(() => liveExperiments);
   await step(steps, 'experiments', async () => evaluateExperiments(config, liveExperiments, today, gscEnd));
 
   // 10. Weekly AI write-up
@@ -248,20 +252,80 @@ export async function applyPlan(plan: ReturnType<typeof mergeFindings>) {
 }
 
 const EXPERIMENT_COLS = 'id,title,pages,page_groups,control_pages,method,primary_metric,implemented_on,measure_from,measure_to,baseline_from,baseline_to,outcome,recommendation_id,decided_at,created_at';
+/** Columns added by dashboard migrations on 4 Nov 2026, newest first; each read drops one more until it works. */
+const OPTIONAL_COLS = [',change_type,target_queries,control_note', ',change_type', ''];
 
 /**
  * Every experiment, with the rule of the recommendation it came from. Reads
- * with and then without change_type, so it works before and after the
- * dashboard migration of 4 Nov 2026 adds that column: a failed read must not
- * empty the list, or pages under test would lose their hold.
+ * with and then without the newer columns, so it works before and after the
+ * dashboard migrations add them: a failed read must not empty the list, or
+ * pages under test would lose their hold.
  */
 async function loadExperiments(config: SiteConfig): Promise<Experiment[]> {
   const recs = await selectAll<{ id: string; rule: string }>(`/web_recommendations?site_id=eq.${config.id}&select=id,rule&order=id`).catch(() => [] as { id: string; rule: string }[]);
   const rules = new Map(recs.map((r) => [r.id, r.rule]));
-  const rows = await selectAll<Experiment>(`/web_experiments?site_id=eq.${config.id}&select=${EXPERIMENT_COLS},change_type&order=created_at`)
-    .catch(() => selectAll<Experiment>(`/web_experiments?site_id=eq.${config.id}&select=${EXPERIMENT_COLS}&order=created_at`))
-    .catch(() => [] as Experiment[]);
+  let rows: Experiment[] = [];
+  for (const extra of OPTIONAL_COLS) {
+    try {
+      rows = await selectAll<Experiment>(`/web_experiments?site_id=eq.${config.id}&select=${EXPERIMENT_COLS}${extra}&order=created_at`);
+      break;
+    } catch { /* try with fewer columns */ }
+  }
   return rows.map((e) => ({ ...e, rule: e.recommendation_id ? rules.get(e.recommendation_id) ?? null : null }));
+}
+
+/** Writes to an experiment, dropping the newer columns if the database does not have them yet. */
+async function patchExperiment(id: string, values: Record<string, unknown>) {
+  try {
+    await patch('web_experiments', `id=eq.${id}`, values);
+  } catch (e) {
+    const { target_queries: _tq, control_note: _cn, ...rest } = values;
+    void _tq; void _cn;
+    if (!Object.keys(rest).length) return;
+    await patch('web_experiments', `id=eq.${id}`, rest).catch(() => { throw e; });
+  }
+}
+
+type PageWindowRow = { path: string; clicks: number; impressions: number; avg_position: number | null };
+
+/**
+ * For each change to one page or a few, not yet measuring: pick the pages it
+ * is compared against and the searches it is judged on (controls.ts). Done by
+ * the daily run rather than the agent so manual changes get the same, and so
+ * the choice uses the same window the verdict will.
+ */
+async function assignControls(config: SiteConfig, experiments: Experiment[], today: string) {
+  const live = experiments.filter((x) => ['planned', 'running'].includes(x.outcome));
+  const todo = live.filter((e) => e.implemented_on && !e.control_pages.length && !e.page_groups.length && e.pages.length >= 1 && e.pages.length <= 10 && e.method === 'before_after');
+  if (!todo.length) return { rows: 0 };
+  const reg = await selectAll<{ path: string; page_group: string; content_changed_on: string | null }>(`/web_pages?site_id=eq.${config.id}&select=path,page_group,content_changed_on&order=path`);
+  const regMap = new Map(reg.map((r) => [r.path, r]));
+  const busy = new Set(live.flatMap((x) => [...x.pages, ...x.control_pages]));
+  const labelOf = (g: string) => groupDef(config, g)?.label ?? g;
+  let n = 0;
+  for (const e of todo) {
+    const w = experimentWindows(e);
+    if (!w || today >= w.measureFrom) continue; // too late for a clean comparison; it stays before/after
+    const rows = await rpcAll<PageWindowRow>('web_gsc_page_window', { p_site: config.id, p_from: w.baselineFrom, p_to: w.baselineTo }, 'path');
+    const candidates: Candidate[] = [];
+    for (const r of rows) {
+      const g = regMap.get(r.path);
+      if (g) candidates.push({ path: r.path, group: g.page_group, impressions: Number(r.impressions), position: r.avg_position == null ? null : Number(r.avg_position), contentChangedOn: g.content_changed_on });
+    }
+    const { controls, note } = pickControls(e.pages, candidates, busy, today, labelOf);
+    const qrows = await selectAll<QueryRow & { period_end: string }>(`/web_gsc_queries?site_id=eq.${config.id}&days=eq.28&path=in.(${e.pages.map((p) => `"${p}"`).join(',')})&select=period_end,query,path,clicks,impressions,position&order=period_end,query,path`).catch(() => [] as (QueryRow & { period_end: string })[]);
+    const beforePeriod = queryPeriods(qrows.map((r) => r.period_end), w).before;
+    const targets = beforePeriod ? targetQueries(qrows.filter((r) => r.period_end === beforePeriod), e.pages) : [];
+    const values: Record<string, unknown> = { control_note: note, target_queries: targets };
+    if (controls.length) {
+      values.control_pages = controls;
+      values.method = 'diff_in_diff';
+      for (const c of controls) busy.add(c);
+    }
+    await patchExperiment(e.id, values);
+    n++;
+  }
+  return { rows: n };
 }
 
 async function evaluateExperiments(config: SiteConfig, experiments: Experiment[], today: string, dataUntil: string) {
@@ -284,7 +348,15 @@ async function evaluateExperiments(config: SiteConfig, experiments: Experiment[]
     }), emptyTotals(days));
     const treat = { before: sumUp(before, inTreat, w.len), after: sumUp(after, inTreat, w.len) };
     const control = e.control_pages.length ? { before: sumUp(before, inControl, w.len), after: sumUp(after, inControl, w.len) } : null;
-    const ev = evaluate(e, w, treat, control, today, dataUntil);
+    // The target searches' positions, from the stored 28-day search periods before and after the change.
+    let shifts: QueryShift[] = [];
+    const targets = e.target_queries ?? [];
+    if (targets.length && e.pages.length) {
+      const qrows = await selectAll<QueryRow & { period_end: string }>(`/web_gsc_queries?site_id=eq.${config.id}&days=eq.28&path=in.(${e.pages.map((p) => `"${p}"`).join(',')})&select=period_end,query,path,clicks,impressions,position&order=period_end,query,path`).catch(() => [] as (QueryRow & { period_end: string })[]);
+      const periods = queryPeriods(qrows.map((r) => r.period_end), w);
+      shifts = queryShifts(targets, e.pages, qrows.filter((r) => r.period_end === periods.before), periods.after ? qrows.filter((r) => r.period_end === periods.after) : []);
+    }
+    const ev = evaluate(e, w, treat, control, today, dataUntil, shifts);
     const values: Record<string, unknown> = {
       result: { ...ev, evaluated_on: today },
       baseline_from: w.baselineFrom, baseline_to: w.baselineTo, measure_from: w.measureFrom, measure_to: w.measureTo,

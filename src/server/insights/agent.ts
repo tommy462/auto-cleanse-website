@@ -52,7 +52,7 @@ interface RecRow {
 }
 interface ExpRow {
   id: string; recommendation_id: string | null; outcome: string; implementation_ref: string | null; title: string; rollback_ref: string | null;
-  pages: string[]; page_groups: string[]; result: Record<string, unknown> | null; undo_requested_at?: string | null;
+  pages: string[]; page_groups: string[]; control_pages?: string[]; result: Record<string, unknown> | null; undo_requested_at?: string | null;
   change_type?: string | null; decided_at?: string | null; created_at?: string | null;
 }
 // select=* so the agent keeps working whether or not the undo column has been added yet.
@@ -118,8 +118,8 @@ export async function agentQueue(now = new Date(), sync: () => Promise<unknown> 
     mode,
     can_start: waiting.length < MAX_OPEN,
     open_changes: waiting.map((e) => ({ title: e.title, ref: e.implementation_ref })),
-    // Pages already being changed or measured: never touch them again before their verdict.
-    busy_pages: exps.filter((e) => ['planned', 'running'].includes(e.outcome)).flatMap((e) => e.pages),
+    // Pages already being changed or measured, and the pages they are compared against: never touch them before the verdict.
+    busy_pages: exps.filter((e) => ['planned', 'running'].includes(e.outcome)).flatMap((e) => [...e.pages, ...(e.control_pages ?? [])]),
     busy_groups: exps.filter((e) => ['planned', 'running'].includes(e.outcome)).flatMap((e) => e.page_groups),
     items: items.map((r) => ({
       id: r.id, rule: r.rule, category: r.category, scope_type: r.scope_type, scope_key: r.scope_key, pages: r.pages,

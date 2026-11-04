@@ -66,19 +66,20 @@ const rec = (over: Row = {}): Row => {
   return r;
 };
 const exp = (over: Row = {}): Row => {
-  const e = { id: uuid(), site_id: 'auto-cleanse', recommendation_id: null, outcome: 'planned', implementation_ref: null, title: 't', rollback_ref: null, pages: [], page_groups: [], result: null, ...over };
+  const e = { id: uuid(), site_id: 'auto-cleanse', recommendation_id: null, outcome: 'planned', implementation_ref: null, title: 't', rollback_ref: null, pages: [], page_groups: [], control_pages: [], result: null, ...over };
   db.web_experiments.push(e);
   return e;
 };
 
 await test('queue: approved, unclaimed, not already being changed', async () => {
-  const a = rec(); const b = rec({ status: 'new' }); const c = rec(); exp({ recommendation_id: c.id, outcome: 'running', pages: ['/c'] });
+  const a = rec(); const b = rec({ status: 'new' }); const c = rec(); exp({ recommendation_id: c.id, outcome: 'running', pages: ['/c'], control_pages: ['/c-comparison'] });
   const d = rec({ status_note: 'Claude is preparing this change (started now)', updated_at: new Date().toISOString() });
   const q = await agentQueue();
   const ids = q.items.map((i: { id: string }) => i.id);
   assert.ok(ids.includes(a.id as string));
   assert.ok(!ids.includes(b.id as string) && !ids.includes(c.id as string) && !ids.includes(d.id as string));
   assert.ok(q.busy_pages.includes('/c'));
+  assert.ok(q.busy_pages.includes('/c-comparison'), 'comparison pages are held too');
   assert.ok(!('status_note' in q.items[0]));
   db.web_recommendations.length = 0; db.web_experiments.length = 0;
 });

@@ -5,6 +5,7 @@
 // of "no change"; otherwise it is "inconclusive" - which is an honest result,
 // not a failure of the system.
 
+import { describeShifts, type QueryShift } from './controls.js';
 import { addDays, daysBetween } from './dates.js';
 import { didRatio, rateRatio, round } from './stats.js';
 import type { Experiment } from './types.js';
@@ -47,6 +48,8 @@ export interface Evaluation {
   summary: string;
   limitations: string[];
   numbers: Record<string, number | string | null>;
+  /** the searches the change is judged on, and how each moved */
+  queries: QueryShift[];
 }
 
 const avgPos = (t: Totals) => (t.impressions ? round(t.positionWeight / t.impressions, 2) : null);
@@ -59,6 +62,8 @@ export function evaluate(
   today: string,
   /** last day of complete data for the metric's source */
   dataUntil: string,
+  /** the target searches' positions before and after (controls.ts queryShifts) */
+  queries: QueryShift[] = [],
 ): Evaluation {
   const complete = dataUntil >= windows.measureTo && today >= addDays(windows.measureTo, GSC_LAG_DAYS);
   const m = e.primary_metric;
@@ -95,7 +100,7 @@ export function evaluate(
   const [tB, tBe] = pick(treat.before);
   const limitations: string[] = [];
   if (tAe === 0 || tBe === 0) {
-    return { complete, outcome: complete ? 'inconclusive' : 'running', confidence: null, effect: null, numbers, limitations: ['No data for the pages in one of the windows.'], summary: 'Not enough data to measure yet.' };
+    return { complete, outcome: complete ? 'inconclusive' : 'running', confidence: null, effect: null, numbers, limitations: ['No data for the pages in one of the windows.'], summary: 'Not enough data to measure yet.', queries };
   }
   let effect: Effect;
   if (control && e.method !== 'before_after') {
@@ -120,6 +125,7 @@ export function evaluate(
     }
   }
   if (tA + tB < 40) limitations.push(`Small numbers (${tA + tB} events across both windows): only a large effect could be detected.`);
+  if (queries.length && !queries.some((q) => q.after != null)) limitations.push('The main searches are compared once a full 28-day search period after the change is in.');
 
   const pctChange = Math.round((effect.ratio - 1) * 100);
   const width = effect.high / effect.low;
@@ -127,12 +133,16 @@ export function evaluate(
   let outcome: Evaluation['outcome'] = 'running';
   if (complete) outcome = effect.low > 1 ? 'successful' : effect.high < 1 ? 'unsuccessful' : 'inconclusive';
   const range = `${Math.round((effect.low - 1) * 100)}% to ${Math.round((effect.high - 1) * 100)}%`;
-  const summary = !complete
+  const main = !complete
     ? `Measuring until ${windows.measureTo}. So far ${m.replace('_', ' ')} is ${pctChange >= 0 ? 'up' : 'down'} ${Math.abs(pctChange)}% (95% range ${range}); too early to call.`
     : outcome === 'successful'
       ? `${m.replace('_', ' ')} rose ${pctChange}% (95% range ${range}). The improvement is unlikely to be chance.`
       : outcome === 'unsuccessful'
         ? `${m.replace('_', ' ')} fell ${Math.abs(pctChange)}% (95% range ${range}). Consider reverting.`
         : `${m.replace('_', ' ')} changed ${pctChange >= 0 ? '+' : ''}${pctChange}% but the 95% range (${range}) includes no change, so the effect cannot be told apart from noise.`;
-  return { complete, outcome, confidence: complete ? confidence : null, effect: { ratio: round(effect.ratio, 3), low: round(effect.low, 3), high: round(effect.high, 3) }, numbers, limitations, summary };
+  // The target searches are reported beside the verdict, not instead of it: a
+  // position is an average with no spread to test, so it informs, it does not decide.
+  const searches = describeShifts(queries);
+  const summary = searches ? `${main} ${searches}` : main;
+  return { complete, outcome, confidence: complete ? confidence : null, effect: { ratio: round(effect.ratio, 3), low: round(effect.low, 3), high: round(effect.high, 3) }, numbers, limitations, summary, queries };
 }
