@@ -96,3 +96,19 @@ export function localBusinessNode(overrides: Record<string, unknown> = {}) {
 export function localBusinessSchema(overrides: Record<string, unknown> = {}) {
   return { '@context': 'https://schema.org', ...localBusinessNode(overrides) };
 }
+
+// Service schema for a national town page: the town as the area served,
+// matching the visible "<town> is an area we cover" line.
+export function townServiceSchema(serviceType: string, town: string, within: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType,
+    provider: localBusinessNode(),
+    areaServed: {
+      '@type': 'Place',
+      name: town,
+      containedInPlace: { '@type': 'AdministrativeArea', name: within },
+    },
+  };
+}

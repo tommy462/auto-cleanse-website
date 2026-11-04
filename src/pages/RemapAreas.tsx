@@ -56,7 +56,7 @@ export default function RemapAreas() {
           <p className="text-lg md:text-xl text-white/60 max-w-3xl leading-relaxed font-medium">
             Pick your town for local vehicle and driving figures and who would come out. In Devon, see our{' '}
             <a href="/ecu-remapping-locations" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">Devon remapping locations</a>.
-            Elsewhere, an independent mobile technician from our national network does the remap at your home or workplace, and you deal with us throughout. Call with your reg and postcode and we'll tell you straight whether we can cover you, who would come out and the price.
+            Elsewhere, an independent mobile technician from our national network does the remap at your home or workplace, and you deal with us throughout. Every town listed here is an area we cover. Call with your reg and postcode and we'll tell you who would come out and the price.
           </p>
           <a href={`tel:${BUSINESS.telephone}`} className="btn-shine mt-8 px-7 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2">
             <Phone size={18} /> Call {BUSINESS.phoneDisplay}

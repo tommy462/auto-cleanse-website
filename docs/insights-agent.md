@@ -135,9 +135,11 @@ If the recommendation needs any of these, it is `manual`, not yours.
   current availability."
 - The clean is water only (high-pressure aqueous and micro-cavitation, reverse flushed), hot-air
   dried, flow tested before and after. Never "98%", "guaranteed", chemicals, or air flushing.
-- Mobile remapping by Auto-Cleanse is Devon only; national pages say coverage is confirmed by phone
-  through "our national network" (never name it). Never imply Auto-Cleanse writes ECU files from
-  scratch ("remap we apply", "file matched to your vehicle").
+- Mobile remapping by Auto-Cleanse is Devon only. National town pages state "<town> is an area we
+  cover"; outside Devon the work is done by an independent mobile technician from "our national
+  network" (never name it), and who's coming and the price are confirmed by phone. Keep the
+  coverage line; do not go back to "whether we can cover you". Never imply Auto-Cleanse writes ECU
+  files from scratch ("remap we apply", "file matched to your vehicle").
 - Repair only: never mention or suggest DPF, EGR or AdBlue deletes or removal of emissions kit.
 - Same day only as "where possible". On AdBlue pages never use: 24/7, same day, free diagnosis,
   no fix no fee, lifetime warranty, guaranteed, nationwide.

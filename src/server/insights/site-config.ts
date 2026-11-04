@@ -82,7 +82,7 @@ export const AUTO_CLEANSE: SiteConfig = {
     'DPF cleaning: £210 within 10 miles of Totnes, £230 outside that or posted, £299 HGV and plant.',
     'The clean is water only (high-pressure aqueous and micro-cavitation, reverse flushed), hot-air dried, flow tested before and after.',
     'ECU remapping: Stage 1 £250 at the workshop, £270 mobile within Devon; Stage 2 price on application; £50 online deposit to book.',
-    'Mobile remapping by Auto-Cleanse is Devon only. National town pages offer remapping and AdBlue repair through an independent national technician network, quoted by phone after confirming the postcode; no national prices are published.',
+    'Mobile remapping by Auto-Cleanse is Devon only. National town pages state that the town is an area we cover and offer remapping and AdBlue repair through an independent national technician network; who is coming and the price are confirmed by phone after checking the postcode; no national prices are published.',
     'Repair only: no DPF, EGR or AdBlue deletes. Auto-Cleanse applies remap files matched to the vehicle; it does not claim to write files from scratch.',
     'Nearly all visitors use phones. Most enquiries arrive as phone calls.',
     'The DPF town pages are already long (1,500-3,200 words) and the results above them are mostly directories (ClickMechanic, WhoCanFixMyCar), so their main lever is off-site: Google Business Profile, reviews, citations and links from trade garages (Oct 2026 review).',

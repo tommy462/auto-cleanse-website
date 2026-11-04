@@ -5,7 +5,8 @@ import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
 import FaqSection, { type Faq } from '../components/FaqSection';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
-import { BUSINESS } from '../data/business';
+import CoverageBadge from '../components/CoverageBadge';
+import { BUSINESS, townServiceSchema } from '../data/business';
 import { TownDataContext, inlineJson, townPath, TOWNS_PATH, type TownData } from '../lib/town-data';
 import NotFound from './NotFound';
 
@@ -74,17 +75,17 @@ export default function AdBlueTown() {
   const smsHref = `sms:${BUSINESS.telephone}?&body=${encodeURIComponent(message)}`;
   const districts = town.districts.slice(0, 6);
   const coverage = town.inHouse
-    ? `Our own technicians cover ${name} from our Totnes workshop, about ${town.kmFromTotnes} km away.`
-    : `Outside Devon, we book an independent mobile technician from our national network to come to you in ${name}, and manage the job for you. Call with your postcode and we'll check who can get to you, then ring you back with who's coming and the price.`;
+    ? `${name} is an area we cover, with our own technicians from our Totnes workshop, about ${town.kmFromTotnes} km away.`
+    : `${name} is an area we cover. We book an independent mobile technician from our national network to come to you, and manage the job for you. Call with your postcode and we'll ring you back with who's coming and the price.`;
 
-  const description = `AdBlue warning, countdown or no-start in ${name}? Repair-only AdBlue diagnosis and repair${districts.length ? ` around ${listText(districts.slice(0, 3))}` : ''}. Call or WhatsApp ${BUSINESS.phoneDisplay}.`;
+  const description = `AdBlue warning, countdown or no-start in ${name}? We cover it: repair-only AdBlue diagnosis and repair${districts.length ? ` around ${listText(districts.slice(0, 3))}` : ''}. Call or WhatsApp ${BUSINESS.phoneDisplay}.`;
 
   const pumpText = town.pumps.length
     ? `OpenStreetMap lists ${listText(town.pumps.map((p) => `${p.name}${p.town ? ` (${p.town})` : ''}, about ${p.km} km away`))} as selling AdBlue at the pump. Listings can be out of date, so check before you set off. AdBlue is also widely sold in cans.`
     : 'AdBlue is widely sold in cans at fuel stations and motor factors, and many larger stations on main roads have it at the pump. If the warning stays on after a correct top-up, the problem is a fault rather than the level.';
 
   const faqs: Faq[] = [
-    { q: `Do you cover ${districts.length ? listText(districts.slice(0, 4)) : name}?`, a: coverage },
+    { q: `Do you cover ${districts.length ? listText(districts.slice(0, 4)) : name}?`, a: `Yes. ${coverage}` },
     { q: `Where can I buy AdBlue near ${name}?`, a: pumpText },
     { q: `How much does AdBlue repair cost in ${name}?`, a: 'It depends on the fault, the vehicle and whether parts are needed, so we do not publish prices. Call with your reg and the warning message and we will quote for your vehicle.' },
   ];
@@ -93,6 +94,7 @@ export default function AdBlueTown() {
     <div className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO title={`AdBlue Repair in ${name} | Auto-Cleanse`} description={description} path={townPath(town.slug)} />
       <script dangerouslySetInnerHTML={{ __html: `window.__ADBLUE_TOWN__=${inlineJson(town)};` }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(townServiceSchema('AdBlue and SCR System Repair', name, town.county || town.region)) }} />
 
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none" />
 
@@ -104,8 +106,9 @@ export default function AdBlueTown() {
             <span className="text-white">AdBlue repair in </span>
             <span className="text-[#FF7A00]">{name}</span>
           </h1>
-          {/* Contact buttons sit straight under the H1 so they are on the first
-              screen on a phone; the local intro follows. */}
+          <CoverageBadge name={name} />
+          {/* Contact buttons sit straight under the H1 and coverage line so
+              they are on the first screen on a phone; the local intro follows. */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8 max-w-2xl">
             <a href={telHref} className="col-span-2 sm:col-span-1 btn-shine px-6 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2">
               <Phone size={18} /> Call {BUSINESS.phoneDisplay}

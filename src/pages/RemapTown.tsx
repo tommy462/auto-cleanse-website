@@ -5,7 +5,8 @@ import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
 import FaqSection, { type Faq } from '../components/FaqSection';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
-import { BUSINESS } from '../data/business';
+import CoverageBadge from '../components/CoverageBadge';
+import { BUSINESS, townServiceSchema } from '../data/business';
 import { inlineJson } from '../lib/town-data';
 import { RemapTownDataContext, remapTownPath, REMAP_TOWNS_PATH, type RemapTownData } from '../lib/remap-town-data';
 import NotFound from './NotFound';
@@ -81,15 +82,15 @@ export default function RemapTown() {
   const { vehicles, census, caz } = town;
   const censusYear = census?.census.match(/20\d\d/)?.[0] ?? '';
   const comparedWith = census?.nationalLabel ?? 'England and Wales';
-  const coverage = `An independent mobile technician from our national network does the remap at your home or workplace, booked and managed by us. Call with your reg and postcode and we'll tell you straight whether we can cover ${name}.`;
+  const coverage = `${name} is an area we cover. An independent mobile technician from our national network does the remap at your home or workplace, booked and managed by us. Call with your reg and postcode and we'll confirm who's coming and the price.`;
   const guides = [GUIDE_BASICS, localGuide(town)];
 
-  const description = `Stage 1 ECU remapping in ${name} for diesel and petrol cars and vans${districts.length ? ` around ${listText(districts.slice(0, 3))}` : ''}. Diagnostics before and after, repair only. Call or WhatsApp ${BUSINESS.phoneDisplay}.`;
+  const description = `Stage 1 ECU remapping in ${name}, an area we cover, for diesel and petrol cars and vans${districts.length ? ` around ${listText(districts.slice(0, 3))}` : ''}. Diagnostics before and after, repair only. Call or WhatsApp ${BUSINESS.phoneDisplay}.`;
 
   const faqs: Faq[] = [
     {
       q: `Do you remap in ${districts.length ? listText(districts.slice(0, 4)) : name}?`,
-      a: `We check on the phone who can get to you in ${name} before anything is booked.`,
+      a: `Yes, ${name} is an area we cover. We confirm who's coming and the price on the phone before anything is booked.`,
     },
     { q: `How much is a Stage 1 remap in ${name}?`, a: 'We give you the price on the phone once we know your vehicle.' },
   ];
@@ -104,6 +105,7 @@ export default function RemapTown() {
     <div className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO title={`Stage 1 Remapping in ${name} | Auto-Cleanse`} description={description} path={remapTownPath(town.slug)} />
       <script dangerouslySetInnerHTML={{ __html: `window.__REMAP_TOWN__=${inlineJson(town)};` }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(townServiceSchema('ECU Remapping', name, town.county || town.region)) }} />
 
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none" />
 
@@ -115,8 +117,9 @@ export default function RemapTown() {
             <span className="text-white">Stage 1 remapping in </span>
             <span className="text-[#FF7A00]">{name}</span>
           </h1>
-          {/* Contact buttons sit straight under the H1 so they are on the first
-              screen on a phone; the local intro follows. */}
+          <CoverageBadge name={name} />
+          {/* Contact buttons sit straight under the H1 and coverage line so
+              they are on the first screen on a phone; the local intro follows. */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8 max-w-2xl">
             <a href={telHref} className="col-span-2 sm:col-span-1 btn-shine px-6 py-4 rounded-xl font-bold text-white inline-flex items-center justify-center gap-2">
               <Phone size={18} /> Call {BUSINESS.phoneDisplay}
