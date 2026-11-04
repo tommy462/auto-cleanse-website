@@ -132,6 +132,12 @@ export interface Experiment {
   baseline_to: string | null;
   outcome: string;
   recommendation_id: string | null;
+  /** what kind of change it was (learning.ts CHANGE_TYPES); null for changes recorded before 4 Nov 2026 */
+  change_type?: string | null;
+  decided_at?: string | null;
+  created_at?: string | null;
+  /** the rule of the recommendation it came from, filled in by the pipeline */
+  rule?: string | null;
 }
 
 export interface RunStep {

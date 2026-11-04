@@ -35,8 +35,24 @@ curl -sS -X POST "$API?agent=revert" -H 'Content-Type: application/json' -d '{"e
 ```
 
 `queue` returns `mode`, `can_start`, `open_changes`, `busy_pages`, `busy_groups`, `items`
-(recommendations to do, best first) and `reverts` (changes that measurably made things worse, or
-that Tom asked to undo; `reason` says which).
+(recommendations to do, best first), `reverts` (changes that measurably made things worse, or
+that Tom asked to undo; `reason` says which) and `track_record`: what each kind of change has
+done so far (`by_type`: worked, no_change, worse, undone, measuring, streak), `prefer` (kinds with
+a record worth repeating, best first) and `avoid` (kinds that have had `stop_after` decided
+results in a row without a win).
+
+## Choosing the kind of change
+
+Every change has one kind, which you record as `change_type`: `title`, `description`, `faq`,
+`content` (a section), `links` or `mixed`. Before you decide how to act on a recommendation:
+
+- Never make a kind of change that is in `track_record.avoid`. If the recommendation only makes
+  sense as that kind, `POST manual` saying so, and move on.
+- When more than one kind would answer the recommendation, take the first that appears in
+  `track_record.prefer`; otherwise the one that fits best.
+- FAQs: at most 2 new questions per page per change, and a page never has more than 12 questions
+  in total. The guard refuses anything over that, so if a page is already at 12, do something
+  else or hand it back. Do not add questions that only restate what the page already answers.
 
 ## Each run, in this order
 
@@ -60,9 +76,11 @@ that Tom asked to undo; `reason` says which).
      It prints the pull request URL. Never merge it, approve it, label it, comment on it or
      enable auto-merge: the workflow decides.
 10. `POST record` with:
-    `{"id", "branch" (or "pr_url" in auto mode), "title", "hypothesis", "change_summary", "pages",
-    "control_pages", "method", "primary_metric", "original_snapshot", "rollback_ref"}`.
-    `original_snapshot` is one plain-text string, not an object.
+    `{"id", "branch" (or "pr_url" in auto mode), "change_type", "title", "hypothesis",
+    "change_summary", "pages", "control_pages", "method", "primary_metric", "original_snapshot",
+    "rollback_ref"}`.
+    `original_snapshot` is one plain-text string, not an object. `change_type` is one of `title`,
+    `description`, `faq`, `content`, `links`, `mixed` (see "Choosing the kind of change").
     - `pages`: every page you changed. `control_pages` + `"method": "diff_in_diff"` for group
       changes (below); otherwise `"method": "before_after"` and no control pages.
     - `primary_metric`: `ctr` for titles/descriptions, `position` or `clicks` for content depth
@@ -98,6 +116,7 @@ anything else (the national town pages included), it is `manual`.
    section that restates or explains facts the site already states (prices in
    `src/config/booking.ts` and on `/pricing`, the process in `src/data/business.ts` and on
    `/dpf-cleaning`, existing page text). FAQs go through `FaqSection` so answers stay in the HTML.
+   FAQ limits: 2 new questions per page per change, 12 per page in total (the guard enforces both).
 
 **Group changes** (the recommendation covers a page group): change half of the pages and leave the
 other half as the comparison. Sort the group's pages alphabetically, change the 1st, 3rd, 5th...

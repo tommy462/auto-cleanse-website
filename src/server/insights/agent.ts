@@ -9,6 +9,7 @@
 // 'observe' pauses the agent. Either way the daily run (or the next queue call
 // in 'auto') notices the merge and starts the measurement.
 
+import { CHANGE_TYPES, recordForAgent, trackRecord } from './learning.js';
 import { insertIgnore, patch, selectAll } from './store.js';
 
 const SITE = 'auto-cleanse';
@@ -52,6 +53,7 @@ interface RecRow {
 interface ExpRow {
   id: string; recommendation_id: string | null; outcome: string; implementation_ref: string | null; title: string; rollback_ref: string | null;
   pages: string[]; page_groups: string[]; result: Record<string, unknown> | null; undo_requested_at?: string | null;
+  change_type?: string | null; decided_at?: string | null; created_at?: string | null;
 }
 // select=* so the agent keeps working whether or not the undo column has been added yet.
 const EXP_SELECT = 'select=*';
@@ -97,7 +99,7 @@ async function rec(id: unknown): Promise<RecRow> {
 export async function agentQueue(now = new Date(), sync: () => Promise<unknown> = () => syncPulls()) {
   const mode = await siteMode();
   if (mode === 'observe') {
-    return { mode, can_start: false, open_changes: [], busy_pages: [] as string[], busy_groups: [] as string[], items: [], reverts: [] };
+    return { mode, can_start: false, open_changes: [], busy_pages: [] as string[], busy_groups: [] as string[], items: [], reverts: [], track_record: recordForAgent(trackRecord([])) };
   }
   // Automatic changes go live minutes after the last run: learn about merges now, not at the next daily run.
   if (mode === 'auto') await sync().catch(() => undefined);
@@ -105,7 +107,7 @@ export async function agentQueue(now = new Date(), sync: () => Promise<unknown> 
   const statuses = mode === 'auto' ? 'in.(new,approved)' : 'eq.approved';
   const [recs, exps] = await Promise.all([
     selectAll<RecRow>(`/web_recommendations?site_id=eq.${SITE}&status=${statuses}&kind=eq.opportunity&select=id,rule,kind,category,scope_type,scope_key,pages,page_count,title,problem,facts,hypotheses,proposal,benefit,measurement_days,success_metric,ai,status,status_note,updated_at&order=priority_score.desc`),
-    selectAll<ExpRow>(`/web_experiments?site_id=eq.${SITE}&outcome=in.(planned,running,successful,inconclusive,unsuccessful)&${EXP_SELECT}&order=id`),
+    selectAll<ExpRow>(`/web_experiments?site_id=eq.${SITE}&${EXP_SELECT}&order=id`),
   ]);
   const busy = new Set(exps.filter((e) => ['planned', 'running'].includes(e.outcome)).map((e) => e.recommendation_id));
   const claimCutoff = new Date(now.getTime() - CLAIM_HOURS * 3_600_000).toISOString();
@@ -128,6 +130,8 @@ export async function agentQueue(now = new Date(), sync: () => Promise<unknown> 
       experiment_id: e.id, title: e.title, ref: e.implementation_ref, rollback: e.rollback_ref,
       reason: e.outcome === 'unsuccessful' ? 'made things worse' : 'Tom asked for it to be undone',
     })),
+    // What has worked so far, by kind of change: the agent prefers what works and stops what keeps doing nothing.
+    track_record: recordForAgent(trackRecord(exps)),
   };
 }
 
@@ -154,7 +158,9 @@ export async function agentRecord(body: Record<string, unknown>) {
   const control = paths(body.control_pages, 'control_pages');
   if (!pages.length) throw new AgentError('pages must list the changed pages');
   if (control.length && method === 'before_after') throw new AgentError('give method diff_in_diff when you name control pages');
-  await insertIgnore('web_experiments', [{
+  const changeType = str(body.change_type, 20, 'change_type')!;
+  if (!(CHANGE_TYPES as readonly string[]).includes(changeType)) throw new AgentError(`change_type must be one of ${CHANGE_TYPES.join(', ')}`);
+  const row = {
     site_id: SITE,
     recommendation_id: r.id,
     title: str(body.title, 200, 'title'),
@@ -170,7 +176,16 @@ export async function agentRecord(body: Record<string, unknown>) {
     implementation_ref: ref,
     rollback_ref: str(body.rollback_ref, 500, 'rollback_ref', false) ?? 'Do not merge it; once merged, revert its merge commit.',
     outcome: 'planned',
-  }], 'id');
+    change_type: changeType,
+  };
+  try {
+    await insertIgnore('web_experiments', [row], 'id');
+  } catch (e) {
+    // Until the dashboard migration of 4 Nov 2026 adds change_type, record the change without it rather than lose it.
+    const { change_type: _omit, ...without } = row;
+    void _omit;
+    await insertIgnore('web_experiments', [without], 'id').catch(() => { throw e; });
+  }
   const auto = (await siteMode()) === 'auto' && PR_URL.test(ref);
   await patch('web_recommendations', `id=eq.${r.id}`, {
     status_note: auto

@@ -12,6 +12,7 @@ import { classifyPath, normaliseUrl, queryService } from '../src/server/insights
 import { addDays, rangeLabel, ukNow, fromGa4Date } from '../src/server/insights/dates.js';
 import { binomialLowerP, didRatio, poissonCdf, rateRatio, robustZ, twoProportion } from '../src/server/insights/stats.js';
 import { analyse, buildCtrCurve, priorityOf } from '../src/server/insights/rules.js';
+import { priorityMultiplier, trackRecord } from '../src/server/insights/learning.js';
 import { dailyAlerts, type SiteDay } from '../src/server/insights/alerts.js';
 import { mergeFindings, type ExistingRec } from '../src/server/insights/recommend.js';
 import { evaluate, experimentWindows, emptyTotals } from '../src/server/insights/experiments.js';
@@ -332,6 +333,34 @@ test('merge: export findings not found again by a live run are replaced', () => 
   });
   assert.deepEqual(plan.closes.map((c) => c.id), ['page_two:a']);
   assert.ok(plan.updates.some((u) => u.id === 'page_two:b'));
+});
+
+test('learning: record by kind of change, stop after three non-wins, prefer what works', () => {
+  const e = (outcome: string, change_type: string, decided_at: string | null, pages = ['/dpf-cleaning-exeter'], rule = 'page_two') =>
+    ({ outcome, change_type, decided_at, created_at: decided_at ?? '2026-12-20', pages, page_groups: [], rule });
+  const groupOf = (p: string) => (p.startsWith('/dpf-cleaning-') ? 'dpf-town' : p.endsWith('-remap') ? 'vehicle' : null);
+  const history = [
+    e('inconclusive', 'faq', '2026-12-01'), e('inconclusive', 'faq', '2026-12-05'), e('unsuccessful', 'faq', '2026-12-09'),
+    e('successful', 'title', '2026-12-02', ['/bmw-320d-remap'], 'ctr_gap'), e('successful', 'title', '2026-12-06', ['/audi-a3-remap'], 'ctr_gap'),
+    e('running', 'links', null, ['/blog/x'], 'query_demand'),
+  ];
+  const rec = trackRecord(history, groupOf);
+  assert.deepEqual(rec.avoid, ['faq']);
+  assert.deepEqual(rec.prefer, ['title']);
+  assert.equal(rec.by_type.faq.streak, 3);
+  assert.equal(rec.by_type.links.measuring, 1);
+  assert.equal(rec.by_rule_group['page_two|dpf-town'].decided, 3);
+  assert.ok(priorityMultiplier({ rule: 'page_two', pages: ['/dpf-cleaning-torquay'] }, rec, groupOf) < 1, 'a rule that keeps failing on this kind of page is scaled down');
+  assert.ok(priorityMultiplier({ rule: 'ctr_gap', pages: ['/vw-golf-remap'] }, rec, groupOf) > 1, 'a rule that works on this kind of page is scaled up');
+  assert.equal(priorityMultiplier({ rule: 'no_impressions', pages: ['/x'] }, rec, groupOf), 1, 'no record, no change');
+  const later = trackRecord([...history, e('successful', 'faq', '2026-12-30')], groupOf);
+  assert.deepEqual(later.avoid, [], 'a win resets the streak');
+  assert.equal(later.by_type.faq.streak, 0);
+  assert.equal(trackRecord([e('inconclusive', 'magic', '2026-12-01')]).by_type.magic, undefined, 'unknown kinds are ignored');
+});
+test('learning: priorityOf keeps the scaled score analyse() gave a finding', () => {
+  assert.equal(priorityOf({ valueScore: 10, confidenceScore: 0.5, effort: 'small', priorityScore: 3.75 } as never), 3.75);
+  assert.equal(priorityOf({ valueScore: 10, confidenceScore: 0.5, effort: 'small' } as never), 5);
 });
 
 console.log(`\n${passed} passed, ${failures.length} failed${failures.length ? `: ${failures.join('; ')}` : ''}`);

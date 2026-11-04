@@ -12,9 +12,11 @@
  * sitemap dates) and checks every added line against Tom's copy rules: no new
  * prices, phone numbers, emails, links, percentages or banned claims, and no
  * code beyond plain content. A phrase the file already had is fine where the
- * change only carries it over (it is counted, not just matched). An undo branch
- * passes when it is exactly a revert of an earlier change. Exit 1 on any
- * problem, with one line per problem.
+ * change only carries it over (it is counted, not just matched). FAQ creep is
+ * capped: at most MAX_FAQ_ADDED_PER_PAGE new questions per page per change,
+ * and a page never ends with more than MAX_FAQ_PER_PAGE. An undo branch passes
+ * when it is exactly a revert of an earlier change. Exit 1 on any problem,
+ * with one line per problem.
  */
 import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
@@ -24,6 +26,8 @@ export const MAX_ADDED = 400;
 export const MAX_REMOVED = 400;
 export const MAX_FILES = 40;
 export const MAX_LASTMOD_LINES = 45;
+export const MAX_FAQ_PER_PAGE = 12;
+export const MAX_FAQ_ADDED_PER_PAGE = 2;
 
 const BRANCH = /^claude\/(insights|undo)-[a-z0-9._-]{1,80}$/;
 const LASTMOD = 'scripts/page-lastmod.json';
@@ -84,6 +88,27 @@ const CODE = [
 
 const count = (re, lines) => lines.reduce((n, l) => n + (l.match(new RegExp(re.source, re.flags.includes('g') ? re.flags : `${re.flags}g`)) ?? []).length, 0);
 const digits = (s) => s.replace(/\D/g, '');
+
+const FAQ_Q = /(^|[\s{,(])q:\s*['"`]/g;
+const PER_SLUG_FILE = /^src\/data\/(vehicle-remapping|remapping-locations|dpf-locations)\.ts$/;
+/**
+ * FAQ questions per page in a file: one count ('*') for a page component or a
+ * guide, one per `slug:` entry in the data files that hold many pages.
+ */
+export function faqCounts(text, path) {
+  const perSlug = PER_SLUG_FILE.test(path);
+  const counts = new Map();
+  let key = '*';
+  for (const line of text.split('\n')) {
+    if (perSlug) {
+      const m = /^\s*slug:\s*['"`]([^'"`]+)/.exec(line);
+      if (m) { key = m[1]; continue; }
+    }
+    const n = (line.match(FAQ_Q) ?? []).length;
+    if (n) counts.set(key, (counts.get(key) ?? 0) + n);
+  }
+  return counts;
+}
 
 /**
  * Checks one change. files: [{ path, status ('A'|'M'|'D'|'R...'), added: string[], removed: string[] }].
@@ -159,6 +184,18 @@ export function checkChange({ branch, files, isRevert = false }) {
       const unq = (lines) => lines.filter((l) => re.test(l) && !needs.test(l));
       if (unq(f.added).length > unq(f.removed).length) bad(f.path, rule, unq(f.added)[0]);
     }
+
+    // FAQ creep. Only judged when the change adds questions to a page; a page
+    // already over the cap may still have its title or links changed.
+    if (f.baseText != null && f.headText != null) {
+      const before = faqCounts(f.baseText, f.path);
+      for (const [key, n] of faqCounts(f.headText, f.path)) {
+        const was = before.get(key) ?? 0;
+        const label = key === '*' ? f.path : `${f.path} (${key})`;
+        if (n - was > MAX_FAQ_ADDED_PER_PAGE) bad(label, `adds ${n - was} FAQ questions (max ${MAX_FAQ_ADDED_PER_PAGE} per page per change)`);
+        else if (n > was && n > MAX_FAQ_PER_PAGE) bad(label, `would have ${n} FAQ questions (max ${MAX_FAQ_PER_PAGE} per page)`);
+      }
+    }
   }
   if (added > MAX_ADDED) bad('change', `adds ${added} lines (max ${MAX_ADDED})`);
   if (removed > MAX_REMOVED) bad('change', `removes ${removed} lines (max ${MAX_REMOVED})`);
@@ -183,6 +220,11 @@ export function readChange(repo, base, head) {
       if (l.startsWith('+++') || l.startsWith('---')) continue;
       if (l.startsWith('+')) f.added.push(l.slice(1));
       else if (l.startsWith('-')) f.removed.push(l.slice(1));
+    }
+    // Whole files before and after, for the per-page FAQ counts.
+    if (/\.(tsx?|md)$/.test(f.path)) {
+      f.baseText = git(repo, ['show', `${mb}:${f.path}`]);
+      f.headText = git(repo, ['show', `${head}:${f.path}`]);
     }
   }
   return { mb, files };

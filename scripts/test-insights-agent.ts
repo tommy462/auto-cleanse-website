@@ -98,9 +98,11 @@ await test('claim and record: a branch becomes a planned experiment with a ship 
   await rejects(agentRecord({ id: r.id, pr_url: 'https://github.com/someone/else/pull/1', title: 't', hypothesis: 'h', change_summary: 'c', pages: ['/x'] }), /pull request on/);
   await rejects(agentRecord({ id: r.id, branch: 'claude/x', title: 't', hypothesis: 'h', change_summary: 'c', pages: ['javascript:alert(1)'] }), /invalid path/);
   await rejects(agentRecord({ id: r.id, branch: 'claude/x', title: 't', hypothesis: 'h', change_summary: 'c', pages: ['/x'], control_pages: ['/y'] }), /diff_in_diff/);
-  await agentRecord({ id: r.id, branch: 'claude/titles-dpf', title: 'Titles', hypothesis: 'h', change_summary: 'c', pages: ['/x'], control_pages: ['/y'], method: 'diff_in_diff', original_snapshot: 'old title' });
+  await rejects(agentRecord({ id: r.id, branch: 'claude/x', title: 't', hypothesis: 'h', change_summary: 'c', pages: ['/x'], original_snapshot: 'o', change_type: 'magic' }), /change_type must be one of/);
+  await agentRecord({ id: r.id, branch: 'claude/titles-dpf', title: 'Titles', hypothesis: 'h', change_summary: 'c', pages: ['/x'], control_pages: ['/y'], method: 'diff_in_diff', original_snapshot: 'old title', change_type: 'title' });
   const e = db.web_experiments.at(-1)!;
   assert.equal(e.outcome, 'planned');
+  assert.equal(e.change_type, 'title');
   assert.equal(e.implementation_ref, 'branch:claude/titles-dpf');
   assert.match(String(r.status_note), /compare\/main\.\.\.claude\/titles-dpf\?expand=1/);
   assert.equal(shipUrl('branch:claude/a'), 'https://github.com/tommy462/auto-cleanse-website/compare/main...claude/a?expand=1');
@@ -161,7 +163,7 @@ await test('automatic mode: new recommendations are queued, claimed and shipped 
   assert.ok(!ids.includes(c.id as string) && !ids.includes(d.id as string), 'held-back and dismissed ones stay out');
   await agentClaim({ id: a.id });
   assert.equal(a.status, 'approved');
-  await agentRecord({ id: a.id, pr_url: 'https://github.com/tommy462/auto-cleanse-website/pull/31', title: 't', hypothesis: 'h', change_summary: 'c', pages: ['/x'], original_snapshot: 'old text' });
+  await agentRecord({ id: a.id, pr_url: 'https://github.com/tommy462/auto-cleanse-website/pull/31', title: 't', hypothesis: 'h', change_summary: 'c', pages: ['/x'], original_snapshot: 'old text', change_type: 'faq' });
   assert.match(String(a.status_note), /^Changed automatically/);
   assert.match(String(a.status_note), /pull\/31/);
   await rejects(agentClaim({ id: d.id }), /new or approved/);
@@ -198,6 +200,20 @@ await test('undo: Tom asks, the agent reverts, the merge marks it undone', async
   assert.match(String(e.conclusion), /at Tom's request/);
   assert.equal(r.status, 'reverted');
   setMode('recommend');
+});
+
+await test('queue: the track record says what to prefer and what to stop', async () => {
+  db.web_recommendations.length = 0; db.web_experiments.length = 0;
+  exp({ outcome: 'inconclusive', change_type: 'faq', decided_at: '2026-12-01T00:00:00Z' });
+  exp({ outcome: 'inconclusive', change_type: 'faq', decided_at: '2026-12-05T00:00:00Z' });
+  exp({ outcome: 'reverted', change_type: 'faq', decided_at: '2026-12-09T00:00:00Z' });
+  exp({ outcome: 'successful', change_type: 'title', decided_at: '2026-12-02T00:00:00Z' });
+  exp({ outcome: 'successful', change_type: 'title', decided_at: '2026-12-06T00:00:00Z' });
+  const q = await agentQueue();
+  assert.deepEqual(q.track_record.avoid, ['faq']);
+  assert.deepEqual(q.track_record.prefer, ['title']);
+  assert.equal(q.track_record.by_type.faq.streak, 3);
+  assert.equal(q.track_record.stop_after, 3);
 });
 
 await test('an undo stopped by the checks is not retried on its own', async () => {

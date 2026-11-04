@@ -15,6 +15,7 @@ import { addDays, daysBetween, rangeLabel } from './dates.js';
 import { groupDef, type SiteConfig } from './site-config.js';
 import { binomialLowerP, median, pct, poissonCdf, round, twoProportion } from './stats.js';
 import type { AnalysisWindow, EvidenceItem, Experiment, Finding, PageWindow, QueryRow } from './types.js';
+import { priorityMultiplier, trackRecord, type TrackRecord } from './learning.js';
 
 export interface AnalysisInput {
   config: SiteConfig;
@@ -846,6 +847,8 @@ function ruleClarity(input: AnalysisInput, holdSet: Holds): Finding[] {
 
 export interface AnalysisResult {
   findings: Finding[];
+  /** what has worked so far, by kind of change and by rule (learning.ts) */
+  trackRecord: TrackRecord;
   heldPages: { path: string; reason: string }[];
   curve: { bucket: string; impressions: number; ctr: number | null }[];
 }
@@ -864,9 +867,15 @@ export function analyse(input: AnalysisInput): AnalysisResult {
     ...ruleConversion(input, holds),
     ...ruleClarity(input, holds),
   ];
-  for (const f of findings) (f as Finding & { priorityScore?: number }).priorityScore = priority(f);
+  // Do more of what has worked: priority is scaled by the record of acting on
+  // this rule on these kinds of page (0.5 to 1.5, 1 with no record yet).
+  const groups = new Map(input.pages.map((p) => [p.path, p.group]));
+  const groupOf = (path: string) => groups.get(path) ?? null;
+  const record = trackRecord(input.experiments, groupOf);
+  for (const f of findings) (f as Finding & { priorityScore?: number }).priorityScore = round(priority(f) * priorityMultiplier(f, record, groupOf), 2);
   return {
     findings,
+    trackRecord: record,
     heldPages: [...holds.all.values()],
     curve: BUCKETS.map((edge, i) => ({
       bucket: edge === Infinity ? `${BUCKETS[i - 1]}+` : `${BUCKETS[i - 1] ?? 1}-${edge}`,
@@ -876,8 +885,9 @@ export function analyse(input: AnalysisInput): AnalysisResult {
   };
 }
 
+/** The score analyse() gave the finding (value x confidence / effort, scaled by the track record), or the plain score for alerts. */
 export function priorityOf(f: Finding): number {
-  return priority(f);
+  return (f as Finding & { priorityScore?: number }).priorityScore ?? priority(f);
 }
 
 /** Exported for tests. */

@@ -10,7 +10,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { checkChange, isExactRevert, readChange } from './agent-guard.mjs';
+import { checkChange, faqCounts, isExactRevert, readChange } from './agent-guard.mjs';
 
 let failed = 0;
 function test(name, fn) {
@@ -79,6 +79,21 @@ test('code: content edits only', () => {
   stops([page(["import axios from 'axios';"])], /import from a package/);
   stops([page(['<div dangerouslySetInnerHTML={{ __html: x }} />'])], /page scripting/);
   stops([page(['<button onClick={() => go()}>x</button>'])], /event handler/);
+});
+test('FAQ cap: two new questions per page per change, never more than 12 on a page', () => {
+  const faq = (n, indent = '  ') => Array.from({ length: n }, (_, i) => `${indent}{ q: 'Question ${i}?', a: 'Answer.' },`).join('\n');
+  const comp = (n) => `const FAQS = [\n${faq(n)}\n];`;
+  const withText = (base, head, path = 'src/pages/DPFCleaningExeter.tsx') => ({ path, status: 'M', added: ["  { q: 'Question?', a: 'Answer.' },"], removed: [], baseText: base, headText: head });
+  ok([withText(comp(8), comp(10))]);
+  stops([withText(comp(8), comp(11))], /adds 3 FAQ questions/);
+  stops([withText(comp(11), comp(13))], /would have 13 FAQ questions/);
+  ok([withText(comp(13), comp(13))]);
+  const data = (a, b) => `export const X = [\n  {\n    slug: 'dpf-cleaning-a',\n    faqs: [\n${faq(a, '      ')}\n    ],\n  },\n  {\n    slug: 'dpf-cleaning-b',\n    faqs: [\n${faq(b, '      ')}\n    ],\n  },\n];`;
+  ok([withText(data(3, 3), data(5, 5), 'src/data/dpf-locations.ts')]);
+  stops([withText(data(3, 3), data(6, 3), 'src/data/dpf-locations.ts')], /dpf-cleaning-a.*adds 3/);
+  stops([withText(data(11, 3), data(13, 3), 'src/data/dpf-locations.ts')], /dpf-cleaning-a.*would have 13/);
+  assert.deepEqual([...faqCounts(data(2, 4), 'src/data/dpf-locations.ts')], [['dpf-cleaning-a', 2], ['dpf-cleaning-b', 4]]);
+  assert.deepEqual([...faqCounts("    q: 'Multi-line?',\n    a: 'x',\n  { q: 'Inline?', a: 'y' },", 'src/pages/X.tsx')], [['*', 2]]);
 });
 test('branch names', () => {
   stops([page(['x'])], /branch/, 'feature/x');

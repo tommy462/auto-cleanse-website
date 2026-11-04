@@ -166,7 +166,7 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
   // 7. Analysis
   const weekly = Boolean(opts.weekly) || uk.weekday === 1;
   summary.weekly = weekly;
-  const experiments = await selectAll<Experiment>(`/web_experiments?site_id=eq.${config.id}&select=id,title,pages,page_groups,control_pages,method,primary_metric,implemented_on,measure_from,measure_to,baseline_from,baseline_to,outcome,recommendation_id&order=created_at`).catch(() => [] as Experiment[]);
+  const experiments = await loadExperiments(config);
   const findings: Finding[] = [];
   const rulesRun = new Set<string>();
   await step(steps, 'analyse', async () => {
@@ -200,6 +200,7 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
       if (loaded.sources.ga4) ['conversion_gap', 'mobile_gap'].forEach((r) => rulesRun.add(r));
       if (loaded.sources.clarity) ['friction', 'low_scroll'].forEach((r) => rulesRun.add(r));
       summary.heldPages = result.heldPages.length;
+      summary.learning = { avoid: result.trackRecord.avoid, prefer: result.trackRecord.prefer };
     }
     return { rows: findings.length };
   });
@@ -220,7 +221,7 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
     const r = await syncPulls();
     return { rows: r.checked, note: `${r.shipped} shipped, ${r.closed} closed unmerged, ${r.reverted} reverted` };
   });
-  const liveExperiments = await selectAll<Experiment>(`/web_experiments?site_id=eq.${config.id}&select=id,title,pages,page_groups,control_pages,method,primary_metric,implemented_on,measure_from,measure_to,baseline_from,baseline_to,outcome,recommendation_id&order=created_at`).catch(() => experiments);
+  const liveExperiments = await loadExperiments(config).catch(() => experiments);
   await step(steps, 'experiments', async () => evaluateExperiments(config, liveExperiments, today, gscEnd));
 
   // 10. Weekly AI write-up
@@ -244,6 +245,23 @@ export async function applyPlan(plan: ReturnType<typeof mergeFindings>) {
   if (plan.inserts.length) await insertIgnore('web_recommendations', plan.inserts, 'site_id,dedupe_key');
   for (const u of plan.updates) await patch('web_recommendations', `id=eq.${u.id}`, u.patch);
   for (const c of plan.closes) await patch('web_recommendations', `id=eq.${c.id}`, { status: c.status, status_note: c.note });
+}
+
+const EXPERIMENT_COLS = 'id,title,pages,page_groups,control_pages,method,primary_metric,implemented_on,measure_from,measure_to,baseline_from,baseline_to,outcome,recommendation_id,decided_at,created_at';
+
+/**
+ * Every experiment, with the rule of the recommendation it came from. Reads
+ * with and then without change_type, so it works before and after the
+ * dashboard migration of 4 Nov 2026 adds that column: a failed read must not
+ * empty the list, or pages under test would lose their hold.
+ */
+async function loadExperiments(config: SiteConfig): Promise<Experiment[]> {
+  const recs = await selectAll<{ id: string; rule: string }>(`/web_recommendations?site_id=eq.${config.id}&select=id,rule&order=id`).catch(() => [] as { id: string; rule: string }[]);
+  const rules = new Map(recs.map((r) => [r.id, r.rule]));
+  const rows = await selectAll<Experiment>(`/web_experiments?site_id=eq.${config.id}&select=${EXPERIMENT_COLS},change_type&order=created_at`)
+    .catch(() => selectAll<Experiment>(`/web_experiments?site_id=eq.${config.id}&select=${EXPERIMENT_COLS}&order=created_at`))
+    .catch(() => [] as Experiment[]);
+  return rows.map((e) => ({ ...e, rule: e.recommendation_id ? rules.get(e.recommendation_id) ?? null : null }));
 }
 
 async function evaluateExperiments(config: SiteConfig, experiments: Experiment[], today: string, dataUntil: string) {
