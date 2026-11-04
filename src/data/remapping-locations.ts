@@ -2515,6 +2515,8 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       "ecu-remapping-plymouth",
       "ecu-remapping-exeter",
       "ecu-remapping-barnstaple",
+      "van-remapping-devon",
+      "fleet-vehicle-remapping-devon",
     ],
   },
 
@@ -2635,6 +2637,8 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       "ecu-remapping-newton-abbot",
       "ecu-remapping-totnes",
       "ecu-remapping-barnstaple",
+      "van-remapping-devon",
+      "fleet-vehicle-remapping-devon",
     ],
   },
 
@@ -2661,7 +2665,21 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       "Kingsbridge",
       "Tavistock",
     ],
+    extraSections: [
+      {
+        heading: "How we remap a van in Devon",
+        paragraphs: [
+          "A van remap from Auto-Cleanse is a Stage 1, software-only change for a standard, unmodified van. We connect to the ECU through the OBD port, or on the bench where a vehicle needs it, read the current map and apply a remap file matched to the exact make, model, engine and gearbox. Nothing is bolted on and no parts are changed. Your original map is always saved first, so the van can be returned to factory settings if you ever want that.",
+          "Every van remap starts with a diagnostic health check: we read the vehicle for fault codes and confirm it is in good condition before we touch the ECU. After the remap we run diagnostics again and road-test the van to confirm everything is running as it should. The remap keeps the DPF, EGR and AdBlue systems intact and road-legal.",
+          "You can bring the van to our workshop in Totnes, or we can come to you. Our mobile setup carries the same OBD and bench flashing equipment we use in the workshop, so a mobile van remap at your depot, yard or home is done to the same standard. Mobile visits cover much of Devon, subject to distance and slot availability.",
+        ],
+      },
+    ],
     faqs: [
+      {
+        q: "How much does a van remap cost in Devon?",
+        a: "A Stage 1 van remap is £250 at our Totnes workshop or £270 for a mobile visit in Devon, with the health check and diagnostics before and after included. A £50 deposit secures your slot and the balance is due on the day. Stage 2 and custom maps are quoted once we know the vehicle. If you run more than one van, contact us with your fleet details and we'll provide a tailored quote.",
+      },
       {
         q: "Which vans do you remap in Devon?",
         a: "We remap virtually all modern diesel vans - Ford Transit, Transit Custom, Transit Connect; Mercedes Sprinter, Vito; VW Crafter, Transporter; Vauxhall Vivaro, Movano; Renault Trafic, Master; Peugeot Boxer; Citroen Relay; Fiat Ducato; Iveco Daily and more.",
@@ -2742,6 +2760,7 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
     ],
     relatedSlugs: [
       "van-remapping-devon",
+      "fleet-vehicle-remapping-devon",
       "ecu-remapping-devon",
     ],
   },
@@ -2870,6 +2889,28 @@ export const REMAP_LOCATIONS: RemapLocation[] = [
       "Tiverton",
       "Tavistock",
       "Kingsbridge",
+    ],
+    extraSections: [
+      {
+        heading: "How a fleet remap is carried out",
+        paragraphs: [
+          "Each vehicle in your fleet gets the same Stage 1 process we use for a single van or car. We connect to the ECU through the OBD port, or on the bench where a vehicle needs it, read the current map and apply a remap file matched to that exact make, model, engine and gearbox. It is a software-only change: no parts are changed and nothing is bolted on. The original map from every vehicle is saved first, so any of them can be returned to factory settings later.",
+          "Every remap starts with a diagnostic health check. We read the vehicle for fault codes and confirm it is in good condition before we touch the ECU, and if something needs attention first we will tell you before any remap goes ahead. After the remap we run diagnostics again and road-test the vehicle. The remap keeps the DPF, EGR and AdBlue systems on each vehicle intact and road-legal.",
+        ],
+      },
+      {
+        heading: "At our Totnes workshop or at your depot",
+        paragraphs: [
+          "Fleet remapping is available at our workshop in Totnes or as a mobile visit to your depot or yard across Devon, from Plymouth and Exeter to Torbay, Barnstaple and Okehampton, subject to distance and slot availability. Our mobile kit carries the same OBD and bench flashing hardware we use in the workshop, so the result is the same wherever the work is done. We simply need safe access to each vehicle on a reasonably flat surface, and no mains power is needed because our equipment runs from the vehicle's own battery.",
+          "A minority of vehicles have ECUs that must be removed and bench-flashed, and those are better done at the Totnes workshop. When you send us your fleet details we will confirm which vehicles suit a depot visit before you book. For larger fleets we schedule visits across several days to keep disruption to a minimum.",
+        ],
+      },
+      {
+        heading: "What fleet remapping costs",
+        paragraphs: [
+          "For a single vehicle, our published Stage 1 price is £250 at the Totnes workshop or £270 for a mobile visit in Devon, with the health check and diagnostics before and after included. For a fleet, contact us with your vehicle details and we will provide a tailored quote. Stage 2 and custom maps are quoted once we know the vehicle. Call 07823 649190 or email info@auto-cleanse.co.uk to get started.",
+        ],
+      },
     ],
     faqs: [
       {
