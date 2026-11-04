@@ -69,7 +69,7 @@ AdBlue has a limited shelf life, and that life shortens if it is stored in direc
 
 ## The takeaway
 
-Treat crystallisation as a pointer rather than a diagnosis. Find the leak, the contamination, the dosing error or the temperature problem that allowed the deposit to form, and correct that alongside the clean.
+Treat crystallisation as a pointer rather than a diagnosis. Find the leak, the contamination, the dosing error or the temperature problem that allowed the deposit to form, and correct that alongside the clean. For a dosing fault outside Devon, our [national AdBlue repair page](/adblue-repair) explains how an independent mobile technician from our national network is booked through us.
 
 ## Sources
 
