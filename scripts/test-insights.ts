@@ -366,7 +366,7 @@ test('controls: similar unchanged pages from the same group, closest in impressi
     c('/dpf-cleaning-paignton', 'dpf-town', 120), c('/dpf-cleaning-totnes', 'dpf-town', 40), c('/dpf-cleaning-brixham', 'dpf-town', 260, '2026-10-25'),
     c('/dpf-cleaning-dartmouth', 'dpf-town', 0), c('/ecu-remapping-exeter', 'ecu-devon-town', 300),
   ];
-  const r = pickControls(['/dpf-cleaning-exeter'], cands, new Set(['/dpf-cleaning-totnes']), '2026-11-04', (g) => (g === 'dpf-town' ? 'DPF town' : g));
+  const r = pickControls(['/dpf-cleaning-exeter'], cands, new Set(['/dpf-cleaning-totnes']), '2026-11-04', (g) => (g === 'dpf-town' ? 'DPF town pages' : g));
   assert.deepEqual(r.controls, ['/dpf-cleaning-torquay', '/dpf-cleaning-paignton', '/dpf-cleaning-plymouth'], 'busy, recently changed, zero-impression and other-group pages are left out');
   assert.match(r.note, /3 similar DPF town pages/);
   assert.deepEqual(pickControls(['/dpf-cleaning-exeter'], cands.slice(0, 3), new Set(), '2026-11-04').controls, [], 'fewer than three: no comparison');

@@ -37,11 +37,11 @@ export function pickControls(changed: string[], candidates: Candidate[], busy: S
   const dist = (c: Candidate) => Math.abs(Math.log(c.impressions + 1) - Math.log(mean + 1));
   const picked = eligible.sort((a, b) => dist(a) - dist(b) || b.impressions - a.impressions).slice(0, MAX_CONTROLS);
   if (picked.length < MIN_CONTROLS) {
-    return { controls: [], note: `No comparison pages: only ${picked.length} similar unchanged ${label} page${picked.length === 1 ? '' : 's'} available (${MIN_CONTROLS} needed), so this is judged before against after.` };
+    return { controls: [], note: `No comparison pages: only ${picked.length} similar unchanged ${label} available (${MIN_CONTROLS} needed), so this is judged before against after.` };
   }
   return {
     controls: picked.map((c) => c.path),
-    note: `Compared against ${picked.length} similar ${label} pages picked automatically: closest to it in Google impressions over the same window, unchanged, and not under another test.`,
+    note: `Compared against ${picked.length} similar ${label} picked automatically: closest to it in Google impressions over the same window, unchanged, and not under another test.`,
   };
 }
 
