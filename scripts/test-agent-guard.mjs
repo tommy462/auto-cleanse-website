@@ -11,6 +11,7 @@ import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { checkChange, faqCounts, isExactRevert, readChange } from './agent-guard.mjs';
+import { changedPages } from './indexnow-changed-pages.mjs';
 
 let failed = 0;
 function test(name, fn) {
@@ -98,6 +99,13 @@ test('FAQ cap: two new questions per page per change, never more than 12 on a pa
 test('branch names', () => {
   stops([page(['x'])], /branch/, 'feature/x');
   stops([page(['x'])], /branch/, 'main');
+});
+test('IndexNow list: changed and new pages only, plain paths only', () => {
+  const before = { '/': ['2026-10-29', 'aaa'], '/dpf-cleaning-exeter': ['2026-10-12', 'd75b'], '/about': ['2026-10-28', '6d5a'] };
+  const after = { ...before, '/dpf-cleaning-exeter': ['2026-11-03', '651b'], '/blog/new-post': ['2026-11-09', 'f00d'], '/x y': ['2026-11-03', '1'], '/a;rm -rf': ['2026-11-03', '2'] };
+  assert.deepEqual(changedPages(before, after), ['/dpf-cleaning-exeter', '/blog/new-post']);
+  assert.deepEqual(changedPages(before, { ...before, '/about': ['2026-11-05', '6d5a'] }), []);
+  assert.deepEqual(changedPages(before, before), []);
 });
 
 // Real history: the first change the agent made, and an undo of it.

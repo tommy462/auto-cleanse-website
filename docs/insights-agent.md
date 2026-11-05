@@ -10,7 +10,8 @@ The queue tells you the site's `mode`:
 - `auto` (Tom's choice since 3 Nov 2026): Tom has approved every recommendation in advance. You
   open a pull request; `.github/workflows/agent-ship.yml` checks it again with
   `scripts/agent-guard.mjs` from `main`, builds the whole site, and merges it if everything
-  passes. Nobody reviews it before it goes live, so your own checks are the real ones.
+  passes. Once Vercel has it live, the pages whose `page-lastmod.json` line you changed are sent
+  to IndexNow (Bing). Nobody reviews it before it goes live, so your own checks are the real ones.
 - `recommend`: only recommendations Tom approved are queued; you push the branch and he ships it.
 - `observe`: paused. The queue is empty; stop.
 

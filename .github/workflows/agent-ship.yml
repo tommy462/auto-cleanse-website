@@ -9,7 +9,9 @@
 #   - the guard allows content edits only and checks Tom's copy rules; an undo
 #     must be an exact revert;
 #   - the whole site is built from the pull request with a read-only token;
-#   - only then a separate job merges it and asks Vercel for a production build.
+#   - only then a separate job merges it and asks Vercel for a production build;
+#   - once Vercel reports the merge live, the pages whose text changed (from
+#     scripts/page-lastmod.json) are sent to IndexNow so Bing recrawls them.
 #
 # A change that fails is closed with a comment saying why; the next queue call
 # or daily insights run then records it as not shipped. Needs the existing
@@ -38,6 +40,8 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: read
+    outputs:
+      pages: ${{ steps.pages.outputs.pages }}
     steps:
       - name: Trusted copy of main (the guard comes from here)
         uses: actions/checkout@v4
@@ -64,6 +68,22 @@ jobs:
           HEAD: ${{ github.event.pull_request.head.sha }}
           BRANCH: ${{ github.event.pull_request.head.ref }}
         run: node trusted/scripts/agent-guard.mjs --repo change --base "$BASE" --head "$HEAD" --branch "$BRANCH"
+
+      # Never stops the change: with no list, IndexNow is simply skipped.
+      - name: Pages whose text changed (for IndexNow)
+        id: pages
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          pages=""
+          if MB=$(git -C change merge-base "$BASE" "$HEAD") &&
+             git -C change show "$MB:scripts/page-lastmod.json" > before.json &&
+             git -C change show "$HEAD:scripts/page-lastmod.json" > after.json; then
+            pages=$(node trusted/scripts/indexnow-changed-pages.mjs before.json after.json) || pages=""
+          fi
+          echo "Changed pages: ${pages:-none}"
+          echo "pages=$pages" >> "$GITHUB_OUTPUT"
 
       - name: Build every page
         working-directory: change
@@ -100,6 +120,51 @@ jobs:
             exit 0
           fi
           curl -fsS -X POST "$HOOK" > /dev/null
+
+  indexnow:
+    needs: [check, ship]
+    if: needs.check.outputs.pages != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: read
+      statuses: read
+    steps:
+      - name: Trusted copy of main (the submit script comes from here)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          sparse-checkout: scripts/indexnow-submit.mjs
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Waits for Vercel's status on the merge commit, so Bing fetches the new
+      # text, not the old. A failed or slow build only skips IndexNow.
+      - name: Tell IndexNow once the change is live
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          PAGES: ${{ needs.check.outputs.pages }}
+        run: |
+          SHA=$(gh pr view "$PR" --repo "$GITHUB_REPOSITORY" --json mergeCommit -q .mergeCommit.oid)
+          state=pending
+          for _ in $(seq 1 45); do
+            state=$(gh api "repos/$GITHUB_REPOSITORY/commits/$SHA/status" \
+              -q '[.statuses[] | select(.context == "Vercel") | .state][0] // "pending"' 2>/dev/null) || state=pending
+            [ "$state" = pending ] || break
+            sleep 20
+          done
+          if [ "$state" != success ]; then
+            echo "::warning::Vercel status for $SHA is '$state'; IndexNow not sent."
+            exit 0
+          fi
+          # PAGES is a space-separated list of plain paths (checked by indexnow-changed-pages.mjs).
+          node scripts/indexnow-submit.mjs $PAGES
 
   reject:
     needs: check
