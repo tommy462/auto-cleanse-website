@@ -185,6 +185,10 @@ test('daily alerts: tracking break and stale Search Console data', () => {
   const rules = a.map((x) => x.rule).sort();
   assert.ok(rules.includes('tracking_break'), rules.join(','));
   assert.ok(rules.includes('gsc_stale'), rules.join(','));
+  for (const x of a) {
+    assert.ok(x.facts.length > 0, `${x.rule} has facts`);
+    assert.ok(x.hypotheses.length > 0, `${x.rule} has possible explanations`);
+  }
 });
 test('daily alerts: one quiet day is normal, a collapse is flagged', () => {
   const days: SiteDay[] = [];
@@ -195,6 +199,44 @@ test('daily alerts: one quiet day is normal, a collapse is flagged', () => {
   const a = dailyAlerts({ today: '2026-11-01', days, configured: { gsc: true, ga4: true, clarity: false, siteLeads: true } });
   assert.ok(a.some((x) => x.rule === 'anomaly_ga4_sessions'));
   assert.ok(!a.some((x) => x.rule === 'anomaly_gsc_clicks'));
+});
+test('daily alerts: the enquiry counter is only compared with GA4 from the day it went live', () => {
+  const mk = (date: string, ga4: number, site: number): SiteDay => ({ date, gsc_clicks: 40, gsc_impressions: 2000, gsc_final: true, ga4_sessions: 60, ga4_leads: ga4, ga4_phone_clicks: 3, ga4_whatsapp_clicks: 0, site_leads: site, deposits_paid: 0, clarity_sessions: 20 });
+  const from = '2026-03-10';
+  const today = '2026-03-14';
+  const build = (after: (date: string) => [number, number]) => {
+    const days: SiteDay[] = [];
+    for (let i = 20; i >= 1; i--) {
+      const d = addDays(today, -i);
+      days.push(d < from ? mk(d, 2, 0) : mk(d, ...after(d)));
+    }
+    return days;
+  };
+  const run = (days: SiteDay[], siteLeadsFrom: string | null = from) =>
+    dailyAlerts({ today, days, siteLeadsFrom, configured: { gsc: true, ga4: true, clarity: false, siteLeads: true } }).find((x) => x.rule === 'site_leads_break');
+
+  // GA4 enquiries from before the counter existed are not a fault.
+  assert.equal(run(build(() => [0, 1])), undefined, 'days before the counter started are ignored');
+  assert.equal(run(build(() => [1, 1])), undefined, 'the site counting as many as GA4 is normal');
+  assert.equal(run(build(() => [0, 0])), undefined, 'no enquiries at all is not a counter fault');
+  assert.ok(run(build(() => [0, 1]), null), 'without a start date the old 11-day window would have raised it');
+
+  // Counter live, GA4 sees enquiries, the site counts none.
+  const broken = run(build(() => [1, 0]));
+  assert.ok(broken, 'raised when the site counts nothing');
+  assert.equal(broken!.title, 'Enquiry forms are not being counted by the site');
+  assert.match(broken!.problem, new RegExp(`Since ${from}`));
+  assert.ok(broken!.facts.some((f) => f.includes(`counter went live on ${from}`)), broken!.facts.join(' | '));
+  assert.ok(broken!.facts.includes('Form enquiries counted by the site: 0'), broken!.facts.join(' | '));
+  assert.ok(broken!.facts.some((f) => f.startsWith('Days GA4 saw more:')), broken!.facts.join(' | '));
+  assert.ok(broken!.hypotheses.length >= 2);
+
+  // Counting some but well under half: a partial failure.
+  const partial = run(build((d) => (d === addDays(today, -1) ? [3, 1] : [1, 0])));
+  assert.equal(partial?.title, 'The site is counting fewer enquiries than GA4');
+
+  // Too soon after the start to judge.
+  assert.equal(run(build(() => [2, 0]), addDays(today, -2)), undefined, 'fewer than 3 days since the start');
 });
 
 /* ── recommendations ── */

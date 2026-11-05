@@ -41,6 +41,8 @@ export interface SiteConfig {
    */
   launchDatedGroups: string[];
   clarityProjectId?: string;
+  /** First full day the site's own enquiry counter (POST /api/insights) was live. Days before it are not compared against GA4. */
+  siteLeadsFrom?: string;
 }
 
 export const AUTO_CLEANSE: SiteConfig = {
@@ -48,6 +50,8 @@ export const AUTO_CLEANSE: SiteConfig = {
   name: 'Auto-Cleanse',
   baseUrl: 'https://www.auto-cleanse.co.uk',
   canonicalHost: 'www.auto-cleanse.co.uk',
+  // The counter shipped on 3 Nov 2026; the 4th was its first full day.
+  siteLeadsFrom: '2026-11-04',
   groups: [
     { key: 'home', label: 'Home page', service: 'general', weight: 0.8, commercial: true },
     { key: 'dpf-hub', label: 'DPF service pages', service: 'dpf', weight: 1, commercial: true },

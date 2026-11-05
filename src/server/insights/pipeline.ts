@@ -172,8 +172,9 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
   const rulesRun = new Set<string>();
   await step(steps, 'analyse', async () => {
     const days = await selectAll<SiteDay>(`/web_site_daily?site_id=eq.${config.id}&date=gte.${addDays(today, -80)}&select=date,gsc_clicks,gsc_impressions,gsc_final,ga4_sessions,ga4_leads,ga4_phone_clicks,ga4_whatsapp_clicks,site_leads,deposits_paid,clarity_sessions&order=date`);
-    const anyLeads = days.some((d) => (d.site_leads ?? 0) > 0);
-    const alerts = dailyAlerts({ today, days, configured: { gsc: configured.gsc, ga4: configured.ga4, clarity: configured.clarity, siteLeads: anyLeads } });
+    // The counter is compared from the day it went live (site config), or else from the first day it counted anything.
+    const siteLeadsFrom = config.siteLeadsFrom ?? days.find((d) => (d.site_leads ?? 0) > 0)?.date ?? null;
+    const alerts = dailyAlerts({ today, days, siteLeadsFrom, configured: { gsc: configured.gsc, ga4: configured.ga4, clarity: configured.clarity, siteLeads: Boolean(siteLeadsFrom) } });
     for (const a of alerts) rulesRun.add(a.rule);
     ['gsc_stale', 'ga4_zero', 'tracking_break', 'site_leads_break', 'clarity_zero', 'anomaly_gsc_clicks', 'anomaly_ga4_sessions', 'spike_ga4_sessions'].forEach((r) => rulesRun.add(r));
     findings.push(...alerts);
