@@ -34,6 +34,8 @@ const Footer = () => {
     { name: 'DPF Diagnostics', path: '/dpf-diagnostics-devon' },
     { name: 'Blocked DPF Cleaning', path: '/blocked-dpf-cleaning-devon' },
     { name: 'DPF Cleaning Devon', path: '/dpf-cleaning-devon' },
+    { name: 'Totnes (our workshop)', path: '/dpf-cleaning-totnes' },
+    { name: 'Paignton', path: '/dpf-cleaning-paignton' },
     { name: 'Newton Abbot', path: '/dpf-cleaning-newton-abbot' },
     { name: 'Plymouth', path: '/dpf-cleaning-plymouth' },
     { name: 'Exeter', path: '/dpf-cleaning-exeter' },
@@ -75,7 +77,7 @@ const Footer = () => {
           {/* Heavy CTA Column */}
           <div className="lg:col-span-4 space-y-8">
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.1]">
-              Ready to restore<br /><span className="text-[#FF7A00] italic font-medium">expertly?</span>
+              Ready to restore{' '}<br /><span className="text-[#FF7A00] italic font-medium">expertly?</span>
             </h2>
             <p className="text-sm text-white/60 max-w-sm font-medium leading-relaxed">
               {isNational
