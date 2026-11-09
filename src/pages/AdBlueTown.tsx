@@ -69,6 +69,7 @@ export default function AdBlueTown() {
   }
 
   const name = town.name;
+  const place = town.place ?? name;
   const message = `Hi Auto-Cleanse, AdBlue fault near ${name}. Reg: . Postcode: . Dash message: `;
   const telHref = `tel:${BUSINESS.telephone}`;
   const waHref = `https://wa.me/${BUSINESS.telephone.replace('+', '')}?text=${encodeURIComponent(message)}`;
@@ -78,7 +79,7 @@ export default function AdBlueTown() {
     ? `${name} is an area we cover, with our own technicians from our Totnes workshop, about ${town.kmFromTotnes} km away.`
     : `${name} is an area we cover. We book an independent mobile technician from our national network to come to you, and manage the job for you. Call with your postcode and we'll ring you back with who's coming and the price.`;
 
-  const description = `AdBlue warning, countdown or no-start in ${name}? We cover it: repair-only AdBlue diagnosis and repair${districts.length ? ` around ${listText(districts.slice(0, 3))}` : ''}. Call or WhatsApp ${BUSINESS.phoneDisplay}.`;
+  const description = `AdBlue warning, countdown or no-start in ${place}? We cover it: repair-only AdBlue diagnosis and repair${districts.length ? ` around ${listText(districts.slice(0, 3))}` : ''}. Call or WhatsApp ${BUSINESS.phoneDisplay}.`;
 
   const pumpText = town.pumps.length
     ? `OpenStreetMap lists ${listText(town.pumps.map((p) => `${p.name}${p.town ? ` (${p.town})` : ''}, about ${p.km} km away`))} as selling AdBlue at the pump. Listings can be out of date, so check before you set off. AdBlue is also widely sold in cans.`
@@ -92,19 +93,19 @@ export default function AdBlueTown() {
 
   return (
     <div className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title={`AdBlue Repair in ${name} | Auto-Cleanse`} description={description} path={townPath(town.slug)} />
+      <SEO title={`AdBlue Repair in ${place} | Auto-Cleanse`} description={description} path={townPath(town.slug)} />
       <script dangerouslySetInnerHTML={{ __html: `window.__ADBLUE_TOWN__=${inlineJson(town)};` }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(townServiceSchema('AdBlue and SCR System Repair', name, town.county || town.region)) }} />
 
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Breadcrumbs items={[{ name: 'AdBlue repair', path: '/adblue-repair' }, { name: 'Areas', path: TOWNS_PATH }, { name }]} />
+        <Breadcrumbs items={[{ name: 'AdBlue repair', path: '/adblue-repair' }, { name: 'Areas', path: TOWNS_PATH }, { name: place }]} />
 
         <header className="mb-12">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-[1.05] mb-6">
             <span className="text-white">AdBlue repair in </span>
-            <span className="text-[#FF7A00]">{name}</span>
+            <span className="text-[#FF7A00]">{place}</span>
           </h1>
           <CoverageBadge name={name} />
           {/* Contact buttons sit straight under the H1 and coverage line so

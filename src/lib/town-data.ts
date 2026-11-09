@@ -32,6 +32,9 @@ export interface TownData {
   intro: string;
   roadsText: string;
   updated: string;
+  /** Only when another town in the dataset has the same name: "Newport, Wales".
+   *  Used in the title, H1 and breadcrumb so the pages are told apart. */
+  place?: string;
 }
 
 export interface TownIndexEntry {

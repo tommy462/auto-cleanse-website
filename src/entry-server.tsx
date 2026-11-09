@@ -17,7 +17,18 @@ import { RemapTownDataContext, REMAP_TOWNS_PATH, remapTownPath, type RemapTownDa
 const PUBLISHED_TOWN_WAVE = 2;
 
 type TownRecord = Omit<TownData, 'nearby'> & { lat: number; lng: number; wave: number };
+
+// Towns that share a name (three Newports) get "Name, County" in the title and
+// H1, or "Name, Region" when the county is the town itself. Counted over the
+// whole dataset, so a name does not change when a later wave is published.
+function placeNames(towns: { name: string; county: string; region: string }[]) {
+  const count = new Map<string, number>();
+  for (const t of towns) count.set(t.name, (count.get(t.name) ?? 0) + 1);
+  return (t: { name: string; county: string; region: string }) =>
+    (count.get(t.name) ?? 0) > 1 ? { place: `${t.name}, ${t.county && t.county !== t.name ? t.county : t.region}` } : {};
+}
 const publishedTowns = (townsData as TownRecord[]).filter((t) => t.wave <= PUBLISHED_TOWN_WAVE);
+const townPlace = placeNames(townsData as TownRecord[]);
 
 function distanceKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
   const rad = Math.PI / 180;
@@ -38,7 +49,7 @@ const TOWN_STORE: TownStore = {
         .filter((o) => o.km <= 60)
         .sort((a, b) => a.km - b.km)
         .slice(0, 6);
-      return [t.slug, { ...rest, nearby }];
+      return [t.slug, { ...rest, nearby, ...townPlace(t) }];
     }),
   ),
   index: publishedTowns.map((t) => ({ slug: t.slug, name: t.name, region: t.region, county: t.county })),
@@ -50,6 +61,7 @@ const PUBLISHED_REMAP_WAVE = 2;
 
 type RemapTownRecord = Omit<RemapTownData, 'nearby' | 'adblueSlug'> & { lat: number; lng: number; wave: number };
 const publishedRemapTowns = (remapTownsData as RemapTownRecord[]).filter((t) => t.wave <= PUBLISHED_REMAP_WAVE);
+const remapTownPlace = placeNames(remapTownsData as RemapTownRecord[]);
 
 const REMAP_TOWN_STORE: RemapTownStore = {
   towns: Object.fromEntries(
@@ -62,7 +74,7 @@ const REMAP_TOWN_STORE: RemapTownStore = {
         .sort((a, b) => a.km - b.km)
         .slice(0, 6);
       const adblueSlug = TOWN_STORE.towns[t.slug] ? t.slug : undefined;
-      return [t.slug, { ...rest, nearby, ...(adblueSlug ? { adblueSlug } : {}) }];
+      return [t.slug, { ...rest, nearby, ...(adblueSlug ? { adblueSlug } : {}), ...remapTownPlace(t) }];
     }),
   ),
   index: publishedRemapTowns.map((t) => ({ slug: t.slug, name: t.name, region: t.region })),

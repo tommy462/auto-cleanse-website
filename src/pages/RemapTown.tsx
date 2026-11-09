@@ -74,6 +74,7 @@ export default function RemapTown() {
   }
 
   const name = town.name;
+  const place = town.place ?? name;
   const message = `Hi Auto-Cleanse, Stage 1 remap near ${name}. Reg: . Postcode: . Vehicle: `;
   const telHref = `tel:${BUSINESS.telephone}`;
   const waHref = `https://wa.me/${BUSINESS.telephone.replace('+', '')}?text=${encodeURIComponent(message)}`;
@@ -85,7 +86,7 @@ export default function RemapTown() {
   const coverage = `${name} is an area we cover. An independent mobile technician from our national network does the remap at your home or workplace, booked and managed by us. Call with your reg and postcode and we'll confirm who's coming and the price.`;
   const guides = [GUIDE_BASICS, localGuide(town)];
 
-  const description = `Stage 1 ECU remapping in ${name}, an area we cover, for diesel and petrol cars and vans${districts.length ? ` around ${listText(districts.slice(0, 3))}` : ''}. Diagnostics before and after, repair only. Call or WhatsApp ${BUSINESS.phoneDisplay}.`;
+  const description = `Stage 1 ECU remapping in ${place}, an area we cover, for diesel and petrol cars and vans${districts.length ? ` around ${listText(districts.slice(0, 3))}` : ''}. Diagnostics before and after, repair only. Call or WhatsApp ${BUSINESS.phoneDisplay}.`;
 
   const faqs: Faq[] = [
     {
@@ -103,19 +104,19 @@ export default function RemapTown() {
 
   return (
     <div className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title={`Stage 1 Remapping in ${name} | Auto-Cleanse`} description={description} path={remapTownPath(town.slug)} />
+      <SEO title={`Stage 1 Remapping in ${place} | Auto-Cleanse`} description={description} path={remapTownPath(town.slug)} />
       <script dangerouslySetInnerHTML={{ __html: `window.__REMAP_TOWN__=${inlineJson(town)};` }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(townServiceSchema('ECU Remapping', name, town.county || town.region)) }} />
 
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <Breadcrumbs items={[{ name: 'ECU remapping', path: '/ecu-remapping' }, { name: 'Areas', path: REMAP_TOWNS_PATH }, { name }]} />
+        <Breadcrumbs items={[{ name: 'ECU remapping', path: '/ecu-remapping' }, { name: 'Areas', path: REMAP_TOWNS_PATH }, { name: place }]} />
 
         <header className="mb-12">
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-[1.05] mb-6">
             <span className="text-white">Stage 1 remapping in </span>
-            <span className="text-[#FF7A00]">{name}</span>
+            <span className="text-[#FF7A00]">{place}</span>
           </h1>
           <CoverageBadge name={name} />
           {/* Contact buttons sit straight under the H1 and coverage line so
