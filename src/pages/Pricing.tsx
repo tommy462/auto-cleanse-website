@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import Reviews from '../components/Reviews';
 import { getReviews, HOMEPAGE_REVIEW_IDS } from '../data/reviews';
+import { businessRef } from '../data/business';
 import { Check, ChevronDown, Zap, Package } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -99,7 +100,19 @@ const Pricing = () => {
     },
   ];
 
+  // Each step is how the clean is actually done (see the DPF cleaning hub); nothing here is a new claim.
+  const dpfPriceCovers = [
+    'An inspection and air flow test before cleaning, with the back-pressure reading in mbar.',
+    'A water-only reverse flush on our METclean XL MKII: high-pressure aqueous and micro-cavitation cleaning from outlet to inlet, with no chemicals.',
+    'Hot-air drying.',
+    'A second flow test after cleaning. You get both readings.',
+  ];
+
   const faqs = [
+    {
+      question: 'How much does DPF cleaning cost?',
+      answer: 'DPF cleaning costs £210 within 10 miles of our Totnes workshop and £230 outside that radius, including filters posted to us from anywhere in the UK. HGV and plant filters are £299, also when posted. Every price covers the off-vehicle clean and a flow test before and after. Removing and refitting the filter is not included.',
+    },
     {
       question: 'Do you offer trade accounts?',
       answer: 'Yes, we offer trade accounts with preferential terms for regular customers. Contact us to discuss your requirements and set up an account.',
@@ -118,7 +131,7 @@ const Pricing = () => {
     },
     {
       question: 'How do you test filters?',
-      answer: 'We conduct comprehensive flow and back-pressure testing before and after cleaning. All results are documented in detailed reports for your records.',
+      answer: 'Every filter has an air flow test before and after cleaning, measuring back-pressure in mbar, and you get both readings.',
     },
     {
       question: 'Do you clean catalytic converters?',
@@ -136,12 +149,12 @@ const Pricing = () => {
 
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
-      <SEO title="DPF Cleaning & Remap Prices | AutoCleanse Devon" description="Transparent pricing in Devon: DPF cleaning from £210 and Stage 1 ECU remaps from £250. Nationwide postal DPF available. No hidden fees, trade & fleet rates. Based in Totnes." path="/pricing" />
+      <SEO title="DPF Cleaning Prices from £210, Remaps from £250 | Auto-Cleanse" description="DPF cleaning costs £210 near Totnes, £230 further away or posted from anywhere in the UK, £299 for HGV and plant. Flow tested before and after cleaning." path="/pricing" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Service",
         "name": "DPF Cleaning & ECU Remapping",
-        "provider": { "@type": "LocalBusiness", "name": "Auto-Cleanse", "url": "https://www.auto-cleanse.co.uk" },
+        "provider": businessRef,
         "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
         "offers": [
           { "@type": "Offer", "name": "DPF Cleaning - Within 10 Miles of Totnes", "priceCurrency": "GBP", "price": "210.00", "description": "Professional DPF cleaning with collection and same-day return where possible within 10 miles of Totnes, Devon." },
@@ -158,18 +171,21 @@ const Pricing = () => {
         {/* Header */}
         <div className="text-center mb-24 reveal-container">
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-[1.1] flex flex-wrap justify-center drop-shadow-2xl">
-            {splitText('Straightforward', 'text-white')}{' '}
+            {splitText('DPF Cleaning & Remap', 'text-white')}{' '}
             <span className="inline-block overflow-hidden pb-4 -mb-4 font-mono translate-y-[0.1em]">
-              <span className="inline-block word-reveal text-[#FF7A00] ml-3">pricing.</span>
+              <span className="inline-block word-reveal text-[#FF7A00] ml-3">Prices.</span>
             </span>
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-[#FF7A00] to-transparent mx-auto rounded-full mb-6"></div>
-          <p className="text-white/40 text-lg font-medium reveal-item">DPF cleaning fixed rates below. ECU remapping quoted on enquiry.</p>
+          <p className="text-white/40 text-lg font-medium reveal-item">Three fixed prices for DPF cleaning. Stage 1 remaps from £250, Stage 2 quoted on enquiry.</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-16 mb-32 reveal-container">
           {/* Pricing Cards */}
           <div className="lg:col-span-3">
+            <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-10 text-center md:text-left reveal-item">
+              DPF cleaning <span className="text-[#FF7A00]">prices</span>
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {pricingTiers.map((tier, index) => (
                 <div
@@ -218,6 +234,41 @@ const Pricing = () => {
                 <Check className="text-[#FF7A00] shrink-0 mt-0.5" size={20} />
                 <p className="text-white/70 text-sm md:text-base">
                   Same-day return is usually possible when your filter is ready for collection before 10am and within 30 miles of Totnes.
+                </p>
+              </div>
+            </div>
+
+            {/* What the DPF price covers, so a price search gets the whole answer here */}
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 reveal-item">
+              <div className="p-6 md:p-8 rounded-3xl bg-[#1A1D22] border border-white/5">
+                <h3 className="text-xl font-bold text-white mb-4">What the price covers</h3>
+                <ul className="space-y-3 text-white/70 text-sm md:text-base">
+                  {dpfPriceCovers.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <Check className="text-[#FF7A00] shrink-0 mt-0.5" size={18} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="p-6 md:p-8 rounded-3xl bg-[#1A1D22] border border-white/5">
+                <h3 className="text-xl font-bold text-white mb-4">Not included</h3>
+                <ul className="space-y-3 text-white/70 text-sm md:text-base">
+                  <li>
+                    Removing and refitting the filter. Need help with removal and refitting?{' '}
+                    <a href="tel:07823649190" className="text-[#FF7A00] font-bold underline underline-offset-2">Call us</a>{' '}
+                    to discuss current availability.
+                  </li>
+                  <li>
+                    The courier to us if you post your filter. You book it yourself, and the{' '}
+                    <Link to="/postal-dpf" className="text-[#FF7A00] font-bold underline underline-offset-2">postal DPF page</Link>{' '}
+                    explains how.
+                  </li>
+                </ul>
+                <p className="mt-6 text-white/60 text-sm md:text-base">
+                  Why do some quotes look cheaper? Our guide{' '}
+                  <Link to="/blog/how-much-does-dpf-cleaning-cost" className="text-[#FF7A00] font-bold underline underline-offset-2">How much does DPF cleaning cost?</Link>{' '}
+                  explains what a fair price should include and what to ask before you pay anyone.
                 </p>
               </div>
             </div>
@@ -303,7 +354,7 @@ const Pricing = () => {
         <div className="max-w-4xl mx-auto reveal-container">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
-              Protocol <span className="text-[#FF7A00]">FAQ</span>
+              Price <span className="text-[#FF7A00]">questions</span>
             </h2>
           </div>
 
