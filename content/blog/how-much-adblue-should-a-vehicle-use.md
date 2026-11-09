@@ -1,9 +1,10 @@
 ---
 title: "How Much AdBlue Should a Vehicle Use?"
+seoTitle: "How Much AdBlue per 1,000 Miles? Normal Use Guide"
 slug: "how-much-adblue-should-a-vehicle-use"
 date: 2026-10-05
 category: AdBlue
-excerpt: "How much AdBlue should a vehicle use, and how long should it last? Typical car, van and truck figures, how to find your normal and what a change means."
+excerpt: "A diesel car uses roughly 1.7 to 2.9 litres of AdBlue per 1,000 miles. Van and truck rates, how long a tank lasts, and when a change may mean a fault."
 coverImage: "/blog/how-much-adblue-should-a-vehicle-use/cover.jpg"
 coverAlt: "Graph of AdBlue used against miles with a shaded normal band, one line rising above it marked too high and one dropping below it marked too low"
 author: "Auto-Cleanse"
