@@ -85,7 +85,10 @@ function stripSkippedBlocks(html) {
   const open = /<([a-z][a-z0-9]*)\b[^>]*\sdata-lastmod-skip[^>]*>/i;
   let m;
   while ((m = open.exec(html))) {
-    const tags = new RegExp(`<${m[1]}\b[^>]*>|</${m[1]}>`, 'gi');
+    // `\\b` (escaped): a bare `\b` in a template literal is a backspace character,
+    // which never matches, so nested tags went uncounted and the block ended at its
+    // first closing tag, leaving post lists in the fingerprint.
+    const tags = new RegExp(`<${m[1]}\\b[^>]*>|</${m[1]}>`, 'gi');
     tags.lastIndex = m.index + m[0].length;
     let depth = 1;
     let end = html.length;
