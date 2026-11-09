@@ -1,9 +1,10 @@
 ---
 title: "DPF Warning Lights: What Each One Actually Means"
+seoTitle: "DPF Warning Light On? What Each Light Means and What to Do"
 slug: "dpf-warning-lights-explained"
 date: 2026-08-10
 category: DPF
-excerpt: "Filter light, engine-management light, flashing glow-plug light or limp mode - what each warning is telling you about a diesel particulate filter, and what to do next."
+excerpt: "DPF light on? What the filter light, engine-management light, flashing glow-plug light and limp mode each mean on a diesel, and what to do next."
 coverImage: "/blog/dpf-warning-lights-explained/cover.jpg"
 coverAlt: "Auto-Cleanse three circular dashboard warning icons labelled engine management, DPF filter and glow plug, each with a short explanation, below a soot-caked filter body"
 author: "Auto-Cleanse"
