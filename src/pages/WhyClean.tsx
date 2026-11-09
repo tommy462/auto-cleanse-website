@@ -298,11 +298,11 @@ const WhyClean = () => {
           </div>
         </div>
 
-        {/* DPF Cleaning vs Replacement – What You Should Know */}
+        {/* DPF Cleaning vs Replacement: What You Should Know */}
         <div className="mb-32 reveal-container">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
-              DPF Cleaning vs Replacement –<br />
+              DPF Cleaning vs Replacement:{' '}<br />
               <span className="text-[#FF7A00]">What You Should Know</span>
             </h2>
           </div>
@@ -314,14 +314,14 @@ const WhyClean = () => {
               <div className="text-white/60 text-lg md:text-xl leading-relaxed space-y-8 mb-16 relative z-10 font-medium font-serif">
                 <p>
                   Original Equipment Manufacturer (OEM) DPFs are engineered to last the lifetime of the vehicle
-                  when properly maintained. These filters are designed with cleaning in mind – their ceramic
+                  when properly maintained. These filters are designed with cleaning in mind: their ceramic
                   substrates and precious metal coatings are built to withstand multiple cleaning cycles without
                   degradation. Most DPF <span className="text-white">"failures" are actually blockages</span> caused by accumulated soot and ash,
                   not structural damage to the filter itself.
                 </p>
 
                 <p>
-                  Genuine replacement is only required when physical damage occurs – such as thermal shock
+                  Genuine replacement is only required when physical damage occurs, such as thermal shock
                   from overheating, substrate cracking, or complete melting of the ceramic structure. These
                   scenarios are relatively rare and typically result from severe engine problems or improper
                   regeneration cycles. In the UK, <span className="text-white">professional DPF cleaning maintains MOT compliance</span> and

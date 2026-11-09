@@ -4,7 +4,7 @@ seoTitle: "DPF Soot Mass: Calculated vs Measured Values Explained"
 slug: "calculated-soot-versus-measured-soot"
 date: 2026-01-12
 category: DPF
-excerpt: "Both calculated and measured DPF soot values are ECU estimates, not direct measurements. Here is what each one means and how to read them together."
+excerpt: "Calculated and measured DPF soot values are both ECU estimates. What each one means, why they disagree, and what a negative measured figure like -303 g points to."
 coverImage: "/blog/calculated-soot-versus-measured-soot/cover.jpg"
 coverAlt: "Auto-Cleanse two orange-arc dial gauges labelled MODELLED and PRESSURE, split by a not-equals sign, above a caption reading two estimates, one unknown"
 author: "Auto-Cleanse"
@@ -40,6 +40,12 @@ The two estimates do not have to match at every moment. Their response can diffe
 4. **The model inputs are inaccurate.** Airflow, fuelling, temperature and regeneration calculations differ by system, and an input fault can affect a model without making the displayed soot value itself the root cause.
 
 > **Common misdiagnosis:** "Measured soot is low, so the DPF must be clear." A low pressure-derived estimate is not proof of a clean, intact filter. The raw pressure signal, test conditions, pressure pipes, sensor plausibility, ash information and filter condition all still need to support that conclusion.
+
+## What a negative measured soot value means
+
+A negative measured figure, such as -303 g, cannot be a real soot load: a filter cannot hold less than nothing. It means the pressure-derived calculation is working from a differential pressure that is lower than the ECU expects for an empty filter, so the value says nothing reliable about how full the filter is.
+
+The measurement path is the first place to look. Typical causes are a sensor offset (compare the engine-off reading with the specification), pressure pipes that are split, blocked, disconnected or connected to the wrong ports, and sensor or wiring faults. Do not clean or replace the filter on that figure alone; confirm the pressure signal first, then judge the filter on data you can trust.
 
 ## A safer diagnostic sequence
 
