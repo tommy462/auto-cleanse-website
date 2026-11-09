@@ -189,7 +189,7 @@ const Home = () => {
   return (
     <main ref={container} className="block">
       <SEO
-        title="DPF Cleaning & ECU Remapping Devon | AutoCleanse"
+        title="DPF Cleaning & ECU Remapping Devon | Auto-Cleanse"
         description="Professional DPF cleaning and ECU remapping services. Same-day filter return within Devon where possible, nationwide postal service, and Stage 1 & 2 remap tuning available."
         path="/"
       />
@@ -199,6 +199,16 @@ const Home = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([
+            // Tells Google which name to show for the site in results ("Auto-Cleanse").
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://www.auto-cleanse.co.uk/#website",
+              "name": "Auto-Cleanse",
+              "alternateName": ["AutoCleanse", "Auto Cleanse"],
+              "url": "https://www.auto-cleanse.co.uk/",
+              "publisher": { "@id": "https://www.auto-cleanse.co.uk/#business" }
+            },
             {
               "@context": "https://schema.org",
               "@type": ["AutomotiveService", "LocalBusiness"],
@@ -335,7 +345,7 @@ const Home = () => {
               "@context": "https://schema.org",
               "@type": "Service",
               "name": "Off-Vehicle DPF Cleaning Devon",
-              "provider": { "@type": "LocalBusiness", "name": "Auto-Cleanse", "url": "https://www.auto-cleanse.co.uk" },
+              "provider": { "@id": "https://www.auto-cleanse.co.uk/#business" },
               "areaServed": [
                 { "@type": "AdministrativeArea", "name": "Devon" },
                 { "@type": "Country", "name": "United Kingdom" }
@@ -353,64 +363,10 @@ const Home = () => {
               "@context": "https://schema.org",
               "@type": "Service",
               "name": "ECU Remapping Devon",
-              "provider": { "@type": "LocalBusiness", "name": "Auto-Cleanse", "url": "https://www.auto-cleanse.co.uk" },
+              "provider": { "@id": "https://www.auto-cleanse.co.uk/#business" },
               "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
               "description": "Stage 1 and Stage 2 ECU remapping for cars, vans, HGVs and commercial vehicles in Devon. Improved power, torque and fuel economy. Custom fleet maps available.",
               "url": "https://www.auto-cleanse.co.uk/ecu-remapping"
-            },
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": [
-                {
-                  "@type": "Question",
-                  "name": "Can you clean a completely blocked DPF?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. Our METclean XL process uses high-pressure water bursts and micro-cavitation, water only, to clear even heavily blocked DPFs, and every filter is flow tested before and after."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "How long does DPF cleaning take?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Locally in Devon, we offer same-day service where possible for collections before 10am. For our nationwide postal service, turnaround is 24-48 hours from collection to return delivery."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "How much does DPF cleaning cost?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "DPF cleaning starts from £210 within 10 miles of Totnes, Devon. Outside 10 miles is £230, and HGV/plant vehicles are £299. All prices include collection, deep clean, flow testing and return."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Is ECU remapping legal in the UK?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, ECU remapping is legal in the UK. You should notify your insurance provider as it counts as a modification. Every remap we apply stays within safe mechanical limits."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Do you offer ECU remapping in Devon?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. AutoCleanse offers Stage 1 and Stage 2 ECU remapping for cars, vans, HGVs and commercial vehicles across Devon. Custom and fleet maps are also available."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "What areas of Devon do you cover for DPF cleaning?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "We cover all of Devon including Totnes, Exeter, Plymouth, Torquay, Paignton, Newton Abbot, Dartmouth, Kingsbridge, Tavistock and beyond. Nationwide postal DPF cleaning is also available."
-                  }
-                }
-              ]
             },
             {
               "@context": "https://schema.org",

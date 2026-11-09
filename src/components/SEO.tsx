@@ -28,7 +28,8 @@ const SEO: React.FC<SEOProps> = ({
   nofollow = false,
   selfCanonical = false
 }) => {
-  const siteName = 'AutoCleanse | DPF Cleaning & Remapping';
+  // The brand on its own, matching the WebSite schema on the home page.
+  const siteName = 'Auto-Cleanse';
   // Title prop is already fully formed (includes brand suffix); do not append again
   const fullTitle = title;
   const fullUrl = canonicalUrl(path);

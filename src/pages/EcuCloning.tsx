@@ -3,6 +3,7 @@ import { Cpu, CheckCircle2, Phone, Mail, ArrowRight, AlertTriangle, Zap, Shield,
 import SEO from '../components/SEO';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
+import { businessRef, localBusinessSchema } from '../data/business';
 
 const useCases = [
   {
@@ -81,39 +82,20 @@ export default function EcuCloning() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([
-            {
-              '@context': 'https://schema.org',
-              '@type': ['AutomotiveService', 'LocalBusiness'],
-              name: 'Auto-Cleanse',
+            // The one shared business entity (same @id on every page), with this page's service.
+            localBusinessSchema({
               description: 'Professional ECU cloning service in Devon. Faulty or damaged ECU replacement via full image cloning - VIN, immobiliser, calibration and tune preserved.',
-              url: 'https://www.auto-cleanse.co.uk/ecu-cloning',
-              telephone: '+447823649190',
-              email: 'info@auto-cleanse.co.uk',
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: 'The Old Barn Industrial Estate, Webbers Yard',
-                addressLocality: 'Totnes',
-                addressRegion: 'Devon',
-                postalCode: 'TQ9 6JY',
-                addressCountry: 'GB',
-              },
-              geo: { '@type': 'GeoCoordinates', latitude: '50.4316', longitude: '-3.6844' },
               areaServed: [
                 { '@type': 'AdministrativeArea', name: 'Devon' },
                 { '@type': 'Country', name: 'United Kingdom' },
               ],
               serviceType: 'ECU Cloning',
-              priceRange: '££',
-              sameAs: [
-                'https://www.facebook.com/profile.php?id=61573744325360',
-                'https://www.instagram.com/auto_cleansedpf/',
-              ],
-            },
+            }),
             {
               '@context': 'https://schema.org',
               '@type': 'Service',
               name: 'ECU Cloning Devon',
-              provider: { '@type': 'LocalBusiness', name: 'Auto-Cleanse', url: 'https://www.auto-cleanse.co.uk' },
+              provider: businessRef,
               areaServed: { '@type': 'AdministrativeArea', name: 'Devon' },
               description: 'Full ECU image cloning for faulty, water-damaged or incompatible replacement ECUs. VIN, immobiliser data, calibration and existing tune preserved. Workshop in Totnes, mobile service available across Devon.',
               url: 'https://www.auto-cleanse.co.uk/ecu-cloning',
@@ -126,15 +108,6 @@ export default function EcuCloning() {
                 name: q,
                 acceptedAnswer: { '@type': 'Answer', text: a },
               })),
-            },
-            {
-              '@context': 'https://schema.org',
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.auto-cleanse.co.uk/' },
-                { '@type': 'ListItem', position: 2, name: 'ECU Remapping', item: 'https://www.auto-cleanse.co.uk/ecu-remapping' },
-                { '@type': 'ListItem', position: 3, name: 'ECU Cloning', item: 'https://www.auto-cleanse.co.uk/ecu-cloning' },
-              ],
             },
           ]),
         }}

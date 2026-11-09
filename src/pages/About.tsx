@@ -1,5 +1,6 @@
 ﻿import { useRef } from 'react';
 import SEO from '../components/SEO';
+import { localBusinessSchema } from '../data/business';
 import { Shield, Zap } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -72,16 +73,8 @@ const About = () => {
   return (
     <div ref={container} className="pt-32 pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO title="About Auto-Cleanse | DPF Cleaning & ECU Remapping Devon" description="Auto-Cleanse is a Totnes-based DPF cleaning and ECU remapping specialist working with trade and private customers across Devon. Workshop or postal DPF cleaning, mobile or workshop remaps." path="/about" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": ["LocalBusiness", "AutomotiveService"],
-        "name": "Auto-Cleanse",
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema({
         "description": "Devon-based DPF cleaning and ECU remapping specialists. Operating from Totnes, serving trade garages, fleet operators and individual vehicle owners across Devon and the UK.",
-        "url": "https://www.auto-cleanse.co.uk/about",
-        "telephone": "+447823649190",
-        "email": "info@auto-cleanse.co.uk",
-        "address": { "@type": "PostalAddress", "streetAddress": "The Old Barn Industrial Estate, Webbers Yard", "addressLocality": "Totnes", "addressRegion": "Devon", "postalCode": "TQ9 6JY", "addressCountry": "GB" },
-        "geo": { "@type": "GeoCoordinates", "latitude": "50.4316", "longitude": "-3.6844" },
         "areaServed": { "@type": "AdministrativeArea", "name": "Devon" },
         "foundingDate": "2024",
         "sameAs": [
@@ -89,7 +82,7 @@ const About = () => {
           "https://www.instagram.com/auto_cleansedpf/",
           "https://www.linkedin.com/in/alex-rabone-102786158/"
         ]
-      })}} />
+      })) }} />
       {/* Background ambient light */}
       <div className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-[#FF7A00]/5 blur-[150px] rounded-[100%] pointer-events-none"></div>
 

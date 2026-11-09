@@ -59,12 +59,7 @@ const VehicleSchema = () => {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": "Professional DPF Cleaning Services",
-        "provider": {
-            "@type": "LocalBusiness",
-            "name": "AutoCleanse DPF Specialists",
-            "telephone": "+447823649190",
-            "url": "https://www.auto-cleanse.co.uk"
-        },
+        "provider": { "@id": "https://www.auto-cleanse.co.uk/#business" },
         "serviceType": "Diesel Particulate Filter (DPF) Cleaning & Refurbishment",
         "areaServed": {
             "@type": "Country",

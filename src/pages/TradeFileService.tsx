@@ -5,6 +5,7 @@ import {
   LayoutDashboard, CreditCard, Receipt, Search, Bot, Car, LogIn, CheckCircle2,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import { businessRef } from '../data/business';
 import MagneticButton from '../components/MagneticButton';
 import Breadcrumbs from '../components/Breadcrumbs';
 import TradeAccessForm from '../components/TradeAccessForm';
@@ -94,34 +95,12 @@ export default function TradeFileService() {
               '@type': 'Service',
               name: 'Trade File Service',
               serviceType: 'ECU & TCU trade file service',
-              provider: {
-                '@type': 'LocalBusiness',
-                name: 'AutoCleanse',
-                url: 'https://www.auto-cleanse.co.uk',
-                telephone: '+447823649190',
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: 'The Old Barn Industrial Estate, Webbers Yard',
-                  addressLocality: 'Totnes',
-                  addressRegion: 'Devon',
-                  postalCode: 'TQ9 6JY',
-                  addressCountry: 'GB',
-                },
-              },
+              provider: businessRef,
               areaServed: { '@type': 'Country', name: 'United Kingdom' },
               audience: { '@type': 'BusinessAudience', audienceType: 'Automotive trade, garages and mobile tuners' },
               description:
                 'A professional ECU and TCU trade file service for garages, mobile tuners and automotive trade customers. Upload original files, request Stage 1, Stage 2, TCU and economy files, then track progress and download returned files.',
               url: 'https://www.auto-cleanse.co.uk/trade-file-service',
-            },
-            {
-              '@context': 'https://schema.org',
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.auto-cleanse.co.uk/' },
-                { '@type': 'ListItem', position: 2, name: 'ECU Remapping', item: 'https://www.auto-cleanse.co.uk/ecu-remapping' },
-                { '@type': 'ListItem', position: 3, name: 'Trade File Service', item: 'https://www.auto-cleanse.co.uk/trade-file-service' },
-              ],
             },
           ]),
         }}
