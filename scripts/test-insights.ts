@@ -327,6 +327,22 @@ test('Clarity: documented Traffic shape and defensive parsing of other metrics',
   assert.equal(rows[0].scroll_depth, 48.2);
   assert.throws(() => validateClarity({ error: 'x' }));
 });
+test('Clarity: the live API shape (names without spaces, Url key) fills every column', () => {
+  const u = 'https://www.auto-cleanse.co.uk/pricing';
+  const frustration = (metricName: string, pct: number) => ({ metricName, information: [{ Url: u, subTotal: 3, pagesViews: 2, sessionsCount: '20', sessionsWithMetricPercentage: pct, sessionsWithoutMetricPercentage: 100 - pct }] });
+  const blocks = validateClarity([
+    { metricName: 'Traffic', information: [{ Url: u, distinctUserCount: '18', totalSessionCount: '20', totalBotSessionCount: '0', pagesPerSessionPercentage: 1.5 }] },
+    { metricName: 'ScrollDepth', information: [{ Url: u, averageScrollDepth: 41.5 }] },
+    { metricName: 'EngagementTime', information: [{ Url: u, totalTime: 120, activeTime: 60 }] },
+    frustration('DeadClickCount', 10), frustration('RageClickCount', 5), frustration('ExcessiveScroll', 0),
+    frustration('QuickbackClick', 7.5), frustration('ErrorClickCount', 2), frustration('ScriptErrorCount', 1),
+  ]);
+  const [r] = flattenClarity(blocks, ['URL'], 'www.auto-cleanse.co.uk');
+  assert.deepEqual(
+    [r.url, r.sessions, r.users, r.pages_per_session, r.scroll_depth, r.engagement_total_s, r.engagement_active_s, r.dead_click_pct, r.rage_click_pct, r.excessive_scroll_pct, r.quickback_pct, r.error_click_pct, r.script_error_pct],
+    ['/pricing', 20, 18, 1.5, 41.5, 120, 60, 10, 5, 0, 7.5, 2, 1],
+  );
+});
 
 /* ── AI output validation ── */
 test('AI output: unknown ids, banned phrases and dashes are handled', () => {

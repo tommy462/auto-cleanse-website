@@ -96,14 +96,18 @@ function dim(info: Record<string, unknown>, d: string): string {
   return '';
 }
 
+// Keyed by metric name in lower case with spaces removed (see metricKey).
 const METRIC_COLUMN: Record<string, keyof ClarityRow> = {
-  'dead click count': 'dead_click_pct',
-  'rage click count': 'rage_click_pct',
-  'excessive scroll': 'excessive_scroll_pct',
-  'quickback click': 'quickback_pct',
-  'error click count': 'error_click_pct',
-  'script error count': 'script_error_pct',
+  deadclickcount: 'dead_click_pct',
+  rageclickcount: 'rage_click_pct',
+  excessivescroll: 'excessive_scroll_pct',
+  quickbackclick: 'quickback_pct',
+  errorclickcount: 'error_click_pct',
+  scripterrorcount: 'script_error_pct',
 };
+
+/** The live API sends "ScrollDepth" and "DeadClickCount"; Microsoft's docs write "Scroll Depth". Compare letters only. */
+const metricKey = (name: string) => name.toLowerCase().replace(/[^a-z]/g, '');
 
 /**
  * Flattens one response into rows keyed by URL and device ('' = all). Frustration
@@ -132,7 +136,7 @@ export function flattenClarity(blocks: ClarityMetricBlock[], dims: string[], can
     return r;
   };
   for (const b of blocks) {
-    const name = b.metricName.toLowerCase();
+    const name = metricKey(b.metricName);
     for (const info of b.information) {
       const r = get(info);
       if (!r) continue;
@@ -141,14 +145,14 @@ export function flattenClarity(blocks: ClarityMetricBlock[], dims: string[], can
         r.bot_sessions = field(info, ['bot']);
         r.users = field(info, ['distinctuser'], ['distantuser'], ['user', 'count']);
         r.pages_per_session = field(info, ['pagespersession']);
-      } else if (name === 'scroll depth') {
+      } else if (name === 'scrolldepth') {
         r.scroll_depth = field(info, ['averagescrolldepth'], ['scroll']);
-      } else if (name === 'engagement time') {
+      } else if (name === 'engagementtime') {
         r.engagement_total_s = field(info, ['totaltime'], ['total']);
         r.engagement_active_s = field(info, ['activetime'], ['active']);
       } else if (METRIC_COLUMN[name]) {
         const col = METRIC_COLUMN[name];
-        const v = field(info, ['percentage'], ['sessionswithmetric']) ?? null;
+        const v = field(info, ['sessionswithmetricpercentage'], ['withmetric', 'percentage']) ?? null;
         (r as unknown as Record<string, number | null>)[col] = v;
         if (r.sessions == null) r.sessions = field(info, ['sessionscount'], ['sessions']);
       }
