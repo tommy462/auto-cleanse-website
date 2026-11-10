@@ -129,12 +129,17 @@ export function dailyAlerts(input: AlertInput): Finding[] {
   }
 
   if (configured.clarity) {
-    const last3 = days.filter((d) => d.date >= addDays(today, -3) && d.date <= yesterday);
-    if (last3.length >= 2 && sum(last3, 'clarity_sessions') === 0 && sum(last3, 'ga4_sessions') > 30) {
+    // Each run stores Clarity's last 24 hours under the run's own date, so a run on day D
+    // covers mostly D-1. Days with no Clarity figure (before it was connected, or a failed
+    // fetch) are missing, not zero: only the last few runs that returned a figure count.
+    const runs = days.filter((d) => d.date > addDays(today, -4) && d.date <= today && d.clarity_sessions != null);
+    const covered = new Set(runs.map((d) => addDays(d.date, -1)));
+    const ga4 = sum(days.filter((d) => covered.has(d.date)), 'ga4_sessions');
+    if (runs.length >= 2 && sum(runs, 'clarity_sessions') === 0 && ga4 > 30) {
       out.push(alert('clarity_zero:site', 'data_quality', 'Clarity has recorded nothing for days',
         'GA4 shows visitors who accepted cookies, but Clarity recorded no sessions.',
         'Check the Clarity project is still set up and the project ID in Vercel is right.',
-        [`GA4 visits in the last ${last3.length} days: ${sum(last3, 'ga4_sessions')}`, 'Clarity sessions in the same days: 0'], 30,
+        [`Clarity fetches compared: ${runs.map((d) => d.date).join(', ')} (each covers the 24 hours before the 7am run)`, `GA4 visits on the days they cover: ${ga4}`, 'Clarity sessions in those fetches: 0'], 30,
         ['The Clarity project was deleted or its ID in Vercel changed.', 'Clarity stopped loading after Accept on the cookie banner.']));
     }
   }

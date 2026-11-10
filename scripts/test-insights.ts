@@ -200,6 +200,25 @@ test('daily alerts: one quiet day is normal, a collapse is flagged', () => {
   assert.ok(a.some((x) => x.rule === 'anomaly_ga4_sessions'));
   assert.ok(!a.some((x) => x.rule === 'anomaly_gsc_clicks'));
 });
+test('daily alerts: Clarity is judged only on fetches that returned a figure', () => {
+  const day = (date: string, ga4: number | null, clarity: number | null): SiteDay => ({ date, gsc_clicks: 40, gsc_impressions: 2000, gsc_final: true, ga4_sessions: ga4, ga4_leads: 1, ga4_phone_clicks: 3, ga4_whatsapp_clicks: 0, site_leads: 1, deposits_paid: 0, clarity_sessions: clarity });
+  const today = '2026-03-14';
+  const run = (clarity: (date: string) => number | null) => {
+    const days: SiteDay[] = [];
+    for (let i = 20; i >= 0; i--) { const d = addDays(today, -i); days.push(day(d, i === 0 ? null : 50, clarity(d))); }
+    return dailyAlerts({ today, days, configured: { gsc: true, ga4: true, clarity: true, siteLeads: false } }).find((x) => x.rule === 'clarity_zero');
+  };
+  // First run after connecting: only today's fetch exists, filed under today.
+  assert.equal(run((d) => (d === today ? 40 : null)), undefined, 'days before Clarity was connected are not zeros');
+  assert.equal(run((d) => (d === today ? 0 : null)), undefined, 'one empty fetch is not enough');
+  assert.equal(run(() => null), undefined, 'no fetches at all is not a Clarity fault');
+  assert.equal(run((d) => (d >= addDays(today, -2) ? 30 : null)), undefined, 'working normally');
+  // Fetches keep coming back empty while GA4 sees visitors.
+  const broken = run((d) => (d >= addDays(today, -2) ? 0 : null));
+  assert.ok(broken, 'raised when the last fetches all returned 0');
+  assert.ok(broken!.facts.some((f) => f.startsWith('Clarity fetches compared:')), broken!.facts.join(' | '));
+  assert.ok(broken!.facts.includes('GA4 visits on the days they cover: 150'), broken!.facts.join(' | '));
+});
 test('daily alerts: the enquiry counter is only compared with GA4 from the day it went live', () => {
   const mk = (date: string, ga4: number, site: number): SiteDay => ({ date, gsc_clicks: 40, gsc_impressions: 2000, gsc_final: true, ga4_sessions: 60, ga4_leads: ga4, ga4_phone_clicks: 3, ga4_whatsapp_clicks: 0, site_leads: site, deposits_paid: 0, clarity_sessions: 20 });
   const from = '2026-03-10';
