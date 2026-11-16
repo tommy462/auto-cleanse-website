@@ -17,7 +17,12 @@ import { pickControls, queryPeriods, queryShifts, targetQueries } from '../src/s
 import { dailyAlerts, type SiteDay } from '../src/server/insights/alerts.js';
 import { mergeFindings, type ExistingRec } from '../src/server/insights/recommend.js';
 import { evaluate, experimentWindows, emptyTotals } from '../src/server/insights/experiments.js';
-import { flattenClarity, validateClarity } from '../src/server/insights/clarity.js';
+import {
+  CLARITY_DAILY_ALLOWANCE, CLARITY_TIMEOUT_MS, clarityRequestsUsed, clarityStoredBy, collectClarity, describeClarityOutcome, flattenClarity, validateClarity,
+  type ClarityCollectInput, type ClarityCollectResult, type ClarityMetricBlock,
+} from '../src/server/insights/clarity.js';
+import { fetchJson, HttpError, isTransient, TimeoutError, TransportError } from '../src/server/insights/http.js';
+import { step } from '../src/server/insights/store.js';
 import { validateAiResult, estimateMaxCost } from '../src/server/insights/ai.js';
 import { readExport } from '../src/server/insights/gsc-export.js';
 import { parseSitemap } from '../src/server/insights/sitemap.js';
@@ -28,6 +33,9 @@ let passed = 0;
 const failures: string[] = [];
 function test(name: string, fn: () => void) {
   try { fn(); passed++; console.log(`PASS ${name}`); } catch (e) { failures.push(name); console.log(`FAIL ${name}\n     ${(e as Error).message}`); }
+}
+async function testAsync(name: string, fn: () => Promise<void>) {
+  try { await fn(); passed++; console.log(`PASS ${name}`); } catch (e) { failures.push(name); console.log(`FAIL ${name}\n     ${(e as Error).message}`); }
 }
 
 const W: AnalysisWindow = { from: '2026-09-01', to: '2026-09-28', prevFrom: '2026-08-04', prevTo: '2026-08-31', days: 28, label: '2026-09-01 to 2026-09-28' };
@@ -476,6 +484,290 @@ test('evaluate: the main searches are reported beside the verdict, never instead
 test('learning: priorityOf keeps the scaled score analyse() gave a finding', () => {
   assert.equal(priorityOf({ valueScore: 10, confidenceScore: 0.5, effort: 'small', priorityScore: 3.75 } as never), 3.75);
   assert.equal(priorityOf({ valueScore: 10, confidenceScore: 0.5, effort: 'small' } as never), 5);
+});
+
+/* ── http: timeouts, retries, error messages ── */
+// fetch is replaced by synthetic fakes below and put back after each test: nothing touches the network.
+async function withFetch(fake: (url: string, init: RequestInit) => Promise<Response>, fn: () => Promise<void>) {
+  const real = globalThis.fetch;
+  globalThis.fetch = ((url: string, init: RequestInit = {}) => fake(String(url), init)) as typeof fetch;
+  try { await fn(); } finally { globalThis.fetch = real; }
+}
+const FAKE_URL = 'https://example.invalid/api';
+
+test('TimeoutError reads as a plain sentence', () => {
+  assert.equal(new TimeoutError('Clarity', 75_000, 2).message, 'Clarity took longer than 75 seconds to answer (2 attempts)');
+  assert.equal(new TimeoutError('Clarity', 75_000, 1).message, 'Clarity took longer than 75 seconds to answer');
+  assert.equal(new TimeoutError('Google', 30_000, 1).message, 'Google took longer than 30 seconds to answer');
+  assert.equal(new TimeoutError('Clarity', 2_500, 1).message, 'Clarity took longer than 2.5 seconds to answer');
+  assert.equal(new TimeoutError('Clarity', 75_000, 1).name, 'TimeoutError');
+});
+test('isTransient: what another attempt might fix', () => {
+  assert.equal(isTransient(new TimeoutError('x', 1000, 1)), true);
+  assert.equal(isTransient(new TransportError('x could not be reached (ECONNRESET)')), true);
+  assert.equal(isTransient(new HttpError('x', 408, '')), true);
+  assert.equal(isTransient(new HttpError('x', 500, '')), true);
+  assert.equal(isTransient(new HttpError('x', 503, '')), true);
+  assert.equal(isTransient(new HttpError('x', 429, 'Too many requests')), true);
+  assert.equal(isTransient(new HttpError('x', 429, 'Exceeded daily limit')), false);
+  assert.equal(isTransient(new HttpError('x', 400, '')), false);
+  assert.equal(isTransient(new HttpError('x', 401, '')), false);
+  assert.equal(isTransient(new HttpError('x', 404, '')), false);
+  assert.equal(isTransient(new Error('x')), false);
+  assert.equal(isTransient('x'), false);
+});
+await testAsync('fetchJson: a request that never answers ends as a TimeoutError, not "aborted"', async () => {
+  let calls = 0;
+  await withFetch((_url, init) => {
+    calls++;
+    return new Promise((_res, rej) => {
+      init.signal?.addEventListener('abort', () => rej(new DOMException('This operation was aborted', 'AbortError')));
+    });
+  }, async () => {
+    await assert.rejects(fetchJson(FAKE_URL, { timeoutMs: 5, retries: 2, retryDelayMs: 1, label: 'Fake' }), (e: unknown) => {
+      assert.ok(e instanceof TimeoutError);
+      assert.equal(e.attempts, 3);
+      assert.equal(e.timeoutMs, 5);
+      assert.doesNotMatch(e.message, /aborted/i);
+      assert.match(e.message, /^Fake took longer than .* seconds to answer \(3 attempts\)$/);
+      return true;
+    });
+  });
+  assert.equal(calls, 3);
+});
+await testAsync('fetchJson: 500 then 200 succeeds on the second call', async () => {
+  let calls = 0;
+  await withFetch(async () => (++calls === 1 ? new Response('busy', { status: 500 }) : new Response('{"a":1}', { status: 200 })), async () => {
+    assert.deepEqual(await fetchJson(FAKE_URL, { retryDelayMs: 1, label: 'Fake' }), { a: 1 });
+  });
+  assert.equal(calls, 2);
+});
+await testAsync('fetchJson: 401 and a daily-limit 429 fail after one call', async () => {
+  let calls = 0;
+  await withFetch(async () => { calls++; return new Response('Unauthorised', { status: 401 }); }, async () => {
+    await assert.rejects(fetchJson(FAKE_URL, { retryDelayMs: 1, label: 'Fake' }), (e: unknown) => e instanceof HttpError && e.status === 401);
+  });
+  assert.equal(calls, 1);
+  calls = 0;
+  await withFetch(async () => { calls++; return new Response('Exceeded daily limit', { status: 429 }); }, async () => {
+    await assert.rejects(fetchJson(FAKE_URL, { retryDelayMs: 1, label: 'Fake' }), (e: unknown) => e instanceof HttpError && e.status === 429);
+  });
+  assert.equal(calls, 1);
+});
+await testAsync('fetchJson: a dropped connection reads "could not be reached (CODE)" after the retries', async () => {
+  let calls = 0;
+  await withFetch(async () => { calls++; throw Object.assign(new TypeError('fetch failed'), { cause: { code: 'ECONNRESET', message: 'socket hang up' } }); }, async () => {
+    await assert.rejects(fetchJson(FAKE_URL, { retries: 2, retryDelayMs: 1, label: 'Fake' }), (e: unknown) => {
+      assert.ok(e instanceof TransportError);
+      assert.equal(e.message, 'Fake could not be reached (ECONNRESET)');
+      return true;
+    });
+  });
+  assert.equal(calls, 3);
+});
+await testAsync('fetchJson: a 200 that is not JSON says so, after the retries', async () => {
+  let calls = 0;
+  await withFetch(async () => { calls++; return new Response('<html>oops</html>', { status: 200 }); }, async () => {
+    await assert.rejects(fetchJson(FAKE_URL, { retries: 1, retryDelayMs: 1, label: 'Fake' }), (e: unknown) => {
+      assert.ok(e instanceof TransportError);
+      assert.equal(e.message, 'Fake sent an answer that could not be read as JSON');
+      return true;
+    });
+  });
+  assert.equal(calls, 2);
+});
+
+/* ── Clarity: how the 10 requests a day are spent ── */
+// A fake Clarity with a fake clock. Every row count below is synthetic.
+type Answer = 'ok' | 'timeout' | Error;
+const describedTexts: string[] = [];
+async function runClarity(o: {
+  answers?: Record<string, Answer[]>;
+  usedToday?: number;
+  alreadyStored?: string[];
+  timeLeft?: number;
+  rows?: Record<string, number>;
+  onRequest?: ClarityCollectInput['onRequest'];
+} = {}) {
+  let clock = 1_000_000;
+  const deadline = clock + (o.timeLeft ?? 180_000);
+  const calls: { name: string; timeoutMs: number }[] = [];
+  const queue: Record<string, Answer[]> = Object.fromEntries(Object.entries(o.answers ?? {}).map(([k, v]) => [k, [...v]]));
+  const result = await collectClarity({
+    alreadyStored: o.alreadyStored ?? [],
+    usedToday: o.usedToday ?? 0,
+    deadline,
+    now: () => clock,
+    sleep: async (ms) => { clock += ms; },
+    onRequest: o.onRequest,
+    fetchDimension: async (dims, { timeoutMs }) => {
+      const name = dims.length ? dims.join('+') : 'site';
+      calls.push({ name, timeoutMs });
+      const a = queue[name]?.shift() ?? 'ok';
+      if (a === 'timeout') { clock += timeoutMs; throw new TimeoutError('Clarity', timeoutMs, 1); }
+      if (a instanceof Error) { clock += 1_000; throw a; }
+      clock += 15_000;
+      return [] as ClarityMetricBlock[];
+    },
+    store: async (name) => o.rows?.[name] ?? 10,
+  });
+  const outcome = describeClarityOutcome(result);
+  describedTexts.push(outcome.text);
+  return { result, outcome, calls };
+}
+const names = (xs: { name: string }[]) => xs.map((x) => x.name);
+
+await testAsync('Clarity: all three answer', async () => {
+  const { result, outcome } = await runClarity();
+  assert.equal(result.requests, 3);
+  assert.deepEqual(names(result.stored), ['site', 'URL', 'URL+Device']);
+  assert.equal(outcome.ok, true);
+  assert.equal(outcome.rows, 30);
+  assert.equal(outcome.text, 'last 24 hours to the time of the run; 3 requests, 3 of 10 used today');
+});
+await testAsync('Clarity: the first request times out twice, the rest are not asked for', async () => {
+  const { result, outcome, calls } = await runClarity({ answers: { site: ['timeout', 'timeout'] } });
+  assert.equal(result.requests, 2);
+  assert.deepEqual(names(calls), ['site', 'site']);
+  assert.deepEqual(result.stored, []);
+  assert.deepEqual(names(result.notAsked), ['URL', 'URL+Device']);
+  assert.equal(result.notAskedWhy, 'after_failure');
+  assert.equal(outcome.ok, false);
+  assert.equal(outcome.text, 'Nothing stored. Not stored: site totals, pages, pages by device. Clarity took longer than 75 seconds to answer (2 attempts). The rest were not asked for, to save the daily allowance. 2 of Clarity\'s 10 daily requests used today.');
+});
+await testAsync('Clarity: the third request times out twice after two answers', async () => {
+  const { result, outcome } = await runClarity({ answers: { 'URL+Device': ['timeout', 'timeout'] }, rows: { site: 1, URL: 56 } });
+  assert.equal(result.requests, 4);
+  assert.equal(outcome.rows, 57);
+  assert.equal(outcome.text, 'Stored: site totals, pages (57 rows this run). Not stored: pages by device. Clarity took longer than 75 seconds to answer (2 attempts). 4 of Clarity\'s 10 daily requests used today.');
+});
+await testAsync('Clarity: a same-day re-run asks only for what is missing', async () => {
+  const { result, outcome, calls } = await runClarity({ alreadyStored: ['site', 'URL'], usedToday: 4 });
+  assert.deepEqual(names(calls), ['URL+Device']);
+  assert.deepEqual(names(result.kept), ['site', 'URL']);
+  assert.equal(result.usedToday, 5);
+  assert.equal(outcome.ok, true);
+  assert.equal(outcome.text, 'last 24 hours to the time of the run; 1 request, 5 of 10 used today; site totals, pages kept from an earlier run today');
+  const all = await runClarity({ alreadyStored: ['site', 'URL', 'URL+Device'], usedToday: 4 });
+  assert.equal(all.result.requests, 0);
+  assert.equal(all.outcome.ok, true);
+  assert.equal(all.outcome.text, 'already stored by an earlier run today; no requests made');
+});
+await testAsync('Clarity: never goes past the daily allowance', async () => {
+  const fine = await runClarity({ usedToday: 8 });
+  assert.equal(fine.result.requests, 2);
+  assert.deepEqual(names(fine.result.notAsked), ['URL+Device']);
+  assert.equal(fine.result.notAskedWhy, 'allowance');
+  assert.match(fine.outcome.text, /Clarity's 10 requests for today are used up\. 10 of Clarity's 10 daily requests used today\.$/);
+  const slow = await runClarity({ usedToday: 8, answers: { site: ['timeout', 'timeout'], URL: ['timeout', 'timeout'], 'URL+Device': ['timeout', 'timeout'] } });
+  assert.ok(slow.result.requests <= 2);
+  assert.equal(slow.result.requests, 1, 'with 2 left and 3 to ask, the first is not retried');
+  const spent = await runClarity({ usedToday: 10 });
+  assert.equal(spent.result.requests, 0);
+  assert.equal(spent.calls.length, 0);
+  assert.equal(spent.outcome.text, 'Nothing stored. Not stored: site totals, pages, pages by device. Clarity\'s 10 requests for today are used up. 10 of Clarity\'s 10 daily requests used today.');
+});
+await testAsync('Clarity: a retry gives way to asking for every dimension once', async () => {
+  const { result, calls } = await runClarity({ usedToday: 7, answers: { site: ['timeout'] } });
+  assert.equal(result.requests, 1);
+  assert.deepEqual(names(calls), ['site']);
+  assert.equal(result.failed?.reason, 'Clarity took longer than 75 seconds to answer');
+  const ample = await runClarity({ usedToday: 6, answers: { site: ['timeout'] } });
+  assert.deepEqual(names(ample.calls), ['site', 'site', 'URL', 'URL+Device'], 'with 4 left and 3 to ask, one retry fits');
+});
+await testAsync('Clarity: stops in time and clips the timeout to the time left', async () => {
+  const late = await runClarity({ timeLeft: 19_999 });
+  assert.equal(late.result.requests, 0);
+  assert.equal(late.result.notAskedWhy, 'time');
+  assert.match(late.outcome.text, /There was no time left in this run to ask\./);
+  const tight = await runClarity({ timeLeft: 30_000 });
+  assert.equal(tight.calls[0].timeoutMs, 30_000);
+  assert.equal(tight.result.requests, 1, '15 s used, 15 s left: not worth a request');
+  const roomy = await runClarity();
+  assert.ok(roomy.calls.every((c) => c.timeoutMs === CLARITY_TIMEOUT_MS));
+  const noRetry = await runClarity({ timeLeft: 90_000, answers: { site: ['timeout'] } });
+  assert.equal(noRetry.result.requests, 1, '75 s spent, 15 s left: no retry');
+});
+await testAsync('Clarity: the request count is recorded before each request', async () => {
+  const seen: number[] = [];
+  const ok = await runClarity({ answers: { URL: ['timeout'] }, onRequest: async (n) => { seen.push(n); } });
+  assert.deepEqual(seen, [1, 2, 3, 4]);
+  assert.equal(ok.result.requests, 4);
+  const broken = await runClarity({ onRequest: async () => { throw new Error('database unavailable'); } });
+  assert.equal(broken.calls.length, 0);
+  assert.equal(broken.result.requests, 0);
+  assert.match(broken.result.failed?.reason ?? '', /^Could not record the request count: database unavailable/);
+});
+await testAsync('Clarity: permanent errors are not retried; a daily-limit answer is reported as such', async () => {
+  const denied = await runClarity({ answers: { site: [new HttpError('Clarity: HTTP 401 Unauthorised', 401, '')] } });
+  assert.equal(denied.result.requests, 1);
+  assert.equal(denied.result.failed?.reason, 'Clarity: HTTP 401 Unauthorised');
+  const limit = await runClarity({ answers: { site: [new HttpError('Clarity: HTTP 429 Exceeded daily limit', 429, 'Exceeded daily limit')] } });
+  assert.equal(limit.result.requests, 1);
+  assert.equal(limit.result.failed?.reason, 'Clarity says today\'s 10 requests are already used up');
+  const mixed = await runClarity({ answers: { site: ['timeout', new HttpError('Clarity: HTTP 503 busy', 503, 'busy')] } });
+  assert.equal(mixed.result.requests, 2);
+  assert.equal(mixed.result.failed?.reason, 'Clarity: HTTP 503 busy', 'not every attempt timed out: the last error stands');
+});
+await testAsync('Clarity: never more than 6 requests in a run or 10 in a day', async () => {
+  const patterns: Answer[][] = [['ok'], ['timeout', 'timeout']];
+  for (let used = 0; used <= CLARITY_DAILY_ALLOWANCE; used++) {
+    for (const a of patterns) for (const b of patterns) for (const c of patterns) {
+      const { result } = await runClarity({ usedToday: used, answers: { site: a, URL: b, 'URL+Device': c } });
+      assert.ok(result.requests <= 6, `used ${used}: ${result.requests} requests`);
+      assert.ok(result.usedToday <= CLARITY_DAILY_ALLOWANCE, `used ${used}: ${result.usedToday} today`);
+    }
+  }
+});
+test('Clarity: every outcome text is short and has no long dashes', () => {
+  const long: ClarityCollectResult = {
+    stored: [{ name: 'site', label: 'site totals', rows: 1 }], kept: [{ name: 'URL', label: 'pages' }],
+    failed: { name: 'URL+Device', label: 'pages by device', reason: `Clarity: HTTP 500 ${'x—'.repeat(400)}` },
+    notAsked: [], notAskedWhy: 'after_failure', requests: 6, usedToday: 10, rows: 1,
+  };
+  describedTexts.push(describeClarityOutcome(long).text);
+  assert.ok(describedTexts.length > 20);
+  for (const t of describedTexts) {
+    assert.ok(t.length < 600, `${t.length} characters: ${t.slice(0, 80)}`);
+    assert.doesNotMatch(t, /[–—]/);
+  }
+});
+test('clarityRequestsUsed: recorded counts, and a worst case for older runs', () => {
+  assert.equal(clarityRequestsUsed([{ summary: { clarityRequests: 2 } }, { summary: { clarityRequests: 3 }, steps: [{ step: 'clarity', status: 'failed' }] }]), 5);
+  assert.equal(clarityRequestsUsed([{ summary: { today: '2026-11-16' }, steps: [{ step: 'clarity', status: 'failed' }] }]), 6);
+  assert.equal(clarityRequestsUsed([{ summary: {}, steps: [{ step: 'clarity', status: 'ok' }] }]), 6);
+  assert.equal(clarityRequestsUsed([{ summary: {}, steps: [{ step: 'clarity', status: 'skipped' }] }, { summary: {}, steps: [{ step: 'ga4', status: 'ok' }] }]), 0);
+  assert.equal(clarityRequestsUsed([{ summary: null, steps: null }, {}]), 0);
+  assert.equal(clarityRequestsUsed([{ summary: { clarityRequests: Number.NaN }, steps: [{ step: 'clarity', status: 'ok' }] }]), 6);
+  assert.equal(clarityRequestsUsed([{ summary: { clarityRequests: 0 }, steps: [{ step: 'clarity', status: 'failed' }] }]), 0);
+  assert.equal(clarityRequestsUsed([]), 0);
+  assert.equal(clarityRequestsUsed([{ summary: { clarityRequests: 0, clarityStored: [] }, steps: [{ step: 'clarity', status: 'failed' }] }]), 0, 'a counted run that failed before any request');
+});
+test('clarityStoredBy: what earlier runs today reported as stored', () => {
+  assert.deepEqual(clarityStoredBy([{ summary: { clarityStored: ['URL'] } }, { summary: { clarityStored: ['site'] } }]), ['site', 'URL'], 'merged and in dimension order');
+  assert.deepEqual(clarityStoredBy([{ summary: { clarityStored: ['URL', 'URL', 'nonsense', 3, null, 'URL+Device'] } }]), ['URL', 'URL+Device'], 'unknown names and non-strings dropped');
+  assert.deepEqual(clarityStoredBy([{ summary: { today: '2026-11-16' }, steps: [{ step: 'clarity', status: 'ok' }] }]), ['site', 'URL', 'URL+Device'], 'a legacy ok run stored all three');
+  assert.deepEqual(clarityStoredBy([{ summary: {}, steps: [{ step: 'clarity', status: 'failed' }] }, { summary: {}, steps: [{ step: 'clarity', status: 'skipped' }] }]), [], 'legacy failed or skipped: unknown, ask again');
+  assert.deepEqual(clarityStoredBy([{ summary: { clarityStored: [] }, steps: [{ step: 'clarity', status: 'failed' }] }]), [], 'an empty recorded list is not treated as legacy');
+  assert.deepEqual(clarityStoredBy([{ summary: { clarityStored: [] }, steps: [{ step: 'clarity', status: 'ok' }] }]), [], 'a recorded list wins over the step status');
+  assert.deepEqual(clarityStoredBy([{ summary: null, steps: null }, {}]), []);
+  assert.deepEqual(clarityStoredBy([]), []);
+});
+await testAsync('step(): a partial failure is recorded as failed and keeps its rows', async () => {
+  const steps: Parameters<typeof step>[0] = [];
+  const realError = console.error;
+  console.error = () => {};
+  try {
+    assert.equal(await step(steps, 'clarity', async () => ({ rows: 5, failed: 'x' })), false);
+    assert.equal(await step(steps, 'ga4', async () => ({ rows: 3, note: 'fine' })), true);
+    assert.equal(await step(steps, 'jobs', async () => ({ rows: 1, failed: '' })), true, 'an empty reason is not a failure');
+  } finally { console.error = realError; }
+  assert.equal(steps[0].status, 'failed');
+  assert.equal(steps[0].rows, 5);
+  assert.equal(steps[0].error, 'x');
+  assert.equal(steps[1].status, 'ok');
+  assert.equal(steps[1].note, 'fine');
+  assert.equal(steps[2].status, 'ok');
 });
 
 console.log(`\n${passed} passed, ${failures.length} failed${failures.length ? `: ${failures.join('; ')}` : ''}`);

@@ -36,13 +36,39 @@ api/insights.ts  --- writes (secret key) --->  Supabase  web_* tables
 - **GA4** is re-read for the last 4 days: landing page x channel x device, page views, and the conversion
   events listed in `site-config.ts` (`generate_lead`, `phone_click`, `contact_click`, `booking_click`,
   `begin_checkout`, `dpf_cta_click`). GA4 only sees visitors who pressed Accept.
-- **Clarity**: 3 of the 10 daily requests (site, URL, URL x device) for the last 24 hours. The export API
-  cannot go further back and has no recordings or heatmaps, so history builds one day at a time and the
-  dashboard links into Clarity for recordings and heatmaps. Only the "Traffic" response shape is documented
-  by Microsoft; the parser is defensive and the raw responses are kept in `web_clarity_snapshots`.
+- **Clarity**: normally three requests a day (site, URL, URL x device) for the last 24 hours, each given
+  up to 75 seconds and one retry, so at most 6 requests in one run (`collectClarity` in `clarity.ts`).
+  Every attempt counts against Clarity's 10 a day across all of that day's runs
+  (`web_runs.summary.clarityRequests`), and each run records which dimensions it fully stored
+  (`web_runs.summary.clarityStored`); a second run on the same day asks only for what no earlier run that
+  day reported as stored, and can never go past 10. The step must finish 180 seconds into the run, so the rest of the run always
+  has time. When something fails, the step is marked failed, its error says what was stored, what was not
+  and why, and the run ends `partial`, so it can be run again the same day. The export API cannot go
+  further back and has no recordings or heatmaps, so history builds one day at a time and the dashboard
+  links into Clarity for recordings and heatmaps. Only the "Traffic" response shape is documented by
+  Microsoft; the parser is defensive and the raw responses are kept in `web_clarity_snapshots`.
 - **Business**: jobs created and done per day and service (counts and quoted value only; the
   "Stripe session" filter runs in the database so job notes are never read), and Stripe checkout sessions
   (started / paid) with the `attr_*` metadata the booking page now sends.
+
+## When Clarity is slow or fails
+
+Data health shows the Clarity step's error in plain words, for example:
+
+- `Nothing stored. Not stored: site totals, pages, pages by device. Clarity took longer than 75 seconds to answer (2 attempts). The rest were not asked for, to save the daily allowance. 2 of Clarity's 10 daily requests used today.`
+- `Stored: site totals, pages (57 rows this run). Not stored: pages by device. Clarity took longer than 75 seconds to answer (2 attempts). 4 of Clarity's 10 daily requests used today.`
+
+(The row count is an example, not a real figure.)
+
+The export API only gives the last 24, 48 or 72 hours, counted back from the moment of the call. A missed
+morning can therefore only be picked up by another run the same day, and that run stores the 24 hours up
+to its own time: the later it runs, the more of the missed day is gone, and the more of the current day
+is counted again by the next morning's run.
+
+2-day and 3-day answers are deliberately not stored. Nothing reads `num_days` (not
+`web_clarity_url_window`, not `buildSiteDaily`, not the dashboard) and it is not part of either table's
+key, so a multi-day row would either replace a day's own row or be added up as if it were one day,
+counting the overlapping day twice. Percentages over a 2-day window are not a day's figure either.
 
 ## What counts as a conversion
 

@@ -12,7 +12,7 @@ import { AUTO_CLEANSE, groupDef, type SiteConfig } from './site-config.js';
 import { claimRun, finishRun, insertIgnore, patch, rpc, rpcAll, selectAll, skip, step, upsert } from './store.js';
 import { loadSitemaps, checkStatuses } from './sitemap.js';
 import { ga4Events, ga4Landing, ga4Pages, googleConfigured, gscPagesDaily, gscQueries, gscSiteDaily } from './google.js';
-import { clarityConfigured, clarityExport, flattenClarity } from './clarity.js';
+import { clarityConfigured, clarityExport, clarityRequestsUsed, clarityStoredBy, collectClarity, describeClarityOutcome, flattenClarity } from './clarity.js';
 import { businessDaily, stripeConversions } from './business.js';
 import { buildSiteDaily, loadPageWindows, makeWindow, writeSnapshots } from './data.js';
 import { analyse } from './rules.js';
@@ -40,7 +40,16 @@ const env = () => ({
   ga4Property: process.env.INSIGHTS_GA4_PROPERTY_ID,
 });
 
+/**
+ * The Clarity step must be finished 180 s into the run. The steps before it take about 20 s,
+ * so the first request can have its full 75 s twice (151 s). The steps after it have taken at
+ * most about 40 s, so about 120 s stays in hand inside the 300 s Vercel allows this function
+ * (vercel.json). If the earlier steps run long, Clarity gets less time; the later steps never do.
+ */
+const CLARITY_FINISH_BY_MS = 180_000;
+
 export async function runDaily(opts: RunOptions): Promise<Record<string, unknown>> {
+  const startedAt = Date.now();
   const config = opts.config ?? AUTO_CLEANSE;
   const uk = ukNow(opts.now);
   const today = uk.date;
@@ -120,19 +129,44 @@ export async function runDaily(opts: RunOptions): Promise<Record<string, unknown
     });
   } else skip(steps, 'ga4', 'not configured (service account and INSIGHTS_GA4_PROPERTY_ID)');
 
-  // 4. Clarity: last 24 hours, 3 of the 10 requests allowed a day. Cannot be backfilled.
+  // 4. Clarity: last 24 hours, normally 3 of the 10 requests allowed a day. Cannot be backfilled.
+  // collectClarity (clarity.ts) asks only for what no earlier run today reported as stored, counts
+  // every attempt against the 10 across today's runs, and stops by CLARITY_FINISH_BY_MS.
   if (configured.clarity) {
     await step(steps, 'clarity', async () => {
-      let rows = 0;
-      for (const dims of [[], ['URL'], ['URL', 'Device']]) {
-        const name = dims.length ? dims.join('+') : 'site';
-        const blocks = await clarityExport(1, dims);
-        await upsert('web_clarity_snapshots', [{ site_id: config.id, captured_on: today, num_days: 1, dimension: name, payload: blocks }], 'site_id,captured_on,dimension');
-        const flat = flattenClarity(blocks, dims, config.canonicalHost);
-        await upsert('web_clarity_daily', flat.map((r) => ({ site_id: config.id, captured_on: today, num_days: 1, ...r })), 'site_id,captured_on,url,device');
-        rows += flat.length;
-      }
-      return { rows, note: 'last 24 hours to the time of the run' };
+      // Recorded from the start: a run of this code whose Clarity step fails before any request
+      // must not be mistaken by a later run for one from before requests were counted (worst case 6).
+      const storedThisRun: string[] = [];
+      summary.clarityRequests = 0;
+      summary.clarityStored = storedThisRun;
+      const utcMidnight = `${new Date(startedAt).toISOString().slice(0, 10)}T00:00:00Z`;
+      const runsToday = await selectAll<{ id: number; summary: Record<string, unknown> | null; steps: RunStep[] | null }>(`/web_runs?site_id=eq.${config.id}&started_at=gte.${utcMidnight}&select=id,summary,steps&order=id`);
+      const others = runsToday.filter((r) => r.id !== runId);
+      const result = await collectClarity({
+        alreadyStored: clarityStoredBy(others),
+        usedToday: clarityRequestsUsed(others),
+        deadline: startedAt + CLARITY_FINISH_BY_MS,
+        fetchDimension: (dims, o) => clarityExport(1, dims, o),
+        store: async (name, dims, blocks) => {
+          // The raw reply first: it is the safety copy if the daily rows fail.
+          await upsert('web_clarity_snapshots', [{ site_id: config.id, captured_on: today, num_days: 1, dimension: name, payload: blocks }], 'site_id,captured_on,dimension');
+          const flat = flattenClarity(blocks, dims, config.canonicalHost);
+          await upsert('web_clarity_daily', flat.map((r) => ({ site_id: config.id, captured_on: today, num_days: 1, ...r })), 'site_id,captured_on,url,device');
+          // Only now does it count as stored. The list lives in summary, so the next onRequest
+          // patch and finishRun persist it for a later run today to read (clarityStoredBy).
+          storedThisRun.push(name);
+          return flat.length;
+        },
+        // Written before each request, so a run that crashes part-way is still counted by a re-run
+        // today. The in-progress summary already holds today and configured for the dashboard.
+        onRequest: async (n) => {
+          summary.clarityRequests = n;
+          await patch('web_runs', `id=eq.${runId}`, { summary });
+        },
+      });
+      summary.clarityRequests = result.requests;
+      const o = describeClarityOutcome(result);
+      return o.ok ? { rows: o.rows, note: o.text } : { rows: o.rows, failed: o.text };
     });
   } else skip(steps, 'clarity', 'not configured (INSIGHTS_CLARITY_TOKEN)');
 

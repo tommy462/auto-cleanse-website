@@ -75,11 +75,20 @@ export async function finishRun(id: number, status: 'succeeded' | 'partial' | 'f
   });
 }
 
-/** Runs one step, timing it and turning any error into a recorded failure instead of a crash. */
-export async function step(steps: RunStep[], name: string, fn: () => Promise<{ rows?: number; note?: string } | void>): Promise<boolean> {
+/**
+ * Runs one step, timing it and turning any error into a recorded failure instead of a crash.
+ * A step that did part of its work returns `failed` (the reason) with its `rows`: it is
+ * recorded as failed but keeps what it stored.
+ */
+export async function step(steps: RunStep[], name: string, fn: () => Promise<{ rows?: number; note?: string; failed?: string } | void>): Promise<boolean> {
   const t0 = Date.now();
   try {
     const r = (await fn()) ?? {};
+    if (typeof r.failed === 'string' && r.failed) {
+      console.error(`[insights] ${name} failed: ${r.failed}`);
+      steps.push({ step: name, status: 'failed', ms: Date.now() - t0, ...(r.rows != null ? { rows: r.rows } : {}), ...(r.note ? { note: r.note } : {}), error: r.failed.slice(0, 600) });
+      return false;
+    }
     steps.push({ step: name, status: 'ok', ms: Date.now() - t0, ...(r.rows != null ? { rows: r.rows } : {}), ...(r.note ? { note: r.note } : {}) });
     return true;
   } catch (e) {
