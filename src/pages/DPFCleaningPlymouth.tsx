@@ -103,6 +103,14 @@ const FAQS: Faq[] = [
     q: 'Can I post my DPF from Plymouth instead?',
     a: 'Yes. Remove the filter, box it securely and send it tracked to the Totnes workshop. Postal cleaning starts from £230 and is often the simplest route for a single filter if the collection timing does not suit.',
   },
+  {
+    q: 'How is a DPF from Plymouth cleaned once it reaches the workshop?',
+    a: 'With water only, no chemicals. On our METclean XL the filter is reverse flushed, from the outlet back to the inlet, with heated water at 1 to 2 bar set to suit the filter. The cycle includes short micro-cavitation bursts, which are water, not air. The filter is then dried right through with hot air before it is flow tested again.',
+  },
+  {
+    q: 'What figures come back with a cleaned DPF?',
+    a: 'Two back-pressure readings in mbar: one from the air flow test before cleaning, and one from the same test after the filter has been cleaned and dried. On the METclean XL, 5 to 15 mbar is OK, 15 to 30 is medium and over 30 is blocked. Plymouth garages get both figures with the filter, ready to show the customer.',
+  },
 ];
 
 const schema = {
