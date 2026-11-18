@@ -86,7 +86,7 @@ Before that, get the cause checked. Reading the fault codes and live data first 
 
 ## How Auto-Cleanse can help
 
-We clean removed filters off the vehicle, with before-and-after flow and back-pressure testing and an honest report on whether the filter is worth saving. Removed filters can be collected and returned locally in Devon, and our [postal DPF cleaning service](/postal-dpf) covers the whole UK. It costs £210 within 10 miles of Totnes and £230 further afield or by post, and prices are confirmed when you contact us with your vehicle details. We can also remove and refit the filter at our Totnes workshop, Wednesday to Friday, with the labour quoted for your vehicle before you book: call 07823 649190.
+We clean removed filters off the vehicle, with before-and-after flow and back-pressure testing and an honest report on whether the filter is worth saving. Removed filters can be collected and returned locally in Devon, and our [postal DPF cleaning service](/postal-dpf) covers the whole UK. It costs £210 within 10 miles of Totnes and £230 further afield or by post, and prices are confirmed when you contact us with your vehicle details. We can also remove and refit the filter at our Totnes workshop, with the labour quoted for your vehicle before you book: call 07823 649190.
 
 ## Frequently asked questions
 

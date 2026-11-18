@@ -48,7 +48,7 @@ const processSteps = [
   {
     icon: Wrench,
     title: 'DPF removed',
-    body: 'Bring the vehicle to our Totnes workshop, Wednesday to Friday, and we take the filter off. Or drop off or post a filter your garage has already removed.',
+    body: 'Bring the vehicle to our Totnes workshop and we take the filter off. Or drop off or post a filter your garage has already removed.',
   },
   {
     icon: ClipboardCheck,
@@ -75,7 +75,7 @@ const priceTiers = [
   { label: 'Within 10 miles of Totnes', note: 'Local collection and return', price: '£210' },
   { label: 'Outside 10 miles & UK postal', note: 'Nationwide postal DPF cleaning', price: '£230' },
   { label: 'HGV & plant filters', note: 'Heavy vehicle and machinery DPFs', price: '£299' },
-  { label: 'Removal & refit at Totnes', note: 'Wednesday to Friday. Labour depends on the vehicle', price: 'Quoted' },
+  { label: 'Removal & refit at Totnes', note: 'Labour depends on the vehicle, quoted before you book', price: 'Quoted' },
 ];
 
 const locations = [
@@ -103,7 +103,7 @@ const locations = [
 const dpfFaqs: Faq[] = [
   {
     q: 'Do you offer mobile DPF cleaning?',
-    a: 'No. Auto-Cleanse does not offer mobile DPF cleaning at the roadside. DPF cleaning is carried out off the vehicle using our workshop equipment in Totnes: bring the vehicle Wednesday to Friday and we remove and refit the filter for you, or bring or post a filter that is already off. Our mobile service applies to ECU remapping only, which can be done at your home or workplace.',
+    a: 'No. Auto-Cleanse does not offer mobile DPF cleaning at the roadside. DPF cleaning is carried out off the vehicle using our workshop equipment in Totnes: bring the vehicle in and we remove and refit the filter for you, or bring or post a filter that is already off. Our mobile service applies to ECU remapping only, which can be done at your home or workplace.',
   },
   DPF_FITTED_FAQ,
   {
@@ -160,7 +160,7 @@ const schema = {
       areaServed: { '@type': 'AdministrativeArea', name: 'Devon' },
       url: 'https://www.auto-cleanse.co.uk/dpf-cleaning',
       description:
-        'Off-vehicle machine cleaning of diesel particulate filters at the Auto-Cleanse workshop in Totnes, Devon, with flow testing before and after cleaning. We remove and refit the filter at the workshop Wednesday to Friday (labour quoted per vehicle), or clean filters already removed, with local collection across Devon and UK-wide postal cleaning.',
+        'Off-vehicle machine cleaning of diesel particulate filters at the Auto-Cleanse workshop in Totnes, Devon, with flow testing before and after cleaning. We remove and refit the filter at the workshop (labour quoted per vehicle), or clean filters already removed, with local collection across Devon and UK-wide postal cleaning.',
       offers: [
         {
           '@type': 'Offer',
@@ -238,7 +238,7 @@ const DPFCleaningHub = () => {
           </p>
 
           <p className="text-[15px] sm:text-base md:text-xl text-white/50 leading-relaxed font-medium max-w-3xl mx-auto">
-            Bring the vehicle to our Totnes workshop, Wednesday to Friday, and where possible it is
+            Bring the vehicle to our Totnes workshop and, where possible, it is
             back with you the same day. Garages and DIY: drop off or post the removed filter.
           </p>
 
@@ -721,8 +721,8 @@ const DPFCleaningHub = () => {
               cleaning and ECU remapping specialist serving trade and private customers across
               Devon. Diesel particulate filter cleaning is carried out{' '}
               <span className="text-white font-semibold">off the vehicle</span> using our workshop
-              equipment in Totnes. We remove and refit the filter at the workshop Wednesday to
-              Friday, or clean filters that are already off, with local collection across Devon
+              equipment in Totnes. We remove and refit the filter at the workshop, or clean
+              filters that are already off, with local collection across Devon
               and UK-wide postal cleaning.
             </p>
           </div>
@@ -748,7 +748,7 @@ const DPFCleaningHub = () => {
               Blocked DPF? Speak to <span className="text-[#FF7A00]">Auto-Cleanse.</span>
             </h2>
             <p className="relative z-10 text-white/60 text-[15px] sm:text-base md:text-lg font-medium mb-6 md:mb-8 max-w-2xl mx-auto">
-              We remove, clean and refit at our Totnes workshop, Wednesday to Friday, for drivers
+              We remove, clean and refit at our Totnes workshop for drivers
               and garages across Devon. UK-wide postal cleaning for filters that are already off.
             </p>
 

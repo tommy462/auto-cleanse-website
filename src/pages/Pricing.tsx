@@ -111,7 +111,7 @@ const Pricing = () => {
   const faqs = [
     {
       question: 'How much does DPF cleaning cost?',
-      answer: 'DPF cleaning costs £210 within 10 miles of our Totnes workshop and £230 outside that radius, including filters posted to us from anywhere in the UK. HGV and plant filters are £299, also when posted. Every price covers the off-vehicle clean and a flow test before and after. Removing and refitting the filter is extra: we do it at our Totnes workshop, Wednesday to Friday, and the labour depends on the vehicle, so we quote it for yours before you book.',
+      answer: 'DPF cleaning costs £210 within 10 miles of our Totnes workshop and £230 outside that radius, including filters posted to us from anywhere in the UK. HGV and plant filters are £299, also when posted. Every price covers the off-vehicle clean and a flow test before and after. Removing and refitting the filter is extra: we do it at our Totnes workshop and the labour depends on the vehicle, so we quote it for yours before you book.',
     },
     {
       question: 'Do you offer trade accounts?',
@@ -255,8 +255,8 @@ const Pricing = () => {
                 <h3 className="text-xl font-bold text-white mb-4">Not included</h3>
                 <ul className="space-y-3 text-white/70 text-sm md:text-base">
                   <li>
-                    Removing and refitting the filter. We do it at our Totnes workshop, Wednesday to
-                    Friday, and the vehicle is ready the same day where possible. The labour depends
+                    Removing and refitting the filter. We do it at our Totnes workshop,
+                    and the vehicle is ready the same day where possible. The labour depends
                     on the vehicle: on some vans the DPF can be off in about half an hour, on a Nissan
                     Qashqai the subframe has to come down.{' '}
                     <a href="tel:07823649190" className="text-[#FF7A00] font-bold underline underline-offset-2">Call us</a>{' '}

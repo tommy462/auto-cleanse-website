@@ -95,7 +95,7 @@ export const REMAP_SERVICES = [
   {
     value: 'dpf-remap-bundle',
     label: 'DPF Clean + Remap Bundle',
-    description: 'DPF clean combined with an ECU remap - DPF removal and refit at our Totnes workshop, Wednesday to Friday',
+    description: 'DPF clean combined with an ECU remap - DPF removal and refit at our Totnes workshop',
     icon: '🛠️',
   },
   {

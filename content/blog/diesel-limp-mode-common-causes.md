@@ -86,7 +86,7 @@ As covered in [DPF warning lights explained](/blog/dpf-warning-lights-explained)
 
 ## How Auto-Cleanse can help
 
-Our paid [DPF diagnostics](/dpf-diagnostics-devon) check reads the fault codes and live data, usually in around an hour, with the vehicle normally brought to Totnes. A restricted filter, once removed, can be collected locally in Devon or posted from anywhere in the UK for an off-vehicle machine clean with before-and-after flow and back-pressure testing, and we tell you honestly if it cannot be saved. We can also remove and refit the filter at our Totnes workshop, Wednesday to Friday, with the labour quoted for your vehicle before you book: call 07823 649190.
+Our paid [DPF diagnostics](/dpf-diagnostics-devon) check reads the fault codes and live data, usually in around an hour, with the vehicle normally brought to Totnes. A restricted filter, once removed, can be collected locally in Devon or posted from anywhere in the UK for an off-vehicle machine clean with before-and-after flow and back-pressure testing, and we tell you honestly if it cannot be saved. We can also remove and refit the filter at our Totnes workshop, with the labour quoted for your vehicle before you book: call 07823 649190.
 
 ## Frequently asked questions
 

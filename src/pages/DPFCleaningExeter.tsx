@@ -65,7 +65,7 @@ const processSteps = [
   {
     icon: Wrench,
     title: 'DPF removed',
-    body: 'Bring the vehicle to our Totnes workshop, Wednesday to Friday, and we take the filter off. Or your own garage removes it and you choose collection from Exeter, workshop drop-off, or post.',
+    body: 'Bring the vehicle to our Totnes workshop and we take the filter off. Or your own garage removes it and you choose collection from Exeter, workshop drop-off, or post.',
   },
   {
     icon: ClipboardCheck,
@@ -112,7 +112,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Do you offer mobile DPF cleaning in Exeter?',
-    a: 'No. Professional DPF cleaning is carried out off the vehicle using workshop cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. For Exeter customers that means bringing the vehicle to our Totnes workshop, Wednesday to Friday, for us to remove and refit the filter, or collection, drop-off or post of a filter that is already off. Our mobile service covers ECU remapping only.',
+    a: 'No. Professional DPF cleaning is carried out off the vehicle using workshop cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. For Exeter customers that means bringing the vehicle to our Totnes workshop for us to remove and refit the filter, or collection, drop-off or post of a filter that is already off. Our mobile service covers ECU remapping only.',
   },
   {
     q: 'What actually happens to my DPF during the clean?',
@@ -318,7 +318,7 @@ const DPFCleaningExeter = () => {
               Three ways to get a DPF cleaned from Exeter
             </h2>
             <p className="text-white/55 text-[15px] sm:text-base md:text-lg leading-relaxed">
-              Want us to do the whole job? Bring the vehicle to Totnes, Wednesday to Friday, and we
+              Want us to do the whole job? Bring the vehicle to Totnes and we
               take the filter off, clean it and refit it (see below). If your garage has already
               removed it, pick whichever of these suits.
             </p>

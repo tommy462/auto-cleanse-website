@@ -117,7 +117,7 @@ const About = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-[#FF7A00]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 <p className="relative z-10 text-white/80">
                   DPF cleaning is carried out off the vehicle using our workshop equipment in Totnes. We
-                  remove and refit the filter at the workshop Wednesday to Friday, or clean filters that
+                  remove and refit the filter at the workshop, or clean filters that
                   are already off, with local collection across Devon and UK-wide postal cleaning - we do not offer mobile,
                   roadside DPF cleaning. ECU remapping is available at our Totnes workshop or mobile across
                   Devon, since remapping can be done at your home or workplace.

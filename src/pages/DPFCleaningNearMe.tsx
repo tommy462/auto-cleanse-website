@@ -19,7 +19,7 @@ const options = [
   {
     icon: Warehouse,
     title: 'Bring it to the workshop',
-    desc: 'Near Totnes or South Devon? Bring the vehicle to Webbers Yard, Totnes, Wednesday to Friday, and we remove, clean and refit the DPF, the same day where possible. Or drop off a removed filter: before 10am, cleaning is often completed the same working day.',
+    desc: 'Near Totnes or South Devon? Bring the vehicle to Webbers Yard, Totnes, and we remove, clean and refit the DPF, the same day where possible. Or drop off a removed filter: before 10am, cleaning is often completed the same working day.',
     link: { to: '/dpf-cleaning-totnes', label: 'Totnes workshop details' },
   },
   {

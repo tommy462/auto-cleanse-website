@@ -61,7 +61,7 @@ const processSteps = [
   {
     icon: Wrench,
     title: 'DPF removed',
-    body: 'Bring the car to our Totnes workshop, Wednesday to Friday, and we take the filter off. If your garage removes it, it is collection on our Torbay run, a drop-off at Totnes, or tracked post.',
+    body: 'Bring the car to our Totnes workshop and we take the filter off. If your garage removes it, it is collection on our Torbay run, a drop-off at Totnes, or tracked post.',
   },
   {
     icon: ClipboardCheck,
@@ -120,7 +120,7 @@ const LOCAL_SECTIONS: { heading: string; paragraphs: string[] }[] = [
   {
     heading: "Getting the filter off a car parked on a Torquay hill",
     paragraphs: [
-      "Cleaning is done with the filter off the vehicle, and that removal is the part that decides your week rather than ours. In Torquay it is rarely a driveway job, because a large part of the town parks on a gradient on a terraced street with no off-street space, and dropping an underfloor exhaust section on a slope with the car on axle stands is not sensible work. It wants a ramp, and it wants patience. On cars that have spent their lives parked within sight of the water, around Ellacombe, the harbourside terraces and the roads off the seafront, we find exhaust studs and clamps in worse condition than the mileage suggests. That is what our own ramp at Webbers Yard is for: bring the car to Totnes, Wednesday to Friday, and we take the filter off, clean it and refit it, the same day where possible. If a stud snaps, we ring you before doing any extra work.",
+      "Cleaning is done with the filter off the vehicle, and that removal is the part that decides your week rather than ours. In Torquay it is rarely a driveway job, because a large part of the town parks on a gradient on a terraced street with no off-street space, and dropping an underfloor exhaust section on a slope with the car on axle stands is not sensible work. It wants a ramp, and it wants patience. On cars that have spent their lives parked within sight of the water, around Ellacombe, the harbourside terraces and the roads off the seafront, we find exhaust studs and clamps in worse condition than the mileage suggests. That is what our own ramp at Webbers Yard is for: bring the car to Totnes and we take the filter off, clean it and refit it, the same day where possible. If a stud snaps, we ring you before doing any extra work.",
       "The 12 miles to Webbers Yard is not the variable, the calendar is. Out of season the A385 through Paignton is a 25 to 30 minute run, and Torquay sits on our Torbay collection run alongside Paignton and Brixham. In August, with the seafront and Preston backed up, the same journey through the bay is not worth attempting late in the day, which is why the collection van goes through Torbay early and why a filter that misses it waits for the next run rather than fighting its way out through Paignton at four in the afternoon. Ring with the day you can get it off the car and we will tell you which run it can make.",
     ],
   },
@@ -152,11 +152,11 @@ const FAQS: Faq[] = [
   },
   {
     q: "Who takes the filter off the car in Torquay?",
-    a: "We can, on our own ramp at the Totnes workshop, Wednesday to Friday. Bring the car in the morning and, where possible, it goes home the same day with the filter cleaned and refitted. The labour depends on the car, so we quote yours before you book. All our DPF work happens at the workshop, never at the roadside or on a driveway, and a Torquay terrace on a slope is a poor place to attempt it anyway. If your own garage would rather take it off, the filter can come over on the Torbay run instead.",
+    a: "We can, on our own ramp at the Totnes workshop. Bring the car in the morning and, where possible, it goes home the same day with the filter cleaned and refitted. The labour depends on the car, so we quote yours before you book. All our DPF work happens at the workshop, never at the roadside or on a driveway, and a Torquay terrace on a slope is a poor place to attempt it anyway. If your own garage would rather take it off, the filter can come over on the Torbay run instead.",
   },
   {
     q: "How quickly can you turn a filter round for a Torbay-licensed taxi?",
-    a: "The constraint is usually the morning Torbay run rather than the workshop. If the filter is off the car and waiting when the van comes through, it can often be inspected, cleaned, dried, retested and back the same working day, which costs a plated car its daytime hours rather than its evening trade. Filters with us before 10am are the ones that make it. Miss the run and it waits for the next one, so the call worth making the night before is to your garage about ramp time. Or bring the car to Totnes first thing, Wednesday to Friday, and we do the removal and refit ourselves, back the same day where possible. We will not promise a slot we cannot hold.",
+    a: "The constraint is usually the morning Torbay run rather than the workshop. If the filter is off the car and waiting when the van comes through, it can often be inspected, cleaned, dried, retested and back the same working day, which costs a plated car its daytime hours rather than its evening trade. Filters with us before 10am are the ones that make it. Miss the run and it waits for the next one, so the call worth making the night before is to your garage about ramp time. Or bring the car to Totnes first thing and we do the removal and refit ourselves, back the same day where possible. We will not promise a slot we cannot hold.",
   },
   {
     q: "Would deleting the DPF be cheaper on a private-hire car?",
@@ -392,7 +392,7 @@ const DPFCleaningTorquay = () => {
               alongside Paignton and Brixham, so a removed filter can usually be collected. Garages
               can put several on one collection. If the timing does not suit, the filter can be
               dropped at Webbers Yard in Totnes or sent tracked instead. No garage? Bring the car
-              to Totnes, Wednesday to Friday, and we do the removal and refit.
+              to Totnes and we do the removal and refit.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[

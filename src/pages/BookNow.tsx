@@ -8,7 +8,7 @@ import { trackEvent } from '../lib/tracking';
 // to quote the labour, so this card offers a call or WhatsApp rather than a form.
 // Postal stays as a secondary link for filters that are already off.
 const dpfFeatures = [
-  { icon: Wrench,  text: 'Removed, cleaned & refitted, Wed to Fri' },
+  { icon: Wrench,  text: 'Removed, cleaned & refitted for you' },
   { icon: Clock,   text: 'Same-day turnaround where possible' },
   { icon: Shield,  text: 'Flow tested before and after' },
   { icon: Package, text: 'UK-wide postal for removed filters' },
@@ -88,7 +88,7 @@ export default function BookNow() {
 
                 {/* Desc */}
                 <p className="text-white/55 text-sm leading-relaxed mb-6">
-                  Bring the vehicle to our Totnes workshop, Wednesday to Friday, and we remove,
+                  Bring the vehicle to our Totnes workshop and we remove,
                   clean and refit the DPF. Removal labour depends on the vehicle, so we quote the
                   full price for yours before you book.
                 </p>

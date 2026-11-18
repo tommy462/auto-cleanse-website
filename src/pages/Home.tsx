@@ -269,7 +269,7 @@ const Home = () => {
                     "itemOffered": {
                       "@type": "Service",
                       "name": "DPF Cleaning",
-                      "description": "Professional off-vehicle DPF cleaning, flow tested before and after. DPF removal and refit at the Totnes workshop, Wednesday to Friday, with labour quoted per vehicle. Same-day return locally in Devon where possible.",
+                      "description": "Professional off-vehicle DPF cleaning, flow tested before and after. DPF removal and refit at the Totnes workshop, with labour quoted per vehicle. Same-day return locally in Devon where possible.",
                       "url": "https://www.auto-cleanse.co.uk/services"
                     }
                   },
@@ -420,7 +420,7 @@ const Home = () => {
               </span>
             </h1>
             <p className="text-white/70 text-base sm:text-lg md:text-xl font-medium mb-6 max-w-md leading-relaxed hero-subtitle">
-              We remove, clean and refit your DPF at our Totnes workshop, Wednesday to Friday, back the same day where possible. UK postal for removed filters.
+              We remove, clean and refit your DPF at our Totnes workshop, back the same day where possible. UK postal for removed filters.
             </p>
             <div className="flex flex-wrap gap-3 hero-subtitle">
               {/* Calls, not postal bookings: Tom gets DPF work by phone. LeadTracking records the tap. */}
@@ -474,7 +474,7 @@ const Home = () => {
             <p className="text-white/70 text-base md:text-lg leading-relaxed">
               <span className="text-white font-bold">Auto-Cleanse</span> is a Totnes-based DPF cleaning and ECU
               remapping specialist serving trade and private customers across Devon. DPF cleaning is workshop /
-              off-vehicle or postal: we remove and refit the filter at the workshop Wednesday to Friday, and we
+              off-vehicle or postal: we remove and refit the filter at the workshop, and we
               do not offer mobile DPF cleaning. ECU remapping is available at
               our Totnes workshop or mobile across Devon. Diagnostics are a paid check before and after every remap.
             </p>

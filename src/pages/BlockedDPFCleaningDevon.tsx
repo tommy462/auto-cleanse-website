@@ -181,7 +181,7 @@ export default function BlockedDPFCleaningDevon() {
             </p>
             <p>
               We also advise on how to reduce the chance of it happening again. No garage? Bring the
-              vehicle to our Totnes workshop, Wednesday to Friday, and we remove, clean and refit the
+              vehicle to our Totnes workshop and we remove, clean and refit the
               filter, the same day where possible. Same-day return of removed filters, where possible, is
               available locally in Devon, and{' '}
               <Link to="/postal-dpf" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">nationwide postal DPF cleaning</Link>{' '}

@@ -106,7 +106,7 @@ If the substrate is intact, cleaning is usually far cheaper than a new filter an
 
 ### Does the price include taking the DPF off?
 
-Our price is for cleaning a filter that has already been removed, by you or your garage. We can also remove and refit it at our Totnes workshop, Wednesday to Friday. The labour depends on the vehicle, so we quote it for yours before you book.
+Our price is for cleaning a filter that has already been removed, by you or your garage. We can also remove and refit it at our Totnes workshop. The labour depends on the vehicle, so we quote it for yours before you book.
 
 ### How long does DPF cleaning take?
 

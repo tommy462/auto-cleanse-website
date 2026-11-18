@@ -68,7 +68,7 @@ const processSteps = [
   {
     icon: Wrench,
     title: 'DPF removed',
-    body: 'Bring the vehicle to our Totnes workshop, Wednesday to Friday, and we take the filter off, about 8 miles down the A381. Or your own garage removes it and you drop it in.',
+    body: 'Bring the vehicle to our Totnes workshop and we take the filter off, about 8 miles down the A381. Or your own garage removes it and you drop it in.',
   },
   {
     icon: ClipboardCheck,
@@ -129,7 +129,7 @@ const FAQS: Faq[] = [
   DPF_FITTED_FAQ,
   {
     q: 'Do you offer mobile DPF cleaning in Newton Abbot?',
-    a: 'No. Professional DPF cleaning is an off-vehicle workshop process using cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. Given how close Newton Abbot is to the workshop, bringing the vehicle in for us to remove and refit the filter (Wednesday to Friday), or collection or drop-off of a removed filter, is rarely a problem. Our mobile service covers ECU remapping only.',
+    a: 'No. Professional DPF cleaning is an off-vehicle workshop process using cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. Given how close Newton Abbot is to the workshop, bringing the vehicle in for us to remove and refit the filter, or collection or drop-off of a removed filter, is rarely a problem. Our mobile service covers ECU remapping only.',
   },
   {
     q: 'Which areas around Newton Abbot do you cover?',
@@ -306,8 +306,8 @@ const DPFCleaningNewtonAbbot = () => {
                 down the A381, which changes the practicalities more than the price does.
               </p>
               <p className="text-white/60 text-[15px] sm:text-base md:text-lg leading-relaxed">
-                Bringing the whole vehicle in for us to take the filter off and refit it, Wednesday
-                to Friday, is genuinely realistic from here rather than a half-day round trip. So is
+                Bringing the whole vehicle in for us to take the filter off and refit it
+                is genuinely realistic from here rather than a half-day round trip. So is
                 dropping a removed filter in, and collection can be arranged where it suits better. Filters
                 that reach us early in the working day can often be cleaned, tested and ready the
                 same day.

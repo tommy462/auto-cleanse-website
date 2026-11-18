@@ -44,7 +44,7 @@ const processSteps = [
   {
     icon: Wrench,
     title: 'DPF removed',
-    body: 'Garages remove the filter in their own workshop, then it is collection on our Plymouth route, a drop-off at Totnes, or tracked post. Drivers can bring the vehicle to Totnes, Wednesday to Friday, and we take it off.',
+    body: 'Garages remove the filter in their own workshop, then it is collection on our Plymouth route, a drop-off at Totnes, or tracked post. Drivers can bring the vehicle to Totnes and we take it off.',
   },
   {
     icon: ClipboardCheck,
@@ -91,7 +91,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Do you offer mobile DPF cleaning in Plymouth?',
-    a: 'No. Professional DPF cleaning is an off-vehicle workshop process using cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. For Plymouth customers that means bringing the vehicle to our Totnes workshop, Wednesday to Friday, for us to remove and refit the filter, or collection, drop-off or tracked post of a filter that is already off. Our mobile service covers ECU remapping only.',
+    a: 'No. Professional DPF cleaning is an off-vehicle workshop process using cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. For Plymouth customers that means bringing the vehicle to our Totnes workshop for us to remove and refit the filter, or collection, drop-off or tracked post of a filter that is already off. Our mobile service covers ECU remapping only.',
   },
   DPF_FITTED_FAQ,
   {
@@ -333,7 +333,7 @@ const DPFCleaningPlymouth = () => {
               </h3>
               <p className="text-white/60 text-sm md:text-[15px] leading-relaxed mb-4">
                 The filter has to be off the vehicle before we can clean it. No garage lined up?
-                Bring the vehicle to our Totnes workshop, Wednesday to Friday, and we remove, clean
+                Bring the vehicle to our Totnes workshop and we remove, clean
                 and refit it. If your garage takes it off, it is collection, a drop-off at Totnes,
                 or tracked post.
               </p>
