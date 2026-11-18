@@ -14,6 +14,8 @@ import Reviews from '../components/Reviews';
 import FaqSection, { type Faq } from '../components/FaqSection';
 import { getReviews, DPF_TRADE_REVIEW_IDS } from '../data/reviews';
 import { localBusinessNode, BUSINESS_ID } from '../data/business';
+import { DPF_FITTED_FAQ } from '../data/dpf-fitting';
+import DpfFittedService from '../components/DpfFittedService';
 import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -23,7 +25,7 @@ const PHONE_HREF = 'tel:07823649190';
 
 // Reuses the site-wide gtag helper. Phone links are already counted as
 // `phone_click` by <LeadTracking>; this only records which section was clicked.
-const trackCta = (cta: string, type: 'phone' | 'booking') =>
+const trackCta = (cta: string, type: 'phone' | 'booking' | 'whatsapp') =>
   trackEvent('dpf_cta_click', { cta_location: cta, cta_type: type, page_path: '/dpf-cleaning-plymouth' });
 
 const heroTrust = [
@@ -42,7 +44,7 @@ const processSteps = [
   {
     icon: Wrench,
     title: 'DPF removed',
-    body: 'The filter comes off the vehicle, usually in your own workshop. Then it is collection on our Plymouth route, a drop-off at Totnes, or tracked post.',
+    body: 'Garages remove the filter in their own workshop, then it is collection on our Plymouth route, a drop-off at Totnes, or tracked post. Drivers can bring the vehicle to Totnes, Wednesday to Friday, and we take it off.',
   },
   {
     icon: ClipboardCheck,
@@ -51,8 +53,8 @@ const processSteps = [
   },
   {
     icon: Truck,
-    title: 'Returned ready to refit',
-    body: 'Back to you with the before-and-after figures so it can go straight back on. Same-day turnaround where possible for filters that reach us early.',
+    title: 'Refitted or returned',
+    body: 'Refitted at the workshop if you brought the vehicle, or back to you so it can go straight on, with the before-and-after figures either way. Same day where possible.',
   },
 ];
 
@@ -89,8 +91,9 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Do you offer mobile DPF cleaning in Plymouth?',
-    a: 'No. Professional DPF cleaning is an off-vehicle workshop process using cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. For Plymouth customers that means collection, a drop-off at the Totnes workshop, or tracked post. Our mobile service covers ECU remapping only.',
+    a: 'No. Professional DPF cleaning is an off-vehicle workshop process using cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. For Plymouth customers that means bringing the vehicle to our Totnes workshop, Wednesday to Friday, for us to remove and refit the filter, or collection, drop-off or tracked post of a filter that is already off. Our mobile service covers ECU remapping only.',
   },
+  DPF_FITTED_FAQ,
   {
     q: 'How long does DPF cleaning take?',
     a: 'The clean itself is a workshop process rather than an overnight soak, so filters that reach us early in the working day can often be cleaned, tested and ready the same day. We confirm timing when you book rather than promising a slot we cannot hold.',
@@ -329,9 +332,10 @@ const DPFCleaningPlymouth = () => {
                 Private drivers
               </h3>
               <p className="text-white/60 text-sm md:text-[15px] leading-relaxed mb-4">
-                The filter has to be off the vehicle before we can clean it, so most private
-                customers have their own garage remove it, or ask us about arranging that. From
-                there it is collection, a drop-off at Totnes, or tracked post.
+                The filter has to be off the vehicle before we can clean it. No garage lined up?
+                Bring the vehicle to our Totnes workshop, Wednesday to Friday, and we remove, clean
+                and refit it. If your garage takes it off, it is collection, a drop-off at Totnes,
+                or tracked post.
               </p>
               <ul className="space-y-2.5">
                 {[
@@ -472,28 +476,13 @@ const DPFCleaningPlymouth = () => {
           </ol>
         </section>
 
-        {/* ── Removal & refitting ──────────────────────────────────────────── */}
-        <section className="mb-14 md:mb-24 reveal-container">
-          <div className="rounded-2xl bg-[#1A1D22] border border-white/5 border-l-4 border-l-[#FF7A00] p-5 sm:p-6 md:p-8 flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-8 reveal-item">
-            <div className="min-w-0">
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">
-                Need help with removal &amp; refitting?
-              </h2>
-              <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-3xl">
-                Our standard DPF cleaning service is carried out with the filter removed from the
-                vehicle, which most Plymouth garages handle themselves. If you need help arranging
-                removal or refitting, call us to discuss current availability.
-              </p>
-            </div>
-            <a
-              href={PHONE_HREF}
-              onClick={() => trackCta('removal_refitting', 'phone')}
-              className="shrink-0 w-full lg:w-auto px-6 py-3.5 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2.5 min-h-[48px]"
-              aria-label={`Call Auto-Cleanse on ${PHONE_DISPLAY}`}
-            >
-              <Phone size={18} className="text-[#FF7A00]" aria-hidden="true" /> Call {PHONE_DISPLAY}
-            </a>
-          </div>
+        {/* ── Remove, clean & refit ────────────────────────────────────── */}
+        <section id="fitted" className="mb-14 md:mb-24 scroll-mt-24 reveal-container">
+          <DpfFittedService
+            className="reveal-item"
+            onCall={() => trackCta('removal_refitting', 'phone')}
+            onWhatsApp={() => trackCta('removal_refitting', 'whatsapp')}
+          />
         </section>
 
         {/* ── What comes out of the filter ─────────────────────────────────── */}

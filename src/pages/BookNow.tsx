@@ -1,13 +1,21 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Package, Zap, CheckCircle2, Clock, Shield, Truck } from 'lucide-react';
+import { ArrowRight, Package, Zap, CheckCircle2, Clock, Shield, Wrench, Phone, MessageCircle } from 'lucide-react';
 import SEO from '../components/SEO';
+import { DPF_FITTED_WHATSAPP } from '../data/dpf-fitting';
+import { trackEvent } from '../lib/tracking';
 
+// DPF work comes in by phone (Tom, 29 Oct 2026), and a fitted job needs the vehicle
+// to quote the labour, so this card offers a call or WhatsApp rather than a form.
+// Postal stays as a secondary link for filters that are already off.
 const dpfFeatures = [
-  { icon: Truck,   text: 'Free pickup & return within Devon' },
-  { icon: Package, text: 'Nationwide postal - tracked next-day' },
+  { icon: Wrench,  text: 'Removed, cleaned & refitted, Wed to Fri' },
   { icon: Clock,   text: 'Same-day turnaround where possible' },
   { icon: Shield,  text: 'Flow tested before and after' },
+  { icon: Package, text: 'UK-wide postal for removed filters' },
 ];
+
+const trackDpf = (type: 'phone' | 'whatsapp' | 'postal') =>
+  trackEvent('dpf_cta_click', { cta_location: 'book_page', cta_type: type, page_path: '/book' });
 
 const remapFeatures = [
   { icon: Zap,          text: 'Stage 1 from £250 - workshop' },
@@ -21,7 +29,7 @@ export default function BookNow() {
     <>
       <SEO
         title="Book Now | AutoCleanse - DPF Cleaning & ECU Remapping Devon"
-        description="Book a DPF clean or ECU remap with AutoCleanse. Local DPF cleaning from £210 with same-day return where possible, nationwide postal service, and Stage 1, Stage 2 and economy remapping available."
+        description="Book a DPF clean or ECU remap with AutoCleanse. DPF removed, cleaned and refitted at our Totnes workshop, cleaning from £210, UK postal for removed filters, and Stage 1, Stage 2 and economy remapping."
         path="/book"
       />
 
@@ -46,9 +54,8 @@ export default function BookNow() {
           <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
 
             {/* ── Card 1: DPF Cleaning ── */}
-            <Link
-              to="/postal-dpf"
-              className="group relative flex flex-col rounded-[2rem] overflow-hidden border border-white/10 bg-[#111315] hover:border-white/25 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/60"
+            <div
+              className="group relative flex flex-col rounded-[2rem] overflow-hidden border border-white/10 bg-[#111315] hover:border-white/25 transition-all duration-500"
             >
               {/* Top colour band */}
               <div className="h-1.5 w-full bg-gradient-to-r from-white/20 via-white/40 to-white/10 group-hover:from-white/30 group-hover:via-white/60 group-hover:to-white/20 transition-all duration-500" />
@@ -81,8 +88,9 @@ export default function BookNow() {
 
                 {/* Desc */}
                 <p className="text-white/55 text-sm leading-relaxed mb-6">
-                  Professional off-vehicle DPF cleaning, flow tested before and after.
-                  Same-day local service where possible, or tracked postal return.
+                  Bring the vehicle to our Totnes workshop, Wednesday to Friday, and we remove,
+                  clean and refit the DPF. Removal labour depends on the vehicle, so we quote the
+                  full price for yours before you book.
                 </p>
 
                 {/* Features */}
@@ -95,17 +103,36 @@ export default function BookNow() {
                   ))}
                 </ul>
 
-                {/* CTA */}
-                <div className="mt-auto flex items-center justify-between pt-6 border-t border-white/8">
-                  <span className="text-sm font-black text-white/60 group-hover:text-white transition-colors duration-300 uppercase tracking-wider">
-                    Book DPF Clean
-                  </span>
-                  <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/25 transition-all duration-300">
-                    <ArrowRight size={16} className="text-white/60 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300" />
-                  </div>
+                {/* CTAs */}
+                <div className="mt-auto pt-6 border-t border-white/8 flex flex-col gap-3">
+                  <a
+                    href="tel:07823649190"
+                    onClick={() => trackDpf('phone')}
+                    className="btn-shine px-5 py-3.5 rounded-xl font-bold text-white text-sm inline-flex items-center justify-center gap-2.5 min-h-[48px]"
+                    aria-label="Call Auto-Cleanse on 07823 649190 to book a DPF clean"
+                  >
+                    <Phone size={17} aria-hidden="true" /> Call 07823 649190
+                  </a>
+                  <a
+                    href={DPF_FITTED_WHATSAPP}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackDpf('whatsapp')}
+                    className="px-5 py-3.5 rounded-xl font-bold text-white text-sm border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2.5 min-h-[48px]"
+                    aria-label="Message Auto-Cleanse on WhatsApp for a DPF price"
+                  >
+                    <MessageCircle size={17} className="text-[#25D366]" aria-hidden="true" /> WhatsApp your reg
+                  </a>
+                  <Link
+                    to="/postal-dpf"
+                    onClick={() => trackDpf('postal')}
+                    className="inline-flex items-center justify-center gap-2 min-h-[44px] text-sm font-semibold text-white/60 hover:text-white transition-colors"
+                  >
+                    Filter already off? Book a postal clean <ArrowRight size={14} aria-hidden="true" />
+                  </Link>
                 </div>
               </div>
-            </Link>
+            </div>
 
             {/* ── Card 2: ECU Remapping ── */}
             <Link

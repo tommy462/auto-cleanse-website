@@ -18,6 +18,11 @@ export const TRADE_INVITE_WEBHOOK_URL =
   'https://hook.eu2.make.com/ixmeo8jdjg8oj4at58bnni04gr7xqfdm';
 
 // Services a visitor can select in the quick enquiry form.
+// Offered only on forms whose default service is a DPF one (see QuickEnquiryForm): adding
+// it to SERVICE_OPTIONS would change the text, and so the sitemap date, of every page
+// with an enquiry form, including the 1,456 national town pages.
+export const DPF_FITTED_SERVICE = 'DPF Remove, Clean & Refit';
+
 export const SERVICE_OPTIONS = [
   'DPF Cleaning',
   'DPF Diagnostics',

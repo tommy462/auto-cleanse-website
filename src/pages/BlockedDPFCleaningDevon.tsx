@@ -8,6 +8,7 @@ import FaqSection, { type Faq } from '../components/FaqSection';
 import Reviews from '../components/Reviews';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
 import { getReviews, BLOCKED_DPF_REVIEW_IDS } from '../data/reviews';
+import { DPF_FITTED, DPF_FITTED_FAQ } from '../data/dpf-fitting';
 
 const SYMPTOMS = [
   'A DPF or engine warning light that stays on',
@@ -35,8 +36,9 @@ const FAQS: Faq[] = [
   },
   {
     q: 'How much does it cost to clean a blocked DPF?',
-    a: 'DPF machine cleaning starts at £210 within 10 miles of our Totnes workshop, £230 outside 10 miles including UK-wide postal cleaning, and £299 for HGV and plant filters. Prices are confirmed when you contact us with your vehicle details. Cleaning is off-vehicle only. Need help with removal and refitting? Call us to discuss current availability.',
+    a: `DPF machine cleaning starts at £210 within 10 miles of our Totnes workshop, £230 outside 10 miles including UK-wide postal cleaning, and £299 for HGV and plant filters. Prices are confirmed when you contact us with your vehicle details. Cleaning is off-vehicle only. ${DPF_FITTED.priceLine}`,
   },
+  DPF_FITTED_FAQ,
   {
     q: 'How is a blocked DPF cleaned?',
     a: 'It is water only, with no chemicals. An air flow test first records the filter\'s back-pressure in mbar. On our METclean XL the filter is then reverse flushed, from the outlet back to the inlet, with heated water at 1 to 2 bar, dried right through with hot air, and flow tested again. On that machine 5 to 15 mbar is OK, 15 to 30 is medium and over 30 is blocked, and you get both figures with the filter.',
@@ -178,7 +180,9 @@ export default function BlockedDPFCleaningDevon() {
               weight testing so you can see the result.
             </p>
             <p>
-              We also advise on how to reduce the chance of it happening again. Same-day return, where possible, is
+              We also advise on how to reduce the chance of it happening again. No garage? Bring the
+              vehicle to our Totnes workshop, Wednesday to Friday, and we remove, clean and refit the
+              filter, the same day where possible. Same-day return of removed filters, where possible, is
               available locally in Devon, and{' '}
               <Link to="/postal-dpf" className="text-[#FF7A00] hover:text-[#FF9500] transition-colors">nationwide postal DPF cleaning</Link>{' '}
               is available if you can remove the filter yourself.

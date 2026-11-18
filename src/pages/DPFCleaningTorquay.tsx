@@ -15,6 +15,7 @@ import SymptomList from '../components/SymptomList';
 import FaqSection, { type Faq } from '../components/FaqSection';
 import { getReviews, DPF_ASSESSMENT_REVIEW_IDS } from '../data/reviews';
 import { localBusinessNode, BUSINESS_ID } from '../data/business';
+import DpfFittedService from '../components/DpfFittedService';
 import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -22,7 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
 const PHONE_DISPLAY = '07823 649190';
 const PHONE_HREF = 'tel:07823649190';
 
-const trackCta = (cta: string, type: 'phone' | 'booking') =>
+const trackCta = (cta: string, type: 'phone' | 'booking' | 'whatsapp') =>
   trackEvent('dpf_cta_click', { cta_location: cta, cta_type: type, page_path: '/dpf-cleaning-torquay' });
 
 const heroTrust = [
@@ -60,7 +61,7 @@ const processSteps = [
   {
     icon: Wrench,
     title: 'DPF removed',
-    body: 'The filter comes off the vehicle. From Torquay that means collection on our Torbay run, a drop-off at the Totnes workshop, or tracked post.',
+    body: 'Bring the car to our Totnes workshop, Wednesday to Friday, and we take the filter off. If your garage removes it, it is collection on our Torbay run, a drop-off at Totnes, or tracked post.',
   },
   {
     icon: ClipboardCheck,
@@ -69,8 +70,8 @@ const processSteps = [
   },
   {
     icon: Truck,
-    title: 'Ready to refit',
-    body: 'Returned with the before-and-after figures so you can see what changed. Same-day turnaround where possible for filters that reach us early.',
+    title: 'Refitted or returned',
+    body: 'Refitted at the workshop if you brought the car, or returned ready to refit, with the before-and-after figures either way. Same day where possible.',
   },
 ];
 
@@ -119,7 +120,7 @@ const LOCAL_SECTIONS: { heading: string; paragraphs: string[] }[] = [
   {
     heading: "Getting the filter off a car parked on a Torquay hill",
     paragraphs: [
-      "Cleaning is done with the filter off the vehicle, and that removal is the part that decides your week rather than ours. In Torquay it is rarely a driveway job, because a large part of the town parks on a gradient on a terraced street with no off-street space, and dropping an underfloor exhaust section on a slope with the car on axle stands is not sensible work. It wants a ramp, and it wants patience. On cars that have spent their lives parked within sight of the water, around Ellacombe, the harbourside terraces and the roads off the seafront, we find exhaust studs and clamps in worse condition than the mileage suggests.",
+      "Cleaning is done with the filter off the vehicle, and that removal is the part that decides your week rather than ours. In Torquay it is rarely a driveway job, because a large part of the town parks on a gradient on a terraced street with no off-street space, and dropping an underfloor exhaust section on a slope with the car on axle stands is not sensible work. It wants a ramp, and it wants patience. On cars that have spent their lives parked within sight of the water, around Ellacombe, the harbourside terraces and the roads off the seafront, we find exhaust studs and clamps in worse condition than the mileage suggests. That is what our own ramp at Webbers Yard is for: bring the car to Totnes, Wednesday to Friday, and we take the filter off, clean it and refit it, the same day where possible. If a stud snaps, we ring you before doing any extra work.",
       "The 12 miles to Webbers Yard is not the variable, the calendar is. Out of season the A385 through Paignton is a 25 to 30 minute run, and Torquay sits on our Torbay collection run alongside Paignton and Brixham. In August, with the seafront and Preston backed up, the same journey through the bay is not worth attempting late in the day, which is why the collection van goes through Torbay early and why a filter that misses it waits for the next run rather than fighting its way out through Paignton at four in the afternoon. Ring with the day you can get it off the car and we will tell you which run it can make.",
     ],
   },
@@ -128,7 +129,7 @@ const LOCAL_SECTIONS: { heading: string; paragraphs: string[] }[] = [
     paragraphs: [
       "Much of the trade work we see from Torquay is hackney and private hire licensed by Torbay Council, and a plated car earns most of its money after dark: the Strand and harbour ranks, the pub and restaurant trade, the runs back up to Babbacombe and St Marychurch. That makes the daytime hours the cheap ones to lose. A filter off at eight, out on the morning Torbay run, back mid-afternoon and refitted before the evening trade costs a driver their quiet hours rather than their earning ones, which is a very different calculation from a van that simply loses a whole working day.",
       "Two things are worth knowing about the local vehicle mix. A lot of the Peugeot and Citroen diesels in Torbay private hire, and the PSA-derived 1.6 and 2.0 TDCi engines Ford fitted to the Focus, C-Max and Mondeo, run additive-based systems with an Eolys tank. The cerium additive leaves ash of its own, so those filters load faster on a short-fare duty cycle, and the additive level is worth checking while the filter is off. Not every car uses that system, so establish which one you have first. Cleaning also means the car keeps the exhaust section it was type approved with rather than an aftermarket substitute.",
-      "We do not remove DPFs or delete emissions equipment on road cars, licensed or otherwise. A filter cut out of a plated vehicle is an automatic MOT failure, because the tester checks the filter is physically there rather than relying on the smoke reading alone, and it is a conversation with the licensing office that nobody wants. A private car that fails an emissions test gets a retest and an inconvenient week. A licensed one stops earning while the argument is sorted out.",
+      "We do not delete DPFs or leave emissions equipment off road cars, licensed or otherwise: a filter we take off goes back on. A filter cut out of a plated vehicle is an automatic MOT failure, because the tester checks the filter is physically there rather than relying on the smoke reading alone, and it is a conversation with the licensing office that nobody wants. A private car that fails an emissions test gets a retest and an inconvenient week. A licensed one stops earning while the argument is sorted out.",
     ],
   },
   {
@@ -151,15 +152,15 @@ const FAQS: Faq[] = [
   },
   {
     q: "Who takes the filter off the car in Torquay?",
-    a: "Your own garage, on a ramp. All our own DPF work happens at the Totnes workshop, never at the roadside or on a driveway, and a Torquay terrace on a slope is a poor place to attempt it anyway. If you have not got a garage, say so when you ring and we will point you towards Torbay yards that are set up for the removal and used to sending filters over on the run. It is a shorter conversation than phoning round the bay yourself.",
+    a: "We can, on our own ramp at the Totnes workshop, Wednesday to Friday. Bring the car in the morning and, where possible, it goes home the same day with the filter cleaned and refitted. The labour depends on the car, so we quote yours before you book. All our DPF work happens at the workshop, never at the roadside or on a driveway, and a Torquay terrace on a slope is a poor place to attempt it anyway. If your own garage would rather take it off, the filter can come over on the Torbay run instead.",
   },
   {
     q: "How quickly can you turn a filter round for a Torbay-licensed taxi?",
-    a: "The constraint is usually the morning Torbay run rather than the workshop. If the filter is off the car and waiting when the van comes through, it can often be inspected, cleaned, dried, retested and back the same working day, which costs a plated car its daytime hours rather than its evening trade. Filters with us before 10am are the ones that make it. Miss the run and it waits for the next one, so the call worth making the night before is to your garage about ramp time. We will not promise a slot we cannot hold.",
+    a: "The constraint is usually the morning Torbay run rather than the workshop. If the filter is off the car and waiting when the van comes through, it can often be inspected, cleaned, dried, retested and back the same working day, which costs a plated car its daytime hours rather than its evening trade. Filters with us before 10am are the ones that make it. Miss the run and it waits for the next one, so the call worth making the night before is to your garage about ramp time. Or bring the car to Totnes first thing, Wednesday to Friday, and we do the removal and refit ourselves, back the same day where possible. We will not promise a slot we cannot hold.",
   },
   {
     q: "Would deleting the DPF be cheaper on a private-hire car?",
-    a: "Not from us, and a plated car is the worst place to try it. Auto-Cleanse does not remove DPFs or delete emissions equipment on road cars. A missing filter is an automatic MOT failure on the visual check, it is a modification you have to declare to your insurer and it can invalidate cover, and on a Torbay-licensed vehicle it puts your plate in front of the licensing office. A private car that fails gets a retest. A licensed one stops earning. If the real aim is fuel cost, that is a remapping conversation and our Torquay ECU remapping page covers it.",
+    a: "Not from us, and a plated car is the worst place to try it. Auto-Cleanse does not delete DPFs or leave emissions equipment off road cars. A missing filter is an automatic MOT failure on the visual check, it is a modification you have to declare to your insurer and it can invalidate cover, and on a Torbay-licensed vehicle it puts your plate in front of the licensing office. A private car that fails gets a retest. A licensed one stops earning. If the real aim is fuel cost, that is a remapping conversation and our Torquay ECU remapping page covers it.",
   },
   {
     q: "What does it cost from Torquay, and does collection change the price?",
@@ -390,7 +391,8 @@ const DPFCleaningTorquay = () => {
               Torquay is about 12 miles from the workshop and sits on our Torbay collection run
               alongside Paignton and Brixham, so a removed filter can usually be collected. Garages
               can put several on one collection. If the timing does not suit, the filter can be
-              dropped at Webbers Yard in Totnes or sent tracked instead.
+              dropped at Webbers Yard in Totnes or sent tracked instead. No garage? Bring the car
+              to Totnes, Wednesday to Friday, and we do the removal and refit.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
@@ -528,28 +530,13 @@ const DPFCleaningTorquay = () => {
           </ol>
         </section>
 
-        {/* ── Removal & refitting ──────────────────────────────────────────── */}
-        <section className="mb-14 md:mb-24 reveal-container">
-          <div className="rounded-2xl bg-[#1A1D22] border border-white/5 border-l-4 border-l-[#FF7A00] p-5 sm:p-6 md:p-8 flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-8 reveal-item">
-            <div className="min-w-0">
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">
-                Need help with removal &amp; refitting?
-              </h2>
-              <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-3xl">
-                Our standard DPF cleaning service is carried out with the filter removed from the
-                vehicle, which most Torbay garages handle themselves. If you need help arranging
-                removal or refitting, call us to discuss current availability.
-              </p>
-            </div>
-            <a
-              href={PHONE_HREF}
-              onClick={() => trackCta('removal_refitting', 'phone')}
-              className="shrink-0 w-full lg:w-auto px-6 py-3.5 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2.5 min-h-[48px]"
-              aria-label={`Call Auto-Cleanse on ${PHONE_DISPLAY}`}
-            >
-              <Phone size={18} className="text-[#FF7A00]" aria-hidden="true" /> Call {PHONE_DISPLAY}
-            </a>
-          </div>
+        {/* ── Remove, clean & refit ────────────────────────────────────── */}
+        <section id="fitted" className="mb-14 md:mb-24 scroll-mt-24 reveal-container">
+          <DpfFittedService
+            className="reveal-item"
+            onCall={() => trackCta('removal_refitting', 'phone')}
+            onWhatsApp={() => trackCta('removal_refitting', 'whatsapp')}
+          />
         </section>
 
         {/* ── Reviews ──────────────────────────────────────────────────────── */}

@@ -15,6 +15,8 @@ import SymptomList from '../components/SymptomList';
 import FaqSection, { type Faq } from '../components/FaqSection';
 import { getReviews, DPF_TURNAROUND_REVIEW_IDS } from '../data/reviews';
 import { localBusinessNode, BUSINESS_ID } from '../data/business';
+import { DPF_FITTED_FAQ } from '../data/dpf-fitting';
+import DpfFittedService from '../components/DpfFittedService';
 import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -22,7 +24,7 @@ gsap.registerPlugin(ScrollTrigger);
 const PHONE_DISPLAY = '07823 649190';
 const PHONE_HREF = 'tel:07823649190';
 
-const trackCta = (cta: string, type: 'phone' | 'booking') =>
+const trackCta = (cta: string, type: 'phone' | 'booking' | 'whatsapp') =>
   trackEvent('dpf_cta_click', { cta_location: cta, cta_type: type, page_path: '/dpf-cleaning-newton-abbot' });
 
 const heroTrust = [
@@ -66,7 +68,7 @@ const processSteps = [
   {
     icon: Wrench,
     title: 'DPF removed',
-    body: 'The filter comes off the vehicle, usually at your own garage. Newton Abbot is close enough that dropping it in yourself is genuinely practical.',
+    body: 'Bring the vehicle to our Totnes workshop, Wednesday to Friday, and we take the filter off, about 8 miles down the A381. Or your own garage removes it and you drop it in.',
   },
   {
     icon: ClipboardCheck,
@@ -75,8 +77,8 @@ const processSteps = [
   },
   {
     icon: Truck,
-    title: 'Returned ready to refit',
-    body: 'Back to you with the before-and-after figures. Filters that reach us early in the day can often be ready the same working day.',
+    title: 'Refitted or returned',
+    body: 'Refitted at the workshop if you brought the vehicle, or back to you ready to refit, with the before-and-after figures either way. Same working day where possible.',
   },
 ];
 
@@ -110,7 +112,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'What does DPF cleaning cost?',
-    a: 'DPF machine cleaning starts from £210, with collection and return or UK postal cleaning from £230, and HGV and plant filters from £299. Call 07823 649190 with your vehicle details and we will confirm the exact price before anything is booked.',
+    a: 'DPF machine cleaning starts from £210, with collection and return or UK postal cleaning from £230, and HGV and plant filters from £299. If we remove and refit the filter at our workshop, the labour depends on the vehicle and is quoted for yours. Call 07823 649190 with your vehicle details and we will confirm the exact price before anything is booked.',
   },
   {
     q: 'Can I drop the filter off myself instead of arranging collection?',
@@ -124,13 +126,10 @@ const FAQS: Faq[] = [
     q: 'Do I need a diagnostic before a DPF clean?',
     a: 'Not always, but it is worth it if the filter has blocked before. A DPF warning light can be caused by a faulty differential pressure sensor or an EGR fault rather than a loaded filter, and cleaning will not fix either. Our DPF diagnostics are a paid check, not a free scan.',
   },
-  {
-    q: 'Do you remove and refit the DPF for me?',
-    a: 'Our standard service is cleaning the filter itself, with removal usually handled by your own garage. If you need help arranging removal or refitting, call 07823 649190 to discuss current availability and we will tell you honestly what we can do.',
-  },
+  DPF_FITTED_FAQ,
   {
     q: 'Do you offer mobile DPF cleaning in Newton Abbot?',
-    a: 'No. Professional DPF cleaning is an off-vehicle workshop process using cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. Given how close Newton Abbot is to the workshop, collection or drop-off is rarely a problem. Our mobile service covers ECU remapping only.',
+    a: 'No. Professional DPF cleaning is an off-vehicle workshop process using cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. Given how close Newton Abbot is to the workshop, bringing the vehicle in for us to remove and refit the filter (Wednesday to Friday), or collection or drop-off of a removed filter, is rarely a problem. Our mobile service covers ECU remapping only.',
   },
   {
     q: 'Which areas around Newton Abbot do you cover?',
@@ -307,8 +306,9 @@ const DPFCleaningNewtonAbbot = () => {
                 down the A381, which changes the practicalities more than the price does.
               </p>
               <p className="text-white/60 text-[15px] sm:text-base md:text-lg leading-relaxed">
-                Dropping the removed filter in yourself is genuinely realistic from here rather than
-                a half-day round trip, and collection can be arranged where it suits better. Filters
+                Bringing the whole vehicle in for us to take the filter off and refit it, Wednesday
+                to Friday, is genuinely realistic from here rather than a half-day round trip. So is
+                dropping a removed filter in, and collection can be arranged where it suits better. Filters
                 that reach us early in the working day can often be cleaned, tested and ready the
                 same day.
               </p>
@@ -531,28 +531,13 @@ const DPFCleaningNewtonAbbot = () => {
           </ol>
         </section>
 
-        {/* ── Removal & refitting ──────────────────────────────────────────── */}
-        <section className="mb-14 md:mb-24 reveal-container">
-          <div className="rounded-2xl bg-[#1A1D22] border border-white/5 border-l-4 border-l-[#FF7A00] p-5 sm:p-6 md:p-8 flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-8 reveal-item">
-            <div className="min-w-0">
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">
-                Need help with removal &amp; refitting?
-              </h2>
-              <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-3xl">
-                Our standard DPF cleaning service is carried out with the filter removed from the
-                vehicle, which most local garages handle themselves. If you need help arranging
-                removal or refitting, call us to discuss current availability.
-              </p>
-            </div>
-            <a
-              href={PHONE_HREF}
-              onClick={() => trackCta('removal_refitting', 'phone')}
-              className="shrink-0 w-full lg:w-auto px-6 py-3.5 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2.5 min-h-[48px]"
-              aria-label={`Call Auto-Cleanse on ${PHONE_DISPLAY}`}
-            >
-              <Phone size={18} className="text-[#FF7A00]" aria-hidden="true" /> Call {PHONE_DISPLAY}
-            </a>
-          </div>
+        {/* ── Remove, clean & refit ────────────────────────────────────── */}
+        <section id="fitted" className="mb-14 md:mb-24 scroll-mt-24 reveal-container">
+          <DpfFittedService
+            className="reveal-item"
+            onCall={() => trackCta('removal_refitting', 'phone')}
+            onWhatsApp={() => trackCta('removal_refitting', 'whatsapp')}
+          />
         </section>
 
         {/* ── Reviews ──────────────────────────────────────────────────────── */}

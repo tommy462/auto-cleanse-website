@@ -17,6 +17,8 @@ import DpfResults from '../components/DpfResults';
 import DpfCutaway from '../components/DpfCutaway';
 import { getReviews, DPF_REVIEW_IDS } from '../data/reviews';
 import { localBusinessNode, BUSINESS_ID } from '../data/business';
+import { DPF_FITTED, DPF_FITTED_FAQ } from '../data/dpf-fitting';
+import DpfFittedService from '../components/DpfFittedService';
 import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -27,12 +29,12 @@ const PHONE_HREF = 'tel:07823649190';
 // GA4 / Google Ads events for this landing page. Phone links are already counted
 // site-wide as `phone_click` by <LeadTracking>; this adds the CTA position so paid
 // search performance can be read per section without a second analytics framework.
-const trackCta = (cta: string, type: 'phone' | 'booking' | 'postal') =>
+const trackCta = (cta: string, type: 'phone' | 'booking' | 'postal' | 'whatsapp' | 'enquiry') =>
   trackEvent('dpf_cta_click', { cta_location: cta, cta_type: type, page_path: '/dpf-cleaning' });
 
 const heroTrust = [
+  'Removed, cleaned & refitted',
   'Before & after testing',
-  'Professional workshop equipment',
   'Local collection available',
   'UK-wide postal service',
 ];
@@ -41,12 +43,12 @@ const processSteps = [
   {
     icon: PhoneCall,
     title: 'Get in touch',
-    body: 'Tell us your vehicle registration and what problem you are experiencing: a warning light, limp mode, or a regeneration that will not finish.',
+    body: 'Tell us your vehicle registration and what problem you are experiencing: a warning light, limp mode, or a regeneration that will not finish. We quote the full price for your vehicle.',
   },
   {
     icon: Wrench,
     title: 'DPF removed',
-    body: 'Drop the removed filter at our Totnes workshop, or call to discuss local collection across Devon and UK-wide postal options.',
+    body: 'Bring the vehicle to our Totnes workshop, Wednesday to Friday, and we take the filter off. Or drop off or post a filter your garage has already removed.',
   },
   {
     icon: ClipboardCheck,
@@ -55,8 +57,8 @@ const processSteps = [
   },
   {
     icon: Truck,
-    title: 'Ready to refit',
-    body: 'The cleaned DPF is returned ready for refitting, with same-day turnaround where possible for filters received early in the day.',
+    title: 'Refitted',
+    body: 'We refit the cleaned DPF and the vehicle is ready to collect, the same day where possible. A filter you brought in goes back to you ready to refit.',
   },
 ];
 
@@ -73,6 +75,7 @@ const priceTiers = [
   { label: 'Within 10 miles of Totnes', note: 'Local collection and return', price: '£210' },
   { label: 'Outside 10 miles & UK postal', note: 'Nationwide postal DPF cleaning', price: '£230' },
   { label: 'HGV & plant filters', note: 'Heavy vehicle and machinery DPFs', price: '£299' },
+  { label: 'Removal & refit at Totnes', note: 'Wednesday to Friday. Labour depends on the vehicle', price: 'Quoted' },
 ];
 
 const locations = [
@@ -100,15 +103,12 @@ const locations = [
 const dpfFaqs: Faq[] = [
   {
     q: 'Do you offer mobile DPF cleaning?',
-    a: 'No. Auto-Cleanse does not offer mobile DPF cleaning at the roadside. DPF cleaning is carried out off the vehicle using our workshop equipment in Totnes, or through postal and trade supply of the filter. Our mobile service applies to ECU remapping only - that can be done at your home or workplace.',
+    a: 'No. Auto-Cleanse does not offer mobile DPF cleaning at the roadside. DPF cleaning is carried out off the vehicle using our workshop equipment in Totnes: bring the vehicle Wednesday to Friday and we remove and refit the filter for you, or bring or post a filter that is already off. Our mobile service applies to ECU remapping only, which can be done at your home or workplace.',
   },
-  {
-    q: 'Can you help with removing and refitting the DPF?',
-    a: 'Our standard DPF cleaning service is carried out with the filter already removed from the vehicle. If you need assistance arranging removal or refitting, call us on 07823 649190 to discuss current availability - we will tell you honestly what we can help with.',
-  },
+  DPF_FITTED_FAQ,
   {
     q: 'How much does DPF cleaning cost?',
-    a: 'DPF machine cleaning starts at £210 within 10 miles of our Totnes workshop, £230 outside 10 miles including UK-wide postal cleaning, and £299 for HGV and plant filters. Prices are confirmed when you contact us with your vehicle details.',
+    a: `DPF machine cleaning starts at £210 within 10 miles of our Totnes workshop, £230 outside 10 miles including UK-wide postal cleaning, and £299 for HGV and plant filters. ${DPF_FITTED.priceLine} Prices are confirmed when you contact us with your vehicle details.`,
   },
   {
     q: 'How long does DPF cleaning take?',
@@ -149,7 +149,7 @@ const schema = {
   '@graph': [
     localBusinessNode({
       description:
-        'Professional DPF cleaning service in Devon. Workshop drop-off, local collection and UK-wide postal DPF cleaning - carried out off the vehicle at our Totnes workshop. We do not offer mobile/roadside DPF cleaning.',
+        `Professional DPF cleaning service in Devon. ${DPF_FITTED.schema} Also workshop drop-off of removed filters, local collection and UK-wide postal DPF cleaning. We do not offer mobile/roadside DPF cleaning.`,
       serviceType: 'DPF Cleaning',
     }),
     {
@@ -160,7 +160,7 @@ const schema = {
       areaServed: { '@type': 'AdministrativeArea', name: 'Devon' },
       url: 'https://www.auto-cleanse.co.uk/dpf-cleaning',
       description:
-        'Off-vehicle machine cleaning of diesel particulate filters at the Auto-Cleanse workshop in Totnes, Devon, with flow testing before and after cleaning, local collection across Devon and UK-wide postal cleaning.',
+        'Off-vehicle machine cleaning of diesel particulate filters at the Auto-Cleanse workshop in Totnes, Devon, with flow testing before and after cleaning. We remove and refit the filter at the workshop Wednesday to Friday (labour quoted per vehicle), or clean filters already removed, with local collection across Devon and UK-wide postal cleaning.',
       offers: [
         {
           '@type': 'Offer',
@@ -211,7 +211,7 @@ const DPFCleaningHub = () => {
     <div ref={container} className="pt-10 pb-16 md:pt-28 md:pb-24 bg-[#0A0A0A] min-h-screen relative overflow-hidden">
       <SEO
         title="DPF Cleaning Devon | Professional DPF Cleaning | Auto-Cleanse"
-        description="Professional DPF cleaning in Devon from our Totnes workshop. Off-vehicle machine cleaning, testing, collection and UK postal. From £210. Call 07823 649190."
+        description="DPF cleaning in Devon: we remove, clean and refit at our Totnes workshop, or clean your removed filter. Flow tested before and after. From £210. Call 07823 649190."
         path="/dpf-cleaning"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
@@ -234,12 +234,12 @@ const DPFCleaningHub = () => {
           </h1>
 
           <p className="text-lg sm:text-2xl md:text-3xl font-bold text-white/90 tracking-tight max-w-3xl mx-auto mb-4">
-            Blocked DPF? Get it professionally cleaned &amp; tested.
+            Blocked DPF? We take it off, clean it and refit it.
           </p>
 
           <p className="text-[15px] sm:text-base md:text-xl text-white/50 leading-relaxed font-medium max-w-3xl mx-auto">
-            Professional off-vehicle DPF machine cleaning from our Totnes workshop, with same-day
-            turnaround where possible for private and trade customers.
+            Bring the vehicle to our Totnes workshop, Wednesday to Friday, and where possible it is
+            back with you the same day. Garages and DIY: drop off or post the removed filter.
           </p>
 
           {/* Price + CTAs */}
@@ -247,7 +247,7 @@ const DPFCleaningHub = () => {
             <p className="inline-flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 rounded-2xl border border-[#FF7A00]/30 bg-[#FF7A00]/10 px-5 py-3">
               <span className="text-[11px] font-bold uppercase tracking-widest text-white/60">From</span>
               <span className="text-3xl md:text-4xl font-black text-[#FF7A00] font-mono tracking-tight">£210</span>
-              <span className="text-sm font-medium text-white/50">DPF machine clean</span>
+              <span className="text-sm font-medium text-white/50">DPF machine clean, fitting quoted per vehicle</span>
             </p>
 
             <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
@@ -259,13 +259,13 @@ const DPFCleaningHub = () => {
               >
                 <Phone size={20} aria-hidden="true" /> Call {PHONE_DISPLAY}
               </a>
-              <Link
-                to="/book"
-                onClick={() => trackCta('hero', 'booking')}
+              <a
+                href="#enquiry"
+                onClick={() => trackCta('hero', 'enquiry')}
                 className="px-6 sm:px-7 py-4 rounded-xl font-bold text-white text-base sm:text-lg border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2.5 min-h-[52px]"
               >
-                Book DPF Cleaning <ArrowRight size={18} aria-hidden="true" />
-              </Link>
+                Get a fitted price <ArrowRight size={18} aria-hidden="true" />
+              </a>
             </div>
 
             {/* 2x2 on mobile, single row from lg */}
@@ -429,28 +429,13 @@ const DPFCleaningHub = () => {
           </ol>
         </section>
 
-        {/* ── 5. Removal & refitting ──────────────────────────────────────── */}
-        <section className="mb-14 md:mb-24 reveal-container">
-          <div className="rounded-2xl bg-[#1A1D22] border border-white/5 border-l-4 border-l-[#FF7A00] p-5 sm:p-6 md:p-8 flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-8 reveal-item">
-            <div className="min-w-0">
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">
-                Need help with removal &amp; refitting?
-              </h2>
-              <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-3xl">
-                Our standard DPF cleaning service is carried out with the filter removed from the
-                vehicle. If you need assistance arranging removal or refitting, call us to discuss
-                current availability.
-              </p>
-            </div>
-            <a
-              href={PHONE_HREF}
-              onClick={() => trackCta('removal_refitting', 'phone')}
-              className="shrink-0 w-full lg:w-auto px-6 py-3.5 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2.5 min-h-[48px]"
-              aria-label={`Call Auto-Cleanse on ${PHONE_DISPLAY}`}
-            >
-              <Phone size={18} className="text-[#FF7A00]" aria-hidden="true" /> Call {PHONE_DISPLAY}
-            </a>
-          </div>
+        {/* ── 5. Remove, clean & refit ────────────────────────────────────── */}
+        <section id="fitted" className="mb-14 md:mb-24 scroll-mt-24 reveal-container">
+          <DpfFittedService
+            className="reveal-item"
+            onCall={() => trackCta('removal_refitting', 'phone')}
+            onWhatsApp={() => trackCta('removal_refitting', 'whatsapp')}
+          />
         </section>
 
         {/* ── 6. Pricing / what's included ────────────────────────────────── */}
@@ -463,8 +448,9 @@ const DPFCleaningHub = () => {
               Professional DPF cleaning from <span className="text-[#FF7A00] font-mono">£210</span>
             </h2>
             <p className="text-white/55 text-[15px] sm:text-base md:text-lg leading-relaxed">
-              Clear pricing before you commit. What you pay depends on where the filter is coming
-              from and the type of vehicle. Nothing else.
+              Clear pricing before you commit. The clean depends on where the filter is coming
+              from and the type of vehicle. If we take the filter off and refit it, the labour for
+              your vehicle is quoted before you book. Nothing else.
             </p>
           </div>
 
@@ -511,13 +497,13 @@ const DPFCleaningHub = () => {
                 >
                   <Phone size={18} aria-hidden="true" /> Call {PHONE_DISPLAY}
                 </a>
-                <Link
-                  to="/book"
-                  onClick={() => trackCta('pricing', 'booking')}
+                <a
+                  href="#enquiry"
+                  onClick={() => trackCta('pricing', 'enquiry')}
                   className="px-6 py-3.5 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2.5 min-h-[48px]"
                 >
-                  Book DPF Cleaning <ArrowRight size={16} aria-hidden="true" />
-                </Link>
+                  Get a fitted price <ArrowRight size={16} aria-hidden="true" />
+                </a>
               </div>
               <p className="text-white/35 text-xs leading-relaxed mt-4">
                 Full pricing, including{' '}
@@ -617,10 +603,10 @@ const DPFCleaningHub = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/5 to-transparent opacity-50 pointer-events-none"></div>
             <div className="relative z-10">
               <QuickEnquiryForm
-                defaultService="DPF Cleaning"
+                defaultService="DPF Remove, Clean & Refit"
                 source="dpf-cleaning"
-                heading="Request a DPF Cleaning Callback"
-                subheading="Send your details and we'll call you back about your DPF clean."
+                heading="Get a Fitted DPF Price"
+                subheading="Send your registration and we'll call you back with the full price for your vehicle: the clean plus removal and refit."
               />
             </div>
           </div>
@@ -699,8 +685,8 @@ const DPFCleaningHub = () => {
                 DPF cleaning across Devon
               </h2>
               <p className="text-white/50 text-sm md:text-base mt-2 max-w-2xl reveal-item">
-                Collection and return across Devon, or drop your removed filter straight to the
-                workshop in Totnes.
+                Bring the vehicle to Totnes for removal and refitting, drop off a removed filter,
+                or use collection and return across Devon.
               </p>
             </div>
             <Link
@@ -735,7 +721,9 @@ const DPFCleaningHub = () => {
               cleaning and ECU remapping specialist serving trade and private customers across
               Devon. Diesel particulate filter cleaning is carried out{' '}
               <span className="text-white font-semibold">off the vehicle</span> using our workshop
-              equipment in Totnes, with local collection across Devon and UK-wide postal cleaning.
+              equipment in Totnes. We remove and refit the filter at the workshop Wednesday to
+              Friday, or clean filters that are already off, with local collection across Devon
+              and UK-wide postal cleaning.
             </p>
           </div>
           <div className="reveal-item">
@@ -760,8 +748,8 @@ const DPFCleaningHub = () => {
               Blocked DPF? Speak to <span className="text-[#FF7A00]">Auto-Cleanse.</span>
             </h2>
             <p className="relative z-10 text-white/60 text-[15px] sm:text-base md:text-lg font-medium mb-6 md:mb-8 max-w-2xl mx-auto">
-              Professional DPF cleaning from our Totnes workshop for drivers and garages across
-              Devon, with UK-wide postal cleaning available.
+              We remove, clean and refit at our Totnes workshop, Wednesday to Friday, for drivers
+              and garages across Devon. UK-wide postal cleaning for filters that are already off.
             </p>
 
             <p className="relative z-10 inline-flex items-baseline gap-3 rounded-2xl border border-[#FF7A00]/30 bg-[#FF7A00]/10 px-6 py-3 mb-7 md:mb-8">
@@ -778,13 +766,13 @@ const DPFCleaningHub = () => {
               >
                 <Phone size={20} aria-hidden="true" /> Call {PHONE_DISPLAY}
               </a>
-              <Link
-                to="/book"
-                onClick={() => trackCta('final', 'booking')}
+              <a
+                href="#enquiry"
+                onClick={() => trackCta('final', 'enquiry')}
                 className="px-6 sm:px-7 py-4 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2.5 text-base sm:text-lg min-h-[52px]"
               >
-                <CalendarClock size={20} className="text-[#FF7A00]" aria-hidden="true" /> Book DPF Cleaning
-              </Link>
+                <CalendarClock size={20} className="text-[#FF7A00]" aria-hidden="true" /> Get a fitted price
+              </a>
             </div>
           </div>
         </section>

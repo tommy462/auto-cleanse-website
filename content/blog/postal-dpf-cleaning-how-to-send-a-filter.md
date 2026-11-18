@@ -87,7 +87,7 @@ Ask us when you book. As general good practice, sensors and pipe stubs stick out
 
 ### What if I cannot remove the DPF myself?
 
-A local garage can remove it and send it to us. If you need help with removal and refit, call us to discuss current availability.
+A local garage can remove it and send it to us. If you can get the vehicle to our Totnes workshop, we remove, clean and refit it there, Wednesday to Friday, with the labour quoted for your vehicle before you book.
 
 ## The takeaway
 

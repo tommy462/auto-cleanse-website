@@ -80,7 +80,7 @@ A hard "Italian tune-up" on the way to the test centre will not fix a fault or c
 
 ## How Auto-Cleanse can help
 
-Our paid DPF diagnostic check reads fault codes and live data, usually in around an hour, with the vehicle normally brought to our Totnes workshop - worth booking well before the MOT. If the filter is restricted rather than damaged, it can be removed for [off-vehicle DPF cleaning](/dpf-cleaning) with before-and-after flow and back-pressure testing - collected locally in Devon or posted to us from anywhere in the UK. In Devon our own technicians handle AdBlue repairs; elsewhere we can book an independent mobile technician from our national network, and if we cannot cover your area we say so. For help with removing and refitting the filter, call or WhatsApp 07823 649190 (Mon-Fri 09:00-17:00) to discuss current availability.
+Our paid DPF diagnostic check reads fault codes and live data, usually in around an hour, with the vehicle normally brought to our Totnes workshop - worth booking well before the MOT. If the filter is restricted rather than damaged, it can be removed for [off-vehicle DPF cleaning](/dpf-cleaning) with before-and-after flow and back-pressure testing - collected locally in Devon or posted to us from anywhere in the UK. In Devon our own technicians handle AdBlue repairs; elsewhere we can book an independent mobile technician from our national network, and if we cannot cover your area we say so. We can also remove and refit the filter at our Totnes workshop, Wednesday to Friday, with the labour quoted for your vehicle before you book: call or WhatsApp 07823 649190 (Mon-Fri 09:00-17:00).
 
 ## Frequently asked questions
 

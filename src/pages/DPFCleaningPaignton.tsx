@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Breadcrumbs from '../components/Breadcrumbs';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
+import DpfFittedService from '../components/DpfFittedService';
 import Reviews from '../components/Reviews';
 import { getReviews, DPF_TOWN_REVIEW_IDS } from '../data/reviews';
 import { localBusinessNode, BUSINESS_ID } from '../data/business';
@@ -16,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Matches the CTA event convention used on the other DPF location pages. Phone
 // links are already counted site-wide as `phone_click` by <LeadTracking>.
-const trackCta = (cta: string, type: 'phone' | 'booking') =>
+const trackCta = (cta: string, type: 'phone' | 'booking' | 'whatsapp') =>
   trackEvent('dpf_cta_click', { cta_location: cta, cta_type: type, page_path: '/dpf-cleaning-paignton' });
 
 const DPFCleaningPaignton = () => {
@@ -138,6 +139,14 @@ const DPFCleaningPaignton = () => {
                 A lot of Paignton diesels do short, slow, stop-start miles that never let a regeneration finish, which is exactly how filters load up in the first place. Off-vehicle cleaning clears the soot a regen never burnt off along with the ash it never could, and the filter is flow tested before and after so the change is measured.
               </p>
             </div>
+          </section>
+
+          {/* Remove, clean & refit at the workshop (shared wording in data/dpf-fitting.ts) */}
+          <section id="fitted" className="reveal-item scroll-mt-24">
+            <DpfFittedService
+              onCall={() => trackCta('removal_refitting', 'phone')}
+              onWhatsApp={() => trackCta('removal_refitting', 'whatsapp')}
+            />
           </section>
 
           <section className="relative p-10 md:p-12 rounded-[2.5rem] bg-[#1A1D22] border border-white/5 reveal-item group hover:border-[#FF7A00]/20 transition-all duration-500 overflow-hidden shadow-xl shadow-black">

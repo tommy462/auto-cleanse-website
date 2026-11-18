@@ -85,7 +85,7 @@ Early systems were designed around the filter being replaced or cleaned of ash a
 
 ## How Auto-Cleanse can help
 
-If a filter or additive warning will not clear, call 07823 649190 about our paid DPF diagnostic check: fault codes and live data, usually in around an hour, with the vehicle normally brought to our Totnes workshop. If the filter is ash-loaded, we clean it off the vehicle with before-and-after flow and back-pressure testing - £210 within 10 miles of Totnes, or £230 further afield and through our [postal DPF service](/postal-dpf). The filter needs to come to us already removed; for help with removal and refit, call us to discuss current availability. Prices are confirmed when you contact us with your vehicle details.
+If a filter or additive warning will not clear, call 07823 649190 about our paid DPF diagnostic check: fault codes and live data, usually in around an hour, with the vehicle normally brought to our Totnes workshop. If the filter is ash-loaded, we clean it off the vehicle with before-and-after flow and back-pressure testing - £210 within 10 miles of Totnes, or £230 further afield and through our [postal DPF service](/postal-dpf). The filter can come to us already removed, or bring the vehicle to our Totnes workshop, Wednesday to Friday, and we remove and refit it, with the labour quoted before you book. Prices are confirmed when you contact us with your vehicle details.
 
 ## Frequently asked questions
 

@@ -78,7 +78,7 @@ For a fleet truck or a machine on hire, the cost of a blocked DPF is rarely the 
 
 ## How Auto-Cleanse can help
 
-Our [HGV and plant DPF cleaning](/dpf-cleaning) is an off-vehicle machine clean with high-pressure water, controlled hot-air drying and before-and-after flow and back-pressure testing, with an honest report on the filter's condition. Once a filter is off the vehicle or machine, it can come to us from anywhere in the UK through our [postal DPF service](/postal-dpf). Trade accounts are available, and if you need help with removal or refit, call 07823 649190 to discuss current availability.
+Our [HGV and plant DPF cleaning](/dpf-cleaning) is an off-vehicle machine clean with high-pressure water, controlled hot-air drying and before-and-after flow and back-pressure testing, with an honest report on the filter's condition. Once a filter is off the vehicle or machine, it can come to us from anywhere in the UK through our [postal DPF service](/postal-dpf). Trade accounts are available, and we can remove and refit the filter at our Totnes workshop, Wednesday to Friday, with the labour quoted for the vehicle before you book: call 07823 649190.
 
 ## Frequently asked questions
 

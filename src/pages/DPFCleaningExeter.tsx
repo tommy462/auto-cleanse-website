@@ -15,6 +15,8 @@ import SymptomList from '../components/SymptomList';
 import FaqSection, { type Faq } from '../components/FaqSection';
 import { getReviews, DPF_TOWN_REVIEW_IDS } from '../data/reviews';
 import { localBusinessNode, BUSINESS_ID } from '../data/business';
+import { DPF_FITTED_FAQ } from '../data/dpf-fitting';
+import DpfFittedService from '../components/DpfFittedService';
 import { trackEvent } from '../lib/tracking';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -24,7 +26,7 @@ const PHONE_HREF = 'tel:07823649190';
 
 // Reuses the site-wide gtag helper. Phone links are already counted as
 // `phone_click` by <LeadTracking>; this only adds which section was clicked.
-const trackCta = (cta: string, type: 'phone' | 'booking') =>
+const trackCta = (cta: string, type: 'phone' | 'booking' | 'whatsapp') =>
   trackEvent('dpf_cta_click', { cta_location: cta, cta_type: type, page_path: '/dpf-cleaning-exeter' });
 
 const heroTrust = [
@@ -63,7 +65,7 @@ const processSteps = [
   {
     icon: Wrench,
     title: 'DPF removed',
-    body: 'The filter comes off the vehicle, at your own garage or ours. Then choose collection from Exeter, workshop drop-off, or post.',
+    body: 'Bring the vehicle to our Totnes workshop, Wednesday to Friday, and we take the filter off. Or your own garage removes it and you choose collection from Exeter, workshop drop-off, or post.',
   },
   {
     icon: ClipboardCheck,
@@ -72,8 +74,8 @@ const processSteps = [
   },
   {
     icon: Truck,
-    title: 'Ready to refit',
-    body: 'Back to you with the before-and-after figures, ready to go straight back on. Same-day turnaround where possible for filters received early.',
+    title: 'Refitted or returned',
+    body: 'Refitted at the workshop if you brought the vehicle, or back to you ready to go straight on, with the before-and-after figures either way. Same day where possible.',
   },
 ];
 
@@ -97,8 +99,9 @@ const included = [
 const FAQS: Faq[] = [
   {
     q: 'How much does DPF cleaning cost in Exeter?',
-    a: 'DPF machine cleaning starts from £210. Exeter sits outside our 10-mile collection band, so cleaning with collection and return, or by post, is from £230, and HGV and plant filters are from £299. We confirm the exact price when you call on 07823 649190 with your vehicle details.',
+    a: 'DPF machine cleaning starts from £210. Exeter sits outside our 10-mile collection band, so cleaning with collection and return, or by post, is from £230, and HGV and plant filters are from £299. If you bring the vehicle to Totnes for us to remove and refit the filter, the labour is quoted for your vehicle before you book. We confirm the exact price when you call on 07823 649190 with your vehicle details.',
   },
+  DPF_FITTED_FAQ,
   {
     q: 'Do you collect DPFs from Exeter?',
     a: 'Yes. Exeter is on our regular collection route from the Totnes workshop, so collection of a removed filter can be arranged. Garages can batch several filters into one collection. Call to check current availability, as collection depends on where we are running that week.',
@@ -109,7 +112,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Do you offer mobile DPF cleaning in Exeter?',
-    a: 'No. Professional DPF cleaning is carried out off the vehicle using workshop cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. For Exeter customers that means collection, workshop drop-off or post. Our mobile service covers ECU remapping only.',
+    a: 'No. Professional DPF cleaning is carried out off the vehicle using workshop cleaning and flow-testing equipment that cannot be replicated at the roadside or on a driveway. For Exeter customers that means bringing the vehicle to our Totnes workshop, Wednesday to Friday, for us to remove and refit the filter, or collection, drop-off or post of a filter that is already off. Our mobile service covers ECU remapping only.',
   },
   {
     q: 'What actually happens to my DPF during the clean?',
@@ -315,8 +318,9 @@ const DPFCleaningExeter = () => {
               Three ways to get a DPF cleaned from Exeter
             </h2>
             <p className="text-white/55 text-[15px] sm:text-base md:text-lg leading-relaxed">
-              The filter has to come off the vehicle either way, so where you are matters less than
-              you would think. Pick whichever suits the job.
+              Want us to do the whole job? Bring the vehicle to Totnes, Wednesday to Friday, and we
+              take the filter off, clean it and refit it (see below). If your garage has already
+              removed it, pick whichever of these suits.
             </p>
           </div>
 
@@ -435,28 +439,13 @@ const DPFCleaningExeter = () => {
           </ol>
         </section>
 
-        {/* ── Removal & refitting ──────────────────────────────────────────── */}
-        <section className="mb-14 md:mb-24 reveal-container">
-          <div className="rounded-2xl bg-[#1A1D22] border border-white/5 border-l-4 border-l-[#FF7A00] p-5 sm:p-6 md:p-8 flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-8 reveal-item">
-            <div className="min-w-0">
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">
-                Need help with removal &amp; refitting?
-              </h2>
-              <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-3xl">
-                Our standard DPF cleaning service is carried out with the filter removed from the
-                vehicle. Most Exeter garages remove it themselves. If you need help arranging
-                removal or refitting, call us to discuss current availability.
-              </p>
-            </div>
-            <a
-              href={PHONE_HREF}
-              onClick={() => trackCta('removal_refitting', 'phone')}
-              className="shrink-0 w-full lg:w-auto px-6 py-3.5 rounded-xl font-bold text-white border border-white/15 hover:bg-white/5 transition-colors inline-flex items-center justify-center gap-2.5 min-h-[48px]"
-              aria-label={`Call Auto-Cleanse on ${PHONE_DISPLAY}`}
-            >
-              <Phone size={18} className="text-[#FF7A00]" aria-hidden="true" /> Call {PHONE_DISPLAY}
-            </a>
-          </div>
+        {/* ── Remove, clean & refit ────────────────────────────────────── */}
+        <section id="fitted" className="mb-14 md:mb-24 scroll-mt-24 reveal-container">
+          <DpfFittedService
+            className="reveal-item"
+            onCall={() => trackCta('removal_refitting', 'phone')}
+            onWhatsApp={() => trackCta('removal_refitting', 'whatsapp')}
+          />
         </section>
 
         {/* ── Price ────────────────────────────────────────────────────────── */}

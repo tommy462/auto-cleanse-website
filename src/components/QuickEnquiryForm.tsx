@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, Loader2, CheckCircle } from 'lucide-react';
-import { LEADS_WEBHOOK_URL, SERVICE_OPTIONS } from '../config/leads';
+import { LEADS_WEBHOOK_URL, SERVICE_OPTIONS, DPF_FITTED_SERVICE } from '../config/leads';
 import { trackLead } from '../lib/tracking';
 import FormPrivacyNote from './FormPrivacyNote';
 
@@ -95,6 +95,8 @@ export default function QuickEnquiryForm({
     switch (defaultService) {
       case 'DPF Cleaning':
         return { name: 'requestDpfCleaningQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about DPF cleaning for a vehicle.' };
+      case 'DPF Remove, Clean & Refit':
+        return { name: 'requestDpfCleaningQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback with a price to remove, clean and refit the DPF on a vehicle at the Totnes workshop.' };
       case 'DPF Diagnostics':
         return { name: 'requestDpfCleaningQuote', desc: 'Submits an enquiry to Auto-Cleanse requesting a callback about a DPF diagnostic for a vehicle.' };
       case 'ECU Remapping':
@@ -151,7 +153,7 @@ export default function QuickEnquiryForm({
             onChange={handleChange} className={fieldClass}
             toolparamdescription="The service the enquiry is about, e.g. DPF Cleaning, ECU Remapping or Vehicle Diagnostics.">
             <option value="" disabled>Choose a service…</option>
-            {SERVICE_OPTIONS.map((s) => (
+            {(defaultService.startsWith('DPF') ? [DPF_FITTED_SERVICE, ...SERVICE_OPTIONS] : SERVICE_OPTIONS).map((s) => (
               <option key={s} value={s} className="bg-[#1A1D22]">{s}</option>
             ))}
           </select>

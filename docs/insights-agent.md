@@ -153,8 +153,11 @@ If the recommendation needs any of these, it is `manual`, not yours.
   within Devon; Stage 2 price on application; £50 deposit to book. National AdBlue and national
   remap pages: no prices, ever.
 - DPF cleaning is off-vehicle only, at the Totnes workshop or by post. Never say or imply mobile
-  DPF cleaning. Removal and refitting: "Need help with removal and refitting? Call us to discuss
-  current availability."
+  DPF cleaning. Removal and refitting (since 25 Nov 2026): we remove, clean and refit at the Totnes
+  workshop, Wednesday to Friday, the same day where possible; the labour depends on the vehicle
+  and is quoted before booking. Never publish a labour price or a fixed fitted price, never offer
+  driveway removal or vehicle collection, and take the wording from `src/data/dpf-fitting.ts`.
+  Never write the old "call us to discuss current availability" line.
 - The clean is water only (high-pressure aqueous and micro-cavitation, reverse flushed), hot-air
   dried, flow tested before and after. Never "98%", "guaranteed", chemicals, or air flushing.
 - Mobile remapping by Auto-Cleanse is Devon only. National town pages state "<town> is an area we

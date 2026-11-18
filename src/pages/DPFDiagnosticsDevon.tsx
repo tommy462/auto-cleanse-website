@@ -31,7 +31,7 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Is DPF removal or a DPF delete legal?',
-    a: 'No. Removing a diesel particulate filter, or mapping a vehicle to run without one, is illegal for road use in the UK and will fail the MOT. We focus on diagnosing the fault and restoring the filter, not removing it.',
+    a: 'No. Taking a diesel particulate filter off for good, or mapping a vehicle to run without one, is illegal for road use in the UK and will fail the MOT. We focus on diagnosing the fault and restoring the filter, not deleting it. When we take a filter off at our workshop to clean it, it goes back on.',
   },
   {
     q: 'How long does a DPF diagnostic take?',

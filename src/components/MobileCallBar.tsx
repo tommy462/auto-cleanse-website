@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, Mail, CalendarClock, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MessageCircle } from 'lucide-react';
 import { trackEvent } from '../lib/tracking';
+import { DPF_FITTED_WHATSAPP } from '../data/dpf-fitting';
 import { useNationalPage } from '../lib/use-national-page';
 
 // Pre-filled so the first message already carries what we need to quote.
@@ -9,13 +10,17 @@ const WHATSAPP_HREF = `https://wa.me/447823649190?text=${encodeURIComponent('Hi 
 // Pages that get a service-specific second action instead of the generic
 // "Enquire" link. Keeps a single sticky bar site-wide (no stacking) while
 // letting a paid-search landing page push its own conversion.
-const CTA_OVERRIDES: Record<string, { to: string; label: string }> = {
-  '/dpf-cleaning': { to: '/book', label: 'Book DPF Clean' },
-  '/dpf-cleaning-exeter': { to: '/book', label: 'Book DPF Clean' },
-  '/dpf-cleaning-plymouth': { to: '/book', label: 'Book DPF Clean' },
-  '/dpf-cleaning-torquay': { to: '/book', label: 'Book DPF Clean' },
-  '/dpf-cleaning-newton-abbot': { to: '/book', label: 'Book DPF Clean' },
-  '/dpf-cleaning-paignton': { to: '/book', label: 'Book DPF Clean' },
+// DPF pages: a fitted DPF job is priced from the registration, so the second button is a
+// WhatsApp message pre-filled for that quote (it used to open /book, whose DPF card led to
+// the postal form, which suits nobody who needs the filter taken off).
+const DPF_QUOTE = { href: DPF_FITTED_WHATSAPP, label: 'WhatsApp a price' };
+const CTA_OVERRIDES: Record<string, { href: string; label: string }> = {
+  '/dpf-cleaning': DPF_QUOTE,
+  '/dpf-cleaning-exeter': DPF_QUOTE,
+  '/dpf-cleaning-plymouth': DPF_QUOTE,
+  '/dpf-cleaning-torquay': DPF_QUOTE,
+  '/dpf-cleaning-newton-abbot': DPF_QUOTE,
+  '/dpf-cleaning-paignton': DPF_QUOTE,
 };
 
 // Sticky bottom call/enquire bar shown on mobile and tablet (hidden on lg+).
@@ -59,20 +64,22 @@ export default function MobileCallBar() {
           <Phone size={18} /> Call Now
         </a>
         {override ? (
-          <Link
-            to={override.to}
+          <a
+            href={override.href}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() =>
               trackEvent('dpf_cta_click', {
                 cta_location: 'sticky_bar',
-                cta_type: 'booking',
+                cta_type: 'whatsapp',
                 page_path: pathname,
               })
             }
             className="flex-1 flex items-center justify-center gap-2 py-3.5 min-h-[56px] bg-[#0A0A0A] text-white font-bold text-sm hover:text-[#FF7A00] transition-colors"
-            aria-label={override.label}
+            aria-label={`${override.label} on WhatsApp`}
           >
-            <CalendarClock size={18} className="text-[#FF7A00]" /> {override.label}
-          </Link>
+            <MessageCircle size={18} className="text-[#25D366]" /> {override.label}
+          </a>
         ) : (
           <>
             <a

@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Breadcrumbs from '../components/Breadcrumbs';
 import QuickEnquiryForm from '../components/QuickEnquiryForm';
+import DpfFittedService from '../components/DpfFittedService';
 import Reviews from '../components/Reviews';
 import { getReviews, DPF_TOWN_REVIEW_IDS } from '../data/reviews';
 import { DpfLocation, DPF_DIRECTORY } from '../data/dpf-locations';
@@ -150,6 +151,11 @@ export default function DPFCleaningLocation({ location }: { location: DpfLocatio
                 working day.
               </p>
             </div>
+          </section>
+
+          {/* Remove, clean & refit at the workshop (shared wording in data/dpf-fitting.ts) */}
+          <section id="fitted" className="reveal-item scroll-mt-24">
+            <DpfFittedService />
           </section>
 
           {/* Unique FAQs */}

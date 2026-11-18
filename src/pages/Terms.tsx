@@ -50,8 +50,11 @@ export default function Terms() {
         <ul>
           <li>
             <strong>DPF cleaning</strong> is done off the vehicle at our workshop in Totnes, or by
-            post. We don't offer mobile DPF cleaning. Need help with removal and refitting? Call us
-            to discuss current availability.
+            post. We don't offer mobile DPF cleaning. We can also remove and refit the DPF at our
+            Totnes workshop, Wednesday to Friday. The labour depends on the vehicle and we quote it
+            before you book. If we find something we did not expect once the vehicle is on the
+            ramp, such as a snapped stud or a damaged sensor, we contact you before doing any extra
+            work.
           </li>
           <li>
             <strong>ECU remapping</strong> is done at our workshop, or at your address if you are in
