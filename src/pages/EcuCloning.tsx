@@ -60,6 +60,14 @@ const faqs = [
     q: 'Do you offer a mobile ECU cloning service?',
     a: 'Yes - for OBD-accessible jobs we can come to you across Devon. Bench-read jobs require the ECU to be brought to our workshop in Totnes.',
   },
+  {
+    q: 'Does the replacement ECU need to match my original?',
+    a: 'Normally, yes. The copied data is laid out for a particular hardware and software family, so the replacement normally needs to be the same hardware type - typically the same part number, or a version confirmed as compatible. Note the numbers on your original ECU\'s label and match any donor to them before you buy it, and keep the original unit even if it seems dead: it may still be readable on the bench, and it is the only source of your car\'s own data.',
+  },
+  {
+    q: 'What if my ECU can\'t be cloned?',
+    a: 'Cloning depends on the original\'s data being readable, the ECU type being supported for reading and writing, and a compatible donor being available. Some newer units have security protection that prevents a full read or write. In those cases the usual answer is a replacement programmed and matched to the car through the manufacturer\'s route, which normally runs the factory calibration, so any remap would usually need redoing.',
+  },
 ];
 
 const supported = [
