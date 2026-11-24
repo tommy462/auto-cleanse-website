@@ -1,5 +1,6 @@
 ---
 title: "How Long Does a Remap Take? What Happens on the Day"
+seoTitle: "How Long Does a Remap Take? Usually 1-2 Hours"
 slug: "how-long-does-a-remap-take"
 date: 2026-10-19
 category: ECU

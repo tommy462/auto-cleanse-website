@@ -1,6 +1,6 @@
 ---
 title: "Understanding DPF Differential Pressure"
-seoTitle: "DPF Differential Pressure Readings Explained"
+seoTitle: "DPF Differential Pressure: How to Read It Correctly"
 slug: "understanding-dpf-differential-pressure"
 date: 2026-02-16
 category: DPF
