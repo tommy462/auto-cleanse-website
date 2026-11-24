@@ -3,9 +3,9 @@ import type { AdBlueGuide } from './types';
 const guide: AdBlueGuide = {
   path: '/adblue-warning-light',
   kind: 'symptom',
-  seoTitle: 'AdBlue Warning Light: Low, Quality or Fault? | Auto-Cleanse',
+  seoTitle: 'AdBlue Warning Light On? What It Means | Auto-Cleanse',
   metaDescription:
-    'AdBlue light on, even after filling? How to tell a low level from a quality or SCR fault, what amber, red and flashing mean, and what to do next.',
+    'AdBlue light on, or still on after filling? See if it is a low level, bad fluid or an SCR fault, what flashing or a countdown means and what to do next.',
   breadcrumb: 'AdBlue warning light',
   h1: 'AdBlue warning light:',
   h1Accent: 'low level, bad fluid or a fault?',
