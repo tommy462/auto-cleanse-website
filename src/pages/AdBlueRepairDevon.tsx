@@ -51,6 +51,14 @@ const FAQS: Faq[] = [
     a: 'Yes. A correct repair restores the system to how it was designed to work, which is exactly what keeps you MOT-compliant and road-legal.',
   },
   {
+    q: 'I have topped up the AdBlue and the warning is still on. Why?',
+    a: 'A top-up only helps when the tank was genuinely low. When the level was already fine, or the message is still there after the top-up and a short drive, the system has a fault, and more fluid will not clear it. Get it booked in while the vehicle still starts, because on many makes the countdown ends in a no-start at zero.',
+  },
+  {
+    q: 'Is an AdBlue fault always the NOx sensor?',
+    a: 'No. A NOx sensor is the most common culprit and is often misdiagnosed, but a failed dosing or metering pump, a heater fault after a cold snap, a tank level sensor, crystallised AdBlue blocking the injector or lines, and wiring faults in the SCR circuit can all bring up similar warnings. That is why we read the system and pinpoint the actual fault before we quote, rather than fitting parts on a guess.',
+  },
+  {
     q: 'How much does AdBlue repair cost?',
     a: 'It depends on the fault - a NOx sensor is very different to a dosing pump. We diagnose first and give you a fixed quote before any work starts. Call us with your fault codes for a free initial assessment over the phone.',
   },
